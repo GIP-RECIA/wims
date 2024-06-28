@@ -1,0 +1,47 @@
+Recueillir et organiser des données statistiques
+Effectifs, fréquences, effectifs cumulés
+??,2021
+1
+H4
+statistics
+descriptive_statistics,percentage,absolute_frequency,cumulative_frequency
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Statistique à une variable" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:H3/stat/OEFevalwimsstat.fr
+exo=analyeff1
+10
+1
+Interprétation des effectifs 1
+Interpréter un <strong>tableau d'effectifs</strong> (simple).
+
+:H3/stat/OEFevalwimsstat.fr
+exo=analyeff2&exo=analyeff3&exo=analyeff4&exo=analyeff5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Interprétation des effectifs 2
+Interpréter un <strong>tableau d'effectifs</strong> et <strong>effectifs cumulés</strong>.
+
+Base de 4 énoncés. variable discrète ou continue ; ....ou plus ; .... ou moins.
+:H3/probability/oefstatproba.fr
+exo=bergamo3&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Effectifs et fréquences 1
+Dénombrement. <strong>Effectifs</strong> et <strong>fréquences</strong> (variable discrète).
+
+:H3/stat/oefstat.fr
+exo=seriestat&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Effectifs et fréquences 2
+Dénombrement et regroupement par intervalles. <strong>Effectifs et fréquences</strong>.
+
+:H3/stat/oefstat.fr
+exo=repartition2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Effectifs cumulés et fréquences
+Compléter un <strong>tableau</strong>. <strong>Effectifs cumulés</strong> et <strong>fréquences</strong>.
+

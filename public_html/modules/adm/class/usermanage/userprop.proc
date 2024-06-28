@@ -1,0 +1,146 @@
+!default wims_superclass=$wims_class
+!read adm/class/userisinclass $wims_superclass,$getuser
+!set class_Supervisor=!defof class_Supervisor in wimshome/log/classes/$wims_class/.def
+!if yes notin $script_reply
+  error=bad_usercls
+  !reset job,getuser
+  !exit
+!endif
+!read adm/class/userdef classes,$wims_class,$getuser
+!defread $userdef
+!read adm/class/initclass $wims_class
+regvars_cnt=!itemcnt $regvars_class
+
+!if $user_exists!=yes or $abandon!=$empty
+  !reset up_lastname,up_firstname,up_email,up_regnum,up_photourl,up_comments,up_vars,up_external_auth,up_supervise
+  !if $wims_user=supervisor
+    !bound oldjob within userlist,teacher default userlist
+    job=$oldjob
+    !changeto $job.proc
+    !exit
+  !else
+    job=getuser
+    lastname=$user_lastname
+    firstname=$user_firstname
+    !! BUGTOFIX : this file don't exists (20160409)
+    !changeto var.proc.getuser
+  !endif
+!endif
+
+!if $wims_user=supervisor
+  allowchange=yes
+!endif
+!if $wims_user=supervisor and $getuser!=supervisor
+  user_vars=!sh grep -E '^!set user__' $Userdef | sed 's/^!set user__//g'
+!endif
+
+!if $job2=photoerase
+  !if $wims_user=supervisor or $allowchange=yes
+    up_photourl=
+    !sh rm -f $wims_home/log/classes/$photodir/photoboard/$getuser
+    !reset reg
+    replacelist=photourl
+  !else
+    !reset job2,reg
+  !endif
+!endif
+
+!! make list of name of classes,program etc...
+!readproc mksubclslist.proc
+
+!if $reg!=$empty
+  up_password=
+  replacelist=regnum,comments,photourl,email,external_auth,supervise,participate
+  !for r in $replacelist
+    !default up_$r=$(user_$r)
+  !next r
+  !for i=1 to $[min($limit_regvars,$regvars_cnt)]
+    !default up_regprop$i=$(regprop$i)
+  !next i
+  replacelist=$replacelist,supervise
+  !! ------------- manage modification of user_supervise for teacher account
+  !if $wims_user=supervisor or ($wims_realuser!=supervisor and $wims_realuser!=$empty)
+    !if $superv=no
+      !set up_supervise=!listcomplement $wims_class in $up_supervise
+    !else
+      !if $wims_user=supervisor and $wims_realuser!=supervisor
+        !!not administrator of the portail
+        !set up_supervise=!listuniq $wims_class, $(user_supervise)
+      !else
+        !! tested in groupements, needs to be checked in portals
+	!! (in portals some zones can have $type_class=1)
+        !if $type_class=1
+          !set up_supervise=!listuniq $wims_class,$(up_supervise)
+        !else
+          !set up_supervise=!listuniq $(up_supervise)
+	!endif
+      !endif
+    !endif
+    !if $up_supervise=$empty
+      up_supervise=noclass
+    !endif
+  !endif
+
+  !! ------------- manage modification of user_participate for teacher account
+  !if ($wims_realuser=supervise or $wims_realuser=$class_Supervisor) and $type_class=1
+    replacelist=$replacelist,participate
+    !if $superp=no
+      !set up_participate=!listcomplement $wims_class in $user_participate
+    !else
+      !set up_participate=!listuniq $wims_class,$user_participate
+    !endif
+    !if $up_participate=$empty
+      up_participate=noclass
+    !endif
+  !endif
+
+  !set up_external_auth=!lowercase $up_external_auth
+  !!-------------------- photo file process management
+  !if noname.file notin $wims_deposit and $wims_deposit!=$empty
+    type=!sh file --mime-type $wims_home/$wims_sesdir/user-deposit | awk '{print $$2}'
+    !if image/ notin $type
+      error=badimgformat
+    !else
+      size=!sh mkdir -p $wims_home/log/classes/$photodir/photoboard\
+convert $wims_home/$wims_sesdir/user-deposit -resize 132x170 $wims_home/$wims_sesdir/user-deposit\
+ls -s $wims_home/$wims_sesdir/user-deposit | awk '{print $$1}'
+      !if $size>100
+        error=filetoobig
+      !else
+        !readproc adm/class/quotafree.proc proc
+        !if $[$wims_class_quota-$quota_free-$size]<0
+          error=quota_file
+        !else
+          !sh rm -f $wims_home/log/classes/$photodir/photoboard/$getuser\
+mv $wims_home/$wims_sesdir/user-deposit $wims_home/log/classes/$photodir/photoboard/$getuser
+          up_photourl=
+        !endif
+      !endif
+    !endif
+  !else
+    !if $up_photourl!=$user_photourl
+      !sh rm -f $wims_home/log/classes/$photodir/photoboard/$getuser
+    !endif
+  !endif
+  !!----------------------   end photo file
+!endif
+
+!if $reg!=$empty or $job2=photoerase
+  !read adm/class/adduser $getuser
+  !read adm/class/mkuserlist
+  !if $class_type isin 1234
+    !read adm/gateway/mkteacherlist
+  !endif
+  !read adm/class/stat
+  listerase=!makelist user_regprop i for i=1 to $[min($limit_regvars,$regvars_cnt)]
+  listerase=!nospace $listerase
+  !reset user_lastname, user_firstname, user_email, user_regnum, user_photourl, user_comments,\
+     user_supervisable, user_supervise, user_participate, user_external_auth,wims_deposit,$listerase,user_mkclass
+  !defread $userdef
+  !if $wims_user=supervisor and $getuser!=supervisor
+    user_vars=!sh grep -E '^!set user__' $Userdef | sed 's/^!set user__//g'
+  !endif
+!endif
+
+!reset up_lastname,up_firstname,up_email,up_regnum,up_comments_$(wims_class),up_photourl,up_vars,up_external_auth,\
+  up_supervise,job2,reg,up_participate,up_mkclass

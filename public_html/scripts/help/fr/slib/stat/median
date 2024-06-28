@@ -1,0 +1,16 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Médiane
+slib_parms=1\
+ ,[data] or [data],[weight]
+
+slib_out= médiane d'une série statistique
+slib_comment=Si [data] est une liste de valeurs et si [weight] n'est pas donné,\
+ le poids pour chaque valeur est par défaut 1.\
+[data] peut aussi être un tableau à 2 lignes [data;weight]\
+  ou bien un tableau à 2 colonnes avec les données dans la 1ère colonne\
+  et les poids dans la seconde.\
+  Si [data] contient 2k+1 valeurs de poids 1, la valeur donnée\
+  est la (k+1)-ième valeur de [data] ordonné par ordre croissant.\
+  Si [data] contient 2k valeurs, la valeur donnée est la moyenne\
+  des k-ième et (k+1)-ième valeurs de [data] ordonné par ordre croissant.

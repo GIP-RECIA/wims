@@ -1,0 +1,185 @@
+!!use in homeref_supervisor.phtml
+!set module_init_parm=gloss_item=$special_parm
+!set data=$data_dir/$special_parm
+!set gl_title=!getdef gl_title in $data
+!set gl_keywords=!getdef gl_keywords in $data
+!set gl_author=!getdef gl_author in $data
+!set gl_authors=$gl_author
+!set tmp=!replace internal / by , in $data
+!set lang_thisglose=$(tmp[-2])
+!default gl_title=!lookup $(tmp[-1]) in bases/sys/domain/domain.$lang_thisglose
+!!default gl_title=$special_parm
+!set recordcnt=!recordcnt $data
+!set gl_level=!getdef gl_level in $data
+!if $wims_class!=$empty and $wims_user!=supervisor and $special_parm!=$empty
+  !reset gl_level
+!endif
+<h2 class="wims_title">$gl_title
+  !if $gl_level!=$empty
+    <br><span class="smaller">
+    !set gl_levelcnt=!itemcnt $gl_level
+    !for gl_ll=1 to $gl_levelcnt
+      !set gl_level__=!words2items $(gl_level[$gl_ll])
+      !read adm/levelname.phtml
+      $(name_wims_level_$(gl_level__[1])) $(gl_level__[2..-1])
+      !if $gl_ll<$gl_levelcnt
+      ;
+      !endif
+    !next
+    </span>
+  !endif
+</h2>
+!if $job notsametext dynamic
+  !set dat=!record 1 of $data
+  !if $dat!=$empty
+    <h3>$name_abstract</h3>
+    $dat
+  !endif
+  <div class="wims_widget_box">
+    <h3 class="title_box">$name_definition</h3>
+    !for j=4 to $recordcnt
+      !set dat=!record $j of $data
+      !if $dat!=$empty and $[$j%2]=0
+        <div class="box_content">
+          <div class="wims_example">$dat</div>
+          !if $gl_author notin $gl_authors
+            !set gl_authors=!append item $gl_author to $gl_authors
+          !endif
+        </div>
+      !endif
+      !if $dat!=$empty and $[$j%2]=1
+        !!<div class="wims_widget_box">
+        <div class="box_content">
+          !for jj in $dat
+            <div id="wims_ex_$jj">
+              !set jj=!nospace $jj
+              !set tit_=!getdef gl_title in $data_dir/$jj
+              !default tit_=$jj
+              !read $data_dir/$jj
+              <br class="clearall">
+              !set renew_=!getdef gl_renew in $data_dir/$jj
+              !if $renew_!=0
+                <div class="wimscenter">
+                  !set wims_ref_class=wims_button
+                  !href cmd=reply&$module=$module&special_parm=$special_parm&job=main#wims_ex_$jj $wims_name_renew
+                </div>
+              !endif
+            </div>
+            !reset tit_ renew_
+          !next jj
+          !if $gl_author notin $gl_authors
+            !set gl_authors=!append item $gl_author to $gl_authors
+          !endif
+        </div>
+      !endif
+    !next j
+    !if $wims_class!=$empty and $wims_user!=supervisor and $special_parm!=$empty
+      </div>
+      !goto end
+    !endif
+    !if $gl=0
+      <div class="wims_credits">$wims_name_author: $gl_authors</div>
+    !endif
+  </div>
+  !!connexe gloses
+  !set dat=!record 2 of $data
+  !set dat=!lines2items $dat
+  !set sp=!replace internal / by , in $special_parm
+  !set connexe=!lookup $(tmp[-1]) in wimshome/public_html/bases/sys/domain/reversedomain
+  !for a in $connexe
+    !set succ=!lookup $a in wimshome/public_html/bases/sys/domain/domain
+    !for b in $succ
+      !if $b!=$(sp[4])
+        !set dat_=!select $Listfile where column 4 = $b
+        !if $gloss_domain!=?? and $gloss_domain!=$empty
+          !set dat_=!select $dat_ where column 1 isin $gloss_domain
+        !endif
+        !set dat_=!select $dat_ where column 3 isin $lang_thisglose
+        !set dat_=!replace internal , by / in $dat_
+        !set dat_=!lines2items $dat_
+        !set dat=!append item $dat_ to $dat
+      !endif
+    !next b
+  !next a
+  !for a in $gl_keywords
+    !set succ=!lookup $a in wimshome/public_html/scripts/data/glossary/connexe_domain
+    !for b in $succ
+      !set b_=!replace internal / by , in $b
+      !if $gloss_domain!=?? and $gloss_domain!=$empty
+        !set b_=!select $b_ where column 1 isin $gloss_domain
+      !endif
+      !set b_=!select $b_ where column 3 isin $lang_thisglose
+      !if $(b_[4])!=$(sp[4])
+        !set b_=!replace internal , by / in $b_
+        !set b_=!lines2items $b_
+        !set dat=!append item $b_ to $dat
+      !endif
+    !next b
+  !next a
+  !set dat=!nonempty items $dat
+  !set dat=!nospace $dat
+  !set dat=!listuniq $dat
+  !if $gl>0
+    !set dat=!listintersect $Listfile2 and $dat
+  !endif
+  !if $dat!=$empty
+    <div class="wims_widget_box">
+      <h3 class="title_box">$name_connexe</h3>
+      <div class="box_content">
+        <ul>
+        !for j in $dat
+          !set j_=!replace internal / by , in $j
+          !if $(j_[-1]) notwordof main dynamic
+            !set j_=$j_,main
+          !endif
+          !set j__=!replace internal , by / in $(j_[1..-2])
+          !set j__=!nospace $j__
+          !set tit_=!getdef gl_title in $data_dir/$j__
+          !default tit_=!lookup $(j_[-2]) in wimshome/public_html/bases/sys/domain/domain.$(j_[3])
+          !default tit_=$j__
+          !reset tmp_
+          !if $gl>0
+            !set tmp_=&gl=$gl
+          !endif
+          <li>
+            !href cmd=reply&module=$module$tmp_&special_parm=$j__ $tit_
+          </li>
+          !reset tit_
+        !next j
+        </ul>
+      </div>
+    </div>
+  !endif
+
+  !if $gl>0
+    !goto end
+  !endif
+  !set dat=!record 3 of $data
+  !if $dat!=$empty
+    <div class="wims_widget_box">
+      <h3 class="title_box">$name_activities</h3>
+      <div class="box_content">
+        <ul>
+        !set datcnt=!linecnt $dat
+        !for k=1 to $datcnt
+          !set j=!line $k of $dat
+          !set tit_=!item 3 of $j
+          !default tit_=!getdef title in wimshome/public_html/modules/$j/INDEX
+          !default tit_=$(j[1])
+          <li>
+            !href target=wims_exo cmd=new&module=$(j[1])&$(j[2]) $tit_
+          </li>
+        !next
+        </ul>
+      </div>
+    </div>
+  !endif
+!else
+  !read $data_dir/$special_parm
+  <br class="clearall">
+  <div class="wimscenter">
+    !set wims_ref_class=wims_button
+    !href cmd=reply&special_parm=$special_parm $wims_name_renew
+  </div>
+!endif
+:end

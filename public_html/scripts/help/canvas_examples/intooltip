@@ -1,0 +1,6 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontfamily Bold 42pt Courier
+string black,0,0,Hello World
+intooltip <span style="background-color:black;color:white;font-style:bold;font-size:48pt;">CLICK <br>HERE</span>

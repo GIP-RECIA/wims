@@ -1,0 +1,7 @@
+!if $wims_read_parm=$empty
+  !exit
+!endif
+!reset slib_out
+!readproc slib/$wims_read_parm
+
+$slib_out

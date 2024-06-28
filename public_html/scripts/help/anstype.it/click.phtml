@@ -1,0 +1,31 @@
+
+<b>Cliccare su una immagine o su un testo</b> (nome: <span class="tt wims_code_words">click</span>)
+<br>
+:option:shuffle
+Il tipo <span class="tt wims_code_words">click</span> confronta l'oggetto
+cliccato dallo studente con la risposta corretta definita dal docente.
+Può essere utilizzata solo se non sono presenti altre risposte
+in quanto il click dello studente invia immediatamente la riposta.
+<br>
+La sintassi generale è:
+<pre>
+\answer{Commento}{1;corretta1,sbagliata1,sbagliata2}{type=click}
+\answer{Commento}{1;&#60;img src="\url1" alt="Immagine corretta">,&#60;img src="\url2" alt="Immagine errata">}{type=click}
+</pre>
+È possibile utilizzare l'opzione <span class="tt wims_code_words">shuffle</span>
+ per cambiare l'ordine in cui le scelte sono mostrate.
+<pre>
+\answer{Commento}{1;corretta1,sbagliata1,sbagliata2}{type=click}{option=shuffle}
+\answer{Commento}{1;&#60;img src="\url1" alt="Immagine corretta">,&#60;img src="\url2" alt="Immagine errata">}{type=click}{option=shuffle}
+</pre>
+Per rimescolare le risposte senza utilizzare l'opzione shuffle,
+è necessario compiere una elaborazione preliminare sulle variabili:
+<pre>
+\text{listegraph=&#60;img src="\urlL" alt="Repère en L">,&#60;img src="\urlT" alt="Repère en T inversé">,&#60;img src="\urlCroix" alt="Repère en croix" />}
+\text{li=shuffle(3)}
+\text{listegraphmixe=\listegraph[\li]}
+\integer{rep=position(1,\li)}
+
+\answer{}{\rep;\listegraphmixe}{type=click}
+</pre>
+

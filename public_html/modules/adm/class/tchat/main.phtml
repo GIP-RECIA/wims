@@ -1,0 +1,68 @@
+!read adm/css.phtml
+
+!let wims_html_header=!append line $local_html_header to $wims_html_header
+!set style=!record 0 of tchat.css
+  !set wims_html_header=!append line <style>$style</style>\
+to $wims_html_header
+
+!header
+!read adm/class/classname.phtml $wims_classname\
+$wims_institutionname
+
+!read adm/title.phtml 1\
+$classname\
+$name_title
+
+
+!!----- lang
+!let wims_name_living_activeshare=$(wims_name_actionlist[1]) $name_sharescreen
+!let wims_name_living_stopshare=$(wims_name_actionlist[3]) $name_sharescreen
+!let wims_name_living_activerefresh=$(wims_name_actionlist[1]) $name_autorefresh
+!let wims_name_living_stoprefresh=$(wims_name_actionlist[3]) $name_autorefresh
+
+!if $error!=$empty
+  <div class="wims_msg alert" id="msgerror" >
+    <b>$wims_name_Error:</b>
+    !read msg.phtml
+  </div>
+!else
+  !if $success!=$empty
+    <div class="wims_msg success">
+      !read msg.phtml $success
+    </div>
+  !endif
+  !if $warning!=$empty
+    <div class="wims_msg warning">
+      !read msg.phtml $warning
+    </div>
+  !endif
+!endif
+
+!if $notallowed=1
+  !exit
+!endif
+
+!read $job.phtml
+
+!if $tchat_open=yes
+  !if $wims_user=supervisor and $job!=viewpage
+    !if $job!=config
+      !set wims_menu_items=!append line config,1,module=$module&cmd=reply&job=config\
+  itemsep,0,$empty to $wims_menu_items
+    !endif
+    !if $job!=userlist
+      !set wims_menu_items=!append line userlistliving,1,module=$module&cmd=reply&job=userlist\
+  itemsep,0,$empty to $wims_menu_items
+    !endif
+    !if $job!=listliving
+      !set wims_menu_items=!append line listliving,1,module=$module&cmd=reply&job=listliving to $wims_menu_items
+    !endif
+    !if $job!=addliving and $nbliving<$msg_maxliving
+      !set wims_menu_items=!append line addliving,1,module=$module&cmd=reply&job=addliving&+living=$[$nbliving+1] to $wims_menu_items
+    !endif
+  !endif
+!endif
+
+!reset job job2 error success warning
+
+!tail

@@ -1,0 +1,29 @@
+!set lang_exists=yes
+
+Attualmente WIMS permette sostanzialmente tre tipi di utilizzo:
+
+<ol>
+  <li>
+    !href module=$module&chapter=$chapter&open=$open,$(chapter)_exo#exo Esercizi interattivi
+    che permettono di esercitare le proprie conoscenze.
+  </li><li>
+    !href module=$module&chapter=$chapter&open=$open,$(chapter)_tool#tool Strumenti di visualizzazione grafica e di calcolo
+    che permettono di risolvere problemi di vario tipo.
+  </li><li>
+    !href module=$module&chapter=$chapter&open=$open,$(chapter)_doc#doc Documenti didattici interattivi
+  </li>
+</ol>
+
+Sono anche disponibili giochi matematici di vario tipo.
+<p>
+È possibile effettuare una
+!href module=home&list=9000 ricerca
+.
+</p><p>
+I docenti possono creare
+!href module=$module&chapter=3 corsi virtuali
+ e selezionare per questi corsi attività da proporre ai propri studenti; infatti
+questi ultimi una volta ``iscritti'' ai corsi possono lavorare su questi
+materiali assegnati e ottenere una valutazione (che può essere monitorata e
+utilizzata dal docente).
+</p>

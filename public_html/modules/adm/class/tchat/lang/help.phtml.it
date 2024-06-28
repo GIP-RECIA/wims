@@ -1,0 +1,90 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:general
+La chat permette lo scambio di messaggi testuali tra il docente e un allievo.
+È possibile inserire formule matematiche inserendole tra 
+ <code>&#8726;(...&#8726;)</code>. Non sono permessi comandi html e link.
+!if $wims_user=supervisor
+  <ul>
+   <li>La chat può essere disattivata dal docente utilizzando il link Configurazione
+    nel menu (al momento della creazione del corso la chat è disattivata).</li>
+   <li>È possibile creare delle sale contenenti un gruppo di studenti, utilizzando
+   il link Configurazione sale nel menu.</li>
+   <li>La sala "modulo" contiene tutti gli studenti, viene creata automaticamente 
+    e non può essere cancellata, ma può venire disattivata.</li>
+   <li>Per ogni studente è disponibile una sala individuale privata nella
+    quale è il solo (oltre al docente) 
+    che può leggere e scrivere.
+       Queste sale individuali non possono essere né cancellate, né disattivate.</li>
+   <li>Quando uno studente apre la sua chat, il docente può prendere visione delle pagine degli esercizi
+       che lo studente sta consultando, al fine di dare istruzioni circostanziate. In questo caso nella chat 
+       individuale appare una lista di bottoni che permettono di aprire una
+       pagina in cui visualizzare esattamente ciò che lo studente sta visualizzando al momento del click.
+   </li>
+   !if $tchat_configfilesize>0
+      <li>Vous pouvez déposer un fichier temporaire pour que votre enseignant le consulte. Ce fichier ne sera pas conservé après la fermeture de 
+        votre session de travail.
+      </li>
+   !endif
+  </ul>
+!else
+  <ul>
+   <li>La chat può contenere diverse sale. Se questo è il caso, nel momento
+   in cui apri la finestra della chat, nel menu ti appaiono una serie di
+   link per passare da una sala all'altra.
+   <li>In ciascuna sala, potete vedere l'elenco degli studenti che possono
+   accedere a quella sala. Questa lista si aggiorna costantemente
+   dal momento che il docente può modificare l'elenco degli iscritti.</li>
+   <li>Quando la finestra della chat è aperta, voi potete comunque continuare
+   a navigare nella finestra principale.</li>
+   <li>È possibile attivare la condivisione dello schermo. Se attivata,
+   il docente può visionare le pagine degli esercizi su cui stai
+   lavorando. In questo modo può aiutarti su aspetti specifici.</li>
+   <li>L'aggiornamento automatico delle pagine può essere attivato o
+   disattivato. Questa funzionalità può creare malfunzionamenti nella
+   pagina principale. È quindi consigliato di tenere disattivata
+   questa funzione a meno che non stiate aspettndo un messaggio.</li>
+   <li>Per chiudere la chat, è necessario chiudere la finestra relativa
+    cliccando sul link
+    <span class="tt wims_code_words">Chiudi questa finestra</span> e non
+    utilizzando i bottoni del browser (altrimenti la chat resta aperta).
+   </li>
+   <li><b>$name_configfilesize</b> cette option permet d'autoriser les participants
+       à poster un fichier temporaire lorsqu'ils sont connectés à leur salon personnel.
+       La taille du fichier est limitée par l'enseignant de la classe (cette option peut 
+       également être désactivée par l'enseignant). La publication d'un nouveau fichier par l'élève
+       efface le précédent. Le fichier n'est pas conservé après la fermeture de la session de l'élève.
+       !if $conf_nofile=yes
+          <i>Cette option a été désactivée par l'administrateur du serveur.</i>
+       !endif       
+   </li>
+!endif
+!exit
+
+:config
+  Le opzioni sono le seguenti:
+  <ul>
+   <li><b>$name_opentchat </b> Pemette di attivare o disattivare la chat.
+      Se la chat è disattivata, gli studenti ono possono accedervi, ma il
+      docente può comunque continuare a consultare i messaggi inviati
+      in precedenza.</li>
+   <li><b>$name_timing</b> Si tratta dell'intervallo in secondi dopo il quale
+      le pagine della chat (lato docente come lato studente) vengono
+      ricaricate e dunque i nuovi messaggi effettivamente appaiono.</li>
+   <li><b>$name_onlynonempty</b> Se questa opzione è $wims_name_yes, allora
+      sono elencate solo le sale a cui è collegato almeno uno studente (cioè
+      lo studente ha la chat aperta e l'ultimo messaggio contenuto non è
+      un messaggio del docente).
+      Questa opzione è utile per accorgersi dell'arrivo di nuovi messaggi
+      quando si stanno monitorando più sale.</li>
+  </ul>
+!exit
+
+:listliving
+  Questa pagina di configurazione mostra le informazioni sulle diverse sale.<br>
+  Permette di visionare gli studenti presenti in ciascuna sala, di gestire
+  l'apertura e la chiusura delle sale e di modificare l'elenco dei partecipanti.<br>
+  Le sale individuali non vengono elencate.
+!exit

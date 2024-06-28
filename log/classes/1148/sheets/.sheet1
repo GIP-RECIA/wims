@@ -1,0 +1,71 @@
+Ajustement affine
+Sélection d'exercices correspondant au paragraphe "Statistique à deux variables quantitatives" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+statistics
+regression
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant au paragraphe "Statistique à deux variables quantitatives" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H3/geometry/affine.fr
+type=1&mode1=rep&coeff=3
+10
+1
+Tracer une droite
+Tracer une droite connaissant son <strong>équation</strong>.
+
+
+:H4/stat/oefseriestat2var.fr
+exo=ConnexionInt1&qnum=1&qcmlevel=1&scoredelay=
+10
+1
+Connexions serveur 1
+Compétence : <strong>S'approprier</strong>. Rechercher, extraire et organiser l'information. Traduire des informations.
+
+
+
+
+
+:H4/stat/oefseriestat2var.fr
+exo=ConnexionInt2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Connexions serveur 2
+Compétence : <strong>Analyser Raisonner</strong>. Émettre des conjectures, formuler des hypothèses. Proposer une méthode de résolution.
+
+
+
+
+
+:H4/stat/oefseriestat2var.fr
+exo=ConnexionInt4&qnum=1&qcmlevel=1&scoredelay=
+10
+1
+Connexions serveur 3
+Compétence : <strong>Réaliser</strong>. Déterminer une équation à l'aide des <strong>TIC (calculatrice, Excel ou Geogebra)</strong>. Vérifier l'équation trouvée à l'aide du <strong>graphique</strong> (étape facultative).
+
+
+
+
+
+:H4/stat/oefseriestat2var.fr
+exo=depenseculturelleloisir&qnum=1&qcmlevel=1&scoredelay=
+10
+1
+Évolution des dépenses culturelles et de loisir
+Déterminer et utiliser une droite d'<strong>ajustement affine</strong> à partir d'une problématique.
+
+
+
+
+
+:H4/stat/oefseriestat2var.fr
+exo=Ocean1&exo=Ocean6&exo=Ocean8&qnum=3&random=0&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+La banquise
+Exercice en 3 étapes <ol><li><strong>Nuage de points</strong></li><li><strong>ajustement affine</strong></li><li><strong>extrapolation</strong></li></ol>
+
+

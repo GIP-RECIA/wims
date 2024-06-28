@@ -1,0 +1,59 @@
+# GetServerstat
+# Fournit des statistiques sur le serveur
+# version, adresse, etc...
+# provides server informations
+# option=
+# class : number of class of each level
+# user : number of user of each level
+# classgeoloc : geoloc file of class
+# servergeoloc : geoloc of the server
+# server : connexion server statistique
+# Usage :
+# /wims.cgi?module=adm/raw&job=getserverstat&option=
+
+!bound option within class,user,classgeoloc,servergeoloc,server default $empty
+!if $option!=$empty
+  !if $option=server
+    test=!fileexists wimshome/log/account/00access.act
+    !if $test=yes
+      file=stat.server
+      !sh mkdir -p $wims_home/$wims_sesdir/getfile/stat;\
+          start1=`date -d "1 week ago" '+%Y%m%d'`;\
+          start2=`date -d "1 month ago" '+%Y%m%d'`;\
+          start3=`date -d "1 year ago" '+%Y%m%d'`;\
+          awk 'BEGIN {a1=0;b1=0;c1=0;a2=0;b2=0;c2=0;a3=0;b3=0;c3=0};\
+               $$1>='$$start1'{a1=a1+$$2;b1=b1+$$3;c1=c1+$$4};\
+               $$1>='$$start2'{a2=a2+$$2;b2=b2+$$3;c2=c2+$$4};\
+               $$1>='$$start3'{a3=a3+$$2;b3=b3+$$3;c3=c3+$$4};\
+               END {print "week "a1" "b1" "c1;print "month "a2" "b2" "c2;print "year "a3" "b3" "c3;};' $wims_home/log/account/00access.act > $wims_home/$wims_sesdir/getfile/stat/$file;
+
+    !else
+      ident_type=wims
+      error=nostat
+    !endif
+  !else
+    ty=!positionof item $option in class,user,classgeoloc,servergeoloc
+    file=!item $ty of stat.class,stat.user,class.geoloc,server.geoloc
+    !let test=!fileexists wimshome/log/stat/$file
+    !if $test=yes
+      !if $ty>2
+        !sh mkdir -p $wims_home/$wims_sesdir/getfile/stat;\
+            ln -s -f $wims_home/log/stat/$file $wims_home/$wims_sesdir/getfile/stat/$file;
+      !else
+        !sh mkdir -p $wims_home/$wims_sesdir/getfile/stat;
+        a=!record -1 of wimshome/log/stat/$file
+        b=!word 2 to -1 of $a
+        a=!word 1 of $a
+        !writefile wimshome/$wims_sesdir/getfile/stat/$file $a\
+$b
+      !endif
+    !else
+      ident_type=wims
+      error=nofile
+    !endif
+  !endif
+!else
+  ident_type=wims
+  error=badoption
+!endif
+fname = $wims_sesdir/getfile/stat/$file

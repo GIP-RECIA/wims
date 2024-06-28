@@ -1,0 +1,68 @@
+
+!set embraced_randitem=<p>\
+<b>Este texto acepta texto aleatorio puesto entre llaves&nbsp;:</b>\
+si coloca varias palabras (o grupos de palabras), separadas por\
+comas, en un par de llaves, estas palabras se mostrarán al azar\
+en el momento en que el texto se presenta a los estudiantes. Esto hará que el texto\
+cambie al azar.</p><p>\
+Por ejemplo, si ingresas el texto </p>\
+<pre>Je suis allé {à l'école,au cinéma,chez mes grand parents} {hier,la semaine dernière}</pre>\
+tendrá como resultado una de las siguientes frases, al azar&nbsp;:\
+<pre>\
+Je suis allé à l'école hier\
+Je suis allé au cinéma hier\
+Je suis allé chez mes grand parents hier\
+Je suis allé à l'école la semaine dernière\
+Je suis allé au cinéma la semaine dernière\
+Je suis allé chez mes grand parents la semaine dernière\
+</pre>\
+Habrá seis textos diferentes que se pueden presentar a los estudiantes.\
+<br> Si desea introducir fórmulas matemáticas, es recomendable\
+que deshabilite esta posibilidad poniendo el botón de <span class="wims_code_words">\
+Se acepta texto aleatorio puesto entre llaves</span>\
+a <span class="tt">$wims_name_no</span>.
+
+!set name_random=Algunos ejemplos de generación de parámetros aleatorios:<ul>\
+ <li>un número entero entre 10 y 100 (inclusive):\
+	<span class="tt wims_code_words">randint(10..100)</span>\
+ </li><li>un entero múltiplo de 10 entre 10 y 1000 (inclusive):\
+	<span class="tt wims_code_words">randint(1..100)*10</span>\
+ </li><li>un número decimal entre 0 y 2:\
+	<span class="tt wims_code_words">random(0..2)</span>\
+ </li><li>un objeto escogido aleatoriamente de una lista:\
+	<span class="tt wims_code_words">randitem(a,b,c,10,100,mot,une phrase)</span>\
+ </li></ul>
+
+!set name_detail_parm=Para más detalles sobre el cálculo de los parámetros.
+
+!set image_help=<h4>Insertar imágenes</h4>\
+Para insertar imágenes en su ejercicio, primero debe cargar las imágenes\
+en el módulo de ejercicios de la clase y en segundo lugar poner el código html que\
+permite mostrar la imagen. El código de inserción es:\
+<pre>&lt;img src="\imagedir/nom_image"/></pre>\
+donde <span class="tt">nom_image</span> es el nombre de la imagen (y acepta las extensiones <span class="tt">.jpg</span>, <span class="tt">.png</span>,\
+...) y <span class="tt wims_code_variable">\imagedir</span> representa el nombre del directorio donde se encuentra la imagen.\
+Pueden colocarse en la mayoría de los textos de los modelos preparados (incluso en los enunciados).\
+Se puede comenzar el ejercicio incluso si las imágenes no están cargadas todavía.\
+Una vez que el ejercicio está en el aula, siga el enlace\
+<span class="tt">Guardar un archivo</span> en el ejercicio o <span class="tt">$wims_name_downloadbinary</span>\
+y carga todas las imágenes que necesitas. Prueba. Ajuste los tamaños de las imágenes.\
+Se recomienda no tomar imágenes que son demasiado grandes porque tardan más en cargar\
+al realizar el ejercicio y reducirlas antes de ponerlas en el módulo o la clase.\
+
+!set math_help= <h4>Inserción de fórmulas matemáticas</h4>\
+Para introducir fórmulas matemáticas en el texto, encierre el código text con\
+<span class="tt wims_code_variable">\(</span>\
+y\
+<span class="tt wims_code_variable">\)</span>.\
+Por ejemplo,\
+<pre>\( x^2+\frac{3}{2} \)</pre>
+
+!set oef_help= <div class="wims_smallremark"><h4>Para los más avanzados</h4>\
+es posible utilizar en la definición de los parámetros\
+la mayoría de las funciones de los ejercicios de OEF.\
+</div>
+
+!set credits_help=<h4>Références</h4>\
+Puedes usar el campo <span class="tt wims_code_words">$wims_name_credits</span> para poner\
+breves referencias, por ejemplo, de las imágenes insertadas en el ejercicio.

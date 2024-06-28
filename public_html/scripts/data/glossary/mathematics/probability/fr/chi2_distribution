@@ -1,0 +1,23 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Loi du chi deux
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(n) un entier strictement positif.
+La <strong>loi du chi deux</strong> à \(n) degrés de liberté,
+notée \(\chi^2(n)), est la loi de
+la somme des carrés de \(n) variables normales centrées réduites
+indépendantes. C'est la loi continue sur \(\RR_+) de densité
+
+<div class="wimscenter">
+\( \displaystyle{ x \mapsto \frac{x^{\frac{n}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{n}{2}}\Gamma(\frac{n}{2})}1_{x>0 }})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th><th>Fonction caractéristique</th></tr>
+<tr><td>\(n)</td><td>\(2n)</td><td>\((1-2i t)^(-n/2))</td></tr></table>

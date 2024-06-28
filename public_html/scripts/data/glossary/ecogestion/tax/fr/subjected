@@ -1,0 +1,21 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Assujetti
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">En fiscalité, un <strong>assujetti</strong> désigne
+ en principe une <span class="wims_emph">personne qui se trouve potentiellement
+ dans l'obligation de devoir acquitter un impôt</span>. "Potentiellement" en effet,
+ car un assujetti peut ne pas être redevable de l'impôt en l'application d'une mesure
+ d'exonération.</div>
+ 
+<div class="spacer">Tel est le cas notamment d'une personne physique qui en principe
+ est assujettie à l'impôt sur le revenu mais qui en raison du faible montant de
+ ses revenus se trouve non redevable de l'impôt.</div>
+
+</div>

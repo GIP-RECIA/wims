@@ -1,0 +1,3 @@
+!set name_score=!nosubst You have got $module_score (over 10) points on this reply.
+
+!set name_bad_data=I have failed to evaluate the values you have submitted. A typo?

@@ -1,0 +1,25 @@
+!if $wims_read_parm=synonym
+<p>
+Potete definire sinonimi nel parametro risposta corretta. Per farlo,
+aggiungete semplicemente i sinonimi dopo la risposta corretta (standard),
+separandoli con la barra verticale  <span class="tt wims_code_words">|</span>.
+Può essere definito un numero qualunque di sinonimi.
+</p>
+!endif
+
+!if $wims_read_parm=badonly
+<p>
+Affinché la risposta dello studente sia limitata a un certo campo lessicale,
+ è possibile definire risposte errate utilizzando il punto e virgola
+ <span class="tt wims_code_words">;</span> separando anche queste con la
+ barra verticale 
+ <span class="tt wims_code_words">|</span> se si vogliono mettere più risposte
+ errate.
+ Se la risposta data dallo studente non è inclusa in questo campo lessicale,
+ allo studente viene richiesto di completare di nuovo la riposta per
+ forzare l'uso di parole nel campo lessicale voluto.
+Vengono ignorati i segni di punteggiatura contenuti in questa lista
+e le parole sono confrontate con lo stesso livello di tolleranza
+utilizzato per le risposte corrette.
+</p>
+!endif

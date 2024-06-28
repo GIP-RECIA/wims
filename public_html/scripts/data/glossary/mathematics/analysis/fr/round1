@@ -1,0 +1,46 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_number,inequalities
+!set gl_title=Arrondi (lycée)
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+Soit \(x\) un nombre réel et \(n\) un entier naturel.
+<ul>
+<li>Si \(x\) est positif, on appelle <strong>arrondi</strong> (ou <strong>valeur
+arrondie</strong>) de \(x\) à \(10^{-n}\) le nombre décimal \(a\) tel que
+\(a \times 10^{n}\) est entier et
+<span style="white-space:nowrap">
+\(a-5 \times 10^{-n-1} \leqslant x \lt a + 5 \times 10^{-n-1}\).</span>
+</li>
+<li>Si \(x\) est négatif, on appelle <strong>arrondi</strong> (ou <strong>valeur
+arrondie</strong>) de \(x\) à \(10^{-n}\) le nombre décimal \(a\) tel que
+\(a \times 10^{n}\) est entier et <span style="white-space:nowrap">
+\(a-5 \times 10^{-n-1} \lt x \leqslant a + 5 \times 10^{-n-1} \).</span>
+</li>
+</ul>
+</div>
+<div class="wims_rem">
+<h4>Remarques</h4>
+<ul>
+<li>L'arrondi \(a\) de \(x\) à \(10^{-n}\) est une valeur approchée de \(x\) à
+\(10^{-n}\) près.<br>
+Si \(x\) est positif, cette valeur approchée est par défaut lorsque la
+<span style="white-space:nowrap">(\(n\)+1)-ième</span> décimale de \(x\) est
+0, 1, 2, 3 ou 4, par excès lorsque cette décimale est 5, 6, 7, 8 ou 9.<br>
+Si \(x\) est négatif, cette valeur approchée est par excès lorsque la
+<span style="white-space:nowrap">(\(n\)+1)-ième</span> décimale de \(x\) est
+0, 1, 2, 3 ou 4, par défaut lorsque cette décimale est 5, 6, 7, 8 ou 9.
+</li>
+<li>
+Lorsque \(n = 0\), \(a\) est l'arrondi de \(x\) à l'unité.<br>
+lorsque \(n = 1\), \(a\) est l'arrondi de \(x\) au dixième.<br>
+lorsque \(n = 2\), \(a\) est l'arrondi de \(x\) au centième.<br>
+lorsque \(n = 3\), \(a\) est l'arrondi de \(x\) au millième&#8230;
+</li>
+</ul>
+</div>

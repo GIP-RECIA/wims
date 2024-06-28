@@ -1,0 +1,98 @@
+!goto $wims_read_parm
+
+:general
+<h2>Fonctionnement général</h2>
+<p>
+Lorsque vous cliquez sur le titre d'un exercice de la feuille, cela fait
+ apparaitre un énoncé de l'exercice. Pour obtenir une note sur l'exercice,
+  il faut répondre à toutes les questions de l'exercice. La note attribuée est
+une note sur 10.
+</p>
+<p>
+ Pour certains exercices, l'énoncé peut être composé de questions
+qui apparaissent au fur et a mesure que vous envoyez vos réponses
+(il peut s'agir d'exercices à étapes ou de série d'exercices) ;
+</p>
+<p>
+  Il faut avoir terminé un exercice avant de commencer à travailler sur un autre
+ exercice (sinon la note obtenue sur le 1er exercice ne sera pas enregistrée).
+Vous ne pouvez pas revenir sur des réponses que vous avez déjà envoyées
+(de façon générale, il ne faut pas utiliser les menus de votre navigateur pour
+changer de page ou revenir sur la page que vous avez quittée).
+</p>
+<p>
+Lorsque vous recommencez un même exercice, l'énoncé de cet exercice peut varier.
+</p>
+<p><span class="wims_warning">Attention</span> : pour des raisons de sécurité,
+le temps pour répondre à un exercice est limité ;
+ si vous n'entrez pas vos réponses dans les
+ $[floor($idle_time/60)] minutes qui suivent l'affichage de l'énoncé,
+elles risquent de ne pas être prises en compte.
+</p>
+<h2> $(wims_name_thsheet[3])</h2>
+Si le nombre de points requis sur un exercice est supérieur à 10, cela signifie
+ que votre enseignant souhaite que vous fassiez plusieurs fois le même exercice.
+
+<h2> $(wims_name_thsheet[14]) </h2>
+Si <span class="wims_code_variable">$(wims_name_thsheet[14]) X/Y </span>
+apparait dans la description de l'exercice, cela signifie que
+votre enseignant a choisi de limiter le nombre d'essais que vous pouvez
+ faire sur un exercice lorsque l'enregistrement des notes sur la feuille est ouverte :
+<ul><li>
+<span class="wims_code_variable">Y</span> désigne le nombre maximal d'essais qui
+seront comptabilisés pour définir votre note sur la feuille ;
+</li><li><span class="wims_code_variable">X</span> désigne le nombre d'essais
+ comptabilisés que vous avez déjà faits.
+</ul>
+Attention, le travail sur un exercice est considéré comme un essai que vous ayez terminé
+ l'exercice ou pas, que vous ayez suspendu l'enregistrement des notes ou pas.
+<h3>Exemple 1</h3>
+ Si sur un exercice, il est écrit <span class="wims_code_variable">$(wims_name_thsheet[14]) 0/4</span> et si
+ l'enregistrement des notes est ouverte sur la feuille, cela signifie que :
+<ul><li>
+ vous n'avez pas travaillé sur cet exercice depuis que votre enseignant a ouvert
+ l'enregistrement des notes sur cette feuille ;
+</li><li>
+le score que vous obtiendrez sur cet exercice ne sera prise en compte
+ pour le calcul de la note sur la feuille que si les deux conditions suivantes sont réalisées :
+<ol><li>
+ce score est obtenu sur l'un des 4 prochains essais sur cet exercice et
+pendant la période où l'enregistrement des notes est ouverte ;
+</li><li>
+vous n'avez pas suspendu l'enregistrement des notes.
+</li></ol>
+</li></ul>
+
+<h3>Exemple 2</h3>
+Si sur un exercice, il est écrit <span class="wims_code_variable">$(wims_name_thsheet[14]) 5/5</span>, cela signifie
+ que vous avez utilisé les 5 essais autorisés par votre enseignant. Si vous travaillez de
+  nouveau sur cet exercice, votre score sur cet exercice ne sera pas pris en compte.
+
+<h2> $(wims_name_thsheet[7])</h2>
+La note <span class="wims_code_variable">$(wims_name_thsheet[7])</span>
+sur un exercice tient compte du score obtenu à chaque essai et du nombre d'essais effectués.
+<p>
+Cliquez sur le lien <span class="text_icon myscore">$wims_name_myscore</span>
+pour connaitre la note que vous avez sur cette feuille puis sur
+<span class="wims_button_help disabled">Règle de calcul</span>
+pour connaitre la façon dont sont calculés les différents indicateurs de votre travail sur la feuille.
+</p>
+!exit
+
+:printversion
+<h2>$wims_name_printable</h2>
+Tous les exercices ne disposent pas d'une version imprimable.
+Pour les exercices dont l'énoncé apparait au fur et à mesure que vous entrez vos réponses,
+la version imprimable ne fera apparaitre que la première partie de l'énoncé.
+
+<h2>$wims_name_exolog</h2>
+Lorsque vous avez terminé un exercice, un lien <span class="text_icon exolog">$wims_name_exolog</span>
+peut vous permettre de garder une trace de l'énoncé que vous avez obtenu et des réponses
+que vous avez entrées. Cet enregistrement sera aussi visible par votre enseignant.
+Utilisez donc ce lien si vous ne comprenez pas la réponse donnée par l'ordinateur
+ et que vous souhaitez en parler à votre enseignant. <br>
+Attention, seuls $wims_class_exolog enregistrements d'exercices peuvent être conservés
+en même temps.
+Les enregistrements suivants effaceront les premiers exercices enregistrés.
+!exit
+

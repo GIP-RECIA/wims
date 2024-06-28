@@ -1,0 +1,32 @@
+!! this file search if exists dependancies or individualisation of sheet with technical variable
+!! if a number is in wims_read_parm it will search only in this sheet if not search in all sheet
+!! output :
+!! sheet_dependancy : list of number of sheet with active dependancies
+!! sheet_indivtechvar : list of number of sheet with individualisation of sheet with technical variable
+
+nbsh_=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+list_=$wims_read_parm
+!bound list_ between 1 and $nbsh_ default $empty
+!if $list_=$empty
+  list_=!values v for v=1 to $nbsh_
+!endif
+!reset sheet_dependancy sheet_indivtechvar
+!for k_ in $list_
+  data_=!record $k_ of wimshome/log/classes/$wims_class/sheets/.sheets
+  data_=!line 10 of $data_
+  !if $data_!=$empty and $data_!=0
+    sheet_indivtechvar=!append item $k_ to $sheet_indivtechvar
+  !endif
+  nbexo_=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$k_
+  j_=1
+  t_=$empty
+  !while $j_<=$nbexo_ and $t_=$empty
+    data_=!record $j_ of wimshome/log/classes/$wims_class/sheets/.sheet$k_
+    t_=!line 7 of $data_
+    !increase j_
+  !endwhile
+  t_=!replace internal $ $ by in $t_
+  !if $t_!=$empty
+    sheet_dependancy=!append item $k_ to $sheet_dependancy
+  !endif
+!next k_

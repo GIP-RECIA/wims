@@ -1,0 +1,276 @@
+!set n=$counter
+<link rel="stylesheet" href="$htmldir/jqmath.css">
+<script src="$jsdir/jqmath.js"></script> 
+!if $my_arrows=$empty
+    !set my_arrows=2
+!endif
+!if $convert_root=$empty
+    !set convert_root=0
+!endif
+!if $use_ineq != 1
+    !set use_ineq=0
+!endif
+<script>
+//<![CDATA[
+<!-- no validator  -->
+var descr_list="$description";var descr_cnt = 30;var description = make_description(descr_list,descr_cnt);function dontknow(){myConfirm('$dontknow','?','$wims_ref_name','$session','$module','$counter','$nok_send_color');}
+function sendanswer(){
+ var input;
+ var show="<ul>";
+ var inputfieldnumber = 0;
+ var reply = new Array();
+ var tmp_show;
+  <!-- MathView js input html5 applet -->
+  if(document.getElementById("JSMathView")){
+   input=document.getElementById("JSMathView").value;
+   if( input.length == 0) {setAlarm(r1+"\ $counter");return;};
+   if( input.length > 200 ){setAlarm(r2); return;};
+   if(input.indexOf(',') != -1 && input.indexOf('table') == -1){setAlarm(r4);return;};
+   !if $special_fraction=1
+   <!-- allow 1 2/3 to be send as 1+2/3 in stead of 12/3... -->
+    input = singlespace(input);
+    input = input.replace(/\ /g,'+');
+    if(input.indexOf('+') == 0 ){input = input.substring(1,input.length);}
+    if(input.indexOf('+') == input.length ){input = input.substring(0,input.length-1);}
+   !endif
+   show = input;
+   <!-- convert all unicode to wims-math ... more to come... >= <= etc-->
+   input = conv_uni2wims(input)
+   if(check_f(input) == 0){return;};
+   if(check_o(input) == 0){return;};
+   if(check_log_NaN(input) == 0){return;}
+   if(check_sqrt_NaN(input) == 0){return;};
+   input = science(input);if(input == "error"){return;};
+   if(check_x(input) == 0){return;};
+  !if $convert_root=0
+   input = arrows(input,$my_arrows,"","");if(input == "error"){return;};
+   input = nthroot(input);if(input == "error"){return;};
+   if(input.indexOf("[") !=- 1){
+    if(input.indexOf("sqrt[")!=-1){
+     input=specialroot(input);if(input == "error"){return;};
+    };
+    if(input.indexOf("log[")!=-1){
+     input=speciallog(input);if(input == "error"){return;};
+    };
+   };
+  !endif
+   reply[inputfieldnumber] = input;inputfieldnumber = 1;
+  };
+  if(reply[0].length == 0 ){setAlarm(r1);return;};show = show + "</ol>";
+  myConfirm(show,reply,'$wims_ref_name','$session','$module','$counter','$ok_send_color');
+}
+//]]>
+</script>
+!if $(object$n) != $empty
+<table class="exercise" >
+    <tr>
+    <td class="exercise_m">
+!endif
+    <table id="exercise" class="exercise" ><!-- begin table id=exercise -->
+	<tr>
+        <td class="exercise_m">
+	!if $(question$n)!= $empty
+	    $(question$n)
+	!endif
+	!if $exotext != $empty
+	    <br />
+	    $exotext
+	!endif
+	    <table class="exercise">
+		<tr>
+		!if $(formula$n) != $empty
+		<td class="exercise_c">
+		    !insmath $(formula$n)
+		</td>
+	        <td class="exercise_m">
+		    &nbsp;$m_rightarrow&nbsp;
+		</td>
+		!endif
+		<td id="math_out" style="font-size:1.1em;"></td>
+		</tr>
+	    </table>
+	    <textarea id="JSMathView" style="color:black;background-color:#e8ffff;border:1px solid #ff0000;width:400px;webkit-box-sizing:border-box;moz-box-sizing:border-box;box-sizing:border-box;"></textarea>
+	</td>
+	</tr>
+	<tr>
+	<td class="exercise_m">
+!if minimaal isin $mathviewpanel
+ !set only_first=1
+!else
+ !set only_first=0
+!endif
+	    <table class="demospecial" id="show_it">
+		<tr id="math_op0">
+!if $only_first=1
+		<td onclick="javascript:change_fontsize(0.5); adapt_width();"><span style="font-size:22pt">A</span></td>
+		<td onclick="javascript:change_fontsize(-0.5); adapt_width();"><span style="font-size:4pt">A</span></td>
+!endif
+		<td colspan="1" id="clear_it" style="font-size:100%">
+		!record 67 of $remarkdir/commonremarks.$taal
+		</td>
+		<!-- contents of mathviewpanel -->
+		</tr>
+		<tr id="math_op1" style="display:none">
+		<td style="background-color:yellow" onclick="javascript:hide_button_row();"><img src="$gifdir/punt.gif" alt="wissen" /></td>	
+		<td onclick="javascript:button('^');">	^</td>
+		<td onclick="javascript:button('/');">	/</td>
+		<td onclick="javascript:button('*');">	*</td>
+		<td onclick="javascript:button('+');">	+</td>
+		<td onclick="javascript:button(' &minus; ');">&minus;</td><!-- \u2212 -->
+		<td onclick="javascript:button('(');">	(</td>
+		<td onclick="javascript:button(')');">	)</td>
+		<td onclick="javascript:button('&euro;');">&euro;</td>
+		</tr>
+		<tr id="math_op2" style="display:none">
+		<td style="background-color:yellow" onclick="javascript:hide_button_row();"><img src="$gifdir/punt.gif" alt="wissen" /></td>	
+		<td onclick="javascript:button('&radic;()');">&radic;()</td>
+		<td onclick="javascript:button('sin()');">sin</td>
+		<td onclick="javascript:button('cos()');">cos</td>
+		<td onclick="javascript:button('tan()');">tan</td>
+		<td onclick="javascript:button('log()');">log</td>
+		<td onclick="javascript:button('asin()');">asin</td>
+		<td onclick="javascript:button('acos()');">acos</td>
+		<td onclick="javascript:button('pi ');">&pi;</td>
+		</tr>
+		<tr id="math_op3" style="display:none">
+		<td style="background-color:yellow" onclick="javascript:hide_button_row();"><img src="$gifdir/punt.gif" alt="wissen" /></td>	
+		<td onclick="javascript:button(' &#8712; ');">   &#8712;</td><!-- in \u2208 -->
+		<td onclick="javascript:button(' &#8713; ');">&#8713;</td><!-- notin \u2209 -->
+		<td onclick="javascript:button(' &#8743; ');">  &#8743;</td><!-- and \u2227 -->
+		<td onclick="javascript:button(' &#8744; ');">   &#8744;</td><!-- or \u2228 -->
+		<td onclick="javascript:button(' &#8804; ');">   &#8804;</td><!-- <= \u2264 -->
+		<td onclick="javascript:button(' &#8805; ');">   &#8805;</td><!-- >= \u2265 -->
+		<td onclick="javascript:button(' &#177; ');">    &#177;</td><!-- R -->
+		<td onclick="javascript:button(' N ');">    N</td>
+		</tr>
+		<tr id="math_op4" style="display:none">
+		<td style="background-color:yellow" onclick="javascript:hide_button_row();"><img src="$gifdir/punt.gif" alt="wissen" /></td>	
+		<td onclick="javascript:button('sqrt[3]()');"><sup>3</sup>&radic;()</td>
+		<td onclick="javascript:button('sqrt[4]()');"><sup>4</sup>&radic;()</td>
+		<td onclick="javascript:button('sqrt[5]()');"><sup>5</sup>&radic;()</td>
+		<td onclick="javascript:button('sqrt[6]()');"><sup>6</sup>&radic;()</td>
+		<td onclick="javascript:button('sqrt[7]()');"><sup>7</sup>&radic;()</td>
+		<td onclick="javascript:button('sqrt[8]()');"><sup>8</sup>&radic;()</td>
+		<td onclick="javascript:button('sqrt[9]()');"><sup>9</sup>&radic;()</td>
+		<td onclick="javascript:button('sqrt[10]()');"><sup>10</sup>&radic;()</td>
+		</tr>
+		<tr id="math_op5" style="display:none">
+		<td style="background-color:yellow" onclick="javascript:hide_button_row();"><img src="$gifdir/punt.gif" alt="wissen" /></td>	
+		<td onclick="javascript:button('log[2]()');"><sup>2</sup>log()</td>
+		<td onclick="javascript:button('log[3]()');"><sup>3</sup>log()</td>
+		<td onclick="javascript:button('log[4]()');"><sup>4</sup>log()</td>
+		<td onclick="javascript:button('log[5]()');"><sup>5</sup>log()</td>
+		<td onclick="javascript:button('log[6]()');"><sup>6</sup>log()</td>
+		<td onclick="javascript:button('log[7]()');"><sup>7</sup>log()</td>
+		<td onclick="javascript:button('log[8]()');"><sup>8</sup>log()</td>
+		<td onclick="javascript:button('log[9]()');"><sup>9</sup>log()</td>
+		</tr>
+		<tr id="math_op6" style="display:none">
+		<td style="background-color:yellow" onclick="javascript:hide_button_row();"><img src="$gifdir/punt.gif" alt="wissen" /></td>	
+		<td onclick="javascript:button('f\'(x) = ');">   f'(x) = </td>
+		<td onclick="javascript:button('dy/dx = ');"> dy/dx = </td>
+		<td onclick="javascript:button(' &#8743; ');">  &#8743;</td><!-- and \u22C0 -->
+		<td onclick="javascript:button(' &#8744; ');">   &#8744;</td><!-- or \u22C1 -->
+		<td onclick="javascript:button(' &#8804; ');">   &#8804;</td><!-- <= \u2264 -->
+		<td onclick="javascript:button(' &#8805; ');">   &#8805;</td><!-- >= \u2265 -->
+		<td onclick="javascript:button('f(x) = ');">   f(x) =</td>
+		<td onclick="javascript:button('F(x) = ');">    F(x) =</td>
+		</tr>
+		<tr id="math_op7" style="display:none">
+		<td style="background-color:yellow" onclick="javascript:hide_button_row();"><img src="$gifdir/punt.gif" alt="wissen" /></td>	
+		<td onclick="javascript:button(' &Rightarrow; ');">&Rightarrow;</td><!-- \u21D2 &rArr; &#8658; -->
+		<td onclick="javascript:button(' &longrightarrow; ');">&longrightarrow;</td><!-- \u2192 -->
+		<td onclick="javascript:button(' &leftrightarrow; ');">&leftrightarrow;</td><!-- \u2194 -->
+		<td onclick="javascript:button(' &Leftrightarrow; ');">&Leftrightarrow;</td><!-- \u21D4 -->
+		<td onclick="javascript:button(' &Sum; ');">&Sum;</td><!-- \u2211 -->
+		<td onclick="javascript:button('( \\table a,b,c;d,e,f;g,h,i) ');">matrix</td>
+		<td onclick="javascript:button(' &infin; ');">&infin;</td><!--  \u221E -->
+		<td onclick="javascript:button(' &int;_{a}^{b} ');">&int;</td><!-- \u222B -->
+		</tr>
+		<tr id="math_op8" style="display:none">
+		<td style="background-color:yellow" onclick="javascript:hide_button_row();"><img src="$gifdir/punt.gif" alt="wissen" /></td>	
+		<td onclick="javascript:button(' x &#8712; R &#10741; {a:b:c}');">x &#8712; R \ {a:b:c}</td><!-- \u29F5 -->
+		<td onclick="javascript:button(' &#9001; : &#9002; ');"> &#9001; : &#9002; </td><!-- \u2329 : \u232A -->
+		<td onclick="javascript:button(' &#9001; ');"> &#9001; </td><!-- \u2329 -->
+		<td onclick="javascript:button(' &#9002; ');"> &#9002; </td><!-- \u232A -->
+		<td onclick="javascript:button(' [ ');"> [ </td>
+		<td onclick="javascript:button(' ] ');"> ] </td>
+		<td onclick="javascript:button(' &infin; ');">&infin;</td><!-- \u222B -->
+		<td onclick="javascript:button(' R Z N');">R Z N</td>
+		</tr>
+		<tr id="math_op9" style="display:none">
+		<!-- only increase in math from user input; the math_formula should be size using wims adm/light ... -->
+		<td style="background-color:yellow" onclick="javascript:hide_button_row();"><img src="$gifdir/punt.gif" alt="wissen" /></td>	
+		<td onclick="javascript:change_fontsize(0.2);"><span style="font-size:18pt">A</span></td>
+		<td onclick="javascript:change_fontsize(-0.2);"><span style="font-size:6pt">A</span></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		</tr>
+		<tr id="control_1" style="display:table-row;">
+		!if $only_first=0
+		<td style="background-color:lightgreen;" onclick="javascript:show_button_row(1);">+ &minus;</td>	
+		<td style="background-color:lightgreen;" onclick="javascript:show_button_row(2);">sin</td>	
+		<td style="background-color:lightgreen;" onclick="javascript:show_button_row(3);">&#8712;</td>	
+		<td style="background-color:lightgreen;" onclick="javascript:show_button_row(4);"><sup>3</sup>&radic;</td>	
+		<td style="background-color:lightgreen;" onclick="javascript:show_button_row(5);"><sup>3</sup>log()</td>	
+		<td style="background-color:lightgreen;" onclick="javascript:show_button_row(6);">dy/dx</td>	
+		<td style="background-color:lightgreen;" onclick="javascript:show_button_row(7);">&longrightarrow;</td>	
+		<td style="background-color:lightgreen;" onclick="javascript:show_button_row(8);">&#9001; : &#9002;</td>
+		<td style="background-color:lightgreen;" onclick="javascript:show_button_row(9);"><span style="font-size:18pt">A</span><span style="font-size:6pt">A</span></td>		
+		!endif
+		</tr>
+	    </table>
+	</td>
+	</tr>
+    </table>
+!if $(object$n)!=$empty
+    !if $make_tr=1
+	</tr>
+	<tr>
+    !endif
+    <td class="exercise_t">
+	$(object$n)
+    </td>
+</table>
+!endif
+<div id="send_buttons" class="embedded_central">
+    <input type="button" id="schaersvoorde_ok_button" onclick="javascript:sendanswer();" value="$send" />
+    <input type="button" id="schaersvoorde_nok_button" onclick="javascript:dontknow();"  value="$dontknow" />
+    !if $wims_user=supervisor
+	!set answer_n=!lines2items $(answer$n)
+	<input type="button" id="schaersvoorde_extra_button" onclick="document.getElementById('JSMathView').value = '$answer_n';doMathSrc(1);" value="$wims_firstname $wims_lastname" /> 
+    !endif
+</div>
+<script>
+//<![CDATA[
+<!-- no validator  -->
+ "use strict";
+ var uni2wims = {'\u00B1':' pm ','\u2227':' and ','\u2228':' or ','\u2264':' <= ','\u2265':' >= ','\u2212':'-','\u221A':' sqrt ','\u20AC':' euro ','\u03C0':' pi ','\u2208':' in ','\u2209':' notin ','\u21d0':' <= ','\u21D2':' => ','\u27F6':' --> ','\u2190':' <- ','\u2192':' -> ','\u2194':' <-> ','\u21D4':' <=> ','\u2211':' SUM ','\u221E':' inf ','\u222B':' int ','\u2329':' langle ','\u232A':' rangle ','\u2203':' exist ','\u2200':' forall ','\u00ac':' not ','\u22a4':' true ','\u22a5':' false ','\u2254':' equiv ','\u2261':' defined ','\u22a2':' proved ','\u22a8':' entails ','\u222a':' union ','\u2282':' subset ','\u2229':' intersection ','\u2204':' notexist ','\u2295':' xor ','\u2205':' empty ','\u29F5':' \ ','\u2236':':','\u2234':' therefore ','\u2235':' because '};var lang="$lang" || "$taal";var num_button_tabs = 8;var JSMathView = document.getElementById("JSMathView");var show_it = document.getElementById("show_it"); var clear_it = document.getElementById("clear_it");var math_out = document.getElementById("math_out");var math_font_size = 1.1;var my_wims_mathml=document.getElementsByTagName('math');var my_mathml_len = my_wims_mathml.length;var mathviewpanel ="$mathviewpanel";mathviewpanel = mathviewpanel.split(':');if(mathviewpanel.length > 1){ var opt = document.getElementById('math_op0');for(var i=1; i<= num_button_tabs ;i++){if(mathviewpanel[i]){(function(){var paneltxt = conv_wims2uni(mathviewpanel[i]) ;var td = document.createElement('td');var id = i-1;td.setAttribute('id','mypanel'+id);opt.appendChild(td);td.addEventListener('click',function(e){ button(paneltxt);},false);td.innerHTML = paneltxt;}());};};};
+ function show_button_row(row){hide_button_row();document.getElementById("math_op"+row).style.display = 'table-row';adapt_width();};
+ function hide_button_row(){var i=1;while(document.getElementById("math_op"+i)){document.getElementById("math_op"+i).style.display = 'none';i++};adapt_width()};
+ function displayroot(t){var power;var sqrt;var begin;var end;var mod;var tot;var wait;var got;var chr;var t1;var t2;var t3;var t4;var test;var org;t2=t.indexOf("](");if(t2==-1){return;};org=t;t=t.replace(/sqrt\(/g,"SQRT(");t=t.replace(/log\[/g,"LOG~");t=t.replace(/sqrt\[/g,"@[");test=t.replace(/[a-z]\[/g,"#");if(test.indexOf("#")!=-1){return;};t2=t.indexOf("[");var trouble=0;while(t2 != -1){begin=t.indexOf("@");t2=t.indexOf("[");t3=t.indexOf("]");if(t2==begin+1 && t3>t2){power=t.substring(t2+1,t3);if(power.length==0){return t;};if(power<2){return;}t4="["+power+"]";t=t.replace(t4,'');tot=t.length;wait=0;got=0;end=0;for(var s=begin;s<tot;s++){if(end==0){chr=t.charAt(s);if(chr=="("){wait=wait+1;};if(chr==")"){got=got+1;};if(got!=0){if(wait==got){end=s;}}}};begin=begin+2;sqrt=t.substring(begin,end);mod=(power % 2);if(sqrt<0 && mod!=1){return;};t=t.replace("@("+sqrt+")","{^"+power+"&radic;#"+sqrt+"!}");}else{t=t.replace("]","?");}trouble++;if(trouble>100){setAlarm(r20);t="error";return t;}};t=t.replace(/SQRT\(/g,"&radic;#");t=t.replace(/LOG~/g,"log[");t=t.replace(/~/g,"[");t=t.replace(/\?/g,"]");t=t.replace(/@/g,"&radic;");return t;}
+ function displayfun(t,fun,alias){var cnt=0;var chk = [];var ti = t.indexOf(fun);while( ti !=-1 ){ var to = t.indexOf(fun+'[');t = t.replace(fun,"@");;if( to < ti+3  ){ chk.push(cnt);}else{chk.push(-1);};ti = t.indexOf(fun);cnt++;};var idx=null;var tot=t.length;var wait=0;var got=0;var end=0;var arg;var begin;var s1;var s2;var chr;var found;var i;var ii;var idx;for(var p=0 ; p < cnt; p++ ){tot = t.length;idx=null;begin = t.indexOf('@');i=t.indexOf('[');if( chk[p] != -1 ){ii=t.indexOf(']');idx=t.substring(i+1,ii);s1 = t.substring(0,i);s2 = t.substring(ii+1,tot);t=s1+s2;};found=false;wait=0;got=0;for(var s = begin; s < tot && found==false; s++){chr = t.charAt(s);if(chr == "("){wait = wait + 1;};if(chr == ")"){got = got + 1;};if(got != 0){ if( wait == got ){ end = s;found = true;};};};begin=begin+2;arg=t.substring(begin,end);if(idx != null ){if(lang == "fr" ){t = t.replace("@("+arg+")","{"+alias+"_{"+idx+"}#"+arg+"!}");}else{t = t.replace("@("+arg+")","{^{"+idx+"}"+alias+"#"+arg+"!}");};}else{t = t.replace("@("+arg+")","{"+alias+"#"+arg+"!}");};};return t;};
+ function button(myValue){if(document.selection){JSMathView.focus();var sel = document.selection.createRange();sel.text = myValue;}else{ if(JSMathView.selectionStart || JSMathView.selectionStart == '0'){var startPos =JSMathView.selectionStart;var endPos = JSMathView.selectionEnd;JSMathView.value = JSMathView.value.substring(0,startPos) + myValue + JSMathView.value.substring(endPos,JSMathView.value.length);} else {JSMathView.value += myValue;};};if(myValue.indexOf('()') != -1){JSMathView.setSelectionRange(startPos+myValue.length - 1,startPos+myValue.length - 1);};doMathSrc(1);}; 
+ function change_fontsize(t){math_font_size = math_font_size+t;math_out.setAttribute('style','font-size:'+math_font_size+'em');for(var i=0 ; i < num_button_tabs; i++){;if(document.getElementById('mypanel'+i)){ document.getElementById('mypanel'+i).setAttribute('style','font-size:'+math_font_size+'em');};};JSMathView.setAttribute('style','font-size:'+math_font_size+'em');for(var i=0 ;i < my_wims_mathml.length; i++){ my_wims_mathml[i].setAttribute('mathsize',math_font_size+'em');};adapt_width();};
+ function rewrite(input){if(input.indexOf("sqrt[") != -1){ input = displayroot(input);};var rep1 = ["sqrt(","pi",">=","<="," and "," or "," isin "," in "," notin "," R "," N ","dy","dx","\ ","dv","dt"];var rep2 = ["&radic;(","\\pi","\\ge "," \\le "," \\wedge "," \\vee "," \\in "," \\in "," \\notin ","\\R","\\N","\\dy","\\dx","\\;","\\dv","\\dt"];for(var i=0; i < rep1.length ; i++){input = input.split(rep1[i]).join(rep2[i]);};var math = ["asin","acos","atan","sqrt","sin","tan","log","cos"];var rep_math = ["\\asin","\\acos","\\atan","\\sqrt","\\sin","\\tan","\\log","\\cos"];var subst=["|A|","|B|","|C|","|D|","|E|","|F|","|G|","|H|","|K|","|L|","|M|","|N|","|O|","|P|","|Q|","|R|"];var repindex=[16];var mathindex=[16];var idx;var found=false;for(var i=0;i < math.length ; i++){idx = input.indexOf(math[i]);while( idx != -1 ){found=true;repindex.push(subst[i]);mathindex.push(rep_math[i]);input = input.replace(math[i],subst[i]);idx = input.indexOf(math[i]);};};if( found ){for(var i=0;i < repindex.length ; i++){input = displayfun(input,repindex[i],mathindex[i]);};};input=input.replace(/#/g,'(');input=input.replace(/!/g,')');return input;}var ents_ = { nwarr: '\u2196', swarr: '\u2199' };show_it.addEventListener('click',function(e){doMathSrc(1);},false);clear_it.addEventListener('click',function(e){JSMathView.value="";doMathSrc(3);},false);JSMathView.addEventListener('keyup',function(e){doMathSrc(1);},false);var ents_ = { nwarr: '\u2196', swarr: '\u2199' };
+ function doMathSrc(n){if( n == 3){ while(math_out.firstChild){ math_out.removeChild(math_out.firstChild);};return;};var org = JSMathView.value;var editline= org.substr(0,JSMathView.selectionStart).split('\n').length-1 ;var lineno = math_out.childNodes.length;var orig = org.split('\n');var ms = rewrite(orig[editline]);if(ms.length < 1 ){ try{math_out.removeChild(math_out.childNodes[editline]);}catch(e){};return;};if(ms.indexOf('@')!= -1){return;};if(!ms){return;};ms = ms.replace(/&([-#.\w]+);|\\([a-z]+)(?: |(?=[^a-z]))/ig,function(s, e, m){if (m && (M.macros_[m] || M.macro1s_[m])){ return s;};var t = '&'+(e || m)+';', res = $$('<span>'+t+'</span>').text();return res != t ? res : ents_[e || m] || s;});try { var t = M.sToMathE(ms, true);if( editline >= lineno ){math_out.removeChild[editline];math_out.appendChild(t); }else{var newChild = document.createElement('span');var br =  document.createElement('br');newChild.appendChild(t); newChild.appendChild(br);var oldChild = math_out.childNodes[editline];math_out.replaceChild(newChild, oldChild);};} catch(e){setAlarm(e)};JSMathView.value = org;JSMathView.focus();};
+ function adapt_width(){try{var inp_width=document.getElementById('control_1').offsetWidth;JSMathView.style.width = inp_width+'px';} catch(e){};};
+ function conv_wims2uni(u){for(var p in uni2wims){if( uni2wims[p] == u ){return p;};};return u;};
+ function conv_uni2wims(input){for(var p in uni2wims){input = input.split(p).join(' '+uni2wims[p]);};return input;};
+ adapt_width();
+//]]>
+</script>
+
+    
+!! # 3/6/2016 : added " pm " as option:  y = ± 5*t
+!! # 7/7/2017 : added more unitcode <-> wims [for logic module]
+!! # 24/7/2017: rewrite "latexing" of function...  log(...) -> { \log(...) } log[3](...) -> {^{3}\log(...)} or in case lang=fr {\log_{3}(...)}
+!! # 15/12/2017: "multiline" Mathml output (using enter in textarea)
+!! # 16/12/2017: removed stretchy left brace code in case of multi-line  : not working for IE...
+!! # 17/12/2016: changed jqmath.css : ma-block "display:block;text-align:center--> display:inline;text-align:left"
+!! # 17/12/2016: added child 'p' and 'br' inorder to get a left-align of multi-lines
+		 

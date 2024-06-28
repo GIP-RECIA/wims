@@ -1,0 +1,73 @@
+!let lang_exists=yes
+
+!read adm/lang/date.phtml.$moduclass_lang
+!read adm/lang/sheetexam.phtml.$moduclass_lang
+
+!set statutname=$(wims_name_shstatus[1]),$wims_name_shstatus
+!set seriesaction=!nosubst $wims_name_change,$wims_name_erase,$wims_name_up,Placer en
+!set name_duplicateok=Feuille d'exercices dupliquée correctement.
+!set name_createok=Feuille d'exercices créée. Rendez vous dans "Contenu de la feuille" pour y ajouter un travail.
+
+!set name_name=!nosubst $wims_name_name
+!set name_ltvalue=Valeur(s)
+
+!let name_shtab=!nosubst $wims_name_number,$wims_name_title,$wims_name_Description,\
+  Points,$name_weight,$name_dependency,$wims_name_comment,$wims_name_action,\
+  Paramètres de la série,$wims_name_feedbackexo,Déplacement
+!set name_qnum=Nb. ex. dans série
+
+!if $activetest<=0
+ !let wims_name_sheetadmin=Page de préparation
+ !set name_title=!nosubst Préparation de la feuille $sheet
+ !set name_exo_order=Ordre des exercices de la série
+ !set name_default=Défaut
+!else
+ !let wims_name_sheetadmin=Page de gestion
+ !set name_title=!nosubst Gestion de la feuille $sheet
+!endif
+!let name_mksheet=Créer la feuille
+
+!distribute lines Informations générales&nbsp;\
+Contenu de la feuille&nbsp;\
+Cette feuille n'a pas encore de contenu.\
+Le titre d'origine est\
+Modification de la série d'exercices\
+Nombre de points demandés\
+Corriger le source\
+La date d'expiration de la feuille doit être antérieure à la date d'expiration de la classe\
+Votre requête est donc ignorée.\
+Nombre maximal d'essais comptabilisés\
+into name_info,name_content,name_warning,name_oldtitle,name_prep_modify,\
+name_pointsasked,name_correctsource,name_expiration1,name_expiration2,\
+name_exotrymax
+
+!set name_add_work=Ajouter un travail
+!set name_text1=Pour ajouter un travail (exercice, outil, etc.) à la feuille, vous devez d'abord choisir\
+ l'objet correspondant (voir ci-dessous) ; réglez les différents paramètres proposés et lancez l'exercice.\
+ Ensuite, utilisez le lien sur le bord de l'exercice pour l'ajouter à la feuille.
+!set name_options_to_add=Pour choisir un travail, vous pouvez 
+!set name_other_options=... ou une des autres possibilités suivantes 
+
+!set name_text2=Chercher dans les modules publiés&nbsp;
+!set name_text3=Piocher parmi les
+!set name_text4=Chercher un exercice de votre compte
+!set name_texttaxo=Passer par certaines taxonomies
+!set name_textsubject=Passer par sujets (mots clés).
+
+!set name_getsource=Voici le code source de cette feuille.\
+Vous pouvez le copier, ce qui vous permettra de réutiliser le contenu\
+dans une autre feuille.
+
+!set name_individualisation=Individualisation
+!set name_noone=Aucune
+!set name_contentindiv=Paramétrage du contenu en fonction de la valeur d'une variable technique
+!set name_activindividualisation=Individualisation de la feuille réalisée avec la variable technique&nbsp;
+!set name_desc_indivtechvar=Variable technique pour l'individualisation de la feuille
+!set name_indiv_desc=La série d'exercices ne sera disponible que pour les participants dont la valeur de la variable technique est cochée.
+!set name_show_req_we=Modifier également le poids et les points requis de chaque exercice.
+
+!set name_prpageedition=Edition de présentation de la feuille
+!set name_prpagedesc=La personnalisation de la page de présentation d'une feuille utilise le même langage que celui des documents.
+
+!! be careful define variable below only if module help/teacher/program work in your lang. Keep , at the same place.
+!set name_helpprog=Vous aider de cette correspondance, indicative, entre les programmes de l'enseignement français et les exercices WIMS

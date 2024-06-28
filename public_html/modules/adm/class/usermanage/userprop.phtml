@@ -1,0 +1,367 @@
+!let test=!filexists wimshome/sessions/$wims_session/getfile/photoboard/$getuser
+!if $test=yes
+  <div id="userlogo" class="float_right">
+    <img src="$wims_ref_name?session=$wims_session&cmd=getfile&special_parm=photoboard/$getuser" alt="$getuser photo">
+  </div>
+!else
+  !if $user_photourl!=$empty
+    <div id="userlogo" class="float_right">
+      <img src="$user_photourl" alt="user photo">
+    </div>
+  !endif
+!endif
+!read adm/title.phtml 1\
+$classname\
+$wims_name_account_property
+
+!if $error!=$empty
+  <div class="wims_msg alert">
+    !read lang/msg.phtml.$moduclass_lang
+  </div>
+!endif
+
+!set inplen=40
+
+!! ----- permet de transferer les scores d'un user provenant d'une classe en partage dans un groupement ou entre des cours d'un même portail
+!if $wims_user=supervisor and $wims_supertype iswordof 2 4
+  !readproc adm/gateway/transfer $getuser test
+  !if $transfer_test>0
+    !href module=adm/class/usermanage&job=transfer&getuser=$getuser $name_transfer
+  !endif
+!endif
+
+
+!set wims_form_method=file
+!form reply
+  <input type="hidden" name="job" value="userprop">
+  <input type="hidden" name="getuser" value="$getuser">
+  <fieldset class="property_fields halfwidth blockcenter">
+    <legend>$wims_name_properties</legend>
+
+    !if $allowchange!=yes and $wims_realuser!=$class_Supervisor
+      <div class="wimscenter">
+        !set wims_ref_class=wims_button
+        !href cmd=reply&job=getclasspwd $name_change
+      </div>
+    !endif
+
+    <div class="field box">
+      <strong>$wims_name_Login</strong>
+      !reset css_connected
+      !if $getuser isitemof $wims_connectedlogin and $wims_user=supervisor
+        !set css_connected=class="tt wims_connected"
+       !set wims_ref_title=connected
+      !else
+        !set css_connected=class="tt"
+      !endif
+      <span $css_connected title="connected">$getuser</span>
+    </div>
+    !if $wims_supertype iswordof 2 4 or ($class_Supervisor=$wims_realuser and $wims_class!=$wims_superclass and $wims_realuser!=$getuser)
+      !! --------------------------------- display user_participate (for participant and teacher account) only at the top of structure
+      !if $user_participate!=$empty and $type_class iswordof 2 4
+        <div class="field box">
+          <strong>$name_inscript</strong>
+          <span class="tt">
+            !if $wims_supertype=2
+              !let liclass=$empty
+            !else
+              !let liclass=!nosubst class="wims_classes_direct_$(ltclassname[$po;3])"
+            !endif
+            <ul>
+            !for k in $user_participate
+              !let po=!positionof item $k in $(ltclassname[;1])
+              <li $liclass>$(ltclassname[$po;2]) </li>
+            !next k
+            </ul>
+          </span>
+        </div>
+      !else
+        !if $user_supervisable=yes
+          !if $wims_user=supervisor and $type_class=1
+            <div class="field box">
+              !if $wims_class isitemof $user_participate
+                !set superp=yes
+              !else
+                !set superp=no
+              !endif
+              !if ($wims_realuser=supervisor or $wims_realuser=$class_Supervisor)
+                !! only supervisor of groupement and creator of class can modify access
+                <label for="superv">$name_inscript</label>
+                !set wims_ref_class=wims_formradio tt
+                !formradio superp list yes,no prompt $wims_name_yes, $wims_name_no
+              !else
+                !! other can see
+                <strong>$name_gestion</strong>
+                <span class="tt">$(wims_name_$superp)</span>
+              !endif
+            </div>
+          !endif
+        !endif
+      !endif
+
+      !! ---------------------------------- display/manage user_supervise (for teacher account only)
+      !if $user_supervisable=yes
+        <div class="field box">
+          !! ---- only at the top of a structure
+          !if $type_class iswordof 2 4
+            !! ---- can modify only for the real supervisor of structure
+            !if $wims_realuser=supervisor
+              <label for="up_supervise">$name_gestion</label>
+              !if $wims_supertype=2
+                !let liclass=$empty
+              !else
+                !let liclass=!nosubst class="wims_classes_direct_$(ltclassname[$po;3])"
+              !endif
+              <ul>
+                !let nb=!linecnt $ltclassname
+                !for k=1 to $nb
+                  <li $liclass>
+                    !if $(ltclassname[$k;1]) isitemof $user_supervise
+                      !let check=checked="checked"
+                    !else
+                      !let check=$empty
+                    !endif
+                    <input type="checkbox" name="up_supervise" id="up_supervise_$k" value="$(ltclassname[$k;1])" $check>
+                    <label for="up_supervise_$k">$(ltclassname[$k;2])</label>
+                  </li>
+                !next k
+              </ul>
+            !else
+              !! --- can see for other teacher (and so only own property)
+              $name_gestion
+              !if $type_class=2
+                !let liclass=$empty
+              !else
+                !let liclass=!nosubst class="wims_classes_direct_$(ltclassname[$po;3])"
+              !endif
+              <ul>
+              !for k in $user_supervise
+                !let po=!positionof item $k in $(ltclassname[;1])
+                <li $liclass>$(ltclassname[$po;2]) </li>
+              !next k
+              </ul>
+            !endif
+          !else
+            !! ---- in subclasses of structure supervisor can modify manage access only to the subclasses.
+            !if $wims_class isitemof $user_supervise
+              !set superv=yes
+            !else
+              !set superv=no
+            !endif
+            !if ($wims_realuser=supervisor or $class_Supervisor=$wims_realuser) and $class_Supervisor!=$getuser
+              !! only creator supervisor and structure supervisor can modify user_supervise acces to this subclasses.
+              <label for="superv">$name_gestion</label>
+              !set wims_ref_class=wims_formradio
+              !formradio superv list yes,no prompt $wims_name_yes, $wims_name_no
+              !set up_firstname=$user_firstname
+              !set up_lastname=$user_lastname
+            !else
+              !! other can see
+              <strong> $name_gestion </strong> $(wims_name_$superv)
+            !endif
+          !endif
+        </div>
+        !if $type_class=2
+          <div class="field box">
+            !if $wims_realuser=supervisor
+              <label for="up_mkclass">$name_mkclass</label>
+              !set up_mkclass=$user_mkclass
+              !default up_mkclass=yes
+              !formselect up_mkclass list yes,no prompt $wims_name_yes,$wims_name_no
+            !else
+              $name_mkclass
+              !if $user_mkclass=no
+                $wims_name_no
+              !else
+                $wims_name_yes
+              !endif
+            !endif
+          </div>
+        !endif
+
+      !endif
+      !! --------------------- endif user_supervisable=yes
+    !endif
+
+    !if $user_supervisable=yes and $getuser!=$wims_realuser and $type_class notwordof 2 4
+      !goto end
+      !exit
+    !endif
+
+    !if ($class_auth=$empty or $wims_user=supervisor) and $allowchange=yes
+      <div class="field box">
+        <strong>$wims_name_Password</strong>
+        !set wims_ref_class=wims_button
+        !href module=adm/class/passwd&job=part&part=$getuser $name_change
+      </div>
+    !endif
+
+    !if $wims_user=supervisor
+      <div class="field box">
+        <strong>$wims_name_lastconnect</strong>
+        !set lastconnect=!getdef user_lastconnect in wimshome/log/classes/$wims_class/.users/$getuser
+        !if $lastconnect!=$empty
+          !read date.phtml $lastconnect
+        !endif
+      </div>
+    !endif
+
+    !! maybe regnum should be placed at the same of other ?
+    !let wims_name_regnum=$name_regnum
+    !for lab in lastname,firstname,regnum
+      <div class="field box">
+        <label for="up_$lab">$(wims_name_$lab)</label>
+        !if $allowchange=yes
+          <input size="$inplen" name="up_$lab" id="up_$lab" value="$(user_$lab)">
+        !else
+          <span class="user_prop_value">$(user_$lab)</span>
+        !endif
+      </div>
+    !next lab
+    <div class="field box">
+        <label for="up_email">$(wims_name_email)</label>
+        !if $allowchange=yes and ($wims_mail_hidden=no or $wims_user!=supervisor or $user_supervisable=yes)
+          <input size="$inplen" name="up_email" id="up_email" value="$(user_email)">
+        !else
+          <span class="user_prop_value">
+           !if $wims_mail_hidden=no or $wims_user!=supervisor or $user_supervisable=yes
+             $(user_email)
+           !else
+             !if $(user_email)!=$empty
+               &#x2705;
+             !endif
+           !endif
+          </span>
+        !endif
+    </div>
+    !if $allowchange=yes
+      <div class="field box">
+        <label for="up_photourl">$name_photourl</label>
+        <input type="url" size="$inplen" name="up_photourl" id="up_photourl" value="$user_photourl">
+        <br>
+        <label for="photofile">$name_photofile</label>
+        <input type="file" size="35" name="wims_deposit" id="photofile" accept="image/*">
+        !set wims_ref_class=wims_button wims_warning
+        !href module=adm/class/usermanage&cmd=reply&job=userprop&getuser=$getuser&job2=photoerase $wims_name_delete
+      </div>
+    !endif
+    <div class="field box">
+      <label for="up_comments">$name_comments</label>
+      !readproc adm/class/mkcomment val
+      !let class_version=!record 0 of wimshome/log/classes/$wims_class/version
+      !if $wims_user=supervisor
+        <input size="$inplen" name="up_comments" id="up_comments" value="$scriptout">
+        <div class="formHelp">
+          !if $class_version<6
+            $name_commentmessv5
+          !else
+            $name_commentmess
+          !endif
+        </div>
+      !else
+        !if $scriptout!=$empty and $class_version>=6
+          <label for="up_comments">$name_commentuser</label>
+          $scriptout
+        !endif
+      !endif
+
+    </div>
+
+    !! ---------- display regvar
+    !for j=1 to $[min($regvars_cnt,$limit_regvars)]
+      <div class="field box">
+        <label for="regprop$j">$(regvars_class[$j])</label>
+        <input size="16" name="regprop$j" id="regprop$j" value="$(user_regprop$j)">
+      </div>
+    !next j
+    !readproc adm/vfilter/listvarfilter.proc
+    !readproc adm/vfilter/uservarfilter.proc $userdef
+    !let nb=!linecnt $user_vars
+    !if $nb>0
+      <div class="field box">
+        <strong>$name_vars</strong>
+        !if $wims_user=supervisor
+          !set wims_ref_class=wims_button
+          !href module=adm/class/techvar&+job=userprop&+user=$getuser $wims_name_change
+        !endif
+        <div class="formHelp">$name_filterhelp</div>
+        $table_header
+        <thead>
+          <tr><th>$name_name</th><th>$name_value</th></tr>
+        </thead>
+        <tbody>
+        !for k=1 to $nb
+          $table_tr
+            <td>$(user_vars[$k;1])</td><td>$(user_vars[$k;2])</td>
+          </tr>
+        !next k
+        </tbody>
+        $table_end
+      </div>
+    !endif
+    !if $wims_user=supervisor
+      <div class="field box">
+        <label for="up_external_auth">$name_external_auth</label>
+        <input size="$inplen" name="up_external_auth" id="up_external_auth" value="$user_external_auth">
+        !set wims_ref_class=wims_button_help float_right
+        !href cmd=help&special_parm=authentification $wims_name_help
+      </div>
+    !endif
+
+    :end
+    !if $allowchange=yes
+      <div class="wimscenter wimsform">
+        <input type="submit" name="reg" value="$wims_name_tosave">
+        <input type="submit" name="abandon" value="$wims_name_giveup" class="wims_secondary_button">
+      </div>
+    !endif
+  </fieldset>
+!formend
+
+!if $wims_user=supervisor
+  !if ($wims_supertype=4 and $wims_typename!=course) or ($wims_supertype=2 and $wims_typename=group)
+    !! no score
+  !else
+    !set wims_menu_items=!append line itemsep,0,$wims_name_Evaluation\
+scores,1,module=adm/class/userscore&job=getuser&getuser=$getuser\
+livret1,1,module=adm/class/livret&job=user&user=$getuser\
+activity1,1,module=adm/class/activity&job=user&user=$getuser\
+to $wims_menu_items
+  !endif
+  !set wims_menu_items=!append line \
+   itemsep,0,$wims_name_usermanage\
+  delstudent1,1,cmd=reply&job=delprep&delprep=$getuser\
+to $wims_menu_items
+  !read getparm $module_init_parm job
+  !if $get_job!=teacher
+    !read adm/class/getnextuser $wims_class,$getuser,userprop,getuser
+    !set wims_menu_items=!append line addstudent,1,module=adm/class/reguser&step=1\
+    itemsep,0,\
+to $wims_menu_items
+    !if $wims_theme=default
+      !!ARIANE
+      !set wims_menu_items=!append line part_list,1,cmd=resume\
+to $wims_menu_items
+    !endif
+  !else
+    !set wims_menu_items=!append line itemsep,0,\
+teacherlist,1,module=adm/class/usermanage&job=teacher\
+to $wims_menu_items
+    !if $type_class=2 and $wims_realuser=supervisor
+      !set wims_menu_items=!append line addteacher,1, module=adm/class/reguser&step=1&utype=1\
+to $wims_menu_items
+    !endif
+    !set wims_menu_items=!append line itemsep,0,$wims_name_Evaluation to $wims_menu_items
+  !endif
+!else
+  !if $wims_supertype=4 and $wims_typename=course
+    !set wims_menu_items=!append line myscore,1,module=adm/class/userscore&job=getuser&getuser=$getuser\
+to $wims_menu_items
+  !endif
+  !if $wims_theme=default
+    !!ARIANE
+    !set wims_menu_items=!append line class_home,1,module=home\
+to $wims_menu_items
+  !endif
+!endif
+!reset reg,abandon

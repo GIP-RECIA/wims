@@ -1,0 +1,271 @@
+!! process to manage file zone (one file deposit only)
+!! firstline 
+!! word1 : type of process to read
+!! word 2 : teacher or student 
+!! word 3 : identification num of zone
+!! word 4 : 1/0 if zone is activated or not
+!! word 5 : user
+!! script_data=entry parameters
+!! script_output= reply parameter
+
+!set p_=!line 1 of $wims_read_parm
+!distribute word $p_ into proc_,stype_,zone_,activated_,user_
+!bound activated_ within 1,0 default 0
+!goto $proc_
+!exit
+
+:parahtml
+!! form html interface for parameters
+  !! ----- first parameter (title)
+  !let num_=$[($zone_-1)*5+1]
+  <div class="field box">
+    !if $activated_=1
+       <label for="param$(stype_)$num_"> $(name_titlezone)</label>
+       <input type="text" id="param$(stype_)$num_" name="param$(stype_)$(num_)" value="$(param$(stype_)$(num_))" >
+       <div class="formHelp">$name_desc_title</div>
+    !else
+      <strong>$(name_titlezone)</strong>
+      <p>$(param$(stype_)$(num_))</p>
+    !endif
+  </div>
+  !! ----- second parameter - description
+  !let num_=$[($zone_-1)*5+2]
+  <div class="field box">
+    !if $activated_=1
+       <label for="param$(stype_)$num_"> $(name_desczone)</label>
+       <textarea name="param$(stype_)$(num_)" id="param$(stype_)$(num_)" rows="10" cols="100" class="iEdit" maxlength="$desc_limit">$(param$(stype_)$(num_))</textarea>
+!!       <input type="text" id="param$(stype_)$num_" name="param$(stype_)$(num_)" value="$(param$(stype_)$(num_))" >
+       <div class="formHelp">$name_desc_desc</div>
+    !else
+      <strong>$(name_desczone)</strong>
+      !let insmath_rawmath=yes
+      !let wims_backslash_insmath=yes
+      <div>$(param$(stype_)$(num_))</div>
+      !let insmath_rawmath=no
+      !let wims_backslash_insmath=no
+    !endif
+  </div>
+  !! ----- third parameter (maximum number of file only for student zone)
+  !if $stype_=student
+    !let num_=$[($zone_-1)*5+3]
+    <div class="field box">
+      !if $activated_=1
+         <label for="param$(stype_)$num_"> $(name_maxnumberoffile)</label>
+         !set wims_ref_id=param$(stype_)$num_
+         !formselect param$(stype_)$(num_) from 1 to 5
+      !else
+        <strong>$(name_maxnumberoffile)</strong>
+        <p>$(param$(stype_)$(num_))</p>
+      !endif
+    </div>
+  !endif
+!exit
+
+:pararead
+  !! parameter reading
+  !! --- parameter save 1 (title)
+  param$(stype_)$[($zone_-1)*5+1]=!line 1 of $script_data
+  param$(stype_)$[($zone_-1)*5+1]=!detag $(param$(stype_)$[($zone_-1)*5+1])
+  param$(stype_)$[($zone_-1)*5+1]=!char 1 to $title_limit of $(param$(stype_)$[($zone_-1)*5+1])
+  !! --- parameter save 2 (description)
+  param$(stype_)$[($zone_-1)*5+2]=!line 2 of $script_data
+  param$(stype_)$[($zone_-1)*5+2]=!char 1 to $desc_limit of $(param$(stype_)$[($zone_-1)*5+2])
+  !! --- parameter save 3 (maxnumberoffile)
+  !if $stype_=student
+    param$(stype_)$[($zone_-1)*5+3]=!line 3 of $script_data
+    !bound param$(stype_)$[($zone_-1)*5+3] between 1 and 5 default 1
+  !else
+    !reset param$(stype_)$[($zone_-1)*5+3]
+  !endif
+  ltdownloadzone=!append item $(stype_)$zone_ to $ltdownloadzone
+!exit
+
+:parasave
+  !! --- parameter save 1 (title)
+  output_data=!replace internal $\
+$ by   in $(param$(stype_)$[($zone_-1)*5+1])
+  output_data=!detag $output_data
+  output_data=!char 1 to $title_limit of $output_data
+  !! --- parameter save 2 (description)
+  tmpdata_=!replace internal $\
+$ by   in $(param$(stype_)$[($zone_-1)*5+2])
+  tmpdata_=!char 1 to $desc_limit of $tmpdata_
+  output_data=$output_data\
+$tmpdata_
+  !! --- parameter save 3 (maxnumberoffile)
+  !if $stype_=student
+    tmpdata_=$(param$(stype_)$[($zone_-1)*5+3])
+    !bound $tmpdata_ between 1 and 5 default 1
+  !else
+    !reset tmpdata_
+  !endif
+  output_data=$output_data\
+$tmpdata_
+
+!exit
+
+:displayhtml
+<div class="field box">
+  !if $job!=configfw
+    <h2 class="box_title">
+      !if $(param$(stype_)$[($zone_-1)*5+1])!=$empty
+        $(param$(stype_)$[($zone_-1)*5+1])
+      !else
+        $name_zone $zone_
+      !endif
+    </h2>
+    <div class="freeworkdesczone">
+      !let insmath_rawmath=yes
+      !let wims_backslash_insmath=yes
+      $(param$(stype_)$[($zone_-1)*5+2])
+      !let insmath_rawmath=no
+      !let wims_backslash_insmath=no
+    </div>
+  !else
+    <strong>$(name_zonecontent)</strong>
+  !endif
+  !if $(flist$(stype_)$(zone_))!=nofile.nofile
+    !read proc/listfile.phtml $(stype_)$(zone_) $activated_ $user_
+  !else
+    <div class="wims_msg info">$name_nowork</div>
+  !endif
+  !if $stype_=student and $toolate!=yes
+    !let nb=!itemcnt $(flist$(stype_)$(zone_))
+    !if $nb>=$(param$(stype_)$[($zone_-1)*5+3])
+      <span class="">$name_maxfilelimit</span>
+    !endif
+  !endif
+</div>
+!exit
+
+:displayread
+  !if $stype_=student
+    !! -- make list of file zone for user (not teacher) to manage capacity
+    dir_=freeworksdata/$freework/work
+    localdir_=$(user_)-file$zone_
+  !else
+    dir_=freeworks/$freework
+    localdir_=$(stype_)-file$zone_
+  !endif
+  !sh mkdir -p $wims_home/log/classes/$wims_class/$dir_/$localdir_;
+  !if $wims_user!=supervisor
+    !! link for supervisor are permanent and made by var.proc file : only make specific link for user
+    !! make link for upload file and generate list of file
+    !!
+    !! first clean up in case user switched from teacher to student
+    !if $class_type>0
+       !sh rm -f $wims_home/$wims_sesdir/getfile/freeworksdata/$freework;
+       !sh rm -f $wims_home/$wims_sesdir/getfile/freeworks/$freework;
+    !endif
+    !sh mkdir -p $wims_home/$wims_sesdir/getfile/$dir_;\
+        cd $wims_home/$wims_sesdir/getfile/$dir_;\
+        rm -f $localdir_;\
+        ln -s $wims_home/log/classes/$wims_class/$dir_/$localdir_ $localdir_;
+  !endif
+  flist$(stype_)$(zone_)=!filelist $wims_home/log/classes/$wims_class/$dir_/$localdir_
+  flist$(stype_)$(zone_)=!words2items $(flist$(stype_)$(zone_))
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!
+!! MOD pick a random file among the available ones
+
+!! the first time the student access the freework, a random file is
+!! picked and the filename is stored in a file in freeworkdata
+
+  !if $wims_user=supervisor and $userv!=$empty
+    !let storefname=log/classes/$wims_class/freeworksdata/$freework/work/$userv-randfile.$(zone_)
+  !else
+    !let storefname=log/classes/$wims_class/freeworksdata/$freework/work/$wims_user-randfile.$(zone_)
+  !endif
+
+  !let test1=!fileexists wimshome/$storefname
+
+  !if $test1!=yes and $wims_user=supervisor and job=viewuser3
+    !let flist$(stype_)$(zone_)=nofile.nofile
+  !endif
+
+  !if $test1=yes
+    !let tmpfile=!defof filename in wimshome/$storefname
+    !if $tmpfile isitemof $(flist$(stype_)$(zone_))
+    !! maybe add extra check file do exists?
+      test2=yes
+    !else
+      test2=no
+    !endif
+  !endif
+
+  !if $test2=yes
+    flist$(stype_)$(zone_)=$tmpfile
+  !else
+    !if $wims_user!=supervisor
+      flist$(stype_)$(zone_)=!randitem $(flist$(stype_)$(zone_))
+      !sh echo filename=$(flist$(stype_)$(zone_)) > $wims_home/$storefname
+    !endif
+  !endif
+
+!! fine MOD
+
+  !if $stype_=student
+    nb=!itemcnt $(flist$(stype_)$(zone_))
+    !if $nb>=$(param$(stype_)$[($zone_-1)*5+3]) and $toolate!=yes
+      ltdownloadzone=!listcomplement $(stype_)$zone_ in $ltdownloadzone
+    !endif
+  !endif
+!exit
+
+:displaysave
+  !if $stype_=teacher
+      dir_=log/classes/$wims_class/freeworks/$freework/teacher-file$zone_
+  !else
+      dir_=log/classes/$wims_class/freeworksdata/$freework/work/$(user_)-file$zone_
+  !endif
+  !! ------- save newfile in the zone
+  !if $job2=deposit$stype_ and $wims_deposit!=$empty and / notin $wims_deposit and .. notin $wims_deposit and noname.file!=$wims_deposit and $activated_=1
+    !readproc adm/du $wims_home/$wims_sesdir/user-deposit
+    du_=!sh du -ks $wims_home/$wims_sesdir/user-deposit;
+    du_=!word 1 of $du_
+    filesize_=$[$du_/1024]
+!! no student
+     !if $stype_=student
+!!       nb=!itemcnt $(flist$(stype_)$(zone_))
+!!       !ifval $filesize_+$used>0.25*$sizelimitfile or $nb>=$(param$(stype_)$[($zone_-1)*5+3])
+!!         auth_upload_=no
+!!       !endif
+!!       !if $auth_upload_=no
+!!         error=quota_filestudent
+!!         !exit
+!!       !endif
+       !exit
+     !endif
+    !if $auth_upload!=yes or $filesize_>$quota_free
+      error=quota_file
+      !exit
+    !endif
+    !read proc/checkfilename.proc
+    !if $error!=$empty
+      !exit
+    !endif
+    success=goodaddfile
+    used=$used+$filesize_
+    !sh mv $wims_home/$wims_sesdir/user-deposit $wims_home/$dir_/$newfilename
+    flist$(stype_)$(zone_)=!append item $newfilename to $(flist$(stype_)$(zone_))
+    flist$(stype_)$(zone_)=!listuniq $(flist$(stype_)$(zone_))
+    !readproc adm/class/quotafree.proc proc
+    nb=!itemcnt $(flist$(stype_)$(zone_))
+    !if $nb>=$(param$(stype_)$[($zone_-1)*5+3])
+      ltdownloadzone=!listcomplement $(stype_)$zone_ in $ltdownloadzone
+    !endif
+    !exit
+  !endif
+  !! ------- delete file in the zone
+  test_=!fileexists $wims_home/$dir_/$namefile
+  !if $job2=erase$stype_ and $test_=yes and $activated_=1
+    du_=!sh du -ks $wims_home/$dir_/$namefile;\
+rm -f $wims_home/$dir_/$namefile
+    du_=!word 1 of $du_
+    success=gooderasefile
+    used=$used-$[$du_/1024]
+    flist$(stype_)$(zone_)=!listcomplement $namefile in $(flist$(stype_)$(zone_))
+    ltdownloadzone=!append item $(stype_)$zone_ to $ltdownloadzone
+  !endif
+!exit

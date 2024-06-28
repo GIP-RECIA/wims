@@ -1,0 +1,19 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=volume,measurement,solid_geometry,3_shape
+!set gl_title=Volume d'un parallélépipède rectangle
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(P\) un parallélépipède rectangle dont les arêtes ont pour longueurs
+respectives \(L\), \(l\) et \(h\).<br>
+Le volume \(V\) du parallélépipède rectangle \(P\) est donné par&nbsp;:
+<div class="wimscenter">
+\(V=L \times l \times h\).
+</div>
+</div>
+:mathematics/geometry/fr/parall_vol_1

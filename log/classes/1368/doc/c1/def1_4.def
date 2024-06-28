@@ -1,0 +1,68 @@
+!set titb=Complemento
+!set keyw=
+!set datm=20180717
+!set prev=
+!set next=
+!set upbl=insiemi
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+!exit
+
+:content
+Il complemento di
+!insmath Y
+ in
+!insmath X
+ è descritto nella definizione 1.4 del libro di testo.
+<br>
+Alcuni esercizi (per esempio
+!read primitives.phtml 1, exercise, 1/9
+) presenti in questo test utilizzano il simbolo
+!insmath \complement_X Y
+ per
+indicare quello che nel libro di testo viene indicato con
+!insmath X\setminus Y
+.
+Alcuni esercizi (per esempio
+!read primitives.phtml 2, exercise, 1/13
+,
+!read primitives.phtml 3, exercise, 1/14
+,
+!read primitives.phtml 4, exercise, 1/15
+), se si suppone di lavorare in un insieme fissato
+!insmath {}\Omega
+, per indicare il complemento
+
+!insmath \Omega \setminus X
+ di
+un certo sottoinsieme
+!insmath X
+ di
+!insmath {}\Omega
+ in
+!insmath {}\Omega
+ utilizzano la notazione
+!insmath X^C
+, ove non ci siano ambiguità. Altri
+(per esempio
+!read primitives.phtml 5, exercise, 1/16
+,
+
+!read primitives.phtml 6, exercise, 1/17
+,
+!read primitives.phtml 7, exercise, 1/18
+), con le stesse ipotesi utilizzano invece il simbolo
+!insmath \overline X
+ per indicare
+!insmath \Omega \setminus X
+. In generale questa
+notazione è esplicitata nel testo dell'esercizio o nelle Istruzioni relative.
+<br>
+ Alcuni esercizi (per esempio
+!read primitives.phtml 8, exercise, 1/9
+) utilizzano il termine complementare per complemento.

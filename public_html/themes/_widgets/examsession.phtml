@@ -1,0 +1,25 @@
+!! manage open session of exam
+!!
+
+!reset shortout
+!distribute words $wims_read_parm into h_,s_,t_,n_
+!set r_=!record 0 of wimshome/sessions/$s_/examreg.$n_
+!set now=$wims_nowseconds
+!set ws=!translate _ to $ $ in $wims_session
+!set ws=!word 1 of $ws
+!set sm=!record 0 of wimshome/log/classes/$wims_class/.E$n_
+!if $r_!=$empty and $s_!=$ws and $t_>$now
+!!  and $sm!=#   (simulation are now same as normal mode)
+    <span class="wims_warning">$wims_name_warning</span>.
+    $U_examworking
+    !if $h_=$httpd_REMOTE_ADDR
+      !href session=$s_&module=adm/class/exam&job=student&exam=$n_ $U_examcont
+    !else
+      $U_examdouble
+      !sh rm -f ../sessions/$ws/var.stat >/dev/null
+    !endif
+    !let shortout=1
+!endif
+!if $t_<$now or $r_=$empty
+  !sh rm -f ../log/classes/$wims_class/.parmreg/$wims_user.exam
+!endif

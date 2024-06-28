@@ -1,0 +1,43 @@
+!set wims_module_log=error: $error
+
+<span class="wims_warning">$wims_name_Error</span>.
+
+!if no_reccourse=$error
+  La cessió d'aquestes activitats no és possible.
+  !exit
+!endif
+
+!if not_supervisor=$error
+  Ho sento, però l'operació de preparació/modificació d'un full
+  d'exercicis està reservada al professor registrat d'una classe.
+  !exit
+!endif
+
+!if bad_classpass=$error
+  Ho sento, però no has proporcionat la contrasenya correcta
+  d'alumne de la classe. No tens dret a modificar la informació
+  següent sense aquesta contrasenya.
+  !exit
+!endif
+
+!if bad_user=$error
+  Error de crida : l'alumne <span class="tt wims_login">$checkuser</span> no existeix.
+  !exit
+!endif
+
+!if badimgformat=$error
+  El fitxer que has enviat no és una imatge.
+  !exit
+!endif
+
+!if filetoobig=$error
+  El fitxer que has enviat supera la capacitat màxima permesa després de la conversió de la imatge. Envieu una imatge més petita.
+  !exit
+!endif
+
+!if quota_file=$error
+  S'ha arribat a la capacitat màxima d'emmagatzematge de la classe. No és possible desar la teva imatge.
+  !exit
+!endif
+
+!msg $error

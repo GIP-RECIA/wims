@@ -1,0 +1,47 @@
+!set lang_exists=yes
+
+!set wims_name_sheetcheck=验证页面
+
+!set name_choose=选择你想要插入作业题的页
+!!set name_title=插入一个模块到页面
+
+!set name_insert=你想要插入一个作业题
+!set name_parm=其初始参数为
+!set name_modifytitle=你也能改变标题及其描述
+
+!set name_required=你要求每个参加者在这个作业中得到的分数是
+!set name_repeat=一个练习的满分是 10 分; 因此若你想要参加者重复练习, 得分必须设定在 10 以上.
+
+!set name_weight=这个作业的权重
+!set name_weight_hint=用于计算平均值
+!set name_exotrymax=Maximum number of trials counted
+!set name_exotrymax_hint=Parameter allowing to fix a maximum number <span class="tt">n</span>\
+  of recorded trials in the calculation of the scores during the periods\
+  when recording of scores is open\
+  (the work on the exercise is always possible once this number is exceeded).\
+  Work on a series of exercises is considered a trial,\
+  whether or not a response has been given and\
+  whether the recording of scores has been activated or not.\
+  Score calculation only takes into$ account the scores of the first\
+  <span class="tt">n</span> trials where the recording of scores has been activated.\
+  By default, all record-enabled trials are counted.\
+  Check the compatibility with the number of required points if you put a positive number.
+
+!set name_end=!nosubst  练习 <span class="wims_mod_title">$title</span> 已被成功地插入你的班级的页面
+!set name_endallexo=!nosubst a series of exercises was successfully inserted\
+ into$ the <span class="wims_mod_title">$title</span> sheet with the parameters
+!set name_endallexos=!nosubst $addexo 系列练习已被成功插入 <span class="wims_mod_title">$title</span> 页中 avec les param鑤res
+!set name_endallexo2s=!nosubst 以下资源 $notadd 因已经存在故没能插入 :
+!set name_endallexo2=!nosubst 以下资源已存在, 不能再插入:
+
+!set name_choose_exo=这个内容插入作为页面练习的新系列.
+!set name_choose_helpexo=此内容将作为页面某练习系列的帮助, 当得分少于下面的数字时插入
+!set name_choose_series=点击你想添加帮助的练习系列的名称
+!set name_actualhelp=当前的帮助
+!set name_series=练习序列
+!set name_exo_order=改变练习的次序
+!set name_replace_add=Replace,Add
+
+!if $job=addallexo
+  !read oef/cn/intronames
+!endif

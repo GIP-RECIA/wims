@@ -1,0 +1,14 @@
+!default graphics=0
+!if $wims_user=supervisor
+  user=!item 1 of $user
+  !read adm/class/userisinclass ,$user
+  !if $script_reply!=yes
+    !reset job
+    !changeto var.proc
+  !endif
+!endif
+
+!read adm/class/userdef classes,$wims_class,$user
+!readproc $userdef
+
+!readproc script/listsheet.proc

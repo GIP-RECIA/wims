@@ -1,0 +1,88 @@
+Dati e grafici
+rappresentazioni grafiche di dati
+??,2020
+1
+E3
+elementary_mathematics
+data_gestion,levelE3,levelE4,levelE5
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:E3/measurement/oefdatagestion.fr
+exo=const1&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Che tempo fa?
+Cominciamo con una raccolta di dati: raccogli in una tabella i dati relativi al tempo che ha fatto questa settimana.
+
+:E3/measurement/oefdatagestion.fr
+exo=reading21&exo=reading11&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Costruiamo una tabella
+Costruisci una tabella per organizzare i dati raccolti.
+
+:E3/measurement/oefdatagestion.fr
+exo=reading22&exo=reading12&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Leggiamo i dati da una tabella #1
+Ora che hai tutti i dati raccolti in una tabella, elabora le informazioni rispondendo a alcune domande.
+
+:E3/measurement/oefdatagestion.fr
+exo=reading23&exo=reading13&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Leggiamo i dati da una tabella #2
+Ancora tabelle e ancora domande...
+
+:E3/measurement/oefdatagestion.fr
+exo=tracegraph1&exo=tracegraph2&exo=tracegraph3&confparm1=1&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Tracciamo un grafico #1
+Ora costruisci un grafico a barre per rappresentare i dati raccolti. Lo sai cosa è un grafico a barre?
+:E3/measurement/oefdatagestion.fr
+exo=tracegraph1&exo=tracegraph2&exo=tracegraph3&confparm1=2&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Tracciamo un grafico #2
+Ora costruisci un grafico a linea per rappresentare i dati raccolti. Lo sai cosa è un grafico a linea?
+
+&nbsp;&nbsp;
+:E3/measurement/oefdatagestion.fr
+exo=barchart1&exo=barchart2&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Leggiamo un grafico #1
+Ora che hai tutti i dati raccolti in un grafico, elabora le informazioni rispondendo a alcune domande.
+
+:E3/measurement/oefdatagestion.fr
+exo=linegraph1&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Leggiamo un grafico #2
+Di nuovo, hai tutti i dati raccolti in un grafico a linea. Elabora le informazioni rispondendo a alcune domande.
+
+:E3/measurement/oefdatagestion.fr
+exo=linegraph21&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Confronto tra due grafici
+Ora hai ben due grafici. E un sacco di domande...
+
+:E3/measurement/oefdatagestion.fr
+exo=timetable1&exo=timetable2&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Leggiamo l'orario delle lezioni
+Anche l'orario delle lezioni è una tabella piena di dati da capire!
+
+:E3/measurement/oefdatagestion.fr
+exo=graphe1&confparm1=3&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Cambia il tipo di grafico
+Cambia il tipo di grafico: leggi i dati da un grafico per costruire un altro grafico!
+

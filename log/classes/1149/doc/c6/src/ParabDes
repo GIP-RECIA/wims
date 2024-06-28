@@ -1,0 +1,95 @@
+\def{integer a=randint(2,3,4)}
+\def{integer xS=randint(-1,1)*randint(2,4)}
+\def{integer yS=randint(-1,1,2,3)}
+\def{text s=\yS>0? + : }
+<p>
+Les paraboles sont des objets géométriques auxquels on peut appliquer
+des transformations géométriques, notamment des translations.
+Celles qui ont un axe vertical ont une équation du type
+\(y = a*x^2 + b*x + c) avec \(a \neq 0) dans un repère orthonormé donné.
+Ce sont aussi les courbes des fonctions trinômes.
+Chaque transformation géométrique va modifier la formule du trinôme associé.
+
+Comprendre le lien entre les transformations et les fonctions associées permet de
+trouver une formule de fonction à partir d'une fonction de référence en observant
+les points particuliers de sa courbe.
+
+C'est l'enjeu de l'exercice "La fusée retardée 1".
+
+<p>Il faut d'abord que la courbe de la fonction soit une parabole d'axe vertical.
+puis repérer les coordonnées \((x_S ; y_S)) du point d'intersection
+de cet axe avec la parabole,
+repérer si ce point correspond à un minimum ou un maximum,
+ce qui donne le signe de \(a) (respectivement positif ou négatif).
+</p><p>
+La courbe est alors l'image de celle de la fonction \(x \mapsto a x^2)
+par la translation de vecteur \(x_S \vec{i} + y_S \vec{j}) et la formule de la fonction est :
+</p><div class="wimscenter">
+ \(f(x) = a (x - x_S)^2 + y_S).
+ </div><p>
+Pour déterminer \(a), on peut remarquer que \(f (x_S + 1) - f (x_S) = a),
+ce qui ressemble à la technique du coefficient directeur mais n'est valable
+qu'en partant du sommet \(S)
+de la parabole et seulement pour le point d'abscisse \(x_S + 1).
+
+D'ailleurs \(a) ne s'appelle pas le coefficient directeur du trinôme mais on peut
+l'appeler le coefficient du carré.
+</p><p>
+Savoir trouver la forme canonique à partir d'une expression algébrique
+permet de résoudre des problèmes de géométrie.</p><p>
+La formule d'un trinôme peut représenter l'aire d'une surface constituée de figures géométriques ;
+en effet si \(x) peut représenter une longueur, \(x^2) représente l'aire du carré de côté \(x),
+et \(x =) 1 \(x) représente l'aire du rectangle de côtés 1 et \(x).
+C'est une autre façon de voir les formules algébriques et cela peut permettre
+de se rappeler les identités remarquables.
+</p><div class="float_right">
+<img alt="Garçon nommé G.O.Maitrie" src="\filedir/geom.png" />
+</div>
+<h3 class="l2w_content exemple">Exemple</h3>
+  <div class="l2w_content exemple">
+\(a=\a)&nbsp;\(x_S = \xS)&nbsp;\(y_S = \yS)
+\(f(x) = \a*(x-\xS)^2+\yS)
+\draw{300,300}{
+xrange = -5,7
+yrange=-2,10
+parallel -5,-2,-5,10,1,0,13,lightblue
+parallel -5,-2,7,-2,0,1,13,lightblue
+arrow -5,0,7,0,10,black
+arrow 0,-2,0,10,10,black
+text black,-0.2,-0.1,medium,0
+
+text black,-1.1,-0.1,medium,-1
+text black,-2.1,-0.1,medium,-2
+text black,-3.1,-0.1,medium,-3
+text black,-4.1,-0.1,medium,-4
+text black,0.9,-0.1,medium,1
+text black,1.9,-0.1,medium,2
+text black,2.9,-0.1,medium,3
+text black,3.9,-0.1,medium,4
+text black,4.9,-0.1,medium,5
+text black,5.9,-0.1,medium,6
+text black,6.9,-0.1,medium,7
+text black,-0.3,1.3,medium,1
+text black,-0.3,2.3,medium,2
+text black,-0.3,3.3,medium,3
+text black,-0.3,4.3,medium,4
+text black,-0.3,5.3,medium,5
+text black,-0.3,6.3,medium,6
+text black,-0.3,7.3,medium,7
+text black,-0.3,8.3,medium,8
+text black,-0.3,9.3,medium,9
+plot green,\a*x^2
+dline 1,0,1,\a,black
+plot red,\a*(x-\xS)^2+\yS
+arrow 0,0,\xS,\yS,10,black
+text red,\xS,\yS-0.1,medium,S
+dline \xS,\yS,\xS+1,\yS,black
+dline \xS+1,\yS,\xS+1,\yS+\a,black
+text red,\xS+1.1,0.5*\a+\yS,medium,a
+text red,1.1,0.5*\a,medium,a
+}
+
+Le sommet a pour coordonnées (\xS ; \yS).
+Le vecteur de la translation est :
+<div class="wimscenter">\(\xS \vec{i}) \s \(\yS \vec{j}).</div>
+</div>

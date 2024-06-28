@@ -1,0 +1,16 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 1,1,grey
+linewidth 3
+strokecolor blue
+slider -2*pi,2*pi,260,28,angle active degree,blue arrow
+arrow 0,0,8,0,8,blue
+fillpattern diamond
+angle 0,0,2,0,0,blue
+killslider
+strokecolor red
+slider -2*pi,2*pi,260,28,angle active radian,red arrow
+arrow 0,1,8,1,8,red
+fillpattern dot
+angle 0,1,2,0,0,red

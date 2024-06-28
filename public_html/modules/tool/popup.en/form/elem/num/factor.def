@@ -1,0 +1,10 @@
+:algebra, prealgebra, pre-algebra, number, arithmetic,
+integer, prime, factor, prime factorization
+
+:operation, factor
+
+:, Factor a Number into Primes
+
+:
+  $submit1
+  <input type="text" name="formula" size="25" maxlength="100" value="1234">

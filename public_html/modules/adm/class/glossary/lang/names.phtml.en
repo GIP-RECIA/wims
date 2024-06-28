@@ -1,0 +1,28 @@
+!set lang_exists=yes
+
+!set wims_name_glosscheck=Check the glossary
+
+!set name_choose=Choose the glossary
+!set name_title=Insert in a glossary
+
+!set wims_name_addglossary=Insert in a glossary
+!set name_insert=You want to insert the entry
+!set name_parm=with the initialization parameters
+
+!set name_endadd=!nosubst The <span class="wims_mod_title">$title</span>\
+  resource has been successfully inserted into$ the glossary
+!set name_endmod=!nosubst Modification on glossary $gl\
+  (<span class="wims_mod_title">$title</span>) done
+
+!set name_endmod2=!nosubst Resource <span class="wims_mod_title">$title</span>\
+  could not be inserted because it already existed.
+
+!set name_orderchange=Change entries order
+
+!set name_newglostitle=Title of the new glossary
+!set name_newglos=New glossary
+!set name_titleglose=Title of the entry
+
+!set name_helpglo=!nosubst To add another entry, go back to the general glossary\
+ by the breadcrumb, click on the entry you want to add,\
+ and then on the <span class="wims_button disabled">$wims_name_addglossary</span> button.

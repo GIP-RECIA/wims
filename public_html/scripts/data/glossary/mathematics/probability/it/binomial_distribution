@@ -1,0 +1,31 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Distribuzione binomiale
+!set gl_level=U1,U2,U3
+:
+:
+:tool/stat/table.fr
+:
+<div class="wims_defn"><h4>Definition</h4>
+Sia \(n) un intero positivo e sia \(p) un numero reale tra 0 e 1.
+La <strong>distribuzione binomiale</strong>
+\(\mathcal{B}(n,p)) è una probabilità \(q = (q(0),...,q(n))) su \(\{0,...,n\}) definita da
+</div>
+<div class="wimscenter">
+\( q(k) = \binom{n}{k} p^k (1 - p)^{n - k} )
+</div>
+per ogni \(k) in \(\{0,..., n\}\).
+</div>
+<table class="wimsborder wimscenter"><tr><th>Valore atteso</th>
+<th>Varianza</th><th>Funzione generatrice di probabilità</th></tr><tr>
+<td> \(n p)</td><td>\(n p(1 - p))</td><td>\((1 - p + p z)^n)</td></tr></table>
+<div class="wims_example">
+<h4>Esempio</h4>Supponiamo di lanciare una moneta \(n\) volte e che in ogni
+ lancio la probabilità di ottenere <span class="green">testa</span> sia
+ <span class="green">\(p)</span> e la probabilità di ottenere
+ <span class="red">croce</span> sia <span class="red">\(1 - p)</span>.
+Il numero di <span class="green">teste</span> in una sequenza di \(n\) lanci
+ definisce una variabile aleatoria \(X\) con distribuzione
+binomiale \(\mathcal{B}\)\((n,p)\) con parametri \(n\) e \(p\).
+

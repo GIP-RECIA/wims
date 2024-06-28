@@ -1,0 +1,29 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Fait générateur
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">En fiscalité, le <strong>fait générateur</strong> se définit
+ comme <span class="wims_emph">l'évènement ou l'opération qui donne
+ naissance</span> à un impôt.</div>
+ 
+
+<div class="wims_rem"><h4>Exemples :</h4>
+<ul class="spacer">
+<li>en matière de TVA sur les biens, le fait générateur est la
+ <span class="wims_emph">livraison des biens</span> ;</li>
+<li>en matière de TVA sur les services, le fait générateur est
+ en principe <span class="wims_emph">la réalisation de
+ la prestation de service</span>.</li>
+</ul>
+
+
+</div>
+
+
+</div>

@@ -1,0 +1,52 @@
+Python
+Sélection d'exercices correspondant au paragraphe "Algorithmique et programmation" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+programming
+algorithmics,variables,python
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant au paragraphe "Algorithmique et programmation" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H4/programming/oefechpython.fr
+exo=freq1&confparm1=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lancer d'une pièce
+ <p>Initialiser <strong>1 variable</strong> (nt : nombre de lancers).</p><p>lancer, observer, envoyer la réponse.
+
+
+:H4/programming/oefechpython.fr
+exo=de1&confparm1=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lancer d'un dé 1
+<p>Initialiser <strong>2 variables</strong> <strong>vi</strong> (valeur min), <strong>vf</strong> (valeur max) pour simuler le lancer d'un dé.</p>
+
+
+
+
+
+:H4/programming/oefechpython.fr
+exo=de2&confparm1=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lancer d'un dé 2
+Initialiser <strong>3 variables</strong> vi</strong> (valeur min), <strong>vf</strong> (valeur max), <strong>nt</strong> (répétitions) pour simuler <strong>nt</strong> lancers d'un dé.</p>
+
+
+
+
+
+:H4/programming/oefechpython.fr
+exo=de3&confparm1=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lancer d'un dé 3
+Initialiser <strong>3 variables</strong> <strong>vi</strong>, <strong>vf</strong>, <strong>nt</strong>. Compléter <strong>1 condition</strong> pour connaitre le nombre d'issues favorables à 1 évènement
+
+
+
+
+

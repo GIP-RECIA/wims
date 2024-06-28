@@ -1,0 +1,189 @@
+!! insert this before `!header` : `!read js/external/tinymce.phtml xxxx`
+!!  with xxxx pointing to an existing DOM element (a textarea)
+
+!if $wims_read_parm!=
+
+  !if createxo isin $module
+    !set iEdit_plugins=code help lists
+    !set iEdit_toolbar=undo redo | styles aligncenter | bold italic strikethrough | subscript superscript | hr link | bullist numlist | removeformat | code | help
+    !set iEdit_formats=formats: {\
+        /*oef_indgood: { inline: 'span', classes: 'oef_indgood', exact: true },\
+        oef_indbad: { inline: 'span', classes: 'oef_indbad', exact: true },\
+        oef_indpartial: { inline: 'span', classes: 'oef_indpartial' },\
+        oef_indforget: { inline: 'span', classes: 'oef_indforget' },*/\
+        aligncenter: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes: 'wimscenter' },\
+        wims_instruction: { block: 'div', classes: 'wims_instruction'},\
+        /*wims_msg_success: { block: 'div', classes: 'wims_msg success'},\
+        wims_msg_alert: { block: 'div', classes: 'wims_msg alert'},\
+        wims_msg_warning: { block: 'div', classes: 'wims_msg warning'},\
+        wims_msg_info: { block: 'div', classes: 'wims_msg info'},\
+        wims_msg_help: { block: 'div', classes: 'wims_msg help'},*/\
+        wims_difficultylevel: { inline: 'span', classes: 'wims_difficultylevel'},\
+        wims_emph: { inline: 'span', classes: 'wims_emph'},\
+        wims_smallhelp: { block: 'div', classes: 'wims_smallhelp'},\
+        wims_question: { block: 'div', classes: 'wims_question'},\
+        wims_color1: { block: 'div', classes: 'wims_color1'},\
+        wims_color2: { block: 'div', classes: 'wims_color2'},\
+        wims_color3: { block: 'div', classes: 'wims_color3'},\
+      },style_formats: [\
+      { title: 'Paragraph', format: 'p'},\
+      { title: 'Headings', items: [\
+        { title: 'Heading 1', format: 'h2' },\
+        { title: 'Heading 2', format: 'h3' },\
+        { title: 'Heading 3', format: 'h4' },\
+        { title: 'Heading 4', format: 'h5' },\
+        { title: 'Heading 5', format: 'h6' }\
+      ]},\
+      /*{ title: 'OEF answers', items: [\
+        { title: 'Good answer', format: 'oef_indgood' },\
+        { title: 'Bad answer', format: 'oef_indbad' },\
+        { title: 'Partial answer', format: 'oef_indpartial' },\
+        { title: 'Forgotten answer', format: 'oef_indforget' },\
+      ]},\
+      { title: 'WIMS Messages', items: [\
+        { title: 'Success', format: 'wims_msg_success' },\
+        { title: 'Alert', format: 'wims_msg_alert' },\
+        { title: 'Warning', format: 'wims_msg_warning' },\
+        { title: 'Info', format: 'wims_msg_info' },\
+        { title: 'Help', format: 'wims_msg_help' },\
+      ]},*/\
+      { title: 'Theme colors', items: [\
+        { title: 'Color 1', format: 'wims_color1' },\
+        { title: 'Color 2', format: 'wims_color2' },\
+        { title: 'Color 3', format: 'wims_color3' },\
+      ]},\
+      { title: 'Other WIMS styles', items: [\
+        { title: 'Instructions', format: 'wims_instruction' },\
+        { title: 'Exercice highlight', format: 'wims_question' },\
+        { title: 'Small help', format: 'wims_smallhelp' },\
+        { title: 'Blockquote', format: 'blockquote' },\
+        { title: 'Code', format: 'code' },\
+        { title: 'Difficulty level', format: 'wims_difficultylevel' },\
+        { title: 'Emphase', format: 'wims_emph' },\
+      ]},\
+    ],
+  !else
+    !set iEdit_plugins=code help link lists
+    !set iEdit_toolbar=undo redo | blocks aligncenter | bold italic strikethrough | subscript superscript
+    !! "link" button isn't allowed for students in freework.
+    !if freework isin $module and student isin $job
+      !set iEdit_toolbar=$iEdit_toolbar | hr
+    !else
+      !set iEdit_toolbar=$iEdit_toolbar | hr link
+    !endif
+    !set iEdit_toolbar=$iEdit_toolbar | bullist numlist | removeformat | code | help
+    !reset iEdit_formats
+  !endif
+
+
+  !let name_WYSIWYG_activate=Activate editor
+  !let name_WYSIWYG_disable=Disable editor
+  !if $lang=ca
+    !set tiny_lang=language: 'ca',
+    !let name_WYSIWYG_activate=Activate editor
+    !let name_WYSIWYG_disable=Disable editor
+  !endif
+  !if $lang=cn
+    !set tiny_lang=language: 'zh-Hans',
+    !let name_WYSIWYG_activate=Activate editor
+    !let name_WYSIWYG_disable=Disable editor
+  !endif
+  !if $lang=tw
+    !set tiny_lang=language: 'zh-Hant',
+    !let name_WYSIWYG_activate=Activate editor
+    !let name_WYSIWYG_disable=Disable editor
+  !endif
+  !if $lang=es
+    !set tiny_lang=language: 'es',
+    !let name_WYSIWYG_activate=Activate editor
+    !let name_WYSIWYG_disable=Disable editor
+  !endif
+  !if $lang=fr
+    !set tiny_lang=language: 'fr_FR',
+    !let name_WYSIWYG_activate=Activer l'éditeur
+    !let name_WYSIWYG_disable=Désactiver l'éditeur
+  !endif
+  !if $lang=it
+    !set tiny_lang=language: 'it',
+    !let name_WYSIWYG_activate=Activate editor
+    !let name_WYSIWYG_disable=Disable editor
+  !endif
+  !if $lang=nl
+    !set tiny_lang=language: 'nl',
+    !let name_WYSIWYG_activate=Activate editor
+    !let name_WYSIWYG_disable=Disable editor
+  !endif
+  !if $lang=si
+    !set tiny_lang=language: 'sl_SI',
+    !let name_WYSIWYG_activate=Activate editor
+    !let name_WYSIWYG_disable=Disable editor
+  !endif
+
+
+  !set wims_html_header= !append line <script src="scripts/js/external/tinymce/tinymce.min.js"></script>\
+  <style>.hidden_btn{display:none}.wysiwyg_btns{text-align:right;font-size:.6em}</style>\
+  <script>\
+  document.addEventListener("DOMContentLoaded", function() {\
+    /* Insert "enable/disable editor" buttons */\
+    var ed_instances = document.querySelectorAll("$wims_read_parm");\
+    ed_instances.forEach(function(ed) {\
+      if(ed.id){\
+        var div = document.createElement('div');\
+        div.classList.add('wysiwyg_btns');\
+        var a1 = document.createElement('a');\
+        var linkText = document.createTextNode("$name_WYSIWYG_disable");\
+        a1.appendChild(linkText);\
+        a1.setAttribute("onclick","javascript:tinymce.execCommand('mceRemoveEditor',true,'"+ed.id+"');this.classList.add('hidden_btn');this.nextElementSibling.classList.remove('hidden_btn');");\
+        div.appendChild(a1);\
+        var a2 = document.createElement('a');\
+        var linkText = document.createTextNode("$name_WYSIWYG_activate");\
+        a2.appendChild(linkText);\
+        a2.setAttribute("onclick","javascript:tinymce.execCommand('mceAddEditor',true,'"+ed.id+"');this.classList.add('hidden_btn');this.previousElementSibling.classList.remove('hidden_btn');");\
+        a2.classList.add("hidden_btn");\
+        div.appendChild(a2);\
+        /* insert just after editor */\
+        ed.parentNode.insertBefore(div, ed.nextSibling);\
+      }\
+    });\
+    /* Initialize editors */\
+    // RegExp du texte a chercher\
+    var find1 = '\\\\imagedir\/';\
+    var re1 = new RegExp(find1, 'g');\
+    // texte de remplacement\
+    var replace1 = '\\imagedir\/';\
+    var replace2 = '$wims_ref_name?cmd=getfile&amp;session=$wims_session&amp;special_parm=oefimg/';\
+    // convertit l'url de remplacement en RegExp\
+    var find2 = replace2.replace(/\//g, '\\/');\
+    var find2 = find2.replace(/\./g, '\\.');\
+    var find2 = find2.replace(/\?/g, '\\?');\
+    var re2 = new RegExp(find2, 'g');\
+    tinymce.init({\
+      selector:'$wims_read_parm',\
+      plugins: '$iEdit_plugins',\
+      block_formats : tinymce.translate('Paragraph')+'=p;' +tinymce.translate('Heading 1')+'=h2;'+tinymce.translate('Heading 2')+'=h3;' +tinymce.translate('Heading 3')+'=h4;' +tinymce.translate('Heading 4')+'=h5;' +tinymce.translate('Heading 5')+'=h6;' +tinymce.translate('Preformatted')+'=pre;' +tinymce.translate('Blockquote')+'=blockquote;',\
+      menubar: false,\
+      branding: false,\
+      toolbar: '$iEdit_toolbar',\
+      $tiny_lang\
+      $iEdit_formats\
+      convert_urls : false,\
+      entities : '160,nbsp,162,cent,8364,euro,163,pound',\
+      content_css : 'html/themes/$wims_theme/css.css',\
+      body_class: 'main_body',\
+      content_style : ':root{--wims_bgcolor: $wims_bgcolor;--wims_link_color: $wims_link_color;--wims_vlink_color: $wims_vlink_color;--wims_hlink_color: $wims_hlink_color;--wims_ref_menucolor: $wims_ref_menucolor;--wims_ref_bgcolor: $wims_ref_bgcolor;--wims_ref_button_color: $wims_ref_button_color;--wims_ref_button_bgcolor: $wims_ref_button_bgcolor;}a, .ui-widget-content a{color:$wims_link_color}a:hover, a:focus {color:$wims_hlink_color}table.wimstable th{background-color: $wims_ref_bgcolor;color: $wims_ref_menucolor}table.wimstable th a{color: $wims_ref_menucolor}.wimstable caption a{color: $wims_ref_menucolor}.wims_emph {color:$wims_ref_bgcolor}input[type="submit"],input[type="button"],.main_body .wims_button{background-color:$wims_ref_button_bgcolor;color:$wims_ref_button_color}.main_body .wims_button_help{background-color:$wims_ref_button_help_bgcolor;color:$wims_ref_button_help_color}.property_fields{border-color:$wims_ref_bgcolor}.property_fields legend{background-color: $wims_ref_bgcolor}.property_fields legend,.property_fields legend>a{color:$wims_ref_menucolor}.wims_color1 {background-color: $wims_ref_bgcolor;color:$wims_ref_menucolor}.wims_color2 {background-color:$wims_ref_button_bgcolor;color:$wims_ref_button_color}.wims_color3 {background-color:$wims_ref_button_help_bgcolor;color:$wims_ref_button_help_color}',\
+      init_instance_callback: function(editor) {\
+        editor.on('PostProcess', function (e) {\
+          // Avant d'afficher le code source\
+          e.content = e.content.replace(re2, replace1);\
+        });\
+        editor.on('BeforeSetContent', function (e) {\
+          // Lors de l'enregistrement du code source\
+          e.content = e.content.replace(re1, replace2);\
+        });\
+        // refresh content, searching for 'imagedir'\
+        editor.setContent(editor.getContent());\
+      }\
+    });\
+  });</script>\
+   to $wims_html_header
+!endif

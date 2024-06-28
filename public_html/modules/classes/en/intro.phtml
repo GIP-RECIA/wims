@@ -1,0 +1,49 @@
+!set proc=oef
+!header
+
+!if $wims_class=$empty
+  <p>This module is an internal module of a virtual class. As you are not
+  connected as a member of this class, you don't have the right to access
+  it. Sorry.</p>
+  <p class="wimscenter">
+   !href $ $wims_name_home
+  </p>
+  !tail
+  !exit
+!endif
+<p>This module consists of interactive exercises which were created in the class  <span class="wims_classdesc">$wims_classname</span>
+of <span class="wims_institutiondesc">$wims_institutionname</span> or imported into it from the server.</p><div class="wims_smallremark">
+<details><summary>$wims_name_seemore</summary>
+<p>The exercises in this module can only be used in the worksheets, documents,
+  exams and homework assignments of this class.</p>
+<p>To modify an exercise of this module, select it from the list below, click on the button
+ <span class="wims_button disabled inline">$wims_name_work</span> and click on the link
+ <span class="text_icon exomodify">$wims_name_exomodify</span>.</p>
+  <p>To import an exercise, go work on it; a link
+ <span class="text_icon import">$wims_name_import</span> will be visible on the menu
+  if the exercise can be imported. Some exercises can only be imported into
+   <span class="text_icon modtool">$wims_name_modtool</span>.
+ It is only useful to import an exercise into your class, if you want to see its source
+ code and want to modify it. An exercise imported into this class is a copy of an exercise
+ published on the server. Therefore, if you modify it, the modifications will not affect
+ the original version published on the server.
+</p>
+ </details>
+</div>
+
+!if $wims_user=supervisor
+  <p>
+   !set wims_ref_class=wims_button
+   !href module=adm/createxo Create another exercise
+  </p>
+  !read oef/intromenu.phtml
+!else
+  <p>
+   Only supervisor can access this exercises list.
+  </p>
+  <p class="wimscenter">
+   !href $ $wims_name_home
+  </p>
+!endif
+
+!tail

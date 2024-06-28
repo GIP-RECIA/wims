@@ -1,0 +1,41 @@
+# Variable calculations should be done in this file.
+# It is read and interpreted by wims for all valid calls to the module.
+wims_prefix=class user
+!read adm/language lang/names.phtml
+
+wims_ariane_self=no
+!if $cmd_caller=$empty and _ notin $wims_session
+  tmp=!sh awk -F'=' '$$1=="QUERY_STRING"{print $$0;exit}' $wims_home/sessions/$wims_session/var;
+  tmp=!replace internal = by , in $tmp
+  tmp=!item 2 to -1 of $tmp
+  tmp=!replace internal &+ by ; in $tmp
+  tmp=!nospace $tmp
+  nbline=!rowcnt $tmp
+  !reset cmd_caller
+  !for k=1 to $nbline
+    t=!row $k of $tmp
+    !if $(t[1]) notwordof cmd session lang
+      cmd_caller=!append item $(t[1])=$(t[2]) to $cmd_caller
+    !endif
+  !next k
+  cmd_caller=!replace , by &+ in $cmd_caller
+!endif
+
+!if $wims_class=$empty or $wims_user!=supervisor
+  error=notallowed
+  forceexit=1
+  !exit
+!endif
+
+!! -------- check of income data
+!readproc adm/class/authchars
+checksession=!text select char $char_upper$char_digit in $checksession
+logcheck=!text select char -:.$char_alnum in $logcheck
+checkuser=!text select char $char_login in $checkuser
+!bound logtype within $empty,exam default $empty
+
+job=senderror
+wims_module_log=$job
+!read lang.phtml
+
+!changeto $job.proc

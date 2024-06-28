@@ -1,0 +1,100 @@
+!! process page for student for type=1 or type=2
+
+!if $activetest!=1 and $activetest!=2
+  error=badallows
+  emptypage=yes
+  !exit
+!endif
+
+!! ---- check techvar access
+!readproc adm/class/checkuserscorecondition F$freework
+!! $beginning_ is undocumented (but defined by checkuserscorecondition)
+!if $beginning_!=$empty
+  begh_=!char 9 to 10 of $beginning_
+  begm_=!char 11 to 12 of $beginning_
+  !readproc adm/date.phtml $beginning_
+!endif
+!if $output=no
+  !exit
+!endif
+!! ---- end check techvar access
+
+d1=!text select char 0123456789 in $(deadline)$(timedeadline)
+d2=!text select char 0123456789 in $wims_now
+d2=!char 1 to 12 of $d2
+d3=!text select char 0123456789 in $(soldate)$(timesoldate)
+!reset toolate
+!if $d2>$d1
+  toolate=yes
+!endif
+
+!if $type>=2 and $activetest>=1
+  !readproc proc/findfile.proc $freework,$wims_user
+!if $activetest=1
+  !readproc adm/class/quotafree.proc proc
+  oldsize=0
+  !if $data_0!=$empty
+    du=!sh du -ks $wims_home/log/classes/$wims_class/freeworksdata/$freework/work/$(data_0[2])
+    du=!word 1 of $du
+    oldsize=$[($du)/1024]
+    delold=rm -f $wims_home/log/classes/$wims_class/freeworksdata/$freework/work/$(data_0[2])
+    test=!fileexists wimshome/sessions/$wims_session/getfile/freeworksdata/work$freework-$(data_0[2])
+    !if $test=yes
+      delold=$delold;\
+             rm -f $wims_home/sessions/$wims_session/getfile/freeworksdata/work$freework-$(data_0[2])
+    !endif
+  !endif
+  !if $toolate!=yes and $wims_deposit!=$empty and / notin $wims_deposit and .. notin $wims_deposit
+    du=!sh du -ks $wims_home/$wims_sesdir/user-deposit
+    du=!word 1 of $du
+    newsize=$[($du)/1024]
+    !ifval $newsize>0.25*$sizelimitfile
+      error=badstudentfilesize
+      !exit
+    !endif
+    !read proc/checkfilename.proc $freework
+    !if $error!=$empty
+      !exit
+    !else
+      exten=!replace internal . by , in $newfilename
+      n=!itemcnt $exten
+      !if $n>=2
+        exten=!item -1 of $exten
+        exten=.$exten
+      !else
+        exten=$empty
+      !endif
+    !endif
+    success=goodaddfile
+    !if $quota_free-$newsize-$oldsize<0
+      error=quota_filestudent
+      !reset success
+    !else
+      !!mise en place du nouveau fichier (et destruction de l'ancien s'il existe et du lien de telechargement)
+      !sh mv $wims_home/$wims_sesdir/user-deposit $wims_home/log/classes/$wims_class/freeworksdata/$freework/work/$wims_user$exten;\
+          $delold
+    !endif
+    !readproc proc/findfile.proc $freework,$wims_user
+  !endif
+  !! ------ make download link for work and co if don't exists
+  !if $data_0!=$empty
+    !reset m
+    !if $codownload=1 and $(data_0[5])!=$empty
+      test=!fileexists wimshome/sessions/$wims_session/getfile/freeworksdata/workco$freework-$(data_0[5])
+      !if $test!=yes
+        m=ln -s $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$(data_0[5]) workco$freework-$(data_0[5]);
+      !endif
+    !endif
+    test=!fileexists wimshome/sessions/$wims_session/getfile/freeworksdata/work$freework-$(data_0[2])
+    !if $test!=yes
+      t=ln -s $wims_home/log/classes/$wims_class/freeworksdata/$freework/work/$(data_0[2]) work$freework-$(data_0[2]);
+      m=!append line $t to $m
+    !endif
+    !if $m!=$empty
+      !sh cd $wims_home/sessions/$wims_session/getfile/freeworksdata/;\
+          $m
+    !endif
+  !endif
+  !! ---- end make...
+!endif
+!endif

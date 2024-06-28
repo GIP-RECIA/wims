@@ -1,0 +1,10 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+filled
+fillcolor orange
+opacity 200,40
+linewidth 3
+drag xy
+ellipse 0,0,6,4,green
+zoom blue

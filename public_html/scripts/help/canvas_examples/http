@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+http 0,10,10,0,http://wims.unice.fr
+opacity 200,50
+drag xy
+fcircle 0,0,100,green

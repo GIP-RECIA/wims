@@ -1,0 +1,12 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+opacity 250,150
+drag xy
+triangle 0,0,-4,4,6,8,red
+drag xy
+ftriangle 0,0,-4,-4,6,-8,red
+fillpattern grid
+drag xy
+ftriangle -6,6,8,6,5,1,blue

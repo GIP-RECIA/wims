@@ -1,0 +1,17 @@
+!read language lang/names
+
+!header
+
+<div>
+  $module_title es un ejercicio .....
+</div>
+
+<p>
+!set wims_ref_class=wims_button
+!href cmd=new&module=$module $wims_name_work
+</p>
+
+!set keyw=!getdef keywords in INDEX
+!read related.phtml $keyw
+
+!tail

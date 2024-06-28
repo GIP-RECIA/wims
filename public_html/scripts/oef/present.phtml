@@ -1,0 +1,63 @@
+!nocache
+
+!! get the "presentgood" var to know if good answers must be displayed.
+!! now these files are read by ans.proc. Are these lines needed? 
+!! does it make any harm leaving them here?
+!! !read oef/testseedscore.phtml
+!! !readproc oef/get_presentgood.proc
+
+<!-- Begin oef/present.phtml -->
+!if $status=waiting and $cmd!=hint and $hasembedding=yes
+  <datalist id="emptylist"><option value="??"></datalist>
+  !form reply name="replyform" onsubmit="return formcheck();" id="a_oefform" autocomplete="off" spellcheck="false"
+  !set q_form=yes
+!else
+  !set m_status=end
+!endif
+
+<div class="oefstatement">
+  !if $format=tex
+    <div class="oef_tex_format" style="text-align:center">
+      !if $question_url=$empty or $cmd=resume
+        !set quest_=!replace &#36; by $$$$ in $question
+        !set wims_texsize=1
+        !instex \narrower\narrower {\bf $name_exo} $quest_
+        !set wims_texsize=0
+        !set question_url=$ins_url
+      !else
+        <img src="$question_url" alt="question">
+      !endif
+    </div>
+  !endif
+
+  !if $format=html or $format=
+
+    !if $executed_str!=$question or $oef2wims_version<3.10
+      $question
+    !else
+      !if $q_form!=yes
+        !set wims_parm_detag=label
+      !endif
+      !read $deffile question
+      !reset wims_parm_detag
+      !if $credits!=$empty and .. notin $credits and \ notin $credits \
+          and ($wims_user iswordof supervisor or $wims_user=$empty)
+        !set credits=!replace internal < by &lt; in $credits
+        !!!if .png isin $credits
+        !!  !set logo_img=!nospace $credits
+        !!  !set credits=<img src="$module_dir/images/$logo_img" alt="logo">
+        !!!endif
+        <div class="wims_credits"><cite>$credits</cite></div>
+      !endif
+    !endif
+  !endif
+
+  !if $plot_fn!=$empty
+    <p style="text-align:center" class="oef_plot_fn">
+      !insplot $plot_fn notitle
+    </p>
+  !endif
+  <br class="clearall">
+</div>
+
+<!-- End oef/present.phtml -->

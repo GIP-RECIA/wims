@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+fontfamily 24pt Arial
+circles red,0,0,3,3,3,6
+textfill 4,4,blue,HELLO WORLD

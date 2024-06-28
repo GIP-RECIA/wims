@@ -1,0 +1,4 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+parallel -5,5,-4,-5,0.25,0,40,red

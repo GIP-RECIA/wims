@@ -1,0 +1,10 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+bgcolor white
+fontsize 16
+legend legend 1:legend 2:legend 3:legend 4:this is legend 5:legend 6:another legend abc
+legendcolors red:green:blue
+grid 1,1,white
+# note: command "grid" is mandatory
+# just set grid invisible if not wanted

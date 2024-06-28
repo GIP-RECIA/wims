@@ -1,0 +1,13 @@
+
+:pre-calculus, precalculus, function, variable,
+evaluate,
+sin, cos, log, ln, exp
+addition, subtraction, multiplication, division
+
+:operation, evalue
+
+:, Evaluate the Expression
+
+:
+ $submit1
+ <input name="formula" type="text" size="40" value="sin(1)">

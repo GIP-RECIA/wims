@@ -1,0 +1,26 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=similarities
+!set gl_title=Similitude
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+On appelle <strong>similitude</strong> toute transformation du plan qui conserve
+les rapports de distances&nbsp;:<br>
+si A, B, C, D sont quatre points du plan tels que
+\(A\neq B\) et \(C\neq D\), et si A', B', C' et D' sont leurs images respectives
+par une similitude \(s\), alors <span style="white-space:nowrap">
+\(\frac{\mathrm{A}'\mathrm{B}'}{\mathrm{C}'\mathrm{D}'}=
+\frac{\mathrm{AB}}{\mathrm{CD}}\).</span>
+</div>
+<div class="wims_thm"><h4>Conséquence</h4>
+Une transformation \(s\) est une similitude si et seulement si il existe un réel
+\(k\) strictement positif tel que, pour tous points A et B du plan d'images
+respectives A'et B' par \(s\), on a&nbsp;:
+<span style="white-space:nowrap">\(\mathrm{A}'\mathrm{B}'=k \mathrm{AB}\).</span>
+<br>
+\(k\) est appelé <strong>rapport de la similitude</strong> \(s\).<br>
+On dit que \(s\) <em>multiplie les distances par</em> \(k\).
+</div>

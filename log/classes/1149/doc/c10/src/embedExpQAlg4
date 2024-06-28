@@ -1,0 +1,4 @@
+<p>
+L'algorithme présenté ci-dessus est prévu pour la fonction cube qui est une fonction strictement croissante.<br>
+Pour une autre fonction, il faut changer l'instruction \(Y \leftarrow X^3) pour y mettre la formule de la fonction,
+mais cet algorithme ne fonctionnera pas correctement si la fonction n'est pas croissante.</p>

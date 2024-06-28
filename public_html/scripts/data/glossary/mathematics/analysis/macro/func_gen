@@ -1,0 +1,31 @@
+!!Generation of functions !!
+
+!set gl_rand1 =!randint 0,1
+!set gl_rand2=!randint -9,9
+!set gl_rand3=!randint 1,9
+!set gl_rand4=!randint 1,9
+
+!!!!!!!!!!!!!! Affine Function  !!!!!!!!!!!
+
+!set gl_a =$[(-1)^$gl_rand1 * $gl_rand3]
+!set gl_b =$gl_rand2/$gl_rand4
+!set gl_aff1 =!exec pari $gl_a*x+$gl_b
+
+!set gl_r=$[(-1)^$gl_rand1 * $gl_rand4]
+!set gl_c=!randint 1,9
+!set gl_d=!randint 1,9
+!set gl_aff2=!exec pari $gl_a*x*($gl_r*x+$gl_c)-$[$gl_a*$gl_r]*x^2+$gl_d
+
+!set gl_itema=!texmath $gl_a
+
+!set gl_aff2_noneval=$gl_itema*x*($gl_r*x+$gl_c)-$[$gl_a*$gl_r]*x^2+$gl_d
+
+
+!!!!!!!!!!!!! Linear Function  !!!!!!!!!!!!
+!set gl_lin1 =!exec pari $gl_b*x
+
+!!!!!!!!!!!!! Trinomial Function !!!!!!!!!!
+!set gl_trinom1 =!exec pari $gl_r*x^2+$gl_d*x+$gl_c
+
+!set gl_trinom2=!exec pari $gl_a*x*($gl_r*x+$gl_c)+$[$gl_a*$gl_r]*x^2+$gl_d
+!set gl_trinom2_noneval=$gl_itema*x*($gl_r*x+$gl_c)+$[$gl_a*$gl_r]*x^2+$gl_d

@@ -1,0 +1,17 @@
+!set gl_type=dynamic
+!set gl_title=Degré du sommet d'un graphe (exemple)
+!set gl_author=Bernadette, Perrin-Riou
+
+!set gl_header=Sommet, Sommets adjacents, Degré
+!readproc data/glossary/mathematics/discrete_mathematics/macro/gr_degre
+
+On considère le graphe suivant&nbsp;:
+<div >
+  $gl_out1
+</div>
+Le tableau ci-dessous présente les sommets adjacents à chaque sommet de ce graphe
+ainsi que le degré de chacun d'eux.
+
+$gl_out2
+
+La somme des degrés est $[$gl_degsum].

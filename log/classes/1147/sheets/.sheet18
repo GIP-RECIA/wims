@@ -1,0 +1,163 @@
+Algorithmes et Python
+Boucle, instruction conditionnelle, variable, fonction
+??,2021
+1
+H4
+algorithmics,programming
+cond_instruction,loops,python
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant au paragraphe "Algorithmique et programmation" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:H4/coding/algorithmeSnde.fr
+exo=ordralgo
+10
+1
+Algorithme 1
+Remettre dans l'ordre un <strong>algorithme</strong>.
+
+
+
+
+
+:H4/coding/algorithmeSnde.fr
+exo=Echvar
+10
+1
+Algorithme 2
+Quel algorithme pour <strong>échanger deux variables</strong> ?
+
+
+
+
+
+:H4/algo/oefpython.fr
+exo=bouclefor1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Boucle for n°1
+premiers pas dans ce langage de programmation.
+
+connaitre "%" et "=="
+:H4/algo/oefpython.fr
+exo=bouclefor2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Boucle for n°2
+bien lire l'énoncé: déterminer <strong>la dernière valeur</strong>.
+
+connaitre " **"
+:H4/algo/oefpython.fr
+exo=bouclewhile1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Boucle while n°1
+premiers pas dans ce langage de programmation.
+
+<strong>print</strong> hors boucle
+:H4/algo/oefpython.fr
+exo=bouclewhile2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Boucle while n°2
+premiers pas dans ce langage de programmation.
+
+<strong>print</strong> hors boucle.
+:H4/algo/oefpython.fr
+exo=bouclewhile3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Boucle while n°3
+bien lire l'énoncé: quelle sera la <strong>n<sup>ème</sup></strong> valeur affichée.
+
+<strong>print</strong> dans la boucle
+:H4/algo/oefpython.fr
+exo=si1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Instruction si n°1
+instruction conditionnelle <strong>if:</strong>
+
+Calculs à l'aide de variables
+:H4/algo/oefpython.fr
+exo=si2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Instruction si n°2
+instructions conditionnelles <strong>if:</strong> et <strong>else:</strong>
+
+Calculs à l'aide de variables
+:H4/algo/oefpython.fr
+exo=si3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Instruction si n°3
+conditions imbiquées
+
+Calculs à l'aide de variables
+:H4/programming/oefpythonfunction.fr
+exo=BoucleWhile&confparm1=ambiance&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Boucle While
+Comprendre <strong>'while'</strong> activité imagée. Bien lire les consignes, valeur <strong>true</strong> ou <strong>false</strong> pour la condition ...
+
+Exercice pouvant être interessant comme support de cours
+:H4/algo/oefpython.fr
+exo=variables1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Variables n°1
+Qu'affiche ce programme ?
+
+
+
+
+
+:H4/algo/oefpython.fr
+exo=variables2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Variables n°2
+Qu'affiche ce programme ?
+
+
+
+
+
+:H4/programming/oefechpython.fr
+exo=de1&confparm1=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Variables n°3
+Initialiser deux <strong>variables</strong> d'un programme.
+
+
+
+
+
+:H4/programming/oefechpython.fr
+exo=de2&confparm1=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Variables n°4
+Initialiser trois <strong>variables</strong> d'un programme.
+:H4/algo/oefpython.fr
+exo=fonction1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Fonction n°1
+Déterminer le résultat que retourne une <strong>fonction</strong>.
+
+Déterminer le résultat que retourne une fonction (2 variables).
+
+
+
+:H4/algo/oefpython.fr
+exo=fonction2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Fonction n°2
+Déterminer le résultat que retourne une <strong>fonction</strong>.
+
+Déterminer le résultat que retourne une fonction (2 variables). <strong>Utilise la notion de valeur absolue</strong>.

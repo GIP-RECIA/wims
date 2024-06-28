@@ -1,0 +1,50 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Signe d'une fonction polynôme du second degré
+!set gl_keywords=trinomial,polynomials,functions,roots
+!set gl_level=H5
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(f: x \mapsto a x^2+ b x +c \) une fonction polynôme du second degré où
+\(a\) est un nombre réel non nul, \(b\) et \(c\) sont deux nombres réels.<br>
+Soit  \(\increment\) son discriminant et \((E)\) l'équation
+<span style="white-space:nowrap">\(a x^2+ b x +c = 0\).</span>
+<ul style="padding-left:1.5em;">
+  <li>Si \(\increment \lt 0\) alors l'équation (E) n'a pas de solution dans
+  \(\displaystyle{\RR}\) et pour tout réel <span style="white-space:nowrap">
+  \(x\),</span> \(f(x)\) est du signe de <span style="white-space:nowrap">
+  \(a\) ;</span>
+  </li>
+  <li>
+  si \(\increment=0\) alors l'équation (E) a une unique solution \(x_0\) dans
+  \(\displaystyle{\RR}\) et, pour tout réel \(x\) différent de
+  <span style="white-space:nowrap">\(x_0\),</span> \(f(x)\) est du signe de
+  <span style="white-space:nowrap">\(a\) ;</span>
+  </li>
+  <li>
+  si \(\increment \gt 0\) alors l'équation (E) a dans \(\displaystyle{\RR}\) deux
+  solutions distinctes \(x_1\) et <span style="white-space:nowrap">\(x_2\).</span>
+  Si on suppose \(x_1 \lt x_2\) alors&nbsp;:
+  <ul style="padding-left:1.5em;">
+  <li>
+  pour tout réel \(x\) tel que \(x \lt x_1\) ou \(x \gt x_2\)
+  (\(x\) "à l'extérieur des racines"), \(f(x)\) a le signe de
+  <span style="white-space:nowrap">\(a\),</span>
+  </li>
+  <li>
+    pour tout réel \(x\) tel que <span style="white-space:nowrap">
+    \(x_1 \lt x \lt x_2\),</span> (\(x\) "entre les racines"), \(f(x)\) a le
+    signe opposé de celui de <span style="white-space:nowrap">\(a\).</span>
+  </li>
+  </ul>
+  </li>
+  </ul>
+</div>
+
+:mathematics/analysis/fr/trinom_sign_1
+:
+:mathematics/analysis/fr/trinom_sign_2

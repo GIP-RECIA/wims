@@ -1,0 +1,14 @@
+!set hh=!trim $hint
+!if $hh=$empty or $givehint<1
+  $name_nohint
+  <div class="wimscenter">
+  !href cmd=resume $wims_name_resume.
+  </div>
+  !exit
+!endif
+
+<b>$wims_name_Hint</b>
+!read $deffile hint
+ <div class="wimscenter">
+!href cmd=resume $wims_name_resume.
+</div>

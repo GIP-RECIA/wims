@@ -1,0 +1,39 @@
+!goto $err_
+
+:badright
+  Pagina non visualizzabile. Non modificare manualmente l'indirizzo nel navigatore!
+!exit
+
+:badressource
+  Non sono state selezionate risorse valide.
+!exit
+
+:classfull
+  Il numero di risorse di questo tipo possibili per questo corso è stato raggiunto:
+  non è possibile aggiungere nuove risorse.
+!exit
+
+:bad_file
+  Il file caricato non sembra essere un backup valido di un corso WIMS.
+!exit
+
+:notsupervisor
+  Solo il docente o il docente supervisore del corso possono utilizzare questo modulo.
+  Non modificare manualmente l'indirizzo nel navigatore!
+!exit
+
+:importdone
+  La risorsa è stata importata.
+!exit
+
+:replacedone
+  La risorsa è stata sostituita con successo.
+!exit
+
+:faileddoc
+  Il documento seguente non può essere imporatato: $comp_.
+!exit
+
+:cannotreplace
+  La sostituzione della risorsa non può essere effettuata in quanto la risorsa di destinazione non esiste o non è modificabile.
+!exit

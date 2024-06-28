@@ -1,0 +1,39 @@
+!! test if sheet is hidden for participant (controled by technical variable)
+!! proc_wims_user is the user to test (default wims_user)
+!! wims_read_parm should contain condition test
+!! reply in hidden_sheet =1 for hidden and 0 if not
+
+!set hidden_sheet=0
+!if $tv_varfilterreaden!=yes
+  !readproc adm/vfilter/listvarfilter.proc
+!endif
+!if $tv_Sclass=$empty
+  !exit
+!endif
+
+!default proc_wims_user=$wims_user
+
+!set nbl_=!rowcnt $wims_read_parm
+!set u_=1
+!while $hidden_sheet=0 and $u_<=$nbl_
+  !set testf_=1
+  !set sel_cnt_=!itemcnt $(wims_read_parm[$u_;])
+  !set j_=1
+  !while $testf_=1 and $j_<=$sel_cnt_
+    !set sel1_=!replace internal = by , in $(wims_read_parm[$u_;$j_])
+    !set val_=!defof user_techvar_$(sel1_[1]) in wimshome/log/classes/$tv_Sclass/.users/$proc_wims_user
+    !if $val_ notsametext $(sel1_[2])
+      !set testf_=0
+    !else
+      !reset val_
+      !increase j_
+    !endif
+  !endwhile
+  !if 1=$testf_
+    !set hidden_sheet=1
+  !else
+    !increase u_
+  !endif
+!endwhile
+
+!reset proc_wims_user

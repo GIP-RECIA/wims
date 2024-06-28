@@ -1,0 +1,36 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=complex_number,complex_plane
+!set gl_title=Conjugué d'un nombre complexe
+!set gl_level=H5 STI2D&nbsp;Spécialité, H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(x\) et \(y\) deux nombres réels et \(z\) le nombre complexe défini par
+ <span style="white-space:nowrap">\(z=x+ \mathrm{i} y\).</span>
+<br>
+On appelle <strong>conjugué</strong> de \(z\) et on note \(\overline{z}\) le nombre
+ complexe défini par
+ <span style="white-space:nowrap">\(\overline{z}=x-\mathrm{i}y\).</span>
+</div>
+<div class="wims_thm">
+<h4>Propriété</h4>
+Si les points \(\mathrm{M}\) et \(\mathrm{M}^'\) sont les images respectives des
+ nombres complexes \(z\) et \(\overline{z}\) dans le plan complexe, alors
+  \(\mathrm{M}\) et \(\mathrm{M}^'\) sont symétriques par rapport à l'axe des
+   abscisses. Leurs abscisses sont égales et leurs ordonnées sont opposées.
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(z\) un nombre complexe.
+<ul>
+	<li>
+	\(z\) est réel si et seulement si \(\overline{z}=z\) ;
+ 	</li>
+	<li>
+	\(z\) est imaginaire pur si et seulement si \(\overline{z}=-z\).
+	</li>
+</ul>
+</div>

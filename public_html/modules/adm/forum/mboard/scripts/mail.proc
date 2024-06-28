@@ -1,0 +1,23 @@
+!mailto $c_smail\
+\
+[WIMS] Code pour votre message à $mb_title\
+\
+Voici le code secret de la part de $mb_title:\
+\
+<pre>$s_hidecode</pre>\
+\
+<p>Veuillez copier ce code dans votre formulaire web maintenant, pour valider\
+  l'envoi de votre message au forum.</p>\
+\
+<p>Notez bien que ce code est utilisé une SEULE fois pour cet envoi. Si vous n'avez\
+pas réussi votre manipulation et voulez essayer encore, vous devez attendre un\
+  nouveau code.</p>\
+\
+<p>Une fois le code reporté au formulaire web, ce courriel devient inutile et\
+  peut être détruit.</p>\
+\
+<p>Si vous ne comprenez pas de quoi il s'agit : alors c'est parce que quelqu'un\
+d'autre a donné votre adresse électronique (par erreur) à un logiciel \
+automatique, en se faisant passer pour vous. Dans ce cas vous pouvez ignorer\
+  ce message.</p>\
+

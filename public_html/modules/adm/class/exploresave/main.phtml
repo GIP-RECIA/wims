@@ -1,0 +1,37 @@
+!read adm/css.phtml
+
+!header
+!read adm/class/classname.phtml $wims_classname\
+$wims_institutionname
+
+!read adm/title.phtml 1\
+$classname\
+$name_title
+
+!if $error!=$empty
+  <div class="wims_msg alert">
+    <b>$wims_name_Error:</b>
+    !read msg.phtml
+  </div>
+!else
+  !if $success!=$empty
+    <div class="wims_msg success">
+      !read msg.phtml $success
+    </div>
+  !endif
+  !if $warning!=$empty
+    <div class="wims_msg warning">
+      !read msg.phtml $warning
+    </div>
+  !endif
+!endif
+
+!if $notallowed=1
+  !exit
+!endif
+
+!read $job.phtml
+
+!reset job
+
+!tail

@@ -1,0 +1,80 @@
+!set wims_module_log=error: $error
+
+<span class="wims_warning">$wims_name_Error</span>.
+
+!if not_supervisor=$error
+ Ho sento, però l'operació de preparació/modificació d'un full
+ d'exercicis està reservada al professor registrat d'una classe.
+ !exit
+!endif
+
+!if not_superclass=$error
+ Operació prohibida perquè formeu part d'un grup de classes. Només
+ ho pot fer el gestor del grup.
+ !exit
+!endif
+
+!if no_login iswordof $error
+ Les dades enviades han de tenir necessàriament una columna corresponent
+ al nom d'usuari dels alumnes.
+ !exit
+!endif
+
+!if bad_filename iswordof $error
+ El vostre fitxer no sembla ser un fitxer de full de càlcul en format text.
+ :csvformat
+ Si us plau, deseu les vostres dades en un format de text (separats per coma o tab,
+ amb extensions .csv, .tsv o .txt) abans d'enviar-lo a la classe.
+ !exit
+!endif
+
+!if binary_upload iswordof $error
+ Les vostres dades de full de càlcul estan en format binari&nbsp;! Això no és 
+ reconegut, ho sento.
+
+ !goto csvformat
+!endif
+
+!if no_manual iswordof $error
+ Si us plau primer
+ !href module=adm/class/grades creeu una columna de notes manuals
+ abans d'enviar les dades a la mateixa.
+ !exit
+!endif
+
+!if not_secure iswordof $error
+ La descàrrega de dades de fulls de càlcul només està disponible per
+ les connexions des d'un lloc segur. Si us plau, reviseu la configuració de la 
+ classe.
+ !exit
+!endif
+
+!if bad_user=$error
+ Error de crida : l'alumne <span class="tt wims_login">$checkuser</span> no existeix.
+ !exit
+!endif
+
+!if $error iswordof login_missing login_empty
+!! login_missing: no trobat al ldap per exemple
+   Alguns noms d'usuari no s'han trobat.
+ !exit
+!endif
+
+!if bad_exo=$error
+ Article a revisar no existeix.
+ !exit
+!endif
+
+!if bad_op=$error
+ Operació incorrecta. Tanqueu la finestra.
+ !exit
+!endif
+!if too_big=$error
+  El nombre de columnes demanades del full de càlcul és massa gran 
+  (superior a $TOO_BIG). Si necessites detalls dels exercicis, 
+   ho pots fer full per full o examen per examen. 
+   L'arxiu de descàrrega proposat és sens dubte incomplet.
+ !exit
+!endif
+
+!msg $error

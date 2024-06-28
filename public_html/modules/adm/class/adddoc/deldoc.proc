@@ -1,0 +1,25 @@
+!! delete doc $sdoc
+
+!if $(s$(type))=$empty
+  !if NaN isin $[$($type)/10] or $($type)<1 or $($type)>$($(type)tot)
+    error=bad$(type)number
+    !exit
+  !endif
+  s$type=$($type)
+  tmp=!record $(s$type) of wimshome/log/classes/$wims_class/$(type)/.$(type)index
+  title=!line 3 of $tmp
+!endif
+!bound step within 0,1 default 0
+
+!if $step=1
+  !if $(s$type)>=1 and $(s$type)<=$($(type)tot)
+    !read proc/updatefield.proc wimshome/log/classes/$wims_class/$(type)/.$(type)index\
+$(s$type)\
+delete\
+
+!! update seq directory
+    !readproc adm/updatesequence.proc $(type),$(s$type)
+
+  !endif
+  !restart module=home
+!endif

@@ -1,0 +1,74 @@
+type=imaudio
+textarea="data instruction"
+iEdit="instruction"
+
+:Triar l'etiqueta corresponent a la imatge (o al text que es presenta)
+Tingueu present que aquest model només funcionarà bé si carregueu les imatges a wims.
+<p>
+Per construir un exercici amb aquest model, simplement escriu la llista d'imatges i
+etiquetes corresponents
+</p>
+<p class="wims_credits">
+Autor del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+
+:\title{Trobar l'etiqueta correcta}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciat
+\text{instruction=Feu clic a la paraula corresponent a la imatge.
+(L'exercici només funcionarà quan es carreguin les imatges
+a l'exercici)}
+
+:Dades
+\text{data=amphitheatre.png,l'amphithéâtre
+aqueduc.png, l'aqueduc
+arcdetriomphe.png,l'arc de triomphe
+cirque.png, le cirque
+domus.png, la domus
+temple.png, le temple
+theatre.png, le théâtre
+thermes.png, les thermes
+}
+
+:Nombre de disruptors
+\integer{cntpertub=3}
+:La mida vertical de les caixes en píxels
+\text{sizev=40}
+:La mida horitzontal de les caixes en píxels
+\text{sizeh=200}
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+\text{mot = randrow(\data)}
+\text{image=\mot[1]}
+\text{ext=item(2,wims(replace internal . by , in wims(lowercase \image)))}
+\text{mot =\mot[2]}
+\text{liste=column(2, \data)}
+\text{perturb=wims(listcomplement \mot in \liste)}
+\text{perturb=shuffle(\perturb)}
+\text{perturb=\perturb[1..\cntpertub]}
+
+
+\statement{
+\instruction
+<p class="wimscenter">
+\if{\ext isitemof png,gif,jpg,jpeg}{
+  \img{\imagedir/\image}
+  }
+  {\image}</p>
+
+<p class="wimscenter">
+\embed{r1,\sizeh x \sizev}
+</p>
+}
+\answer{}{\mot;\perturb}{type=clickfill}

@@ -1,0 +1,9 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Periodic table
+slib_parms=1\
+ , molecule
+
+slib_out= for each  atom of the molecule M, a line with\
+ number of atoms in M, name,symbol,Z,molar mass and other things !
+slib_comment=Multiple formats are possible. For example  H2, O  or H2 O or H,2;O

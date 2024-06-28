@@ -1,0 +1,89 @@
+!! not allow for other than type=3
+!if $type!=3
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!if $putiworkco!=1
+  error=putworknotallow
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! -------- check for valid student (in class)
+!bound userv within $ulist default $empty
+!if $userv=$empty
+  error=putworkusernotexists
+  job=configfw
+  !changeto $job.proc
+!endif
+
+
+!! -------- test si la copie de l'etudiant existe (pas de depot de correction si pas de copie)
+
+!readproc proc/findfile3.proc $freework,$userv
+!if $output=$empty
+  error=studentwithoutfw
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! -------- save remark
+finalremark=!char 1 to 1000 of $finalremark
+finalremark=!replace internal : by &#58; in $finalremark
+!writefile wimshome/log/classes/$wims_class/freeworksdata/$freework/co/$userv $finalremark
+
+
+!! ------------ save new score (only if scoring>0)
+!if $scoring>0
+  key2=!positionof item $userv in $ulist
+  sendscore=$score
+  !bound score between 0 and $maxscore default $empty
+  !if $sendscore!=$score
+    error=badscore
+  !endif
+  key=!positionof item $userv in $uulist
+  list=!values 0 for v=1 to $nbscore
+  list=!replace internal 0 by $empty in $list
+  !if $key=$empty
+    !if $nbscore>1
+      list=!replace item number $scoring by $score in $list
+    !else
+      list=$score
+    !endif
+    !appendfile wimshome/log/classes/$wims_class/.grades :$userv,$(flist[$key2]) $(llist[$key2]),$list
+    uulist=!append item $userv to $uulist
+  !else
+    update_content=!record $[$key+1] of wimshome/log/classes/$wims_class/.grades
+    update_content=!append item $list to $update_content
+    update_content=!item 1 to $[$nbscore+2] of $update_content
+    update_content=!replace item number $[$scoring+2] by $score in $update_content
+    update_field=$[$key+1]
+    update_nbline=$empty
+    !read adm/uprecord wimshome/log/classes/$wims_class/.grades
+  !endif
+!endif
+
+!! -------- save new file
+!readproc adm/class/quotafree.proc proc
+oldsize=0
+!if $wims_deposit!=$empty and $wims_deposit!=noname.file and / notin $wims_deposit and .. notin $wims_deposit
+  du=!sh du -ks $wims_home/$wims_sesdir/user-deposit
+  du=!word 1 of $du
+  newsize=$[($du)/1024]
+  !read proc/checkfilename.proc
+  !if $error!=badfilename
+    success=goodaddfile
+    !if $quota_free-$newsize<0
+      error=quota_filestudent
+      !reset success
+    !else
+      !!mise en place du nouveau fichier
+      !sh mkdir -p $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$(userv)-file;\
+          mv $wims_home/$wims_sesdir/user-deposit $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$(userv)-file/$newfilename;
+    !endif
+  !endif
+!endif
+
+job=viewuser3
+!changeto $job.proc

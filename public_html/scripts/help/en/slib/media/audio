@@ -1,0 +1,13 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Audio insertion
+slib_parms=3\
+,URL of the data file\
+,additional options for the audio insertion (sample: <span class="tt">style="width:300px;height:25px"</span>)\
+,[<code>option=rename</code>] [<code>player=player_mp3_multi</code>]
+
+slib_out=Audio insertion in html page
+slib_comment=Value of player in 3rd parameter can be empty or the following flash player <span class="tt">player_mp3_multi</span>.\
+<br> When the value of player is empty, one can use the css class \
+<span class="tt">wims_audio</span> to modify the default \
+or give in the option for the audio insertion a css style (see the examples).

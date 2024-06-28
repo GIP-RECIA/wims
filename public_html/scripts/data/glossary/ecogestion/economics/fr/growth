@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Croissance
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+En économie, la <strong>croissance</strong> représente
+<span class="wims_emph">l'évolution de l'activité économique</span>.
+Elle se calcule pour une zone géographique
+donnée (en général un pays) et pour une période donnée (en général une année).
+La croissance <span class="wims_emph">se mesure avec le taux variation du PIB.</span>
+</div>
+
+:ecogestion/economics/fr/growth_1

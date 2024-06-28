@@ -1,0 +1,38 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=PPCM de deux entiers naturels non nuls (exemple)
+
+!readproc data/glossary/mathematics/arithmetic/macro/decomposition
+<div>
+Soit \(a\) et \(b\) les nombres entiers distincts définis par \(a=$gl_nbaff1\)
+et <span style="white-space:nowrap">\(b=$gl_nbaff2\).</span>
+</div>
+<div>
+Déterminons le PPCM  de \(a\) et \(b\)&nbsp;:
+</div>
+<div>
+!if $gl_estpremier1=1
+\($gl_nbaff1\) est premier, sa décomposition en facteurs premiers est donc
+<span style="white-space:nowrap">\($gl_nbaff1 = $gl_decomp1\).</span>
+!else
+  La décomposition du nombre \($gl_nbaff1\) en produit de facteurs premiers est
+  <span style="white-space:nowrap">\($gl_nbaff1 = $gl_decomp1\).</span>
+!endif
+</div>
+<div>
+!if $gl_estpremier2=1
+\($gl_nbaff2\) est premier, sa décomposition en facteurs premiers est donc
+<span style="white-space:nowrap">\($gl_nbaff2 = $gl_decomp2\).</span>
+!else
+  La décomposition du nombre \($gl_nbaff2\) en produit de facteurs premiers est
+  <span style="white-space:nowrap"> \($gl_nbaff2 = $gl_decomp2\).</span>
+!endif
+</div>
+<div>
+Le PPCM de \(a\) et \(b\) est donc égal à
+!if $gl_ppcm !=1
+  \($gl_decomp4\) soit <span style="white-space:nowrap">\($gl_ppcmaff\).</span>
+!else
+  <span style="white-space:nowrap">\($gl_ppcmaff\).</span>
+!endif
+</div>

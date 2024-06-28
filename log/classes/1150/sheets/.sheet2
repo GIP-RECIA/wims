@@ -1,0 +1,57 @@
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree1&qnum=2
+10
+1
+Durée : Conversion 1 
+Notions de base difficulté 1
+
+1j combien d'heure, 1h combien de minutes
+
+
+ 
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée : Conversion 2 
+Difficulté 2
+
+Conversion heure minute
+
+
+ 
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée : Conversion 3
+Difficulté 3
+
+Conversion jour seconde
+
+
+ 
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree4&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée : Conversion 4 
+Difficulté 4
+
+Conversion jour semaine
+ 
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree5&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée : Conversion 5 
+Difficulté 5
+
+Conversion heure en jour+heure
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree5&exo=oefduree4&exo=oefduree3&exo=oefduree2&exo=oefduree1&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée : Conversion 2-5 
+Difficulté 2 à 5 aléatoirement

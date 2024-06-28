@@ -1,0 +1,21 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=continuous_probability_distribution,exponential_distribution
+!set gl_title=Loi exponentielle (lycée)
+!set gl_level=H6 Générale&nbsp;Complémentaire
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(a\) un réel strictement positif. La <strong>loi exponentielle</strong>
+\(\mathcal{E}(a)) est la loi continue sur \(\RR_+) de densité
+
+<div class="wimscenter">
+\(x\mapsto a e^{-a x}\)
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th></tr>
+<tr><td>\(\frac{1}{a})</td><td>\(\frac{1}{a^2})</td></tr></table>

@@ -1,0 +1,44 @@
+!set titb=Résolution de x^2 = k
+!set keyw=
+!set datm=20210821
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<ul>
+<li>
+Si 
+!insmath k
+ > 0 alors l'équation 
+!insmath x^2=k
+ a deux solutions 
+!insmath -\sqrt{k}
+ et 
+!insmath \sqrt{k}
+.
+</li><li>
+Si 
+!insmath k
+ = 0 alors l'équation 
+!insmath x^2=k
+ équivaut à 
+!insmath x=0
+ (elle a une seule solution 0).
+</li><li>
+Si 
+!insmath k
+ < 0 alors l'équation 
+!insmath x^2=k
+ n'a pas de solution dans 
+!insmath \,\RR
+.
+</li></ul>
+

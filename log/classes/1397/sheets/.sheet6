@@ -1,0 +1,74 @@
+Addizioni #3
+giochi con le addizioni
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation,fraction,levelE3,levelE4
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Piramide (livello 1)
+Inserisci i numeri nella piramide in modo che quello sopra sia la somma di quelli che gli stanno sotto.
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=9&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Piramide (livello 2)
+Di nuovo, inserisci i numeri nella piramide, ma questa volta devi scegliere i numeri che fanno al caso tuo tra quelli che ti vengono proposti.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Fiocco (livello 1)
+Completa il fiocco in modo che la somma dei numeri inseriti soddisfi la condizione richiesta.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=9&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Fiocco (livello 2)
+Di nuovo, completa il fiocco, ma questa volta devi scegliere quali numeri utilizzare tra quelli che ti vengono proposti.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Doppia piramide (livello 1)
+Inserisci i numeri nella doppia piramide in modo che ognuno dei numeri che sta sopra sia la somma di quelli che gli stanno sotto.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=9&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Doppia piramide (livello 2)
+Di nuovo, inserisci i numeri nella doppia piramide, ma questa volta devi scegliere quali numeri utilizzare tra quelli che ti vengono proposti.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=9&confparm2=3&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Doppia piramide (livello 3)
+E per concludere, sempre più difficile: inserisci i numeri nella doppia piramide scegliendo quali numeri utilizzare tra quelli che ti vengono proposti.
+
+:H1/algebra/addfig.en
+exo=pyramid2&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tripla piramide
+Sempre di più! Ora abbiamo una piramide più grossa con più numeri da inserire.
+
+:H1/algebra/addfig.en
+exo=pyramid1c&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Piramidissima
+Sempre di più! Ora abbiamo tante piramidi una accanto all'altra: un vero rompicapo.
+

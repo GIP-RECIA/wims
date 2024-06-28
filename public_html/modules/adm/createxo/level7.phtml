@@ -1,0 +1,20 @@
+!!transfer towards a developper account
+
+!read lang/name.phtml.$modu_lang register
+<p>$name_register_dev <span class="tt wims_login">$wims_developer</span>:</p>
+!form reply onsubmit="return formcheck();"
+  <ul><li>
+    <label for="catmodule1">$name_choice_module</label>
+    !formselect catmodule1 list $list_mod_oef
+  </li><li>
+    <label for="source">$name_choice_filename</label>
+    <input required="required" id="source" type="text" size="12" name="file_name_src" value="" pattern="([A-z0-9\_])"><span class="tt">.oef</span>
+    <div class="formHelp">$name_choice_filename_help</div>
+  </li></ul>
+  <div class="wimscenter">
+    <input type="submit">
+    !set wims_ref_class=wims_button wims_secondary_button
+    !href cmd=reply&level=3 $wims_name_giveup
+  </div>
+  <input type="hidden" name="level" value="4">
+!formend

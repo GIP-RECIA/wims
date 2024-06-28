@@ -1,0 +1,14 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Graphe complet (exemple)
+!readproc data/glossary/mathematics/discrete_mathematics/macro/complete_graph
+
+<table class="wimsborder wimscenter">
+<caption>Représentation de graphes complets \(K_n\)</caption>
+  <tr><th>Nombre de sommets</th><th>Nombre d'arêtes</th><th></th></tr>
+
+!for j=1 to $gl_cnt
+  !set gl_ar=$[$(gl_n[$j])*($(gl_n[$j])-1)/2]
+  <tr><td>$(gl_n[$j])</td><td>$gl_ar<td>$(gl_out$j)</td></tr>
+!next
+</table>

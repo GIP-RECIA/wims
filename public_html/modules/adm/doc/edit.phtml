@@ -1,0 +1,92 @@
+<h1 class="wims_docu_title">$tit</h1>
+
+!if $error!=$empty
+  <div class="wims_msg alert">
+  !read docu/$modu_lang/msg.phtml
+  </div>
+
+!endif
+
+!if $edtype=file
+  !set wims_form_method=file
+!else
+  !set wims_form_method=post
+!endif
+!form reply
+<input type="hidden" name="doc" value="$doc">
+<input type="hidden" name="block" value="$block">
+
+<fieldset class="property_fields blockcenter">
+<legend>
+  !if $titb=$empty
+    $name_blockcreation
+  !else
+    $name_blockedition
+  !endif
+</legend>
+<div class="field box fullwidth">
+  !set titb=!reinput $titb
+  <label for="Titb">$wims_name_title</label>
+  <input type="text" id="Titb" name="Titb" value="$titb">
+</div>
+<div id="textDiv" class="field box fullwidth">
+  !if $edtype=file
+    <div class="float_right">
+      !href cmd=reply&edtype=textarea $name_compose
+    </div>
+    <label for="wims_deposit">$name_file</label><br>
+    <input type="file" name="wims_deposit" id="wims_deposit">
+    !if $titb!=$empty
+      <p>
+        <label for="addtype">$name_prompt0</label>
+        !formselect addtype list replace,append,prepend prompt\
+         $name_prompt
+        $name_prompt1.
+      </p>
+    !endif
+  !else
+    <div class="float_right">
+      !href cmd=reply&edtype=file $name_file
+    </div>
+    <label for="doc_content">$n_content</label>
+    !mexec scripts/textarea.sh
+    !!  <div id="handleBottom" style="width:100%; top:222px;"></div>
+    <script>
+    /*<![CDATA[*/
+      markdown_toolbar = new Control.TextArea.ToolBar.Markdown('doc_content');
+      markdown_toolbar.toolbar.container.id = 'markdown_toolbar';
+    /*]]>*/
+    </script>
+  !endif
+</div>
+
+<div class="field box">
+  $name_dates$wims_punct_colon<br>
+  <label for="Dat1">$name_from</label>
+  !read adm/datepickerform.phtml $dat1\
+Dat1\
+"-1d"
+  <label for="Dat2">$name_to</label>
+  !read adm/datepickerform.phtml $dat2\
+Dat2\
+"-1d"
+</div>
+
+!! $wims_name_Keywords : <input size="50" name="Keyw" value="$keyw"> <br>
+!if $block!=main
+  <div class="field box">
+    <label for="Prev">$name_prev</label> <input size="12" name="Prev" id="Prev" value="$prev">
+    <label for="Next">$name_next</label> <input size="12" name="Next" id="Next" value="$next">
+    <label for="Upbl">$name_up</label> <input size="12" name="Upbl" id="Upbl" value="$upbl">
+  </div>
+!endif
+
+</fieldset>
+
+<div class="wimscenter">
+  <input type="submit" name="preview" value="$n_preview">
+  <input type="submit" name="rEg" value="$wims_name_tosave">
+  <input type="submit" name="abandon" value="$wims_name_giveup" class="wims_secondary_button">
+</div>
+
+!formend

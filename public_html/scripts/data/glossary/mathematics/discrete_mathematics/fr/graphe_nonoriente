@@ -1,0 +1,57 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph
+!set gl_title=Graphe non orienté
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définitions</h4>
+  <ul>
+    <li>
+      Un <strong>graphe non orienté </strong> \(G\) est déterminé par la
+      donnée&nbsp;:
+      <ul>
+        <li>
+          d'un ensemble fini \(S\) dont les éléments sont appelés <strong>
+          sommets</strong>&nbsp;;
+        </li>
+        <li>
+          d'un ensemble \(U\) de parties de \(S\) à un ou deux élément(s)&nbsp;:
+          <ul>
+            <li>
+              lorsqu'une de ces parties est constituée de deux sommets distincts,
+              cette partie est appelée <strong>arête</strong> de
+              <span style="white-space:nowrap">\(G\),</span>
+            </li>
+            <li>
+              sinon (lorsque les deux sommets sont confondus), cette partie est
+              appelée <strong>boucle</strong>.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      L'<strong>ordre</strong> d'un graphe \(G\) est le nombre de sommets de ce
+      graphe.
+      <br>
+      Si \(u=\{s;t\}\) est une arête du graphe \(G\), on dit que les sommets
+      \(s\) et \(t\) sont <strong>adjacents</strong> et qu'ils constituent les
+      <strong>extrémités</strong> de l'arête <span style="white-space:nowrap">
+      \(u\).</span>
+    </li>
+    <li>
+      Le <strong>degré</strong> d'un sommet \(s\) d'un graphe non orienté \(G\)
+      est le nombre d'arêtes ou de boucles dont une extrémité est
+      <span style="white-space:nowrap">\(s\).</span>
+    </li>
+  </ul>
+</div>
+<div class="wims_rem">
+  <h4>Remarque</h4>
+  Les sommets d'un graphe sont représentés par des points ou des disques, une
+  arête \(u=\{s;t\}\) (où \(s \neq t\)) par un arc de courbe ou un segment
+  joignant les deux sommets \(s\) et \(t\) et une boucle par un cercle passant
+  le sommet concerné.
+</div>

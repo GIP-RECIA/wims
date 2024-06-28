@@ -1,0 +1,113 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!else
+  !exit
+!endif
+
+!!:hide
+!!<h2>$name_hidedate</h2>
+!!Si une date est saisie dans le champ, la séquence passera automatiquement en mode <span class="tt">cachée</span> le jour fixé.<br>
+!!Le changement s'effectue lors de la maintenance quotidienne du serveur. Si la date est déjà dépassée, il ne se passera rien.
+!!!exit
+
+!!:show
+!!<h2>$name_showdate</h2>
+!!Si une date est saisie dans le champ, la séquence passera automatiquement en mode <span class="tt">visible</span> le jour fixé.<br>
+!!Le changement s'effectue lors de la maintenance quotidienne du serveur. Si la date est déjà dépassée, il ne se passera rien.
+!!!exit
+
+:allowtype
+<h2 id="allowtype">Paramétrage de la visibilité de la séquence.</h2>
+
+Vous pouvez imposer une restriction, par exemple dans le temps, pour
+que la séquence soit visible. Cette restriction ne s'applique pas aux classes
+en partage. Le statut de la séquence est prioritaire par rapport à cette restriction.
+<br>
+Plusieurs options sont disponibles :
+<ul>
+ <li><span class="tt wims_code_words">$(name_allowtype[1])</span> :
+la séquence est visible par tous les participants.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[2])</span> :
+la séquence n'est visible par personne.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[3])</span> :
+une interface de saisie apparaît et vous pouvez indiquer une plage
+horaire ainsi que les adresses IP à partir desquelles la séquence est visible.
+Cette restriction s'écrit à l'aide d'une expression en trois parties (qui peuvent
+ ne pas toutes être présentes) :
+ <ul>
+  <li>Une date et une heure de début ;</li>
+  <li>Une date et une heure de fin ;</li>
+  <li>Une plage d'IP ;</li>
+ </ul>
+Les dates (format <span class="tt wims_code_words">aaaammjj</span>) et heures
+(format <span class="tt wims_code_words">hh:mm</span>) doivent être en temps local du SERVEUR.
+ <p>
+Exemple :
+$wims_name_form <span class="tt wims_code_words">20131007</span> $wims_name_at <span class="tt wims_code_words">10:30</span> $wims_name_to <span class="tt wims_code_words">20131001</span> $wims_name_at <span class="tt wims_code_words">10:00</span> $wims_name_IP<span class="tt wims_code_words"> 127.0.</span> <br>
+permet de rendre la séquence visible seulement entre 2 dates et seulement pour les numéros IP commençant
+par <span class="tt wims_code_words">127.0.</span>.
+</p>
+
+</li><li><span class="tt wims_code_words">$(name_allowtype[4])</span> :
+cette option peut être choisie afin d'individualiser les restrictions
+d'accès à l'aide d'une <span class="tt wims_code_words">variable
+technique</span> (cette variable technique est définie pour chaque
+participant soit manuellement en utilisant le module de gestion des
+variables techniques soit à l'aide d'un
+<span class="tt wims_code_words">$wims_name_Vote</span>).
+Lors du choix de cette option, un menu permet de choisir la variable
+ technique qui sert de différenciation et un tableau permet
+d'effectuer un réglage du filtre (en utilisant le même format que
+précédemment) pour chaque valeur possible de la variable.
+Ne rien préciser comme filtre  pour une valeur de la variable technique signifie
+ne pas ouvrir l'enregistrement des notes pour les participants qui ont cette valeur.
+!!<p>
+!!Dans le cas d'une variable technique définie à l'aide du modèle
+!!<span class="tt wims_code_words">Accès individualisé</span>
+!!d'un <span class="tt wims_code_words">$wims_name_Vote</span>
+!!spécifique à la création de réservation de créneau horaire,
+!!le tableau est déjà pré-rempli avec les données proposées lors de la
+!! création du questionnaire. Ces données peuvent être modifiées,
+!!mais les modifications ne sont pas répercutées sur le questionnaire.
+!!</p>
+<p>Exemple : Supposons que le tableau décrivant les filtres pour la variable technique
+<span class="tt wims_code_variable">groupe</span> prenant les valeurs 1, 2 et 3 soit :
+!readproc slib/text/matrixhtml [$name_value,$name_filtre\
+$name_EMPTY, 129.50.10. &#62;20160915.12&#58;00\
+1,&#62;20160915.15&#58;00 &#60;20160925.12&#58;00\
+2,\
+3,127.0.],wimscenter wimsborder wimstable,TH=[1;]
+$slib_out
+</p>
+<ul><li>
+pour les élèves pour lesquels
+<span class="tt wims_code_variable">groupe</span> n'a pas de valeur,
+la séquence est visible à partir du
+15/09/2016 12h et uniquement sur les postes dont l'IP commence par
+129.50.10.
+</li><li>
+pour les élèves pour lesquels <span class="tt wims_code_variable">groupe=1</span>,
+la séquence est visible entre le 15/09/2016 15h et le 25/09/2016 12h.
+</li><li>
+pour les élèves pour
+lesquels <span class="tt wims_code_variable">groupe=2</span>, la séquence n'est pas visible.
+</li><li>
+pour les élèves pour lesquels
+<span class="tt wims_code_variable">groupe=3</span>,
+la séquence est visible uniquement à partir des postes
+dont l'IP commence par 127.0.
+</li></ul>
+</li>
+</ul>
+
+!if $tv_listtechvar!=$empty
+ Les variables techniques actuellement disponibles dans votre classe sont :
+ !read adm/vfilter/listvar.phtml
+!else
+<div class="wims_msg info">
+ Il n'y a actuellement aucune variable technique définie dans votre
+classe. Si vous voulez utiliser cette option, il faut d'abord
+définir une variable technique.
+</div>
+!endif
+!exit

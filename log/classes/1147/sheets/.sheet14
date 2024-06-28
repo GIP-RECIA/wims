@@ -1,0 +1,75 @@
+Reconnaître, nommer un solide usuel
+Nombre de faces, arêtes, sommets d'un solide
+??,2021
+1
+H4
+geometry
+elementary_geometry,3_shape,cone,pyramid,cube,sphere,cylinder,prism
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Géométrie" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Nom des solides 1
+Reconnaître un <strong>solide</strong>.
+
+:E5/geometry/oefgeo3D.fr
+exo=reconnaissance&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Nom des solides 2
+Associer trois <strong>solides</strong> avec leur nom.
+
+:H2/geometry/solide6-5.fr
+exo=solide3&exo=solide2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Nom des solides 3
+Associer des <strong>solides</strong> avec leur nom.
+
+base de 2 exercices
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Description de solides 1
+Déterminer le <strong>nombre de faces</strong> d'un solide.
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Description de solides 2
+Déterminer le <strong>nombre de sommets</strong> d'un solide.
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Description de solides 3
+Déterminer le <strong>nombre d'arêtes</strong> d'un solide.
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Description de solides 4
+Déterminer le <strong>nombre de faces rectangulaires</strong> d'un solide.
+
+:E5/geometry/oefgeo3D.fr
+exo=caracteristique1
+10
+1
+Description de solides 5
+Déterminer le <strong>nombre d'arêtes, de sommets, de faces</strong> et le <strong>nom</strong> du solide.
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefpatron5
+10
+1
+Patron
+Reconnaître un <strong>parallélépipède rectangle</strong> d'après son <strong>patron</strong>.
+

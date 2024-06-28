@@ -1,0 +1,10 @@
+!set lang_exists=yes
+
+name_title=Segnala un errore in un esercizio
+name_titlemail=Errore in un esercizio
+name_mailinfogene=Informazioni generali
+name_mailcomment=Descrizione dell'errore
+name_content=Precisazioni sull'errore
+name_info=Queste informazioni saranno incluse automaticamente nella segnalazione di errore
+name_rapportbug=Fichier var
+name_to=to

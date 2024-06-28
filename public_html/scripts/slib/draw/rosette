@@ -1,0 +1,71 @@
+
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_title=Rosettes
+slib_author=Marina, Cazzola
+slib_example=cn,3,0,[segment 0.8,0,1,1,blue],html\
+dn,3,0,[segment 0.8,0,1,1,blue],html\
+cn,1,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,1,90,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,2,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,3,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,4,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,5,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,6,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,7,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,8,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,9,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+cn,10,0,[segment 0,0,1.4,0,blue;segment 1.4,0,1.4,1.4,blue;segment 0,0,1.4,1.4,red],html\
+dn,7,0,[segment 0.5,0.7,1,1,green;trange 0,1;plot red,t,sin(t)],html\
+dn,12,10,[segment 0.5,0.7,1,1,green;trange 0,1;plot red,t,sin(t)],html,400\
+dn,3,10,[segment 0.5,0.7,1,1,green;trange 0,1;plot red,t,sin(t)]
+
+slib_require=pari
+
+!exit
+
+:proc
+
+!distribute items $wims_read_parm into slib_cndn, slib_n,slib_startang,slib_disegno,slib_url,slib_size
+slib_disegno=!declosing $slib_disegno
+!! eventualmente calcolare  ?? option
+slib_xrange=-2,2
+slib_yrange=-2,2
+!default slib_size=200
+
+slib_out=xrange $slib_xrange\
+yrange $slib_yrange\
+linewidth 3
+
+!! it works with flydraw, has to be tested with canvasdraw
+
+!for slib_i = 0 to $slib_n-1
+  slib_angolo=$[round(((360*$slib_i)/$slib_n)+$slib_startang)]
+  !if $slib_cndn iswordof dn
+    slib_matr=[cos(2*pi*$slib_i/$slib_n), -sin (2*pi*$slib_i/$slib_n); -sin(2*pi*$slib_i/$slib_n),-cos(2*pi*$slib_i/$slib_n)]*[cos(2*pi*$slib_startang/360),sin(2*pi*$slib_startang/360);-sin(2*pi*$slib_startang/360),cos(2*pi*$slib_startang/360)]
+    slib_matr=!exec pari $slib_matr
+    slib_matr=!replace internal ; by , in $slib_matr
+    slib_out=$slib_out\
+    linear $slib_matr\
+    $slib_disegno\
+    killlinear
+  !endif
+  slib_out=$slib_out\
+  rotate $slib_angolo\
+  $slib_disegno\
+  killrotate
+!next
+!if url iswordof $slib_url or html iswordof $slib_url
+  insdraw_size=$slib_size,$slib_size
+  !insdraw $slib_out
+  slib_out=$ins_url
+  !if html iswordof $slib_url
+    slib_out=<img src="$ins_url" alt="">
+  !else
+    slib_out=$slib_out,$insdraw_size
+  !endif
+!endif
+
+

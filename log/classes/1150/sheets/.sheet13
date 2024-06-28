@@ -1,0 +1,13 @@
+:H3/geometry/oefcoord.fr
+exo=coordpt&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Placer un point sur un repère
+Coordonnées entières
+
+:H3/geometry/oefcoord.fr
+exo=ptcoord&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lire les coordonnées d'un point repéré
+Coordonnées entières

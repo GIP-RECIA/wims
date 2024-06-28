@@ -1,0 +1,67 @@
+!! -------- display for user without email
+!if $nbbad>0
+  <div class="wims_msg alert">
+    !if $method=login
+      $name_noemail_login : $(bad_list).
+    !endif
+    !if $method=filter
+      <dl class="field">
+      <dt>$name_noemail_filter</dt>
+      <dd><pre>
+        !for k in $sending_nomail
+          !let data=!record $k of wimshome/sessions/$wims_session/.userlist_nomail
+$(data[1]) $(data[2])
+      !next k
+      </pre></dd>
+      </dl>
+    !endif
+  </div>
+!endif
+
+<p class="wims_msg info">$name_warning</p>
+
+<div class="field box">
+<dl class="field">
+  <dt>$name_subject</dt>
+  <dd>$save_subject</dd>
+  <dt>$name_message</dt>
+  <dd><textarea rows="5" readonly="readonly" disabled="disabled">$save_msg</textarea></dd>
+  <dt>$name_recipients</dt>
+  <dd><pre>
+      !for k in $sending_mail
+        !set data=!record $k of wimshome/sessions/$wims_session/.userlist_mail
+          !if $method=login
+$(data[1]) $(data[2]) ($(data[3]))
+          !else
+$(data[1]) $(data[2])
+          !endif
+      !next k
+  </pre></dd>
+  !if $save_selfsend=1 or ($save_sendotherteacher=1 and $nb_teacher>0)
+      <dt>$name_recip_teacher</dt>
+      <dd><pre>
+      !if $save_selfsend=1
+      !! line for supervisor
+$supervisorname
+      !endif
+      !if $nb_teacher>0 and $save_sendotherteacher=1
+        !for k=1 to $nb_teacher
+            !set data=!record $k of wimshome/sessions/$wims_session/.teacherlist_mail
+$(data[1]) $(data[2])
+        !next k
+      !endif
+      </pre></dd>
+  !endif
+</dl>
+</div>
+<div class="wimscenter">
+      !set wims_ref_class=wims_button
+      !href cmd=reply&job=sendmail $wims_name_send
+      &nbsp;
+      !set wims_ref_class=wims_button wims_secondary_button
+      !href cmd=new&job=edit $wims_name_giveup
+</div>
+
+
+!set wims_menu_items=!append line back2,1,cmd=reply&job=edit\
+ to $wims_menu_items

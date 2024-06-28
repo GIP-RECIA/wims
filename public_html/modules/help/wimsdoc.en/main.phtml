@@ -1,0 +1,109 @@
+!!<HTML><HEAD>
+!!!if $style != folding
+!if $style = $empty
+  wims_expire=
+!endif
+!!$wims_html_header
+!!</HEAD>
+!!<BODY $wims_htmlbody>
+!!!headmenu
+
+!set wims_html_header=!append line <link rel="stylesheet" href="html/themes/_css/tech_doc.css">\
+<style>\
+/* prevent table for being larger than a small screen */\
+.wimstable{table-layout: fixed;}\
+.wimstable td{word-wrap:break-word;}\
+.wims_command .wimsdoc_tit{margin:0}\
+.wims_folding>a::before {margin-right: 1em;content: "+";}\
+.wims_folding.is-active>a::before {content: "-";}\
+</style>\
+<script src="scripts/js/external/marked/marked.min.js"></script> to $wims_html_header
+
+!header1
+!!!robottrap
+
+!read adm/title.phtml 1\
+\
+$module_title
+
+<p>This document is currently under $emph$style$emphend style.
+You may change it to
+!set already=
+!for s in integral,indexed,folding
+  !if $s != $style
+    !if $already != $empty
+     or
+    !endif
+    !href cmd=resume&style=$s $s
+    !set already=yes
+  !endif
+!next s
+ style. There is also
+!href module=help/main.$lang a general help
+ and
+<a href="https://wims.univ-cotedazur.fr/paper/wims/wims.html">a paper on WIMS</a>.</p>
+
+<div class="wims_content">
+!if $style=integral or $style=indexed
+  <div id="index">
+    <h2>-- Table of Contents --</h2>
+    !for set in user,ref,dev
+      <h3>$(title_$set)</h3>
+      <ol>
+      !for i in $($(set)_doc)
+        <li id="toc_$i">
+          $(ref1)$i$(ref2)$i">$(title_$i)</a>
+        </li>
+      !next i
+      </ol>
+    !next set
+  </div>
+!else # folding
+  <p>Click on a title to expand or fold out its content.</p>
+  !for set in user,ref,dev
+    <hr><h2 class="wimscenter">$(title_$set)</h2>
+    !for i in $($(set)_doc)
+      !if ,$i isin $expand
+        <hr><h3 id="$i" class="wims_folding is-active">
+          !href cmd=resume&op=close&subject=$i#$i $(title_$i)
+        </h3>
+        !read $i.phtml
+        <hr>
+      !else
+        <h3 id="$i" class="wims_folding">$(ref1)$i$(ref2)$i">$(title_$i)</a></h3>
+      !endif
+    !next i
+ !next set
+!endif integral or indexed versus folding
+
+!if $style=integral
+  !for i in $user_doc,$ref_doc,$dev_doc
+    <hr>
+    <h2 id="$i" class="wimscenter">$(title_$i)</h2>
+    !read $i.phtml
+    <p><a href="#index" class="text_icon toc">Table of Contents</a></p>
+  !next i
+!endif
+
+!if $style=indexed
+  !for set in $user_doc,$ref_doc,$dev_doc
+    !if $set isin $subject
+      <hr><h2 id="$set" class="wimscenter">$(title_$set)</h2>
+      !read $set.phtml
+    !endif
+  !next set
+!endif
+</div>
+
+!! Render .md file in HTML
+!if $style=integral or $style=folding or $subject=anstype
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    anstype_content=document.getElementById('anstype_content')
+    anstype_content.innerHTML =
+      marked.parse(anstype_content.innerHTML);
+  });
+  </script>
+!endif
+
+!tail

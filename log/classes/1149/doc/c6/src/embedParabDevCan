@@ -1,0 +1,22 @@
+\def{integer a=random(-1,1)*random(2,3,4,5)}
+\def{integer b=random(-1,1)*random(2,3,4,5)}
+\def{integer c=random(-1,1)*random(2,3,4,5)}
+\def{rational b1=\b/\a}
+\def{rational b2=\b1/2}
+\def{rational b3=\b2*\b2}
+\def{rational c1=\c-\a*\b3}
+<p class="wimscenter">
+\(f(x) = \a*x^2 + \b*x + \c)<br>
+\(f(x) = \a*(x^2 + \b1*x) + \c)<br>
+\(f(x) = \a*(x^2 + 2*(\b2*x)) + \c)
+</p>
+Or \(x^2 + 2*(\b2*x)) est le début du développement de \((x + \b2)^2 = x^2 + 2*(\b2*x) + \b3).
+On introduit donc \b3 pour compléter l'expression en l'ajoutant et en le retranchant :
+<p class="wimscenter">
+\(\begin{matrix}
+f(x) &=& \a*(x^2 + 2*(\b2*x) + \b3 - \b3) + \c\\
+f(x) &=& \a*(x^2 + 2*(\b2*x) + \b3) - \a*\b3 + \c\\
+f(x) &=& \a*(x + \b2)^2 + \c1
+\end{matrix}\)
+</p>
+On a ainsi obtenu la forme canonique de \(f(x)).

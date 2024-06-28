@@ -1,0 +1,31 @@
+
+:H6/analysis/logexp1.fr
+exo=transflogexp&confparm1=53&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Transformation d'écritures avec ln et exp
+transformation d'écritures.
+
+
+
+
+:H6/analysis/logexp1.fr
+exo=transflogexp&confparm1=54&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Transformation d'écritures avec ln et exp
+transformation d'écritures.
+
+
+
+
+:H5/analysis/oeffctLP.fr
+exo=antisep&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Action d'un antiseptique (log et exp)
+exercices sur l'utilisation des fonctions de référence en lycée professionnel.
+
+Exercice demandant d'étudier, à partir de la formule, le nombre de bactéries dans un produit en fonction de la durée d'action d'un antiseptique, puis de déterminer la durée minimale d'action pour que ce nombre passe en dessous d'un certain seuil.
+
+

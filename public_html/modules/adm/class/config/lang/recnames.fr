@@ -1,0 +1,22 @@
+cdt:cahier de texte
+def:configuration
+doc:documents
+exam:examens
+exo:exercices
+forum:forum
+freework:devoir libre
+livret:livret de compétences
+log:enregistrement de sécurité
+manual:notes manuelles
+motd:message du jour
+neighbor:classes voisines
+score:activités de participants et scores
+seq:séquences pédagogiques
+sheet:feuilles de travail
+sup:comptes d'enseignant
+tool:outils
+user:comptes de participants
+userphoto:photos individuelles
+vote:questionnaires
+
+

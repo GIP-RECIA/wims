@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,conditional_probability
+!set gl_title=Probabilité conditionnelle
+!set gl_level=H5 Générale, H6 Technologique
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \( \mathrm{A} \) et \( \mathrm{B} \) deux événements d'un même univers
+&#937;. On suppose que \( \mathrm{A} \) est de probabilité non nulle.<br>
+On appelle <strong>probabilité conditionnelle de \( \mathrm{B} \) sachant
+\( \mathrm{A} \)</strong> (ou sachant que \( \mathrm{A} \) est réalisé) le nombre
+\( \mathbf{P}_\mathrm{A}(\mathrm{B}) \) défini par&nbsp;:
+<span style="white-space:nowrap">\(\mathrm{P}_\mathrm{A}(\mathrm{B}) =
+\frac{\mathrm{P}(\mathrm{A} \cap \mathrm{B})}{\mathrm{P}(\mathrm{A})}\).</span>
+</div>
+
+<div class="wims_thm">
+<h4>Conséquence</h4>
+Soit \( \mathrm{A} \) un événement de probabilité non nulle et \( \mathrm{B} \)
+un événement du même univers &#937;. <br>Alors&nbsp;:
+<span style="white-space:nowrap">\(\mathrm{P}(\mathrm{A} \cap \mathrm{B}) =
+\mathrm{P}(\mathrm{A}) \times \mathrm{P}_\mathrm{A}(\mathrm{B})\).</span>
+</div>

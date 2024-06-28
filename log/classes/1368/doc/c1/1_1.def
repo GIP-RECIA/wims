@@ -1,0 +1,26 @@
+!set titb=Contare
+!set keyw=
+!set datm=20230529
+!set prev=
+!set next=
+!set upbl=1
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+!exit
+
+:content
+Riferimento&#58; capitolo 1 &#12298;Contare&#12299;del testo <em>Matematica per scienze della formazione primaria</em>
+<ul>
+ <li>
+!read primitives.phtml 1, link, somma 
+
+ </li>
+<li>
+!read primitives.phtml 2, link, insiemi 
+</li>
+</ul>

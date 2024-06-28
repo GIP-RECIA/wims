@@ -1,0 +1,15 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Réunion de deux ensembles (exemple)
+
+!readproc data/glossary/mathematics/general/macro/set
+
+
+<h4>Exemple</h4>
+<div>Soient les deux ensembles \(E_1=\{$gl_A\}\) et
+<span style="white-space:nowrap">\(E_2=\{$gl_B\}\).</span>
+</div>
+<div>La réunion de \(E_1 \) et \(E_2\) est
+<span style="white-space:nowrap">\(\{$gl_U\}\).</span>
+<br>On note \(E_1 \cup E_2 = \{$gl_U\}\).
+</div>

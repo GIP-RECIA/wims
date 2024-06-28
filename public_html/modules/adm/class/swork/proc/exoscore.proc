@@ -1,0 +1,26 @@
+!! ------ calcul du score pour un exo
+!! maybe should be replace by a c command
+!! wims_read_parm=sheet,exo,user
+!! this variable must be defined before :
+!! severity : severity of sheet
+!! formulas : score fomula for sheet
+!! output : score_out
+
+
+!distribute item $wims_read_parm into S_,E_,U_
+lsev_=!line $[$S_+1] of $severity
+!distribute word $lsev_ into W_,R_,I_
+formula_=!item $R_ of $formulas
+M_=!getscoremean sheet=$S_ work=$E_ user=$U_
+!if $I_=0
+  li_=!getscore sheet=$S_ work=$E_ user=$U_
+!else
+  !if $I_=1 
+    li_=!getscorebest sheet=$S_ work=$E_ user=$U_
+  !else
+    li_=!getscorelevel sheet=$S_ work=$E_ user=$U_
+  !endif
+!endif
+ave_=!replace internal I by ($[$li_/10]) in $formula_
+ave_=!replace internal Q by ($[$M_/10]) in $ave_
+score_out=$[rint($ave_*1000)/100]

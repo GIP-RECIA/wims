@@ -1,0 +1,61 @@
+!set titb=Exemple d'algorithme pour la fonction cube
+!set keyw=
+!set datm=20210913
+!set prev=embedExpQAlg2
+!set next=embedExpQAlg4
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<p>
+Voici un algorithme pour trouver une encadrement de la solution de 
+!insmath x^3 = C
+ avec la précision 
+!insmath P
+.<br>
+sachant que cette solution est comprise entre 
+!insmath A
+ et 
+!insmath B
+.</p>
+<br>
+Donner les valeurs de 
+!insmath A
+, 
+!insmath B
+, 
+!insmath C
+ et 
+!insmath P
+<br>
+Tant que  
+!insmath B - A \gt P
+ faire &#58;
+<ul>
+<li>
+!insmath X \leftarrow (A + B)/2
+</li>
+<li>
+!insmath Y \leftarrow X^3
+</li>
+<li>Si 
+!insmath Y \gt C
+ alors 
+!insmath B \leftarrow X
+ sinon 
+!insmath A \leftarrow X
+</li>
+<li>Fin Tant que</li>
+</ul>
+Afficher 
+!insmath A
+<br>
+Afficher 
+!insmath B
+

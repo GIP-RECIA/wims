@@ -1,0 +1,51 @@
+!set lang_exists=yes
+
+!distribute items giorno(i),settimana(e),mese(i),anno(i),Richieste,Sessioni,Siti di provenienza,\
+  Numero,totale,mediae<br>per giorno,media<br>per settimana,media<br>per mese,media<br>per anno,\
+  media<br>per sito,Media<br>settimanale,Tipo di grafico,al giorno,inizio\
+into name_day,name_week,name_month,name_year,name_Requests,name_Sessions,name_Visitors,\
+   name_cnt,name_total,name_avgday,name_avgweek,name_avgmonth,name_avgyear,\
+   name_avgsite,name_avghebdo,name_plot,name_byday
+
+!set name_requests=!lowercase $name_Requests
+!set name_sessions=!lowercase $name_Sessions
+!set name_visitors=!lowercase $name_Visitors
+
+!distribute lines Seleziona il periodi di riferimento per le statistiche: da\
+  Mostra i dettagli per modulo\
+  Mostra le statistiche\
+  Dettaglio per modulo\
+  Numero di visite\
+  da\
+  a\
+  Data di<br>installazione\
+  Totali parziali\
+into name_choose,name_details,name_showstat,wims_name_statdetail,name_number_visits,name_from,\
+  name_to,name_installed,name_subtotal
+!!!set title=Usage statistics
+!set name_sum=!nosubst somma su $laps giorni
+
+!set name_prompt=richieste<br>totali,richieste<br>per sito,siti<br>totali
+!set name_explanations=<ul>\
+<li>Il numero delle richieste tiene conto solo delle richieste di pagine.\
+ Le richieste per moduli in <em>development</em> non sono conteggiate.\
+</li><li>Il numero di siti di provenienza è conteggiato giornalmente.\
+</li><li>Il numero di visitatori (giornalieri) è compreso tra il numero di \
+ siti di provenienza e il numero di sessioni.\
+</li></ul>
+
+!set name_warning=Le statistiche di accesso non sono attive su questo server. Spiacenti.
+
+!set name_numberclass=!nosubst Questo server ospita $classcnt portali di sede e corsi singoli, per un totale di\
+  $usercnt utenti registrati.
+
+!set name_clssrep=La suddivisione dei corsi in funzione dei livelli scolastici/accademici è la seguente (sono mostrati solo i corsi e i portali con almeno cinque studenti. I corsi aperti non sono mostrati.):
+!set name_level=Livello
+
+!set format1=%m%d
+!set format2=%m%d
+!set format3=%m%y
+
+!set name_nogeoloc=Su questo server non è attiva la registrazione geografica dei corsi.
+!set name_geolocdesc=Ogni corso è rappresentato da una segnalino. I corsi per cui non è definita una localizzazione geografica sono rappresentati da punti nel luogo di collocazione del server.
+!set wims_name_map=Mappa

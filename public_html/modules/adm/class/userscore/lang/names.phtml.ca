@@ -1,0 +1,177 @@
+!set lang_exists=yes
+
+!if $wims_read_parm!=
+ !goto $wims_read_parm
+!endif
+
+!set name_donchoose=Selecció de les dades
+!set name_studentloc=!nosubst $user_firstname $user_lastname
+!set name_studentglo=!nosubst $wims_name_firstname $wims_name_lastname
+
+!distribute line Mitjana de la classe\
+Mitjana\
+Mitjana de notes positives\
+Mitjana global&nbsp;\
+Mitjana del grup\
+into name_classAverage,name_Average,name_posAverage,name_globalaverage,\
+name_groupAverage
+!set name_dtexolog=Darrer exercici <br>registrat
+
+!set name_partdeleted=Alumnes suprimits
+!set wims_name_reg_ex=Llista d'exercicis registrats
+!!set name_transfer=Transferir les activitats d'altres classes
+
+!set name_minmax=min/mit/max de la classe&nbsp;
+
+!set name_manualscore=Notes atribuides pel professor;
+!set name_autoscore=Notes registrades pel servidor
+!set name_manual_notes=global,prof.,auto
+!set name_examnote=Notes d'exàmens
+!set name_auto=Mitjana de les notes de fulls i exàmens ponderades amb els pesos\
+  assignats a cadascuna d'aquestes activitats.
+
+!set name_severitylevels=Regles de càlcul dels fulls d'exercicis
+!set name_formula=No,Pes,Regles de càlcul
+!set name_sheetstatut=s'està preparant,actiu,caducat,ocult
+
+!distribute items Examen,Full,Exercici,Inici,Notes,Sessió,\
+ Percentatge de punts acumulats,equiv.,Durada\
+into name_Exam,name_Sheet,name_Exercise,name_Start,name_Score,name_Session,\
+name_done,name_equiv,name_Duration
+
+!set name_formula_comment=Pots definir les regles de càlcul i els pesos dels fulls \
+d'exercicis a la taula següent. Aquí, Q representa la nota de qualitat, \
+es pot triar I entre els tres indicadors següents: I0 representa\
+el nombre de punts acumulats, I1 representa la mitjana de les n millors notes obtingudes si 10n és \
+el nombre necessari de punts (nivell d'èxit) i I2 representa el mínim de les n \
+millors notes precedents (nivell d'adquisició).\
+Es pot mirar l'Ajuda per a més detalls. \
+Les notes es calculen sobre
+!set name_formula2=!nosubst Notes calculades sobre $scoremax
+!set name_pickup=Tria els fulls per mostrar els resultats per full.
+!set name_warning= Has presentat una sol·licitud il·legal.
+
+!set name_click=Cliqueu sobre un nom per veure amb detall el seu treball
+!set name_affi=la qualitat,el percentatge de punts acumulats,les notes,el nivell d'èxit, el nivell d'adquisició
+!set name_workdetail=Detall del treball de
+!set name_activesession=Aquest alumne té una sessió d'examen activa&nbsp;
+
+!distribute items Lloc de connexió, Temps restant, Sessió d'examen de ,minuts\
+into name_connecting,name_remaining_time,name_exam_session,name_minutes
+
+!set name_noyetparticipant=Aquesta classe encara no té cap alumne.
+
+!set name_warning_no_sequence=Has activat la reorganització per seqüències, però encara no has definit cap \
+seqüència. Així que no poden aparèixer notes.
+
+!set name_title_showsheet=!nosubst Detall del treball en el full $numshowsheet<br>$sh_title
+!set name_percentagegot=Percentatge de punts obtinguts
+!set name_qualitygot=Qualitat del treball calculat sobre un màxim de 10
+!set name_percentagedone=Percentatge de punts obtinguts
+!set name_percentagebest=Taxa d'èxit sobre les millors notes
+
+!set name_post=mostrar
+!set name_Post=Mostrar
+
+!set name_sheetdetail=Podeu clicar a la capçalera de la columna corresponent \
+ al full per obtenir una visió general dels resultats de tots els alumnes\
+ en tots els exercicis del full que heu seleccionat.
+
+!if $job iswordof userprop teacher
+  !distribute items Canviar,Número de registre,Comentaris,URL d'una foto, Variables(tècniques),\
+  Contrasenya de la classe,Entreu la contrasenya de registre d'alumne,\
+  Identificació externa,Accés d'alumne, Accés de gestió,\
+  Obligatori\
+  into name_change,name_regnum,name_comments,name_photourl,name_vars,\
+  name_classpassword,name_enterpassword,name_external_auth,name_inscript,name_gestion,\
+  name_userprop_warning
+  !exit
+!endif
+
+!if $job=examcheck
+ !set name_title_examcheck=!nosubst Detalls d'exàmens fets per $name_studentloc
+ !set name_no_exampart=Aquest alumne encara no ha fet cap examen.
+ !set name_exampart=Aquestes són les sessions d'examen realitzades per aquest alumne. Feu clic a un \
+  exercici per veure el seu contingut.
+  !set name_msg_exam_withip=Les notes indiquées avec un symbole &ast; ont été réduites suite à un changement\
+    d'adresse IP pendant la session de l'examen.
+  !set name_real_score=!nosubst $realtsco sans tenir compte du changement d'adresse IP
+ !exit
+!endif
+!if $job=getraw
+  !set name_title_getraw=!nosubst Detall del treball de $name_studentloc<br>(en dades detallades)
+  !exit
+!endif
+
+!set name_direct_score=llista i notes en directe
+
+!if $job=csv
+  !distribute lines  Aquest és el fitxer\
+    que pots descarregar i obrir amb el programa de full de càlcul preferit.\
+    Les propietats s'han canviat als següents alumnes\
+    Alumnes afegits\
+    La incorporació de nous alumnes s'ha ignorat perquè no hi ha prou espai disponible.\
+    S'han enviat les notes manuals.\
+    Les notes calculades pel servidor (mitjanes i notes de fulls/exàmens) no es poden canviar.\
+    Les dades sobre els alumnes eliminats s'han ignorat\
+    Els següents noms d'usuari no es poden afegir, perquè són massa curts\
+    Els noms d'usuari següents no existeixen i no poden ser afegits, per informació insuficient/incorrecta en les dades enviades\
+    Els noms d'usuari següents no existeixen i no es poden afegir (dades incorrectes o classe plena)\
+    Les notes manuals s'emmagatzemen només per a les columnes ja existents.\
+    No hi ha diferència entre les dades enviades i les dades existents a la classe.\
+    Revisar les notes\
+    Per a baixar les dades de la classe al vostre full de càlcul (només els alumnes), si us plau, especifiqueu\
+    Format\
+    Columnes\
+    Per pujar les dades del full de càlcul a la classe, si us plau, especifiqueu\
+    Fitxer de dades\
+    Formats acceptats\
+    Per als alumnes nous, la columna contrasenya (password) és obligatòria.\
+  into name_file,name_download,name_infochanged,name_added,name_warning1,name_warning2,\
+  name_warning3,name_warning4,name_badlogin,name_nologin1,name_nologin2,name_manual1,name_data1,\
+    name_check,name_data2,name_format,name_column,name_data3,name_data,name_format2,\
+    name_passwarning
+
+  !set name_deposit=!nosubst El fitxer de full de càlcul <span class="tt">$wims_deposit</span> s'ha reconegut amb èxit.
+  !set name_indicateur=Indicador&nbsp;
+  !set name_techvar=Variables tècniques&nbsp;
+  !set name_regvar=Variables de registre
+  !set name_all=Tot
+  !set name_allscore=Totes les notes
+  !set name_usedindiv=!nosubst Utilitzeu les variables tècniques ($list_sheettechvar) per individualitzar els fulls d'exercicis actius. Canviar el valor d'aquesta variable\
+tècnica per a un estudiant (mitjançant la importació de fitxers de full de càlcul), comportarà el canvi d'aquests fulls.\
+Les notes de l'alumne en aquests fulls podrien canviar.
+!endif
+
+!set name_topten=!nosubst Millor $class_topscores de les mitjanes de la classe
+
+!set name_tryhelp= <div>\
+  El primer número és el nombre d'intents complets i amb nota \
+  guardada.</div><div>\
+  Si apareix un segon número, mostra el nombre total d'intents realitzats \
+  durant els períodes en què el registre de notes està tancat \
+  al full.\
+  </div><div>\
+  Si hi ha un tercer número, designa el nombre màxim d'intents \
+  comptabilitzats (nombre establert pel professor).\
+  </div>
+
+!if $job=getuser
+  !set name_group=!nosubst (groupe $indtechvarvalue)
+  !set name_withoutgroup=(sense grup )
+  !set name_deadline=Deadline
+  !! same as freeworks name_givedate
+  !set name_handedin=Last handed in
+  !set name_codownload=Score and remarks visibile (seen)
+  !set name_fwscoring=Manual column
+  !set name_putiworkco=Open for marking
+!endif
+
+!if $job=userexam
+!! TODO_lang 
+  !set name_timeleft=théorique,réel avec les dépendances de score
+!endif
+
+:end
+!exit
+

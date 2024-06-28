@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=volume,cone,measurement,solid_geometry,3_shape
+!set gl_title=Volume d'un cône
+!set gl_level=H2 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(C\) un cône de hauteur \(h\) dont la base est un disque de rayon
+<span style="white-space:nowrap">\(r\).</span><br>
+Le volume \(V\) du cône \(C\) est donné par&nbsp;:
+<div class="wimscenter">
+    \(V= \frac{1}{3}\pi r^2 h\).
+</div></div>
+:mathematics/geometry/fr/cone_1

@@ -1,0 +1,89 @@
+Variations d'une fonction
+
+??,2021
+1
+H4
+analysis
+functions,function_variation,real_function
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fonctions" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+
+:H4/analysis/oeffonctgen.fr
+exo=sensvargr&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Lecture graphique du sens de variation
+Lire graphiquement le <strong>sens de variation</strong>.
+
+:H4/analysis/oeffonctgen.fr
+exo=sensvartb&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Sens de variation et tableau de variation
+Déduire le <strong>sens de variation</strong> du tableau de variation.
+
+:H4/analysis/oeffonctgen.fr
+exo=constrtbvar&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Construction du tableau des variations
+Construire un <strong>tableau de variation</strong> à partir de la <strong>courbe</strong>.
+
+:H4/analysis/oeffonctgen.fr
+exo=compar2val&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Comparaison d'images et tableau des variations
+Comparer des images par lecture d'un <strong>tableau de variation</strong>.
+
+:H5/analysis/OEFevalwimsfctg1S.fr
+exo=tabvar1
+10
+1
+Tableau de variations 1
+<strong>QCM</strong> à partir d'un <strong>tableau de variation</strong>.
+
+:H5/analysis/OEFevalwimsfctg1S.fr
+exo=tabvar2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de variations 2
+<strong>QCM</strong> à partir d'un <strong>tableau de variation</strong>.
+
+:H5/analysis/OEFevalwimsfctg1S.fr
+exo=tabvar4
+10
+1
+Tableau de variations 3
+<strong>QCM</strong> à partir d'un <strong>tableau de variation</strong>.
+
+:H5/analysis/oeftablvar.fr
+exo=TVF1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de variations 4
+Utiliser un <strong>tableau de variation</strong>. Sens de variation
+
+:H5/analysis/oeftablvar.fr
+exo=TVF2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de variations 5
+Utiliser un<strong> tableau de variation</strong>. Image possible ?
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=tbvarextr1
+10
+1
+Tableau de variations 6
+Utiliser un<strong> tableau de variation</strong>. Maximum sur un intervalle.
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=tbvarextr2
+10
+1
+Tableau de variations 7
+Utiliser un <strong>tableau de variation</strong>. Minimum sur un intervalle.
+

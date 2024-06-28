@@ -1,0 +1,1 @@
+limit_regvars=!defof MAX_REGVARS in wimshome/public_html/bases/sys/define.conf

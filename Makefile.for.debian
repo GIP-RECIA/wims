@@ -1,0 +1,311 @@
+DESTDIR =
+WIMS_VERSION = $(shell basename $$(pwd) | sed 's/wims-\([.0-9a-z]*\).*/\1/')
+
+BINFILES = bin download localwims other README sessions tmp \
+	   lib log s2
+PHTML_BINFILES = bases fdl.txt nogif.html opl.html \
+		 webget.sites html interrupt.cgi msg \
+		 bin
+INDEPFILES = gifs mathfonts scripts themes java
+ADDBINDIRS = backup download/modules public_html/modules/contrib \
+	     public_html/w/texgif public_html/modules/data/images
+DATE = $(shell date '+%Y-%m-%d')
+
+SORRY_NO_JAR=Sorry, sourceless JAR files are removed
+SORRY_NO_SWF=Sorry, sourceless SWF files are removed
+
+all: all-arch all-indep
+
+all-arch: wimsbuild
+
+all-indep: javabuild
+
+clean:
+	find wims -name "*.o" | xargs rm -f
+	rm -f wims/public_html/bases/sys/define.conf wims/src/configure
+	for d in wims/public_html/scripts/authors/jm.evers/js \
+                 wims/src/Misc/authors/jm.evers/applets; do \
+	   [ ! -f $$d/Makefile ] || make -C $$d clean; \
+	done
+	rm -rf wims/public_html/gifs/themes/jalon/.DS_Store
+	for d in jalon wimsedu wimsedu1 wimsedu2; do \
+	  rm -rf wims/public_html/gifs/themes/$$d/.DS_Store; \
+	  rm -rf wims/public_html/gifs/themes/$$d/.svn; \
+	done
+	rm -f wims/public_html/gifs/WIMSchem/*.png
+	rm -f wims/bin/wims_mathml
+	cd wims/src/Mathml; [ ! -f Makefile ] || make clean
+	rm -f wims/public_html/scripts/js/edit_area/reg_syntax/flydraw.js
+	#remove pre-compiled JAR files
+	rm -f wims/public_html/scripts/authors/jm.evers/applets/*.jar
+	rm -f wims/public_html/java/WIMSchem/WIMSchem.jar
+	rm -f wims/public_html/java/ThreeD/ThreeD.jar
+	rm -f wims/public_html/java/Clicktile/Clicktile.jar
+	rm -f wims/public_html/java/Lattice/Lattice.jar
+	rm -f wims/public_html/java/zirkel/zirkel.jar
+	rm -f wims/public_html/java/Input/input.jar
+	# clean java build zones which are not managed by Joke Evers
+	wd=$$(pwd); \
+	for a in WIMSchem ThreeD Clicktile Lattice zirkel Input; do \
+	  cd wims/src/Misc/applets/$$a; \
+	    ant -v clean >/dev/null 2>&1; \
+	    cd $${wd}; \
+	done
+	# completly clean wims subdirectory
+	[ ! -f wims/src/Makefile ] || $(MAKE) -C wims/src distclean
+	# removes obsoleted gd library and links
+	rm -rf wims/src/Flydraw/gd*
+	# remove file which was not uninstalled
+	rm -f wims/other/bin/canvasdraw
+
+wimsbuild:
+	#builds executables for wims
+	$(MAKE) -C wims/src all-debianpkg
+
+javabuild: jmEversApplets otherApplets
+
+jmEversApplets:
+	$(MAKE)  -C wims/src/Misc/authors/jm.evers/applets
+
+otherApplets:
+	wd=$$(pwd); \
+	for a in WIMSchem ThreeD Clicktile Lattice zirkel Input; do \
+	  cd wims/src/Misc/applets/$$a; \
+	    echo -n "compiling $$a.jar..."; \
+	    if ant -v >/dev/null 2>&1; then \
+	      echo " [done]."; \
+	    else \
+	      echo "[failed]."; \
+	    fi; \
+	    cd $${wd}; \
+	done
+
+JAVA_SHAREDIR = $(DESTDIR)/usr/share/wims/java
+install-applets:
+	# Joke Evers' java files
+	make -C wims/src/Misc/authors/jm.evers/applets install DESTDIR=$(DESTDIR)/usr/share/wims/java/authors/jm.evers
+	# make symlinks in var/lib/wims
+	install -d $(DESTDIR)/var/lib/wims/public_html/scripts/authors/jm.evers/applets
+	for f in $(JAVA_SHAREDIR)/authors/jm.evers/*.jar; do \
+	  ln -s /usr/share/wims/java/authors/jm.evers/$$(basename $$f) $(DESTDIR)/var/lib/wims/public_html/scripts/authors/jm.evers/applets/; \
+	done
+	# other java files
+	for a in WIMSchem ThreeD Clicktile Lattice zirkel Input; do \
+	  jarfile=$$(basename wims/src/Misc/applets/$$a/dist/*.jar); \
+	  cp wims/src/Misc/applets/$$a/dist/$${jarfile} $(JAVA_SHAREDIR); \
+	  mkdir -p $(DESTDIR)/var/lib/wims/public_html/java/$$a; \
+	  ln -s /usr/share/wims/java/$${jarfile} $(DESTDIR)/var/lib/wims/public_html/java/$$a/ ;\
+	done
+
+install-modules:
+	orig_dir=$$(pwd)/wims; \
+	mkdir -p $(DESTDIR)/var/lib/wims/public_html; \
+	cd $(DESTDIR)/var/lib/wims; \
+	cp -Rd $${orig_dir}/public_html/modules public_html
+	# fix a few wrong executions flags for files begining by !exit
+	chmod -x $(DESTDIR)/var/lib/wims/public_html/modules/adm/light/getnew.sh
+	chmod -x $(DESTDIR)/var/lib/wims/public_html/modules/adm/light/getnewoef.sh
+	## unnecessary copyright files
+	for f in $$(find $(DESTDIR)/var/lib/wims -name 'COPYING*' -o -name 'LICENSE'); do \
+	  grep -qE 'GENERAL PUBLIC LICENSE|LICENZA PUBBLICA GENERICA' $$f \
+	    && rm $$f; \
+	done
+
+install-apache-conf:
+	mkdir -p $(DESTDIR)/etc/apache2/conf-available
+	install -m 644 debian/wims.conf \
+	  $(DESTDIR)/etc/apache2/conf-available/wims.conf
+
+install: install-arch install-indep
+
+install-arch: install-flydraw adjust-wimshome install-apache-conf
+	# populate /var/lib/wims/public_html with PHTML_BINFILES
+	orig_dir=$$(pwd)/wims/public_html; \
+	mkdir -p $(DESTDIR)/var/lib/wims/public_html; \
+	cd $(DESTDIR)/var/lib/wims/public_html; \
+	for f in $(PHTML_BINFILES); do \
+	  cp -Rd $${orig_dir}/$$f .; \
+	done
+	# populate /var/lib/wims with binary files
+	orig_dir=$$(pwd)/wims; \
+	mkdir -p $(DESTDIR)/var/lib/wims; \
+	cd $(DESTDIR)/var/lib/wims; \
+	for d in $(ADDBINDIRS); do \
+	  mkdir -p $$d; \
+	done; \
+	for f in $(BINFILES); do \
+	  cp -Rd $${orig_dir}/$$f .; \
+	done; \
+	cp $${orig_dir}/public_html/wims public_html; \
+	ln -sf wims public_html/wims.cgi; \
+	cp $${orig_dir}/src/Wimslogd/wimslogd bin/
+	#remove source of java applets
+	find $(DESTDIR)/var/lib/wims/public_html/scripts/authors/ -name src | xargs rm -rf
+	# erase some data not relevant for the distribution, since they belong
+	# only to Gang XIAO, or are a static library (already linked)
+	rm -f $(DESTDIR)/var/lib/wims/lib/libwims.a
+	for f in $$(find $(DESTDIR)/var/lib/wims/log/classes/.connections/); do \
+	  mv $$f $$f.template; \
+	done
+	## erase unnecessary copyright files
+	for f in $$(find $(DESTDIR)/var/lib/wims -name 'COPYING' -o -name 'LICENSE'); do \
+	  grep -q 'GENERAL PUBLIC LICENSE' $$f && rm $$f; \
+	done
+	# remove the file log/unsecure which is out of topic for debian
+	# installs
+	rm  $(DESTDIR)/var/lib/wims/log/unsecure
+	# replace Gang's precompiled binaries
+	mkdir -p $(DESTDIR)/var/lib/wims/bin
+	for f in false true; do \
+	  ln -s /bin/$$f $(DESTDIR)/var/lib/wims/bin/; \
+	done
+	# move architecture-dependent binaries to /usr/lib/wims
+	for d in other/bin; do \
+	  mkdir -p $(DESTDIR)/usr/lib/wims/$$d; \
+	  for f in  $(DESTDIR)/var/lib/wims/$$d/*; do \
+	    if [ ! -L $$f ]; then \
+	      mv $$f $(DESTDIR)/usr/lib/wims/$$d; \
+	      ln -s /usr/lib/wims/$$d/$$(basename $$f) $$f; \
+	    fi; \
+	  done; \
+	done
+	# remove useless commands
+	rm -f $(DESTDIR)/var/lib/wims/localwims
+	rm -f $(DESTDIR)/var/lib/wims/lib/libwims.a
+	# copy misc files
+	mkdir -p $(DESTDIR)/var/lib/wims/log
+	cp wims.conf $(DESTDIR)/var/lib/wims/log/wims.conf.distrib
+	mkdir -p $(DESTDIR)/var/lib/wims/src
+	for f in defaults.conf mathfonts mathfonts-synonyms; do \
+	  cp wims/src/$$f $(DESTDIR)/var/lib/wims/src; \
+	done
+	## exclude wimsd if it has been built, since this webserver may be
+	## insecure.
+	rm -f $(DESTDIR)/var/lib/wims/bin/wimsd
+	# fix for using the default config with Gap
+	mkdir -p $(DESTDIR)/usr/bin
+	ln -s gap $(DESTDIR)/usr/bin/gap.sh
+	mkdir -p $(DESTDIR)/usr/share/man/man1
+	ln -s gap.1.gz $(DESTDIR)/usr/share/man/man1/gap.sh.1.gz
+	# fix embedded javascript libraries
+	# create soft links to libraries
+
+	# move /var/lib/wims/bin to /usr/lib/wims/bin
+	mv $(DESTDIR)/var/lib/wims/bin $(DESTDIR)/usr/lib/wims
+	ln -s ../../../usr/lib/wims/bin $(DESTDIR)/var/lib/wims
+
+	# ensure executable flags for files in /bin directories
+	# except for dircptest, which must be sourced.
+	for d in $(DESTDIR)/var/lib/wims/public_html/bin \
+		 $(DESTDIR)/usr/lib/wims/bin \
+		 $(DESTDIR)/usr/lib/wims/other/bin; do  \
+	  for f in $$d/*; do \
+	    [ "$$(basename $$f)" = dircptest ] || chmod +x $$f; \
+	  done; \
+	done
+	## fix an issue with the executable flag of tex..gif
+	## which is removed by debhelper
+	b=$(DESTDIR)/var/lib/wims/public_html/bin; \
+	  mv $$b/tex..gif $$b/texGif; \
+	  ln -s texGif $$b/tex..gif; \
+	  chmod +x $$b/texGif
+	############## end of install-arch ################
+
+install-indep: adjust-wimshome install-modules install-applets
+	# install INDEPFILES
+	orig_dir=$$(pwd)/wims/public_html; \
+	mkdir -p $(DESTDIR)/var/lib/wims/public_html; \
+	cd $(DESTDIR)/var/lib/wims/public_html; \
+	for f in $(INDEPFILES); do \
+	  cp -Rd $${orig_dir}/$$f .; \
+	done
+	# fixing some permissions for shell scripts
+	for f in $$(find $(DESTDIR)/var/lib/wims -type f -name '*.sh' -o -type f -name 'mkindex' -o -type f -name '*update' -o -type f -name 'mkclass' -o -type f -name 'Makeindex'); do \
+	  if (grep -q 'bin/sh' $$f); then chmod +x $$f; else chmod -x $$f; fi; \
+	done
+	## let a small message in places where sourceless SWF files were removed
+	for d in $(DESTDIR)/var/lib/wims/public_html/flash; \
+	do \
+	  mkdir -p $$d; \
+	  echo $(SORRY_NO_SWF) > $$d/README; \
+	done
+	## let a small message in places where sourceless JAR files were removed
+	for d in $(DESTDIR)/var/lib/wims/public_html/java \
+		 $(DESTDIR)/var/lib/wims/public_html/java/geogebra \
+	         $(DESTDIR)/var/lib/wims/public_html/java/geogebra3 \
+		 $(DESTDIR)/var/lib/wims/public_html/java/jmol; \
+	do \
+	  mkdir -p $$d; \
+	  echo $(SORRY_NO_JAR) > $$d/README; \
+	done
+	# fix wrong permissions for non-executable files
+	for s in js gif css txt png ggb htm md; do \
+	  chmod -x $$(find $(DESTDIR)/var/lib/wims/public_html -type f -name "*.$$s"); \
+	done
+	# distribute some theme files as templates
+	for f in themes/default/visitor.phtml \
+	    themes/default/supervisor.phtml \
+	    themes/standard/visitor.phtml \
+	    themes/standard/supervisor.phtml ; do \
+	  mv $(DESTDIR)/var/lib/wims/public_html/$$f $(DESTDIR)/var/lib/wims/public_html/$$f.tpl; \
+	done
+	# embedded javascript library directories
+	for d in jquery ; do \
+	  rm -rf $(DESTDIR)/var/lib/wims/public_html/scripts/js/$$d; \
+	  ln -s /usr/share/javascript/$$d $(DESTDIR)/var/lib/wims/public_html/scripts/js/$$d; \
+	done
+	# mootools javascript library
+	rm -f $(DESTDIR)/var/lib/wims/public_html/scripts/js/editor/scripts_1/mootools.js
+	ln -s /usr/share/javascript/mootools/mootools.js \
+	      $(DESTDIR)/var/lib/wims/public_html/scripts/js/editor/scripts_1/
+	# prototype javascript library
+	rm -f $(DESTDIR)/var/lib/wims/public_html/scripts/js/editor/scripts_1/prototype.js
+	ln -s /usr/share/javascript/prototype/prototype.js \
+	      $(DESTDIR)/var/lib/wims/public_html/scripts/js/editor/scripts_1/
+	# asciimathml javascript library
+	cd $(DESTDIR)/var/lib/wims/public_html/scripts/js; \
+	for f in ASCIIMathML.js LaTeXMathML.js; do \
+	  rm -f $$f; \
+	  ln -s /usr/share/javascript/asciimathtml/$$f ./$$f; \
+	done
+	#############################################################
+	# jsxgraph javascript library
+	mkdir -p $(DESTDIR)/var/lib/wims/public_html/scripts/js/jsxgraph/
+	for f in jsxgraphcore.js jsxgraph.css; do \
+	  ln -s /usr/share/javascript/jsxgraph/distrib/$$f $(DESTDIR)/var/lib/wims/public_html/scripts/js/jsxgraph/; \
+	done
+	# geogebra-related jsxgraph library
+	## GeogebraReader
+	rm -f $(DESTDIR)/var/lib/wims/public_html/scripts/js/jsxgraph/GeogebraReader.js
+	ln -s /usr/share/javascript/jsxgraph/distrib/geogebra.min.js $(DESTDIR)/var/lib/wims/public_html/scripts/js/jsxgraph/GeogebraReader.js
+	## GeonextReader
+	rm -f $(DESTDIR)/var/lib/wims/public_html/scripts/js/jsxgraph/GeonextReader.js
+	ln -s /usr/share/javascript/jsxgraph/distrib/geonext.min.js $(DESTDIR)/var/lib/wims/public_html/scripts/js/jsxgraph/GeonextReader.js
+	## normalize.css
+	rm -f $(DESTDIR)/var/lib/wims/public_html/scripts/js/external/normalize.min.css
+	ln -s /usr/share/javascript/normalize.css/normalize.min.css \
+	  $(DESTDIR)/var/lib/wims/public_html/scripts/js/external/
+	###################################################
+	# install third-party JS libraries with the scripts dfsg-scripts/*
+	###################################################
+	# what-input javascript library
+	sh dfsg-scripts/what-input.sh --install $(DESTDIR)
+	# edit_area javascript library
+	sh dfsg-scripts/edit_area.sh --install $(DESTDIR)
+
+install-flydraw:
+	mkdir -p $(DESTDIR)/usr/bin $(DESTDIR)/usr/share/man/man1
+	cp wims/src/Flydraw/flydraw $(DESTDIR)/usr/bin/flydraw
+	gzip -c9 debian/flydraw.1 > $(DESTDIR)/usr/share/man/man1/flydraw.1.gz
+
+adjust-wimshome:
+	# adjust every existing .wimshome file
+	for f in $$(find wims -name .wimshome); do \
+	  echo /var/lib/wims > $$f; \
+	done
+
+doc:
+
+.PHONY: all all-indep all-arch doc install install-indep install-arch \
+	install-modules install-flydraw install-texgd compile \
+        javabuild install-applets

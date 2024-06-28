@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontfamily Italic 14px Courier
+axis
+axisnumbering
+precision 0
+grid 1,1,grey,2,2,6,black
+zoom red

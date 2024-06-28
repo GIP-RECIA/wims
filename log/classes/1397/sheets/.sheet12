@@ -1,0 +1,54 @@
+Moltiplicazioni #3
+giochi con le moltiplicazioni
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation,fraction,levelE3,levelE4
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:H3/algebra/arithtable.en
+exo=partial2x3&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 1
+Inserisci le frazioni mancanti nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati.
+
+:H3/algebra/arithtable.en
+exo=table2x4&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 2
+Inserisci tutte le frazioni nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati.
+
+:H3/algebra/arithtable.en
+exo=typed2x3&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 3
+Individua tutte le frazioni mancanti nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati.
+
+:H3/algebra/arithtable.en
+exo=partial3x4&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 4
+Inserisci le frazioni mancanti nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati. Attenzione: i numeri diventano sempre più grandi.
+
+:H3/algebra/arithtable.en
+exo=table3x5&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 5
+Inserisci tutte le frazioni nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati. Attenzione: i numeri diventano sempre più grandi.
+
+
+:H3/algebra/arithtable.en
+exo=typed3x4&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 6
+Individua tutte le frazioni mancanti nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati. Attenzione: i numeri diventano sempre più grandi.
+

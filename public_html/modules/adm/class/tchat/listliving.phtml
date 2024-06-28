@@ -1,0 +1,53 @@
+
+!set wims_ref_class=wims_button_help float_right
+!href target=wims_mhelp cmd=help&+special_parm=listliving $wims_name_help
+!set table_id=TABLE_livinglist
+!set table_class=sortable
+$table_header
+  <thead>
+    <tr data-sort-method="thead">
+      <th scope="col">$name_living</th>
+      <th scope="col">$name_regusers</th>
+      <th scope="col">$wims_name_Status</th>
+      <th scope="col">$wims_name_action</th>
+    </tr>
+  </thead>
+  <tbody>
+    !for k=0 to $nbliving
+      $table_tr
+        <td>$(livingname_$k)</td>
+        <td>
+          !if $(livingusers_$k)=all
+            $name_all
+          !else
+            !let tmp=$empty
+            !for u in $(livingusers_$k)
+              !let po=!positionof item $u in $ulist
+              !if $u!=supervisor and $po!=$empty
+                !let tmp=!append item $(nlist[$po]) to $tmp
+              !endif
+            !next u
+            $tmp
+          !endif
+        </td>
+        !if $(livingst_$k)=1
+          <td class="wims_status_1">$name_open</td>
+        !else
+          <td class="wims_status_2">$name_close</td>
+        !endif
+        <td>
+          !let wims_ref_class=wims_button
+          !if $(livingst_$k)=1
+            !href module=$module&+job=addliving&+cmd=reply&+living=$k&job2=0&back=listliving $name_closing
+          !else
+            !href module=$module&+job=addliving&+cmd=reply&+living=$k&job2=1&back=listliving $name_opening
+          !endif
+          !let wims_ref_class=wims_button
+          !href module=$module&+job=addliving&+cmd=reply&+living=$k $wims_name_change
+        </td>
+      </tr>
+    !next k
+  </tbody>
+$table_end
+!read tablesort.phtml
+

@@ -1,0 +1,247 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Aire d'un triangle rectangle (illustration)
+!set gl_renew=1
+
+!set gl_R=R
+!set gl_S=S
+!set gl_T=T
+!readproc data/glossary/mathematics/geometry/macro/randalphanum_gen
+!set gl_alea=$gl_rd
+
+!set gl_b1=brd_$gl_alea
+!set gl_id1=id_$gl_alea
+<style>
+/*<![CDATA[*/
+#appletA{order:2;}
+#appletB{order:1;}
+@media screen and (max-width: 40em) {
+#appletA_$gl_alea{order:2;}
+#appletB_$gl_alea{order:1;}
+}
+div.appletB{padding-left:1.5em;}
+.rem_$gl_alea{font-size:0.8em;font-style:italic;text-align:center}
+/*]]>*/
+</style>
+!set gl_dim1=!randint 4,8
+!set gl_listeLong=4,5,6,7,8
+!set gl_listeLong2=!listcomplement $gl_dim1 in $gl_listeLong
+!set gl_dim2=!randitem $gl_listeLong2
+!set gl_script_$gl_alea =\
+JXG.Options.point.snapToGrid = false;\
+JXG.Options.point.snapSizeX = 1;\
+JXG.Options.point.snapSizeY = 1;\
+JXG.Options.elements.tabindex = -1;\
+const $gl_b1 = JXG.JSXGraph.initBoard('$gl_id1', {\
+  boundingbox:  [-5.5, 10.5, 12, -7],\
+  axis:false,\
+  grid:false,\
+  showCopyright : false,\
+  showNavigation:false,\
+  showZoom : false,\
+  keepaspectratio : true,\
+  zoom: {enabled: false,wheel:false,needShift: false,factorX: 0,factorY: 0,min:0.001,max:0.001,pinchHorizontal: false,pinchVertical: false,pinchSensitivity: 0},\
+  pan: {enabled: true,needTwoFingers: true,needShift:false}\
+  });\
+$gl_b1.renderer.displayCopyright('Figure réalisée avec JSXGraph v'+JXG.version,11);\
+dir4 = function () {\
+  if (!this.visProp.fixed) {\
+    $gl_b1.containerObj.style.cursor = 'move';\
+  }\
+};\
+dir2v = function () {\
+  if (!this.visProp.fixed) {\
+    $gl_b1.containerObj.style.cursor = 's-resize';\
+  }\
+};\
+out = function () {\
+  if (!this.visProp.fixed) {\
+    $gl_b1.containerObj.style.cursor = 'default';\
+  }\
+};\
+dir2 = function () {\
+  if (!this.visProp.fixed) {\
+    $gl_b1.containerObj.style.cursor = 'w-resize';\
+  }\
+};\
+let s1_$gl_alea = $gl_dim1;\
+let s2_$gl_alea = $gl_dim2;\
+let xR_$gl_alea=0;\
+let yR_$gl_alea=0;\
+let slider_$gl_alea = $gl_b1.create('slider', [[0,10], [3,10], [0, 0, 1*Math.PI]], {name:'&alpha;',visible:false});\
+let p1_$gl_alea = $gl_b1.create('point', [xR_$gl_alea, yR_$gl_alea],{name:'$gl_R',size:0,color:'green',fixed:false,face:'+',showInfobox:false,label:{autoPosition: true,offset:[-12,-3]}});\
+let c1_$gl_alea = $gl_b1.create('circle',[p1_$gl_alea,1],{visible:false,hasInnerPoints: true});\
+let p2_$gl_alea=$gl_b1.create('point', [s1_$gl_alea, yR_$gl_alea],{name:'$gl_S',color:'green',size:2,showInfobox:false,tabindex:0,label:{autoPosition: true,offset:[10,0]},layer: 20});\
+let l1_$gl_alea=$gl_b1.create('line',[p1_$gl_alea,p2_$gl_alea],{strokeColor:'',highlight:false,visible:false});\
+let inter1_$gl_alea = $gl_b1.create('intersection',[c1_$gl_alea,l1_$gl_alea],{visible:false});\
+let l2_$gl_alea=$gl_b1.create('perpendicular',[l1_$gl_alea,p1_$gl_alea],{strokeColor:'',highlight:false,visible:false});\
+let p3_$gl_alea=$gl_b1.create('glider', [xR_$gl_alea,s2_$gl_alea,l2_$gl_alea],{fixed:false,name:'$gl_T',size:2,color:'green',showInfobox:false,tabindex:0,label:{autoPosition: true,offset:[8,-3]},layer:20});\
+let c2_$gl_alea = $gl_b1.create('circle',[p1_$gl_alea,1],{visible:false,hasInnerPoints: true});\
+let inter2_$gl_alea = $gl_b1.create('intersection',[c2_$gl_alea,l2_$gl_alea],{visible:false});\
+let pol_$gl_alea=$gl_b1.create('polygon',[p1_$gl_alea,p2_$gl_alea,p3_$gl_alea],{hasInnerPoints: true,fillcolor:'green',borders:{strokeColor:'green',strokeWidth:2,layer:10,highlight:false},vertices:{face:'plus',strokeColor:'green',size:0,showInfobox:false,label:{fixed:false,offset:[-4,8]}},highlight: false,layer:15});\
+let ang1_$gl_alea =$gl_b1.create('angle',[p2_$gl_alea,p1_$gl_alea,p3_$gl_alea],{type: 'square',name:' ',radius:0.4,color:'blue',highlight:false,layer:15});\
+let I_$gl_alea=$gl_b1.create('midpoint', [p1_$gl_alea, p2_$gl_alea],{name:'\(a\)',size:0,color:'',fixed:true,face:'',showInfobox:false,label:{autoPosition: true,offset:[0,-3]},layer:15});\
+let J_$gl_alea=$gl_b1.create('midpoint', [p1_$gl_alea, p3_$gl_alea],{name:'\(b\)',size:0,color:'',fixed:true,face:'',showInfobox:false,label:{autoPosition: true,offset:[3,0]},layer:15});\
+let K_$gl_alea=$gl_b1.create('midpoint', [p2_$gl_alea, p3_$gl_alea],{name:'',size:0,color:'',fixed:true,face:'',showInfobox:false,visible:false,label:{autoPosition: true,offset:[3,0]},layer:15});\
+let tick1_$gl_alea = $gl_b1.create('hatch', [pol_$gl_alea.borders[0], 1], {tickEndings: [0.5,0.5], face:'|',strokeWidth:1,highlight: false,layer:15});\
+let tick2_$gl_alea = $gl_b1.create('hatch', [pol_$gl_alea.borders[2], 2], {tickEndings: [0.5,0.5], face:'|',strokeWidth:1,highlight: false,layer:15});\
+let copyp1_$gl_alea,copyp2_$gl_alea,copyp3_$gl_alea,pol2_$gl_alea,ang2_$gl_alea,tick3_$gl_alea,tick4_$gl_alea;\
+let rot_$gl_alea=$gl_b1.create('transform', [function(){return slider_$gl_alea.Value();},K_$gl_alea], {type:'rotate'});\
+let cpt_$gl_alea=0;\
+p2_$gl_alea.on('over',dir4);\
+p2_$gl_alea.on('out',out);\
+p3_$gl_alea.on('over',dir2v);\
+p3_$gl_alea.on('out',out);\
+showU=function(){\
+  copyp1_$gl_alea.setAttribute({name:'U',visible:true,face:''});\
+};\
+$gl_b1.fullUpdate();
+
+<div class="grid-container fluid">
+  <div class="grid-x grid-padding-x">
+    <div id="appletA_$gl_alea" class="cell2 small-12 medium-6 large-6">
+      <div class="wimscenter">
+        <button type="button" id="button_$gl_alea" class="wims_button" value="Animer" onclick="anim_$gl_alea()"><strong>Animer</strong>
+        </button>
+      </div>
+      <div class="appletA ">
+        !readproc slib/geo2D/jsxgraph $gl_id1 $gl_b1,[250x250, center min=250px max=400px scroll],$(gl_script_$gl_alea)
+        $slib_out
+      </div>
+      <div class="rem_$gl_alea">
+      La figure peut être déplacée. Elle est modifiable en déplaçant les points \(\mathrm{$gl_$gl_S}\) et <span class="nowrap">\(\mathrm{$gl_T}\).</span>
+      </div>
+    </div>
+    <div id="appletB_$gl_alea" class="cell2 small-12 medium-6 large-6">
+      <div class="appletB">
+        <p><em>Une unité de longueur étant donnée dans le plan, on considère l'unité d'aire associée.</em>
+        </p>
+        <div id="txt_$gl_alea">
+        </div>
+        <div id="txt2_$gl_alea">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let myText_$gl_alea,myText2_$gl_alea;
+
+function isIn_$gl_alea(pt,circle) {
+  $gl_b1.options.precision.hasPoint = -5;/*strictly inside with marge*/
+  let coor = new JXG.Coords(JXG.COORDS_BY_USER, [pt.X(), pt.Y()], $gl_b1);
+  return circle.hasPoint(coor.scrCoords[1], coor.scrCoords[2])
+}
+function textDisplay_$gl_alea() {
+  let ph1_$gl_alea,ph2_$gl_alea,ph3_$gl_alea,ph4_$gl_alea,ph5_$gl_alea,isocele_$gl_alea;
+  if((p1_$gl_alea.Dist(p2_$gl_alea)-p1_$gl_alea.Dist(p3_$gl_alea)).toFixed(1)==0){isocele_$gl_alea=true}else{isocele_$gl_alea=false}
+  ph1_$gl_alea=`Soit \(\mathrm{$gl_R$gl_S$gl_T}\) un triangle rectangle `;
+  if(isocele_$gl_alea){
+    ph1_$gl_alea=ph1_$gl_alea+'isocèle ';
+  }
+  ph1_$gl_alea=ph1_$gl_alea+`en \(\mathrm{$gl_R}\) tel que `;
+  if(isocele_$gl_alea){
+    ph2_$gl_alea=`\(\mathrm{RS}=c\) et <span class="nowrap">\(\mathrm{RT}=c\).</span>`;
+  }else{
+    ph2_$gl_alea=`\(\mathrm{RS}=a\) et <span class="nowrap">\(\mathrm{RT}=b\).</span>`;
+  }
+  ph3_$gl_alea=`Soit \(\mathrm{RSUT}\) le `;
+  if(isocele_$gl_alea){
+    ph3_$gl_alea=ph3_$gl_alea+`carré de côté de longueur <span class="nowrap">\(c\).</span>`;
+  }else{
+    ph3_$gl_alea=ph3_$gl_alea+`rectangle de côtés de longueurs \(\mathrm{RS}=a\) et <span class="nowrap">\(\mathrm{RT}=b\).</span>`;
+  }
+  ph4_$gl_alea=`L'aire \(A\) du triangle \(\mathrm{$gl_R$gl_S$gl_T}\) est égale à la moitié de l'aire du `;
+  if(isocele_$gl_alea){
+    ph4_$gl_alea=ph4_$gl_alea+'carré ';
+  }else{
+    ph4_$gl_alea=ph4_$gl_alea+'rectangle ';
+  }
+  ph4_$gl_alea=ph4_$gl_alea+`<span class="nowrap">\(\mathrm{RSUT}\).</span>`;
+  if(isocele_$gl_alea){
+    ph5_$gl_alea=`<span class="nowrap">\(A = \dfrac{c \times c}{2}\).</span></p>`;
+    ph5_$gl_alea=ph5_$gl_alea+`<p><span class="nowrap">\(A = \dfrac{c^2}{2}\).</span>`;
+  }else{
+    ph5_$gl_alea=`<span class="nowrap">\(A = \dfrac{a \times b}{2}\).</span>`;
+  }
+  myText_$gl_alea='<p>'+ph1_$gl_alea+ph2_$gl_alea+'</p>';
+  myText2_$gl_alea='<p>'+ph3_$gl_alea+'</p><p>'+ph4_$gl_alea+'</p><p>'+ph5_$gl_alea+'</p>';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+  document.getElementById("txt_$gl_alea").style.display = "block";
+  document.getElementById("txt2_$gl_alea").innerHTML = myText2_$gl_alea;
+  document.getElementById("txt2_$gl_alea").style.display = "none";
+})
+function anim_$gl_alea(){
+  if(cpt_$gl_alea%2==0){
+  p2_$gl_alea.setAttribute({face:'',fixed:true});
+  p3_$gl_alea.setAttribute({face:'',fixed:true});
+  let coord1_$gl_alea=[p1_$gl_alea.X(),p1_$gl_alea.Y()];
+  let coord2_$gl_alea=[p2_$gl_alea.X(),p2_$gl_alea.Y()];
+  let coord3_$gl_alea=[p3_$gl_alea.X(),p3_$gl_alea.Y()];
+  copyp1_$gl_alea=$gl_b1.create('point', [coord1_$gl_alea[0],coord1_$gl_alea[1]],{visible:false});
+  copyp2_$gl_alea=$gl_b1.create('point', [coord2_$gl_alea[0],coord2_$gl_alea[1]],{visible:false});
+  copyp3_$gl_alea=$gl_b1.create('point', [coord3_$gl_alea[0],coord3_$gl_alea[1]],{visible:false});
+  ang2_$gl_alea =$gl_b1.create('angle',[copyp2_$gl_alea,copyp1_$gl_alea,copyp3_$gl_alea],{type: 'square',name:' ',radius:0.4,color:'blue',highlight:false,layer:15});
+  pol2_$gl_alea=$gl_b1.create('polygon',[copyp1_$gl_alea,copyp2_$gl_alea,copyp3_$gl_alea],{hasInnerPoints: true,fillcolor:'green',fillOpacity:0.5,borders:{strokeColor:'green',strokeWidth:2,layer:10,highlight:false},vertices:{face:'plus',strokeColor:'green',size:0,showInfobox:false,label:{fixed:false,offset:[-4,8]}},highlight: false});
+  if((p1_$gl_alea.Dist(p2_$gl_alea)-p1_$gl_alea.Dist(p3_$gl_alea)).toFixed(1)==0){tick3_$gl_alea = $gl_b1.create('hatch', [pol2_$gl_alea.borders[0], 2], {tickEndings: [0.5,0.5], face:'|',strokeWidth:1,highlight: false,layer:15});}else{tick3_$gl_alea = $gl_b1.create('hatch', [pol2_$gl_alea.borders[0], 1], {tickEndings: [0.5,0.5], face:'|',strokeWidth:1,highlight: false,layer:15});}
+  tick4_$gl_alea = $gl_b1.create('hatch', [pol2_$gl_alea.borders[2], 2], {tickEndings: [0.5,0.5], face:'|',strokeWidth:1,highlight: false,layer:15});
+  rot_$gl_alea.bindTo([copyp1_$gl_alea,copyp2_$gl_alea,copyp3_$gl_alea]);
+  slider_$gl_alea.moveTo([3,10],1000, {callback: showU});
+  document.getElementById("button_$gl_alea").innerHTML='&nbsp;&nbsp;&nbsp;Retour&nbsp;&nbsp&nbsp;';
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+  document.getElementById("txt_$gl_alea").style.display = "block";
+  document.getElementById("txt2_$gl_alea").innerHTML = myText2_$gl_alea;
+  document.getElementById("txt2_$gl_alea").style.display = "block";
+  }else{
+    $gl_b1.removeObject(copyp1_$gl_alea);
+    $gl_b1.removeObject(copyp2_$gl_alea);
+    $gl_b1.removeObject(copyp3_$gl_alea);
+    p2_$gl_alea.setAttribute({face:'circle',fixed:false});
+    p3_$gl_alea.setAttribute({face:'circle',fixed:false});
+    slider_$gl_alea.moveTo([0,10],1000);
+    document.getElementById("button_$gl_alea").innerHTML="Animer";
+    document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+    document.getElementById("txt_$gl_alea").style.display = "block";
+    document.getElementById("txt2_$gl_alea").innerHTML = myText2_$gl_alea;
+    document.getElementById("txt2_$gl_alea").style.display = "none";
+    }
+  cpt_$gl_alea+=1;
+}
+$gl_b1.on('update', function(){
+  $gl_b1.removeObject(tick1_$gl_alea);
+  if((p1_$gl_alea.Dist(p2_$gl_alea)-p1_$gl_alea.Dist(p3_$gl_alea)).toFixed(1)==0){
+    tick1_$gl_alea = $gl_b1.create('hatch', [pol_$gl_alea.borders[0], 2], {tickEndings: [0.5,0.5], face:'|',strokeWidth:1,highlight: false,layer:15});
+    I_$gl_alea.setAttribute({name:'\(c\)'});
+    J_$gl_alea.setAttribute({name:'\(c\)'});
+  }else{
+    tick1_$gl_alea = $gl_b1.create('hatch', [pol_$gl_alea.borders[0], 1], {tickEndings: [0.5,0.5], face:'|',strokeWidth:1,highlight: false,layer:15});
+    I_$gl_alea.setAttribute({name:'\(a\)'});
+    J_$gl_alea.setAttribute({name:'\(b\)'});
+  }
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+  document.getElementById("txt2_$gl_alea").innerHTML = myText2_$gl_alea;
+})
+
+p2_$gl_alea.coords.on('update', function(){
+  if(isIn_$gl_alea(p2_$gl_alea,c1_$gl_alea)==true){
+    p2_$gl_alea.moveTo([inter1_$gl_alea.X(),inter1_$gl_alea.Y()])
+  }
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+  document.getElementById("txt2_$gl_alea").innerHTML = myText2_$gl_alea;
+})
+p3_$gl_alea.coords.on('update', function(){
+  if(isIn_$gl_alea(p3_$gl_alea,c2_$gl_alea)==true){
+    p3_$gl_alea.moveTo([inter2_$gl_alea.X(),inter2_$gl_alea.Y()])
+  }
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+  document.getElementById("txt2_$gl_alea").innerHTML = myText2_$gl_alea;
+})
+</script>

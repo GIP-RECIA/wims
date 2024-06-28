@@ -1,0 +1,74 @@
+!! job to archive freework of type>=2 
+!! the job produce a tgz file with student data to be download / action is not reversible
+!!
+
+!! only access for authentified supervisor
+!if $wims_ismanager<1
+  !if $class_secure=$empty
+    test=!record 0 of wimshome/sessions/$wims_session/auth.supervisor
+    !if $test!=yes
+      !if $test=no
+        error=not_secure
+      !else
+        error=notauthsupervisor
+      !endif
+      job=configfw
+      !reset back
+      !changeto $job.proc
+    !endif
+  !else
+    test=!checkhost $class_secure
+    !if $test!=1
+      error=not_secure
+      job=configfw
+      !reset back
+      !changeto $job.proc
+    !endif
+  !endif
+!endif
+
+!if $job2=confirm_archive
+  freework=$sfreework
+!endif
+
+test=!fileexists wimshome/log/classes/$wims_class/freeworksdata/$freework/.archivated
+!if ($activetest!=2 and $activetest!=3) or $type=1 or $test=yes
+    job=configfw
+    !reset back
+    !changeto $job.proc
+!endif
+
+!if $job2=confirm_archive
+  !bound freework between 1 and $nbfreework default 0
+  !if $freework!=0
+    !sh cd $wims_home/log/classes/$wims_class/freeworksdata/$freework;\
+        rm -r co work;\
+        mkdir co work;
+    !writefile wimshome/log/classes/$wims_class/freeworksdata/$freework/.archivated $wims_now
+    success=goodarchive
+  !endif
+  !if $back=1
+    !restart module=home
+  !else
+    job=configfw
+    !reset back
+    !changeto $job.proc
+  !endif
+!else
+  name_title=$name_archivefreework $freework
+  max_arch_size=!sh cd $wims_home/log/classes/$wims_class/freeworksdata;\
+                    tar -czf $(freework).tgz $freework;\
+                    mv $freework.tgz $wims_home/sessions/$wims_session/getfile/$(freework).tgz;\
+                    ulimit -f
+  !! ---- check size of archive file
+  !if $max_arch_size!=unlimited
+    max_arch_size=$[ceil($max_arch_size/2)]
+  !endif
+  !if $wims_exec_error!=$empty
+    !if File too large isin $wims_exec_error or Filesize limit exceeded isin $wims_exec_error
+      !sh rm -f $wims_home/sessions/$wims_session/getfile/$(freework).tgz
+      archive_error=file_too_large
+    !endif
+  !endif
+  sfreework=$freework
+!endif

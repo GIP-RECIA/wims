@@ -1,0 +1,93 @@
+!set titb=Exemple de système d'équations
+!set keyw=
+!set datm=20210502
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randint 1, 5
+
+!set m_a=$[rint(2*$(tmp0))]
+
+!set tmp0=!randint 1, 5
+
+!set m_b=$[rint(2*$(tmp0))]
+
+!set tmp0=!randint 25, 50
+
+!set m_c=$[rint($(tmp0))]
+
+!set m_d=$[rint($m_a+$m_b)]
+
+!set m_L=$[rint(4*$m_c-$m_d)]
+
+!set m_p=$[rint($m_a*$m_b)]
+
+!set m_S=$[rint(4*$m_c)]
+
+!set m_s=$[rint(2*$m_c)]
+
+<p>
+On sait que 
+!insmath x+L+x-\a+L-\b=\L
+ et on cherche 
+!insmath x
+ tel que 
+!insmath L x -(\b)(\a)
+ soit maximal.
+</p><p>
+On exprime 
+!insmath L
+ en fonction de 
+!insmath x
+ &#58;<br>
+
+!insmath 2 L + 2 x - \d = \L
+<br>
+
+!insmath 2 L + 2 x = \S
+<br>
+
+!insmath L + x = \s
+<br>
+
+!insmath L = \s - x
+<br>
+</p><p>
+Puis on substitue 
+!insmath \s - x
+ à 
+!insmath L
+ dans 
+!insmath L x -(\b)(\a)
+ &#58; <br>
+
+!insmath L x -(\b)(\a) = (\s - x)(x) - \p = - x^2 + \s x -\p
+<br>
+Ce trinôme a un maximum sur 
+!insmath \,\RR
+ car le coefficient de 
+!insmath x^2
+ est négatif.<br>
+Pour 0 et $m_s, le trinôme vaut 
+!insmath - \p
+ donc le maximum de ce trinôme est obtenu
+pour 
+!insmath \frac{0+\s}{2}=\c
+.<br>
+Ainsi le maximum est obtenu lorsque 
+!insmath x=\c
+ et 
+!insmath L = \s - x = \s - \c = \c
+.
+</p>
+

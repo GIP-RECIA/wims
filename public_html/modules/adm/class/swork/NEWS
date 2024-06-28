@@ -1,0 +1,13 @@
+20221114 [r17306] add job=log to see old swork
+20221007 [r17151] use difficulty indice to get exercice classification
+20221007 [r17150] target is now average of non 0 score and not average of all score 
+------------- version 0.11 
+20220926 [r17098] add option to exclude exercise which class average is too low (supervisor configuration)
+20220926 [r17098] add option to exclude some sheet from suggestion (supervisor configuration)
+20220924 [r17097] supervisor can refresh user suggestion
+20220924 [r17097] job=userlist list of user contain more information about student work
+20220924 [r17097] add process to manage proposition by student and supervisor 
+20220923 [r17097] add job=config for supervisor
+20220923 [r17097] add target score for each exercise
+-------------- version 0.1
+20220913 [r17070] first version

@@ -1,0 +1,6 @@
+!set lang_exists=yes
+
+In preparazione: WIMS permetterà la creazione online via web di strumenti
+(grafici o di calcolo). Si veda in particolare
+!href module=adm/modtool Modtool
+.

@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontcolor red
+#note: use command fontfamily to change size and shape
+axis
+axisnumbering
+grid 2,2,grey,2,2,4,grey

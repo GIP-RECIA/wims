@@ -1,0 +1,50 @@
+!!!Don't translate for the moment
+
+<b>Clic sur des atomes ou des liaisons d'une molécule en 2D</b> (nom : <span class="tt wims_code_words">chemclick</span>)
+:option:help
+<p>
+Une molécule est présentée dans l'applet JSME
+<a href="http://peter-ertl.com/jsme/">http://peter-ertl.com/jsme/</a> et l'utilisateur doit cliquer sur certains atomes ou certaines
+liaisons.
+</p><p>
+Ce type de réponse doit être utilisé avec la commande <span class="tt wims_code_words">\embed{}</span>.
+La première ligne de la commande <span class="tt wims_code_words">\embed</span> est formée de la taille en pixels de l'applet
+X x Y. Sur la deuxième ligne, les mots d'option <span class="tt wims_code_words">show_hydrogen=no</span>, <span class="tt wims_code_words">keep_hydrogen=no</span> ou <span class="tt wims_code_words">keep_hydrogen=hetero</span> peuvent être mis 
+(voir l'aide du type de réponse <span class="tt wims_code_words">chemdraw</span>).
+</p><p>
+La bonne réponse est décrite par une matrice ayant 2 lignes :
+ <ul>
+ <li>
+ Première ligne. La liste des numéros des atomes et/ou des numéros des liaisons  dans le fichier
+ MDMol sous la forme <span class="tt wims_code_words">atoms:1,2 bonds:4,1</span>.
+ </li><li>
+ Deuxième ligne. L'adresse d'un fichier MDMol (extension <span class="tt">.mol</span>)  décrivant la molécule.
+ Ce fichier doit être dans le répertoire <span class="tt wims_fname">data</span> du module,
+dans le répertoire data de la distribution wims (adresse <span class="tt wims_fname">data/xxx</span>),
+dans un module de données
+qui se trouve dans le répertoire modules/data de WIMS (dans ce cas, l'adresse est de la forme
+datamodule/xxx) ou dans le dossier images du module (adresse <span class="tt wims_fname">\imagedir/xxx</span>).
+Il est aussi possible de mettre le contenu du fichier.
+</li></ul>
+<!-- La réponse de l'utilsateur est renvoyée dans la variable <span class="tt wims_code_variable">\reply n</span> sous la 
+forme <div class="center">
+<span class="tt wims_code_words">atoms:</span>liste des numéros des atomes sélectionnés <span class="tt wims_code_words">bonds:</span>liste des liaisons sélectionnées
+</div>
+-->
+Une option <span class="tt wims_code_words">help</span> est possible, elle ajoute une aide sur l'applet (il est possible de n'en prendre qu'une partie en choisissant des mots clés parmi
+<span class="tt wims_code_words">select_atom</span> et <span class="tt wims_code_words">select_bond</span>.
+</p>
+<b>Exemples :</b>
+<pre>
+\statement{
+\embed{r1,600 x 500}
+}
+\answer{}{atoms:1,2 bonds:1;data/file.mol}{type=chemclick}{option=help}
+</pre>
+<pre>
+\statement{
+\embed{r1,600 x 500
+show_hydrogen=no}
+}
+\answer{}{bonds:1,3;data/file.mol}{type=chemclick}{option=help=[select_bond]}
+</pre>

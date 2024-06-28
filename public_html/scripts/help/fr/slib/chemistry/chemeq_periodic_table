@@ -1,0 +1,7 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Insertion d'un tableau periodique de Mendeleiev dans la page
+slib_parms=0
+
+slib_out=Un élément DIV qui contient les informations sur les éléments chimiques.
+slib_comment=Les styles CSS sont utilisés pour formater l'information, du code Javascript offre de l'interactivité.

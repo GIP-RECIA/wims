@@ -1,0 +1,7 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Insert Mendeleiev's periodic table in the page
+slib_parms=0
+
+slib_out= a DIV element containing information about chemical elements.
+slib_comment=CSS styling is used to display elements' information, and a Javascript code provides interactive features.

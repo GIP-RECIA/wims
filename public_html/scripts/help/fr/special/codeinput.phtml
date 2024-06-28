@@ -1,0 +1,93 @@
+:signification
+ Met les champs des types de réponses de type texte dans un texte en gardant sa présentation
+ (espaces, retours à la ligne, ...). Cela est utile si l'on désire faire remplir des trous
+ dans un code de programmation.
+ Doit être utilisé dans le <span class="tt wims_code_words">statement</span> d'un exercice OEF.
+
+<p>
+La première ligne est formée du texte du code mis entre crochets, suivi de la taille générique des
+ champs de réponse (obligatoire).
+ Les lignes suivantes sont formées des réponses insérées suivies si nécessaire de la taille de
+ cette réponse si elle est différente de la taille générique.
+ Il est aussi possible de rajouter ensuite un code css ou le mot default qui utilisera alors
+ la classe css <span class="tt wims_code_words">wims_oef_input</span>.
+ Les endroits d'insertion de la réponse sont marqués par le mot reply<span class="tt">n</span>.
+</p>
+
+:example
+<div class="wims_help_bloc example">
+ <h2>Exemples</h2>
+ <div class="spacer">
+  <p>
+   Dans l'exemple ci-dessous, on affiche le code dans l'énoncé avec 3 champs de réponse.
+   Les trois champs sont respectivement les réponses 1, 3 et 4 (qui peuvent être toute
+   réponse faisant intervenir un champ de texte comme
+   <span class="tt wims_code_words">numeric</span>, <span class="tt wims_code_words">case</span>
+   <span class="tt wims_code_words">formal</span>, etc.)
+  </p>
+  <textarea id="wims_show11" cols="100" rows="9" readonly="readonly">
+\text{preformat=un premier champ de réponses : reply1
+puis sur une 2e ligne :  reply2  et un peu plus loin sur la 2e ligne : reply3}
+\statement{
+  \special{codeinput [\preformat], 5
+    reply1,2x8
+    reply2,,default
+    reply3,1x10,background-color:yellow
+  }
+}
+\answer{}{0,1}{type=matrix}
+\answer{}{4}{type=numeric}
+\answer{}{2x}{type=formal}
+</textarea>
+ </div>
+ <hr>
+ <div class="spacer">
+  <textarea id="wims_show12" cols="100" rows="14" readonly="readonly">
+\text{code=for i = 1 to reply1
+  do
+    reply2
+  od
+}
+\statement{
+ \special{codeinput [\code], 5
+reply1,,default
+reply2,30,background-color:yellow
+ }
+}
+\answer{}{4}{type=numeric}
+\answer{}{tourner d'un quart de tour}{type=nocase}
+  </textarea>
+ </div>
+</div>
+:option
+<div class="wims_help_bloc option">
+ <h2>Option :</h2>
+ Il est possible de rajouter un mot d'option, pour l'instant uniquement
+  <span class="tt wims_code_words">div</span>. Dans ce cas, le texte ne sera pas affiché dans un
+  style <span class="tt wims_code_words">pre</span>.
+  Pour améliorer l'accessibilité, vous pouvez mettre un mot dans une balise
+  <span class="tt wims_code_words">&lt;label for="reply1">mot&lt;/label></span>
+  pour indiquer que ce mot est relié à la réponse
+  <span class="tt wims_code_words">reply1</span> (par exemple):
+
+<div class="wims_help_bloc example">
+<textarea id="wims_show13" cols="100" rows="14" readonly="readonly">
+\matrix{matrice=<label for="reply1">col1</label>,<label for="reply2">col2</label>
+reply1,reply2}
+\text{table=slib(text/matrixhtml [\matrice],wimsborder,TH=[1;])}
+\statement{
+  \special{codeinput [\table], 5,div
+  reply1
+  reply2
+  }
+}
+\answer{}{1}{type=numeric}
+\answer{}{2}{type=numeric}
+</textarea>
+</div>
+</div>
+<div class="wims_msg warning">
+  <strong>$wims_name_warning</strong> : il peut y avoir un bogue pour l'instant dans le cas où un autre
+  champ de réponses se trouve sur la page (numérotation dans l'analyse)
+  que l'on espère corriger.
+</div>

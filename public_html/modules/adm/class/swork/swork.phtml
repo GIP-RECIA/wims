@@ -1,0 +1,76 @@
+!let nbrec=!recordcnt $ufile
+!let rec=1
+!let current=0
+<div>
+  $name_sworkdesc
+  <br>
+  !read date.phtml $majdate,noprint
+  !let slib_out=!replace internal - by $name_at in $slib_out
+  $name_sworkdate
+  <br>
+  !if $[$wims_nowseconds-$time1]>3600*$swork_refreshtiming
+    $name_changesuggest
+    !set wims_ref_class=wims_button
+    !href cmd=reply&job=swork&refresh=1 $wims_name_change
+  !else
+    !if $swork_allowrefresh=1
+      $(name_autochange[1])
+    !else
+      $(name_autochange[2])
+    !endif
+  !endif
+</div>
+
+!readproc proc/listwork.proc $user
+!let nbsuggest=!linecnt $exolist
+
+!if $nbsuggest=0
+  <div>
+    $name_noexo
+  </div>
+  !exit
+!endif
+
+!reset forbidden
+<div class="wims_sheet">
+  <div class="wims_title_seq">$name_sworktitle</div>
+  <ol class="wims_sheet_list">
+!! avec le à voir du bas  !reset wims_exotitle wims_exoicon wims_exodesc exodescshow
+  !set wims_listexo=swork
+  !for k=1 to $nbsuggest
+    !let t=!line $k of $exolist
+    !if $(t[4])=0
+      !let forbidden=1
+    !endif
+    !read proc/exobox.phtml $t
+  !next k
+  !setdef wims_listexo=$wims_listexo in wimshome/sessions/$wims_session/var.stat
+
+!! -- -à voir
+
+!!  !let wims_exotitle=!replace , by &#44; in $wims_exotitle
+!!  !let wims_exotitle=!lines2items $wims_exotitle
+!!  !setdef wims_exotitle=$wims_exotitle\
+!!wims_sheettitle=$sheet_title\
+!!wims_exoicon=$wims_exoicon\
+!!wims_exodesc=$wims_exodesc\
+!!  in wimshome/sessions/$wims_session/var.stat
+
+
+  </ol>
+</div>  
+!if $forbidden=1
+<div>
+  $(name_forbiddenexo[1])
+  !if $[$wims_nowseconds-$time1]>3600*$swork_refreshtiming
+    $(name_forbiddenexo[2])
+  !else
+    !if $swork_allowrefresh=1
+      $(name_forbiddenexo[4])
+    !else
+      $(name_forbiddenexo[3])
+    !endif
+  !endif
+</div>
+
+!endif

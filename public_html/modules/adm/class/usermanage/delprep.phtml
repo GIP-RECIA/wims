@@ -1,0 +1,31 @@
+!read adm/title.phtml 1\
+$classname\
+$wims_name_delprep
+
+!set name_struct=!lower $wims_name_class,$wims_name_class,$wims_name_create_superclass,$wims_name_class,$wims_name_create_portal
+<p>
+$name_delete
+</p>
+!if $user_participate!=$empty and $type_class iswordof 2 4
+  <div>
+    $name_subclsinscrit
+    !if $wims_supertype=2
+      !let liclass=$empty
+    !else
+      !let liclass=!nosubst class="wims_classes_direct_$(ltclassname[$po;3])"
+    !endif
+    <ul>
+      !for k in $user_participate
+        !let po=!positionof item $k in $(ltclassname[;1])
+        <li $liclass>$(ltclassname[$po;2]) </li>
+      !next k
+    </ul>
+  </div>
+!endif
+<p class="wimscenter wimsemph">
+!set wims_ref_class=wims_button wims_warning
+!href cmd=reply&job=deluser&deluser=$delprep $wims_name_yes
+ $
+!set wims_ref_class=wims_button
+!href cmd=reply $wims_name_no
+</p>

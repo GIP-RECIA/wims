@@ -1,0 +1,93 @@
+Réunion et intersection d'événements
+Sélection d'exercices correspondant à une partie du paragraphe "Probabilités" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+probability
+events
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Probabilités" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H5/probability/OEFproba1S.fr
+exo=proba2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Formule utilisation 1
+utilisation de la formule: P(A &#8899; B) = P(A) + P(B) - P(A &#8898; B).
+
+
+
+
+
+:H6/stat/OEFevalwimsprob1S.fr
+exo=interunion2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Formule utilisation 2
+Utilisation de la formule P(A &#8899; B) = P(A) + P(B) - P(A &#8898; B)</h5>
+
+
+
+
+
+:H5/probability/oefprobaLP.fr
+exo=lapin&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Elevage de lapins
+évènement contraire, intersection et union d'évènements.
+
+
+
+
+
+:H5/probability/oefprobaLP.fr
+exo=detecteurs&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Détecteurs
+Exercice en 2 étapes. <ol><li>Compléter un <strong>tableau</strong></li><li>Calculer des <strong>intersections</strong> ou des <strong>unions</strong> d'évènements.</li></ol>
+
+
+
+
+
+:H5/probability/oefprobaLP.fr
+exo=musiqueMP3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Style de musique
+Exercice en 2 étapes: <ol><li>Compléter un <strong>tableau</strong></li> <li>Calculer des <strong>intersections</strong> ou des <strong>unions</strong> d'évènements.</li></ol>
+
+
+
+
+
+:H5/probability/oefprobaLP.fr
+exo=sport&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Sport
+Exercice en 3 étapes.<ol><li>Compléter un <strong>tableau</strong></li><li>et 3.s Calculer des <strong>intersections</strong> ou des <strong>unions</strong> d'évènements.</li></ol>
+
+
+
+
+
+:H5/probability/oefproba.fr
+exo=lunettes&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lunettes 3D
+Exercice en 5 étapes. <strong>T</strong><strong>ableau</strong> ....
+
+
+:H5/probability/oefproba.fr
+exo=bondereduction&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Enquête sur l'usage d'un bon d'achat
+<strong>2 arbres</strong> (dont 1 seul pertinent) et <strong>1 tableau</strong> pour répondre à une problématique
+
+

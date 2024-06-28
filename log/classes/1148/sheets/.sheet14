@@ -1,0 +1,67 @@
+Géometrie. Solides usuels
+Sélection d'exercices correspondant au paragraphe "Géométrie dans l'espace" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+geometry
+elementary_geometry,3_shape,plane_section,pyramid,cone,cube,thales
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant au paragraphe "Géométrie dans l'espace" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+:H3/geometry/oefsect.fr
+exo=sect-pyra&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Meuble de forme pyramidale
+Utilisation du théorème de <strong>Thales</strong> pour déterminer des longueurs dans l'espace.
+
+:H3/geometry/oefsect.fr
+exo=sect-pyra2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Meuble de forme pyramidale 2
+Utilisation des théorèmes de <strong>Thales</strong> et <strong>pythagore</strong> pour déterminer des longueurs dans l'espace.
+
+:H3/geometry/oefsect.fr
+exo=quizz&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Quizz sections planes
+Déterminer la <strong>surface plane usuelle</strong> correspondant à une section.
+
+:H3/geometry/oefsect.fr
+exo=sect-cube1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Section d'un cube 1
+Calculs de <strong>longueurs</strong> et d'<strong>aire</strong> correspondant à une section d'un solide.
+
+:H3/geometry/oefsect.fr
+exo=sect-cube2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Section d'un cube 2
+Calculs de <strong>longueurs</strong> et d'<strong>aire</strong> correspondant à une section d'un solide.
+
+:H3/geometry/oefsect.fr
+exo=sect-cone&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Section d'un cône
+Calculs de <strong>longueurs</strong> et d'<strong>aire</strong> correspondant à une section d'un solide.
+
+:H3/geometry/oefsect.fr
+exo=sect-pave1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Section d'un parallélépipède rectangle 1
+Calculs de <strong>longueurs</strong></strong> et d'<strong>aire</strong> correspondant à une section d'un solide.
+
+
+:H3/geometry/oefsect.fr
+exo=sect-pave2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Section d'un parallélépipède rectangle 2
+Calculs de <strong>longueurs</strong> et d'<strong>aire</strong> correspondant à une section d'un solide.
+

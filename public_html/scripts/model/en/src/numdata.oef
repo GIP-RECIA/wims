@@ -1,0 +1,109 @@
+type=numbers gapfill
+textarea="data"
+
+:Digital response questions embedded in a random text
+
+This exercise presents texts with "holes",
+ each to be filled with a number.
+<p>
+To build an exercise with this model, just enter the texts.
+An easy syntax allows you to specify the holes
+ and the correct number that it accepts.
+</p><p class="wims_credits">
+Author of the model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Example parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Numerical questions}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Embraced random items
+$embraced_randitem
+\text{accolade=item(1,1 yes,
+2 no)}
+
+:Main data.
+Define one question per line, and separate the lines with a semicolon. (Donc les textes eux-mêmes ne peuvent pas contenir
+des point-virgules.) <p>
+La donnée numérique à poser comme question doit être entre une paire de
+double-point d'interrogation "??".
+You can ask up to 6 questions in one sentence.
+$embraced_randitem
+\text{data=
+The last emperor Pu Yi
+of the last Chinese dynasty Qing, was destituted by
+a military uprising in
+??1911??.
+He died of a disease in
+??1967?? in Beijing.
+;
+After a ferocious battle, the Japanese invaded Shanghai in
+??1937?? which had an western "common" concession in that time.
+They partially respected the neutrality of the concession
+during their occupation up to ??1941??.
+The abolition of the concession was first pronounced by the
+puppet government in ??1943??.
+;
+}
+
+:%%%%%%%%%%%%%% Nothing to modify before the statement %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+
+\text{data=wims(singlespace \data)}
+\text{data=wims(nonempty rows \data)}
+\text{data=randomrow(\data)}
+\text{data=\accolade=1 ? wims(embraced randitem \data)}
+\text{data=slib(text/cutchoice2 \data)}
+\integer{qs=floor(rows(\data)/2)}
+\text{len=}
+\text{latextext= \data[1;]}
+\text{latexsol=\data[1;]}
+\for{i=1 to \qs}{
+  \text{d=wims(trim \data[2*\i;])}
+  \integer{l=wims(charcnt \d) + 2}
+  \text{len=\len \l,}
+  \real{taille=ceil(\l/3-1)}
+  \text{latextext=\latextext \underline{\hspace{\taille cm}} \data[2*\i+1;]}
+  \text{latexsol=\latexsol \goodchoice{\data[2*\i;]} \data[2*\i+1;]}
+}
+
+\text{qlist=wims(makelist reply x for x=1 to \qs)}
+\steps{\qlist}
+
+:%%%%%%%%%%%%% Now the statement in html. %%%%%%%%%%%%%%%%%%%%
+
+::You don't need to modify this in general.
+
+\statement{
+\data[1;]
+\for{k=1 to \qs}{
+  \embed{r \k,\len[\k]
+    autocomplete="off"} \data[2*\k+1;]
+  }
+}
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%5
+
+\answer{Field 1}{\data[2;]}{type=number}
+\answer{Field 2}{\data[4;]}{type=number}
+\answer{Field 3}{\data[6;]}{type=number}
+\answer{Field 4}{\data[8;]}{type=number}
+\answer{Field 5}{\data[10;]}{type=number}
+\answer{Field 6}{\data[12;]}{type=number}
+
+\latex{
+\begin{statement}
+\latextext
+\end{statement}
+\begin{solution}
+\latexsol
+\end{solution}
+}

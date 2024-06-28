@@ -1,0 +1,97 @@
+!! --------------------  affiche le contenu de la feuille $sheet de la classe $wims_class
+!! langage is defined in adm/class/sheet/lang/names.phtml.$lang
+
+$table_header
+<caption>$name_content</caption>
+<thead>
+  $table_hdtr
+    !for k=1 to 5
+      <th>$(name_shtab[$k])</th>
+    !next k
+    <th>$name_qnum</th>
+    !for k=6 to 7
+      <th>$(name_shtab[$k])</th>
+    !next k
+    <th>$(name_shtab[10])</th>
+    !if $activetest>=0
+      <th
+      !if $activetest=0 and $exocnt>1
+        colspan="2"
+      !endif
+      >$(name_shtab[8])</th>
+    !endif
+  </tr>
+</thead>
+<tbody>
+!for i=1 to $exocnt
+  !set ex=!record $i of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+  !distribute lines $ex into di,pa,req,weig,ti,de,dep,com,feed,icone
+  $table_tr
+  <td id="td_exo_$i">$i</td>
+  <td>
+  !if $icone!=$empty
+    !set wims_ref_class=text_icon icon_$icone
+  !endif
+  !href cmd=new&module=$di&worksheet=$sheet&$pa $ti
+  </td>
+  <td>$de</td>
+  !if $activetest>0
+    <td>
+      !getscorerequire sheet=$sheet work=$i
+    </td>
+    <td>
+      !getscoreweight sheet=$sheet work=$i
+    </td>
+  !else
+    <td>
+     !row 1 of $req
+    </td>
+    <td>
+     !row 1 of $weig
+    </td>
+  !endif
+  !set pa=!replace internal & by $ $ in $pa
+  !reset qnum
+  !!oef exercises
+  !set qnum=!getopt qnum in $pa
+  !if $qnum=
+    !!J.E. exercises
+    !set qnum=!getopt total_exos in $pa
+  !endif
+   <td>$qnum</td>
+   <td>
+  !if $dep!=$empty
+    $dep
+  !else
+    $
+  !endif
+   </td>
+   <td>$com</td>
+  !set feedbr=!rows2lines $feed
+  !set feedbr=!replace internal $\
+$ by </li><li> in <ul><li>$feedbr</li></ul>
+   <td style="text-align:left" class="small">
+  !if $feed!=$empty
+      $feedbr
+  !endif
+  </td>
+  !if $activetest>=0
+    <td>
+    !set wims_ref_class=wims_button
+    !href cmd=reply&job=prep_modify&modif=$i $(seriesaction[1])
+    !if $activetest=0
+      $
+      !set wims_ref_class=wims_button wims_warning
+      !href cmd=reply&job=delete&delete=$i#list $(seriesaction[2])
+      !if $exocnt>1
+        </td>
+        <td>
+        !read adm/sheet/moveafterform.phtml $(name_shtab[11])
+      !endif
+    !endif
+    </td>
+  !endif
+  </tr>
+!next i
+</tbody>
+$table_end

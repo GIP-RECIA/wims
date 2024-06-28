@@ -1,0 +1,233 @@
+!read tabletheme
+
+$table_header
+<thead>
+  $table_tr
+    <th>$(table_th[1])</th><th>$(table_th[2])</th><th>$(table_th[3])</th>
+  </tr>
+</thead>
+<tbody>
+$table_tr
+  <td>
+    !insmath pi
+  </td><td>
+    $(table_descs[1;])
+  </td><td>
+    <code>pi</code>
+    $wims_name_or
+    <code>Pi</code>
+    $wims_name_or
+    <code>PI</code>
+  </td>
+</tr>$table_tr
+  <td>
+    !insmath e
+  </td><td>
+    $(table_descs[2;])
+  </td><td>
+    <code>e</code>
+    $wims_name_or
+    <code>E</code>
+  </td>
+</tr>$table_tr
+  <td>
+    |$x|
+  </td><td>
+    $(table_descs[3;])
+  </td><td>
+    <code>abs(x)</code>
+  </td>
+</tr>$table_tr
+  <td>
+    !insmath sign(x)
+  </td><td>
+    $(table_descs[4;]):
+    <ul>
+     <li>=-1 if $x&lt;0</li>
+     <li>=0 if $x=0</li>
+     <li>=1 if $x>0</li>
+    </ul>
+  </td><td>
+    <code>sign(x)</code>
+  </td>
+</tr>$table_tr
+  <td>
+    !insmath $$ \sqrt x $$
+  </td><td>
+    $(table_descs[5;])
+  </td><td>
+    <code>sqrt(x)</code>
+    $wims_name_or
+    <code>x^(1/2)</code>
+  </td>
+</tr>$table_tr
+  <td class="wims_mathfont">?</td>
+  <td>$(table_descs[6;])</td>
+  <td><code>rint(x)</code></td>
+</tr>$table_tr
+  <td>
+    !insmath \lfloor x \rfloor
+  </td><td>
+    $(table_descs[7;])
+    !insmath \leqslant x
+  </td><td>
+    <code>floor(x)</code>
+  </td>
+</tr>$table_tr
+  <td>
+    !insmath \lceil x \rceil
+  </td><td>
+    $(table_descs[8;])
+    !insmath \geqslant x
+  </td><td>
+    <code>ceil(x)</code>
+  </td>
+</tr>$table_tr
+  <td class="wims_mathfont"><i>e<sup>$x</sup></i></td>
+  <td>
+    $(table_descs[9;])
+  </td><td>
+    <code>exp(x)</code>
+    $wims_name_or
+    <code>e^x</code>
+    $wims_name_or
+    <code>E^x</code>
+  </td>
+</tr>$table_tr
+  <td>
+    ln($x)
+  </td><td>
+    $(table_descs[10;])
+  </td><td>
+    <code>log(x)</code>
+    $wims_name_or
+    <code>ln(x)</code>
+  </td>
+</tr>$table_tr
+  <td>lg($x)</td>
+  <td>$(table_descs[11;])</td>
+  <td>
+    <code>lg(x)</code>
+    $wims_name_or
+    <code>log10(x)</code>
+  </td>
+</tr>$table_tr
+  <td>sin($x)</td>
+  <td>$(table_descs[12;])</td>
+  <td><code>sin(x)</code></td>
+</tr>$table_tr
+  <td>cos($x)</td>
+  <td>$(table_descs[13;])</td>
+  <td><code>cos(x)</code></td>
+</tr>$table_tr
+  <td>tg($x)</td>
+  <td>$(table_descs[14;])</td>
+  <td>
+    <code>tan(x)</code>
+    $wims_name_or
+    <code>tg(x)</code>
+  </td>
+</tr>$table_tr
+  <td>ctg($x)</td>
+  <td>$(table_descs[15;])</td>
+  <td>
+    <code>cotan(x)</code>
+    $wims_name_or
+    <code>ctg(x)</code>
+    $wims_name_or
+    <code>cot(x)</code>
+  </td>
+</tr>$table_tr
+    <td>arcsin($x)</td>
+    <td>$(table_descs[16;])</td>
+    <td>
+      <code>asin(x)</code>
+      $wims_name_or
+      <code>arcsin(x)</code>
+    </td>
+</tr>$table_tr
+  <td>arccos($x)</td>
+  <td>$(table_descs[17;])</td>
+  <td>
+    <code>acos(x)</code>
+    $wims_name_or
+    <code>arccos(x)</code>
+  </td>
+</tr>$table_tr
+  <td>arctg($x)</td>
+  <td>$(table_descs[18;])</td>
+  <td>
+    <code>atan(x)</code>
+    $wims_name_or
+    <code>arctan(x)</code>
+    $wims_name_or
+    <code>arctg(x)</code>
+  </td>
+</tr>$table_tr
+  <td>sh($x)</td>
+  <td>$(table_descs[19;])</td>
+  <td>
+    <code>sh(x)</code>
+    $wims_name_or
+    <code>sinh(x)</code>
+  </td>
+</tr>$table_tr
+  <td>ch($x)</td>
+  <td>$(table_descs[20;])</td>
+  <td>
+    <code>ch(x)</code>
+    $wims_name_or
+    <code>cosh(x)</code>
+  </td>
+</tr>$table_tr
+  <td>th($x)</td>
+  <td>$(table_descs[21;])</td>
+  <td>
+    <code>th(x)</code>
+    $wims_name_or
+    <code>tanh(x)</code>
+  </td>
+</tr>$table_tr
+  <td>Argsh($x)</td>
+  <td>$(table_descs[22;])</td>
+  <td>
+       <code>asinh(x)</code>
+    $wims_name_or <code>argsh(x)</code>
+    $wims_name_or <code>Argsh(x)</code>
+  </td>
+</tr>$table_tr
+  <td>Argch($x)</td>
+  <td>$(table_descs[23;])</td>
+  <td>
+       <code>acosh(x)</code>
+    $wims_name_or <code>argch(x)</code>
+    $wims_name_or <code>Argch(x)</code>
+  </td>
+</tr>$table_tr
+  <td>Argth($x)</td>
+  <td>$(table_descs[24;])</td>
+  <td>
+    <code>atanh(x)</code>
+    $wims_name_or
+    <code>argth(x)</code>
+    $wims_name_or
+    <code>Argth(x)</code>
+  </td>
+</tr>$table_tr
+  <td>max($x,$y)</td>
+  <td>$(table_descs[25;])</td>
+  <td><code>max(x,y)</code></td>
+</tr>$table_tr
+  <td>min($x,$y)</td>
+  <td>$(table_descs[26;])</td>
+  <td><code>min(x,y)</code></td>
+</tr>$table_tr
+  <td>gcd($x,$y)</td>
+  <td>$(table_descs[27;])</td>
+  <td><code>gcd(x,y)</code></td>
+</tr>$table_tr
+  <td>lcm($x,$y)</td>
+  <td>$(table_descs[28;])</td>
+  <td><code>lcm(x,y)</code></td>
+</tr></tbody>
+</table>

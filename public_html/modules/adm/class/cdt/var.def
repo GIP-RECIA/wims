@@ -1,0 +1,11 @@
+init: cdt_supervise moduclass_lang
+
+deny:cdt_nbmonth cdt_nbdate cdt_ltmonth cdt_title cdt_link cdt_description cdt_reversedate cdt_showyear dateoption
+
+any:cf_description cf_title cf_abandon cf_set cf_link cf_reversedate cf_showyear cf_hide\
+ numaffi job job2 addsheet addfile cible filename jdate jdate2
+
+reply:wims_deposit jdesc ddesc[10] nbredevoir champ ddate[10] namefile
+init:max_defaffi max_todo ltcourses
+
+deny:s_nbdevoir old_date nbsheets nbfile jour_begin jour_end

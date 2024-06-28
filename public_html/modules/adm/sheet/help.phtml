@@ -1,0 +1,12 @@
+!set idle_time=!defof idle_time in wimshome/log/wims.conf
+!default idle_time=!defof DF_idle_time in wimshome/public_html/bases/sys/defaults.conf
+!if $special_parm!= $empty
+  !read lang/help.phtml.$modu_lang $special_parm
+  !exit
+!endif
+
+!read lang/help.phtml.$modu_lang general
+
+!read help/squarescore.phtml square
+
+!read lang/help.phtml.$modu_lang printversion

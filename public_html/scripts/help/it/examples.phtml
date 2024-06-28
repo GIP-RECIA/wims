@@ -1,0 +1,100 @@
+  
+<h2>Esempi di esercizi interattivi in formato OEF</h2>
+<p>
+Ecco qualche esempio di esercizi interattivi che è possibile creare tramite Createxo.
+</p><ol>
+<li> <b>Lunghezza di un vettore 2D</b>, un semplice calcolo di lunghezza
+di un vettore nel piano. Ecco il codice sorgente compoleto di questo esercizio.
+<p>
+<textarea id="wims_show" cols="100" rows="15" name="wims_show" readonly="readonly">
+\title{Norma di un vettore 2D}
+\language{it}
+\computeanswer{no}
+\format{html}
+
+\integer{x=random(-10..10)}
+\integer{y=random(-10..10)}
+\real{norm=sqrt((\x)^2+(\y)^2)}
+\statement{Qual è la lunghezza del vettore \((\x,\y)\) in \(\RR^2\)?}
+
+\hint{La lunghezza di un vettore \((x,y)\) è uguale a \(\sqrt{x^2+y^2}\).}
+\answer{La lunghezza}{\norm}
+</textarea>
+</p><p>
+In questo esercizio sono stati definiti 2 interi scelti casualmente, x e y, che sono le 
+coordinate del vettore. Quindi viene calcolato un terzo parametro, in questo
+caso un numero reale, definito utilizzando al formula della lunghezza.
+L'esercizio accetta una risposta libera che ha come etichetta "La lunghezza"
+e la risposta corretta deve essere il valore del terzo parametro ``norm''.
+È anche disponibile un suggerimento che richiama la formula della
+lunghezza.
+</p><p>
+È possibile
+!set parm=oef_answercnt=1&oef_choicecnt=0&oef_title=Norma di un vettore 2D&oef_format=html&oef_computeanswer=no&level=2&oef_parms=%5Cinteger%7Bx%3Drandom(-10..10)%7D%0D%0A%5Cinteger%7By%3Drandom(-10..10)%7D%0D%0A%5Creal%7Bnorm%3Dsqrt%28%28%5Cx%29%5E2%2B%28%5Cy%29%5E2%29%7D&oef_statement=Qual è la lunghezza del vettore %5C%28%28%5Cx%2C%5Cy%29%5C%29 in %5C%28%5CRR%5E2%5C%29%3F&ansprompt1=La lunghezza&ansgood1=%5Cnorm&oef_hint=La lunghezza di un vettore %5C%28%28x%2Cy%29%5C%29 è uguale a %5C%28%5Csqrt%7Bx%5E2%2By%5E2%7D%5C%29.&oef_solution= $
+!href cmd=reply&mode=guided&$parm inserire questo esempio in Createxo
+ per provarlo. (È anche possibile fare copia e incolla del codice mostrato utilizzato il ``modo esperti'' di Createxo.)
+</p>
+</li><li> <b>Traccia di una matrice 2x2</b>, calcola la traccia di una matrice.  La matrice
+ viene visualizzata tramite formattazione TeX, per una migliore presentazione. Questo 
+ è il codice sorgente completo dell'esercizio.
+<p>
+<textarea id="wims_show1" cols="100" rows="15" name="wims_show1" readonly="readonly">
+\title{Traccia di una matrice 2x2}
+\language{it}
+\computeanswer{yes}
+\format{html}
+
+\integer{lim=20}
+\integer{a=random(-\lim..\lim)}
+\integer{b=random(-\lim..\lim)}
+\integer{c=random(-\lim..\lim)}
+\integer{d=random(-\lim..\lim)}
+\integer{trace=(\a)+(\d)}
+\statement{Calcola la traccia della matrice
+\([\a,\b;\c,\d]\).}
+
+\answer{La traccia}{\trace}
+</textarea>
+</p><p>
+Il primo passo è definire un intero <span class="tt">lim</span> che permette di
+limitare i valori casuali di a, b, c, d che saranno gli elementi della matrice.
+La traccia è definita come la somma degli elementi della diagonale. Prestate
+attenzione alla definizione <span class="tt">trace=(\a)+(\d)</span>: le parentesi
+sono necessarie perché la sostituzione dei valori delle variabili è letterale.
+Se si utilizza semplicemente la formula <span class="tt">trace=\a+\d</span>
+e se a e d assumono per esempio i valori 3 e -15 rispettivamente, si avrà
+<span class="tt">trace=3+-15</span>, che porta a un errore.
+</p><p>
+In questo esercizio vengono accettati anche valori non calcolati (cioè sono
+accettate risposte come 2+15 o 3*105).
+</p><p>
+È possibile
+!set parm=oef_answercnt=1&oef_choicecnt=0&oef_title=Traccia di una matrice 2x2&oef_format=html&oef_computeanswer=yes&level=2&oef_parms=%5Cinteger%7Blim%3D20%7D%0D%0A%5Cinteger%7Ba%3Drandom(-%5Clim..%5Clim)%7D%0D%0A%5Cinteger%7Bb%3Drandom(-%5Clim..%5Clim)%7D%0D%0A%5Cinteger%7Bc%3Drandom(-%5Clim..%5Clim)%7D%0D%0A%5Cinteger%7Bd%3Drandom(-%5Clim..%5Clim)%7D%0D%0A%5Cinteger%7Btrace%3D%28%5Ca%29%2B%28%5Cd%29%7D&oef_statement=Calcola la traccia della matrice \\([\a,\b;\c,\d]\\).&ansprompt1=La traccia&ansgood1=%5Ctrace&oef_hint= &oef_solution= $
+!href cmd=reply&mode=guided&$parm inserire questo esempio in Createxo
+ per provarlo. (È anche possibile fare copia e incolla del codice mostrato utilizzato il ``modo esperti'' di Createxo.)
+</p>
+</li><li> <b>Traccia e determinante di una 2x2.</b>
+
+Questo esempio mostra come aggiungere una domanda all'esercizio precedente per richiedere anche il calcolo del determinante della matrice.
+<p> 
+<textarea id="wims_show2" cols="100" rows="17" name="wims_show1" readonly="readonly">
+\title{Traccia e determinate di una matrice 2x2}
+\language{it}
+\computeanswer{yes}
+\format{html}
+
+\integer{lim=20}
+\integer{a=random(-\lim..\lim)}
+\integer{b=random(-\lim..\lim)}
+\integer{c=random(-\lim..\lim)}
+\integer{d=random(-\lim..\lim)}
+\integer{trace=(\a)+(\d)}
+\integer{determinant=(\a)*(\d)-(\b)*(\c)}
+\statement{Calcola la traccia e il determinante della matrice
+\([\a,\b;\c,\d]\).}
+
+\answer{La traccia}{\trace}
+\answer{Il determinante}{\determinant}
+</textarea></p>
+</li>
+</ol>

@@ -1,0 +1,46 @@
+Tiding up
+games in geometry
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,spatial_skill
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:E3/geometry/oefgeo2D.fr
+exo=circle1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collect the points with a circle #1
+You'll be shown many points. You need to find a way of collecting them in a circle, following the instruction.
+
+:E3/geometry/oefgeo2D.fr
+exo=circle2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collect the points with a circle #2
+You'll be shown many points. You need to find a way of collecting them in a circle, following the instruction. But this time you will need some initiative on your part.
+
+:E3/geometry/oefgeo2D.fr
+exo=line3&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collect the points with a line #1
+You'll be shown many points. You need to draw a straight line following the instruction. Count the points on each side of the line.
+
+:E3/geometry/oefgeo2D.fr
+exo=line4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collect the points with a line #2
+You'll be shown many points. You need to draw a straight line following the instruction. You need to collect the exact number of points as instructed.
+
+:E3/geometry/oefgeo2D.fr
+exo=line5&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collect the points with a line #3
+You'll be shown many points. You need to draw a straight line following the instruction. You need to collect the exact number of points as instructed. But this time you will need some initiative on your part.
+

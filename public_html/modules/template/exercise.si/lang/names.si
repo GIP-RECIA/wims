@@ -1,0 +1,3 @@
+!set name_score=!nosubst Za svoj odgovor ste dobili $module_score toèk (mo¾nih 10).
+
+!set name_bad_data=Vnesenuh vrednosti ne znam ovrednostiti. Tipkarska napaka?

@@ -1,0 +1,20 @@
+cdt:cdt
+def:.security css access.conf
+doc:doc
+exam:exams .E[0-9]*
+exo:src
+forum:forum
+freework:freeworks
+livret:livret
+log:.log
+manual:.grades
+motd:.motd motd
+neighbor:neighbors
+score:score noscore
+seq:seq .S[0-9]*
+sheet:sheets .[0-9]*
+sup:supervisor
+tool:tool
+user:.users .userlist
+userphoto:photoboard
+vote:vote

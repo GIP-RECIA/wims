@@ -1,0 +1,55 @@
+Fonction dérivée
+Sélection d'exercices correspondant à une partie du paragraphe "Fonction dérivée et étude des variations d'une fonction" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+analysis
+functions,real_function,derivative
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fonction dérivée et étude des variations d'une fonction" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H5/analysis/oefderivLP.fr
+exo=derivpol&confparm1=1&confparm2=1&confparm2=2&confparm3=x&confparm4=&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Dérivée de polynôme
+Dérivée d'<strong>une</strong> fonction polynôme de degré 1 ou 2.
+
+
+
+
+
+:H5/analysis/oefderivLP.fr
+exo=derivpol&confparm1=3&confparm2=1&confparm2=2&confparm3=x&confparm4=&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Dérivées de polynômes 1
+Dérivées de <strong>3</strong> fonctions polynômes de degré 1 ou 2.
+
+
+
+
+
+:H5/analysis/oefderivLP.fr
+exo=derivpol&confparm1=5&confparm2=1&confparm2=2&confparm3=x&confparm4=&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Dérivées de polynômes 2
+Dérivées de <strong>5</strong> fonctions polynômes de degré 1 ou 2.
+
+
+
+
+
+:H5/analysis/oefderivLP.fr
+exo=derivpol&confparm1=5&confparm2=1&confparm2=2&confparm3=x&confparm3=t&confparm4=&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Dérivées de polynômes 3
+Dérivées de <strong>5</strong> fonctions polynômes de degré 1 ou 2, et de <strong>variable x ou t</strong>.
+
+
+
+
+

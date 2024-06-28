@@ -1,0 +1,98 @@
+type=gapfill
+textarea="data explain"
+iEdit="explain"
+
+:Escribir la propiedad de un objeto seleccionado al azar de una lista.
+
+<p>
+Se presenta un objeto seleccionado al azar de una lista y pide que escriba su propiedad de acuerdo con la solicitud del ejercicio.
+</p><p>
+Para construir un ejercicio con este modelo, solo da la lista de objetos y sus propiedades.
+</p>
+<p>Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Escribir la propiedad}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Tamaño del campo donde escribir
+Se debe proporcionar suficiente espacio para la propiedad más larga.
+\integer{size=20}
+
+:Datos principales
+<p>Escribir un objeto por línea, primero el nombre del objeto que se mostrará, luego
+su propiedad tal y como debe escribirse, separada por una coma.
+</p><p>
+Puede declarar sinónimos de propiedades para reconocer, separados por líneas verticales (por ejemplo: sombre|foncé).</p>
+\matrix{data=
+joya,joyas
+carne,carnes
+regalo,regalos
+guijarro,guijarros
+caballo,caballos
+repollo,repollos
+cielo,cielos
+clavo,clavos
+detalle,detalles
+ojo,ojos
+red,redes
+cuadro,cuadros
+trabajo,trabajos
+agujero,agujeros
+}
+
+:Tipo de análisis de respuesta
+Los tipos <span class="tt">case</span> y <span class="tt">nocase</span> son especialmente adecuados para
+aplicaciones lingüísticas. En otros casos, es preferible <span class="tt">atext</span>.
+\text{atype=item(3,case (no tolera ningún error),
+	nocase (tolera minúsculas/mayúsculas),
+	atext (ignora plural/singular y artículos))}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\text{data=randomrow(\data)}
+\text{name=\data[1]}
+\text{prop=\data[2]}
+\text{atype=wims(word 1 of \atype)}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+:Enunciado
+Para evocar el objeto mostrado, escriba <span class="tt">\name</span>.
+$embraced_randitem
+\text{explain=
+Escribe el plural del sustantivo <span class="wims_emph">\name</span>.
+}
+
+:%% Calculs à ne pas modifier
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+
+::On n'a pas besoin de modifier l'énoncé directement en général.
+
+\statement{
+	<label for="reply1" class="oef_explain">\explain</label>
+	<span class="oef_input">
+	\embed{r1,\size
+	autocomplete="off"}.
+	</span>
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Respuesta}{\prop}{type=\atype}
+

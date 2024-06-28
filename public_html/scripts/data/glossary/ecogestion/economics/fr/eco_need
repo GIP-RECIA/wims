@@ -1,0 +1,21 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Besoin
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Au sens économique, <strong>un besoin est un sentiment de manque</strong> qui peut être
+comblé par la consommation d'un bien ou d'un service proposé par le marché.
+<span class="wims_emph"></span>
+</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+Parmi les besoins économiques, on peut distinguer les besoins de première nécessité encore
+appelés <span class="wims_emph">"besoins primaires"</span>
+(alimentation, habillement, logement...) et les besoins de seconde nécessité
+encore appelés <span class="wims_emph">"besoins secondaires"</span> (loisirs, culture, ...).
+</div>

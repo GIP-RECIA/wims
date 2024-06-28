@@ -1,0 +1,282 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=
+slib_parms=3\
+,description de la réaction\
+,description des flèches entre molécules\
+html color=[black,black,black],option de sortie color=[fleche,charge,doublet]
+
+slib_title=Dessin en canvasdraw d'une réaction
+
+slib_out=if html is a word in the option, the canvasdraw code. If not, the code to send to canvasdraw
+(without the size), the coordinates of each sommet.
+
+slib_comment= If output=1, every label is shown except those in the output hide.\
+If output=0, only heterogen atom labels are shown.\
+If output=2, no label is shown.\
+Voir la documentation de moldraw pour le dessin des molécules.\
+<pre>Codage:\
+[mol1,[-> ou <- ou <=> ou +],mol2,[-> ou <- ou <=> ou +],...],flr=[:[at]:[atb],up/down],option\
+  Flèche entre molécules: flr=[:[at]:[atb],up/down] signifie une flèche de\
+  l'atome at de la molécule 2 vers l'atome atb de la molécule 3.\
+  Si on rajoute -, la flèche est tracée de l'atome atb vers l'atome at :\
+  flr=[:[at]:[atb],down -] par exemple.\
+</pre>\
+  On peut régler la hauteur des symboles de transition par rapport à la hauteur d'un\
+  atome de la première molécule en le rajoutant dans le premier symbole de transition.\
+  Par défault, l'atome [1] de la première molécule sert à l'alignement.\
+  Dans le cas non html, la sortie est la suivante \
+  (les retours de ligne sont pour la présentation)\
+<pre>\
+  [\
+    [code canvasdraw (sans les charges,lacunes,... ],\
+    [size (taille de l'image conseillée)],\
+    [code pour les doublets],\
+    [code pour les lacunes],\
+    [code pour les charges],\
+    [code pour les flèches internes aux molécules],\
+    [code pour les flèches entre molécules]\
+  ],\
+  [matrice : numero molecule,atom,label de l'atome],\
+  [matrice : numero molecule,atom,coordonnées],\
+  [matrice des décorations:\
+    numéro de la molecule,coordonnées, -1 ou 2 ou + ou -\
+    ou\
+    numero_mol ou numero_mol1:numero_mol2, curvedarrows,coordonnées \
+      (3 points: point de départ,centre,point d'arrivée\
+  ]\
+  ,[points magnétiques]\
+</pre>
+
+slib_example=[[dl=[[1,90],[1,-90]],[1]=C,[1,90]=O,[1,-90]=O],[+,[1]],[[1]=Mg,[1,90]=R,[1,-90]=X],[<->],[dl=[[1,0,30],[1,0,330,0,0]],[1]=R,[1,0]=C,[1,0,30]=O,[1,0,330]=O,[1,0,330,0]=Mg,[1,0,330,0,0]=X]],,html\
+[[fl=[[1,0,-90]:[1,0]:[1,0,0]],lc=[[1,0,0]:[E]],ch=[[1,0,0]:+],[1]=H3C,[1,0]=C,[1,0,0]=C,[1,0,0,90]=C6H5,[1,0,0,-90]=C2H5,[1,0,90]=CH3,[1,0,-90]=H],[+],[db=[[1]:[N,S,O]],ch=[[1]:-:E],[1]=O,[1,0]=H],[->],[dl=[[1,0]],[1]=C,[1,0]=C,[1,120]=H3C,[1,-120]=H3C,[1,0,60]=C6H5,[1,0,-60]=C2H5],[+],[db=[[1]:[E,O]],[1]=HO,[1,0]=H]],flr=[[:[1]:[1],<- down]],html color=[green,blue]\
+[[db=[[1,0]:[N,E,S]],ch=[[1,0]:-],[1]=H,[1,0]=O],[+,[1]],[fl=[[[1,0,-60]:[1,0,-60,0]:[1,0,-60,0]:[1,0,-60,0],up]],db=[[1,0,-60,0]:[N,E,S]],[1]=H3C,[1,0]=CH2,[1,0,-60]=C,[1,0,-60,-120]=H,[1,0,-60,-60]=H,[1,0,-60,0]=Br],[->],[db=[[1]:[N,O]],[1]=O,[1,-120]=H,[1,0]=C,[1,0,-40]=H,[1,0,-70]=H,[1,0,60]=CH2,[1,0,60,-60]=CH3],[+],[db=[[1]:[N,O,S,E]],ch=[[1]:-],[1]=Br]],flr=[[1,0]:[1,0,-60]],html color=[red,blue,green]\
+[[fl=[[1,0,0]:[1,0,0,0]],db=[[1,0,0,0]:[N,S,E]],[1]=H3C,[1,0]=CH2,[1,0,0]=C,[1,0,0,90]=CH2,[1,0,0,-90]=CH3,[1,0,0,90,120]=H3C,[1,0,0,0]=Br],[<->,[1]],[lc=[[1,0,0]:[E]],ch=[[1]:+],[1]=H3C,[1,0]=CH2,[1,0,0]=C,[1,0,0,90]=CH2,[1,0,0,-90]=CH3,[1,0,0,90,120]=H3C],[+],[db=[[1]:[O,E,S,N]],ch=[[1]:-],[1]=Br]],,html\
+[[fl=[[1,0,-90]:[1,0]:[1,0,0]],lc=[[1,0,0]:[E]],ch=[[1,0,0]:+],[1]=H3C,[1,0]=C,[1,0,0]=C,[1,0,0,90]=C6H5,[1,0,0,-90]=C2H5,[1,0,90]=CH3,[1,0,-90]=H],[+],[db=[[1]:[N,S,O]],ch=[[1]:-:E],[1]=O,[1,0]=H],[->],[dl=[[1,0]],[1]=C,[1,0]=C,[1,120]=H3C,[1,-120]=H3C,[1,0,60]=C6H5,[1,0,-60]=C2H5],[+],[db=[[1]:[E,O]],[1]=HO,[1,0]=H]],flr=[[:[1]:[1],- down]],html\
+[[fl=[[[1,0,0,-90]:[1,0,0]:[1,0],down],[[1,0]:[1,0,-90],down]],db=[[1,0,-90]:[N,E,S]],[1]=H3C,[1,0]=C,[1,0,90]=CH2,[1,0,-90]=Br,[1,0,90,120]=H3C,[1,0,0]=C,[1,0,0,90]=CH3,[1,0,0,-90]=H,[1,0,0,0]=CH3],[+,[1,0]],[db=[[1]:[N,0,S]],ch=[[1]:-],[1]=O,[1,0]=C2H5],[->],[dl=[[1,0]],[1]=C,[1,0]=C,[1,120]=H2C,[1,120,90]=CH3,[1,-120]=H3C,[1,0,60]=CH3,[1,0,-60]=CH3],[+],[db=[[1]:[N,O,E,S]],ch=[[1]:-],[1]=Br],[+],[db=[[1]:[E,O]],[1]=HO,[1,0]=C2H5]],flr=[[1,0,0,-90]:[1],-]],html\
+[[fl=[[1,0,-90]:[1,0]:[1,0,0]],lc=[[1,0,0]:[E]],ch=[[1,0,0]:+],[1]=H3C,[1,0]=C,[1,0,0]=C,[1,0,0,90]=C6H5,[1,0,0,-90]=C2H5,[1,0,90]=CH3,[1,0,-90]=H],[+],[db=[[1]:[N,S,E]],ch=[[1]:-],[1]=O,[1,0]=H],[->],[dl=[[1,0]],[1]=C,[1,0]=C,[1,120]=H3C,[1,-120]=H3C,[1,0,60]=C6H5,[1,0,-60]=C2H5],[+],[db=[[1]:[E,O]],[1]=HO,[1,0]=H]],flr=[[:[1]:[1],down]],html\
+[[fl=[[1,0,0]:[1,0,0,0]],db=[[1,0,0,0]:[N,S,E]],[1]=H3C,[1,0]=CH2,[1,0,0]=C,[1,0,0,90]=CH2,[1,0,0,-90]=CH3,[1,0,0,90,120]=H3C,[1,0,0,0]=Br],[<->,[1]],[lc=[[1,0,0]:[E]],ch=[[1]:+],[1]=H3C,[1,0]=CH2,[1,0,0]=C,[1,0,0,90]=CH2,[1,0,0,-90]=CH3,[1,0,0,90,120]=H3C],[+],[db=[[1]:[O,E,S,N]],ch=[[1]:-],[1]=Br]],,html\
+[[dl=[[1,90],[1,-90]],[1]=C,[1,90]=O,[1,-90]=O],[+,[1]],[[1]=Mg,[1,90]=R,[1,-90]=X],[<->],[dl=[[1,0,30],[1,0,330,0,0]],[1]=R,[1,0]=C,[1,0,30]=O,[1,0,330]=O,[1,0,330,0]=Mg,[1,0,330,0,0]=X]],,html\
+[[db=[[1]:[O,N,S]],ch=[[1]:-:E],[1]=O,[1,0]=H],[+],[fl=[[1,0,-90]:[1,0]:[1,0,0]],lc=[[1,0,0]:[N]],ch=[[1,0,0]:+:E],[1]=H3C,[1,0]=C,[1,0,0]=C,[1,0,0,90]=C6H5,[1,0,0,-90]=C2H5,[1,0,90]=CH3,[1,0,-90]=H],[->],[dl=[[1,0]],[1]=C,[1,0]=C,[1,120]=H3C,[1,-120]=H3C,[1,0,60]=C6H5,[1,0,-60]=C2H5],[+],[db=[[1]:[N,S]],[1]=HO,[1,0]=H]],flr=[[[1]:[1],down]],html\
+[[db=[[1]:[O,N,S]],ch=[[1]:-:E],[1]=O,[1,0]=H],[+],[fl=[[1,0,-90]:[1,0]:[1,0,0]],lc=[[1,0,0]:[E]],ch=[[1,0,0]:+:E],[1]=H3C,[1,0]=C,[1,0,0]=C,[1,0,0,90]=C6H5,[1,0,0,-90]=C2H5,[1,0,90]=CH3,[1,0,-90]=H],[->],[dl=[[1,0]],[1]=C,[1,0]=C,[1,120]=H3C,[1,-120]=H3C,[1,0,60]=C6H5,[1,0,-60]=C2H5],[+],[db=[[1]:[N,S]],[1]=HO,[1,0]=H]],flr=[[[1]:[1],down]],\
+[[db=[[1,0]:[N,E,S]],ch=[[1,0]:-],[1]=H,[1,0]=O],[+,[1]],[fl=[[[1,0,-60]:[1,0,-60,0]:[1,0,-60,0]:[1,0,-60,0],up]],db=[[1,0,-60,0]:[N,E,S]],[1]=H3C,[1,0]=CH2,[1,0,-60]=C,[1,0,-60,-120]=H,[1,0,-60,-60]=H,[1,0,-60,0]=Br],[->],[db=[[1]:[N,O]],[1]=O,[1,-120]=H,[1,0]=C,[1,0,-40]=H,[1,0,-70]=H,[1,0,60]=CH2,[1,0,60,-60]=CH3],[+],[db=[[1]:[N,O,S,E]],ch=[[1]:-],[1]=Br]],flr=[[1,0]:[1,0,-60]],html\
+
+!exit
+
+:proc
+!reset slib_reaction slib_repdoubl slib_repcharg slib_repfleche1\
+  slib_snaps slib_graphs slib_graphsname slib_out slib_reaction\
+  slib_RXrange slib_flr slib_Gopt\
+  slib_dbmol slib_lcmol slib_chmol slib_flmol slib_flr_ slib_molFl\
+  slib_Rdblcch slib_matcoord slib_Rdblcch slib_pos
+
+!!be careful not mix with variables in moldraw
+wims_multiexec=$wims_multiexec pari
+slib_pari=!exec pari default(realprecision,3)
+!distribute items $wims_read_parm into slib_react,slib_Gopt,slib_Roption
+slib_react=!declosing $slib_react
+slib_Gopt=!declosing $slib_Gopt
+!default slib_Gopt=
+!set slib_Rcnt=!itemcnt $slib_react
+slib_Shiftx=0
+slib_RYrange=0,0
+!set slib_Rcolor=!getopt color in $slib_Roption
+!set slib_Rcolor=!declosing $slib_Rcolor
+!set slib_Rcolorfl=$(slib_Rcolor[1])
+!default slib_colorfl=black
+slib_flr=!getopt flr in $slib_Gopt
+
+slib_mireact=0
+
+slib_Mopt=!replace shiftx=.* by in $slib_Roption
+slib_Mopt=!replace size=\[.*\] by in $slib_Mopt
+slib_Mopt=!replace html by in $slib_Mopt
+
+!! détermine nouvelle version si option n'est pas présente
+slib_ov=!getopt output in $slib_Mopt
+!if $slib_ov issametext
+  slib_Mopt=$slib_Mopt output=1
+!endif
+!for slib_ri=1 to $slib_Rcnt
+  slib_moltop$slib_ri=$(slib_react[$slib_ri])
+  !if $[$slib_ri%2]=1
+    !readproc slib/chemistry/moldraw $(slib_moltop$slib_ri),shiftx=$slib_Shiftx $slib_Mopt color=[$slib_Rcolor]
+    slib_out_$slib_ri=!declosing $(slib_out[1])
+    !if [ isin $(slib_out_$slib_ri)
+      slib_tmp=!declosing $(slib_out_$slib_ri[2])
+      slib_dbmol=!append line $slib_tmp to $slib_dbmol
+      !if $slib_mireact=0
+        slib_type=R
+      !else
+        slib_type=P
+      !endif
+      slib_tmp=!declosing $(slib_out_$slib_ri[3])
+      slib_lcmol=!append line $slib_tmp to $slib_lcmol
+      slib_tmp=!declosing $(slib_out_$slib_ri[4])
+      slib_chmol=!append line $slib_tmp to $slib_chmol
+      slib_tmp=!declosing $(slib_out_$slib_ri[5])
+      slib_flmol=!append line $slib_tmp to $slib_flmol
+      slib_out_$slib_ri=!declosing $(slib_out_$slib_ri[1])
+    !endif
+    slib_RXrange=!line 2 of $(slib_out_$slib_ri)
+    slib_RXrange=!replace internal xrange by in $slib_RXrange
+    !if $slib_ri=1
+      slib_xmin=$(slib_RXrange[1])
+      slib_RXrange1=$slib_xmin
+    !endif
+    slib_Shiftx=$(slib_RXrange[2])
+    slib_yrange=!line 3 of $(slib_out_$slib_ri)
+    slib_yrange=!replace internal yrange by in $slib_yrange
+    slib_RYrange=$[min($(slib_RYrange[1]),$(slib_yrange[1]))],$[max($(slib_RYrange[2]), $(slib_yrange[2]))]
+    slib_reaction_=!line 4 to -1 of $(slib_out_$slib_ri)
+    slib_reaction=!append line $slib_reaction_ to $slib_reaction
+    slib_out=!replace internal MOL by $[($slib_ri+1)/2] in $slib_out
+    slib_tmp=!declosing $(slib_out[3])
+    !!matrice numero mol,noeud,coord
+    slib_matcoord=!append line $slib_tmp to $slib_matcoord
+    !!graphe de la molecule
+    slib_outcoords=!declosing $(slib_out[3])
+    slib_graphs=!append line $slib_outcoords to $slib_graphs
+    slib_outname=!declosing $(slib_out[2])
+    slib_graphsname=!append line $slib_outname to $slib_graphsname
+    slib_tmp=!declosing $(slib_out[4])
+    slib_Rdblcch=!append line $slib_tmp to $slib_Rdblcch
+    !!snappoints
+    slib_tmp=!replace internal = by , in $slib_outcoords
+    slib_tmp=!column 3,4,7,8 of $slib_tmp
+    slib_tmp=!lines2items $slib_tmp
+    slib_tmp=!nospace $slib_tmp
+    slib_snaps=$slib_snaps$slib_tmp;
+  !else
+    !! les signes  +, -> , <-> <=>
+    slib_moltop$slib_ri=!declosing $(slib_moltop$slib_ri)
+    !if $(slib_moltop$slib_ri)!=$empty
+      !! position des fleches pouvant etre indique par l'auteur
+      slib_aff=$(slib_moltop$slib_ri[1])
+      !if $slib_ri=2
+        !! alignement avec un noeud de la première molécule
+        slib_pos=$(slib_moltop$slib_ri[2])
+        !default slib_pos=[1]
+        slib_tmp=$(slib_outcoords[;2..-1])
+        !!add spaces to delete
+        slib_tmp=!replace internal , $ by , in $slib_tmp
+        slib_POSY=!getopt $slib_pos in $slib_tmp
+        slib_POSY=$(slib_POSY[2])
+      !endif
+      slib_tmp=2
+      !set slib_Shiftx=$[$slib_Shiftx+$slib_tmp]
+      !if $slib_aff issametext +
+        slib_aff=\phantom{xx}+\phantom{xx}
+      !endif
+      !if $slib_aff issametext ->
+        !!slib_aff=&rarr;
+        slib_aff=\underset{\phantom{xxxx}}{\rightarrow}
+      !endif
+      !if $slib_aff issametext <->
+        !!slib_aff=&#8644;
+        slib_aff=\underset{\phantom{xxxx}}{\leftrightarrow}
+      !endif
+      !if $slib_aff issametext <=>
+        !!slib_aff=&#x21C6;
+        slib_aff=\underset{\phantom{xxxx}}{\rightleftarrows}
+      !endif
+      slib_reaction=!append line strokecolor black\
+centered\
+latex $slib_Shiftx,POSY,$slib_aff to $slib_reaction
+      !set slib_Shiftx=$[$slib_Shiftx+$slib_tmp]
+      !! milieu de réaction permet de distinguer R=reactif et P=produit
+      !if - isin $(slib_moltop$slib_ri)
+        slib_mireact=$(slib_ri)
+      !endif
+    !endif
+  !endif
+!next
+
+slib_RXrange=$[floor($slib_RXrange1)],$[ceil($(slib_RXrange[2]))]
+!if $slib_POSY=$empty
+  slib_POSY=$[($(slib_RYrange[1])+$(slib_RYrange[2]))/2]
+!endif
+slib_coeff=30
+slib_reaction=!replace internal POSY by $slib_POSY in $slib_reaction
+slib_Rsizex=$[ceil($slib_coeff*($(slib_RXrange[2])-($(slib_RXrange[1]))))]
+slib_Rsizey=$[ceil($slib_Rsizex*($(slib_RYrange[2])-($(slib_RYrange[1])))/($(slib_RXrange[2])-($(slib_RXrange[1]))))]
+slib_Rsize=$slib_Rsizex,$slib_Rsizey
+#######
+slib_mireact=$[$(slib_mireact)/2]
+!if $slib_flr notsametext
+  !set slib_a=0
+  !! pour l'instant, une seule flèche
+  slib_tmpg=!replace internal = by , in $slib_graphs
+  slib_flr=!declosing $slib_flr
+  slib_sens=$(slib_flr[2])
+  slib_pos=!text remove -1 in $slib_sens
+  slib_flr=$(slib_flr[1])
+  slib_flr=!replace internal : by , in $slib_flr
+  slib_flrcnt=!itemcnt $slib_flr
+  !for slib_j=1 to $slib_flrcnt
+    slib_flr_=$(slib_flr[$slib_j])
+    il doit y avoir seulement deux non vides
+    !if $slib_flr_!=
+      slib_tmp=!select $slib_tmpg where column 1=$[$slib_j] and column 2=$slib_flr_
+      !if $slib_a=0
+        slib_pointfl1=$(slib_tmp[3,4])
+        slib_a=$slib_j
+      !else
+        slib_pointfl2=$(slib_tmp[3,4])
+        slib_molFl=$slib_j,$slib_a
+      !endif
+    !endif
+  !next
+  !if - isin $slib_sens
+    !exchange slib_pointfl2,slib_pointfl1
+  !endif
+  !readproc slib/chemistry/quadcurve [$slib_RXrange,$slib_RYrange],$slib_pointfl1,$slib_pointfl2,$slib_pos
+  slib_ptcurve=$(slib_out[3,4,1,2,5,6])
+  slib_Fl=linewidth 1.5\
+curvedarrow $slib_ptcurve,$slib_colorfl\
+strokecolor black
+  slib_Rdblcch=!append line $(slib_molFl[1]):$(slib_molFl[2]),curvedarrows,$slib_pointfl1,$slib_pointfl2,$(slib_out[1,2])\
+    to $slib_Rdblcch
+!endif
+slib_graphs=!replace internal = by , in $slib_graphs
+# snaps : points de réponse possible
+# boucle sur les segments de toutes les molécules si flèches à découvrir
+# snaps= milieu de segment
+!!! bof si on prend autre chose que segment ...
+!!! on a du stocker quelque part les coordonnées
+slib_lignesSeg=!select $slib_reaction where segment isin column 1
+slib_sci=!rowcnt $slib_lignesSeg
+!for slib_i=1 to $slib_sci
+  slib_l=!line $slib_i of $slib_lignesSeg
+  slib_dx=$[($(slib_l[4])-$(slib_l[2]))/2+$(slib_l[2])]
+  slib_dy=$[($(slib_l[5])-$(slib_l[3]))/2+$(slib_l[3])]
+  slib_snaps=!append item $slib_dx,$slib_dy to $slib_snaps
+!next
+slib_snaps=!nonempty rows $slib_snaps
+!set slib_reaction=!replace internal xrange by ## in $slib_reaction
+!set slib_reaction=!replace internal yrange by ## in $slib_reaction
+
+slib_out1=xrange $slib_RXrange\
+yrange $slib_RYrange\
+$slib_reaction
+
+slib_matcoord=!replace internal = by , in $slib_matcoord
+!if html iswordof $slib_Roption
+  slib_out=!exec canvasdraw\
+size $(slib_Rsize)\
+$slib_out1\
+$slib_dbmol\
+$slib_lcmol\
+$slib_chmol\
+$slib_flmol\
+$slib_Fl
+  slib_out=<div class="wims_scrollable">$slib_out</div>
+!else
+  slib_out=[[$slib_out1],[$(slib_Rsize)],[$slib_dbmol],[$slib_lcmol],[$slib_chmol],[$slib_flmol],[$slib_Fl]],\
+[$slib_graphsname],\
+[$slib_matcoord],\
+[$slib_Rdblcch],\
+[$slib_snaps]
+!endif

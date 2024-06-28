@@ -1,0 +1,22 @@
+author=Bernadette, Perrin-Riou
+email=bpr@math.u-psud.fr
+title=Vocabulaire d'histoire
+file=histoire
+source=voca_histoire
+
+type_exo=CORRESP
+instruction=Associer les mots et leur signification.
+
+alea=yes
+size=100x100x300
+MAX=4
+N=4
+M=4
+
+image_file1=no
+video_file1=no
+audio_file1=no
+reading_file1=no
+
+style_reponse=
+style_question=

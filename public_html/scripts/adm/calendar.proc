@@ -1,0 +1,85 @@
+!! input is two word : first is type and second is date format YYYYMMDD
+!! type are :
+!! - whatday : calculate num of day in the week
+!! - nextday : calculate date for next day
+!! - prevday : calculate date for previous day
+:: - endmonth : calculate number of day to the end of the month
+
+!distribute word $wims_read_parm into type_,val_
+j_=!char 7 to 8 of $val_
+m_=!char 5 to 6 of $val_
+a_=!char 1 to 4 of $val_
+l_=31,28,31,30,31,30,31,31,30,31,30,31
+!reset output
+
+!if $type_ notitemof whatday,nextday,endmonth,prevday
+  !exit
+!else
+  !goto $type_
+!endif
+
+:whatday
+!! use Mike Keith algorythm (year must be between 1583 and 9999)
+!! 1=Monday etc...
+!ifval $m_=1 or $m_=2
+  c_=1
+!else
+  c_=0
+!endif
+A_ = $[$a_ - $c_]
+M_ = $[$m_ + 12*$c_ - 2]
+output = $[( $j_ + $A_ + floor($A_/4) - floor($A_/100) + floor($A_/400) + floor((31*$M_)/12) )%7]
+!if $output=0
+  output=7
+!endif
+!exit
+
+:nextday
+!ifval $m_=2 and $j_=28
+  !ifval $a_%4=0 and ($a_%400=0 or $a_%100!=0)
+    output=$(a_)0229
+  !else
+    output=$(a_)0301
+  !endif
+!else
+  !ifval $j_<$(l_[$m_])
+    j_=!char 2 to 3 of $[101+$j_]
+    output=$a_$m_$j_
+  !else
+    !ifval $m_=12
+      a_=!char 2 to 5 of $[10001+$a_]
+      output=$(a_)0101
+    !else
+      m_=!char 2 to 3 of $[101+$m_]
+      output=$a_$(m_)01
+    !endif
+  !endif
+!endif
+!exit
+
+:prevday
+!ifval $j_>1
+  j_=!char 2 to 3 of $[99+$j_]
+  output=$a_$m_$j_
+!else
+  !ifval $m_>1
+    !ifval $m_=3 and $a_%4=0 and ($a_%400=0 or $a_%100!=0)
+      output=$(a_)0229
+    !else
+      m_=!char 2 to 3 of $[99+$m_]
+      output=$a_$m_$(l_[$[$m_]])
+    !endif
+  !else
+    a_=!char 2 to 5 of $[9999+$a_]
+    output=$(a_)1231
+  !endif
+!endif
+!exit
+
+:endmonth
+l_=!item $m_ of $l_
+!ifval $m_=2 and $a_%4=0 and ($a_%400=0 or $a_%100!=0)
+  l_=29
+!endif
+output=$[$l_-$j_+1]
+!exit

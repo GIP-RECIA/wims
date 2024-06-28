@@ -1,0 +1,141 @@
+# Variable calculations should be done in this file.
+# It is read and interpreted by wims for all valid calls to the module.
+
+!if $notallowed=1
+  error=notallowedmodule
+  !exit
+!endif
+
+
+!! check access
+!if $statuttchat!=open
+  !restart module=home
+!endif
+
+!! disconnect tchat for example class
+!if $wims_superclass=$empty
+  sclass=$wims_class
+!else
+  sclass=$wims_superclass
+!endif
+!if $sclass<10000
+  error=closedmodexcls
+  !exit
+!endif
+
+wims_prefix=class user tchat
+!read wimshome/log/classes/$wims_class/tchat/.def
+!bound tchat_open within yes,no default no
+!bound tchat_refreshtiming between $msg_min_timing and 1000 default $msg_min_timing
+!bound tchat_onlynonempty within no,yes default no
+
+!read adm/language lang/names.phtml
+!read tabletheme
+
+!if $tchat_open!=yes
+  !if $wims_user!=supervisor
+    warning=notopen
+    job=close
+  !else
+    job=config
+  !endif
+!endif
+
+!! create list of living for the user (all for supervisor)
+
+!reset livinglist livingfile
+dt=!record 0 of wimshome/log/classes/$wims_class/tchat/.livings
+livingst_0=!line 1 of $dt
+!if $(livingst_0)=1
+  livinglist=0
+!endif
+livingname_0=!line 2 of $dt
+!default livingname_0=!nosubst $wims_name_class
+livingusers_0=all
+livingnb_0=$[$nbuser+1]
+nbliving=!recordcnt wimshome/log/classes/$wims_class/tchat/.livings
+!for k=1 to $nbliving
+  dt=!record $k of wimshome/log/classes/$wims_class/tchat/.livings
+  !distribute line $dt into livingst_$k,livingname_$k,livingusers_$k
+  !default livingname_$k=$name_living $k
+  livingusers_$k=!append item supervisor to $(livingusers_$k)
+  livingnb_$k=!itemcnt $(livingusers_$k)
+  !if $(livingst_$k)=1 and $wims_user isitemof $(livingusers_$k)
+    livinglist=!append item $k to $livinglist
+  !endif
+!next k
+livingfile=!makelist .living k for k in $livinglist
+livingfile=!nospace $livingfile
+
+!! ------ use math in message
+!let insmath_rawmath=yes
+!let wims_backslash_insmath=yes
+
+!if $cmd=help
+  !exit
+!endif
+
+!if $class_expiration=$empty
+  !defread wimshome/log/classes/$wims_class/.def
+  !if $wims_superclass!=$empty
+    class_expiration=!defof class_expiration in wimshome/log/classes/$wims_superclass/.def
+  !endif
+!endif
+
+!if $class_expiration=$empty
+  error=bad_class
+  !exit
+!endif
+
+!readproc linkmodule/tchat.proc
+!if $wims_allowlink_tchat!=yes
+  error=badright
+  notallowed=1
+  !exit
+!endif
+
+!if $wims_user=supervisor
+  !readproc adm/whoconnect
+  listjob=userlistliving,edit,viewpage,listliving,addliving,config,showhide
+  defjob=userlist
+!else
+  listjob=edit,close,sharescreen,uploadfile
+  defjob=edit
+!endif
+!bound job within $listjob default $defjob
+
+!if $job=sharescreen
+  !if $wims_sharescreen=yes
+    wims_sharescreen=$empty
+  !else
+    wims_sharescreen=yes
+  !endif
+  ses=!replace internal _ by , in $wims_session
+  ses=!item 1 of $ses
+  !setdef wims_sharescreen=$wims_sharescreen in wimshome/sessions/$ses/var.stat
+  job=edit
+!endif
+
+!if $wims_user!=supervisor
+  !set page_name=*
+!else
+  !if $job isitemof listliving,addliving,userlistliving
+    !set page_name=$(wims_name_$(job))
+  !else
+    !default page_name=$(name_$(job))
+    !if $job isitemof config
+      !set page_name=$name_configuration
+    !endif
+  !endif
+  !default page_name=$wims_name_userlistliving
+!endif
+
+!if $wims_user=supervisor
+!! ariane only for supervisor.
+  !set wims_ariane=!append line tchat,1,module=adm/class/tchat to $wims_ariane
+  !set wims_ariane=!append line "$page_name",8, to $wims_ariane
+  !set wims_ariane_self=no
+!endif
+
+!read lang.phtml.$lang
+!changeto $job.proc

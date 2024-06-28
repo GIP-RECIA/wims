@@ -1,0 +1,95 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_number,inequalities
+!set gl_title=Arrondi (collège)
+!set gl_level=H2 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définitions</h4>
+Soit \(x\) un nombre.<br>
+Si \(x\) est positif&nbsp;:
+<ul>
+<li>l'<strong>arrondi</strong> (ou <strong>valeur arrondie</strong>) de \(x\)
+<strong> à l'unité</strong> est le nombre entier \(a\) tel que
+<span style="white-space:nowrap">\(a-0,5 \leqslant x \lt a+0,5\) ;</span>
+</li>
+<li>
+l'<strong>arrondi</strong> (ou <strong>valeur arrondie</strong>) de \(x\) <strong>
+au dixième</strong> est le nombre décimal \(a\) tel que \(10 a\) est entier et
+<span style="white-space:nowrap">\(a-0,05 \leqslant x \lt a+0,05\) ;</span>
+</li>
+<li>
+l'<strong>arrondi</strong> (ou <strong>valeur arrondie</strong>) de \(x\) <strong>
+au centième</strong> est le nombre décimal \(a\) tel que \(100 a\) est entier et
+<span style="white-space:nowrap">\(a-0,005 \leqslant x \lt a+0,005\) ;</span>
+</li>
+<li>
+l'<strong>arrondi</strong> (ou <strong>valeur arrondie</strong>) de \(x\) <strong>
+au millième</strong> est le nombre décimal \(a\) tel que \(1000 a\) est entier
+et <span style="white-space:nowrap">\(a-0,0005 \leqslant x \lt a+0,0005\).</span>
+</li>
+</ul>
+
+Si \(x\) est négatif&nbsp;:
+<ul>
+<li>l'<strong>arrondi</strong> (ou <strong>valeur arrondie</strong>) de \(x\)
+<strong> à l'unité</strong> est le nombre entier \(a\) tel que
+<span style="white-space:nowrap">\(a-0,5 \lt x \leqslant a+0,5\) ;</span>
+</li>
+<li>
+l'<strong>arrondi</strong> (ou <strong>valeur arrondie</strong>) de \(x\) <strong>
+au dixième</strong> est le nombre décimal \(a\) tel que \(10 a\) est entier et
+<span style="white-space:nowrap">\(a-0,05 \lt x \leqslant a+0,05\) ;</span>
+</li>
+<li>
+l'<strong>arrondi</strong> (ou <strong>valeur arrondie</strong>) de \(x\) <strong>
+au centième</strong> est le nombre décimal \(a\) tel que \(100 a\) est entier et
+<span style="white-space:nowrap">\(a-0,005 \lt x \leqslant a+0,005\) ;</span>
+</li>
+<li>
+l'<strong>arrondi</strong> (ou <strong>valeur arrondie</strong>) de \(x\) <strong>
+au millième</strong> est le nombre décimal \(a\) tel que \(1000 a\) est entier
+et <span style="white-space:nowrap">\(a-0,0005 \lt x \leqslant a+0,0005 \).</span>
+</li>
+</ul>
+</div>
+<div class="wims_rem">
+<h4>Remarques</h4>
+<ul>
+<li>L'arrondi de \(x\) à l'unité est une valeur approchée de \(x\) à 1 près.<br>
+Si \(x\) est positif, cette valeur approchée est par défaut lorsque la première
+décimale de \(x\) est 0, 1, 2, 3 ou 4, par excès lorsque cette décimale est
+5, 6, 7, 8 ou 9.<br>
+Si \(x\) est négatif, cette valeur approchée est par excès lorsque la première
+décimale de \(x\) est 0, 1, 2, 3 ou 4, par défaut lorsque cette décimale est
+5, 6, 7, 8 ou 9.
+</li>
+<li>L'arrondi de \(x\) au dixième est une valeur approchée de \(x\) à 0,1 près.<br>
+Si \(x\) est positif, cette valeur approchée est par défaut lorsque la deuxième
+décimale de \(x\) est 0, 1, 2, 3 ou 4, par excès lorsque cette décimale est
+5, 6, 7, 8 ou 9.<br>
+Si \(x\) est négatif, cette valeur approchée est par excès lorsque la deuxième
+décimale de \(x\) est 0, 1, 2, 3 ou 4, par défaut lorsque cette décimale est
+5, 6, 7, 8 ou 9.
+</li>
+<li>L'arrondi de \(x\) au centième est une valeur approchée de \(x\) à 0,01 près.<br>
+Si \(x\) est positif, cette valeur approchée est par défaut lorsque la troisième
+décimale de \(x\) est 0, 1, 2, 3 ou 4, par excès lorsque cette décimale est
+5, 6, 7, 8 ou 9.<br>
+Si \(x\) est négatif, cette valeur approchée est par excès lorsque la troisième
+décimale de \(x\) est 0, 1, 2, 3 ou 4, par défaut lorsque cette décimale est
+5, 6, 7, 8 ou 9.
+</li>
+<li>L'arrondi de \(x\) au millième est une valeur approchée de \(x\) à 0,001 près.<br>
+Si \(x\) est positif, cette valeur approchée est par défaut lorsque la quatrième
+décimale de \(x\) est 0, 1, 2, 3 ou 4, par excès lorsque cette décimale est
+5, 6, 7, 8 ou 9.<br>
+Si \(x\) est négatif, cette valeur approchée est par excès lorsque la quatrième
+décimale de \(x\) est 0, 1, 2, 3 ou 4, par défaut lorsque cette décimale est
+5, 6, 7, 8 ou 9.
+</li>
+</ul>
+</div>

@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+display radian,red,22
+fillcolor orange
+opacity 200,50
+userdraw arc,blue

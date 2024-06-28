@@ -1,0 +1,13 @@
+<h2>Les différents fichiers modifiables :</h2>
+<p>Chaque fichier possède une version pour chaque langue du serveur.</p>
+
+<h3>Page d'accueil serveur</h3>
+<p>Le message est affiché sur la page d'accueil du serveur pour tous les visiteurs.
+  Le style CSS utilisé est <span class="wims_code_words">wims_motd</span>.</p>
+<div class="wims_motd">Exemple d'affichage avec ce style.</div>
+
+<h3>Page d'accueil supervisor</h3>
+<p>Le message est affiché sur la page d'accueil des classes,
+  seulement pour l'enseignant superviseur de la classe.
+  Le style CSS utilisé est <span class="wims_code_words">wims_class_manager_msg</span>.</p>
+<div class="wims_class_manager_msg">Exemple d'affichage avec ce style.</div>

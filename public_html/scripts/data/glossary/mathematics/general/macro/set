@@ -1,0 +1,16 @@
+!set gl_n=!randint 3,10
+!set gl_m=!randint 3,10
+
+!set gl_L=A,B,C,D,R,F,G,H,I,J
+!set gl_A=!shuffle $gl_L
+!set gl_A=$(gl_A[1..$gl_n])
+!set gl_A=!sort item $gl_A
+!set gl_B=!shuffle $gl_L
+!set gl_B=$(gl_B[1..$gl_m])
+!set gl_B=!sort item $gl_B
+
+!set gl_I=!listintersect $gl_A and $gl_B
+!set gl_U=!listuniq $gl_A,$gl_B
+!set gl_I=!sort item $gl_I
+!set gl_U=!sort item $gl_U
+!set gl_length_I=!itemcnt $gl_I

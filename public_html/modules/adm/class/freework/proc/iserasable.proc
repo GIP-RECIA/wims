@@ -1,0 +1,14 @@
+!! check if the freework wims_read_parm is erasable or not.
+min_=0
+!for k_=1 to $nbfreework
+  t_=!record $k_ of wimshome/log/classes/$wims_class/freeworks/.freeworks
+  t_=!line 1 of $t_
+  !if $t_>0
+    min_=$k_
+  !endif
+!next k_
+!if $wims_read_parm>$min_
+  erasable=yes
+!else
+  erasable=no
+!endif

@@ -1,0 +1,32 @@
+!!##should allow to have only one module by language
+
+!!set class_lang=!defof class_lang in wimshome/log/classes/$wims_class/.def
+
+!let moduclass_lang=$lang
+!! this test must be keeped for background compatibility since modification of all modules use script langclass by call langclass names.phtml instead of lang/names.phtml
+!if $wims_read_parm!=names.phtml and $wims_read_parm!=$empty
+  !let script_file=!word 1 of $wims_read_parm
+  !let nb_=!wordcnt $wims_read_parm
+  !if $nb_>1
+    !let script_param=!word 2 to -1 of $wims_read_parm
+  !else
+    !reset script_param
+  !endif
+!else
+  !let script_file=lang/names.phtml
+  !reset script_param
+!endif
+!reset lang_exists
+!read $(script_file).$moduclass_lang $script_param
+!if $lang_exists!=yes
+  !let moduclass_lang=en
+  !read $(script_file).$moduclass_lang $script_param
+!endif
+
+!set module_language=$lang
+!set tmp=!replace internal / by _ in $module/$(script_file)
+!set tmp=!nospace $tmp
+!read themes/_lang/$tmp.$lang
+!read themes/$wims_theme/lang/$tmp.$lang
+
+!!########

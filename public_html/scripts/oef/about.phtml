@@ -1,0 +1,156 @@
+!! About window for an OEF module / exercise
+
+!set email=!trim $email
+!set author=!trim $author
+
+!set embedabble_height= 600
+!set embedabble_width= 100%
+
+!if $thisexo != $empty
+<p>
+  $name_about1
+  <a href="$wims_ref_name?module=help/teacher/faq&amp;job=oef" target="_blank">
+  <abbr lang="en" title="Online Exercise Format">OEF</abbr></a>.
+</p>
+
+!read ./tabletheme
+!reset table_center
+$table_header
+  <caption>$wims_name_exo_infos</caption>
+  <tbody>
+  !if $author!=$empty
+    !! define $script_cnt, script_out in a standarized form depending on language (scripts/name.phtml)
+    !read namewriting.phtml $author
+    $table_tr
+      <th>$wims_name_Author</th>
+      <td>
+        !set email=!replace internal ; by , in $email
+        !for au=1 to $script_cnt
+          !if $(email[$au])!=$empty
+            !mailurl $(email[$au]) $(script_out[$au])
+          !else
+            $(script_out[$au])
+          !endif
+          $
+        !next
+      </td>
+    </tr>
+  !endif
+  $table_tr
+    <th>$wims_name_Address</th>
+    <td>
+      !if $exo!=$empty
+        $module&$module_init_parm
+      !else
+        $module
+      !endif
+    </td>
+  </tr>
+  !if $solution$hint!=$empty
+    $table_tr
+      <th>$name_Solution / $name_Hint</th>
+      <td>
+        !if $solution!=$empty and $hint!=$empty
+          $name_hint1
+        !endif
+        !if $solution!=$empty and $hint=$empty
+          $name_hint2
+        !endif
+        !if $solution=$empty and $hint!=$empty
+          $name_hint3
+        !endif
+        !if $solution$hint=$empty
+          $name_hint4
+        !endif
+      </td>
+    </tr>
+  !endif
+  !if $keywords!=$empty
+    $table_tr<th>$wims_name_Keywords</th>
+    <td>$keywords</td></tr>
+  !endif
+  !if $oefobservation!=$empty and $wims_user=supervisor
+    $table_tr<th>$name_Observation</th>
+    <td>$oefobservation</td></tr>
+  !endif
+  !if $translation_language!=$empty
+    $table_tr<th>$wims_name_Language</th>
+    <td>
+    !module language $module
+    $translation_language</td></tr>
+  !endif
+  $table_tr
+    !if $module_init_parm == $empty
+      !set permalien=$wims_ref_name?module=$module
+      !set permalien1=$wims_ref_name?module=adm/raw&amp;emod=$module
+    !else
+      !set exolink=$wims_ref_name?module=$module&amp;cmd=new&amp;exo=$thisexo
+      !set configlink=$wims_ref_name?module=$module&amp;cmd=new&amp;$module_init_parm
+      !set module_init_parm1=!replace internal &amp;+ by ; in $module_init_parm
+      !set module_init_parm1=!replace internal &amp; by ; in $module_init_parm1
+      !set module_init_parm1=!replace internal & by ; in $module_init_parm1
+      !set module_init_parm1=cmd=new;$module_init_parm1
+      !set configlink1=$wims_ref_name?module=adm/raw&job=lightpopup&emod=$module&parm=$module_init_parm1&option=noabout
+      !read ./oef/urlencode.proc
+    !endif
+    <th>$wims_name_permalink</th>
+    <td>
+      $wims_name_permalink_desc
+      <ul>
+        !set exolink=$wims_ref_name?module=$module&amp;cmd=new&amp;exo=$thisexo
+        <li>$name_linkfor $wims_name_this_exercice :
+          <a href="$exolink">$exolink</a>
+        </li>
+        !if $module_init_parm!=$empty
+          !set configlink=$wims_ref_name?module=$module&cmd=new&$module_init_parm
+          <li>$name_linkfor $wims_name_this_config:
+            <a href="$configlink">$configlink</a>
+          </li>
+          !set module_init_parm1=!replace internal &amp;+ by ; in $module_init_parm
+          !set module_init_parm1=!replace internal &amp; by ; in $module_init_parm1
+          !set module_init_parm1=!replace internal &+ by ; in $module_init_parm1
+          !set module_init_parm1=!replace internal & by ; in $module_init_parm1
+          !set module_init_parm1=cmd=new;$module_init_parm1
+          !set configlink1=$wims_ref_name?module=adm/raw&job=lightpopup&emod=$module&parm=$module_init_parm1&option=noabout
+          <li>"light" link (without interface) :
+            <a href="$configlink1">$configlink1</a>
+          </li>
+          <!--li>Beta : <a href="$widget_link">Download a widget for Apple iBooks Author</a></li-->
+        !endif
+      </ul>
+    </td>
+  </tr>
+  $table_tr
+    <th>$wims_name_embeddable</th>
+    <td class="field">
+      <p>$wims_name_copy_and_paste $wims_name_the_code $wims_name_on_your_site</p>
+      <ul>
+        !set exolink=$wims_ref_name?module=$module&amp;cmd=new&amp;exo=$thisexo
+        <li>
+          <label for="embed_one_exo">$wims_name_display <strong>$wims_name_this_exercice</strong> $wims_name_on_your_site:</label>
+          <textarea id="embed_one_exo" class="copy_text" rows="3" cols="50" readonly="readonly" >&lt;iframe src="$exolink&amp;embededwindow=true" width="$embedabble_width" height="$embedabble_height"&gt;&lt;/iframe&gt;</textarea>
+        </li><li>
+          !if $module_init_parm!=$empty
+            !set exolink=$wims_ref_name?module=$module&amp;cmd=new&amp;$module_init_parm
+          !else
+            !set exolink=$wims_ref_name?module=$module&amp;cmd=new
+          !endif
+          <label for="embed_setup">$wims_name_display <strong>$wims_name_this_config</strong> $wims_name_on_your_site:</label>
+          <textarea id="embed_setup" class="copy_text" rows="3" cols="50" readonly="readonly">&lt;iframe src="$configlink&amp;embededwindow=true" width="$embedabble_width" height="$embedabble_height"&gt;&lt;/iframe&gt;</textarea>
+        </li><li>
+          <label for="embed_setup_light">$wims_name_display <strong>$wims_name_this_config</strong> $wims_name_on_your_site ("light" version):</label>
+          <textarea id="embed_setup_light" class="copy_text" rows="3" cols="50" readonly="readonly">&lt;iframe src="$configlink1" width="$embedabble_width" height="$embedabble_height"&gt;&lt;/iframe&gt;</textarea>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  </tbody>
+$table_end
+<p class="name_collection">$name_collection</p>
+<hr>
+!endif
+
+<div id="module_about">$module_about</div>
+<p>$name_copyr</p>
+
+!changeto NEWS.phtml

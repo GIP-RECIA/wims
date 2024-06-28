@@ -1,0 +1,7 @@
+!set helplist=oef,examples,format,parameters,oefparm,reply,embedans,\
+  feedback,math,draw,draw_example,oefspecial,oefadv,symtext,\
+  oefscore,model,if,css
+!for sj in $helplist
+  <br class="spacer">
+  !read help/$sj.phtml
+!next sj

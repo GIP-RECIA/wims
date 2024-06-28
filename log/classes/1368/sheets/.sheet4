@@ -1,0 +1,83 @@
+Oltre il contare
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+integers,primes,euclidean_algorithm,gcd_lcm,relative_number
+Marina, Cazzola
+wims@unimib.it
+
+
+:H1/algebra/addfig.en
+exo=pyramid1&exo=pyramid2&exo=pyramid1c&exo=pyramid1d&confparm1=5&confparm2=0&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Numeri interi: somma
+Acquisire familiarità con la somma di numeri interi relativi: risolvere semplici problemi.
+
+:E6/number/orderange.en
+exo=relint3&exo=relint2&exo=relint1&confparm1=4&confparm2=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Numeri interi: ordinamento
+Ordinare i numeri intersi secondo l'ordinamento naturale di Z.
+
+:H3/algebra/arithtable.en
+exo=table3x3&confparm1=2&confparm2=4&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Numeri interi: prodotti e scomposizioni
+Acquisire familiarità con il prodotto di numeri interi (e con l'operazione inversa del prodotto, utilizzando la scomposizione in fattori primi).
+
+
+module=adm/doc&doc=c1&block=scomp&cmd=new&job=read,10,0
+:U1/arithmetic/oefeuclide.fr
+exo=quickeucl&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Numeri interi: divisione euclidea
+Effettuare la divisione euclidea (prestando attenzione alla definizione di quoziente e resto).
+
+:U1/arithmetic/oefeuclide.fr
+exo=caisse&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Cassette
+Semplici problemi risolvibili con l'ausilio della divisione euclidea in Z.
+
+:U1/arithmetic/oefeuclide.fr
+exo=diveucl3&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Divisione euclidea #1
+Problemi sulla divisione euclidea.
+
+:U1/arithmetic/oefeuclide.fr
+exo=diveucl2&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Divisione euclidea e resti
+Individuare tutti i resti possibili di alcune divisioni euclidee tra numeri interi.
+
+:U1/arithmetic/oefeuclide.fr
+exo=diveucl&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Divisione euclidea #2
+Individuare numeri interi che rispettino condizioni su quoziente e resto quando si effettua una divisione euclidea.
+
+:U1/arithmetic/oefgcd.en
+exo=gcdfind&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Calcolo MCD #1
+Eseguire il calcolo del Massimo Comun Divisore tra due numeri interi.
+
+:U1/arithmetic/oefgcd.en
+exo=gcdfind3&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Calcolo MCD #2
+Eseguire il calcolo del Massimo Comun Divisore tra tre numeri interi.
+

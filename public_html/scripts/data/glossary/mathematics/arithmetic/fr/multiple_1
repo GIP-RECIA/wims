@@ -1,0 +1,14 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Multiple d'un entier naturel (exemple)
+
+!readproc data/glossary/mathematics/arithmetic/macro/multiple
+
+<div>
+Les \($gl_nbmult\) premiers multiples de \($gl_nb\) sont \( $gl_listmultaff2\) et <span class="nowrap">\($(gl_listmultaff[-1])\).</span>
+</div>
+<ul class="wims_nopuce">
+	!for kk=1 to $gl_nbmult
+	<li>\($(gl_listmultnoneval2[$kk]) = $(gl_listmultaff[$kk])\)</li>
+	!next kk
+</ul>

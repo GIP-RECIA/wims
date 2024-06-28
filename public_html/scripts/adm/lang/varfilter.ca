@@ -1,0 +1,5 @@
+!set lang_exists=yes
+
+!set name_filter=Podeu filtrar d'acord amb una variable tècnica (propietats de l'alumnat)
+!set name_filtertitle=Selecció de l'alumnat per variables tècniques
+!set name_clear=Reinicialitzar

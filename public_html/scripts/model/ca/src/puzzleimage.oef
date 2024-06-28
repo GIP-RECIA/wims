@@ -1,0 +1,57 @@
+type=order
+textarea="instruction data"
+iEdit="instruction"
+
+:Reconstrueix una imatge (tipus trencaclosques).
+
+Una imatge es talla en trossos i les peces es posen desordenades.
+Es tracta de reconstruir la imatge.
+A cada acció només podem canviar dos trossos: per això,
+feu clic al primer i després al segon.
+
+<p class="wims_credits">
+Autor del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+:\title{Trencaclosques d'imatges}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciat
+\text{instruction=Mettre l'image dans l'ordre.
+Pour échanger deux cartes, cliquer sur la première puis sur la seconde.}
+
+:Dades principals.
+Cada línia correspon a una imatge. El primer element és el nom de la imatge
+que s'ha de carregar a la carpeta d'imatges de l'exercici una vegada que l'exercici s'hagi desat.
+El segon element és la mida de la imatge.
+El tercer element indica els trossos.
+El quart element és opcional i pot ser una indicació o el nom de la imatge.
+\text{data=photos/bird.gif,320x240,4 x 3,il s'agit d'un oiseau.
+photos/bloom.gif,320x240,3 x 4
+}
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+
+\text{data=randrow(\data)}
+
+\text{v=wims(replace internal x by , in \data[3])}
+\integer{taille=80*\v[1]}
+
+\statement{
+  <div style="padding:10px;">
+    <div class="instruction">\instruction</div>
+    \if{\data[4] !=}{
+      <strong>\data[4]</strong>
+    }
+  </div>
+  <div class="wimscenter">\embed{r 1, \data[2]}</div>
+}
+
+\answer{1}{\data[1];\data[3] x 80}{type=puzzle}{option=nonstop}

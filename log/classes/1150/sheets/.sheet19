@@ -1,0 +1,35 @@
+:H2/geometry/solide6-5.fr
+exo=solide7&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Nommer les côtés dans l'espace
+
+
+
+
+
+:H2/geometry/solide6-5.fr
+exo=solide10&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Nommer les faces dans l'espace
+
+
+
+
+
+:E5/geometry/oefgeo3D.fr
+exo=patron&confparm1=2&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Reconnaître le patrons d'un cube
+
+
+
+
+
+:E5/geometry/oefgeo3D.fr
+exo=reconnaissance&confparm1=2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Reconnaître des solides

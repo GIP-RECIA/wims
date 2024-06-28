@@ -1,0 +1,32 @@
+
+
+!if $classexists=yes
+  $name_msgclassexists
+  <ul>
+    <li>
+      !href cmd=reply&+module=$module&+job=$job&+delete=yes $wims_name_delete
+      $name_comp_delete
+    </li>
+    <li>
+      !href cmd=reply&+module=$module&+job=list $name_view
+      $name_comp_view
+    </li>
+  </ul>
+!else
+  !set wims_form_method=file
+  !form reply
+  <fieldset class="property_fields blockcenter">
+    <legend>$name_title_restore</legend>
+    <input type="hidden" name="job" value="upload" >
+    <div class="field box fullwidth">
+!!        !set wims_ref_class=wims_button_help float_right
+!!        !href cmd=help&special_parm=upload $wims_name_help
+        <label for="wims_deposit">$name_introsave</label>
+        <input type="file" name="wims_deposit" id="wims_deposit" size="40" >
+    </div>
+    <div class="wimscenter">
+        <input type="submit" value="$wims_name_send" >
+    </div>
+  </fieldset>
+  !formend
+!endif

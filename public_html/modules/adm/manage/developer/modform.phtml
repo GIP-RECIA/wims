@@ -1,0 +1,41 @@
+
+!! for cn versions : can be redefined in lang/names.phtml.xx
+!default name_name=$wims_name_name
+!form reply
+  <input type="hidden" name="job2" value="mod2">
+  <fieldset class="property_fields halfwidth blockcenter">
+    !if $devno>0
+      <legend>$name_modification</legend>
+    !else
+      <legend>$wims_name_adddevel</legend>
+      <p>$name_add</p>
+    !endif
+    <div class="field box">
+      <label for="devlogin">$wims_name_Login</label>
+      <input type="text" name="devlogin" id="devlogin" value="$login" required="required">
+    </div>
+    <div class="field box">
+      <label for="devpasswd">$wims_name_Password</label>
+      <input type="password" size="16" name="devpasswd" id="devpasswd"
+      !if $devno>0>
+        <div class="formHelp">$name_mod_password</div>
+      !else
+        required="required">
+      !endif
+    </div>
+    <div class="field box">
+      <label for="devname">$name_name</label>
+      <input type="text" name="devname" id="devname" value="$name" required="required">
+      <div class="formHelp tt">$wims_name_firstname,$wims_name_lastname</div>
+    </div>
+    <div class="field box">
+      <label for="devemail">$wims_name_email</label>
+      <input name="devemail" id="devemail" value="$email" type="email" required="required">
+    </div>
+    <div class="wimscenter wimsform">
+      <input type="submit" value="$wims_name_tosave">
+    </div>
+  </fieldset>
+!formend
+
+!reset devlogin, devpasswd, devname, devemail

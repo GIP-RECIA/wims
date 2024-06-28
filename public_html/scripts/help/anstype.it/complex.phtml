@@ -1,0 +1,34 @@
+ <strong>Numeri complessi.</strong> (nome: <span class="tt wims_code_words">complex</span>)<br>
+ Confronto di numeri complessi con la precisione definita dall'autore.
+
+ <ul><li>
+ Se è presente l'opzione <span class="tt wims_code_words">comma</span> è
+ accettata la virgola come separatore per i decimali
+ (ma in fase di programmazione la risposta corretta deve essere indicata
+ utilizzando il punto come separatore). Se la risposta è sbagliata,
+ la risposta corretta viene mostrata utilizzando la stessa convenzione
+ utilizzata dallo studente.
+</li><li>
+ La precisione può essere data nel campo <span class="tt wims_code_words">precision</span>,
+ è 1000 di default.
+ <p>
+La valutazione dell'errore è di default relativa: la differenza deve essere
+in modulo inferiore o uguale a
+<span class="tt">(good_answer+reply)/precision</span> (sostituire
+<span class="tt">precision</span> con <span class="tt">sqrt(precision)</span>
+per valutare una risposta parzialmente corretta).
+</p><p>
+Se è presente l'opzione <span class="tt wims_code_words">absolute</span>,
+la precisione è assoluta.
+La risposta viene valutata parzialmente corretta se la differenza è inferiore a
+<span class="tt">10/precision</span>.
+</p>
+</li><li>
+Se è presente l'opzione <span class="tt wims_code_words">j</span>, le
+risposte di tipo <span class="tt">2+7*j</span> sono accettate esattamente come
+se fossero risposte di tipo <span class="tt">2+7*i</span>. Se la risposta
+è sbagliata, la risposta corretta viene mostrata utilizzando la stessa
+convenzione utilizzata dallo studente. In ogni caso, in fase di programmazione
+deve essere utilizzata la lettera <span class="tt">i</span> per i calcoli
+preliminari e la scrittura della risposta corretta.
+</li></ul>

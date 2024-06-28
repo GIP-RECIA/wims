@@ -1,0 +1,173 @@
+1d:
+2d:
+2d donne trace:stat/2d/plot
+2d equation implicite:geom/cart/impli2d
+2d trace de donne:stat/2d/plot
+3d:
+3d equation implicite:geom/cart/impli3d
+3d equation implicite:geom/cart/impli3dc
+4d:
+\:stat/2d/plot
+angle:geom/eucl/angle
+approximation par un nombre rationnel:arith/ratapprox
+approximation rationnel:arith/ratapprox
+argument:numeric/complex
+carre minimal:stat/2d/linear
+cercle:geom/eucl/circle
+charpoly:linalg/charpoly
+coefficient de correlation:stat/2d/lincorr
+coefficient de correlation lineaire:stat/2d/lincorr
+conversion d angle:geom/eucl/angle
+convertir en decimal:prealg/decimal
+convertir en fraction:prealg/fraction
+convertir en nombre decimal:prealg/decimal
+correlation lineaire:stat/2d/lincorr
+courbe implicite 2d:graphing/implot2d
+courbe parametre a implicite 2d:geom/cart/impli2d
+courbe parametre a implicite 3d:geom/cart/impli3dc
+courbe plane implicite:graphing/implot2d
+decimal:prealg/decimal
+denominateur en commun:prealg/denom
+denominator:prealg/denom
+derive:calculus/derivative
+derive de fonction implicite:calculus/impder
+derive implicite:calculus/impder
+det:linalg/det
+determinant:linalg/det
+developpement:expand
+developper:expand
+deviation:stat/1d/deviat
+differentiation:calculus/derivative
+differentiation de fonction implicite:calculus/impder
+dispersion:stat/1d/deviat
+donne 2d trace:stat/2d/plot
+donne etendu:stat/1d/range
+donne mediane:stat/1d/median
+donne produit:stat/1d/prod
+donne somme:stat/1d/sum
+droite definie par 2 point:geom/cart/line2pts
+droite par deux point:geom/cart/line2pts
+droite passant par 2 point:geom/cart/line2pts
+droite sur 2 point:geom/cart/line2pts
+ecart type:stat/1d/deviat
+ecart type avec poid:stat/1dw/deviat
+equation d un cercle:geom/cart/circleq
+equation implicite 2d:geom/cart/impli2d
+equation implicite 3d:geom/cart/impli3dc
+equation implicite 3d:geom/cart/impli3d
+equation implicite d une courbe d espace:geom/cart/impli3dc
+equation implicite d une courbe plane:geom/cart/impli2d
+equation implicite d une surface:geom/cart/impli3d
+etendu de donne:stat/1d/range
+etendu de donne avec poid:stat/1dw/range
+etendu statistique:stat/1d/range
+etendu statistique avec poid:stat/1dw/range
+evaluation:evaluate
+evaluation modulaire:arith/modular/evaluate
+evaluation modulo:arith/modular/evaluate
+evaluer:evaluate
+evaluer et simplifier:simplify
+evaluer modulo:arith/modular/evaluate
+factoriel:combi/factorial
+factorisation:arith/factor
+factorise:arith/factor
+factoriser:arith/factor
+fonction compose:func/subst
+fonction substitution:func/subst
+fraction:prealg/fraction
+graphe de frequence:stat/1d/freqplot
+graphe de frequence avec poid:stat/1dw/freqplot
+histogramme:stat/1d/freqplot
+histogramme avec poid:stat/1dw/freqplot
+integral:calculus/integrate
+integral definie:calculus/defint
+integration:calculus/integrate
+inverse de matrice:linalg/inverse
+lim:calculus/lim
+limite:calculus/lim
+line fitting:stat/2d/linear
+matrice inverse:linalg/inverse
+matrice rang:linalg/rank
+matrice trace:linalg/trace
+mediane de donne:stat/1d/median
+mediane statistique:stat/1d/median
+modulo evaluer:arith/modular/evaluate
+moyen:stat/1d/arithmean
+moyen arithmetique:stat/1d/arithmean
+moyen arithmetique avec poid:stat/1dw/arithmean
+moyen geometrique:stat/1d/geomean
+moyen geometrique avec poid:stat/1dw/geomean
+moyen harmonique:stat/1d/harmonic
+moyen poid:stat/1dw/arithmean
+moyen quadratique:stat/1d/quadratic
+nombre complexe:numeric/complex
+nombre complexe racine:numeric/complexroots
+nombre decimal:prealg/decimal
+numerique simplification:numeric_simplify
+parametre a implicite 2d:geom/cart/impli2d
+parametre a implicite 3d:geom/cart/impli3dc
+parametre a implicite 3d:geom/cart/impli3d
+partie imaginaire:numeric/complex
+partie reel:numeric/complex
+percent:prealg/percent
+pgcd:arith/gcd
+plu grand commun diviseur:arith/gcd
+plu petit commun multiple:arith/lcm
+poid ecart type:stat/1dw/deviat
+poid etendu:stat/1dw/range
+poid histogramme:stat/1dw/freqplot
+poid moyen:stat/1dw/arithmean
+poid moyen arithmetic:stat/1dw/arithmean
+poid moyen geometrique:stat/1dw/geomean
+poid produit:stat/1dw/prod
+poid somme:stat/1dw/sum
+polynome caracteristique:linalg/charpoly
+polynome racine:polynom/root
+pourcentage:prealg/percent
+ppcm:arith/lcm
+primitif:calculus/integrate
+produit avec poid:stat/1dw/prod
+produit de donne:stat/1d/prod
+produit de donne avec poid:stat/1dw/prod
+produit statistique avec poid:stat/1dw/prod
+racine complexe:numeric/complexroots
+racine d un nombre complexe:numeric/complexroots
+racine de polynome:polynom/root
+racine polynomial:polynom/root
+rang:linalg/rank
+rang d une matrice:linalg/rank
+regression lineaire:stat/2d/linear
+regression lineaire 2d:stat/2d/linear
+regression quadratique:stat/2d/quad
+regression quadratique 2d:stat/2d/quad
+resoudre:solve
+resoudre numeriquement:numeric/solve
+resoudre un systeme lineaire:linalg/solve
+simplifier:simplify
+simplifier numeriquement:numeric_simplify
+solution de systeme:linalg/solve
+solution numerique:numeric/solve
+somme avec poid:stat/1dw/sum
+somme de donne:stat/1d/sum
+somme de donne avec poid:stat/1dw/sum
+somme statistique avec poid:stat/1dw/sum
+substitu:func/subst
+substitution:func/subst
+surface parametre a implicite:geom/cart/impli3d
+systeme lineaire:linalg/solve
+trace de courbe implicite:graphing/implot2d
+trace de donne 2d:stat/2d/plot
+trace de droite:graphing/lineplot
+trace de frequence:stat/1d/freqplot
+trace de frequence avec poid:stat/1dw/freqplot
+trace de matrice:linalg/trace
+trace implicite:graphing/implot2d
+tracer courbe implicite:graphing/implot2d
+tracer courbe plane implicite:graphing/implot2d
+tracer droite implicite:graphing/lineplot
+tracer droite par equation:graphing/lineplot
+tracer une droite:graphing/lineplot
+triangle avec cote:geom/eucl/triangsid
+triangle avec cote donne:geom/eucl/triangsid
+triangle avec sommet:geom/cart/triangle
+triangle avec sommet donne:geom/cart/triangle

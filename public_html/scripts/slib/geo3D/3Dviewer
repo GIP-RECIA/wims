@@ -1,0 +1,102 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=Bernadette, Perrin-Riou
+slib_title=3Dviewer
+
+slib_example=j87_augmented_sphenocorona,bondcolor=red id=1 show=[,AA,FF]\
+rhombicosidodecahedron,label=false scale=1 height=400 width=400 bgcolor=blue id=2\
+cube,label=false scale=0.8 height=300 width=300 id=3 show=[,AA,FF]\
+[14,6;-1.00,-1.00,-1;1.00,-1.00,-1;1.00,1.00,-1;-1.00,1.00,-1;-1.00,-1.00,1.00;1.00,-1.00,1.00;-1.00,1.00,-1.00;-1.00,1.00,1.00;1.00,1.00,-1.00;1.00,1.00,1.00;-1.00,-1.00,1.00;1.00,-1.00,1.00;1.00,-1.00,1.00;1.00,1.00,1.00;4,10,7,9,11;4,6,8,9,7;4,0,6,7,4;4,2,1,12,13;4,1,0,4,5;4,0,1,2,3],bondcolor=red scale=0.8 height=500 width=500 show=[,AA,FF]\
+[14,6;-1.00,-1.00,-1;1.00,-1.00,-1;1.00,1.00,-1;-1.00,1.00,-1;-1.00,-3.00,-1.00;1.00,-3.00,-1.00;-3.00,-1.00,-1.00;-3.00,-3.00,-1.00;-5.00,-1.00,-1.00;-5.00,-3.00,-1.00;-3.00,-5.00,-1.00;-5.00,-5.00,-1.00;3.00,-1.00,-1.00;3.00,1.00,-1.00;4,10,7,9,11;4,6,8,9,7;4,0,6,7,4;4,2,1,12,13;4,1,0,4,5;4,0,1,2,3],bondcolor=blue scale=0.8 height=500 width=500 show=[,AA,FF]\
+[14,6;-1.00,-1.00,-1;1.00,-1.00,-1;1.00,1.00,-1;-1.00,1.00,-1;-1.00,-2.41,0.414;1.00,-2.41,0.414;-2.41,3.25E-19,-2.17E-19;-2.41,-1.41,1.41;-2.41,1.41,1.41;-2.41,0.E-18,2.83;-1.00,-2.41,2.41;-1.00,-1.00,3.83;2.41,-1.00,0.414;2.41,1.00,0.414;4,10,7,9,11;4,6,8,9,7;4,0,6,7,4;4,2,1,12,13;4,1,0,4,5;4,0,1,2,3],scale=0.8 height=500 width=500 show=[,AA,FF]\
+[14,6;-1.00,-1.00,-1;1.00,-1.00,-1;1.00,1.00,-1;-1.00,1.00,-1;-1.00,-1.62,0.902;1.00,-1.62,0.902;-1.62,0.809,-0.412;-1.62,0.191,1.49;4.34E-19,1.93,-0.0489;4.34E-19,1.31,1.85;-0.500,-1.46,1.60;1.12,-0.345,1.97;1.62,-1.00,0.902;1.62,1.00,0.902;4,10,7,9,11;4,6,8,9,7;4,0,6,7,4;4,2,1,12,13;4,1,0,4,5;4,0,1,2,3],scale=0.8 height=500 width=500 show=[SS,AA,FF]\
+[[3,1;1,0,0;0,1,0;0,0,1],[3,1;1,0,0;0,1,0;0,0,2],[3,1;1,0,0;0,1,0;0,0,3];3,0,1,2],bondcolor=red scale=0.8 height=500 width=500 show=[,AA,FF] id=tr animstep=3\
+[[3,1;1,0,0;0,1,0;0,0,1;3,0,1,2],[3,1;1,0,0;0,1,0;0,0,2;3,0,1,2],[3,1;1,0,0;0,1,0;0,0,3;3,0,1,2]],bondcolor=red scale=0.8 height=500 width=500 show=[,AA,FF] id=ts animstep=3
+
+!exit
+
+:proc
+!reset slib_option slib_scriptanim slib_format slib_animstep facecolor bondcolor atomcolor
+slib_data =!item 1 of $wims_read_parm
+
+slib_data=!declosing $slib_data
+slib_option= !item -1 of $wims_read_parm
+
+!for slib_a in animstep label,scale,box,bonds,bgcolor,bondcolor,atomcolor,facecolor,format,width,height,id, show
+  !reset slib_$slib_a
+  slib_$slib_a=!getopt $slib_a in $slib_option
+!next slib_a
+!default slib_animstep=1
+!default slib_label=false
+!default slib_bgcolor=white
+!default slib_bondcolor=yellow
+!default slib_box=true
+!default slib_bonds=true
+!default slib_scale=0.8
+!default slib_width=400
+!default slib_height=400
+!default slib_id=!randint 1000,3000
+slib_out=
+slib_cnt_word=!wordcnt $slib_data
+slib_cnt_item=!itemcnt $slib_data
+!if $slib_cnt_word=1 and $slib_cnt_item=1
+  slib_data=!record 0 of data/polyedre_off/$slib_data.off
+  slib_format=off
+  slib_atomes=$slib_data
+  slib_atomes=!translate ; to $\
+$ in $slib_atomes
+!else
+  !if $slib_animstep>1
+    slib_atomes=$(slib_data[1;])
+    !for slib_k=1 to $slib_animstep
+      !set slib_atomes$slib_k=!item $slib_k of $slib_atomes
+      !set slib_atomes$slib_k=!declosing $(slib_atomes$slib_k)
+      !set slib_atomes$slib_k=!replace internal , by $ $ in $(slib_atomes$slib_k)
+      !set slib_atomes$slib_k=!translate ; to $\
+$ in $(slib_atomes$slib_k)
+      !set slib_atomes$slib_k=!translate $	$ to $\
+$ in $(slib_atomes$slib_k)
+    !next
+    !set slib_faces=$(slib_data[2..-1;])
+    !set slib_tmp=!declosing $slib_faces
+    !for slib_k=1 to $slib_animstep
+      !if $slib_tmp=$slib_faces
+        !set slib_faces$slib_k=$(slib_faces)
+      !else
+        !set slib_faces$slib_k=$(slib_tmp[$slib_k;])
+      !endif
+    !set slib_faces$slib_k=!replace internal , by $ $ in $(slib_faces$slib_k)
+    !set slib_faces$slib_k=!translate $	$ to $\
+$ in $(slib_faces$slib_k)
+    !next
+  !else
+    slib_data=!replace internal , by $ $ in $slib_data
+    slib_atomes=!translate $	$ to $\
+$ in $slib_data
+  !endif
+!endif
+
+!default slib_show=,AA,
+!!careful confusion with slib_width in off2jmol
+!set slib_width_v=$(slib_width)
+!set slib_height_v=$(slib_height)
+!!! FIXME: séparer en deux les deux générations de fichiers.
+!if $slib_animstep=1
+  !readproc slib/geo3D/off2jmol $slib_atomes,[$slib_show],[ ,$slib_bondcolor,],[0.01,0.01],url distance
+  !readproc slib/chemistry/jmolshow $(slib_out[2]),$slib_height_v,$slib_width_v,$slib_bgcolor,script "$(slib_out[1])"; zoom 130,$(slib_id)
+!else
+  !set slib_spt=yes
+  !for slib_k=1 to $slib_animstep
+    !set slib_dat=$(slib_atomes$slib_k)\
+$(slib_faces$slib_k)
+!readproc slib/geo3D/off2jmol [$slib_dat],[$slib_show],[ ,$slib_bondcolor,],[0.01,0.01],url distance id=$(slib_id)_$slib_k spt=$slib_spt
+    !set slib_filespt$slib_k=$(slib_out[1])
+    !set slib_scriptanim=!append item ['load $(slib_out[2]);load $(slib_filespt$slib_k)', "$[$slib_k-1]"]\
+  to $slib_scriptanim
+  !next
+  !set slib_scriptanim=<script>Jmol.jmolRadioGroup(XXXXX,[$slib_scriptanim])</script>
+  !readproc slib/chemistry/jmolshow $(slib_out[2]),$slib_height_v,$slib_width_v,$slib_bgcolor,script "$(slib_out[1])"; zoom 130,$(slib_id)
+!endif
+$slib_out

@@ -1,0 +1,85 @@
+!!
+!! page edition to add exo to a freework of type=4
+!!
+
+!if $cmd=new or $cmd=resume
+  <p>
+    $name_insert <span class="tt wims_fname">$dir</span>
+    !if $iniparm!=$empty
+      $name_parm
+      <span class="tt wims_parm">
+        !replace internal & by &amp; in $iniparm
+      </span>
+    !endif
+  </p>
+  <p>$name_choose_exo</p>
+  !form reply
+    <input type="hidden" name="job" value="addexo" >
+    <fieldset class="property_fields halfwidth blockcenter">
+    <legend>$wims_title_title</legend>
+    <div class="field box">
+      <label for="pickfreework">$name_choose</label>
+      <select name="pickfreework" id="pickfreework">
+        !for i=1 to $freeworkscnt
+          !set sh=!line $i of $freeworkslist
+          !set se=!item 1 of $sh
+          !set ti=!item 2 to -1 of $sh
+          !if $se=$freeworkscnt
+            <option value="$se" selected="selected">$wims_name_Freework $se: $ti</option>
+          !else
+            <option value="$se">$wims_name_Freework $se: $ti</option>
+          !endif
+        !next i
+      </select>
+    </div>
+    !set iniparm1=!replace internal & by $ $ in $iniparm
+    !set exo=!getopt exo in $iniparm1
+    !if __classes/ isin __$dir
+      !set title1=!lookup $exo in wimshome/log/classes/$wims_class/Extitles
+    !else
+      !if $tr_lang=yes
+        !set title1=!lookup $exo in wimshome/public_html/modules/$dir/Extitles_$lang
+      !endif
+      !default title1=!lookup $exo in wimshome/public_html/modules/$dir/Extitles
+    !endif
+    !default title1=!module title $dir
+    !if $title1!=$empty
+      !set title=$title1
+    !endif
+    !set title=!trim $title
+    !default title=$wims_name_Exercise
+    <div class="field box">
+      <label for="title">$wims_name_title</label>
+      <input size="50" name="title" value="$title" id="title" >
+      <div class="formHelp">$name_modifytitle</div>
+    </div>
+    <div class="field box">
+      <label for="new_desc">$wims_name_Description</label>
+      <textarea name="new_desc" rows="5" cols="50" id="new_desc">$desc</textarea>
+    </div>
+!!    !read adm/class/exo_order.phtml  not needed (use to order exercices in a series)
+    !if oef isin $module_cat
+      !! option to display solution/feedback
+      <div class="field box">
+        <label for="copara">$name_co_para</label>
+        !set wims_ref_id=copara
+        !formcheckbox copara list solution,feedback prompt $name_solutiongiven,$name_feedbackgiven
+        <div class="formHelp">$name_co_desc</div>
+      </div>
+    !endif
+    <div class="wimscenter wimsform"><input type="submit" value="$wims_name_Insert" ></div>
+    </fieldset>
+  !formend
+!endif
+
+
+!if $cmd=reply
+!!  <div class="wims_msg success">$name_end.</div>
+  <div class="wimscenter menuitem">
+    !set wims_ref_class=freeworkcheck
+    !href module=adm/class/freework&freework=$pickfreework $name_freeworkcheck
+    &nbsp;
+    !set wims_ref_class=moduback
+    !href module=$dir&cmd=intro $wims_name_moduback
+  </div>
+!endif

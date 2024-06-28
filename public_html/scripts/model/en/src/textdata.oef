@@ -1,0 +1,135 @@
+type=gapfill
+textarea="data words pre post"
+iEdit="pre post"
+
+:Tolerant text-to-answer questions embedded in random text.
+
+This exercise presents texts with "holes",
+ each to be filled with a word (or a very short sentence).
+<p>
+To build an exercise with this model, just enter the texts.
+An easy syntax allows you to specify the holes
+ and the correct word that it accepts.
+</p><p>
+Answer parser ignores "small" differences in response:
+ absence or addition of an article, upper / lower case,
+ accents, plural / singular.<br>
+It may also not count typing errors as a false answer.
+Synonyms can also be declared.
+</p><p class="wims_credits">
+Author of the model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a>
+</p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Example parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Textual questions}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Width of input boxes. The longest answers must be anticipated.
+\integer{len=20}
+
+:Main data.
+<p>Define one question per line, and separate the lines with a semicolon.
+  (So the texts themselves can not contain semi-colons.)</p><p>
+The question to ask must be put between a pair of
+double-question mark "??".</p><p>
+You can ask up to 6 questions in one sentence.
+If a question accepts several correct answers,
+ put all the correct answers (synonyms) separated by a vertical line
+ <span class="tt wims_code_words">|</span>.</p><p>
+The analyzer does not account for small differences in response:
+ absence or addition of an article, upper / lower case,
+ accents, plural / singular.</p>
+$embraced_randitem
+\text{data=
+the basic unit for measuring an intensity is ??ampere??.;
+the basic unit for measuring a voltage is ??volt??.;
+the basic unit for measuring resistance is ??ohm??.;
+the basic unit for measuring the capacitance of a capacitor is ??farad??.;
+the basic unit for measuring the inductance of a solenoid is ??henry??.;
+the basic unit for measuring the dissipated power on a component is ??watt??.;
+the basic unit for measuring a frequency is ??hertz??.;
+
+Ampere is a unit of measure for the ??intensity??.;
+Volt is a unit of measure for the ??voltage|load??.;
+Ohm is a unit of measure for ??resistance??.;
+Watt is a unit of measure for the ??power??.;
+}
+
+:Type of response analysis
+The types <span class="tt">case</span> and <span class="tt">nocase</span> are especially suitable for
+linguistic applications. In other cases, prefer <span class="tt">atext</span>.
+\text{atype=item(3,case (no error tolerance),
+	nocase (tolerate lowercase / uppercase),
+	atext (ignore pluriel/singulier et articles))}
+
+:List of recognized words.
+<p>Put the recognized words in the list.
+Any answer containing a word outside this list will be considered a typo
+ and returned to retype.</p><p>
+If this field is empty, any unrecognized response is considered false.
+This should be the case in general for language applications.
+\text{words=
+electrical electricity circuit component intensity current voltage load
+resistor resistance capacitor transistor solenoid capacitance
+inductance power frequency hertz
+}
+
+:Text displayed before the question. HTML tags allowed. Can be empty.
+$embraced_randitem
+\text{pre=In electricity,}
+
+:Text displayed after the question. HTML tags allowed. Can be empty.
+$embraced_randitem
+\text{post=}
+
+:Embraced random items
+$embraced_randitem
+\text{accolade=item(1,1 yes,
+2 no)}
+
+:%%%%%%%%%%%%%% Nothing to modify before the statement %%%%%%%%%%%%%%%%
+
+\text{accolade=wims(word 1 of \accolade)}
+\text{data=wims(singlespace \data)}
+\text{data=wims(nonempty rows \data)}
+\text{data=randomrow(\data)}
+\text{data=\accolade=1 ?wims(embraced randitem \data)}
+\text{data=slib(text/cutchoice2 \data)}
+\integer{qs=floor(rows(\data)/2)}
+\text{words=wims(trim \words)}
+\text{atype=wims(word 1 of \atype)}
+
+\text{pre=\accolade=1 ?wims(embraced randitem \pre)}
+\text{post=\accolade=1 ?wims(embraced randitem \post)}
+\text{qlist=wims(makelist reply x for x=1 to \qs)}
+\steps{\qlist}
+
+:%%%%%%%%%%%%% Now the statement in html. %%%%%%%%%%%%%%%%%%%%
+
+::You don't need to modify this in general.
+
+\statement{\pre
+\data[1;]
+\for{k=1 to \qs}{
+\embed{r \k,\len} \data[2*\k+1;]
+}
+\post
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%5
+
+\answer{Field 1}{\data[2;];\words}{type=\atype}
+\answer{Field 2}{\data[4;];\words}{type=\atype}
+\answer{Field 3}{\data[6;];\words}{type=\atype}
+\answer{Field 4}{\data[8;];\words}{type=\atype}
+\answer{Field 5}{\data[10;];\words}{type=\atype}
+\answer{Field 6}{\data[12;];\words}{type=\atype}
+

@@ -1,0 +1,26 @@
+
+!if +$error iswordof +no_send_right
+  !exit
+!endif
+
+!if $srclen=$empty or $srclen=0 or $msglen=$empty or $msglen=0
+  <div class="wims_msg warning">$n_emptymsg!</div>
+  !goto end
+!endif
+
+$subj1 $c_subject $subj2 $body1
+!read wimshome/$wims_sesdir/message.wims
+$body2
+</ul></ol></dl>
+
+:end
+<div class="wimscenter">
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=reply&job=compose $n_edit
+&nbsp;
+  !set wims_ref_class=wims_button
+  !href cmd=reply&job=send $n_send
+&nbsp;
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=reply&job=list $wims_name_giveup
+</div>

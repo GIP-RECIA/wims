@@ -1,0 +1,40 @@
+!goto $wims_read_parm
+
+:user
+ <ul>
+  <li>Questa pagina ti propone una selezione di attività per miglioare i tuoi risultati.</li>
+  <li>La proposta viene rielaborata automaticamente dopo un certo intervallo di tempo oppure tramite il bottone "modifica".</li>
+  <li>È possibile che l'elenco di esercizi proposti contenga esercizi non effettivamente disponibili. Questo avviene perché i parametri di accesso agli esercizi potrebbero essere cambiati rispetto al
+  momento in cui la selezione è stata effettuata. </li>
+  <li>Per ciascun esercizio vengono mostrati un obiettivo di punteggio e il punteggio attuale.</li>
+  </ul>
+!exit
+
+
+:supervisor
+ <ul>
+  <li>Questo modulo non è utilizzabile per corso con più di $maxuser studenti.</li>
+  <li>Questa pagina permette di visualizzare la lista degli esercizi selezionati per ciascun studente del corso.</li>
+  <li>Gli studenti per cui compare solo una riga vuota nella tabella non si sono mai conessi per ottenere una proposta di lavoro.</li>
+  <li>Gli studenti per cui la riga corrispondente contiene solo una data si sono connessi, ma non è stata creata una proposta (si veda più avanti i criteri con cui vengono effettuate le proposte).</li>
+  <li>La pagina di configurazione permette di impostare la durata minima di ciascuna proposta. Una volta trascorsa questa durata minima si possono verificare due possibilità:
+    <ul>
+      <li>Potete laciare agli studenti la scelta su quando rinnovare la selezione proposta. In questo caso la selezione sarà visibile fino a che lo studente non cliccherà sul bottone "Modifica".</li>
+      <li>Potete decidere di non laciare la scelta allo studente e in questo caso la proposta sarà aggiornata automaticamente.</li>
+    </ul>
+  </li>
+  <li>Gli esercizi contrassegnati da &#x2705; sono quelli per cui lo studente ha raggiunto il punteggio assegnato come obiettivo.</li>
+  <li>Gli esercizi contrassegnati da &#x274C; sono quelli su cui lo studente al momento non può lavorare (in seguito a modifiche dello stato dei test di autovalutazione o in seguito a modifiche di configurazioni tramite variabili tecniche, ecc...).</li>
+  <li>La selezione viene costruita proponendo:
+    <ul>
+      <li>Come prima cosa gli esercizi in cui lo studente ha un punteggio inferiore alla media del corso;</li>
+      <li>Quindi gli esercizi in cui lo studente ha un punteggio inferiore al voto massimo ottenuto da tutti gli studenti del corso in tale esercizio;</li>
+      <li>Infine gli esercizi in cui lo studente non ha il massimo dei voti;</li>
+      <li>Magiore è lo scarto del voto dello studente (rispetto alla media o al massimo) e maggiori sono il peso dell'esercizio e del test, allora maggiore sarà la probabilità che l'esercizio venga proposto;</li>
+      <li>Anche l'indice di difficoltà dell'esercizio (si veda il modulo "Statistiche del corso") viene utilizzata per stabilire la gerarchia della selezione;</li>
+      <li>Il calcolo del punteggio di ogni studente utilizza le formule effettivamente impostate nei test di autovalutazione (con il rispettivo indice selezionato).</li>
+    </ul>
+  </li>
+  <li>In ogni momento il docente può cancellare la selezione di uno studente (e in questo caso lo studente otterrà una nuova proposta alla successiva connessione).</li>
+ </ul>
+!exit

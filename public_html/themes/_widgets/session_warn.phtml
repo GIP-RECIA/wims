@@ -1,0 +1,35 @@
+!! display a warning message to user when the session is about to close.
+!if $wims_user!=$empty and $jquery_defined=yes
+  <script>var swarn_sessionAlive=$wims_idletime;</script>
+  <script src="html/themes/_inc/session_warn.js"></script>
+  <div id="sess_dialog1" title="$swarn_dialog_title1" style="display:none">
+    <div class="wims_msg warning">
+      $swarn_dialog_common
+      <p>$swarn_dialog_1 <span id="js_session_timer">60</span>s.</p>
+    </div>
+
+  </div>
+  <div id="sess_dialog2" title="$swarn_dialog_title2" style="display:none">
+    <div class="wims_msg alert">
+      $swarn_dialog_common
+      <p>$swarn_dialog_2</p>
+      <div class="wimscenter">
+        !set auth_method=$(class_authidp[1;])
+        !if $auth_method isitemof $auth_method_list and $(class_$(auth_method)_auth)!=$empty
+          <a class="wims_button"
+             href="$wims_ref_name?lang=$lang&module=home"
+             >$wims_name_home</a>
+        !else
+          !if $wims_user=supervisor
+            !set auth_type=authsupervisor
+          !else
+            !set auth_type=authparticipant
+          !endif
+          <a class="wims_button"
+             href="$wims_ref_name?lang=$lang&module=adm/class/classes&type=$auth_type&class=$wims_class"
+             >$swarn_dialog_button</a>
+        !endif
+      </div>
+    </div>
+  </div>
+!endif

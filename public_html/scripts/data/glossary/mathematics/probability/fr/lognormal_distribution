@@ -1,0 +1,22 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Loi log-normale
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soient \(m) et \(s) des réels avec \(s > 0).
+La <strong>loi log-normale</strong> \(\mathcal{L}\mathcal{N}(m,s))
+ est la loi de la variable \(exp(X)) lorsque \(X) est une
+variable aléatoire de loi \(\mathcal{N}(m,s^2)). Sa densité est
+<div class="wimscenter">
+\( x \mapsto \frac{1}{sx\sqrt{2\pi}}exp(-\frac{(\log(x)-m)^2}{2s^2})1_{x>0})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th><th>Fonction caractéristique</th></tr>
+<tr><td>\(\exp(m+\frac{s^2}{2}))</td><td>\((\exp(s^2)-1)\exp(2m+s^2))</td>
+<td></td></tr></table>

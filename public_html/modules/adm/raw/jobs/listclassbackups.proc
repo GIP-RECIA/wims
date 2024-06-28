@@ -1,0 +1,41 @@
+# ListClassBackups
+# List of all class backups available in the server.
+#  * if `qclass` is specified, list only backups for this class id
+#  * if `data1` is a number > 2000, list only backups for this year
+
+# qclass can filter on one class ID
+qclass=!word 1 of $qclass
+qclass=!translate internal ./,;?* to $             $ in $qclass
+!if $ $ isin $qclass
+  error=wrong class id in qclass ($qclass)
+  !exit
+!endif
+
+!if $qclass=$empty
+  qclass = *
+!endif
+
+!if $data1!=$empty
+  # data1 can filter on one backup year
+  backup_year=!word 1 of $data1
+  backup_year=!translate internal ./,;?* to $             $ in $backup_year
+  !if $ $ isin $backup_year
+    error=wrong backup year in data1 (year $backup_year)
+    !exit
+  !endif
+  !bound backup_year between integer 2000 and 5000 default 0
+!endif
+
+# Search for class backups
+restorable = !sh cd $wims_home/backup/oldclasses;\
+ if [ -d "$backup_year" ];\
+ then\
+  cd $backup_year;\
+ fi\
+ find . -name '$qclass.tgz';
+
+restorable = !replace internal ./ by $empty in $restorable
+restorable = !replace internal .tgz by $empty in $restorable
+restorable = !lines2items $restorable
+
+cnt = !itemcnt $restorable

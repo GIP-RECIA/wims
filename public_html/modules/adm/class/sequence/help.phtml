@@ -1,0 +1,12 @@
+!let listhelp=hide,show
+
+!bound special_parm within $listhelp default $empty
+
+!if $special_parm=$empty
+  !exit
+!else
+  !if $special_parm=allowtype
+    !readproc adm/vfilter/listvarfilter.proc
+  !endif
+  !changeto lang/help.phtml.$lang $special_parm
+!endif

@@ -1,0 +1,76 @@
+!set lang_exists=yes
+
+<p>
+  Quand vous travaillez avec WIMS, vous aurez souvent besoin d'entrer des
+  expressions mathématiques.
+</p>
+Ces expressions mathématiques peuvent être tapées de façon habituelle&nbsp;:
+<ul>
+  <li>
+    <code>3*x+5</code> pour
+    !insmath 3x+5
+  </li><li>
+    <code>sin(pi*x)</code> pour
+    !insmath sin(pi*x)
+  </li><li>
+    <code>y^3+1</code> pour
+    !insmath y^3+1
+  </li><li>
+    <code>(x+1)/(y-1)</code> pour
+    !insmath {x+1 \over y-1}
+  </li><li>etc...</li>
+</ul>
+
+<p>
+  De plus, WIMS contient un analyseur intelligent capable de corriger des
+  ``erreurs'' communes dans les expressions mathématiques. Par exemple,
+  <span class="tt">3x+5</span>
+  sera corrigé en <span class="tt">3*x+5</span>, <span class="tt">sin x</span> corrigé en
+  <span class="tt">sin(x)</span>, etc. Mais nous ne vous conseillons pas de vous appuyer trop
+  fort sur ce correcteur, car des ambiguïtés dans les expressions
+  peuvent conduire parfois à des interprétations erronées. Il sera toujours mieux
+  de taper les expressions de façon ``correcte'', même si cela est parfois un
+  peu gênant.
+</p><p>
+  Voici une liste de fonctions mathématiques et la façon (correcte) de les
+  entrer. Ces fonctions sont reconnues par WIMS partout où elles ont un sens.
+  (Certains modules peuvent accepter des fonctions supplémentaires&nbsp;;
+  veuillez consulter les pages d'aide de ces modules.)
+</p><p>
+  !set x=<i class="wims_mathfont">x</i>
+  !set y=<i class="wims_mathfont">y</i>
+  Vous pouvez remplacer $x par toute sous-expression dans le tableau ci-dessous.
+</p>
+
+!set table_th = Fonction, Description, Code à écrire
+
+!set table_descs=La constante d’Archimède\
+base de log naturelle\
+valeur absolue de $x\
+signe de $x\
+racine carrée de $x\
+l'entier le plus proche de $x\
+le plus grand entier\
+le plus petit entier\
+exponentiel\
+log naturel\
+log de base 10\
+sinus trigonométrique\
+cosinus trigonométrique\
+tangente trigonométrique\
+cotangente trigonométrique\
+sinus trigonométrique réciproque\
+csinus trigonométrique réciproque\
+tangente trigonométrique réciproque\
+sinus hyperbolique\
+cosinus hyperbolique\
+tangente hyperbolique\
+sinus hyperbolique réciproque\
+cosinus hyperbolique réciproque\
+tangente hyperbolique réciproque\
+le plus grand entre $x et $y\
+le plus petit entre $x et $y\
+PGCD (Plus Grand Commun Diviseur)\
+PPCM (Plus Petit Commun Multiple)\
+
+!read 1/math.phtml.common

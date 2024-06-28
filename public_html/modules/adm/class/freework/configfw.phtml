@@ -1,0 +1,81 @@
+<div id="freework_management">
+!if $jquery_defined=yes
+  <script>
+    /*<![CDATA[*/
+    jQuery(function($$) {
+      // Get in sessionStorage if a tab was previously selected, and activate it.
+      var selectedTabId = sessionStorage.getItem("freework_management_selectedTab");
+      selectedTabId = selectedTabId === null ? 0 : selectedTabId; //default tab = 0
+      $$("#freework_management").tabs({
+        active: selectedTabId,
+        activate : function( event, ui ) {
+            selectedTabId = $$("#freework_management").tabs("option", "active");
+            sessionStorage.setItem("freework_management_selectedTab", selectedTabId);
+        }
+      });
+    });
+    /*]]>*/
+  </script>
+  <ul>
+    <li><a href="#freeworkinfo">$name_info</a></li>
+    !ifval $activetest!=-1
+      <li><a href="#list">
+        !if $type<=2
+          $name_content
+        !else
+          $name_parametrage
+        !endif
+      </a></li>
+      !if $activetest>=1 and $showstudlist=yes
+        <li><a href="#listwork">$name_listwork</a></li>
+      !endif
+    !endif
+  </ul>
+  <div id="freeworkinfo">
+     !read proc/freeworkinfo.phtml
+  </div>
+  !if $activetest!=-1
+    <div id="list">
+      !read proc/freeworkdata$(lpara_type[$type]).phtml
+    </div>
+  !endif
+  !if $activetest>=1 and $showstudlist=yes
+    <div id="listwork">
+      !let archivated=!record 0 of wimshome/log/classes/$wims_class/freeworksdata/$freework/.archivated
+      !if $archivated=$empty
+        !read proc/listwork$(type).phtml
+      !else
+        $name_archivatedfreework
+      !endif
+    </div>
+  !endif
+!else
+  !if $wims_infoshow1=no
+   <fieldset class="property_fields blockcenter">
+     <legend> $name_info [
+     !href cmd=resume&infoshow1=yes $wims_name_showall
+     ]
+     </legend>
+   </fieldset>
+  !else
+    !read proc/freeworkinfo.phtml
+  !endif
+  !if $activetest!=-1
+    !if $wims_infoshow2=no
+      <fieldset class="property_fields blockcenter">
+        <legend> $name_content [
+          !href cmd=resume&infoshow2=yes $wims_name_showall
+         ]
+        </legend>
+      </fieldset>
+    !else
+      !read proc/freeworkdata$(lpara_type[$type]).phtml
+    !endif
+  !endif
+  !if $activetest>=1  and $showstudlist=yes
+    !read proc/listwork$(type).phtml
+  !endif
+!endif
+</div>
+
+!!tail

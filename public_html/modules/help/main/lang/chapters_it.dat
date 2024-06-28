@@ -1,0 +1,28 @@
+# line 1: address
+# line 2 and up: description
+
+:Guida generale per l'utilizzo di WIMS
+ intro, Introduzione: cosa è WIMS e come funziona
+ what, Cosa si può fare con WIMS
+ exo, Esercizi e punteggi
+ tool, Strumenti di calcolo e grafici
+ doc, Documenti didattici
+ math, Come inserire formule matematiche
+ copy, Copyright
+
+:Visita guidata del sito
+
+:Il lavoro in un corso virtuale
+ whatis, Che cosa è un corso virtuale
+ stud, Per gli studenti
+ faqstud, Domande frequenti degli studenti
+ sheet, Test di autovalutazione, esami e punteggi
+ creat, Come creare un corso (per i docenti)
+ faqsup, Domande frequenti dei docenti
+ group, Coordinamenti di corsi (per i docenti)
+
+:Guida per un uso avanzato di WIMS e per proporre contributi
+ oef, Creazione online di esercizi
+ otf, Creazione online di strumenti
+ mirror, Installare un sito mirror
+ transl, Vorrei tradurre WIMS nella mia lingua

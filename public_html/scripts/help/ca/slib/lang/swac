@@ -1,0 +1,13 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Insertion d'une version audio des mots tapés en paramètre, à partir des bases de fichiers swac
+slib_parms=4\
+,Un ou plusieurs mots\
+,code de langue (fra, spa, eng, ...) ou liste des packs Shtooka dans lesquels chercher les mots demandés\
+$default_slib_tag,<code>tag=</code> (un seul) parmi "alphaidx", "text" ou, pour certains packs "baseform" ou "coll_section"<br/>(vérifiez que le mot est bien trouvé surtout si vous choisissez autre chose que "alphaidx" ou "text")\
+,parametres HTML optionels (exemple: <span class="tt">style="width:300px;height:25px"</span>)
+
+slib_out= Cherche le mot dans le dossier <span class="tt">imagedir</span>, puis dans les données swac-shtooka\
+et s'il le trouve, en propose une lecture audio.<br/>Dans le second cas, fournit aussi \
+les mot-clés swac de l'enregistrement ; Ne renvoit rien s'il ne trouve pas le mot.
+slib_comment=Dans le cas d'une liste de mots, mettez la phrase entre guilemets et ne mettez aucune virgule.

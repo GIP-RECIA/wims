@@ -1,0 +1,49 @@
+
+!if $wims_read_parm=$empty
+ !exit
+!endif
+
+!goto $wims_read_parm
+
+:data
+En cada línia, indiqueu el codi SMILES i el nom del fitxer (sense extensió,
+(alfanumèric, sense espai ni accent).
+Per exemple
+<pre>
+CCO,ethanol
+CO,methanol
+CCCO,toto
+</pre>
+Veure
+<a target="wims_external" href="http://opensmiles.org">opensmiles.org
+</a> per la definició de la sintaxi del codi SMILES.
+
+!exit
+:option_svg
+<pre>
+ u no hi ha coloració de l'àtom de l'element específic
+    Utilitzeu aquesta opció per produir un diagrama en blanc i negre
+ U no utilitzar el color especificat internament
+    per exemple: color atòmic llegit de cml o generat per codi intern
+ b fons negre
+    El valor predeterminat és blanc. Els colors de l'àtom funcionen amb tots dos.
+ C no dibuixar explícitament el terminal C (i H adjacent)
+    El valor predeterminat és dibuixar tots els heteroàtom i la terminal C explícitament,
+    juntament amb els seus hidrogens adjacents.
+ a dibuixa tots els àtoms de carboni
+    Així, el propà es mostrarà com H3C-CH2-CH3
+ d no mostrar el nom de la molècula
+
+</pre>
+!exit
+:option_dim
+Tria si vols que es crein les tres coordenades 3D (x, y, z) o només coordenades 2D (x, y).
+!exit
+
+:save
+Si marques aquesta casella, selecciona un mòdul de la llista, els fitxers generats
+es col·locaràn al directori <span class="tt fname">data</span> d'aquest mòdul.
+A continuació, pots utilitzar-los en els exercicis. Els models preparats estan en
+curs de programació. No hi ha verificació de noms (també, si existeix fitxers amb
+el mateix nom, s'esborraran sense verificació).
+!exit

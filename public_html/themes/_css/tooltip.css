@@ -1,0 +1,103 @@
+
+/* Tooltip container */
+.wims_tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.wims_tooltip>.wims_tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    box-sizing: border-box;
+    background-color: #F0EEFB;
+    color: black;
+    font-weight: normal;
+    border:1px solid grey;
+    box-shadow: 1px 1px 3px;
+    text-align:left;
+    padding: .5em;
+    z-index: 1000;
+    text-shadow: none;
+    /*animation*/
+    opacity: 0;
+    transition: opacity 1s;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+}
+
+.wims_tooltip>.bottom {
+    top: 130%;
+    left: 50%;
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+/* display an arrow */
+.wims_tooltip>.wims_tooltiptext:after{
+    content: " ";
+    position: absolute;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent;
+}
+
+/* top arrow */
+.wims_tooltip>.bottom:after{
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    border-bottom-color: #000;
+}
+
+/* choose tooltip position (bottom by default) */
+.wims_tooltip>.right {
+    top: -.5em;
+    left: 110%;
+}
+/* left arrow */
+.wims_tooltip>.right:after{
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    border-right-color: #000;
+}
+
+.wims_tooltip>.left {
+    top: -.5em;
+    right: 105%;
+}
+/* right arrow */
+.wims_tooltip>.left:after{
+    top: .5em;
+    left: 100%; /* To the right of the tooltip */
+    border-left-color: #000;
+}
+
+.wims_tooltip>.top {
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+/* bottom arrow */
+.wims_tooltip>.top:after{
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    border-top-color: #000;
+}
+.wims_tooltip>.bottom_left {
+    top: 130%;
+    right: 0;
+}
+/* top arrow */
+.wims_tooltip>.bottom_left:after{
+    bottom: 100%; /* At the top of the tooltip */
+    right: 5px;
+    border-bottom-color: #000;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.wims_tooltip:hover>.wims_tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

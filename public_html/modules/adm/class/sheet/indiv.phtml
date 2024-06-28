@@ -1,0 +1,149 @@
+!! --------------------  affiche le contenu de la feuille $sheet de la classe $wims_class
+!! langage is defined in adm/class/sheet/lang/names.phtml.$lang
+
+$(name_activindividualisation): <strong class="tt">$name</strong>
+
+!if $activetest=0
+!form reply
+  <input type="hidden" name="job" value="indiv">
+  !reset save_nodefault_req_we
+  <input type="checkbox" name="show_req_we" id="show_req_we"
+         onclick="toggle_check_all()"
+  >
+  <label for="show_req_we">$name_show_req_we</label>
+!endif
+  !set table_scroll=yes
+  $table_header
+  <caption>$name_contentindiv</caption>
+  <thead>
+    $table_hdtr
+      !for k=1 to 2
+        <th>$(name_shtab[$k])</th>
+      !next k
+      !for k=1 to $nb_val
+        <th>$(listval[$k])</th>
+      !next k
+    </tr>
+  </thead>
+  <tbody>
+  !let num=0
+  !reset dictionnary
+  !for i=1 to $exocnt
+    !set ex=!record $i of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+    !distribute lines $ex into di,pa,re,we,ti,de,dep,com,feed,icone,indiv$i
+    !for k in re,we
+      !let tmp=!row 2 to -1 of $($k)
+      !let $(k)_1=!column 1 of $tmp
+      !let $(k)_2=!column 2 of $tmp
+    !next k
+    $table_tr
+    <td id="td_exo_$i">$i</td>
+    <td> $ti </td>
+    !if $activetest=0
+      !for k=1 to $nb_val
+        !increase num
+        !let dictionnary=!append item "js_show_req_we$num": "indiv$(i)_$k" to $dictionnary
+        <td>
+!!        <label for="indiv$(i)_$k">$wims_name_yes</label>
+          !if $(listval[$k]) isitemof $(indiv$i)
+            !let ch=checked="checked"
+          !else
+            !reset ch
+          !endif
+          <input type="checkbox" name="indiv$i" id="indiv$(i)_$k"
+                 value="$(listval[$k])" $ch class="js_check_indiv"
+                 onclick="toggle_check_one(this, 'js_show_req_we$num')">
+          <div id="js_show_req_we$num"
+            !if $show_req_we=1 and $ch!=$empty
+              style="display:block"
+            !else
+              style="display:none"
+            !endif
+          >
+            !let p=!positionof item $(listval[$k]) in $we_1
+            !if $p!=$empty
+              !let v=!item $p of $we_2
+              !let save_nodefault_req_we=1
+            !else
+              !let v=$(we[1;])
+            !endif
+            <div class="inline">
+              <label for="weight$num">$(name_shtab[5])</label>
+              <input type="number" name="weight$num" value="$v" id="weight$num" size="2">
+            </div>
+
+            !let p=!positionof item $(listval[$k]) in $re_1
+            !if $p!=$empty
+              !let require$num=!item $p of $re_2
+              !let save_nodefault_req_we=1
+            !else
+              !let require$num=$(re[1;])
+            !endif
+            <div class="inline">
+              <label for="require$num">$(name_shtab[4])</label>
+              !formselect require$num list $list_require
+            </div>
+          </div>
+          </td>
+        !next k
+      !reset indiv$i
+    !else
+      !for k=1 to $nb_val
+        <td>
+          !if $(listval[$k]) isitemof $(indiv$i)
+            &#x2705;
+            !let pw_=!positionof item $(listval[$k]) in $we_1
+            !let pr_=!positionof item $(listval[$k]) in $re_1
+            !if $pw_!=$empty
+              $(name_shtab[5])
+              !item $pw_ of $we_2
+              !if $pr_!=$empty
+               &nbsp;;&nbsp;
+              !endif
+            !endif
+            !if $pr_!=$empty
+              $(name_shtab[4])
+              !item $pr_ of $re_2
+            !endif
+          !endif
+        </td>
+      !next k
+    !endif
+    </tr>
+  !next i
+  </tbody>
+  $table_end
+
+!if $activetest=0
+  <script>
+    function toggle_check_all() {
+      var dico = {$dictionnary};
+      for(var target in dico) {
+        var checkbox = document.getElementById(dico[target]);
+        toggle_check_one(checkbox, target)
+      }
+    }
+    function toggle_check_one(check, target) {
+      var objet = document.getElementById(target);
+      if (check.checked == true && show_req_we.checked == true) {
+        objet.style.display = "block";
+      } else {
+        objet.style.display = "none";
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      var show_req_we = document.getElementById("show_req_we");
+      !! Recheck 'show_req_we' only if at least one point has not a default value.
+      !if $save_nodefault_req_we=1
+        show_req_we.checked=true;
+        toggle_check_all();
+      !endif
+    }, false);
+  </script>
+  <div class="wimscenter wimsform">
+    <input type="submit" value="$wims_name_tosave" name="save_indiv">
+    !set wims_ref_class= wims_button wims_secondary_button
+    !href module=home $wims_name_giveup
+  </div>
+  !formend
+!endif

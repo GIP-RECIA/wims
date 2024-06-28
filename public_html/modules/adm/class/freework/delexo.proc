@@ -1,0 +1,19 @@
+!! -------------- delete an exo in type=3 zonetype=exowims
+
+nbexo=!recordcnt wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+!! ---- delete exercise
+!if $activetest=0
+  !bound exonum between 1 and $nbexo default $empty
+  !if $exonum=$empty
+    error=badexonumber
+    job=configfw
+    !changeto $job.proc
+  !endif
+  data=!record $exonum of wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+  !read adm/recorddel $exonum wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+  success=ok-delexo
+  nbexo=!recordcnt wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+  wims_module_log=class $class: del No$exonum in freework $freework
+  job=configfw
+  !changeto $job.proc
+!endif

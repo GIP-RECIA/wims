@@ -1,0 +1,17 @@
+!! +exec+ +var+ +string+
+tit:positionof
+type:$type_both
+alias:position, positions
+syntax:!positionof [``type''] ``s'' in ``string''
+mean:Reports the positions of the object ``s'' in ``string''.\
+  The word ``type'' can be <span class="tt">char</span>, <span class="tt">word</span>, \
+  <span class="tt">item</span>, <span class="tt">line</span> or <span class="tt">row</span>.\
+  If it is specified, then the comparison only takes place for\
+  corresponding objects of ``string'' which are identical to ``s''. \
+  The output of the command is a list of positions (char, word, item,\
+  line or row, according to the value of ``type'') where ``s'' is found in ``string''.\
+  Here, rows are separated by semi-colon ``;'' and lines by new lines.\
+  <br>\
+  If ``type'' is missing, then ``s'' is searched in ``string'' as a substring,\
+  and the positions reported are character positions (more precisely, \
+  the positions of the previous character of ``s'' in ``string'').\

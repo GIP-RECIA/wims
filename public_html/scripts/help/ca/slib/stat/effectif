@@ -1,0 +1,10 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Effectifs de la série statistique dans les classes
+
+slib_out= [effectifs pour chaque classe], [liste des bords des classes]
+slib_comment= données : [x_1,...,x_n] ; bords des classes [a_1,...,a_m]\
+ (avec ajout du min et du max s'il y a des données qui ne sont pas dans [a_1,a_m]) ;\
+ si le 2eme paramètre ne contient que 2 nombres, les classes sont créées en partant\
+ du 1er nombre et de largeur le second nombre;\
+ s'il n'y a qu'un paramètre, les classes sont créées de largeur ceil(4*n^(1/4)).

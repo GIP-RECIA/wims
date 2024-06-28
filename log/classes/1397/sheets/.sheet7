@@ -1,0 +1,30 @@
+Addizioni #4
+giochi con le addizioni
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation,levelE2,levelE3,levelE4
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:H1/algebra/addfig.en
+exo=grill&exo=house&exo=bigsquare&exo=threesqr&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Livello 8
+Sono 8 i numeri che devi inserire negli schemi.
+:H1/algebra/addfig.en
+exo=foursqr&exo=M&exo=pizza4&exo=pyramid1d&exo=pyramid2b&exo=diag&exo=W&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Livello 9
+Ora sono 9 i numeri che devi inserire negli schemi.
+
+:H1/algebra/addfig.en
+exo=pentagon&exo=pentagram&exo=pyramid3&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Livello 10
+E infine, ora sono 10 i numeri che devi inserire negli schemi.

@@ -1,0 +1,130 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Signe d'une fonction polynôme du second degré (Exemple)
+
+!set gl_cas=!randitem 1,2,2,2,3
+!set gl_n=!randint 0,1
+!set gl_t=!randint 0,1
+!set gl_p=!randint 1,5
+!set gl_k=!randint 0,5
+!set gl_r=!randint 1,4
+!set gl_a=$[((-1)^$gl_n)*$gl_p]
+!set gl_b=$[((-1)^$gl_t)*$gl_k*2*$gl_a]
+!set gl_signa=!exec pari sign($gl_a)
+!set gl_absa=!exec pari abs($gl_a)
+
+!if $gl_cas=1
+ !set gl_d=0
+ !set gl_sol=!exec maxima fullratsimp(-1*($gl_b)/(2*($gl_a)))
+!else
+ !if $gl_cas=2
+  !set gl_d=$[$gl_signa*$gl_absa*$gl_r*4*$gl_a]
+  !set gl_racd=!exec maxima sqrt($gl_d)
+  !set gl_cored1=!exec pari core($gl_d,1)[1]
+  !set gl_cored2=!exec pari core($gl_d,1)[2]
+  !set gl_racdsimp=!exec maxima rat(sqrt($gl_cored1))*$gl_cored2
+  !set gl_sol1=!exec maxima fullratsimp((-1*($gl_b)-$gl_racdsimp)/(2*($gl_a)))
+  !set gl_sol2=!exec maxima fullratsimp((-1*($gl_b)+$gl_racdsimp)/(2*($gl_a)))
+  !set gl_sol=$gl_sol1,$gl_sol2
+  !set gl_sol=!sort numeric item $gl_sol
+ !else
+  !set gl_d=$[-1*$gl_signa*$gl_absa*$gl_r*4*$gl_a]
+  !set gl_sol=$empty
+ !endif
+!endif
+
+!set gl_f=!exec pari ($gl_a*(x+$gl_b/(2*$gl_a))^2-($gl_d)/(4*$gl_a))
+!set gl_absc_som=!exec pari (-1*$gl_b/(2*$gl_a))
+!set gl_ord_som=!exec pari (-1*$gl_d/(4*$gl_a))
+!set gl_texracd=!texmath $gl_racdsimp
+
+!set gl_jsxscript =JXG.Options.axis.lastArrow = false;\
+  var Ysom=$gl_ord_som;\
+  var a=$gl_a;\
+  if(Ysom>=0){\
+   if(a>0){\
+    var bound=[-10,Ysom+10,10,-5];\
+   }else{\
+    var bound=[-10,Ysom+2,10,-10];\
+   }\
+  }\
+  if(Ysom<0){\
+    if(a>0){\
+    var bound=[-10,10,10,Ysom-2];\
+    }else{\
+     var bound=[-10,5,10,Ysom-10];\
+    }\
+  }\
+  var brd = JXG.JSXGraph.initBoard('mybox', {\
+  boundingbox:  bound,\
+  axis:true,\
+  grid:true,\
+  showCopyright : false,\
+  showNavigation:false,\
+  showZoom : false,\
+  keepaspectratio : true,\
+  zoom: {factorX: 1.25,factorY: 1.25,wheel: true,needShift: false,eps: 0.001},\
+  pan: {needShift: false,enabled: true,needTwoFingers: true,pinchHorizontal: true,pinchVertical: true,pinchSensitivity: 7}\
+  });\
+  brd.create('point',[0,0],{face:'+',name:'O',fixed:true,showInfobox:false,strokeColor:'black'});\
+  brd.create('point',[0,1],{face:'+',name:'J',fixed:true,showInfobox:false,strokeColor:'black'});\
+  brd.create('point',[1,0],{face:'+',name:'I',fixed:true,showInfobox:false,strokeColor:'black'});\
+  var abscS=brd.jc.snippet('$gl_absc_som',true);\
+  var ordS=brd.jc.snippet('$gl_ord_som',true);\
+  brd.create('point',[abscS,ordS],{face:'+',name:'',fixed:true,showInfobox:false,strokeColor:'green'});\
+  var cas=$gl_cas;\
+  if(a>0){\
+   var colora='blue';\
+   var coloroppa='red';\
+  }else{\
+   var colora='red';\
+   var coloroppa='blue';\
+  }\
+  var f = brd.jc.snippet('$gl_f', true,'x',true);\
+  if(cas==1){\
+  var pt=brd.create('point',[$(gl_sol),0],{face:'+',name:'',fixed:true,showInfobox:false,strokeColor:'green'});\
+   brd.create('functiongraph',[f, -100, 100],{strokeColor:colora,strokeWidth:2});\
+  }\
+  if(cas==2){\
+  var absc1=brd.jc.snippet('$(gl_sol[1])',true);\
+  var absc2=brd.jc.snippet('$(gl_sol[2])',true);\
+  var pt1=brd.create('point',[absc1,0],{face:'+',name:'',fixed:true,showInfobox:false,strokeColor:'green'});\
+  var pt2=brd.create('point',[absc2,0],{face:'+',name:'',fixed:true,showInfobox:false,strokeColor:'green'});\
+  brd.create('functiongraph',[f, -100, absc1],{strokeColor:colora,strokeWidth:2});\
+  brd.create('functiongraph',[f, absc1,absc2],{strokeColor:coloroppa,strokeWidth:2});\
+  brd.create('functiongraph',[f, absc2,100],{strokeColor:colora,strokeWidth:2});\
+  }\
+  if(cas==3){\
+   brd.create('functiongraph',[f, -100, 100],{strokeColor:colora,strokeWidth:2});\
+  }\
+
+<h4>Exemple</h4>
+<div>
+Soit \(f\) la fonction définie pour tout  \(x \in \displaystyle{\RR}\) par
+<span style="white-space:nowrap">\(f(x) = $gl_f\).</span>
+<br>
+\(\increment = $gl_d\).
+<br>L'équation \(f(x) = 0\)
+!if $gl_cas=1
+  a une unique solution \($gl_sol\)
+!else
+  !if $gl_cas=2
+    a deux solutions distinctes \($(gl_sol[1])\) et \($(gl_sol[2])\)
+  !else
+    n'a pas de solution
+  !endif
+!endif
+dans <span style="white-space:nowrap">\(\displaystyle{\RR}\).</span>
+<br>Le signe de \(f(x)\) sur \(\displaystyle{\RR}\) est donné par le tableau
+de signes suivant&nbsp;:
+!readproc slib/function/tabsignes [[x,$gl_f],[-Inf,+Inf;$gl_sol;]],\
+text=[signe de <br> \(f(x)\),replace,2] -=[red,1] +=[blue,1]
+</div>
+<div class="spacer" style="overflow-x:auto;">
+$slib_out
+</div>
+
+<div class="spacer">
+!readproc slib/geo2D/jsxgraph mybox,300x300,$gl_jsxscript
+$slib_out
+</div>

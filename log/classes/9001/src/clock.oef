@@ -1,0 +1,11 @@
+\title{clock}
+
+\statement{
+<div class="spacer">
+\special{editarea
+\answer{}{9:30:35}{type=clock}{option=init=[5,45,5] button=[1,5,5]}
+}
+Il est 9h 30 min et 35 secondes
+\embed{r1,200x200}
+}
+\answer{}{9:30:35}{type=clock}{option=init=[5,45,5] button=[1,5,5] clocktype=0}

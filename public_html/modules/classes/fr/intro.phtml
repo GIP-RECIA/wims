@@ -1,0 +1,56 @@
+!set proc=oef
+!header
+
+!if $wims_class=$empty
+  <p>
+   Ce module est un module interne à une classe virtuelle.<br/>
+   Comme vous n'êtes pas connecté en tant qu'un membre de cette classe, vous n'avez
+   pas le droit d'y accéder. Désolé.
+  </p>
+  <p class="wimscenter">
+  !href $ Retour à Wims
+  </p>
+ !tail
+ !exit
+!endif
+<p>
+ Ce module recueille les exercices interactifs qui ont été créés ou importés dans la
+ classe <span class="wims_classdesc">$wims_classname</span>
+(<span class="wims_institutiondesc">$wims_institutionname</span>).
+</p>
+<div class="wims_smallremark"><details><summary>$wims_name_seemore</summary>
+<p>Les exercices de ce module ne sont utilisables que dans des activités de cette classe
+ (feuilles, examens, devoirs libres, documents).</p>
+ <p>Pour modifier un des exercices de ce module, sélectionnez-le dans la liste ci-dessous,
+ cliquez sur <span class="wims_button disabled inline">$wims_name_work</span>, puis sur le lien
+ <span class="text_icon exomodify">$wims_name_exomodify</span>.
+ </p><p>
+ Pour importer un exercice dans la classe, il faut aller travailler dessus ; un lien
+ <span class="text_icon import">$wims_name_import</span>  sera visible
+ dans le menu de la page contenant l'énoncé de l'exercice si celui-ci
+ est importable dans la classe. Certains exercices ne peuvent être importés que
+ dans un compte <span class="text_icon modtool">$wims_name_modtool</span>.
+ </p><p>Importer un exercice dans la classe n'est utile que si on souhaite voir
+ comment il est programmé et modifier son code. Un  exercice importé dans la classe
+ à partir d'un exercice du serveur peut ne pas disposer de toutes les fonctionnalités de
+ l'exercice initial ; les modifications que vous effectuerez sur cet exercice
+ dans votre classe ne changeront que la copie de l'exercice initial que vous avez dans la classe.
+ </p>
+ </details>
+</div>
+!if $wims_user=supervisor
+  <p>
+  !set wims_ref_class=wims_button icon_button
+  !href module=adm/createxo <span class="add_exo">Créer un exercice</span>
+  </p>
+ !read oef/intromenu.phtml
+!else
+  <p>
+   Seul le superviseur a accès à la liste des exercices de cette classe.
+  </p>
+  <p class="wimscenter">
+   !href module=home Retour à la page d'accueil
+  </p>
+!endif
+
+!tail

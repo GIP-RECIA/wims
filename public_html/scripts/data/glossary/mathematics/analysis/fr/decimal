@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=decimals,number_writing
+!set gl_title=Partie décimale d'un nombre décimal positif
+!set gl_level=
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(x\) un nombre décimal positif. On note \(E(x)\) sa partie entière.<br/>
+  On appelle <strong>partie décimale</strong> de \(x\) le nombre décimal \(d\)
+  défini par <span style="white-space:nowrap">\(d=x-E(x)\).</span>
+</div>
+<div class="wims_thm">
+  <h4>Propriété 1</h4>
+  Un nombre décimal positif est entier si et seulement si sa partie décimale est
+  nulle.
+</div>
+<div class="wims_thm">
+  <h4>Propriété 2</h4>
+  Un nombre décimal positif est égal à la somme de sa partie entière et de sa
+  partie décimale.
+</div>

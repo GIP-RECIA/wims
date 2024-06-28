@@ -1,0 +1,36 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Geometric distribution
+!set gl_level=U1,U2,U3
+:
+:
+:tool/stat/table.fr
+:
+<div class="wims_defn"><h4>Definition</h4>
+Let \(p) be a real such that \(0 < p < 1). A random quantity is said
+to have the <strong>geometric distribution</strong> on \(\NN\) with parameter \(p) (denoted by
+\(\mathcal{G}_{\NN}(p)) if it takes each nonnegative integer \(k\) with probability
+<div class="wimscenter">
+\( q(k) = p(1 - p)^k )
+</div>
+</div>
+<div class="wims_example">
+<h4>Example</h4> A biaised coin is tossed repeatedly. Each time
+there is a probability <span class="green">\(p)</span> of a
+<span class="green">head</span> turning up and a probability
+<span class="red">\(1 - p)</span> of a <span class="red">tail</span>
+turning up. The number of
+ <span class="red">tails</span> before the first <span class="green">
+ head</span> is a random variable; it has the geometric distribution \(\mathcal{G}_{\NN^*}(p)).
+</div>
+
+<p>If \(X) is a random variable \(\mathcal{G}_\NN(p))
+distributed then \(X + 1) is \(\mathcal{G}_{\NN^*}(p)) distributed.
+</p>
+
+<table class="wimsborder wimscenter"><tr><th>Expectation</th><th>Variance</th>
+<th>Probability generating function</th></tr><tr>
+<td>\(\frac{1 - p}{p})</td><td>\(\frac{1 - p}{p^2})</td><td>\(\frac{p}{1 - (1 - p)z})</td></tr></table>
+
+:mathematics/probability/fr/geometric_distribution_1

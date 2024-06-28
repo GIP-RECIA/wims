@@ -1,0 +1,47 @@
+\title{multipleclick}
+
+\css{<style>
+.ans_label{border:3px black solid;width:50px; height:50px;}
+#ans_multipleclick1 .ans_label {background-color:orange;}
+#ans_multipleclick2 .ans_label {background-color:white;}
+</style>
+}
+\text{size=200x200}
+\text{list=&nbsp;,&nbsp;,&nbsp;,&nbsp;}
+\statement{
+Code de la partie énoncé
+<div class="spacer">
+\special{editarea
+Première question:
+\embed{r1, \size
+2 x 2
+[a,b;c,d]
+}
+Deuxième question:
+\embed{r2,\size
+1 x 4
+[;a,b,c,d]
+}
+}
+</div>
+<div class="spacer">
+\special{editarea
+\answer{}{1,2;&amp;nbsp;,&amp;nbsp;,&amp;nbsp;,&amp;nbsp;}{type=multipleclick}
+\answer{}{3,4;1,2,3,4}{type=multipleclick}
+}
+</div><div>
+  Première question:
+  \embed{r1, \size
+2 x 2
+[a,b;c,d]
+}
+</div><div>
+  Deuxième question:
+  \embed{r2,\size
+1 x 4
+[;a,b,c,d]
+}
+</div>
+}
+\answer{}{1,2;\list}{type=multipleclick}
+\answer{}{3,4;1,2,3,4}{type=multipleclick}

@@ -1,0 +1,16 @@
+
+!if $operation=$empty
+  空运算: 你没有提出该做的运算.
+  !tail
+  !exit
+!endif
+
+!if $error!=$empty
+  <div class="wims_alertmsg">
+   !read msg.phtml
+  </div>
+!else
+  !read op/$opr.def output
+!endif
+
+!tail

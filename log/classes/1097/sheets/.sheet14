@@ -1,0 +1,47 @@
+Operations #2
+games with sums and products
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation,fraction
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:H3/algebra/arithtable.en
+exo=table2x3&confparm1=11&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 1
+Fill in the table according to the given instruction.
+:H3/algebra/arithtable.en
+exo=partial2x3&confparm1=11&confparm2=3&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 2
+Fill in the table according to the given instruction.
+:H3/algebra/arithtable.en
+exo=typed2x4&confparm1=11&confparm2=3&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 3
+Fill in the table according to the given instruction.
+:H3/algebra/arithtable.en
+exo=table2x6&confparm1=11&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 4
+Fill in the table according to the given instruction.
+:H3/algebra/arithtable.en
+exo=partial2x4&confparm1=11&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 5
+Fill in the table according to the given instruction.
+:H3/algebra/arithtable.en
+exo=typed2x4&confparm1=11&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 6
+Fill in the table according to the given instruction.

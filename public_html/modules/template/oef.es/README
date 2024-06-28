@@ -1,0 +1,28 @@
+Para instalar ejercicios OEF en un módulo:
+
+  1. Crear un módulo tipo OEF
+
+  2. Para cada ejercicio, cree un nuevo archivo en el módulo.
+     extensión oef en el directorio src/ (ejemplo: src/euclide.oef).
+     Aparece un cuadro de texto; escribir (o pegar) el texto fuente allí
+     algo de ejercicio. Guarde los cambios.
+
+  3. Pruebe el módulo.
+
+  4. Modifique intro.phtml y endhook.phtml a su gusto,
+      y prueba de nuevo.
+
+
+%%%%%% Para utilizar el módulo directamente en un servidor WIMS local,
+
+1- Coloca la plantilla en el lugar correcto,
+cambiando el nombre.
+
+2. Edite intro.phtml
+
+3. Edite el archivo INDEX.
+
+4. Instale los archivos fuente.
+
+5. Ejecute el script $wims_home/other/bin/src2def. (Este paso
+    debe repetirse cada vez que se modifican los archivos fuente).

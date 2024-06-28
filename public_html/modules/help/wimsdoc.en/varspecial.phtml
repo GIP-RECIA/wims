@@ -1,0 +1,31 @@
+!read tabletheme
+!reset table_center
+!set resetyes=<br>This variable is reset to empty after a dynamic insertion.
+
+!for theme in general, dynamic, software
+$table_header
+<caption>
+!record 0 of varspecial/$theme
+</caption>
+!set n=!recordcnt varspecial/$theme
+!for j=1 to $n
+  !set dat=!record $j of varspecial/$theme
+  $table_tr<td>
+  $emph
+  !line 1 of $dat
+  $emphend
+  </td><td>
+  !set text=!line 3 to -1 of $dat
+  !set text=!replace internal `` by $emph in $text
+  !set text=!replace internal '' by $emphend in $text
+  $text
+  </td></tr>
+!next
+$table_end
+!next
+
+!! module_about
+!! module_about_bgcolor
+!! ins_anim_loop
+!! ins_anim_delay
+!! ins_anim_frames

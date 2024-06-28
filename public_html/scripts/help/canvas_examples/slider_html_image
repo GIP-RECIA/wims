@@ -1,0 +1,10 @@
+
+size 400,400
+xrange -6,6
+yrange -6,6
+bgcolor white
+grid 1,1,grey
+linewidth 1
+slider 0,2*pi,300,28,angle active degree,
+centered
+html 0,0,<img src="gifs/domains/sciences/flasks.svg" width="100px" height="100px">

@@ -1,0 +1,22 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Distribuzione esponenziale
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Sia \(a) un numero reale positivo. La <strong>
+distribuzione esponenziale</strong> con parametro \(a) (denotata da
+\(\mathcal{E}(a))) è una distribuzione continua su \(\RR_+) con
+funzione di densità
+<div class="wimscenter">
+\(x\mapsto a e^{-a x}1_{x>0} )
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Valore atteso</th><th>Varianza</th><th>Funzione caratteristica</th></tr>
+<td>\(\frac{1}{a})</td><td>\(\frac{1}{a^2})</td><td>\(\frac{1}{1-i\frac{t}{a}})</td></tr></table>
+

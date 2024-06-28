@@ -1,0 +1,130 @@
+!! read also by modules/adm/class/config
+
+!distribute line Désolé, aucun exercice n'est disponible dans ce module pour l'instant. Revenez plus tard !\
+  Ce module contient en ce moment un seul exercice\
+  Essayez-le.\
+  Sélectionner un ou plusieurs exercices&nbsp;\
+  contenant le(s) mot(s)\
+  Une série d'exercices aura \
+  Niveau de sévérité&nbsp;\
+  Chronomètre&nbsp;\
+  secondes\
+  Nombre de choix par question \
+  Afficher la solution\
+  Afficher le feedback\
+  Paramétrage simplifié\
+  Retour au paramétrage simplifié\
+  Paramétrage expert\
+  N'afficher que les exercices contenant\
+  exercices\
+  Paramétrage\
+  Choix des exercices\
+  Paramétrage spécifique à certains exercices du module\
+  Paramétrage des séries d'exercices\
+  Paramétrage de l'analyse des réponses\
+  Paramétrage de l'affichage des aides\
+  Sélectionner automatiquement les exercices contenant \
+  exemple&nbsp;: fonction\
+into name_noexercise,name_oneexercise,name_tryit,name_chooseexo,name_exercisescontaining,name_oneserie,\
+    name_levelseverity,name_chrono,name_secondes,name_qcmanswer,name_solutiongiven,name_feedgiven,\
+    name_simplifiedmenu,name_simplifiedmenu_back,name_expertmenu,name_select,name_exercises,name_menu,name_general_parms,name_module_setup,\
+    name_general_setup,name_score_setup,name_help_setup,name_select_auto,name_select_placeholder
+
+!set name_qcmanswer_help=Chaque question affichera au maximum ce nombre de choix.
+
+!distribute lines Calcul du score d'un exercice à plusieurs questions\
+Pas de surpénalisation, Faible surpénalisation, Forte surpénalisation\
+Calcul du score dans une série d'exercices\
+Uniquement si vous choisissez une série d'au moins deux exercices.\
+Pas de surpénalisation, Faible surpénalisation, Forte surpénalisation\
+Pénalité pour une mauvaise précision\
+Parfois\
+into name_expower,name_prompt_expower, name_sepower,name_warning_pow,\
+name_prompt_sepower, name_precweight,name_sometimes
+
+!set name_warning_expower=Moyenne arithmétique du score à chaque question mise à la \
+  puissance le nombre sélectionné.
+
+!set name_warning_sepower=Moyenne arithmétique du score de chaque exercice mise à la \
+  puissance le nombre sélectionné.
+
+!set name_datamodule=Ce module a besoin du module de données <span class="tt">$module_data</span> \
+  qui n'est pas installé sur ce serveur. Si vous désirez l'utiliser, \
+  demandez au gestionnaire du site de l'installer.
+
+!set name_choice=jamais,toujours,après la date d'expiration de l'activité
+!set name_qcm=QCM (uniquement dans certains types d'exercices)
+!set name_choice_check=Bonne réponse se trouvant toujours parmi les choix proposés.,\
+  Pénalité pour une mauvaise réponse.,\
+  Afficher la bonne réponse,\
+  Afficher l'indication,\
+  Afficher une calculette
+!set name_calc=$wims_name_no,basique,non basique
+
+!set name_aleaseries=Fixer l'ordre des exercices de la série.
+!set name_remarkintro1=Choisir un ou plusieurs exercices et fixer le paramétrage\
+ (paramétrage simplifié ou paramétrage expert). Puis, cliquer sur \
+<a class="wims_button disabled inline" href="#oef_intro_launch">$wims_name_work</a>.<br>\
+Les exercices proposés seront pris aléatoirement parmi les choix \
+ (ou parmi tous les exercices disponibles si le choix est vide).
+!set name_defserie=Une série d'exercices correspond au travail qui doit être fait avant\
+  l'obtention d'une note.
+!distribute lines Maximum d'essais avec la même version de la série d'exercices\
+  Nombre maximal d'essais comptabilisés\
+into name_seedrepeat,name_exotrymax
+
+!set name_help_seedrepeat=Sélectionner un nombre n supérieur ou égal à 2 permet d'éviter\
+  que les données aléatoires de la série d'exercices ne changent lors d'un nouvel essai :\
+  ces données ne varieront qu'en cas de bonne réponse ou après n essais sur cette série.\
+  Pour une série d'exercices dont l'ordre est fixé, sélectionner un nombre n supérieur ou égal à 1\
+  permet de plus de conserver les mêmes valeurs pour les variables communes aux différents exercices\
+  de la série.
+
+!set name_help_givegood=Lorsque le nombre maximal d'essais autorisés sur une même version\
+  de la série d'exercices est au moins égal à 2, la bonne réponse s'affiche au dernier essai\
+  sur cette version (sauf si <span class="tt">$(name_choice[1])</span> ou\
+  <span class="tt">$(name_choice[3])</span> ont été sélectionnés).\
+  Si vous cochez <span class="tt">$(name_choice[3])</span>, la bonne réponse ne s'affichera\
+  que si l'activité (par exemple la feuille) est périmée.\
+  <br>Certains exercices peuvent aussi proposer une indication, un feedback ou une solution.\
+  Le paramétrage pour les afficher fonctionne de la même manière.
+
+!set name_tries=ou à partir de l'étude de la version, de la série d'exercices
+!set name_latex=Une version latex de certains des exercices est accessible par \
+  la version imprimable.
+
+!if * isin $titlelist
+  !set name_remarkintro2= Les exercices marqués par un * sont en général plus difficiles que les autres.
+!endif
+!!leave on one line
+!set name_remarkintro3=Vous pouvez mettre deux nombres dans le chronomètre, séparés par une\
+virgule sans espace, le deuxième étant plus grand que le premier. Le premier nombre\
+représente le temps (en secondes) déclenchant la réduction du score. \
+Le second, par défaut égal au premier, représente le temps à partir duquel le score sera 0.
+
+!set name_remarkseverity= Tableau de correspondance entre les niveaux de sévérité et les \
+ différents paramétrages :
+
+!set name_remarkallexo=!nosubst Si vous utilisez le lien\
+<span class="wims_button disabled inline">$wims_name_addallexo</span>,\
+le paramétrage vous sera proposé ultérieurement.
+
+!set name_remarkorder1=Par défaut, l'ordre des exercices est aléatoire.\
+  Cocher ci-dessous pour que l'ordre soit fixé.
+
+!set name_remarkorder2=Si le nombre d'exercices sélectionnés est égal au nombre d'exercices dans la série,\
+  il sera possible de choisir l'ordre au moment de l'insertion de la série dans la feuille d'exercices.
+
+!set name_help_precweight=Plus le nombre est petit, plus la pénalité est grande.\
+Plus précisément, le score d'une réponse numérique imprécise est multiplié par ce nombre\
+par rapport à celui d'une bonne réponse.
+
+!set name_examplepenality=Exemple : tableaux donnant le calcul du score pour un exercice comportant\
+ plusieurs questions de même importance en fonction du nombre de mauvaises réponses\
+ et du poids de pénalisation choisi.
+
+!set name_example1=!nosubst Exercice à $tmp_n questions <br>Score obtenu
+!set name_entete1=Coefficient de pénalisation
+!set name_entete2=erreur(s)
+
+!set name_warning_levelseverity=Cliquer sur <span class="wims_button disabled inline">$name_expertmenu</span> pour plus de détails.

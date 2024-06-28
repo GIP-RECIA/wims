@@ -1,0 +1,49 @@
+!goto $err_
+
+:notallowedmodule
+  Ce module n'est pas activé sur ce serveur. Contactez l'administrateur.
+!exit
+
+:nouser
+  Le participant que vous avez indiqué n'existe pas.
+!exit
+
+:usernotintchat
+  Ce participant n'est pas connecté au tchat, ou n'est pas sur une page d'exercice. Il n'y a donc aucune page à voir.
+!exit
+
+:adressplay
+  Les données que vous avez fait parvenir au serveur semblent incorrectes. Ne pas jouer avec la barre d'adresse du navigateur !
+!exit
+
+:workinprogress
+  La fonction d'affichage des pages élèves est en court de test. Il est possible qu'elle ne fonctionne pas encore correctement.
+!exit
+
+:badright
+  Vous n'auriez pas du arriver sur cette page. Ne pas jouer avec la barre d'adresse du navigateur !
+!exit
+
+:disconnected
+  Vous êtes bien déconnecté du tchat.
+!exit
+
+:toomuchliving
+  Le nombre de salon est limité à $msg_maxliving. Vous ne pouvez pas en créer un de plus.
+!exit
+
+:goodsave
+Enregistrement réussi.
+!exit
+
+:notopen
+Le Tchat a été fermé par votre enseignant.
+!exit
+
+:toobigfile
+Le fichier que vous souhaitez déposer est trop volumineux. Veuillez réduire sa taille avant de recommencer.
+!exit
+
+:badfilename
+Le nom de votre fichier n'est pas compatible. Renommer le avant d'essayer de le charger à nouveau. (format nom.extension où nom et extension ne doivent comporter que des caractères alphanumériques non accentués sans espace).
+!exit

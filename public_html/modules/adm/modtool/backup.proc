@@ -1,0 +1,22 @@
+
+!read scripts/getindex.proc $mod
+!if $title=$empty and $inddef=$empty
+  job=modname
+  modreq=
+  !changeto $job.proc
+!endif
+
+fname=modtool-$mod.tgz
+fresult=!sh mkdir -p $wims_home/$wims_sesdir/getfile\
+cd $devdir\
+find $mod -name .DS_Store -exec rm \{\} \; \
+tar -czf $wims_home/$wims_sesdir/getfile/$fname --exclude .svn --exclude .deleted $mod\
+if [ -f  $wims_home/$wims_sesdir/getfile/$fname ]; then\
+ echo $fname\
+fi
+!if $wims_exec_error!=$empty
+!!! is the test correct ? using langage
+  !if File too large isin $wims_exec_error
+    error=file_too_large
+  !endif
+!endif

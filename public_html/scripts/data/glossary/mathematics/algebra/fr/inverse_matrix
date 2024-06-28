@@ -1,0 +1,36 @@
+
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=matrix,linear_algebra
+!set gl_title=Matrice inverse
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(n\) un entier naturel non nul. La <strong>matrice unité</strong> de
+  taille \(n\) est la matrice carrée de taille \(n\) dont tous les coefficients
+  sont nuls, exceptés ceux de la diagonale principale qui sont égaux à 1.
+</div>
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(n\) un entier naturel non nul, \(I\) la matrice unité de taille \(n\)
+  et \(A\) une matrice carrée de taille <span style="white-space:nowrap">\(n\).</span>
+  <br>
+  S'il existe une matrice carrée \(B\) de taille \(n\) telle que&nbsp;:
+  \(A B = B A =I \), alors on dit que la matrice \(A\) est <strong>inversible</strong>
+  et que son <strong>inverse</strong>, notée \(A^{-1}\), est la matrice
+  <span style="white-space:nowrap">\(B\).</span>
+</div>
+<div class="wims_thm">
+  <h4>Théorème</h4>
+  Soit \(n\) un entier naturel non nul, \(I\) la matrice unité de taille \(n\)
+  et \(A\) une matrice carrée de taille <span style="white-space:nowrap">\(n\).</span>
+  <br>
+  Si \(B\) est une matrice carrée de taille \(n\) telle que \(A B = I\),
+  alors la matrice \(A\) est inversible et on a \(A^{-1} = B\)
+  et également <span style="white-space:nowrap">\(B^{-1} = A\).</span>
+</div>
+:mathematics/algebra/fr/inverse_matrix_1

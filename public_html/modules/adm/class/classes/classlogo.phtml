@@ -1,0 +1,14 @@
+!! display classlogo in authentification page
+!set class_logo=!defof class_logo in wimshome/log/classes/$class/.def
+!if $class_logo issametext none
+  !set class_logo=
+  !exit
+!endif
+!if $class_logo issametext wims
+  !set class_logo=gifs/logo.gif
+!endif
+!default class_logo=gifs/logo.gif
+!bound class_logoside within left,right default left
+<div id="classlogo" class="float_$class_logoside">
+  <img src="$class_logo" alt="class logo">
+</div>

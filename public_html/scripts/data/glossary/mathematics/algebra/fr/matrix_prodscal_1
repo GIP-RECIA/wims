@@ -1,0 +1,8 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Produit d'une matrice par un un nombre réel (exemple)
+
+!readproc data/glossary/mathematics/algebra/macro/matrix_operation
+
+Le produit de la matrice  \([$gl_A1]\) par \($gl_k\) est
+\([$gl_kA]\).

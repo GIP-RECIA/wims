@@ -1,0 +1,7 @@
+size 400,400
+xrange -6,6
+yrange -6,6
+fontfamily 22px Arial
+# use single space for separation in formula...
+# use double space to create new word
+stringup red,-5,0,45,H_3 O^+ + OH^\u2212  \u2192 2H_2 O

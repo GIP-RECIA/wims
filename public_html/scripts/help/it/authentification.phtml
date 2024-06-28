@@ -1,0 +1,173 @@
+!! for translator : you may replace the "!changeto" line below by a 
+!! translation of the file scripts/help/en/authentification.phtml
+
+!! !changeto help/en/authentification.phtml
+
+Per poter accedere ai corsi WIMS è necessario che gli utenti siano registrati nei
+corsi (ovvero che alcuni dati relativi agli utenti siano registrati da
+WIMS, questo è il processo di <span class="wims_emph">Identificazione</span>) 
+e che l'utente sia autorizzato all'accesso (in generale previa verifica delle
+credenziali di accesso, quali, ad esempio, <span class="wims_emph">login</span> 
+e <span class="wims_emph">password</span>, questo è il processo di
+<span class="wims_emph">Autenticazione</span>). WIMS accetta diversi metodi 
+di <span class="wims_emph">Autenticazione</span> e
+<span class="wims_emph">Identificazione</span>, che possono essere combinati.
+    
+<h3>Autenticazione</h3>
+Sono possibili diversi metodi di autenticazione per l'acceso ai corsi WIMS:
+
+<ol><li>
+<strong>Autenticazione nativa WIMS.</strong>
+ L'identificativo <span class="wims_login">Login</span> e la password di accesso
+  sono scelti dal docente o dallo studente e il database contenente i dati
+  relativi agli studenti è interno a WIMS. Ogni corso ha un database utenti
+  specifico.
+</li><li>
+<strong>Autenticazione CAS</strong> (Central Authentication Service). Permette
+  di utilizzare uno stesso sistema di autenticazione per più siti
+  (in un ambiente Single Sign On (SSO)).
+
+  Questo metodo di autenticazione è in generale disponibile se gli studenti
+      hanno accesso a un altro LMS (Learning Management System, ad esempio
+      Moodle) che utilizza una autenticazione CAS. In questo caso, in
+      generale, una volta che lo studente si è autenticato nel LMS può
+      accedere al corso WIMS con un link diretto.
+
+      In questo caso, per configurare correttamente il proprio corso, il
+      docente deve contattare il responsabile del LMS per avere i parametri
+      di accesso al server CAS.
+</li><li>
+<strong>Autenticazione LDAP</strong> (Lightweight Directory Access Protocol).
+  (Obsoleto, verificare con i sistemi informativi della propria sede se
+   sia possibile autorizzare WIMS a questo tipo di autenticazione).
+</li><li>
+<strong>Autenticazione attraverso uno script php.</strong> In modo analogo
+  all'autenticazione CAS permette di utilizzare una stessa autenticazione 
+  per più siti. È utile se gli utenti dispongono di un sistema di 
+  autenticazione federato (per esempio, per le università RENATER in Francia 
+  o IDEM-Garr in Italia; Gmail, &hellip;). Questo tipo di autenticazione 
+  richiede una configurazione specifica del server Apache o l'installazione
+  di un software come SimpleSamlPhp e quindi deve essere richiesta al
+  responsabile del server WIMS in collaborazione con il responsabile
+  della sede.
+  In generale, questo tipo di autenticazione viene attivato per un
+  server WIMS specifico e non per un server pubblico).
+</li></ol>
+
+<h3>Identificazione</h3>
+<p>
+Al momento dell'iscrizione, i dati relativi all'identità degli utenti
+    (nome, cognome, indirizzo email, etc.) possono essere importati
+    da un IDP (Identity Provider, per esempio un server LDAP), se esiste.
+    In generale questo richiede che il server WIMS abbia una autorizzazione
+    specifica a interagire con l'IDP. Occorre quindi verificare con i sistemi
+    informativi della propria sede.
+</p><p>
+Di seguito alcuni esempi di configurazione, che corrispondono alle opzioni
+disponibili nel menu nelle pagine di gestione del corso.
+</p>
+<h3>
+Autenticazione via WIMS (default)
+</h3>
+È il tipo di autenticazione nativa di WIMS. Ci sono due possibilità. 
+<ul><li>
+Il docente registra gli studenti, scegliendo per loro login e password.
+</li><li>
+Gli studenti si registrano da soli, grazie a una password di iscrizione,
+che deve essere comunicata dal docente, inserendo autonomamente i propri
+dati identificativi e scegliendo login e password di accesso.
+</li></ul>
+Gli studenti accedono ai corsi utilizzando questi login e password.
+
+<h3>
+Autenticazione CAS:
+</h3>
+<ul><li>
+Il docente deve preliminarmente configurare il corso indicando l'indirizzo
+    del server CAS che si vuole utilizzare, e può farlo sia in fase di
+    creazione del corso, sia accedendo all'area di gestione del corso
+    selezionando <span class="tt wims_code_words">Configurazione del 
+    corso - Autenticazione</span> (nel menu di sinistra).
+</li><li>
+Il docente deve comunicare la password di iscrizione a tutti i futuri 
+studenti.
+</li><li>
+Lo studente clicca sul bottone <span class="wims_button disabled">$wims_name_Enter</span>
+corrispondente al corso a cui vuole accedere. Viene quindi rediretto alla
+pagina di autenticazione CAS della sede. Effettua l'autenticazione
+    inserendo i dati di accesso CAS. Se è la prima volta che lo studente
+    accede al corso WIMS, viene richiesta la password di iscrizione al corso,
+      e, se tale password è inserita correttamente, lo studente può
+      registrarsi al corso, inserendo alcuni dati (in generale nome e cognome). 
+    Se lo studente è già iscritto al corso WIMS, dopo aver effettuato
+      l'autenticazione CAS viene automaticamente portato nella home page del
+corso.
+</li><li>
+Il docente può iscrivere manualmente gli studenti.
+</li></ul>
+<h3>
+Autenticazione via CAS e identificazione via LDAP.
+</h3>
+Il docente deve preliminarmente configurare il corso indicando l'indirizzo
+    del server CAS e accedendo all'area di gestione del corso
+    selezionando <span class="tt wims_code_words">Configurazione del 
+    corso - Autenticazione</span> (nel menu di sinistra) deve configurare
+i parametri del server LDAP. Deve anche verificare che il server LDAP 
+permetta l'accesso a WIMS.
+<p>
+      L'accesso degli studenti si volge come nel caso precedente, in questo
+caso però i dati per la registrazione anziché essere inseriti dallo studente
+vengono automaticamente importati dal server LDAP. 
+Per poter utilizzare questa modalità gli identificativi CAS e LDAP devono 
+essere i medesimi.
+      </p>
+
+<h3>
+Autenticazione e identificazione via php.
+</h3>
+
+Tutto si svolge come nel caso autenticazione via CAS e identificazione
+via LDAP.
+
+<h3>
+Autenticazione e identificazione via LDAP.
+</h3>
+
+Il docente deve preliminarmente configurare il corso indicando l'indirizzo
+      dello script php e il parametro
+      <span class="tt wims_code_words">connections</span>, accedendo
+      all'area di gestione del corso
+    selezionando <span class="tt wims_code_words">Configurazione del 
+    corso - Autenticazione</span> (nel menu di sinistra).
+
+Una volta effettuata la configurazione, tutto si svolge come nel caso
+autenticazione via CAS e identificazione via LDAP.
+
+
+<h3>Note</h3>
+<ul><li>
+<span class="wims_warning">
+È sconsigliato cambiare il tipo di autenticazione se ci sono già studenti
+iscritti al corso.
+</span>
+</li><li>
+Nel caso di autenticazione esterna (a WIMS), gli studenti accedono grazie
+all'identificativo <span class="wims_emph">esterno</span> fornito
+      dal servizio di autenticazione. Viene comunque generato un
+      identificativo <span class="wims_emph">interno</span> che viene
+      utilizzato da WIMS per identificare lo studente, ma non viene
+      utilizzato per l'accesso, come non viene utilizzata alcuna password
+interna (che quindi viene nascosta).
+</li><li>
+In generale se il server WIMS è configurato per autenticazioni esterne,
+nelle pagine di configurazione sono disponibili i valori di default
+da inserire (che comunque possono essere ridefiniti per ogni corso). 
+In ogni caso consultare il responsabile del server WIMS.
+</li><li>
+
+In caso di autenticazione esterna, se il docente inserisce manualmente
+gli studenti deve conoscere l'identificativo
+      <span class="wims_emph">esterno</span> assegnato dal server
+      di autenticazione
+</li></ul>
+

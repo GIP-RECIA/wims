@@ -1,0 +1,38 @@
+/* ************ PRINT OEF SOLUTION PART ONLY ********* */
+
+@media print{
+  .main_body{
+    font-family:Verdana,Arial,sans-serif;
+    font-size: .9em;
+    margin-top: 0;
+    background-color: #fff;
+  }
+
+  #wimspagebox, #wimsbodybox{
+    background-color: #fff;
+  }
+
+  div.wimsbody {
+    padding:0;
+    margin:0;
+  }
+
+  div.wimsbody h1.oeftitle{
+    margin:0;
+    border:none;
+  }
+  .answer_analysis{
+    border:none;
+  }
+
+  .oefstatement, .breadcrumbs,
+  #oef_helphint, fieldset.oefform,
+  .answeranalysis, #oef_indlegend,
+  .oef_feedbacks, #button_print,
+  #oef_actions, .wims_debug_mode,
+  #wimstailbox, #oef_devel_mode,
+  .oef_modulescore, .oef_congratulations,
+  .oefanswername{
+    display:none;
+  }
+}

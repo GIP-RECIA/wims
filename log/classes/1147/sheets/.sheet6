@@ -1,0 +1,81 @@
+Dénombrements à l'aide de tableaux à double entrée ou d'arbres
+Tableaux à double entrée, arbres de probabilités
+??,2021
+1
+H4
+probability
+events,probability,conditional_probability
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fluctuations d'une fréquence selon les échantillons, probabilités" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:H5/probability/oefprobaLP.fr
+exo=bonbtab1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau 1
+Compléter un <strong>tableau</strong> par <strong>étapes</strong> puis en déduire une <strong>probabilité</strong>.
+
+:H5/probability/oefprobaLP.fr
+exo=bonbtab2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau 2
+Compléter un <strong>tableau</strong> par <strong>étapes</strong> (en %), puis en déduire une <strong>probabilité</strong>.
+
+:H1/analysis/oefevalwimsgest.fr
+exo=oefcompltabl2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau à compléter 1
+Compléter un <strong>tableau à double entrée</strong> partiellement rempli.
+
+:H1/analysis/oefevalwimsgest.fr
+exo=oefcompltabl3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau à compléter 2
+Compléter un <strong>tableau à double entrée</strong> partiellement rempli.
+
+:H1/analysis/oefevalwimsgest.fr
+exo=oefcompltabl4
+10
+1
+Tableau à compléter 3
+Compléter un <strong>tableau à double entrée</strong> partiellement rempli.
+
+:H5/probability/OEFproba1S.fr
+exo=tableau1
+10
+1
+Tableau à compléter 4
+Compléter un <strong>tableau à double entrée</strong> à partir d'un texte.
+
+:H5/probability/oefprobaLP.fr
+exo=eleves&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau à compléter 5
+Compléter un <strong>tableau à double entrée</strong>. En déduire une <strong>probabilité</strong>.
+
+:H5/probability/oefprobaLP.fr
+exo=proarbre1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Arbre et probabilités 1
+Compléter un <strong>arbre de probabilités</strong>. Tirage de 2 boules <strong>avec remise</strong> (cas simple).
+
+:H5/probability/oefprobaLP.fr
+exo=probarbre2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Arbre et probabilités 2
+Compléter un <strong>arbre de probabilités</strong>. Tirage de 2 boules <strong>avec remise</strong>.
+
+:H5/probability/oefprobaLP.fr
+exo=probarbre3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Arbre et probabilités 3
+Compléter un <strong>arbre de probabilités</strong>. Tirage de 2 boules <strong>sans remise</strong>.
+

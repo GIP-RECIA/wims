@@ -1,0 +1,175 @@
+!if $error=noexists
+  Attention, the exercise requested does not exist. An exercise of the module is taken at random.
+  !exit
+!endif
+!if empty_out iswordof $error
+  El vostre codi no ha donat cap sortida. Corregiu-lo, sisplau.
+  !if $m_reply_err!=$empty
+    <pre><span class="wims_warning">$m_reply_err</span></pre>
+  !endif
+  !exit
+!endif
+
+!! empty_data bad_data double_reply are in html/msg.phtml.fr - suppress on test
+
+!if bad_answer iswordof $error
+  !! ------------- begin of error message for litexp option polfactor polexpand
+  !if notreduced iswordof $test
+    !if termealgsimp iswordof $test
+      !! TODO_lang termealgsimp
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if termenumsimp iswordof $test
+      !! TODO_lang termenumsimp
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if termesamepower iswordof $test
+      !! TODO_lang termesamepower
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if parenthesis iswordof $test
+      !! TODO_lang parenthesis
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if power0 iswordof $test
+      !! TODO_lang power0
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if constantbefore iswordof $test
+      !! TODO_lang constantbefore
+      !changeto oef/fr/msg.phtml
+    !endif    
+  !endif
+  !if badform iswordof $test
+    !if notcomplete iswordof $test
+      !! TODO_lang notcomplete
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if notfactorised iswordof $test
+      !! TODO_lang notfactorised
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if usedivide iswordof $test
+      !! TODO_lang usedivide 
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if fparenthesis iswordof $test
+      !! TODO_lang fparenthesis
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if multifactor iswordof $test
+      !! TODO_lang multifactor
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if twofactorcst iswordof $test
+      !! TODO_lang twofactorcst
+      !changeto oef/fr/msg.phtml
+    !endif
+    !if factorcontent iswordof $test
+      !! TODO_lang factorcontent
+      !changeto oef/fr/msg.phtml
+    !endif
+  !endif
+  !! ------------- end of error message for litexp option polfactor polexpand
+  !if illegalname iswordof $test
+    El vostre codi conté un nom il·legal <span class="tt">$illegal_name</span>. Corregiu-lo, sisplau.
+    !exit
+  !endif
+  !if lengthoverflow iswordof $test
+    El vostre codi ha superat el límit de longitud. Reescriviu-lo.
+    !exit
+  !endif
+  !if badsize iswordof $test
+    Heu de seleccionar
+    !word 3 of $test
+     objectes.
+    !exit
+  !endif
+  La resposta
+  <span span class="tt">$bad_value</span>
+  !if unknownword iswordof $test
+    !set w=!word 3 of $test
+    no és comprensible:
+    la paraula <span class="tt">$w</span>
+    no té relació amb aquest problema o no està permesa.
+    Corregiu-la o trieu-ne una altra més senzilla.
+    !exit
+  !endif
+  !if nocompute iswordof $test
+    no està permesa: feu vosaltres el càlcul i envieu el valor que en resulti.
+    !exit
+  !endif
+  !if nocomputecomplex iswordof $test
+    no està permesa.
+    Dóna la resposta de forma algebraica <span class="tt">a + b i</span>
+    amb <span class="tt">a</span> i <span class="tt">b</span> calculats i torneu a comprovar.
+    Per exemple, <span class="tt">-1/5 + 2/5*i</span> o <span class="tt">2/3 - 5*i/3</span>.
+    !exit
+  !endif
+  !if badform iswordof $test
+    !if noreduced iswordof $test
+      no és una fracció irreductible. Simplifiqueu la fracció.
+      !exit
+    !endif
+    no està escrit com es requereix. Escriviu-ho de la forma correcta.
+    !exit
+  !endif
+  !if notunit iswordof $test
+    només és un número&nbsp;:
+    especifiqueu la unitat de la resposta.
+    !exit
+  !endif
+  !if bad_variable iswordof $test
+    no és comprensible. Certament, conté variables no autoritzades.
+    !exit
+  !endif
+  no és comprensible. Corregiu l'error i torneu a enviar la resposta.
+  !exit
+!endif
+
+!if bad_exo iswordof $error
+  !for j=1 to 50
+    !if bad_exo $j isin $error
+      !set whichexo=!nosubst (la resposta correcta a la pregunta $j \
+      <span class="tt">$(replyname$j)</span>\
+      no és vàlida)
+      !!goto end_bad
+      !break
+    !endif
+  !next
+:end_bad
+  A causa d'un error a l'exercici $whichexo, és impossible d'analitzar
+   la resposta. L'única solució és canviar d'exercici&nbsp;;
+  disculpeu.
+  <p>
+  Si us plau
+  !if $email!=$empty
+    !mailurl $email contacteu amb l'autor
+  !else
+    contacteu amb l'autor
+  !endif
+  de l'exercici per comunicar aquest error.
+  </p>
+  !exit
+!endif
+
+!if too_many_print iswordof $error
+  El que voleu per a la versió imprimible és excessiu.
+  !exit
+!endif
+
+!if chemclick_empty_data iswordof $error
+  No heu seleccionat cap àtom ni enllaç. Consulteu l'ajuda.
+  !exit
+!endif
+!if chemdraw_empty_data iswordof $error
+  No heu canviat l'applet. Completeu la resposta.
+  !exit
+!endif
+
+!if draw_bad_object iswordof $error
+  No heu dibuixat correctament els objectes sol·licitats ($type): torneu-ho a provar de nou!
+  !exit
+!endif
+
+!msg $error

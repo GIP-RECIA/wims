@@ -1,0 +1,21 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function,limit,asymptote
+!set gl_title=Asymptote verticale
+!set gl_level=H6 STI2D&nbsp;STL&nbsp;Spécialité, H6 Générale&nbsp;Spécialité, H6 Générale&nbsp;Complémentaire
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(a\) un nombre réel et \(f\) une fonction numérique définie au voisinage
+  de <span style="white-space:nowrap">\(a\).</span><br>
+  On note \(C\) la courbe représentative de \(f\) dans le plan muni d'un repère
+  orthogonal.<br>
+  Si la fonction \(f\) admet une limite infinie à droite ou à gauche en \(a\)
+  alors la courbe \(C\) admet la droite d'équation \(x=a\) pour asymptote.<br>
+  La droite d'équation \(x=a\) est parallèle à l'axe des ordonnées et est dite
+  <strong>asymptote verticale</strong> à la courbe
+  <span style="white-space:nowrap">\(C\).</span>
+</div>

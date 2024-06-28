@@ -1,0 +1,43 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=symmetry
+!set gl_title=Symétrie axiale
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(\mathcal{D}\) une droite du plan.<br>
+La <strong>symétrie axiale</strong> ou <strong>réflexion</strong> d'axe
+\(\mathcal{D}\) est la transformation du plan par laquelle tout point
+\(\mathrm{M}\) a pour image le point \(\mathrm{M}'\) tel que&nbsp;:
+<ul>
+<li>
+ \(\mathcal{D}\) est la médiatrice du segment
+ \(\lbrack \mathrm{MM}'\rbrack\) si \(\mathrm{M}\) n'appartient pas à
+<span style="white-space:nowrap">\(\mathcal{D}\) ;</span>
+</li>
+<li>\(\mathrm{M}' = \mathrm{M}\) si \(\mathrm{M}\) appartient à \(\mathcal{D}\).
+</li>
+</ul>
+</div>
+<div class="wims_thm"><h4>Propriété</h4>
+ L'ensemble des points invariants par une symétrie axiale est son axe.</div>
+:mathematics/geometry/fr/axial_symetry_1
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Une symétrie axiale conserve les distances&nbsp;: si \(s\) est une symétrie
+axiale et si <span style="white-space:nowrap">\(\mathrm{A}\),</span>
+<span style="white-space:nowrap">\(\mathrm{B}\),</span> \(\mathrm{A}'\) et
+\(\mathrm{B}'\) sont quatre points du plan tels que \(s(\mathrm{A})=\mathrm{A}'\)
+et <span style="white-space:nowrap">\(s(\mathrm{B})=\mathrm{B}'\),</span> alors
+<span style="white-space:nowrap">\(\mathrm{A}'\mathrm{B}'=\mathrm{AB}\).</span>
+</div>
+:mathematics/geometry/fr/axial_symetry_2
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Une symétrie axiale conserve les mesures des angles ainsi que les périmètres et
+les aires des figures.
+</div>

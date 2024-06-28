@@ -1,0 +1,38 @@
+!set titb=Synthèse sur les fonctions associées et leurs courbes
+!set keyw=
+!set datm=20210826
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<p>Pour trouver l'équation d'une courbe ou la formule d'une fonction, il est souvent intéressant
+de partir de la courbe d'une fonction de référence et d'obtenir la courbe par
+<strong>symétrie par rapport à l'axe horizontal</strong>, par
+<strong>dilatation selon un axe vertical</strong> ou <strong>par translation</strong>,
+ce qui correspond à composer la fonction de référence avec une fonction affine.
+</p><p>
+Pour modéliser des fonctions représentées par des paraboles d'axe vertical ou horizontal,
+nous n'utiliserons que les fonctions de référence carré 
+!insmath x \mapsto x^2
+ et
+racine carrée 
+!insmath x \mapsto \sqrt{x}
+.
+</p>
+<ol>
+ <li>
+!read primitives.phtml 1, fold, \embed{FoncAssX2}, <strong>Fonctions associées à \(r) : \(x \mapsto x^2)	 de courbe \(C_r) dans un repère \((O, \vec{i},\vec{j}))</strong> 
+</li>
+<li>
+!read primitives.phtml 2, fold, \embed{FoncAssR}, <strong>Fonction de référence	 \(x \mapsto r(x)) de courbe \(C_r) dans un repère \((O, \vec{i},\vec{j}))</strong> 
+</li>
+</ol>
+

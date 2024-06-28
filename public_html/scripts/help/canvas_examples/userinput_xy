@@ -1,0 +1,12 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+axis
+axisnumbering
+precision 0
+grid 2,2,grey,3,3,6,black
+# provides inputfields for (x1:y1)---(x2:y2)
+userinput_xy
+linewidth 2
+precision 1000
+userdraw lines,blue

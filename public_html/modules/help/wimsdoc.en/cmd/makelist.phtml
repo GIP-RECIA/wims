@@ -1,0 +1,24 @@
+!! +var+ +exec+ +string+
+!goto end
+tit:makelist
+type:$type_both
+
+syntax:!makelist ``templ'' for ``v''=``v1'' to ``v2'' [step ``st''], or \
+!makelist ``templ'' for ``v'' in ``v1,v2,v3,...''
+
+mean:Outputs a list consisting of ``templ'' with variable ``v'' successively substituted \
+  by values ``v1'', ..., ``v2''.<br>\
+  In the second syntax, the substitutions are done with respect to each item in\
+  the list ``v1,v2,...''.<br>\
+  The variable ``v'' should appear in ``templ'' as a math variable \
+  (that is, with no preceeding character).
+
+sample:see below
+:end
+<tr>
+  <td><code>!makelist [x;x+1;xx] for x in a,x and y,1,(2,3)</code></td>
+  <td><pre>
+    !makelist [x;x+1;xx] for x in a,x and y,1,(2,3)
+  </pre></td>
+</tr>
+

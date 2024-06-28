@@ -1,0 +1,46 @@
+
+!set wims_ref_class=wims_button_help float_right
+!href target=wims_mhelp cmd=help $wims_name_help
+<div class="wims_content">
+  !form reply
+     <input type="hidden" name="job" value="cfwtime">
+     <fieldset class="property_fields halfwidth blockcenter">
+     <legend>$wims_name_config</legend>
+     <div class="field box">
+        <label for="cf_open">$(name_config[1])</label>
+        !set wims_ref_class=wims_formradio
+        !default cf_open=$wtime_open
+        !formradio cf_open list 1,0 prompt $wims_name_yes,$wims_name_no
+    </div>
+    <div class="field box">
+        <label for="cf_nbsub">$(name_config[2])</label><br>
+        <input type="number" min="3" max="10" size="4" name="cf_nbsub" value="$wtime_nbsub" id="cf_nbsub">
+        <div class="formHelp">$(name_desc_config[2])</div>
+    </div>
+    <div class="field box">
+        <label for="cf_subval">$(name_config[3])</label><br>
+        <input type="number" min="1" max="30" size="15" name="cf_subval" value="$wtime_subval" id="cf_subval">
+        <div class="formHelp">$(name_desc_config[3])</div>
+    </div>
+
+    <div class="field box">
+      <strong>$(name_config[4])</strong>
+      <p class="wimscenter">
+        <input size="5" id="color0" name="cf_color0" value="$(wtime_ltcolor[1])" type="color">
+        !for col=1 to $wtime_nbsub
+         <label for="color$col" class="show-for-sr">$col</label>
+         <input size="5" id="color$col" name="cf_color$col" value="$(wtime_ltcolor[$col+1])" type="color">
+        !next col
+        </p>
+      <div class="formHelp">$(name_desc_config[4])</div>
+    </div>
+
+  </fieldset>
+  <div class="wimscenter">
+    <input type="submit" name="save" value="$wims_name_tosave">
+    !set wims_ref_class= wims_button wims_secondary_button
+    !href module=$module&+job=workingtime $wims_name_giveup
+  </div>
+  !formend
+</div>
+!reset save cf_excludesh

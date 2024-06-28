@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,events
+!set gl_title=Événement (lycée)
+!set gl_level=H4
+:
+:
+:
+:
+
+<div class="wims_defn">
+<h4>Définitions</h4>
+Soit &#937; l'univers associé à une expérience aléatoire.<br>
+On appelle <strong>événement</strong> toute partie de &#937;.<br>
+Un <strong>événement élémentaire</strong> est un événement qui ne contient
+qu'une seule issue.
+</div>

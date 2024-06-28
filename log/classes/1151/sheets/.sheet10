@@ -1,0 +1,74 @@
+
+:U1/mechanics/oefvector.fr
+exo=Coord1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Coordonnées de vecteur 1
+<strong>Lire</strong> graphiquement les coordonnées de vecteurs du plan ayant pour origine, l'origine du repère.
+
+
+:U1/mechanics/oefvector.fr
+exo=Coord2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Coordonnées de vecteurs 2
+<strong>Lire</strong> graphiquement les coordonnées de vecteurs du plan.
+
+
+:U1/mechanics/oefvector.fr
+exo=Norme&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Coordonnées et norme d'un vecteur dans le plan
+<strong>Lire</strong> graphiquement les coordonnées du vecteur et <strong>calculer</strong> sa norme.
+
+
+:H2/geometry/oefpersp3D.fr
+exo=1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Repérage de points 1
+<strong>Lire</strong> les coordonnées de points en perspective cavalière.
+
+
+:H2/geometry/oefpersp3D.fr
+exo=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Repérage de points 2
+<strong>Lire</strong> les coordonnées de points en perspective cavalière.
+
+
+:H2/geometry/oefpersp3D.fr
+exo=3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Repérage de points 3
+<strong>Lire</strong> les coordonnées de points en perspective cavalière.
+
+
+:H2/geometry/oefpersp3D.fr
+exo=4&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Repérage de points 4
+<strong>Placer</strong> un point dans un repère à 3 dimensions.
+
+
+:H2/geometry/oefpersp3D.fr
+exo=5&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Repérage de points 5
+<strong>Placer</strong> un point dans un repère à 3 dimensions.
+
+
+:H2/geometry/oefpersp3D.fr
+exo=6&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Repérage de points 6
+<strong>Placer</strong> un point dans un repère à 3 dimensions.
+
+
+

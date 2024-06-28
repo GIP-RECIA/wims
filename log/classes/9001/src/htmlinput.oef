@@ -1,0 +1,22 @@
+\title{htmlinput}
+\text{code1=slib(text/matrixhtml [1,reply1,3;4,reply2,6], wimsborder wimscenter)}
+\statement{
+<div class="spacer">
+\special{editarea
+\text{code=\slib(text/matrixhtml [1,reply1,3;4,reply2,6], wimsborder wimscenter)}
+}
+</div>
+<div class="spacer">
+\special{editarea
+\special{codeinput [\code], 5, div
+reply1
+reply2}
+}
+</div>
+
+\special{codeinput [\code1], 5, div
+reply1
+reply2}
+}
+\answer{}{2}{type=numeric}
+\answer{}{5}{type=numeric}

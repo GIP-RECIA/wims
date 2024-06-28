@@ -1,0 +1,22 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Prélèvements obligatoires
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+On appelle <strong>prélèvements obligatoires</strong> l'ensemble des versements
+<span class="wims_emph">fiscaux (impôts et taxes) </span> et
+<span class="wims_emph">parafiscaux (cotisations sociales) </span>
+effectués par les agents économiques auprès des administrations publiques.
+</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+Les prélèvements obligatoires permettent de financer d'une part les
+<span class="wims_emph">services publics (hôpitaux, écoles, universités ...)</span>,
+d'autre part le mécanisme de <span class="wims_emph">redistribution</span>
+des revenus mis en place par les États engagés dans une réduction des inégalités.
+</div>

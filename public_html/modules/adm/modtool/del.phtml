@@ -1,0 +1,23 @@
+!read lang/names.phtml.$modu_lang del
+
+<div class="wims_msg warning halfwidth">
+  <span class="wims_warning">$wims_name_warning</span>.
+  $name_delmodule_warning1
+  !set wims_ref_class=wims_button
+  !href cmd=reply&jobreq=backup $name_backup
+  <p>$name_delmodule_warning2</p>
+</div>
+<div class="wimscenter">
+  <p>
+    $name_delmodule_confirm
+    <span class="wims_mod_title">
+      !module title devel/$auth_login/$mod
+    </span>
+    (<span class="tt wims_fname">$modreq</span>)?
+  </p>
+  !set wims_ref_class=wims_button wims_warning
+  !href cmd=reply&jobreq=del&confirm=yes $wims_name_yes
+  $ $
+  !set wims_ref_class=wims_button
+  !href cmd=reply&jobreq=flist $wims_name_no
+</div>

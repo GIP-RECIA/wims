@@ -1,0 +1,30 @@
+::wims.4.26
+:Can clone a class from a saveclass file (given by link or upload in navigator).
+:New administrative module adm/class/swork to make automatic working suggestion to student.
+:A printable version of a sheet with exercises containing a latex version can be individualized per student.
+:New exam mode (called 'course' in French) in which exercises must be performed in a fixed order.
+:New type of applet in freework allows the teacher to upload multiple files. For each student one (and only one) of these files will be randomly picked and shown.
+:New parameter in freework configuration to allow a student to close its freework before the deadline.
+:Students' work on freework is shown in students' score page.
+:Display of the daily time spent by each student in a class, group of classes or portal (adm/class/activity).
+:Personalisation of sheet presentation page (replace the use of a document).
+:A link to a glose of the general glossary can be added as helpexo.
+:When a user enters in an open class as anonymous' user, a new account is created (called anonymous1, anonymous2, ...). These accounts are removed each day by the housekeep.daily script (their number is limited to 50% of class_limit).
+:New open classes 1150 'Mathématique en 6ième' and 1151 'Mathématique en Terminale professionnelle'.
+:Some gloses have been added in the glossary.
+:The list of deprecated modules is shown in the menu of page 'module updates'.
+:Updated open class, sheet and taxonomy to use non deprecated version of modules.
+:New coding/editor for coding slib.
+:Add option polfactor polexpand to anstype litexp.
+:Scripts about nets of polyedra are added.
+:The raw module can give pedagogical module connexion informations.
+:Tikz version for flydraw (cannot yet be used ...).
+:Chemeq uses now a recent database for atomic weights, which improves some slibs like chemistry/chemeq_* and make them usable for exercises about mass spectroscopy; added a slib which shows this mass database (formated as a periodic table).
+
+::wims.4.24
+:canvasdraw: add keyword 'group' and command 'kill group'
+:Il est possible de demander à un étudiant de travailler sur un exercice wims et de rédiger ses réponses en ligne grâce à l'activité "Devoir libre" (module freework)
+:Lors de l'insertion de la plupart des exercices wims dans une feuille, il est maintenant possible de n'afficher certaines aides (bonnes réponses, feedback, indications ou solution) que lorsque la feuille est périmée.
+:Il est possible de faire afficher l'applet d'une calculatrice à coté du titre de l'exercice dans une feuille.
+:Il est maintenant possible de cacher un examen ou une séquence à une partie des étudiants en utilisant une variable technique.
+:On peut donner la possibilité à un étudiant d'envoyer un mail à l'enseignant du cours lorsqu'il enregistre les détails d'un exercice pour le prévenir/lui poser une question.

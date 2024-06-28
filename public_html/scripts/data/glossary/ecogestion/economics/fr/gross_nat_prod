@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Produit national brut
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Le <strong>produit national brut (PNB)</strong> est un indicateur qui,
+comme le PIB mesure l'activité économique d'un pays donné.
+Mais à la différence du PIB, <span class="wims_emph">le PNB prend en compte
+la création de richesses réalisées par les entreprises nationales quelque soit
+leur lieu de résidence</span>.
+</div>
+

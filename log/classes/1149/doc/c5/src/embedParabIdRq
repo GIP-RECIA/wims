@@ -1,0 +1,7 @@
+<table>
+<tr><td align="right">développer</td><td>\(\rightarrow)</td></tr>
+<tr><td align="right">\((a+b)^2)</td><td>=</td><td>\(a^2+2*a*b+b^2)</td></tr>
+<tr><td align="right">\((a-b)^2)</td><td>=</td><td>\(a^2-2*a*b+b^2)</td></tr>
+<tr><td align="right">\((a+b)*(a-b))</td><td>=</td><td>\(a^2-b^2)</td></tr>
+<tr><td></td><td>\(\leftarrow)</td><td>factoriser</td></tr>
+</table>

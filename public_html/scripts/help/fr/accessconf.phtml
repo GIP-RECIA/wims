@@ -1,0 +1,109 @@
+<h2 class="wimscenter">Définition des restrictions d'accès</h2>
+
+<p>
+Les définitions de restriction d'accès sont des données multi-ligne, exécutées ligne par ligne
+dans l'ordre de la liste. Les restrictions affectent seulement les modules de ressources et
+non les modules administratifs.
+Les lignes commençant par un <span class="tt wims_code_words">#</span> sont des commentaires.
+</p><p>
+Chaque ligne a le format
+</p>
+<pre>
+<span class="tt wims_code_words">condition sur la ressource:conditions sur l'hôte ou l'heure</span>
+</pre>
+ou
+<pre>
+<span class="tt wims_code_words">condition sur la ressource:!conditions sur l'hôte ou l'heure</span>
+</pre>
+<p>
+La condition sur la ressource est une liste de mots.
+Les mots disponibles se trouvent dans le tableau suivant.
+Chaque mot peut être préfixé avec
+<span class="tt wims_code_words">non</span> pour inverser son sens logique.
+</p>
+$table_header
+$table_tr<th>mot<th>signification</th></tr>
+$table_tr<td class="tt wims_code_words">class</td><td>La requête est faite à partir une classe virtuelle.</td></tr>
+$table_tr<td class="tt wims_code_words">com</td><td>Le module requis est dans la hiérarchie en dessous de com/.</td></tr>
+$table_tr<td class="tt wims_code_words">document</td><td>Le module requis est un document.</td></tr>
+$table_tr<td class="tt wims_code_words">exercise</td><td>Le module requis est un exercice.</td></tr>
+$table_tr<td class="tt wims_code_words">hint</td><td>La requête concerne les aides.</td></tr>
+$table_tr<td class="tt wims_code_words">local</td><td>Le module requis est dans la hiérarchie en dessous de local/.</td></tr>
+$table_tr<td class="tt wims_code_words">recreation</td><td>Le module requis est une récreation.</td></tr>
+$table_tr<td class="tt wims_code_words">tool</td><td>Le module requis est un outil.</td></tr>
+$table_end
+
+!set date=!char 1 to 8 of $wims_now
+!set year=!char 1 to 4 of $wims_now
+<div>
+Les conditions sur l'hôte peuvent être n'importe quelle définition d'hôte http.
+Les conditions sur l'heure doivent être de la forme
+<code>&gt;aaaammdd.hh:mm</code> et/ou <code>&lt;aaaammdd.hh:mm</code>,
+par exemple
+<pre>&gt;$date.00:00 &lt;$date.12:59</pre>
+Il est possible de mettre un joker (<span class="tt wims_code_words">*</span>)
+à la place d'un des chiffres de la date.
+L'accès est refusé (conditions sur l'hôte ou l'heure précédées de
+  <span class="tt wims_code_words">!</span>) ou accepté (sans
+  <span class="tt wims_code_words">!</span>)
+  selon la première ligne qui satisfait tous les critères:
+</div>
+<ul><li>
+  l'IP de départ si présente;
+</li><li>
+  l'heure si présente;
+</li><li>
+  chaque condition de ressources (correspondant à une activité non administrative)
+  non préfixée par <span class="tt wims_code_words">non</span>
+  doit être dans les propriétés de l'activité;
+</li><li>
+  chaque condition de ressources (correspondant à une activité non administrative)
+  préfixée par <span class="tt">non</span>
+  ne doit pas être dans les propriétés de l'activité.
+</li></ul>
+!!Si le premier caractère des conditions d'hôtes ou de temps est
+!!<span class="tt wims_code_words">!</span>,
+!!l'hôte ou le temps remplissant ces conditions se verra refusé l'accès
+!!(pour les ressources remplissant ces conditions).
+!!Sinon, l'accès n'est autorisé que sous les conditions données
+!!et les lignes suivantes dans la définition des
+!!restrictions seront ignorées pour celles remplissant les conditions.
+
+<hr>
+
+!read help/hosts.phtml
+
+<hr>
+
+Quelques exemples.
+<div>
+# Désactive l'utilisation d'outils à partir de 134.59.102.*
+<pre>
+<span class="tt wims_code_words">tool:! 134.59.102.</span>
+</pre></div><div>
+# Désactive les appels aux indications à partir de localhost.
+<pre>
+<span class="tt wims_code_words">hint:! 127.0.0.1</span>
+</pre></div><div>
+# Les personnes venant de wanadoo.fr et ayant un accès anonyme ne peuvent pas
+  utiliser les récréations.
+<pre>
+<span class="tt wims_code_words">nonclass recreation:! .wanadoo.fr</span>
+</pre></div><div>
+# Le travail dans la classe virtuelle est interdit à partir de localhost le jour de l'an $year.
+<pre>
+<span class="tt wims_code_words">class:! 127.0.0.1 &gt;$(year)0101.00:00 &lt;$(year)0101.23:59</span>
+</pre>
+</div><div>
+# Le travail dans la classe virtuelle est interdit de 22h à 6h les jours du mois d'octobre.
+<pre>
+<span class="tt wims_code_words">class:! &gt;****10**.22:00 &lt;****10**.23:59</span>
+<span class="tt wims_code_words">class:! &gt;****10**.00:00 &lt;****10**.06:00</span>
+</pre>
+# Le travail dans la classe virtuelle est interdit de 22h à 6h les jours du mois d'octobre
+(autre manière de l'écrire ...).
+<pre>
+<span class="tt wims_code_words">class:&gt;****10**.06:00 &lt;****10**.22:00</span>
+<span class="tt wims_code_words">class:! &gt;****10**.00:00 &lt;****10**.23:59</span>
+</pre>
+</div>

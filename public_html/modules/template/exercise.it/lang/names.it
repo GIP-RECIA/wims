@@ -1,0 +1,3 @@
+!set name_score=!nosubst Hai ottenuto $module_score punti (su 10) per questa risposta.
+
+!set name_bad_data=Non è possibile valutare la risposta inserita. Errore di battitura?

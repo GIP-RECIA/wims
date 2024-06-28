@@ -1,0 +1,61 @@
+!!##language independant
+!set parm1=!text select /$namechars in $parm1
+!set parm1=!char 1 to $namelim of $parm1
+!set kblock=!positionof item $block in $filelist
+
+
+!if $parm1=$block or $parm1=$empty
+  !default parm2=??
+  !set parm2=!slashsubst $parm2
+  !set pp=!item 3 to -1 of $parms
+  !set pp=!slashsubst $pp
+  <a id="primi$(embed_file).$serial"></a>
+  !if $doc/$kblock.$(embed_file).$serial notitemof $foldlist and $printable!=yes
+    !href cmd=reply&job=read&foldin=$kblock.$(embed_file).$serial#primi$(embed_file).$serial $parm2
+  !else
+    $pp
+    !if $printable!=yes
+      !set wims_ref_class=wims_button small
+      !href cmd=reply&job=read&foldout=$kblock.$(embed_file).$serial#primi$(embed_file).$serial $n_foldout
+    !endif
+  !endif
+  !exit
+!endif
+
+!reset titb
+!read $wims_priv_thisdoc/$parm1.def
+!set prompt=!item 2 to -1 of $parms
+!default prompt=$titb
+!if $titb=$empty
+  !default prompt=<span class="tt">$parm1</span>
+  $prompt
+  !if $editable=yes
+    !set wims_ref_class=wims_button small
+    !href cmd=reply&job=edit&block=$parm1 $n_create
+  !else
+    <span class="small">$n_nonavailable</span>
+  !endif
+!else
+  <a id="primi$(embed_file).$serial"></a>
+  $prompt
+  !if $printable=yes
+    !goto alwaysin
+  !endif
+  !set wims_ref_class=wims_button small
+  !if $doc/$kblock.$(embed_file).$serial notitemof $foldlist and robot notin $session
+    !href cmd=reply&job=read&foldin=$kblock.$(embed_file).$serial#primi$(embed_file).$serial $wims_name_detail
+  !else
+    !href cmd=reply&job=read&foldout=$kblock.$(embed_file).$serial#primi$(embed_file).$serial $n_foldout
+    !if $editable=yes
+      !set wims_ref_class=wims_button small
+      !href cmd=reply&job=edit&doc=$doc&block=$parm1 $wims_name_Edit
+    !endif
+    :alwaysin
+    !set blocksave=$blocksave $block
+    !set block=$parm1
+    !read $wims_priv_thisdoc/$parm1.def content
+    !set block=!word -1 of $blocksave
+    !set blocksave=!word 1 to -2 of $blocksave
+    !set gotblock=!append item $parm1 to $gotblock
+  !endif
+!endif

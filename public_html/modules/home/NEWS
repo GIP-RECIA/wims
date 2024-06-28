@@ -1,0 +1,22 @@
+20221122 [r17386] anonymous connexion to example class are now uniq
+                  create a account for each user with anonymous connexion
+                  number of anonymous connexion is limited to 50% of class_limit (FG)
+20220425 [r16615] add user_forcechpwd to force user to change password in case of supervisor change it or send password process (FG)
+---------------------------   version 3.04
+20210914 [r16040] display lastconnect date ; only after connect (FG)
+20210721 [r16006] hidden_exam with technical variable (FG)
+20191009 [r14319] use script adm/class/quotafree.proc for storage capacities of class (FG)
+20180625 [r13064] fix the case of interclass in a portal (bpr)
+20180611 [r12926] search_level saving even if supervisor disconnects of class (FG)
+20160605 transfer some definitions which were in the themes in var.proc
+ (exist_cdt, class_actcolor_css if $(class_actcolor) non empty -> kill browser warnings)
+!if $(class_actcolor)
+20120405 show number of participant connected for supervisor (FG)
+---------------------------   version 3.03
+20101122 use of variable site_logo and site_logolink of wims.conf file to show a local server logo (FG)
+20101122 can use a local file front.phtml.$lang instead of distribution one (FG)
+---------------------------   version 3.02
+20100326 can directly launch series of exercices with variable directworksheet (FG)
+---------------------------   version 3.01
+20090902 search_engine form and words(all languages) is now in script/adm/search_engine directory (F. Guerimand)
+20080628 variable daymessage for display message of the day in homepage presentation document (F. Guerimand)

@@ -1,0 +1,62 @@
+/* WIMS Quota bar */
+/* used by Class quota (quotafree.proc) for sample */
+
+.wims_quotafree{
+  max-width:800px;
+  margin:auto;
+}
+
+.quota-bar {
+  display:flex;
+  min-height: 1rem;
+  margin-bottom: .8rem;
+  border-radius: 0;
+  background-color: #cacaca;
+}
+
+.quota-index {
+  cursor: help;
+  background-color: #1779ba;
+  font-size: .75rem;
+  font-weight: bold;
+  color: #fefefe;
+  white-space: nowrap;
+  text-align: center;
+}
+.quota-index:first-child {
+  min-width:2px;
+}
+
+.quota-index.blank {
+  background-color: transparent;
+  flex-grow: 1;
+}
+.quota-index.primary {
+  background-color: #1779ba; }
+.quota-index.secondary {
+  background-color: #767676; }
+.quota-index.success {
+  background-color: #3adb76; }
+.quota-index.warning {
+  background-color: #ffae00; }
+.quota-index.alert {
+  background-color: #cc4b37; }
+
+.quota-legend{
+  padding-left:2px;
+  border-left-width: .8em;
+  border-left-style: solid;
+  border-color: #cacaca;
+}
+
+.quota-legend.primary {
+  border-color: #1779ba; }
+.quota-legend.secondary {
+  border-color: #767676; }
+.quota-legend.success {
+  border-color: #3adb76; }
+.quota-legend.warning {
+  border-color: #ffae00; }
+.quota-legend.alert {
+  border-color: #cc4b37; }
+

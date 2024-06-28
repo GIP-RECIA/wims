@@ -1,0 +1,138 @@
+type=chemistry
+textarea="data file scriptinput scriptoutput pre post"
+iEdit="pre post"
+
+:Select some atoms of a molecule
+
+<p>
+  We present a 3D interactive molecule (Jmol) and we ask to select certain atoms.
+</p><p>
+  To build an exercise with this model, just give the structure file and indicate the atoms to be selected.
+</p><p class="wims_credits">
+  Author of the model: <a href="mailto:yves.noel@sorbonne-universite.fr">Yves Noël et Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Select in 3D}
+:\author{Yves, Noël ; Bernadette, Perrin-Riou}
+:\email{yves.noel@upmc.fr}
+:\credits{}
+
+:MDMol file
+\text{file=xxx
+Jmol version 11.7.31  2009-03-28 16:42
+EXTRACT: visible
+ 24 25  0  0  0
+ -3.380413 -1.127236 0.5733036 H
+ 0.9668296 -1.073742 -0.819822 N
+ 0.0567293 0.8527195 0.3923156 C
+ -1.375174 -1.021224 -0.057055 N
+ -1.261501 0.2590713 0.5234135 C
+ -0.306833 -1.683633 -0.716934 C
+ 1.1394234 0.1874122 -0.27009  C
+ 0.5602627 2.0839095 0.8251589 N
+ -0.492679 -2.818055 -1.209473 O
+ -2.632807 -1.730396 -0.006095 C
+ -2.230133 0.7988624 1.089973  O
+ 2.549699  2.9734976 0.6229589 H
+ 2.0527434 -1.736088 -1.493128 C
+ -2.480771 -2.726952 0.4882631 H
+ -3.008904 -1.902525 -1.049802 H
+ 2.9176102 -1.848151 -0.785786 H
+ 2.378786  -1.121191 -2.374365 H
+ 1.7189878 -2.748991 -1.843920 H
+ -0.151845 3.0970047 1.5348347 C
+ 1.8934095 2.1181242 0.4193193 C
+ 2.2861252 0.9968439 -0.244029 N
+ -0.168702 4.043655  0.9301094 H
+ 0.3535322 3.297906  2.5177748 H
+ -1.207449 2.7537594 1.7203048 H
+ 24 19  1
+ 22 19  1
+ 20 21  1
+ 20 12  1
+ 19 23  1
+ 19  8  1
+ 18 13  1
+ 15 10  1
+ 13 17  1
+ 13 16  1
+ 11  5  1
+ 10 14  1
+ 10  4  1
+  9  6  1
+  8 20  1
+  7 21  1
+  6  2  1
+  5  3  1
+  4  6  1
+  4  5  1
+  3  7  1
+  3  8  1
+  2 13  1
+  2  7  1
+  1 10  1
+}
+
+:Applet size, in pixels, width x height
+
+\text{size1=340x220}
+
+:Atoms to click on (one of the lines will be random)
+
+\matrix{atom=_N
+_O
+_C}
+
+:Instructions specific to each previous line
+
+\matrix{names=nitrogen
+oxygen
+carbon}
+
+:%%%%%%%%%%%%%%
+\text{cnt=\atom[;1]}
+\integer{cnt=items(\cnt)}
+\text{sel=randint(1..\cnt)}
+\text{picked=\atom[\sel;]}
+
+\text{name=\names[\sel;]}
+:%%%%%%%%%%%%%%
+
+:Text before the applet
+Use the word \name to display the atom picked.
+\text{pre=Select all the <strong>\name</strong> atoms.}
+
+:Text after the applet
+\text{post=<i>Check that your browser's zoom is on the normal size.</i>}
+
+:Jmol script to perform when presenting the exercise
+\text{scriptinput=select all;color atoms yellow; select none;}
+
+:Jmol script to perform when presenting the response
+\text{scriptoutput=}
+
+
+
+:%%%%%%%%%%%%%% Nothing to modify until statement %%%%%%%%%%%%%%%%
+
+
+\statement{
+  <div class="instruction">\pre</div>
+  <div class="wimscenter">
+    \embed{reply 1, \size1
+
+\scriptinput
+\scriptoutput}
+  </div>
+  <div class="post">\post</div>
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%5
+
+\answer{}{\picked;\file}{type=jmolclick}

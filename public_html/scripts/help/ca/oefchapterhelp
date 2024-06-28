@@ -1,0 +1,19 @@
+:title,Temes d'ajuda
+:oef,Explicacions sobre el format OEF.
+:examples,Exemples d'exercicis.
+:format,Els formats de l'enunciat,de l'exercici.
+:parameters,Paràmetres aleatoris,en un exercici interactiu.
+:math,Fórmules matemàtiques, en els exercicis.
+:draw,Gràfics dinàmics, en els exercicis.
+:canvasdraw,Dynamic and interactive drawings,ien els exercicis.
+:reply,Tipus de respostes
+:feedback, Comentaris,als errors típics de les respostes.
+:oefspecial,Mètodes especials
+:oefadv,Possibilitats avançades
+:oefscore,Score computation in an exercise
+:slib&slib_cmd=help,Llibreria de scripts,(slib).
+:command,Llista de commandes
+:parameters%2Coefparm#list,Llista de funcions i variables
+:if,Llista completa de relacions condicionals
+:css,Llista d'estils css predefinits
+:all,La totalitat de l'ajuda

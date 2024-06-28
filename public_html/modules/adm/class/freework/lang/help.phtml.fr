@@ -1,0 +1,360 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:type
+<h2>Types possibles de devoirs libres</h2>
+Il y a trois types possibles de devoirs libres&nbsp;:
+<ul>
+  <li><b>$(name_type_list[1])</b>&nbsp;:
+    Permet simplement de diffuser l'énoncé d'un devoir libre (fichier) aux participants
+    puis de diffuser la correction du devoir libre.
+  </li>
+  <li><b>$(name_type_list[2])</b>&nbsp;:
+!if $conf_nofile=yes
+  <span style="color:grey">(désactivé sur ce serveur)</span>
+!endif
+    Permet de diffuser l'énoncé d'un devoir libre aux participants (fichier) puis de
+    diffuser le corrigé. Chaque participant peut déposer sa composition,
+    l'enseignant peut
+    <ul><li>
+    corriger et diffuser auprès de chaque participant sa copie corrigée&nbsp;;
+    </li><li>
+    diffuser un corrigé global&nbsp;;
+    </li><li>
+    attribuer une note manuelle relative à ce devoir.
+    </li></ul>
+    Cette activité utilise beaucoup de capacité de stockage de la classe.
+  </li>
+  <li><b>$(name_type_list[3])</b>&nbsp;:
+    Permet de construire un assemblage de zones de réponses avec
+    du texte ou différents applets. Les applets disponibles sont&nbsp;:
+    <ul>
+      <li>zone de texte&nbsp;;</li>
+      <li>dépôt de fichiers&nbsp;;
+        !if $conf_nofile=yes
+          <span style="color:grey">(désactivé sur ce serveur)</span>
+        !endif
+      </li>
+      <li>figure GeoGebra&nbsp;;</li>
+      <li>séries d'exercices WIMS.</li>
+    </ul>
+    Chaque participant réalise sa composition
+    (dans les différentes zones). L'enseignant peut
+    <ul><li>visualiser les compositions de chaque participant&nbsp;;
+      </li><li>diffuser un corrigé global&nbsp;;
+      </li><li>attribuer une note manuelle relative à ce devoir.
+    </li></ul>
+  </li>
+</ul>
+!exit
+
+:sizelimitfile
+<h2>Limitation de la taille des fichiers</h2>
+La taille globale des fichiers que le participant pourra déposer est limitée
+(en Mo).
+La taille limite multipliée par le nombre de participants doit rester inférieure à
+la place disponible dans la classe (affichée sur la page).
+<div class="wims_msg warning">
+Attention, un participant ne pourra pas déposer un fichier même de taille inférieure
+à la taille limite lorsque la capacité globale de la classe est atteinte.
+</div>
+Par exemple : si vous disposez de 30 Mo dans une classe comportant 35 participants
+et que vous fixez la capacité par participant à 0.75 Mo, le devoir libre pourra être activé
+(puisque vous consommerez théoriquement 26,25 Mo). Cependant, si entre temps vous
+déposez des fichiers dans la classe ou que des participants enregistrent des exercices
+ou des examens,la place disponible risque de diminuer et certains participants pourraient
+ne pas pouvoir déposer leur devoir.<br>
+Dans le cas de devoir libre de type 3, la taille s'applique à l'ensemble des zones de type fichier.
+!exit
+
+:datedeadline
+<h2>Date à laquelle le participant devra avoir rendu sa copie.</h2>
+<ul>
+<li>Lorsque le devoir libre est de type <span class="wims_code_words">$(name_type_list[2])
+</span> ou <span class="wims_code_words">$(name_type_list[3])</span>, l'interface de
+dépôt de copies est activée avant la date et tant que le statut du devoir libre est
+<span class="wims_code_words">Actif</span>.
+</li><li>
+Une fois que cette date est dépassée, l'enseignant pourra télécharger les copies
+des participants et déposer la copie corrigée de chaque participant.</li>
+<li>Les participants ne peuvent pas accéder à leur copie corrigée tant que toutes
+les copies corrigées ne sont pas déposées et que la date de diffusion de
+la solution n'est pas dépassée.
+</li></ul>
+!exit
+
+:datetimesoldate
+<h2>Date à partir de laquelle les éléments de correction seront disponibles
+au téléchargement par les participants.</h2>
+<ul>
+<li>Les fichiers communs de solutions peuvent être ajoutés/modifiés/effacés à tout moment.</li>
+<li>Les participants peuvent également, après cette date, télécharger leur copie
+corrigée une fois que toutes les corrections de copies ont été déposées par
+l'enseignant de la classe et tant que le statut du devoir libre reste actif.</li>
+<li>Lorsque le statut est périmé, les participants ne peuvent plus télécharger
+leur copie corrigée mais seulement les fichiers d'énoncé et de corrigé communs
+à tous (quelle que soit la date de diffusion de solution).</li>
+<li>Les participants peuvent accéder aux fichiers communs de correction dès que
+la date de solution est dépassée, même si toutes les copies ne sont pas corrigées
+dans le cas des types <span class="wims_code_words">$(name_type_list[2])</span> ou
+<span class="wims_code_words">$(name_type_list[3])</span>.</li>
+</ul>
+!exit
+
+:scoring
+<h2>Notation</h2>
+Il est possible d'ajouter une note manuelle pour chaque participant de la classe.
+<br>
+L'interface permet de saisir directement la note de chaque participant en
+même temps que le dépôt de copies corrigées.<br>
+Lorsque cette option est activée, une colonne (avec un titre générique et un coefficient 1)
+est automatiquement rajoutée au tableau des notes manuelles lors de l'activation du devoir libre.
+<br>
+Cette option n'est pas disponible dans un portail.
+!exit
+
+:typezone
+<h2>Type des zones</h2>
+Un devoir est composé de deux parties&nbsp;:
+<ul>
+<li>la partie de construction de l'énoncé (qui sera ensuite visible aux participants)&nbsp;;</li>
+<li>la partie de construction de la zone de réponse de le participant. Cette partie permettra
+à le participant de saisir sa réponse.
+</li>
+</ul>
+Chaque partie est décomposée en un certain nombre de zones. Il y a quatre types
+de zone (pour l'énoncé aussi bien que pour les réponses des participants)&nbsp;:
+<ul>
+<li><b>GeoGebra</b> Affiche un applet GeoGebra interactif.</li>
+<li><b>texte</b> une zone de saisie de texte. Les tags html sont acceptés.
+Il est possible d'écrire des formules mathématiques en les plaçant entre \( et \).<br>
+Par exemple, \(\sqrt{2}\) affichera
+!insmath \sqrt{2}
+.
+</li>
+<li><b>fichier</b>
+!if $conf_nofile=yes
+  <span style="color:grey">(désactivé sur ce serveur)</span>
+!endif
+ une zone de dépôt de fichier. On peut déposer plusieurs fichiers dans
+chaque zone de fichier.</li>
+<li><b>RandFile</b> (uniquement pour la partie énoncé)
+!if $conf_nofile=yes
+  <span style="color:grey">(désactivé sur ce serveur)</span>
+!endif
+ une zone de dépôt de fichier. On peut déposer plusieurs fichiers dans
+chaque zone de fichier, l'un de ces fichiers sera choisi au hasard et proposé à l'étudiant.</li>
+<li><b>exercice WIMS </b> (uniquement pour la partie énoncé)
+Une liste d'exercices WIMS à réaliser. Le participant doit réussir la série avant de pouvoir
+l'enregistrer puis rédiger une solution détaillée. Cette solution peut être remise
+à l'enseignant en utilisant les zones de la partie réponse. Si aucune zone de
+réponse n'est mise en place, il s'agit d'une remise au format papier.
+</li>
+</ul>
+Il peut y avoir plusieurs zones du même type dans la partie énoncé (sauf pour le type exercice WIMS)
+aussi bien que dans la partie réponse des participants. Le nombre de zones de réponse utilisées
+et leur nature sont librement choisis.<br>
+Si la partie réponse ne contient aucune zone, c'est que le document devra être rendu directement
+sous format papier.
+!exit
+
+:zonegeogebra
+Le descriptif des champs à remplir pour ce type de zone&nbsp;:
+<ul>
+<li><b>Titre :</b> le titre de la zone. Si ce champ reste vide un titre automatique sera généré.</li>
+<li><b>Description :</b> une description de la zone pouvant contenir des consignes
+  spécifiques (il sera affiché avec le style css
+  <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Option de paramétrage de l'applet&nbsp;:</b> cette zone permet de définir les options
+  de paramétrages de l'applet (voir le site de GeoGebra pour plus de détails).
+  Il faut écrire une option par ligne. Par exemple&nbsp;:
+<pre>
+showToolBar=true
+customToolBar="0|40|||1|2|5@10"
+width=800
+height=500
+number=1
+</pre></li>
+<li><b>Faire apparaître cette zone pour les participants</b> (option disponible seulement
+  dans la partie énoncé)&nbsp;: cette option permet de faire apparaître ou non cette zone
+  dans la page d'énoncé pour le participant (à combiner avec l'option suivante,
+  elle permet de mettre à disposition des participants une zone GeoGebra avec un contenu).
+  Si cette zone est affichée sur la page participant, elle ne sera pas modifiable
+  par ces derniers.</li>
+<li><b>Copier le contenu de la zone enseignante numéro</b> (option disponible
+  seulement dans la partie réponse du participant)&nbsp;: cette option permet de précharger
+  l'applet avec le contenu de l'un des applets GeoGebra de la zone enseignant
+  (par exemple pour contenir une figure de départ).</li>
+<li><b>Contenu de la zone</b> (seulement dans la partie énoncé) une fenêtre d'applet
+  permet de réaliser la figure.
+</li></ul>
+!exit
+
+:zonetexte
+Le descriptif des champs à remplir pour ce type de zone&nbsp;:
+<ul>
+<li><b>Titre :</b> le titre de la zone. Si ce champ reste vide un titre automatique sera généré.</li>
+<li><b>Description :</b> une description de la zone pouvant contenir des
+  consignes spécifiques (il sera affiché avec le style css
+    <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Contenu de la zone</b> (seulement dans la partie énoncé) une zone de
+  texte permet de saisir le texte de l'énoncé.
+</li></ul>
+!exit
+
+:zonefile
+Le descriptif des champs à remplir pour ce type de zone&nbsp;:
+<ul>
+<li><b>Titre :</b> le titre de la zone. Si ce champ reste vide un titre automatique sera généré.</li>
+<li><b>Description :</b> une description de la zone pouvant contenir
+  des consignes spécifiques (il sera affiché avec le style css
+  <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Nombre maximum de fichiers</b> (seulement dans la partie réponse)&nbsp;:
+ permet de limiter le nombre de fichiers déposables par les participants.</li>
+<li><b>Contenu de la zone</b> (seulement dans la partie énoncé)&nbsp;:
+  elle permet de déposer des fichiers pour l'énoncé
+  (l'interface de dépôt se trouve en bas de page).</li>
+</ul>
+!exit
+
+:zonerandfile
+Le descriptif des champs à remplir pour ce type de zone&nbsp;:
+<ul>
+<li><b>Titre :</b> le titre de la zone. Si ce champ reste vide un titre automatique sera généré.</li>
+<li><b>Description :</b> une description de la zone pouvant contenir
+  des consignes spécifiques (il sera affiché avec le style css
+  <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Contenu de la zone</b> (seulement dans la partie énoncé)&nbsp;:
+  elle permet de déposer des fichiers pour l'énoncé
+  (l'interface de dépôt se trouve en bas de page).
+  Pour chaque participant, un seul de ces fichiers, choisi au hasard, sera montré.</li>
+</ul>
+!exit
+
+:zonewimsexo
+Le descriptif des champs à remplir pour ce type de zone&nbsp;:
+<ul>
+  <li><b>Titre :</b> le titre de la zone. Si ce champ reste vide un titre automatique sera généré.</li>
+  <li><b>Description :</b> une description de la zone pouvant contenir des
+  consignes spécifiques (il sera affiché avec le style css
+    <span class="wims_code_words">freeworkdesczone</span>).</li>
+  <li><b>Contenu de la zone :</b> un tableau présente la liste des exercices à traiter. Le rajout de séries d'exercices s'effectue par la
+même méthode que pour les feuilles d'exercices (en utilisant le moteur de recherche de ressources). Attention pour les
+exercices OEF, le paramétrage de l'affichage de la solution détaillée et des feedback ne sera pas conservé. Ces options sont
+gérées en interne lors de l'insertion de la série d'exercices dans le devoir libre.
+  </li>
+  <li><b>Note minimale :</b> il s'agit de la note à partir de laquelle la série d'exercices pourra être enregistrée pour
+    passer à la phase de rédaction. Cet enregistrement peut être&nbsp;:
+      <ul>
+        <li>Manuel : le participant décide d'enregistrer ou non la série d'exercices. S'il le fait il ne peut plus recommencer une
+          nouvelle série pour ce devoir libre. S'il décide de ne pas enregistrer la série, il devra à nouveau la
+          réussir en atteignant le score minimal demandé.</li>
+        <li>Automatique : l'enregistrement est automatiquement effectué. Le participant ne peut plus recommencer dès le premier succès.
+         </li>
+        </ul>
+  </li>
+</ul>
+À noter que l'activité des participants est tracée. Autrement dit, il est possible de connaître le nombre de tentatives
+sur chaque série d'exercices proposée (et les scores obtenus).
+!exit
+
+:allowtype
+!! this part is a copy of file adm/class/sheet/lang/help.phtml.fr need to be checked.
+Vous pouvez imposer une restriction, par exemple dans le temps, pour
+l'enregistrement des notes. Plusieurs options sont disponibles&nbsp;:
+<ul>
+ <li><span class="tt wims_code_words">$(name_allowtype[1])</span>&nbsp;:
+les notes seront enregistrées.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[2])</span>&nbsp;:
+aucune note ne sera enregistrée.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[3])</span>&nbsp;:
+une interface de saisie,
+<span class="tt wims_code_words">$(name_shinfo[6])</span>,
+apparaît et vous pouvez indiquer une plage horaire ainsi que les
+adresses IP à partir desquelles les notes seront enregistrées.
+Cette restriction s'écrit à l'aide d'une expression en trois parties (qui peuvent
+ ne pas toutes être présentes)&nbsp;: <br>
+ <ul>
+  <li>Une date et une heure de début&nbsp;;</li>
+  <li>Une date et une heure de fin&nbsp;;</li>
+  <li>Une plage d'IP&nbsp;;</li>
+ </ul>
+Les dates (format <span class="tt wims_code_words">aaaammjj</span>) et heures
+(format <span class="tt wims_code_words">hh:mm</span>) doivent être en temps local du SERVEUR.
+ <p>
+Exemple :
+$wims_name_form <span class="tt wims_code_words">20131007</span> $wims_name_at <span class="tt wims_code_words">10:30</span> $wims_name_to <span class="tt wims_code_words">20131001</span> $wims_name_at <span class="tt wims_code_words">10:00</span> $wims_name_IP<span class="tt wims_code_words"> 127.0.</span> <br>
+permet l'enregistrement des notes entre 2 dates et seulement pour les numéros IP commençant
+par <span class="tt wims_code_words">127.0.</span>.
+</p>
+</li><li><span class="tt wims_code_words">$(name_allowtype[4])</span>&nbsp;:
+cette option peut être choisie afin d'individualiser les restrictions
+d'accès à l'aide d'une <span class="tt wims_code_words">variable
+technique</span> (cette variable technique est définie pour chaque
+participant soit manuellement en utilisant le module de gestion des
+variables techniques soit à l'aide d'un
+<span class="tt wims_code_words">$wims_name_Vote</span>).
+Lors du choix de cette option, un menu permet de choisir la variable
+ technique qui sert de différenciation et un tableau permet
+d'effectuer un réglage du filtre (en utilisant le même format que
+précédemment) pour chaque valeur possible de la variable.
+Ne rien préciser comme filtre  pour une valeur de la variable technique signifie
+ne pas ouvrir l'enregistrement des notes pour les participants qui ont cette valeur.
+<p>
+Dans le cas d'une variable technique définie à l'aide du modèle
+<span class="tt wims_code_words">Accès individualisé</span>
+d'un <span class="tt wims_code_words">$wims_name_Vote</span>
+spécifique à la création de réservation de créneau horaire,
+le tableau est déjà pré-rempli avec les données proposées lors de la
+ création du questionnaire. Ces données peuvent être modifiées,
+mais les modifications ne sont pas répercutées sur le questionnaire.
+</p>
+<p>Exemple : Supposons que le tableau décrivant les filtres pour la variable technique
+<span class="tt wims_code_variable">groupe</span> prenant les valeurs 1, 2 et 3 soit&nbsp;:
+!readproc slib/text/matrixhtml [$name_value,$name_filtre\
+$name_EMPTY, 129.50.10. &#62;20160915.12&#58;00\
+1,&#62;20160915.15&#58;00 &#60;20160925.12&#58;00\
+2,\
+3,127.0.],wimscenter wimsborder wimstable,TH=[1;]
+$slib_out
+</p>
+Dans la limite de la date de péremption de la feuille,
+<ul><li>
+pour les participants pour lesquels
+<span class="tt wims_code_variable">groupe</span> n'a pas de valeur,
+l'enregistrement des notes est ouvert à partir du
+15/09/2016 12h et uniquement sur les postes dont l'IP commence par
+129.50.10.
+</li><li>
+pour les participants pour lesquels <span class="tt wims_code_variable">groupe=1</span>,
+l'enregistrement des notes est ouvert entre le 15/09/2016 15h et le 25/09/2016 12h.
+</li><li>
+pour les participants pour
+lesquels <span class="tt wims_code_variable">groupe=2</span>, l'enregistrement des notes n'est pas ouvert.
+</li><li>
+pour les participants pour lesquels
+<span class="tt wims_code_variable">groupe=3</span>,
+l'enregistrement des notes est ouvert uniquement à partir des postes
+dont l'IP commence par 127.0.
+</li></ul>
+</li>
+<li>Ces réglages peuvent être propagés&nbsp;:
+<ul>
+  <li>Dans un groupement, pour des classes en partage à partir de la classe ayant initié le partage et en utilisant une variable technique provenant du groupement.</li>
+  <li>Dans un portail, à partir d'un programme vers les cours en utilisant une variable technique provenant du portail ou du niveau.</li>
+</ul>
+</li>
+</ul>
+
+!if $tv_listtechvar!=$empty
+ Les variables techniques actuellement disponibles dans votre classe sont&nbsp;:
+ !read adm/vfilter/listvar.phtml
+!else
+<div class="wims_msg info">
+ Il n'y a actuellement aucune variable technique définie dans votre
+classe. Si vous voulez utiliser cette option, il faut d'abord
+définir une variable technique.
+</div>
+!endif
+!exit

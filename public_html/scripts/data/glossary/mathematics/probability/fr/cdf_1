@@ -1,0 +1,44 @@
+!set gl_type=dynamic
+!set gl_author=Sophie, Lemaire
+!set aa=2
+!set f= $aa*exp(-t^($aa))*t^($aa-1)
+!set maxf=$$[(($aa-1)/$aa)^(1/$aa)]
+!set cc=!mathsubst t= $maxf in $f
+!set g=1-exp(-t^($aa))
+!set insdraw_size=200,200
+!set t=!random $[$maxf*0.8],$[$maxf*1.2]
+!set u=!mathsubst t=$[$t/2] in $f
+!set u1=!mathsubst t=$[$t] in $g
+!set figure1= xrange -0.1, 3*$maxf\
+yrange -0.1,$cc*1.1\
+hline 0,0,black\
+vline 0,0,black\
+text black, $t,0,medium,t\
+trange 0,5\
+plot blue,t,$f\
+vline $t,0,black\
+fill $[$t/2], $[$u/2], grey
+
+!set figure2=xrange -0.1, 3*$maxf\
+yrange -0.1,$cc*1.1\
+hline 0,0,black\
+vline 0,0,black\
+text black, $t,0,medium,t\
+disk $t,$u1,5,blue\
+dhline 0,$u1,blue\
+text black,0,$u1,medium,q\
+trange 0,5\
+plot green,t,$g\
+vline $t,0,black
+!insdraw $figure1
+
+!set gloss_out=<div class="wimscenter"><img src="$ins_url" alt="">
+!insdraw $figure2
+!set gloss_out=$gloss_out\
+<img src="$ins_url" alt=""></div>\
+On a tracé à gauche le graphe de\
+<span class="wims_emph">la fonction de densité</span> d'une\
+loi de probabilité continue sur \(\,\RR\) et à droite le <span class="wims_emph">\
+graphe de la fonction de répartition</span>.\
+La valeur de la fonction de répartition de \(X\) en \(t\) est égale à\
+l'aire de la surface en gris.

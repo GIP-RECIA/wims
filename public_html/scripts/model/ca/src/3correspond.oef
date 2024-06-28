@@ -1,0 +1,107 @@
+type=imaudio
+textarea="data explain"
+iEdit="explain"
+
+:Establir la correspondència entre parells d'objectes (amb àudios de la base de dades).
+
+Es presenten parells d'objectes a una taula amb dues columnes. S'ha
+d'establir la correspondència correcta entre cada parella modificant la columna
+de la dreta, arrossegant o fent clic amb el ratolí.
+Els objectes a l'esquerra han de ser obligatòriament audio present  a la base shtooka de WIMS. Per a
+comprovar si existeixen, utilitzar l'eina de Swac (en el motor de cerca
+Cercar <span class="tt">swac</span>).
+<p>
+Per construir un exercici amb aquest model, simplement escriviu la llista de
+parells d'objectes. Per a més opcions, usar Quicktool.
+</p>
+<p class="wims_credits">
+Autor del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓ      %%%%%%%%%%%%%%%%%%%%
+
+Elimineu la capçalera anterior si elimineu les etiquetes per al model!
+(Són les línies que comencen amb un ':'.)
+En cas contrari l'exercici pot no de funcionar sota Createxo.
+
+:%%%%%%%% Exemples de paràmetres a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Correspondència amb els audios prèviament enregistrats}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Nombre de (parelles) d'objectes que s'han d'associar
+\integer{tot=3}
+
+:La mida vertical de les caixes en píxels
+Pensar en els usuaris que augmenten la mida del tipus de lletra al seu navegador!
+No poseu les caixes massa petites.
+\integer{sizev=50}
+
+:La mida horitzontal de les caixes de l'esquerra en píxels
+\integer{sizel=250}
+
+:La mida horitzontal de les caixes de la dreta en píxels
+\integer{sizer=250}
+
+:Idioma d'àudio: les opcions disponibles són <span class="tt">fra</span>,  <span class="tt">eng</span>,  <span class="tt">dut</span> (i altres amb menys possibilitats <span class="tt">pol</span>,  <span class="tt">wol</span>,  <span class="tt">deu</span>,  <span class="tt">swe</span>)
+\text{lang=fra}
+
+:Dades principals
+Definir un parell d'elements corresponents per línia, separats per una coma.
+$embraced_randitem
+\matrix{data=
+village,ville
+maison,immeuble
+père,mère
+rue,autoroute
+bleu,vert
+}
+
+:L'enunciat de l'exercici
+$embraced_randitem
+\text{explain=Establir la correspondència entre les paraules escrites i les paraules parlades.}
+
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Res canviar abans de l'enunciat %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\integer{datacnt=rows(\data)}
+\integer{tot=\tot>\datacnt?\datacnt}
+
+\text{shuf=item(1..\tot,shuffle(\datacnt))}
+\text{data=row(\shuf,\data)}
+\text{data=\accolade=1 ? wims(embraced randitem \data)}
+\text{datal=column(1,\data)}
+\text{datar1=column(2,\data)}
+\text{datar=}
+\for{k =1 to \tot}{
+  \text{audio=\datar1[\k]}
+  \text{audio=slib(lang/swac \audio,\lang)}
+  \text{audio=\audio[1;1]}
+  \text{datar=wims(append item \audio to \datar)}
+}
+\text{size=\sizev[]x\sizel[]x\sizer}
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+
+:%%%%%%%%%%%%% Ara l'enunciat en format HTML. %%%%%%%%%%%%%%%%%%%%
+
+::Vostè no necessita canviar això en general.
+
+La comanda per mostrar la taula de correspondència,
+és \embed{reply 1,\size}
+
+\statement{\explain
+
+<div class="wimscenter">
+\embed{reply 1,\size}
+</div>
+
+}
+
+:%%%%%%%%%%%%% Res a canviar per sota. %%%%%%%%%%%%%%%%%5
+
+\answer{La resposta}{\datal;\datar}{type=correspond}

@@ -1,0 +1,14 @@
+
+<div class="wims_msg success">$name_restore1: $restored.</div>
+
+!if $user_bad!=$empty
+  <div class="wims_msg alert">$name_restore2</div>
+!endif
+
+!if $exp_bad!=$empty
+  <div class="wims_msg alert">$name_restore3 $(e$exp_bad).</div>
+!endif
+
+!if $user_loginused!=$empty
+  <div class="wims_msg alert">$name_restore4: $(user_loginused).</div>
+!endif

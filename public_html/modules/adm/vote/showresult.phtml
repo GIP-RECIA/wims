@@ -1,0 +1,207 @@
+!! html file to show result of vote
+!set joker=___
+
+!for k in $listjob2
+  !if $job2!=$k
+    !set wims_ref_class=wims_button
+    !href cmd=reply&job2=$k $(name_show$k)
+  !endif
+!next k
+
+!if $wims_user=supervisor
+  !set wims_ref_class=wims_button
+  !href cmd=reply&job=csv $wims_name_csv
+!endif
+
+<br class="spacer">
+
+!if $job2=$empty
+  !goto end
+!else
+  !goto $job2
+!endif
+
+:global
+
+<table class="wimstable blockcenter">
+<thead>
+  $table_hdtr <th style="width:20px">$wims_name_number</th><th style="width:20px">$wims_name_Type</th><th colspan="$max_rep">$name_thisvote_answer</th></tr>
+</thead>
+<tbody>
+!for k=1 to $parmcnt
+  !if $(vote_description[$k;2]) iswordof textarea inputfield
+    !set rowspan=1
+  !else
+    !set rowspan=2
+  !endif
+  <tr class="$(table_colors[$k%2+1])">
+  !if uservar!=$(vote_description[$k;2])
+    <td rowspan="$rowspan">$(vote_description[$k;1])</td>
+    <td rowspan="$rowspan">$(vote_description[$k;2])</td>
+    !if $(vote_description[$k;2]) iswordof textarea inputfield
+      <td rowspan="$rowspan" colspan="$[$max_rep]" style="text-align:left" valign="top">
+      !if $(vote_description[$k;2]) iswordof textarea
+        !set comment_$k = !replace internal --- by $\
+  $<br>- in $(comment_$k)
+        !set rcnt=!recordcnt $votedir/$(vote)_$k.comments
+        <ul>
+        !for j=1 to $rcnt
+          <li>
+          !record $j of $votedir/$(vote)_$k.comments
+          </li>
+        !next j
+        </ul>
+        </td>
+      !else
+        !set rcnt=!recordcnt $votedir/$(vote)_$k.comments
+        !reset tmp_list tmp_number tmp_pos
+        !for j=1 to $rcnt
+          !set tmp=!record $j of $votedir/$(vote)_$k.comments
+          !set tmp=!trim $tmp
+          !set tmp=!singlespace $tmp
+          !!!set tmp=!lowercase $tmp
+          !set tmp=!replace internal $joker by $ $ in $tmp
+          !set tmp_pos=!positionof item $tmp in $tmp_list
+          !if $tmp_pos!=$empty and $tmp_pos>0
+            !set tmp_number=!replace item number $tmp_pos by $[$(tmp_number[$tmp_pos])+1] in $tmp_number
+          !else
+            !set tmp_list=!append item $tmp to $tmp_list
+            !set tmp_number=!append item 1 to $tmp_number
+          !endif
+        !next
+        !set tmp_listcnt=!itemcnt $tmp_number
+        <ul class="inline">
+        !for j=1 to $tmp_listcnt
+          <li>
+            $(tmp_list[$j]) ($(tmp_number[$j]))
+          </li>
+        !next j
+        </ul>
+        </td>
+        </tr>
+      !endif
+    !else
+      !let tmp=!item 3 to -1 of $(vote_description[$k;])
+      !let nb=!itemcnt $tmp
+      !for j in $tmp
+        <td>$j</td>
+      !next j
+      !if $nb<$max_rep
+        <td colspan="$[$max_rep-$nb]" rowspan="2">&nbsp;</td>
+      !endif
+      </tr>
+      <tr class="$(table_colors[$k%2+1])">
+      !for j=1 to $nb
+        <td>$(vcnt_$(k)_$(j))</td>
+      !next j
+    !endif
+    </tr>
+  !endif
+  </tr>
+!next k
+</tbody>
+</table>
+!goto end
+
+:list
+ $table_header
+  $table_hdtr <th>$wims_name_number</th><th>$wims_name_Type</th>
+   !items2words $namelist
+  </tr>
+!for k=1 to $parmcnt
+  !if uservar!=$(vote_description[$k;2])
+    $table_tr
+     <td>
+      $name_question
+     $(vote_description[$k;1])
+     </td>
+     <td>$(vote_description[$k;2])</td>
+    !for u=1 to $vcnt
+      !if $(vote_description[$k;2]) iswordof textarea inputfield
+        <td style="max-width:100px;font-size:0.8em;">
+        !set tmp=!record $u of $votedir/$(vote)_$(k).comments
+        !set tmp=!replace internal $joker by $ $ in $tmp
+        $tmp
+      !else
+        <td>
+        !item $u of $(donvote_$k)
+      !endif
+      </td>
+    !next u
+    </tr>
+  !endif
+!next k
+$table_end
+!goto end
+
+:listbystudent
+ <br class="spacer">
+ $table_header
+  $table_hdtr
+  <td></td>
+!for k=1 to $parmcnt
+  !if uservar!=$(vote_description[$k;2])
+    <td>$name_question $(vote_description[$k;1])</td>
+  !endif
+!next k
+</tr>
+!for u=1 to $vcnt
+  $table_tr
+  $(namelist[$u])
+  !for k=1 to $parmcnt
+    !if uservar!=$(vote_description[$k;2])
+      !if $(vote_description[$k;2]) iswordof textarea inputfield
+        <td style="max-width:100px;font-size:0.8em;">
+        !set tmp=!record $u of $votedir/$(vote)_$(k).comments
+        !set tmp=!replace internal $joker by $ $ in $tmp
+        $tmp
+        !reset tmp
+      !else
+        <td>
+        !item $u of $(donvote_$k)
+      !endif
+      </td>
+    !endif
+  !next k
+  </tr>
+!next u
+ $table_end
+!endif
+
+!goto end
+
+:studentbyitem
+!if $wims_user=supervisor and $vote_option!=anonymous
+  <p>$name_details</p>
+  !for i=1 to $parmcnt
+    !for c=1 to $(choices$i)
+      !if /supervisor/ notin $c/
+        <p>$i - $(vote_description[$i;$c+2])</p>
+        <pre>
+        !for u in $(votes_$(i)_$c)
+          !if $vote_option=nominative
+            !!##
+            !set U=!translate internal / to , in $u
+            !set U1 = !replace internal , by / in $(U[1..-2])
+            !set U = !nospace $U1,$(U[-1])
+            !!       $U
+            !readproc adm/class/userdef classes,$U
+            !defof user_lastname, user_firstname in $userdef
+            ($u)
+          !else
+            ($u)
+          !endif
+        !next u
+        </pre>
+      !endif
+    !next c
+  !next i
+!endif
+
+:end
+!reset noprint
+<div class="wims_msg info">
+!read $votedir/$vote.def
+</div>
+
+!set wims_menu_items=!append line back2 $vote,1,cmd=reply&job=read&vote=$vote to $wims_menu_items

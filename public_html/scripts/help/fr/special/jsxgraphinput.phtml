@@ -1,0 +1,37 @@
+:signification
+ Met des champs de types de réponses texte dans une figure JSXGraph.
+ Doit être utilisé dans le <span class="tt wims_code_words">statement</span> d'un exercice OEF.
+
+<p>
+La première ligne est formée du script JSXGraph mise entre crochets, suivie du formatage css
+  des champs input entre crochet . Le mot clef noanswer peut-être utilisé si on ne souhaite
+  pas la correction.
+ Les endroits d'insertion de la réponse sont marqués dans le graphique en précisant les coordonnées
+  par le mot reply<span class="tt">n</span>.
+ Les lignes suivantes sont de la forme
+</p>
+ <pre>reply<span class="tt">n</span>,coordinate ,word before input ,css</pre>
+ où <span class="tt">coordinate</span> est l'endroit du champ de réponse de la forme x x y,
+ <span class="tt">word before input</span> un mot avant la champ input (facultatif).
+  <span class="tt">css</span> un code css (facultatif).
+
+:example
+ <div class="wims_help_bloc example">
+ <h2>Exemples</h2>
+<div class="spacer">
+<textarea id="wims_show61" cols="100" rows="9" readonly="readonly">
+\text{script=jsxbox brd,[300 x 300,min=200px max=400px],
+var brd = JXG.JSXGraph.initBoard('jsxbox', {axis:true,originX: 150, originY: 150, unitX: 10, unitY: 10});
+p1 = brd.create('point', [-2,1]);
+p2 = brd.create('point', [0,function () { return p1.X();}]);
+brd.create('line',[p1,p2]);}
+
+\statement{
+\special{jsxgraphinput [\script],['width:5em',Color:'red'],
+reply 1,3x4,avant=,['width:4em',maxlength: 2,Color:'green']
+reply 2,3x-4,blabla=}
+}
+\answer{}{x^2}{type=formal}
+\answer{}{2}{type=numeric}
+</textarea>
+</div>

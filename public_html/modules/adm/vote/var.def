@@ -1,0 +1,26 @@
+init:moduclass_lang
+any: job job2 vote Vote Votevar help_subject parm[MAX_VOTES] \
+  type_comment[MAX_VOTES] test_comment comment_[MAX_VOTES] seq
+reply:reg_title reg_option reg_status reg_show reg_src reg_whovoteshow\
+  reg_model rEg abandon
+any:csvtype csvformat csvoption helpname
+any:joker
+deny: choices[MAX_VOTES] parmcnt uvname uvval uvcnt limit_textarea
+
+!!
+
+i deny 1
+class_expiration deny 1
+class_creation deny 1
+
+mod_numsess reply 1
+gstep any 1
+
+!! variable not used in any form??
+!! any:up_jday up_jmonth up_jyear
+
+reply: up_btime[MAX_TECHVARVAL] up_bdate[MAX_TECHVARVAL]\
+ up_etime[MAX_TECHVARVAL] up_nstud[MAX_TECHVARVAL] up_testoextra[MAX_TECHVARVAL] up_exconnip[MAX_TECHVARVAL] \
+ up_testointro up_codevar up_defconnip
+
+deny: mese[MAX_TECHVARVAL]

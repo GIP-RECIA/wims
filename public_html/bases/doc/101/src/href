@@ -1,0 +1,3 @@
+Provides a link to an uploaded file (see <span class="tt wims_address">File deposit</span> link).
+The first argument is the name of the file, for example <span class="tt wims_code_words">my_image.png</span>,
+the second argument is the description displayed.

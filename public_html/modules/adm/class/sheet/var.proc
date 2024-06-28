@@ -1,0 +1,775 @@
+# Variable calculations should be done in this file.
+# It is read and interpreted by wims for all valid calls to the module.
+!read adm/class/classlang names.phtml
+!! number of lines in a record of a sheet
+!set sheetrecordlimit=11
+
+scnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+!if $job=cleantechvar
+  !bound sheet between 1 and $scnt default $empty
+  !if $sheet!=$empty
+    !readproc proc/checktechvar.proc clean
+  !endif
+  job=$empty
+!endif
+
+!if $job!=$empty and $job notwordof text modify
+  job1=$job
+  !!for the icon and the title
+  !if $job=getsource
+    job1=sheetsource
+  !endif
+  !if $job=prep_putsource
+    job1=putsource
+  !endif
+  !default name_$(job1)=$(wims_name_$job1)
+  wims_ariane=!append line sheetadmin,1,cmd=resume to $wims_ariane
+  !if $(name_$(job1))!=$empty or
+    wims_ariane=!append line "$(name_$(job1))",8, to $wims_ariane
+  !endif
+!else
+  !set wims_ariane=!append line sheetadmin,8 to $wims_ariane
+!endif
+!set wims_ariane_self=no
+
+!if $sheet>$scnt
+  wims_infoshow=yes
+  !setdef wims_infoshow=$wims_infoshow in wimshome/sessions/$wims_session/var.stat
+!endif
+!if $cmd=resume
+  !bound infoshow within yes,no default $wims_infoshow
+  wims_infoshow=$infoshow
+  !setdef wims_infoshow=$wims_infoshow in wimshome/sessions/$wims_session/var.stat
+!endif
+
+tmp=!defof MAX_SHEETS\
+MAX_REQUIRE\
+DF_SEVERITY\
+MIN_WEIGHT\
+MAX_WEIGHT\
+MAX_EXOS in wimshome/public_html/bases/sys/define.conf
+!distribute line $tmp into max_sheets,require_limit,df_severity,min_weight,max_weight,max_exos
+title_limit=80
+desc_limit=4000
+etitle_limit=100
+edesc_limit=400
+
+require_limit=$[$require_limit/10]
+wims_prefix=class user tmp n sharing sharable techvar
+srcname=wimshome/$wims_sesdir/home_sheet.src
+wims_helper=chapter=3
+
+!readproc tabletheme
+!if $wims_user!=supervisor
+  error=not_supervisor
+  !exit
+!endif
+!if $job=chseries
+  !changeto chseries.proc
+!endif
+!readproc adm/levelname.phtml
+!readproc adm/search_engine/names.$lang
+!readproc adm/search_engine/mklist_form.proc
+
+today=!char 1 to 8 of $wims_now
+thisyear=!char 1 to 4 of $today
+
+!if $class_expiration=$empty
+  !defread wimshome/log/classes/$wims_class/.def
+  !if $wims_superclass!=$empty
+    class_expiration=!defof class_expiration in wimshome/log/classes/$wims_superclass/.def
+  !endif
+!endif
+
+!if $class_expiration=$empty
+  error=bad_class
+  !exit
+!endif
+
+sharers=
+sharing1=!defof sharable_sheet in wimshome/log/classes/$wims_class/neighbors
+!for c in $sharing1
+  d=!defof sharing_sheet in wimshome/log/classes/$c/neighbors
+  !if $d issametext $wims_class
+    sharers=!append item $c to $sharers
+  !endif
+!next c
+
+!if $save!=$empty
+  jquery_defined=!defof jquery_defined in themes/$wims_theme/header.phtml
+  expmon=!char 6 to 7 of $expdate
+  expday=!char 9 to 10 of $expdate
+  expyear=!char 1 to 4 of $expdate
+  !if $expday>=1 and $expday<=31 and $expmon>=1 and $expmon<=12 \
+      and $expyear>=$thisyear and $expyear<=$thisyear+1 \
+      and $expyear$expmon$expday>$today \
+      and $expyear$expmon$expday<=$class_expiration \
+      and N notin $expmon$expday$expyear
+    expiration=$expyear$expmon$expday
+    expdate=$expiration
+  !else
+    !if $expyear$expmon$expday>$class_expiration
+      !readproc adm/date.phtml $class_expiration
+      error=toolate
+    !else
+      expiration=$class_expiration
+      expdate=$expiration
+    !endif
+  !endif
+!endif
+
+!if $sheet>$max_sheets
+  error=bad_maxsheet
+  !exit
+!endif
+
+!if $sheet<1
+  error=bad_sheet
+  !exit
+!endif
+# menu preparation
+!if $job!=$empty and $job iswordof \
+    prep_activate prep_erase prep_expire prep_putsource prep_modify
+  data=!record $sheet of wimshome/log/classes/$wims_class/sheets/.sheets
+  !distribute lines $data into active,expire,title,desc,bla,comment,attribut,exodescshow,formal_hidden_condition,indivtechvar
+  !if $modif!=$empty
+    exo=!record $modif of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+    !distribute lines $exo into D_,p_
+    !read getparm $p_ exotrymax
+  !endif
+  error=$job
+  !if $expire < $today
+    test_expire=$expire,$today
+  !endif
+  !if $indivtechvar!=$empty and ($job=prep_modify or $job=prep_activate)
+    !readproc adm/vfilter/listvarfilter.proc
+    nb=!positionof item $indivtechvar in $tv_listcode
+    !if $nb!=$empty
+      don=!line $nb of $tv_listtechvar
+      !distribute item $don into name,classid,number
+      don=!record $number of wimshome/log/classes/$classid/.techvar
+      listval=!line 2 of $don
+      nbtechvalue=!itemcnt $listval
+    !else
+      !reset indivtechvar
+    !endif
+  !endif
+  !if $job=prep_activate
+    nb=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+    !if $nb>$max_exos
+      error=toomanyexo
+      !reset job
+      !exit
+    !endif
+    !read adm/sheet/checkdepindiv
+    !if $sheet isitemof $sheet_dependancy and $sheet isitemof $sheet_indivtechvar
+      error=depindiv
+      !reset job
+      !exit
+    !endif
+    !readproc proc/checktechvar.proc
+    !if $listvalues!=$empty
+      error=techvardiscord $listvalues
+      !reset job
+    !endif
+  !endif
+  !exit
+!endif
+scnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+!if $job=erase and $sheet<=$scnt and $sheet>=1
+  test=
+  !for s=$sheet to $scnt
+    l=!record $s of wimshome/log/classes/$wims_class/sheets/.sheets
+    l=!line 1 of $l
+    !if $l>0
+      test=notclean
+    !endif
+  !next s
+  !if $test=$empty
+    update_field=0
+    !read proc/update.docindex
+    !read update.sheet
+  !endif
+  !read adm/sheet/writeweights
+  !restart module=home
+!endif
+
+!if $job=duplicate
+  !changeto $job.proc
+!endif
+
+!if $job=expire
+  !distribute item 1,2 into update_field,update_content
+  !read update.sheet
+  job=
+!endif
+
+!if $job=hide
+  !distribute item 1,3 into update_field,update_content
+  !read update.sheet
+  job=
+!endif
+
+!if $job=reactivate
+  !distribute item 1,1 into update_field,update_content
+  !read update.sheet
+  job=
+!endif
+
+!if $job=deactivate
+  !read var.proc.deactivate
+!else
+  confirmed=!replace word share by $ in $confirmed
+  confirmed=!singlespace $confirmed
+!endif
+
+activetest=!record $sheet of wimshome/log/classes/$wims_class/sheets/.sheets
+a_=!line 1 of $activetest
+a_=!trim $a_
+expp=!line 2 of $activetest
+!default expiration=$expp
+
+!if $expiration>$class_expiration or $test_expire!=$empty
+  expiration=$class_expiration
+!endif
+
+ecnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+wims_listexo=!values v for v=1 to $ecnt
+!setdef wims_listexo=$wims_listexo in wimshome/sessions/$wims_session/var.stat
+activetest=!replace line number 3 by $ecnt in $activetest
+
+!if $job=putsource and $a_=0
+  source=!trim $source
+  !writefile $srcname $source
+  putcnt=!recordcnt $srcname
+  !for i=1 to $putcnt
+    s_=!record $i of $srcname
+    n_=!linecnt $s_
+    bad_source=$i
+    !if $n_>=5 and $n_<=$sheetrecordlimit
+      !distribute lines $s_ into di,pa,re,we,ti,de
+      !for k in re,we,di,pa,ti,de
+        $k=!trim $($k)
+        w$k=!wordcnt $($k)
+      !next k
+      !if NaN isin $[$re]$[$we] or $[$wre*$wwe*$wdi]!=1 or $wpa>1 or $ti=$empty or\
+          .. isin $di or $re<0 or $we<0 or ($re>0 and $we=0)
+         error=bad_source
+         ssource=$source
+        !exit
+      !endif
+      ti=!char 1 to $etitle_limit of $ti
+      de=!char 1 to $edesc_limit of $de
+      source_$i=$s_
+      last=$i
+    !else
+      # last record may be empty
+      !if $i!=$putcnt
+        error=bad_source
+        ssource=$source
+        !exit
+      !endif
+    !endif
+  !next i
+  !for i=1 to $last
+    !appendfile wimshome/log/classes/$wims_class/sheets/.sheet$sheet :$(source_$i)
+  !next i
+  !reset ssource
+!endif
+
+!if $activetest!=$empty
+  sheet_exist=yes
+  !default expiration=!line 2 of $activetest
+  activetest=!line 1 of $activetest
+  exocnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+!else
+  sheet_exist=no
+  activetest=-1
+  exocnt=0
+  !default expiration=$class_expiration
+!endif
+
+!if $job=getsource and $sheet_exist=yes
+  !writefile $srcname
+  !for i=1 to $exocnt
+    l=!record $i of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+    # replace eventual html entities so it will not insert \n in textarea
+    l=!replace internal &#13;&#10; by $ $ in $l
+    !appendfile $srcname $$:$l
+  !next i
+  !appendfile $srcname
+  !exit
+!endif
+
+!readproc adm/vfilter/listvarfilter.proc
+!if $allow=yes
+  !if $tv_listname=$empty
+    !bound allowtype within all,none,select default all
+  !else
+    !bound allowtype within all,none,select,techvar default all
+  !endif
+  !read adm/scorerestriction get
+  IPlist=$_output
+  IPlist=!translate ,;\
+* to $    $ in $IPlist
+  IPlist=!trim $IPlist
+  !if $allowtype=select and $IPlist=$empty and $save!=$empty
+    allowtype=all
+  !endif
+  !if $allowtype=all
+    allow_parm=
+  !endif
+  !if $allowtype=none
+    allow_parm=none
+  !endif
+  !if $allowtype=select
+    allow_parm=$IPlist
+  !endif
+
+  !if $allowtype=techvar
+    !readproc adm/vfilter/shexselect.proc $sheet
+  !endif
+!endif
+
+!! --------------- get/save severity parameters
+rec=!record 0 of wimshome/log/classes/$wims_class/sheets/.severity
+!if $save!=$empty
+  !distribute word $df_severity into t1,t2,t3
+  !bound weight between $min_weight and $max_weight default $t1
+  !bound formulaA between integer 0 and 6 default $t2
+  !bound formulaB between integer 0 and 2 default $t3
+  nb=!linecnt $rec
+  !! define maxscore default =10 (not general variable maybe we should ?)
+  !if $nb=0
+    rec=10
+  !endif
+  new=$weight $formulaA $formulaB
+  !if $sheet>$nb-1
+    !for k=$nb+1 to $sheet+1
+      rec=!append line $df_severity to $rec
+    !next k
+  !endif
+  rec=!replace line number $[$sheet+1] by $new in $rec
+  !writefile wimshome/log/classes/$wims_class/sheets/.severity $rec
+!endif
+rec=!line $[$sheet+1] of $rec
+!distribute word $rec into s_weight,s_formulaA,s_formulaB
+!default weight=$s_weight
+!default formulaA=$s_formulaA
+!default formulaB=$s_formulaB
+
+!! ---- save modification of allow parameters
+!if $save!=$empty
+  !if $sharers!=$empty and $allowshare=1
+    !if $allowtype=techvar
+      !readproc adm/vfilter/validtechvar.proc $allowtechvar\
+$sharers
+      !if $output=1
+        setclass=!items2words $wims_class,$sharers
+      !else
+        error=badallowshare
+        allowshare=0
+        setclass=$wims_class
+      !endif
+    !else
+      setclass=!items2words $wims_class,$sharers
+    !endif
+  !else
+    setclass=$wims_class
+  !endif
+  !if $allow_parm=$empty
+    !sh for c in $setclass; do rm -f $wims_home/log/classes/$$c/.$sheet; done
+  !else
+    setclass=!words2items $setclass
+    !for c in $setclass
+      !writefile wimshome/log/classes/$c/.$sheet $allow_parm
+    !next c
+  !endif
+  wims_class_log=sheet $sheet allow $allowtype $allowshare by $wims_realuser
+!endif
+!! ---- end of saving
+
+!if $allow=$empty or $save!=$empty
+!! --- read saving configuration for allow parameters initial time and after saving
+  !readproc adm/vfilter/shexread.proc $sheet
+!! to distribute IPlist content into variable
+  !read adm/scorerestriction put\
+$IPlist
+!endif
+old_allowtype=$allowtype
+old_allowtechvar=$allowtechvar
+!reset allow,save
+!! --- end of reading
+
+expmon=!char 5,6 of $expiration
+expday=!char 7,8 of $expiration
+expyear=!char 1,2,3,4 of $expiration
+
+!if $job!=text
+  # remove \n from textareas
+  mod_desc=!replace internal $\
+$ by $ $ in $mod_desc
+  mod_comment=!replace internal $\
+$ by $ $ in $mod_comment
+  !if $title_save$desc_save=$empty
+    rec=!record $sheet of wimshome/log/classes/$wims_class/sheets/.sheets
+    !distribute lines $rec into a,bidon,title_save,desc_save,prpage_save,\
+      comment_save,attribut_save,exodescshow_save,formal_hidden_condition_save,\
+      indivtechvar_save
+      !if $indivtechvar_save notitemof $tv_listlocalcode
+        !if $a=0
+          !readproc proc/checktechvar.proc
+          !if $listvalues!=$empty
+            error=techvardiscord $listvalues
+            display=1
+          !endif
+        !endif
+      !endif
+  !endif
+  title=$title_save
+  desc=$desc_save
+  prpage=$prpage_save
+  comment=$comment_save
+  exodescshow=$exodescshow_save
+  !readproc adm/vfilter/convertformat.proc human\
+$formal_hidden_condition_save
+  !if $output_error!=$empty
+    error=hiddenbadtechvar
+    display=1
+  !endif
+  hidden_condition=$output_convertformat
+  indivtechvar=$indivtechvar_save
+!else
+  !if $title=$empty
+    error=no_title
+    !exit
+  !endif
+  title=!singlespace $title
+  title=!char 1 to $title_limit of $title
+  title=!replace internal : by &#58; in $title
+
+  desc=!replace internal $\
+$ by $ $ in $desc
+  desc=!singlespace $desc
+  desc=!char 1 to $desc_limit of $desc
+  desc=!replace internal : by &#58; in $desc
+
+  comment=!replace internal $\
+$ by $ $ in $comment
+  comment=!singlespace $comment
+
+  !! --- manage of personalized presentation of sheet page
+  !if $prpage isitemof no,yes or $prpage=$empty
+    !bound prpage within yes,no default no
+  !else
+    !! old gestion of prpage with doc link
+    !! deprecated but keep for background compatibility
+    prpage=!word 1 of $prpage
+    prpage=!char 1 to 100 of $prpage
+    !if .. isin $prpage or / notin $prpage
+      prpage=no
+    !endif
+    !if $prpage!=no
+      test=!fileexists wimshome/log/classes/$wims_class/doc/$prpage.def
+      !if $test!=yes
+        prpage=no
+      !endif
+    !endif
+  !endif
+
+  !if $hidden_condition!=$empty
+    !readproc adm/vfilter/convertformat.proc formal\
+$hidden_condition
+    formal_hidden_condition=$output_convertformat
+    !if $output_error!=$empty
+      error=badtechvarname $output_error
+    !endif
+    !readproc adm/vfilter/convertformat.proc human\
+$formal_hidden_condition
+    hidden_condition=$output_convertformat
+  !else
+    formal_hidden_condition=$empty
+  !endif
+  !! indivtechvar is not modifiable when sheet is activated.
+  !if $activetest>0
+    rec=!record $sheet of wimshome/log/classes/$wims_class/sheets/.sheets
+    indivtechvar=!item 10 of $rec
+  !endif
+  !bound indivtechvar within $empty,$tv_listlocalcode default $empty
+  !if $sheet_exist=yes
+    !distribute lines 2\
+$expiration into update_field,update_content
+    !read update.sheet
+
+    !distribute lines 3\
+$title into update_field,update_content
+    !read update.sheet
+
+    !distribute lines 4\
+$desc into update_field,update_content
+    !read update.sheet
+
+    !distribute lines 5\
+$prpage into update_field,update_content
+    !read update.sheet
+
+    !distribute lines 6\
+$comment into update_field,update_content
+    !read update.sheet
+
+    !distribute lines 7\
+$attribut into update_field,update_content
+    !read update.sheet
+
+    !distribute lines 8\
+$exodescshow into update_field,update_content
+    !read update.sheet
+
+    !distribute lines 9\
+$formal_hidden_condition into update_field,update_content
+    !read update.sheet
+
+    !if $activetest=0
+      !distribute lines 10\
+$indivtechvar into update_field,update_content
+    !read update.sheet
+
+    !endif
+
+  !else
+    !appendfile wimshome/log/classes/$wims_class/sheets/.sheets :0\
+$expiration\
+$title\
+$desc\
+$prpage\
+$comment\
+$attribut\
+$exodescshow\
+$formal_hidden_condition\
+$empty
+    indivtechvar=$empty
+    sheet_exist=yes
+    activetest=0
+    sheet=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+    !writefile wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+    message=$name_createok
+  !endif
+  title_save=$title
+  desc_save=$desc
+  prpage_save=$prpage
+  comment_save=$comment
+  attribut_save=$attribut
+  exodescshow_save=$exodescshow
+  formal_hidden_condition_save=$formal_hidden_condition
+  indivtechvar_save=$indivtechvar
+!endif
+
+!if $job=prpage and $prpage_save=yes
+  test=!fileexists wimshome/sessions/$wims_session/user-deposit
+  !if $test=yes
+    msg2wims_primitives=if ifval for while\
+      reload fold ref link docform form resource calcform embed\
+      exercise tool doc example help adm tooltip href slib\
+      def define comment draw canvasdraw audio glossary
+      !sh rm -f $wims_home/$wims_sesdir/sheet$(sheet).def;\
+          $wims_home/bin/msg2wims $wims_home/$wims_sesdir/user-deposit $wims_home/$wims_sesdir/sheet$(sheet).def;\
+          if [ -e $wims_home/$wims_sesdir/sheet$(sheet).def ]; then\
+            mv $wims_home/$wims_sesdir/sheet$(sheet).def $wims_home/log/classes/$wims_class/sheets/sheet$(sheet).def;\
+            mv $wims_home/$wims_sesdir/user-deposit $wims_home/log/classes/$wims_class/sheets/sheet$(sheet).src;\
+          else\
+            rm -f $wims_home/$wims_sesdir/user-deposit;\
+          fi;
+  !endif
+!endif
+
+!if $job=activate and $[$activetest]=0
+  !read adm/sheet/checkdepindiv
+  !if $sheet isitemof $sheet_dependancy and $sheet isitemof $sheet_indivtechvar
+    error=depindiv
+    !reset job
+    !exit
+  !endif
+  !read adm/sheet/writeweights
+  !if $test_expire!=$empty
+    !distribute items 2,$expiration into update_field,update_content
+    !read update.sheet
+    !reset test_expire
+  !endif
+  !distribute item 1,1 into update_field,update_content
+  !read update.sheet
+  activetest=1
+  wims_class_log=activate sheet $sheet by $wims_realuser
+!endif
+
+!! only delete or move items when sheet has not been activated
+!if $activetest=0
+  # delete an item
+  !if $job=delete and $delete>0 and $delete<=$exocnt
+    !read adm/sheet/sheetexam.shift sheet,$sheet,,$delete
+    delete=
+    exocnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+  !endif
+
+  # move to specific position
+  !if $job=moveto and $movetarget>=1 and $movetarget<=$[$exocnt+1] and $movesource!=$movetarget and $movesource>=1 and $movesource<=$exocnt
+    !read adm/sheet/sheetexam.shift sheet,$sheet,$movetarget,$movesource
+  !endif
+
+  # change individualisation of sheet with a technical variable
+  !if $job=indiv and $indivtechvar!=0 and $indivtechvar!=$empty
+    !read indiv.proc
+  !endif
+
+!endif
+
+# modify an item
+!if $job=modify and $modif>0 and $modif<=$exocnt
+  !if $activetest=0
+    exo=!record $modif of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+    !distribute lines $exo into D_,p_
+    ####
+    iniparm=$p_
+    !read getparm $iniparm exo random qnum exotrymax
+    exocnt_=!itemcnt $get_exo
+    #### common with addmodule
+    iniparm2=!replace internal & by $\
+$ in $iniparm
+    iniparm2_cnt=!linecnt $iniparm2
+    new_iniparm=
+    equal==
+    !if $get_random=0
+      !for i=1 to $get_qnum
+        update_order=!append item $(update_ex$i) to $update_order
+      !next
+      get_exo=$(get_exo[$update_order])
+      !for v in $get_exo
+        new_iniparm=!append line exo=$v to $new_iniparm
+      !next
+      !for u=1 to $iniparm2_cnt
+        l=!line $u of $iniparm2
+        !if exo$equal notin $l
+          new_iniparm=!append line $l to $new_iniparm
+        !endif
+      !next
+      new_iniparm=!replace internal $\
+$ by & in $new_iniparm
+      new_iniparm=!nospace $new_iniparm
+      p_=$new_iniparm
+    !endif
+    !if $get_exotrymax!=$mod_exotrymax
+      tmp=!nospace $mod_exotrymax
+      !if exotrymax isin $p_
+        !if $tmp!=$empty
+          p_=!replace internal exotrymax=$get_exotrymax by exotrymax=$tmp in $p_
+        !else
+          p_=!replace internal exotrymax=$get_exotrymax by in $p_
+        !endif
+      !else
+        !if $tmp!=$empty
+          p_=$p_&exotrymax=$tmp
+          !reset mod_exotrymax
+        !endif
+      !endif
+      p_=!nospace $p_
+      p_=!replace internal && by & in $p_
+      !reset tmp
+    !endif
+
+    #####
+    mod_indiv=!listintersection $mod_indiv and $listval
+    !bound mod_weight between $min_weight and $max_weight default 1
+    !bound mod_require between 0 and $[10*$require_limit] default 0
+    !if $mod_indiv!=$empty
+      nbvalue=!itemcnt $listval
+      !distribute item $max_weight,$[10*$require_limit],$min_weight,0 into limitM_weight,limitM_require,limitm_weight,limitm_require
+      !for type in weight,require
+        tmp=$(mod_$type)
+        !for k=1 to $nbvalue
+          !bound $type$k between $(limitm_$type) and $(limitM_$type) default $tmp
+          !if $($type$k)!=$tmp
+            mod_$type=$(mod_$type);$(listval[$k]),$($type$k)
+          !endif
+        !next k
+      !next type
+    !endif
+    mod_title=!singlespace $mod_title
+    mod_desc=!singlespace $mod_desc
+    mod_comment=!singlespace $mod_comment
+    mod_title=!char 1 to $etitle_limit of $mod_title
+    mod_desc=!char 1 to $edesc_limit of $mod_desc
+    mod_comment=!char 1 to $edesc_limit of $mod_comment
+  !endif
+  !if $mod_feedback notsametext $empty
+    !reset mod_feedback_tmp
+    tmpcnt=!itemcnt $(mod_feedback[;1])
+    !for t_=1 to $tmpcnt
+      mod_feedback_=$(mod_feedback[$t_;])
+      mod_feedback_lim=$(mod_feedback_[2])
+      mod_feedback_lim2=$(mod_feedback_[3])
+      !bound mod_feedback_lim between 0 and 11 default 10
+      !bound mod_feedback_lim2 between 0  and $mod_feedback_lim default 0
+      mod_feedback_=!nospace $(mod_feedback_[1])
+      mod_feedback_test=!replace = by _ in $mod_feedback_
+      !if cmd_new notin $mod_feedback_test
+        mod_feedback_=!nospace $mod_feedback_&cmd=new
+      !endif
+      !if adm/doc isin $mod_feedback_ and job_read notin $mod_feedback_test
+        mod_feedback_=$mod_feedback_&job=read
+      !endif
+      mod_feedback_tmp=!append line $mod_feedback_,$mod_feedback_lim,$mod_feedback_lim2 to $mod_feedback_tmp
+    !next
+    mod_feedback=!lines2rows $mod_feedback_tmp
+  !endif
+
+  exo=$modif
+  !if $activetest=0
+    update_content=$D_\
+$p_\
+$mod_require\
+$mod_weight\
+$mod_title\
+$mod_desc\
+$mod_dep\
+$mod_comment\
+$mod_feedback\
+$mod_attribut\
+$mod_indiv
+    update_field=0
+    !read adm/class/update.exo
+ !else
+    !distribute lines 5\
+$mod_title into update_field,update_content
+    !read adm/class/update.exo
+    !distribute lines 6\
+$mod_desc into update_field,update_content
+    !read adm/class/update.exo
+    !distribute lines 8\
+$mod_comment into update_field,update_content
+    !read adm/class/update.exo
+    !distribute lines 9\
+$mod_feedback into update_field,update_content
+    !read adm/class/update.exo
+    !distribute lines 10\
+$mod_attribut into update_field,update_content
+    !read adm/class/update.exo
+  !endif
+
+  !distribute items $ into mod_title,mod_desc,mod_weight,mod_require,mod_dep,\
+    mod_comment,mod_feedback,mod_attribut,mod_indiv
+!endif
+
+!if $[$activetest]=0
+  erasable=yes
+  scnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+  !for s=$sheet+1 to $scnt
+    l=!record $s of wimshome/log/classes/$wims_class/sheets/.sheets
+    l=!line 1 of $l
+    !if $l>0
+      erasable=no
+    !endif
+  !next s
+!endif
+
+!if $back=1 and $error=$empty
+  !restart module=home
+!endif

@@ -1,0 +1,20 @@
+\title{codeinput}
+\text{code=for i = 1 to reply1
+  do
+    reply2
+  od
+}
+\statement{
+<div class="spacer">
+\special{editarea
+\special{codeinput [\code], 5
+reply1
+reply2,30}
+}
+</div>
+\special{codeinput [\code], 5
+reply1
+reply2,30}
+}
+\answer{}{4}{type=numeric}
+\answer{}{tourner d'un quart de tour}{type=nocase}

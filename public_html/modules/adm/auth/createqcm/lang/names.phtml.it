@@ -1,0 +1,38 @@
+!set lang_exists=yes
+
+!set name_intro=Lo scopo di questo modulo è di aiutare nella preparazione di \
+  codice sorgente per la creazione di esemplici esercizi OEF in WIMS.
+
+!set name_intro1=Ci sono tre tipi di esercizi OEF che si possono creare
+
+!distribute line OEF di tipo scelta multipla con una lista di bottoni da selezionare\
+   OEF con risposte libere date dall'utente\
+   OEF che combina le due tipologie precedenti\
+into name_type1, name_type2, name_type3
+
+!set name_intro2=È importante osservare che questo modulo permette\
+    di creare solo esercizi molto elementari. Va considerato solo uno \
+    strumento per creare velocemente esercizi di immediata soluzione.
+
+!set name_select=Selezionare un tipo di esercizi oppure \
+  seguire una demo passo a passo,
+!set name_modify=o <b>modificare direttamente</b> il codice sorgente \
+  (<span class="tt">nel formato createqcm</span>)
+  
+!set name_submit=o ancora <b>caricare un file</b> \
+   (<span class="tt">nel formato createqcm</span>) 
+
+!set name_present3=Indicare il file che si vuole caricare e quindi clicare su <b>Invia</b>.\
+
+
+!set name_insert=Inserire qui il codice dell'esercizio che si vuole modificare.
+
+!set name_validation=Cliccare sul bottone <b>"Invia"</b> per cominciare \
+  a modificare il vostro esercizio.
+  
+!set name_warning=<b>Attenzione!</b> Questo file deve essere stato creato con <b>createqcm</b>. 
+
+!set name_theend=Avete terminato
+!set name_goodcontinuation=Buona continuazione!
+
+!set name_help=Spiacenti, ma le Istruzioni sono ancora in preparazione.

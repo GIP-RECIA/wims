@@ -1,0 +1,174 @@
+!! display list of user with own deposit work
+
+!reset table_center
+!! ---- preparing data
+!readproc proc/findfile.proc $freework
+
+!! ------ manage ask for technical variable selection. NOT YET ACTIVATED
+!!if $tv_listtechvar!=$empty
+!!  !form reply
+!!    !read adm/vfilter/varfilter html
+!!  !formend
+!!endif
+
+!if $loadwork=1
+  <div class="wims_msg
+  !if $notcorrected>0
+    warning">
+    !if $notcorrected=1
+      $name_worknotcorrected
+    !else
+      $name_worknotcorrecteds
+    !endif
+  !else
+    info">
+    $name_allworkcorrected
+  !endif
+  </div>
+  <div class="formHelp">$name_desc_listwork2</div>
+!else
+  <div class="formHelp">
+    !readproc adm/date.phtml $deadline
+    !let lname=!replace internal : by H in $timedeadline
+    $name_desc_listwork3 ($l_date_out $wims_name_at $lname).
+    !if $nbcopies=1
+      $name_nbcopie
+    !else
+      $name_nbcopies
+    !endif
+  </div>
+!endif
+
+!! ----- displaying table of participant
+!set table_id=TABLE_userlist
+!set table_class=sortable
+$table_header
+<thead>
+  $table_hdtr
+    <th scope="col">$name_studentglo</th>
+    <th scope="col">$name_givedate</th>
+    !if $scoring>0
+      <th scope="col">$name_score (/$maxscore)</th>
+    !endif
+    <th scope="col">$name_ltsolution</th>
+    !if $putiworkco=1
+      <th scope="col">$name_solutiondeposit</th>
+    !endif
+    !if $codownload=1
+      <th scope="col">$name_seeco</th>
+    !endif
+  </tr>
+</thead>
+<tbody>
+!if $scoring>0 and $putiworkco!=1 and $codownload=1 and $class_limit<$max_userforgrades
+  !form reply
+    <input type="hidden" name="job" value="savescore" >
+    <input type="hidden" name="freework" value="$freework" >
+!endif
+  !for i=1 to $nbuser
+!!    !set data=!record $i of wimshome/log/classes/$wims_class/.userlist
+!!    !distribute item $data into lastname,firstname,uu
+!! no techvar manage for the moment
+!!    !if $varfilter_!=$empty
+!!      !read adm/vfilter/testfilter $(ulist[$i])\
+!!$varfilter_
+!!    !endif
+    !if $(var_filter_test)=1 or $varfilter_=$empty
+      $table_tr
+      !reset css_connected
+      !if $(ulist[$i]) isitemof $wims_connectedlogin
+        !set css_connected=class="wims_connected"
+        !set wims_ref_title=connected
+      !endif
+      <td $css_connected>
+        !distribute item $(llist[$i]),$(flist[$i]) into lastname,firstname
+        $name_studentname
+      </td>
+      <td>
+        !if $(data_$i)!=$empty
+          !readproc adm/date.phtml $(data_$i[2])
+          !let lname=!replace internal : by H in $(data_$i[3])
+          !let lname=$l_date_out $wims_name_at $lname
+          !if $loadwork=1
+            !getfile freeworksdata/$freework/work/$(data_$i[1]) $lname
+          !else
+            $lname
+          !endif
+        !endif
+      </td>
+      !if $putiworkco=1 and $(data_$i)!=$empty
+        !let wims_form_method=file
+        !form reply
+        <input type="hidden" name="job" value="uploadco" >
+        <input type="hidden" name="freework" value="$freework" >
+        <input type="hidden" name="student" value="$(ulist[$i])" >
+      !endif
+      !if $scoring>0
+        !let k_=!positionof item $(ulist[$i]) in $uulist
+        !if $k_!=$empty
+          !let t_=!record $[$k_+1] of wimshome/log/classes/$wims_class/.grades
+          !let t_=!item $[$scoring+2] of $t_
+        !else
+          !let t_=$empty
+        !endif
+        <td>
+          !if $(data_$i)!=$empty and ($putiworkco=1 or ($putiworkco!=1 and $codownload=1 and $class_limit<$max_userforgrades))
+            <input type="text" id="score$i" name="score$i" value="$t_" size="3">
+          !else
+            $t_
+          !endif
+        </td>
+      !endif
+      <td>
+        !if $(data_$i[4])!=$empty
+          !readproc adm/date.phtml $(data_$i[5])
+          !let lname=!replace internal : by H in $(data_$i[6])
+          !let lname=$l_date_out $wims_name_at $lname
+          !getfile freeworksdata/$freework/co/$(data_$i[4]) $lname
+        !endif
+      </td>
+      !if $putiworkco=1
+        <td>
+          !if $(data_$i)!=$empty
+            !set wims_form_method=file
+            <input type="file" size="35" name="wims_deposit" >
+            <input type="submit" value="$wims_name_submit" >
+           !formend
+          !endif
+        </td>
+      !endif
+      !if $codownload=1
+        <td>
+          !if $(freework_seeco_$(ulist[$i]))!=$empty
+            &#x2705;
+          !endif
+        </td>
+      !endif
+      </tr>
+    !endif
+  !next i
+</tbody>
+
+!if $scoring>0 and $putiworkco!=1 and $codownload=1 
+  !if $class_limit<$max_userforgrades
+    <tfoot>
+      $table_hdtr
+      <td colspan="4" style="text-align:center">
+        <input type="submit" value="$wims_name_tosave" >
+        !formend
+      </td>
+      </tr>
+    </tfoot>
+    $table_end
+  !else
+    $table_end
+    <div class="formHelp">
+      $name_toomany_users
+      !href module=adm/class/grades&method=raw $name_modulegrades
+    </div>
+  !endif
+!else
+  $table_end
+!endif
+!read tablesort.phtml
+!reset score

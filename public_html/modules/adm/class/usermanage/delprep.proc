@@ -1,0 +1,9 @@
+!!for $(name_struct[$type_class+1])
+!set type_class=!defof class_type in wimshome/log/classes/$wims_class/.def
+!default type_class=1
+!read adm/class/userdef classes,$wims_class,$delprep
+!defread $userdef
+!if $wims_superclass!=$empty
+  !read adm/class/initclass $wims_class
+  !read mksubclslist.proc
+!endif

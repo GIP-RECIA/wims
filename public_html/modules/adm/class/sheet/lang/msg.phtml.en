@@ -1,0 +1,281 @@
+!set wims_module_log=error: $error
+
+!if not_supervisor=$error
+  Sorry, only the registered supervisor of a class can edit a worksheet
+  !exit
+!endif
+
+!if bad_series=$error
+  Strange, but  I do not find the exercise series to modify !!
+  !exit
+!endif
+
+!if bad_source=$error
+  The item number $bad_source in the source code you just submitted is not
+  valid.
+  !href cmd=reply&job=prep_putsource $name_correctsource
+.
+  !exit
+!endif
+
+!if active_sheet=$error
+  Cette feuille est active. Son contenu ne peut pas être modifié.
+  !exit
+!endif
+
+!if bad_sheet=$error
+  Your worksheet number is not valid. Could be this a bug?
+  !exit
+!endif
+
+!if bad_maxsheet=$error
+  The number of worksheets is limited to $max_sheets. You may not create another worksheet.
+  !exit
+!endif
+
+!if no_title=$error
+  You want to register a worksheet without a title, which is not advisable.
+  Did you simply forget?
+  !exit
+!endif
+
+!if $error=not_secure
+  This action can only be done from a secure host.
+  !if $sec=$empty
+    You have not defined a secure host. Access denied. You may ask the webmaster
+    to do it for you.
+  !else
+    Access denied.
+  !endif
+  !exit
+!endif
+
+!if $error=sharing_sheet
+  You are sharing worksheets with other classes!
+  !if $wims_ismanager<2
+    You must ask the webmaster to deactivate the worksheet for you.
+    !exit
+  !endif
+  Deactivating this worksheet may disrupted neighboring classes.
+  This action is therefore <b>strongly discouraged</b>.
+  <p>Do you still want to deactivate the worksheet?</p>
+  <p class="wimscenter">
+  !set wims_ref_class=wims_button
+  !href cmd=reply&job=deactivate&confirm=yes $wims_name_yes, $(wims_name_actionlist[3])
+$ $
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=resume $wims_name_no, $wims_name_giveup
+ </p><p>
+  <b>Before continuing, ask at least the supervisors of your class neighbors to
+  save their classes!</b>
+ </p>
+  !exit
+!endif
+
+!if sheet_in_exam iswordof $error
+  !set exa=!word 2 of $error
+  Impossible to deactivate this worksheet, because you have exams based on its
+  content (for example exam $exa).
+  !exit
+!endif
+
+!if $error=non_empty_activities
+  <p class="wims_msg warning">You want to deactivate worksheet $sheet, although participants have already
+  started to work on it!</p>
+  !if share iswordof $confirmed
+    <p>Moreover, the worksheet is shared with other classes where there may be scores too.
+    It is therefore not allowed to deactivate it.</p>
+    !exit
+  !endif
+  <p>
+  All scores obtained on this worksheet will be <b>erased</b>, if you deactivate it.
+  Do you still want to proceed?
+  </p>
+  <p class="wimscenter">
+  !set wims_ref_class=wims_button
+  !href cmd=reply&job=deactivate&confirm=yes $wims_name_yes, $(wims_name_actionlist[3])
+   &nbsp;&nbsp;
+   !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=resume $wims_name_no, $wims_name_giveup
+  </p>
+  List of students having worked on this worksheet:
+  <p class="tt">$worktest</p>
+
+  <div class="wims_msg info"><b>Note</b>. Only deactivate if you are using this class as a test.</div>
+  !exit
+!endif
+
+!if prep_activate=$error
+ You want to activate worksheet $sheet.
+ <p>By activating a worksheet, you make it visible to the participants of the class.  Once activated,
+ a worksheet cannot be modified, unless deactivated first. However, deactiviting an activated
+ worksheet will result in losing the scores and grades of the participants.</p>
+  !if $test_expire!=$empty
+   <div class="wims_warning">
+    The expiration date of the sheet is previous to today, it will be
+    updated at the expiration date of your class.
+   </div>
+  !endif
+  <p>Do you want to continue?</p>
+  <p class="wimscenter">
+   !set wims_ref_class=wims_button
+   !href cmd=reply&save=$wims_name_tosave&job=activate $wims_name_yes; $(wims_name_actionlist[1])
+$ $
+  !set wims_ref_class=wims_button
+  !href cmd=resume $wims_name_no, $wims_name_giveup
+  </p>
+  !exit
+!endif
+
+!if prep_erase=$error
+ Do you really want to erase worksheet #$sheet ($title)?
+ <p style="text-align:center">
+ !set wims_ref_class=wims_button wims_warning
+ !href cmd=reply&job=erase $wims_name_yes; $wims_name_erase
+
+ !set wims_ref_class=wims_button
+ !href cmd=resume $wims_name_no ; $wims_name_giveup
+ </p>
+ !exit
+!endif
+
+!if prep_expire=$error
+  Worksheet #$sheet ($title) normally expires on $expday
+  !item $expmon of $months
+  $expyear. Do you want to expire it now?
+  <p class="wimscenter">
+  !set wims_ref_class=wims_button wims_warning
+  !href cmd=reply&job=expire $wims_name_yes ; $(wims_name_actionlist[2])
+$ $
+  !set wims_ref_class=wims_button
+  !href cmd=resume $wims_name_no ; $wims_name_giveup
+  </p>
+  <p><b>Remark.</b> Your students cannot continue to work on a
+  expired worksheet. But their earlier scores will be conserved (and will be taken into
+  account in the statistics), and you can always consult these scores.
+  </p>
+  !exit
+!endif
+
+!if prep_putsource=$error
+  If you have saved the source code of a worksheet previously, you can insert this code
+  into the current worksheet, by copying this code into the window below,
+  then clicking on the button <span class="wims_button disabled">$wims_name_send</span>.
+  You may also insert the
+  source code of a public worksheet by cutting and pasting.
+  <p>
+ !set wims_menu_items=!append line sheetadmin,1,cmd=resume \
+to $wims_menu_items
+
+  !set wims_form_method=post
+  !form reply
+  <input type="hidden" name="job" value="putsource"><p class="wimscenter">
+  <textarea cols="55" rows="10" name="source">$ssource</textarea>
+  </p>
+  <p class="wimscenter"><input type="submit" value="$wims_name_send"></p>
+
+  !formend
+  <span class="wims_warning">$wims_name_warning</span>.
+  It is advised not to modify the source code of the worksheet as it may abort the
+  worksheet.
+  !exit
+!endif
+
+!if prep_modify=$error
+ !set cnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+ !if $modif>$cnt or $modif<1
+  You have sent an invalid request. Ignored.
+ !else
+  !set exo=!record $modif of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+  !changeto exomodify.phtml $exo
+ !endif
+ !exit
+!endif
+
+!if $error=toolate
+  !read adm/lang/date.phtml.$moduclass_lang $class_expiration
+  <p>$name_expiration1 ($l_date_out). $name_expiration2 </p>
+  !set wims_ref_class=wims_button
+  !href cmd=resume&job=$empty&save=$empty $wims_name_back2
+  ($wims_name_sheetmanagement)
+  !exit
+!endif
+
+!if $error=srcnoexo
+  This worksheet does not have any exercise yet, so the source code is empty.<br>
+  !href cmd=resume Back to edit the worksheet
+  !exit
+!endif
+
+!if $error=depindiv
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+    Il n'est pas possible de définir des dépendances de score en même temps que
+    l'activation de l'individualisation des feuilles de travail avec une variable technique.
+    <br>
+    Vous devez choisir entre les deux avant de pouvoir activer cette feuille.
+    !reset error
+  </div>
+  <div class="wimscenter">
+   !set wims_ref_class=wims_button
+   !href cmd=resume Retour
+  </div>
+  !exit
+!endif
+
+!if badtechvarname iswordof $error
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+    !let code=!word 2 to -1 of $error
+    !if $code=_
+      une des conditions <span class="wims_code_words">Condition pour cacher la feuille aux participants</span> n'a pas de nom de variable
+    !else
+      Un des noms de variable (
+        !let code=!listcomplement _ in $code
+        $code
+      ) n'est pas un nom correct de variable technique. Les noms incorrects de variable technique
+      ont été supprimés du champs <span class="wims_code_words">Condition pour cacher la feuille aux participants</span>.
+    !endif
+  </div>
+  <div class="wimscenter">
+   !set wims_ref_class=wims_button
+   !reset error
+   !href cmd=resume Retour
+  </div>
+  !exit
+!endif
+
+!if toomanyexo=$error
+  <div class="wims_msg alert">
+    Le nombre d'exercices dans une feuille est limité à $max_exos. Vous devez supprimer des exercices avant de pouvoir
+    l'activer.
+  </div>
+  !exit
+!endif
+
+!if $error=badallowshare
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+  La variable technique que vous souhaitez utiliser n'est pas disponible dans toutes les classes en partage de ressources avec votre
+  classe.
+  Vous ne pouvez donc pas propager ces réglages aux autres classes en partage.
+  </div>
+  <div class="wimscenter">
+   !set wims_ref_class=wims_button
+   !reset error
+   !href cmd=resume Retour
+  </div>
+  !exit
+!endif
+
+!if $error=hiddenbadtechvar
+  Attention, la <span class="wims_code_words">condition pour cacher la feuille aux participants</span> en utilisant une variable technique est incorrecte. Vous devez la corriger.
+  !exit
+!endif
+
+!if techvardiscord iswordof $error
+  !! TODO_lang techvardiscord
+  !changeto lang/msg.phtml.fr
+!endif
+
+!msg $error

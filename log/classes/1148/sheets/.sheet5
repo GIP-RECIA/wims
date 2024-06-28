@@ -1,0 +1,39 @@
+Suites numériques (U&#65279;n)
+Sélection d'exercices correspondant à une partie du paragraphe "Suites numériques" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+analysis
+sequence
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Suites numériques" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H6/analysis/numericseq.fr
+exo=calctersuite3
+10
+1
+Récurence
+Construire une suite d'après une relation de <strong>récurence</strong>.
+
+:H5/analysis/suites.fr
+exo=suites_rel_rec_par
+10
+1
+Récurrence particulière
+Construire une suite d'après une relation de <strong>récurence</strong>.
+
+:H5/analysis/oefseq.fr
+exo=calc3
+10
+1
+Récurrence d'ordre 2
+Construire une suite d'après une relation de <strong>récurence</strong>.
+
+:H5/analysis/oefseq.fr
+exo=tabl1
+10
+1
+Suite et tableur
+Quelle <strong>formule</strong> utiliser pour calculer les termes d'une suite?
+

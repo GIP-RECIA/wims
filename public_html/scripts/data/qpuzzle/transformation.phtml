@@ -1,0 +1,70 @@
+
+!if $found = yes
+  <table class="wimsnoborder wimscenter">
+  !for i = 1 to 2
+    <tr>
+    !if $i = 1
+      <td rowspan="2">
+    !insmath \begin{pmatrix}x\\y\end{pmatrix}\longmapsto\bigg(
+    !endif
+    !for j = 1 to 2
+      <td>$(el$(r$i$j))</td>
+    !next j
+    !if $i = 1
+      <td rowspan=2>
+    !insmath \bigg)\cdot \begin{pmatrix}x\\y\end{pmatrix} +\bigg(
+    !endif
+    <td>
+    !set t=!word $i of $xr $yr
+    $(el$t)
+    </td>
+    !if $i = 1
+      <td rowspan="2">
+      !insmath \bigg)
+    !endif
+  !next i
+  </table>
+
+!else found != yes
+  <table class="wimsnoborder wimscenter">
+  !for i = 1 to 2
+    <tr>
+    !if $i = 1
+      <td rowspan="2">
+      !insmath \begin{pmatrix}x\\y\end{pmatrix} \longmapsto\bigg(
+    !endif
+    !for j = 1 to 2
+      <td><select name="r$i$j">
+      !for s = 0 to $q-1
+        <option value="$s"
+        !ifval $s=$(r$i$j)
+          selected="selected"
+        !endif
+        >$(el$s)
+        </option>
+      !next s
+      </select></td>
+    !next j
+    !if $i = 1
+      <td rowspan="2">
+      !insmath \bigg)\cdot \begin{pmatrix}x\\y\end{pmatrix} +\bigg(
+    !endif
+    !set j = !word $i of xr yr
+    <td><select name="$j">
+    !for s = 0 to $q-1
+      <option value="$s"
+      !ifval $s=$($j)
+       selected="selected"
+      !endif
+      >$(el$s)
+      </option>
+    !next s
+    </select></td>
+    !if $i = 1
+      <td rowspan="2">
+      !insmath \bigg)
+    !endif
+  !next i
+  </table>
+
+!endif found =? yes

@@ -1,0 +1,306 @@
+!readdef wimshome/log/classes/$wims_class/.def
+!read adm/css.phtml
+!header1
+<!-- adm/sheet/class.phtml START -->
+
+!if $sheet_docpage!=$empty and $sheet_docpage!=no
+  !changeto docpage.phtml
+!endif
+!read adm/class/classname.phtml $wims_classname\
+$wims_institutionname
+
+!if $uservartechvalue!=$empty
+  !set name_title=$name_title-$nametechvar $uservartechvalue
+!endif
+!if $seq=$empty and $wims_sequence=$empty
+  !read adm/title.phtml 1\
+$classname\
+$sheet_title\
+$name_title
+!else
+  !read adm/title.phtml 1\
+$classname\
+$sheet_title\
+$wims_name_sheet - $nametechvar $uservartechvalue
+!endif
+
+!! -------- manage multiple view for supervisor and msg for user in case of individualisation techvar
+  !if $sheet_indivtechvar!=$empty and $sheet_indivtechvar!=0
+    !if $wims_user=supervisor
+      <div class="wims_msg info">
+      !! --- msg for supervisor
+      $name_indivsupervisor
+      !form reply
+        <div class="field box">
+          <label for="choosevalue">$name_choosevalue:</label>
+          <select id="choosevalue" name="choosevalue" onchange="submit()">
+            !if $choosevalue=EMPTY
+                <option value="EMPTY" selected="selected">$name_novalue</option>
+            !else
+                <option value="EMPTY">$name_novalue</option>
+            !endif
+            !for val in $techvarlistval
+              !if $choosevalue=$val
+                <option value="$val" selected="selected">$val</option>
+              !else
+                <option value="$val">$val</option>
+              !endif
+            !next i
+          </select>
+        </div>
+      !formend
+!!    !else
+!!      !! --- msg for user
+!!      !if $uservartechvalue!=$empty
+!!        $name_msgusergroup
+!!      !else
+!!        $name_msgusergroupempty
+!!      !endif
+      </div>
+    !endif
+  !endif
+!! --------- end of manage of indiv
+
+
+<div class="wims_sheet_desc">$sheet_desc</div>
+!let class_showlivret=!defof class_showlivret in wimshome/log/classes/$wims_class/.def
+!let tmp=!record $sh of wimshome/log/classes/$wims_class/livret/sheetindex.rc
+!if $class_showlivret=yes and $tmp!=$empty
+  <div class="wims_sheet_desc">
+  $name_skillbullet $tmp
+  </div>
+!endif
+!!expiration date in a variable
+!set expir_user=!record 0 of wimshome/log/classes/$wims_class/.$sh
+
+!set cle=!word 1 of $expir_user
+!! process for technical variable definition (replace expir_user by value decide by the technical variable)
+!if \ isin $cle
+  !set idtechvar=!line 1 of $expir_user
+  !set idtechvar=!char 2 to -1 of $idtechvar
+  !readproc adm/class/userdef ,$wims_class,$wims_user
+  !set val=!defof user_techvar_$(idtechvar) in $userdef
+  !default val=EMPTY
+  !reset expir_user
+  !set expir_user=!defof techvar_$val in wimshome/log/classes/$wims_class/.$sh
+  !default expir_user=none
+!endif
+!! end process technical variable
+
+!if $expir_user=none
+  <div class="wims_msg warning" id="name_student5">
+  <span class="wims_warning">$wims_name_warning</span>.
+  $name_student5
+  </div>
+  !goto none
+!endif
+
+!if $expir_user!=$empty
+  !set cle=!word 1 of $expir_user
+  !!! a corriger
+  !set expir_user=!words2items $expir_user
+  !for l_ in $expir_user
+    !set l_=!replace internal < by ?, in $l_
+    !if ? isitemof $l_
+      !set sheet_expiration_user=$(l_[2])
+    !endif
+  !next
+  !for l_ in $expir_user
+    !set l_=!replace internal > by ?, in $l_
+    !if ? isitemof $l_
+      !set sheet_beginning_user=$(l_[2])
+    !endif
+  !next
+!endif
+
+!if $sheet_beginning_user!=$empty and $sheet_active=1
+  !set expday=!char 7,8 of $sheet_beginning_user
+  !set expmon=!char 5,6 of $sheet_beginning_user
+  !set expyear=!char 1 to 4 of $sheet_beginning_user
+  !set exphour=!char 10 to -1 of $sheet_beginning_user
+  !if $exphour!=
+   !set exphour=$ ($exphour)
+  !endif
+  !read adm/date.phtml
+  !set expmon=!item $expmon of $months
+  !set fromdate=$name_from $expday $expmon $expyear$exphour
+!endif
+
+!default sheet_expiration_user=$sheet_expiration
+!if $sheet_expiration_user!=$empty and $sheet_active=1
+  !set expday=!char 7,8 of $sheet_expiration_user
+  !set expmon=!char 5,6 of $sheet_expiration_user
+  !set expyear=!char 1 to 4 of $sheet_expiration_user
+  !set exphour=!char 10 to -1 of $sheet_expiration_user
+  !if $exphour!=
+    !set exphour=$ ($exphour)
+  !endif
+  !read adm/date.phtml
+  !set expmon=!item $expmon of $months
+  <p id="name_student1">$name_student1$exphour</p>
+!endif
+
+:none
+!if $sheet_active=2
+  <div class="wims_msg warning" id="name_student2">
+  <span class="wims_warning">$wims_name_warning</span>.
+  $name_student2</div>
+!endif
+
+!if $n=0
+  !if $sheet_active=$empty
+    $name_sheetempty
+  !else
+    <span class="name_student4">$name_student4</span>
+  !endif
+!else
+!!  !set wims_menu_items=!append line printable,1,cmd=reply&job=print\
+!!  itemsep,0,\
+!! to $wims_menu_items
+  !if $exolog!=$empty
+    !set wims_menu_items=!append line exolog,1, module=adm/class/exolog&job=llist&logsheet=$sh \
+itemsep,0,\
+ to $wims_menu_items
+  !endif
+  !set scorestat=!getscorestatus sheet=$sh
+  !if $scorestat=yes
+    !if $authscoresuspend!=no
+      !if $wims_scorereg!=suspend
+        $name_scoreopen
+        !set wims_ref_class=wims_button
+        !href cmd=resume&job=suspend $wims_name_scoreclose2
+        !set wims_menu_items=!append line scoreclose2,1,cmd=resume&job=suspend to $wims_menu_items
+      !else
+        !set scorestat=no
+        $wims_name_scoresuspend
+        !set wims_ref_class=wims_button
+        !href cmd=resume&job=reopen $wims_name_scorereopen
+        !set wims_menu_items=!append line scorereopen,1,cmd=resume&job=reopen to $wims_menu_items
+      !endif
+    !else
+      $name_scoreclosesup
+    !endif
+  !else
+    <div class="wims_msg warning">
+      $name_scoreclose
+    </div>
+  !endif
+  !set sevlist=!record 0 of wimshome/log/classes/$wims_class/sheets/.severity
+  !set sev=!line $sh + 1 of $sevlist
+  !reset s ss
+  !set ss=!word 3 of $sev
+  !set tmp=!defof DF_SEVERITY in wimshome/public_html/bases/sys/define.conf
+  !set tmp=!word 3 of $tmp
+  !bound ss between integer 0 and 2 default $tmp
+  !reset tmp
+
+  <div class="wims_sheet">
+   <div class="wims_title_seq">$wims_name_Exercices</div>
+  <ol class="wims_sheet_list">
+  !reset wims_exotitle wims_exoicon wims_exodesc exodescshow
+  !set sh_=!record $sh of wimshome/log/classes/$wims_class/sheets/.sheets
+  !set exodescshow=!line 8 of $sh_
+  !bound exodescshow between 0,1 default 0
+  !for i=1 to $n
+    !set ex=!record $i of wimshome/log/classes/$wims_class/sheets/.sheet$sh
+    !distribute lines $ex into di,pa,bidon,bidon,ti,de,bidon,bidon,bidon,icon,indiv
+    !if $uservartechvalue=$empty or $uservartechvalue isitemof $indiv
+      !set require=!word $i of $requires
+      !set wims_listexo=!append item $i to $wims_listexo
+      !set got=!word $i of $scores
+      !set mean=!word $i of $means
+      !set best=!word $i of $bests
+      !set level=!word $i of $levels
+      !set alltry=!word $i of $alltries
+      !set dep=!row $i of $deps
+      !set dep=!trim $dep
+      !set wims_exoicon=$wims_exoicon$icon,
+      !set wims_exotitle=!append line $ti to $wims_exotitle
+      !if $exodescshow=1
+        !let de=!replace internal , by &#44; in $de
+        !let wims_exodesc=$wims_exodesc$de,
+      !endif
+      !read getparm $pa, seedrepeat exotrymax
+      <li class="wims_exo_item" id="ex$i">
+      !if $dep=$empty or $scorestat!=yes
+        !if $icon!=$empty
+          !set wims_ref_class=text_icon icon_$icon
+        !endif
+        !href module=$di&cmd=new&worksheet=$sh&$pa $ti
+        !set last=!char -1 of $de
+        !if $last notin >.!?
+          !set de=$(de).
+        !endif
+        <div class="wims_work_desc">$de</div>
+        <div class="wims_user_info">
+        !if $require>0
+          <span class="wims_sheet_score small">
+          $(wims_name_thsheet[7]): $[$mean]/10
+          !if $ss=0
+            $(wims_name_thsheet[5]): $[round(100*$got/$require)]%
+          !endif
+          !if $ss=1
+            $(wims_name_thsheet[10]): $[round(100*$best/$require)]%
+          !endif
+          !if $ss=2
+            $(wims_name_thsheet[13]): $[$level]/10
+          !endif
+          $(wims_name_thsheet[3]):$require
+          !if $get_exotrymax>0
+            $(wims_name_thsheet[14]):
+            $[min($get_exotrymax,$alltry)]/$get_exotrymax
+          !endif
+          </span>
+        !endif
+        </div>
+      !else
+        $ti, $de
+        !if $require>0
+          <span class="small">($name_score2)</span>
+        !endif
+      !endif
+      !if $dep!=$empty
+        <div class="wims_msg warning">
+        !if , isin $dep
+          $name_deps $dep
+        !else
+          $name_dep $dep
+        !endif
+        $name_dep2
+          </div>
+      !endif
+      !set seedscore=!getseedscores user=$wims_user sheet=$sh work=$i
+    !!user, sheet, exo, seedrepeat (by default 0)
+      !read adm/class/seedscore.phtml $seedscore,$get_seedrepeat
+      </li>
+    !endif
+  !next i
+  !let wims_exotitle=!replace , by &#44; in $wims_exotitle
+  !let wims_exotitle=!lines2items $wims_exotitle
+  !setdef wims_exotitle=$wims_exotitle\
+wims_sheettitle=$sheet_title\
+wims_exoicon=$wims_exoicon\
+wims_exodesc=$wims_exodesc\
+  in wimshome/sessions/$wims_session/var.stat
+ </ol>
+ </div>
+ !!!<div class="wimscenter">
+ !!!   !read adm/class/colors 0,legend
+ !!!   $output_legend
+ !!!</div>
+!endif
+
+!if $wims_user=supervisor
+  !set wims_menu_items=!append line sheetmanagement,1,module=adm/class/sheet&sheet=$sh\
+ itemsep,0,\
+to $wims_menu_items
+!endif
+
+!set wims_menu_items=!append line myscore,1,module=adm/class/userscore#sheet$sh\
+to $wims_menu_items
+
+<!-- adm/sheet/class.phtml END -->
+
+!tail
+!setdef wims_listexo=$wims_listexo in wimshome/sessions/$wims_session/var.stat
+

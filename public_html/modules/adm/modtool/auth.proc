@@ -1,0 +1,56 @@
+
+login=!word 1 of $login
+passwd=!word 1 of $passwd
+!if $login=$empty or $passwd=$empty
+  !if $login$passwd!=$empty
+    error=bad_auth
+  !endif
+  login=
+  !exit
+!endif
+
+n=!recordcnt wimshome/log/.developers
+!for i=1 to $n
+  r=!record $i of wimshome/log/.developers
+  !distribute lines $r into ll,pp,nn,ee
+!!  !if _* notin _$pp
+!!      pp=!passcrypt $pp
+!!      content=$pp\n$nn\n$ee
+!!      !sh cd $wims_home/log\
+!! awk 'BEGIN {a=0}; \
+!!	/^:/ {a=0}; \
+!!	/^:$ll$$/ {a=1}; \
+!!	a==0 {print}; \
+!!	a==1 {print; print "$content"; a=2}; \
+!!' .developers >.dev \
+!! mv -f .dev .developers
+!!  !endif
+  !if $ll=$login
+    pp=!passcrypt $pp
+    password_check=!passcheck $passwd and $pp
+    !if $password_check=yes
+      auth_login=$ll
+      auth_passwd=$pp
+      auth_name=$nn
+      auth_email=$ee
+      wims_module_log=auth $login
+      sesdir=!translate internal _ to $ $ in $wims_sesdir
+      sesdir=!word 1 of $sesdir
+      !setdef wims_developer=$login\
+          wims_name=$auth_name\
+          wims_devfirstname=$(auth_name[1])\
+          wims_devlastname=$(auth_name[2])\
+          wims_email=$auth_email\
+        in wimshome/$sesdir/var.stat
+      !if $wims_class!=$empty and $wims_user!=$empty
+       !setdef !set wims_developer=$login,$pp in $userdef
+      !endif
+      devdir=modules/devel/$auth_login
+      job=modname
+      !changeto $job.proc
+    !endif
+  !endif
+!next i
+
+error=bad_auth
+login=

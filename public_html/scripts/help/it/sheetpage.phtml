@@ -1,0 +1,94 @@
+!! waiting for traduction
+!!class/
+<h3 class="wimscenter">Personalizzazione della pagina di presentazione del test</h3>
+
+<p>
+Di default l'opzione è disabilitata, ovvero <span class="tt wims_fname">$wims_name_no</span>. Questo significa che il test
+viene visualizzato dagli studenti con la pagina standard (definita dal tema scelto per il corso). <br>
+Se si desidera personalizzare la presentazione, selezionare <span class="tt wims_fname">$wims_name_yes</span>. Con questa opzione attiva,
+una nuova sezione nella pagina di configurazione del test (una volta effettuato il salvataggio) permetterà di definire tale personalizzazione della presentazione. Le convenzioni utilizzate sono le stesse
+dei documenti.
+</p>
+
+<p>
+Per inserire i link agli esercizi occorre utilizzare il comando
+<span class="tt wims_code_variable">\exercise</span>.
+Sono anche disponibili le seguenti varibili predefinite:
+</p><ul>
+ <li><span class="tt wims_code_variable">\scorerequire</span>
+   Lista dei numeri di punti richiesti per ciascun esercizio.
+ </li>
+ <li><span class="tt wims_code_variable">\scoregot</span>
+   Lista degli indicatori i0 (numero di punto ottenuti) dello studente per ciascun esercizio.
+ </li>
+ <li><span class="tt wims_code_variable">\scoremean</span>
+   Lista degli indicatori i1 dello studente per ciascun esercizio
+ </li>
+ <li><span class="tt wims_code_variable">\scorebests</span>
+   Lista delle somme cumulative dei migliori N punteggi di ciascun esercizio (N è il numero di punti richiesti diviso per 10).
+ </li>
+ <li><span class="tt wims_code_variable">\scorelevels</span>
+   Lista degli indicatori i2 dello studente per ciascun esercizio.
+ </li>
+ <li><span class="tt wims_code_variable">\scorealltries</span>
+   Lista del numero di tentativi effettuati dallo studente in ciascun esercizio.
+ </li>
+ <li><span class="tt wims_code_variable">\expiration</span>
+   Data di termine del test di autovalutazione nel formato yyyymmdd (aaaammgg)
+ </li>
+ <li><span class="tt wims_code_variable">\today</span>
+   Data corrente nel formato yyyymmdd (aaaammgg)
+ </li>
+ <li><span class="tt wims_code_variable">\user_login</span>
+   Identificativo dello studente.
+ </li>
+ <li><span class="tt wims_code_variable">\user_firstname</span>
+   Nome dello studente.
+ </li>
+ <li><span class="tt wims_code_variable">\user_lastname</span>
+   Cognome dello studente.
+ </li>
+ <li><span class="tt wims_code_variable">\class_code</span>
+   Codice del corso.
+ </li>
+ <li><span class="tt wims_code_variable">\title</span>
+   Titolo del test.
+ </li>
+ <li><span class="tt wims_code_variable">\desc</span>
+   Descrizione del test.
+ </li>
+ <li><span class="tt wims_code_variable">\nbexo</span>
+   Numero di esercizi del test.
+ </li>
+ <li><span class="tt wims_code_variable">\infoexo$$k</span>
+   Informazioni relative all'esercizio k del test.
+ </li>
+</ul>
+I valori delle variabili relative ai punteggi sono <em>liste</em> di numeri,
+ciascun termine di tali liste corrisponde al punteggio relativo all'esercizio
+in quella posizione nel test.
+
+<p>
+<b>Esempio</b>: state creando la pagina di presentazione del test di 
+autovalutazione numero 5.
+Potete ad esempio scrivere
+</p>
+<pre>
+\exercise{5/1}: Punti richiesti: \scorerequire[1] 
+                Punti ottenuti: \scoregot[1]
+
+\exercise{5/2}: Punti richiesti: \scorerequire[2]
+                Punti ottenuti: \scoregot[2]
+
+\exercise{5/3}{Un titolo}: Punti richiesti \scorerequire[3]; 
+                Punti ottenuti \scoregot[3]
+</pre>
+
+<p>Il sistema di personalizzazione delle pagine precedentemente in uso (con l'utilizzo di un documento) è ancora in uso solo per i test
+che sono già costruiti con tale sistema, ma non sarà più aggiornato e si
+consiglia quindi di convertire tali test alla nuova modalità.
+Non può più quindi essere utilizzato per costruire nuovi test,
+per i quali si deve necessariamente utilizzare il nuovo metodo.
+</p>
+
+

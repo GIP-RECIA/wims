@@ -1,0 +1,10 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+drag xy
+# Click arrow(s) to activate 
+slider 0,2*pi,300,30,angle degrees,Rotate
+slider -5,5*pi,300,30,x display,move in x-direction
+slider -10,10*pi,300,30,y display,move in y-direction
+arrows red,8,0,0,4,3,0,0,2,4,0,0,-2,4,0,0,-3,-4,0,0,3,-2

@@ -1,0 +1,269 @@
+!! process to manage wims exercise 
+!! firstline 
+!! word1 : type of process to read
+!! word 2 : teacher or student 
+!! word 3 : identification num of zone
+!! word 4 : 1/0 if zone is activated or not
+!! word 5 : user
+
+!set p_=!line 1 of $wims_read_parm
+!distribute word $p_ into proc_,stype_,zone_,activated_,user_
+!bound activated_ within 1,0 default 0
+!goto $proc_
+!exit
+
+:parahtml
+!! form html interface for parameters
+  !! ----- first parameter (title)
+  !let num_=$[($zone_-1)*5+1]
+  <div class="field box">
+    !if $activated_=1
+       <label for="param$(stype_)$num_"> $(name_titlezone)</label>
+       <input type="text" id="param$(stype_)$num_" name="param$(stype_)$(num_)" value="$(param$(stype_)$(num_))" >
+       <div class="formHelp">$name_desc_title</div>
+    !else
+      <strong>$(name_titlezone)</strong>
+      <p>$(param$(stype_)$(num_))</p>
+    !endif
+  </div>
+  !! ----- second parameter - description
+  !let num_=$[($zone_-1)*5+2]
+  <div class="field box">
+    !if $activated_=1
+       <label for="param$(stype_)$num_"> $(name_desczone)</label>
+       <textarea name="param$(stype_)$(num_)" id="param$(stype_)$(num_)" rows="10" cols="100" class="iEdit" maxlength="$desc_limit">$(param$(stype_)$(num_))</textarea>
+!!       <input type="text" id="param$(stype_)$num_" name="param$(stype_)$(num_)" value="$(param$(stype_)$(num_))" >
+       <div class="formHelp">$name_desc_desc</div>
+    !else
+      <strong>$(name_desczone)</strong>
+      !let insmath_rawmath=yes
+      !let wims_backslash_insmath=yes
+      <div>$(param$(stype_)$(num_))</div>
+      !let insmath_rawmath=no
+      !let wims_backslash_insmath=no
+    !endif
+  </div>
+  !! ----- third parameter - minimal score to save exercise
+  !let num_=$[($zone_-1)*5+3]
+  <div class="field box">
+      !if $activated_=1
+         <label for="param$(stype_)$num_"> $(name_minscoretosave)</label>
+         !set wims_ref_id=param$(stype_)$num_
+         !formselect param$(stype_)$(num_) from 1 to 10
+         !let num_=$[($zone_-1)*5+4]
+         !set wims_ref_id=param$(stype_)$num_
+         <span>
+         !formcheckbox param$(stype_)$(num_) list -1 prompt $(name_autoreg)
+         </span>
+         <div class="formHelp">$name_desc_minscoretosave</div>
+      !else
+        <strong>$(name_minscoretosave)</strong>
+        <div>
+          <span>$(param$(stype_)$(num_))</span>
+          !if $(param$(stype_)$[$num_+1])=-1
+            <span> $name_autoreg </span>
+          !endif
+        </div>
+      !endif
+  </div>
+  !reset param$(stype_)$[($zone_-1)*5+4]
+!exit
+
+:pararead
+  !! parameter reading
+  !! --- parameter save 1 (title)
+  param$(stype_)$[($zone_-1)*5+1]=!line 1 of $script_data
+  param$(stype_)$[($zone_-1)*5+1]=!detag $(param$(stype_)$[($zone_-1)*5+1])
+  param$(stype_)$[($zone_-1)*5+1]=!char 1 to $title_limit of $(param$(stype_)$[($zone_-1)*5+1])
+  !! --- parameter save 2 (description)
+  param$(stype_)$[($zone_-1)*5+2]=!line 2 of $script_data
+  param$(stype_)$[($zone_-1)*5+2]=!char 1 to $desc_limit of $(param$(stype_)$[($zone_-1)*5+2])
+  !! --- parameter save 3 - 4  (minimal score + auto reg)
+  param$(stype_)$[($zone_-1)*5+3]=!line 3 of $script_data
+  !if $(param$(stype_)$[($zone_-1)*5+3])<0
+    param$(stype_)$[($zone_-1)*5+3]=$[abs($(param$(stype_)$[($zone_-1)*5+3]))]
+    param$(stype_)$[($zone_-1)*5+4]=-1
+  !else
+    param$(stype_)$[($zone_-1)*5+4]=1
+  !endif
+  !bound param$(stype_)$[($zone_-1)*5+3] between 1 and 10 default 10
+!exit
+
+
+:parasave
+  !! --- parameter save 1 (title)
+  output_data=!replace internal $\
+$ by   in $(param$(stype_)$[($zone_-1)*5+1])
+  output_data=!detag $output_data
+  output_data=!char 1 to $title_limit of $output_data
+  !! --- parameter save 2 (description)
+  tmpdata_=!replace internal $\
+$ by   in $(param$(stype_)$[($zone_-1)*5+2])
+  tmpdata_=!char 1 to $desc_limit of $tmpdata_
+  output_data=$output_data\
+$tmpdata_
+  !! --- parameter save 3 + 4 (minimal score + auto reg)
+  !! saved on the same slot
+  !bound param$(stype_)$[($zone_-1)*5+3] between 1 and 10 default 10
+  !bound param$(stype_)$[($zone_-1)*5+4] within 1,-1 default 1
+  output_data=$output_data\
+$[$(param$(stype_)$[($zone_-1)*5+3])*$(param$(stype_)$[($zone_-1)*5+4])]
+  wimsexozone=!append item $stype_$zone_ to $wimsexozone
+!exit
+
+:displayhtml
+<div class="field box">
+  !if $job!=configfw
+    !if $(param$(stype_)$[($zone_-1)*5+1])!=$empty
+      !let tmptitle_=$(param$(stype_)$[($zone_-1)*5+1])
+    !else
+      !let tmptitle_=$name_zone $zone_
+    !endif
+    !if $activated_=1
+      <label for="applet$zone_">$(tmptitle_)</label>
+    !else
+      <h2 class="box_title">$(tmptitle_)</h2>
+    !endif
+    <div class="freeworkdesczone">
+      !let insmath_rawmath=yes
+      !let wims_backslash_insmath=yes
+      $(param$(stype_)$[($zone_-1)*5+2])
+      !let insmath_rawmath=no
+      !let wims_backslash_insmath=no
+    </div>
+  !else
+    !if $activated_=1
+      <label for="applet$zone_">$(name_zonecontent)</label>
+    !else
+      <strong>$(name_zonecontent)</strong>
+    !endif
+  !endif
+  !if $stype_=teacher and $activetest=0
+    <div class="formHelp">$name_listexo_desc</div>
+  !endif
+  $table_header
+      <thead>
+        $table_hdtr
+          <th>$name_num</th>
+          <th>$name_wimsexo</th>
+          <th>$name_description</th>
+          !if $job=configfw
+           <th>$name_solutiongiven</th>
+           <th>$name_feedbackgiven</th>
+          !endif
+          !if $wims_user=supervisor and $user_=$empty
+              !if $activated_=1
+                <th>$name_action</th>
+              !endif
+          !else
+              <th>$wims_name_Status</th>
+          !endif
+        </tr>
+      </thead>
+      <tbody>
+        !reset wims_fwlistexo
+        !for k=1 to $nbexo
+          !let data=!record $k of wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+          !distribute line $data into mod,cl,ti,desc,option
+          $table_tr
+              <td>$k</td>
+              <td>
+                !let test=!fileexists wimshome/log/classes/$wims_class/freeworksdata/$freework/work/$(user_)-wimsexo/$k
+                !if $test!=yes
+                  !if $activated_!=0 or ($wims_user=supervisor and $user_=$empty)
+                    !href module=adm/class/freework&+job=directexo&+freework=$freework&+exonum=$k $ti
+                    !let wims_fwlistexo=!append item $k to $wims_fwlistexo
+                  !else
+                    $ti
+                  !endif
+                !else
+                  !href target=wims_check module=adm/class/freework&job=exocheck&checkuser=$(user_)&freework=$freework&logcheck=$k&checkstep=1 $ti
+                !endif
+               </td>
+               <td>$desc</td>
+               !if $job=configfw
+                 !for gi_ in solution,feedback
+                   <td>
+                     !if $gi_ isin $option
+                       &#x2705;
+                     !endif
+                   </td>
+                 !next gi_
+               !endif
+               !if $wims_user=supervisor and $user_=$empty
+                 !if $activetest=0
+                   <td>
+                     !set wims_ref_class=wims_button wims_warning
+                     !href cmd=reply&job=delexo&freework=$freework&exonum=$k $wims_name_delete
+                   </td>
+                 !endif
+               !else
+                 <td>
+                   !if $test=yes
+                    <span class="exo_done">$name_done</span>
+                   !endif
+                 </td>
+               !endif
+           </tr>
+         !next k
+       </tbody>
+   $table_end
+   !if $(user_)!=supervisor and $activetest>0 and $job!=configfw
+     !! ------------- display activity log
+     <details>
+       <summary>$name_detailact</summary>
+       <pre>
+         !set file=$(user_).freework
+         !set showip=$wims_show_ip
+         !mexec proc/getraw.sh
+       </pre>
+     </details>
+   !endif
+</div>
+  !setdef wims_fwlistexo=$wims_fwlistexo\
+wims_fwminscore=$[$(param$(stype_)$[($zone_-1)*5+3])*$(param$(stype_)$[($zone_-1)*5+4])] in wimshome/sessions/$wims_session/var.stat
+!exit
+
+:displayread
+!! keep track if student opens the task (so that teacher
+!! can view his/her work)
+!if $wims_user!=$empty and $wims_user!= supervisor
+   !let touchfname=log/classes/$wims_class/freeworksdata/$freework/work/$wims_user-wimsopen.$(zone_)
+   test=!fileexists wimshome/$touchfname
+   !if $test!=yes
+     !sh touch $wims_home/$touchfname
+   !endif
+!endif
+  nbexo=!recordcnt wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+  !read tabletheme
+  !if $codownload=1 and $firstsee=1
+  !! in case of first lecture after codownload=1 ; change statut for solution/feedback
+    !for k=1 to $nbexo
+      data=!record $k of wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+      !distribute line $data into mod,cl,ti,desc,option
+      !if $option!=$empty
+        test=!fileexists wimshome/log/classes/$wims_class/freeworksdata/$freework/work/$(user_)-wimsexo/$k
+        !if $test=yes
+          !reset change
+          !if solution isitemof $option
+            change=!append line s/w_intro_sol=0/intro_sol=1/g \
+s/w_givesol=0/intro_sol=1/g to $change
+          !endif
+          !if feedback isitemof $option
+            change=!append line s/w_intro_feed=0/intro_feed=1/g \
+s/w_givefeed=0/intro_feed=1/g to $change
+          !endif
+          !if $change!=$empty
+            !sh sed '$change' $wims_home/log/classes/$wims_class/freeworksdata/$freework/work/$(user_)-wimsexo/$k > $wims_home/tmp/sessions/$wims_session/tmp;\
+                mv $wims_home/tmp/sessions/$wims_session/tmp $wims_home/log/classes/$wims_class/freeworksdata/$freework/work/$(user_)-wimsexo/$k;
+          !endif
+        !endif
+      !endif
+    !next k
+  !endif
+!exit
+
+:displaysave
+
+
+!exit

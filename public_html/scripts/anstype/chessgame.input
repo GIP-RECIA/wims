@@ -1,0 +1,130 @@
+!set anstype=yes
+!set anstyle=dprompt
+!set ans_require=
+!set oef_js_submit=$oef_js_submit;
+
+!set author=Bernadette Perrin-Riou
+
+!if $wims_read_parm=def
+  !exit
+!endif
+!default nx=8
+!default ny=8
+!set nb_im=$[$nx*$ny]
+!set ans_placement=$(replygood$i)
+!set ans_placement=!rows2lines $ans_placement
+!set ans_placement=!line 1 of $ans_placement
+!set ans_placement=!declosing $ans_placement
+!set ans_placement=!lines2rows $ans_placement
+
+!default ans_placement=Ra1,Nb1,Bc1,Qd1,Ke1,Bf1,Ng1,Rh1,a2,b2,c2,d2,e2,f2,g2,h2;Ra8,Nb8,Bc8,Qd8,Ke8,Bf8,Ng8,Rh8,a7,b7,c7,d7,e7,f7,g7,h7
+!set ans_placement=!lowercase $ans_placement
+
+!set ans_color=!getopt color in $(replyoption$i)
+!set ans_color=!declosing $ans_color
+!!!fixme
+!default ans_color=#CA906E
+!default ans_color2=#F0EAB9
+!default ans_color3=black
+!!!
+
+!set style=.chessboard td{padding:0}\
+  .chess_cell{\
+    font-size:40px;\
+    text-align:center;\
+    line-height:30px;\
+    }\
+  .chess_cell a{\
+    border:2px solid transparent;\
+    display:block;\
+    min-width:30px;\
+  }\
+  .chess_cell a:hover{border-color:var(--wims_link_color);cursor:pointer;}\
+  .chess_cell .selected{border-color:var(--wims_ref_bgcolor);opacity:.75}\
+  .chess_cell.dark{background-color:$ans_color;text-shadow: 0 0 4px #FFF;}\
+  .chess_cell.light{background-color:$ans_color2;}\
+
+!if $style notin $oef_anstype_css
+  !set oef_anstype_css=!append line $style to $oef_anstype_css
+!endif
+
+!set ans_lettre=a,b,c,d,e,f,g,h
+
+!readproc slib/games/chessboard [$ans_placement],$ans_color,,raw
+!set ans_chessboard=!line 1 of $slib_out
+
+!reset ans_th, ans_current
+!set ans_out=<table class="chessboard" id="chessboard_$i">
+!for ans_j=8 to 1 step -1
+  !set ans_out=$ans_out\
+  <tr><th scope="row">$ans_j</th>
+  !for ans_i=1 to 8
+    !set ans_cell_id=$[($ans_i) + 8*(8-$ans_j)]
+    !set ans_current=$(ans_chessboard[$ans_cell_id])
+    !set ans_cell_id=$[$ans_cell_id-1]
+    !set ans_t=$[$ans_j + 8*($ans_i-1)]
+    !set ans_chess_class=chess_cell chess_style$slib_id
+    !if $[($ans_i+$ans_j) %2]=0
+      !set ans_chess_class=$ans_chess_class dark
+    !else
+      !set ans_chess_class=$ans_chess_class light
+    !endif
+
+    !set ans_out=$ans_out\
+      <td class="$ans_chess_class"><a id="cell_$(i)_$ans_cell_id" href="#chessboard_$i" onclick="return chessgame$i($ans_cell_id,$ans_t);">\
+      $ans_current\
+      </a></td>
+  !next
+  !set ans_out=$ans_out\
+  </tr>
+!next
+!for ans_j in $ans_lettre
+  !set ans_th=!append word <th scope="col">$ans_j</th> to $ans_th
+!next
+
+!set ans_out=$ans_out\
+  </tbody><tfoot><tr><th></th>$ans_th</tr></tfoot>\
+</table>
+
+$ans_out
+
+<script>
+/*<![CDATA[*/
+var fl_clic$i=false;
+!set ans_chessboard = !replace internal , by ',' in $ans_chessboard
+var table$i=['$ans_chessboard'];
+var nb_clic$i='0';
+var chess_resp$i='' ;
+function chessgame$i(cell_id,n) {
+  if (fl_clic$i==false) {
+    //pour mémoriser le 1er click.
+    if (table$i[cell_id].includes('&nbsp;')) { return false; }
+    fl_clic$i=true;
+    cell_memo=cell_id;
+    n_memo=n;
+    document.getElementById('cell_$(i)_' + cell_id).classList.add('selected');
+    // console.log("Select chess piece : "+table$i[cell_id])
+  }
+  else {
+    var n_x=' ';
+    if (table$i[cell_id].includes('&nbsp;')) { n_x=' '} else {n_x = 'x' }
+    table$i[cell_id]=table$i[cell_memo];
+    table$i[cell_memo]='&nbsp;';
+    document.getElementById('cell_$(i)_' + cell_memo).classList.remove('selected');
+    fl_clic$i=false;
+    if(n != n_memo){ nb_clic$i ++}
+    document.getElementById('cell_$(i)_' + cell_id).innerHTML=table$i[cell_id];
+    document.getElementById('cell_$(i)_' + cell_memo).innerHTML=table$i[cell_memo];
+    chess_resp$i += n_memo + ',' + n_x + ',' + n + ';';
+    fl_clic$i=false;
+    // console.log("Moving chess piece "+table$i[cell_memo]+" in cell "+cell_id)
+  }
+  document.getElementById('oefvar$i').value=chess_resp$i;
+
+  // prevent default behaviors.
+  return false;
+}
+
+/*]]>*/
+</script>
+<input type="hidden" name="reply$i" id="oefvar$i" value="">

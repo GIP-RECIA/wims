@@ -1,0 +1,41 @@
+!set titb=Définition des variations strictes.
+!set keyw=
+!set datm=20210821
+!set prev=embedParabRap
+!set next=embedParabX2
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<p>La fonction 
+!insmath f
+ est strictement croissante sur l'intervalle <strong>I</strong> signifie que &#58;<br>
+  pour tous les nombres réels 
+!insmath x_1
+ et 
+!insmath x_2
+ de <strong>I</strong>, 
+si <strong>
+!insmath x_1<x_2
+</strong> alors <strong>
+!insmath f(x_1)<f(x_2)
+</strong>.</p>
+<p>La fonction 
+!insmath f
+ est strictement décroissante sur l'intervalle <strong>I</strong> signifie que &#58;<br>
+  pour tous les nombres réels 
+!insmath x_1
+ et 
+!insmath x_2
+ de <strong>I</strong>, 
+si <strong>
+!insmath x_1<x_2
+</strong> alors <strong>
+!insmath f(x_1)>f(x_2)
+</strong>.</p>

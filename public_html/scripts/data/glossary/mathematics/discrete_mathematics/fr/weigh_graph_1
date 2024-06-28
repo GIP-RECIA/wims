@@ -1,0 +1,8 @@
+!set gl_type=dynamic
+!set gl_title=Graphe pondéré (exemple)
+!set gl_author=Bernadette, Perrin-Riou
+
+!readproc data/glossary/mathematics/discrete_mathematics/macro/weigh_graph
+
+Le graphe pondéré de matrice \([$gl_A1]\) est représenté ci-dessous&nbsp;:
+<div class="wimscenter">$gl_out1</div>

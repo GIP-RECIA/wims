@@ -1,0 +1,53 @@
+name_title=$wims_name_userlistliving
+!let rd=!randint 111111,999999
+local_html_header=<META HTTP-EQUIV="Refresh" CONTENT="$(tchat_refreshtiming);wims.cgi?session=$wims_session&+module=adm/class/tchat&+serial=$rd&+job=$job&+user=$user">
+
+
+!if $ulist=$empty
+  !exit
+!endif
+
+!! check if users is connected to his own living and make list of other living he is connected.
+!! - tchatisopen  ($empty or 1) if individual tchat is open
+!! - make list of connected user in different living living_connected_$living
+tmp=!nospace tchatisopen_$ulist
+tmp=!replace internal , by ,tchatisopen_ in $tmp
+!reset nonempty_ind,nonempty_liv,$tmp
+clscode=!replace internal / by ~ in $wims_class
+dt=!record 0 of wimshome/tmp/whoconnect/$clscode
+nb=!linecnt $dt
+!for i=1 to $nb
+  list_session=!item 4 to -1 of $(dt[$i;])
+  nbs=!itemcnt $list_session
+  !for k=1 to $nbs
+    test=!defof wims_opentchat in wimshome/sessions/$(list_session[$k])/var.stat
+    !if $test!=$empty
+      !if $test=$(dt[$i;1])
+        tchatisopen_$(dt[$i;1])=1
+        nonempty_ind=1
+      !else
+        n=!text select 0123456789 in $test
+        living_connected_$n=!append item $(dt[$i;1]) to $(living_connected_$n)
+        nonempty_liv=1
+      !endif
+    !endif
+  !next k
+!next i
+
+!! search living with last message not supervisor (only one ; not needed if nonempty_ind=1)
+k=1
+!while $nonempty_ind=$empty and $k<=$nbuser
+  !readproc script/lastmsg.proc $(ulist[$k])
+  !if $lastmsg!=$empty
+    nonempty_ind=1
+  !endif
+  !increase k
+!endwhile
+k=0
+!while $nonempty_liv=$empty and $k<=$nbliving
+  !readproc script/lastmsg.proc .living$k
+  !if $lastmsg!=$empty
+    nonempty_liv=1
+  !endif
+  !increase k
+!endwhile

@@ -1,0 +1,12 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 1,1,grey
+strokecolor blue
+fontfamily 42px Arial
+centered
+drag xy
+latex 5,5,rac{123}{\pi^{234}}
+affine cos(pi/4),sin(pi/4),-cos(pi/2),sin(pi/2),-5,-5
+drag xy
+latex 5,5,rac{123}{\pi^{234}}

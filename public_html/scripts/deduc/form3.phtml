@@ -1,0 +1,31 @@
+!form reply
+$name_step $currstep&nbsp;: $methexp.
+
+!if $shcontext!=$empty
+  <p>
+  $name_form3_1?
+  !set n=!itemcnt $shcontext
+  !formselect repcontext from 0 to $n prompt $ch_choose,$listcontext
+  </p>
+!endif
+!if $shresult!=$empty
+  <p>
+   $name_form3_2?
+  </p>
+  <ul>
+  !set n=!itemcnt $shresult
+  !for i=1 to $n
+    !set b=!item $i of $listresult
+    <li><input type="radio" name="represult" value="$i"
+    !if $i=$represult
+      checked="checked"
+    !endif
+    >
+    !insmath $b
+    </li>
+  !next i
+  </ul>
+!endif
+
+<div class="wimscenter"><input type="submit" value="$wims_name_send"></div>
+!formend

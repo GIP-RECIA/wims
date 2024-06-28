@@ -1,0 +1,24 @@
+slib_lang_exists_tmp=yes
+slib_title=Plugin for JSXGraph responsive
+slib_parms=3\
+,id and name of the board of the JSXGraph applet in this order and separated by space.\
+,<span class="tt"><strong>[</strong>size , options separated by spaces<strong>]</strong></span> in square brackets.<ul><li>size: <span class="tt wims_code_words">width x height</span>(in px)</li><li>options:<ul><li><span class="tt wims_code_words">center</span> to center the applet in its parent;</li><li><span class="tt wims_code_words">resize</span> to resize point size according to screen size;</li><li><span class="tt wims_code_words">min</span>= <em>n</em>px or <em>n</em>% or ... to indicate the minimum width of the applet below which it cannot be reduced;</li><li><span class="tt wims_code_words">max</span>= <em>n</em>px or <em>n</em>% or ... to indicate the minimum width of the applet above which it cannot be enlarged;</li><li><span class="tt wims_code_words">nocssjs</span> to not call the CSS and javascript via the slib (see comments below);</li><li><span class="tt wims_code_words">scroll</span> to add a scroll bar in case of overflow.</li></ul></li></ul>\
+,script for construction in JSXGraph language.
+
+slib_out=Figure in JSXGraph
+slib_comment= <ul>\
+<li>Backward compatibility: applets created with the old syntax (id,width x height,script) are still in non responsive mode but a scroll bar appears in case of overflow.</li>\
+<li>By default, the CSS style and the javascript used by JSXGraph are automatically called by the slib \
+unless the <span class="tt wims_code_words">nocssjs</span> option is set.<br/>\
+In the case of the <span class="tt wims_code_words">nocssjs</span> option, \
+it is then necessary to call the CSS and javascript with  \
+<span class="nowrap">&lt;link rel="stylesheet" href="scripts/js/jsxgraph/jsxgraph.css"&gt;</span> \
+and <span class="nowrap">&lt;script src="scripts/js/jsxgraph/jsxgraphcore.js" charset="utf-8"&gt;&lt;/script&gt;</span> \
+in &#92;css{} for example for an OEF exercise.<br/></li>\
+<li>One can define some css style for .jxgbox and .jsxgraph_button.\
+ For example: \
+ <pre>&lt;style>\
+.jxgbox {margin-left:auto;margin-right:auto}\
+.jsxgraph_button {text-align:center;}\
+&lt;/style></pre></li>\
+<ul>

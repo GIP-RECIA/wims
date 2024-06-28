@@ -1,0 +1,127 @@
+!set lang_exists=yes
+
+!set name_duplicateok=Examen duplicat correctament.
+!set name_title=Preparació de l'examen
+!set wims_name_mainpage=Pàgina principal de l'examen
+
+!if $activetest<=0
+  !set name_title=!nosubst Preparació de l'examen
+!else
+ !set name_title=!nosubst Gestió de l'examen
+!endif
+
+!read adm/lang/date.phtml.$lang
+!read adm/lang/sheetexam.phtml.$lang
+!set wims_name_scoreexam=!nosubst $wims_name_myscore
+!set wims_name_title_scoreexam=Notes de l'examen
+!set name_Options=Opcions
+!set name_All=Totes
+
+!set name_done=fet
+
+!set name_instructions=Instruccions
+
+!distribute lines Disponibles\
+Seleccionats\
+into name_Availables, name_Selected
+
+!distribute lines Acabar aquesta sessió d'examen\
+Tornar a treballar a l'examen\
+Vista de professor de l'examen\
+Presentació als alumnes\
+Detalls de la nota actual\
+Aquest examen està buit&nbsp;! Sembla que és un error de maneig del professor.\
+Contingut de l'examen&nbsp;\
+Aquest examen està actualment tancat per a la teva connexió.\
+Podeu fer aquest examen una sola vegada.\
+No pots millorar les teves notes.\
+Aquesta és la teva darrera oportunitat. Tingues compte&nbsp;!\
+començarà el compte enrere i el nombre d'intents realitzats s'incrementarà en 1.\
+començarà el compte enrere.\
+Requereix l'èxit en altres exercicis\
+Nota d'aquesta sessió d'examen&nbsp;\
+into wims_name_endexam,wims_name_backexam,wims_name_teacherview,name_presentation,\
+name_scoreexam,name_empty,name_content,name_examclosed,name_exam1,name_exam5,\
+name_lasttry,name_exam7,name_exam8,name_depend,name_scoreexam2
+
+!set name_exam2=!nosubst Tens només $stries intents en total per fer aquest examen.
+!set name_exam3=!nosubst Ja ha acabat la teva sessió d'examen amb $tried intents,
+!set name_exam4=!nosubst Ja has intentat l'examen <strong>$tried</strong> vegades.
+!set name_exam6=!nosubst I encara et queden <strong>$tryremain intent(s)</strong> més.
+!set name_exam6bis=Per tant no et queden més intents.
+!set name_exam9=!nosubst Cada sessió d'examen durarà un màxim de <strong>$sdure minuts</strong>
+!set name_exam9bis=!nosubst La sessió d'examen durarà un màxim de <strong>$sdure minuts</strong>
+!set name_exam10=En fer clic a un dels exercicis anteriors,
+!set name_exam11=!nosubst Les respostes a les preguntes dels exercicis enviats \
+   un cop finalitzada la durada de la sessió o després\
+  <strong>$time_end</strong> no es tindran en compte.
+
+!set name_simulation=<strong>Aquest examen està en mode simulació.</strong> Funciona exactament igual que l'examen real \
+  però la nota no queda registrada i el vostre intent no serà comptat.<br/> Si testegeu aquest examen, \
+  us desconnectarà de la classe abans de tornar a la pàgina de gestió de recursos de la classe.
+
+!set wims_name_examremain=!nosubst Temps que tens per acabar aquesta sessió d'examen (sessió $[$stries-$tryremain]): $
+
+!distribute lines en attente\
+Encara no has començat a treballar a l'examen\
+Començar a treballar.\
+La nota actual no es té en compte, perquè l'examen és en mode simulació.\
+into name_pending,name_begin1,name_begin2,name_simulation2
+
+!set name_timeleft=!nosubst S'ha esgotat el temps&nbsp;! Has de tancar la sessió ara.
+!set name_realscore=!nosubst La nota real en aquest examen és $lastscore.
+!set name_bestscore =!nosubst La nota en aquest examen és $[$lastscore*$scoremax/10]/$scoremax.
+!set name_bestscore2=Es tindrà en compte la millor nota.
+
+
+!! ---------------------------
+!! nouvelle partie
+
+!set statutname=$(wims_name_shstatus[1]),$wims_name_shstatus
+
+!set name_desc_duration=Un cronòmetre s'inicia en començar la primera pregunta.
+!set name_units_duration=minuts
+!let name_mkexam=Crear l'examen
+
+!let name_shinfo_cutt=Hores de tall
+
+!! différents commentaires de la page de gestion
+!distribute lines Informacions generals&nbsp;\
+Contingut de l'examen&nbsp;\
+Utilitzeu els enllaços del menú per definir el contingut de l'examen (els exercicis que componen l'examen són els que s'escullen dels fulls actius).\
+into name_info,name_content,name_warning
+
+!! titre du tableau de contenu de l'examen (file examcontent.phtml)
+!let name_extab=!nosubst $wims_name_number,$wims_name_title,Contingut,$name_weight,$name_dependency,$wims_name_comment,$name_Options,$wims_name_action
+
+!set name_contenu=Selecció de continguts
+!let name_cpsheet1=S'afegiran tots els exercicis del full seleccionat\
+a continuació dels exercicis ja presents. Cada exercici tindrà un pes de 1. \
+Si no ompliu el camp d'entrada de sota, \
+ conservarà el títol que tenia en el full d'exercicis de procedència.
+
+!let name_cpsheet3=Títol d'exercici genèric
+!let name_cpsheet4=els exercicis seran numerats
+
+!set name_warning_nonfinished=Encara no heu fet tots els exercicis d'aquest examen. \
+  Acabar ara mantindrà la nota i consumirà un intent d'examen, \
+  i us obligarà a tornar a començar pel principi la propera vegada.<br>\
+  Realment voleu acabar?
+!set name_warning_nonfinished1=Encara no heu fet tots els exercicis d'aquest examen. \
+  Realment vols acabar? Després no podràs tornar a l'examen.
+!set wims_name_cpexam=Copiar un examen actiu.
+
+!set name_cpexam1=Vas a copiar el contingut d'un altre examen actiu en aquest. Podràs modificar el contingut d'aquest examen fins que l'activis.
+
+!! TODO_lang
+!set name_msg_exam_withip=Les notes indiquées avec un symbole &ast; ont été réduites suite à un changement\
+    d'adresse IP pendant la session de l'examen.
+!set name_real_score=!nosubst $realtsco sans tenir compte du changement d'adresse IP
+!set name_warning_notstartip=Attention, votre adresse IP actuelle n'est pas celle du démarrage de cette session d'examen. Vous pouvez quand même faire les exercices et les scores\
+ obtenus seront enregistrés. Cependant, ils ne seront, pour l'instant, pas utilisés dans le calcul de la note de l'examen.
+!set name_modedesc=Cet examen est en mode course. Les règles sont les suivantes :<ul> <li>Les exercices s'activent les uns après les autres ;</li><li>L'obtention d'une note non maximale à un exercice arrête la course.</li></ul>
+!set name_courseend=!nosubst Vous n'avez pas répondu correctement à l'exercice $coursefalse : la course est terminée !!
+!set name_exammode_list=Standard,Course
+!set name_progress=Progression de la course
+!set name_studentloc=!nosubst $user_firstname $user_lastname
+!set wims_name_coursewatch=Regarder la course

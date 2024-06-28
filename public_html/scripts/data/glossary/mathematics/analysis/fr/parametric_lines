@@ -1,0 +1,40 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=line,parametric_curves
+!set gl_title=Représentation paramétrique d'une droite de l'espace
+!set gl_level=H6 Générale&nbsp;Spécialité
+:
+:
+:
+:
+L'espace est muni d'un repère.
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(\mathrm{A}\) un point de coordonnées \((x_0;y_0;z_0)\),
+\(\overrightarrow{u}\) un vecteur non nul de coordonnées \((a\,;b\,;c)\) et
+\(\mathcal{D}\) la droite passant par \(\mathrm{A}\) et de vecteur directeur
+<span style="white-space:nowrap">\(\overrightarrow{u}\).</span><br>
+Un point \(\mathrm{M}\) de coordonnées \((x\,;y\,;z)\) appartient à la droite
+\(\mathcal{D}\) si et seulement s'il existe un réel \(t\) tel que
+\(\overrightarrow{AM}= t \overrightarrow{u}\) soit encore si et seulement s'il
+existe un réel \(t\) tel que&nbsp;:
+<div class="wimscenter">
+\(\begin{cases}
+  &x=x_0 + t a\\
+  &y=y_0 + t b\\
+  &z=z_0 + t c
+  \end{cases}\)
+</div>
+</div>
+<div class="wims_defn">
+<h4>Définition</h4>
+Le système \(\begin{cases}
+  &x=x_0 + t a\\
+  &y=y_0 + t b\\
+  &z=z_0 + t c\\
+  &t\in \RR
+  \end{cases}\)
+  &nbsp;est appelé <strong>représentation paramétrique</strong> de la droite
+  <span style="white-space:nowrap">\(\mathcal{D}\).</span>
+</div>
+:mathematics/analysis/fr/parametric_lines_1

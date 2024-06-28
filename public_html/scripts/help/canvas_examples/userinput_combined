@@ -1,0 +1,17 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+functionlabel your function g(x)=
+axis
+axisnumbering
+xlabel x-axis
+ylabel y-axis
+precision 0
+grid 2,2,grey,3,3,5,grey
+css color:blue;text-align:center
+precision 1000
+strokecolor red
+opacity 255,255
+userinput function
+# note: number of function inputs not limited
+userdraw line,blue

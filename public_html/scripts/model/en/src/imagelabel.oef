@@ -1,0 +1,75 @@
+type=imaudio
+textarea="data instruction"
+iEdit="instruction"
+
+:Choose a label corresponding to the image (or text) presented
+Be careful, this model will only work if you upload images on wims.
+<p>
+To build an exercise with this model,
+ simply type the list of images and corresponding labels.
+</p>
+
+<p class="wims_credits">
+Author of the model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Find the right label}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Instructions
+\text{instruction=Click on the word corresponding to the image.<br>
+<em>(the exercise will only work when you have uploaded images into the exercise)</em>}
+
+:Data
+\text{data=amphitheater.png, amphitheater
+aqueduct.png, aqueduct
+triumphal_arch.png, the triumphal arch
+circus.png, circus
+domus.png, domus
+temple.png, temple
+theater.png, theater
+thermes.png, baths
+}
+
+:How many disrupters
+\integer{cntpertub=3}
+
+:Boxes height (in pixels)
+\text{sizev=40}
+
+:Boxes width (in pixels)
+\text{sizeh=200}
+:%%%%%%%%%%%%% Now the statement in HTML. %%%%%%%%%%%%%%%%%%%%
+
+\text{mot = randrow(\data)}
+\text{image=\mot[1]}
+\text{ext=item(2,wims(replace internal . by , in wims(lowercase \image)))}
+\text{mot =\mot[2]}
+\text{liste=column(2, \data)}
+\text{perturb=wims(listcomplement \mot in \liste)}
+\text{perturb=shuffle(\perturb)}
+\text{perturb=\perturb[1..\cntpertub]}
+
+
+\statement{
+  <div class="instruction">\instruction</div>
+  <div class="wimscenter">
+    \if{\ext isitemof png,gif,jpg,jpeg}
+    {
+      \img{\imagedir/\image}
+    }
+    {\image}
+  </div>
+  <p class="wimscenter">
+    \embed{r1,\sizeh x \sizev}
+  </p>
+}
+\answer{}{\mot;\perturb}{type=clickfill}

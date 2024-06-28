@@ -1,0 +1,33 @@
+# check if subclass $wims_read_parm can be add in a structure
+# wims_read_parm:number of the class to add
+
+!if $wims_read_parm=$empty
+  error=subclasslimit
+  !exit
+!endif
+
+!if / notin $wims_read_parm
+  !exit
+!endif
+max_subclasses=!defof MAX_SUBCLASSES in wimshome/public_html/bases/sys/define.conf
+code_=!replace internal / by , in $wims_read_parm
+type_=!itemcnt $code_
+!if $type_=2
+  !! subclasses in a groupement or level in a portal
+  list=!sh cd $wims_home/log/classes/$(code_[1]);\
+           ls -d [0-9]*;
+!else
+  !!  subclasses in a portal
+  tmp_=!item 1 to -2 of $code_
+  tmp_=!replace internal , by / in $tmp_
+  tmp_=!nospace $tmp_
+  c_=!char 1 of $(code_[-1])
+  list=!sh cd $wims_home/log/classes/$tmp_;\
+              ls -d $c_[0-9]*;
+!endif
+nb_=!wordcnt $list
+!if $nb_>=$max_subclasses
+  error=subclasslimit
+!endif
+
+

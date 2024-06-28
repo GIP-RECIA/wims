@@ -1,0 +1,20 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Produit de deux matrices (exemple)
+
+!readproc data/glossary/mathematics/algebra/macro/matrix_operation
+
+Soit \(A = [$gl_A1]\) et \(B= [$gl_A2]\).
+<div>
+!if $gl_n=1
+  Le produit de \(A\) et \(B\) est \($gl_P1\).
+!else
+  Le produit de \(A\) et \(B\) est \([$gl_P1]\).
+!endif
+<br>
+!if $gl_n=$gl_m
+  Le produit de \(B\) et \(A\) est \([$gl_P2]\).
+!else
+  Le produit de \(B\) et de \(A) n'existe pas.
+!endif
+</div>

@@ -1,0 +1,203 @@
+!! process for configfw : make general parameters of a freework
+
+!! ---- make symbolic link to data file if needed
+!!
+!! if wims_user=supervisor: the session dir contains
+!!        getfile/freeworks with an "ln -s" $freework
+!!                   pointing to $wims_class/freeworks/$freework
+!!
+!!        getfile/freeworksdata with an "ln -s" $freework
+!!                   pointing to $wims_class/freeworksdata/$freework
+!!
+!! if wims_user!= supervisor: the session dir contains
+!!        getfile/freeworskdata/$freework/work with an "ln -s" just
+!!                   pointing to the user work
+!!
+!! this can create conflicts if a teacher in a groupment switches
+!! from teacher to student (untested in portals): some cleaning might
+!! be needed (cfr. var.proc)
+!!
+!if $type>1 and $activetest>0
+  !sh cd $wims_home/$wims_sesdir;\
+    mkdir -p getfile;\
+    cd getfile;\
+    mkdir -p freeworksdata;\
+    cd freeworksdata;\
+    rm -f $freework;\
+    ln -s $wims_home/log/classes/$wims_class/freeworksdata/$freework $freework;
+!endif
+
+!! ---- access management
+!read proc/access.proc
+
+!if $save!=$empty and $job2=$empty
+  success=goodsave
+  !if $d2<=$d1
+    warning=badsoldate
+    !reset success
+  !endif
+  !if $freework>$nbfreework
+    !bound scoring within 0,no default no
+    update_content=0\
+$class_expiration\
+$title\
+$desc\
+$comment\
+$type\
+$deadline.$timedeadline\
+$soldate.$timesoldate\
+$sizelimitfile\
+$scoring\
+0
+    activetest=0
+    !sh mkdir -p $wims_home/log/classes/$wims_class/freeworks/$freework;
+    !if $type>=2
+      !sh mkdir -p $wims_home/log/classes/$wims_class/freeworksdata/$freework/work;\
+        mkdir -p $wims_home/log/classes/$wims_class/freeworksdata/$freework/co;
+    !endif
+  !else
+    olddata=!record $freework of wimshome/log/classes/$wims_class/freeworks/.freeworks
+    !distribute line $olddata into activetest,bl,old_title,old_desc,old_comment,old_type,old_deadline,old_soldate,old_sizelimitfile,old_scoring,old_seealltime,old_studentclose
+    !if $activetest>=2 or $warning=badsoldate
+      soldate=!char 1 to 8 of $old_soldate
+      timesoldate=!char 10 to 14 of $old_soldate
+    !endif
+    !if $activetest>=1
+      deadline=!char 1 to 8 of $old_deadline
+      timedeadline=!char 10 to 14 of $old_deadline
+      sizelimitfile=$old_sizelimitfile
+      seealltime=$old_seealltime
+      studentclose=$old_studentclose
+      scoring=$old_scoring
+    !else
+      !if $old_scoring!=0 and $old_scoring!=no
+        !if $scoring=no
+          scoring=$[-abs($old_scoring)]
+        !else
+          scoring=$[abs($old_scoring)]
+        !endif
+      !else
+        !bound scoring within 0,no default $old_scoring
+      !endif
+    !endif
+    !bound seealltime between 0 and 1 default 0
+    !bound studentclose between 0 and 1 default 0
+    update_content=$activetest\
+$class_expiration\
+$title\
+$desc\
+$comment\
+$type\
+$deadline.$timedeadline\
+$soldate.$timesoldate\
+$sizelimitfile\
+$scoring\
+$seealltime\
+$studentclose
+  !endif
+  update_field=$freework
+  update_nbline=$fw_nbline
+
+  !read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !reset save
+  nbfreework=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+  name_title=$name_managefreework
+  !readproc proc/mkglobalvar.proc
+!endif
+
+!! ---- job to add file to solution or subject
+!for val in subject,solution
+  !reset conditiontest
+  !if $val=subject
+    !if $activetest=0
+      conditiontest=1
+    !endif
+  !else
+    conditiontest=$putworkco
+  !endif
+  !if $job2=deposit$val and $wims_deposit!=$empty \
+and / notin $wims_deposit and .. notin $wims_deposit and noname.file!=$wims_deposit
+   !read proc/checkfilename.proc
+   !if $error!=$empty
+     !exit
+   !endif
+   success=goodaddfile
+   !ifval $conditiontest!=1
+      error=badstatut$val
+      !reset success
+   !else
+      !sh mkdir -p $wims_home/log/classes/$wims_class/freeworks/$freework;\
+          mv $wims_home/$wims_sesdir/user-deposit $wims_home/log/classes/$wims_class/freeworks/$freework/$newfilename
+      !readproc adm/class/quotafree.proc proc
+      !if $quota_free<0
+        !sh rm -f $wims_home/log/classes/$wims_class/freeworks/$freework/$newfilename
+        error=quota_file
+        !reset success
+      !else
+        !default field_$val=$[$nb+1]
+        update_field=$(field_$val)
+        !if $newfilename notitemof $(flist$val)
+          flist$val=!append item $newfilename to $(flist$val)
+          update_content=!items2lines $(flist$val)
+          update_content=!nonempty line $update_content
+          update_content=$val\
+$update_content
+          !read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freework$freework
+        !endif
+      !endif
+    !endif
+    !reset job2
+  !endif
+!next val
+
+!!------  job to erase file
+!reset eraselist
+!if $putworkco=1
+  !if $activetest=0
+    eraselist=!append item $flistsubject to $flistsolution
+    eraselist=!listuniq $eraselist
+  !else
+    eraselist=$flistsolution
+    eraselist=!listcomplement $flistsubject in $eraselist
+  !endif
+  !if $job2 isitemof erasesubject,erasesolution and $namefile!=$empty
+    namefile=!listintersect $namefile and $eraselist
+    !sh rm -f $wims_home/log/classes/$wims_class/freeworks/$freework/$namefile
+    !for val in subject,solution
+      !if $namefile isitemof $(flist$val)
+        flist$val=!listcomplement $namefile in $(flist$val)
+        update_field=$(field_$val)
+        update_content=!items2lines $(flist$val)
+        update_content=!nonempty line $update_content
+        update_content=$val\
+$update_content
+        !read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freework$freework
+      !endif
+    !next val
+    success=gooderasefile
+    eraselist=!listcomplement $namefile in $eraselist
+    !reset job2
+  !endif
+!endif
+
+!! ---- manage file of the freework
+!read adm/class/quotafree.proc proc
+
+!if $codownload=1
+  !readproc wimshome/log/classes/$wims_class/freeworksdata/$freework/.seeco
+!endif
+
+!if $studentclose=1 and $activetest>0
+  !if $job2=reopen and $quser!=$empty and $now<$d1
+    !setdef freework_closeco_$quser=$empty in wimshome/log/classes/$wims_class/freeworksdata/$freework/.closeco
+    !reset job2 quser
+  !endif
+  !readproc wimshome/log/classes/$wims_class/freeworksdata/$freework/.closeco
+!endif
+
+!if $type>=3
+  !read proc/freeworkdata$(lpara_type[$type]).proc
+!endif
+
+!readproc proc/iserasable.proc $freework
+!read tabletheme

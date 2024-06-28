@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Consommation finale
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+La <strong>consommation finale</strong> se définit comme
+<span class="wims_emph">l'ensemble des biens et des services détruits
+par les ménages</span> en vue de satisfaire leurs besoins économiques.
+</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+<div>La consommation finale des ménages est composée d'une grande diversité
+de biens et de services : biens et services de consommation courante
+(alimentation, habillement, logement, internet ...), de culture et de loisirs (cinéma, musée ...),
+ de santé ...</div>
+<div>Par conséquent, dans le cadre d'analyses comparatives (dans le temps ou entre pays),
+il peut être intéressant d'étudier la <span class="wims_emph">structure de la
+consommation</span> des ménages qui est établie grâce aux différents
+<strong>coefficients budgétaires</strong>.</div>
+</div>

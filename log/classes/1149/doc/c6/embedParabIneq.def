@@ -1,0 +1,36 @@
+!set titb=Résoudre une inéquation du second degré
+!set keyw=
+!set datm=20210827
+!set prev=embedParabRes
+!set next=embedParabAlg
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<div class="wims_columns">
+ <div class="medium_size text_col">
+On peut utiliser la résolution de 
+!insmath X^2 \ge k
+ ou 
+!insmath X^2 \le k
+ <br>
+si le premier membre est un carré ou s'il est sous la forme canonique.
+</div><div class="medium_size img_col">
+<img style="width&#58; 30%;"alt="Femme nommée Inès Coassion" src="$m_filedir/inequat1.png"/>
+</div></div>
+
+!read primitives.phtml 1, fold, \embed{ParabIneqk}, Exemple 
+
+<p class="decal">
+On peut aussi utiliser un tableau de signes si le premier membre est factorisé
+et le deuxième membre est nul.
+</p>
+
+!read primitives.phtml 2, fold, \embed{ParabTabSign}, Exemple 
+

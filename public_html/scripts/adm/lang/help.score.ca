@@ -1,0 +1,155 @@
+
+<h2>Regla de càlcul dels fulls d'exercicis</h2>
+
+!set wims_backslash_insmath=yes
+
+!if $wims_user=supervisor
+<p>
+El servidor calcula per a cada exercici tres indicadors del
+ treball de cada alumne (l'indicador d'acumulació (\(i_0)),
+ l'indicador d'èxit (\(i_1)) i l'indicador d'adquisició
+ \((i_2))) i una nota de qualitat \(q).
+Per explicar el càlcul dels diferents indicadors, suposem que el nombre
+dels punts necessaris per a un exercici és \(10n\) on \(n\) és un enter i que
+l'alumne ha fet aquest exercic \(p\) vegades amb les notes \(x_1, x_2, x_3, ..., x_p\)
+(nombres entre 0 i 10).
+</p>
+<ul><li>
+L'indicador d'acumulació \((i_0)) és la suma de les notes limitades a \(10 n\)
+que dividim per \(10n\) : \(i_0=min(x_1+...+x_p, 10*n)/(10*n)).
+Es mostra en els resultats de l'alumne com a percentatge.
+</li><li>
+Denotem \(y_1\geq y_2\geq ... \geq y_p\) les notes ordenades en ordre
+decreixent.
+
+L'indicador d'èxit (\(i_1)) és la mitjana de les \(n\) millors notes,
+dividida per 10 :
+ \(i_1 = (y_1+...+y_n)/(n*10)) si el nombre \(p\) de notes obtingudes és superior
+  a \(n\) i
+ \(i_1 = (y_1+...+y_p)/(n*10)) si
+el nombre \(p\) de notes obtingudes és inferior a \(n).
+Es mostra com un percentatge.
+</li><li>
+L'indicador d'adquisició (\(i_2)) és la més petita de les \(n\) millors notes
+dividida per 10 :
+\(i_2 = 0) si el nombre \(p\) de notes obtingudes és inferior a \(n\)
+i \(i_2= y_n/10\) si \(p\geq n\).
+</li></ul>
+<p>
+Per exemple, si \(n=2\) i si les notes són 7, 5 i 3 llavors \(i_0 = 0.75\) (75%),
+\(i_1=0.6\) (60%) i \(i_2=0.5) (50%).
+</p><p>
+La nota de qualitat és la mitjana ponderada i incremental de les
+notes (és a dir, el pes de les darreres notes obtingudes és superior a
+el de les primeres). Aquest indicador es corregeix sancionant intents sense
+resposta de la manera següent:
+si el nombre d'intents no acabats \(s_n\), és estrictament superior a \(5+2*s_t\),
+on \(s_t\) és el nombre d'intents acabats (amb una nota),
+la nota de qualitat es multiplica per \(\frac{2 s_t}{s_n-4} < 1\).
+</p><p>
+Per a cada full, el servidor calcula
+</p>
+<ul><li>
+la mitjana ponderada (\(I_0, I_1, I_2)) dels
+diferents indicadors \(i_0, i_1, i_2) de tots els exercicis del full,
+agafant com a coeficients de ponderació el producte del pes de l'exercici pel nombre
+de punts demanats ;
+</li><li>
+ la mitjana ponderada \(Q\) de les qualitats \(q\) agafant com a coeficients 
+de ponderació el producte del pes de l'exercici per l'indicador d'acumulació
+de l'alumne \(i_0\) per a aquest exercici (per tant, es té en compte la qualitat
+del que s'ha fet).
+</li>
+</ul>
+<p>
+Si la nota de qualitat és inferior a 1 per a un exercici,
+l'indicador \(i) utilitzat per al càlcul de cadascun dels indicadors \(I)
+s'estableix a 0 per a aquest exercici ;
+si la nota de qualitat està entre 1 i 2,
+l'indicador  \(i) utilitzat per al càlcul de cadascun dels indicadors \(I)
+ es divideix per 2.
+</p><p>
+Els valors de \(Q, I_0, I_1, I_2\) es donen de cada full
+a la pàgina de seguiment individual dels alumnes.
+</p><p>
+El servidor calcula la nota del full seguint una regla de
+càlcul que podeu definir (podeu triar la regla i l'indicador \(I\)
+utilitzat entre \(I_0, I_1, I_2)).
+
+Aquí teniu les fórmules possibles:
+</p>
+
+!reset table_center
+$table_header
+$table_hdtr<th>Regla</th><th>Fórmula</th><th>$wims_name_Explanations</th></tr>
+$table_tr<td>0</td><td> \($scoremax * $(list[1;]) \)
+ </td><td>màxim entre l'indicador triat i la qualitat.</td></tr>
+$table_tr<td>1</td><td> \($scoremax *$(list[2;]) \)
+ </td><td>No es té en compte la qualitat. Té la puntuació màxima
+  quan l'indicador triat sigui màxim.</td></tr>
+$table_tr<td>2</td><td>\($scoremax*$(list[3;])\)
+ </td><td>La qualitat té poc efecte sobre la nota.</td></tr>
+$table_tr<td>3</td><td>\($scoremax*$(list[4;])\)
+ </td><td>Més efecte de la qualitat.</td></tr>
+$table_tr<td>4</td><td>\($scoremax*$(list[5;])\)
+ </td><td>Per obtenir una nota de $scoremax, s'han de tenir tots els punts
+  demanats (100%) sense fer cap error (qualitat=10).</td></tr>
+$table_tr<td>5</td><td>$\($scoremax*$(list[6;])\)
+ </td><td></td></tr>
+$table_end
+!read help/sheetscore.phtml
+!else
+Per a aquest full, el teu professor ha triat el següent mètode de càlcul
+de la nota. El nombre de punts demanats és \(10n\).
+Per a cada exercici, es calcula
+<ul>
+<li>
+!if $help_sw=0
+  \(i\) : la suma de les notes amb un màxim de \(10n\)
+que es divideix per \(10n\) (indicador d'acumulació)
+!endif
+!if $help_sw=1
+ la mitjana \(i\) de les \(n\) millors notes dividida per 10 (nivell d'èxit) :
+ si les notes són  \(y_1\geq y_2\geq ... \geq y_p \) ordenades en ordre
+decreixent :
+ \(i  = (y_1+...+y_n)/(10n)\) si el nombre \(p\) de notes obtingudes és superior a \(n\)
+ i
+ \(i = (y_1+...+y_p)/(10n)) si el nombre \(p\) de notes obtingudes és inferior a \(n\).
+!endif
+!if $help_sw=2
+ el mínim \(i\) de les \(n\) millors notes dividit per 10 (nivell d'adquisició) :
+ si les notes són  \(y_1\geq y_2\geq ... \geq y_p \) ordenades en ordre
+decreixent :
+  \(i  = 0\) si el nombre \(p\) de notes obtingudes és inferior a \(n) i
+ després
+ \(i = y_n/10).
+!endif
+</li>
+!if $help_level>0
+<li>
+la qualitat \(q\) dels punts obtinguts en els exercicis que és
+una mitjana ponderada, les darreres notes tenen un pes més important que
+les primeres. Atenció, si es renova l'exercici sense acabar un número massa
+important de vegades en comparació amb la quantitat de vegades que s'acaba l'exercici,
+la nota de qualitat disminuirà.
+</li>
+!endif
+</ul>
+La nota del full es calcula a partir de les mitjanes ponderades
+\(I) i \(Q) dels indicadors \(i) i \(q) de cada exercici.
+
+!if $help_level>0
+Si la nota de qualitat és inferior a 1 en un exercici,
+l'indicador \(i\) s'estableix a 0 per a aquest exercici;
+si la nota de qualitat està entre 1 i 2,
+l'indicador \(i\) es divideix per 2.
+!else
+ No obstant això, si has tingut massa errors o si
+  vas provar massa vegades l'exercici sense haver-lo acabat, aquesta nota pot disminuir.
+  Pregunta al teu professor.
+!endif
+<p>
+La nota del full es calcula com
+<span class="bold">$scoremax $(list[$help_level+1;])</span>.
+</p>
+!endif

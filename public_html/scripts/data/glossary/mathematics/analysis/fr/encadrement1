@@ -1,0 +1,16 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_number,inequalities,order
+!set gl_title=Encadrement (lycée)
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définitions</h4>
+Soit \(x\) un nombre réel.<br>
+Donner un <strong>encadrement</strong> de \(x\) c'est donner deux nombres réels
+\(a\) et \(b\) tels que <span style="white-space:nowrap">
+\(a \leqslant x \leqslant b \).</span><br>
+Le réel positif \(b-a\) est <strong>l'amplitude</strong> de cet encadrement.
+</div>

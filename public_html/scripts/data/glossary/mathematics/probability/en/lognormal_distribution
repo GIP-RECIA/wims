@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Log-normal distribution
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Let \(m) be a real and let \(s) be a positive real.
+The <strong>log-normal distribution</strong> with
+parameters \(m) and \(s) (denoted by
+\(\mathcal{LN}(m,s))) is the distribution of the random variable
+\(exp(X)) where \(X) has the \(\mathcal{N}(m,s^2)) distribution. The
+density function of \(\mathcal{L N}(m,s)) is
+
+<div class="wimscenter">
+\( x \mapsto \frac{1}{sx\sqrt{2\pi}}exp(-\frac{(\log(x)-m)^2}{2s^2})1_{x>0})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Expectation</th><th>Variance</th><th>Characteristic function</th></tr>
+<td>\(\exp(m+\frac{s^2}{2}))</td><td>\((\exp(s^2)-1)\exp(2m+s^2))</td><td></td></tr></table>

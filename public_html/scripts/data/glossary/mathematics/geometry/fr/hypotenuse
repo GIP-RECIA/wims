@@ -1,0 +1,19 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=triangles
+!set gl_title=Hypoténuse
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit ABC un triangle rectangle en A.<br>
+Le côté [BC], opposé à l'angle droit, est appelé <strong>hypoténuse</strong> du
+triangle ABC.
+</div>
+<div class="wims_thm">
+<h4>Propriété</h4>
+L'hypoténuse est le plus long des trois côtés d'un triangle rectangle.
+</div>

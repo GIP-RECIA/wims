@@ -1,0 +1,396 @@
+!! Create a new virgin class (in a structure or not)
+!set wims_form_method=post
+!! password must contain 4-16 alphanumeric characters
+!set password_pattern=[a-zA-Z0-9]{4,16}
+
+!if $step=$empty or $step=pre
+  <div class="wims_content">
+    <p>$name_choose</p>
+    <p>
+      !href cmd=reply&step=0&cltype=0 $wims_name_create_class
+    </p>
+
+    !set wims_menu_items=!append line create_class,1,cmd=reply&step=0&cltype=0\
+      to $wims_menu_items
+
+    <p>
+      !if 2 isitemof $alltypes
+        !href cmd=reply&step=0&cltype=2 $wims_name_create_superclass
+        !set wims_menu_items=!append line create_superclass,1,cmd=reply&step=0&cltype=2\
+        to $wims_menu_items
+      !else
+        <span class="wims_emph"><strike>$wims_name_create_superclass</strike></span> ($noright).
+      !endif
+    </p>
+    <p>
+      !if 4 isitemof $alltypes
+        !href cmd=reply&step=0&cltype=4 $wims_name_create_portal
+            ($name_expert)
+        !set wims_menu_items=!append line create_portal,1,cmd=reply&step=0&cltype=4\
+            to $wims_menu_items
+      !else
+        <span class="wims_emph"><strike>$wims_name_create_portal</strike></span> ($noright).
+      !endif
+    </p>
+
+    <span class="wims_warning">$wims_name_help</span>:
+    !read lang/help.phtml.$modu_lang 1
+  </div>
+  !exit
+!endif
+
+!if $step=0
+  <p>
+    !read lang/help.phtml.$modu_lang 2
+  </p>
+  !form reply
+    !default agreecgu=$user_agreesupcgu
+    !default agreecgu=no
+    <div>
+      !let user_agreesupcgu=!defof user_agreesupcgu in $userdef
+      !if $user_agreesupcgu!=yes
+        $(name_cgu[1])
+        !set wims_ref_id=js_cgu_link
+        !href target=wims_internal module=adm/light&phtml=cgu.phtml $(name_cgu[2])
+        $(name_cgu[3])
+        !set wims_ref_class=agree_cgu
+        !formradio agreecgu list yes,no prompt $wims_name_yes,$wims_name_no
+        <div class="formHelp">$(name_cgu[4])</div>
+        <script>
+          !! User can only submit form if he accepted the Terms of services.
+          function changeHandler(event) {
+            if ( this.value === 'no' ) {
+              submit_btn.disabled=true;
+              submit_btn.classList.add("disabled");
+              submit_formHelp.innerHTML = "$noagreecgu_msg";
+              submit_formHelp.classList.add("wims_msg","warning");
+            } else if ( this.value === 'yes' ) {
+              submit_btn.disabled=false;
+              submit_btn.classList.remove("disabled");
+              submit_formHelp.innerHTML = "";
+              submit_formHelp.classList.remove("wims_msg","warning");
+            }
+          }
+
+          !! User can only click on "agree_cgu" if he previously clicked on the link to see the CGU.
+          document.addEventListener("DOMContentLoaded", function() {
+
+            var agree_cgu = "no";
+            var radio_options = document.querySelectorAll(".agree_cgu>input");
+            for (var i = 0; i < radio_options.length; ++i) {
+              var option = radio_options[i];
+              if (option.checked) {
+                agree_cgu = option.value;
+              }
+              if (agree_cgu == "no"){
+                option.disabled = true;
+              }
+            }
+
+            submit_btn = document.getElementById("js_newclass_submit");
+            submit_formHelp = document.getElementById("js_newclass_formHelp");
+            if (agree_cgu == "no"){
+              submit_btn.disabled=true;
+              submit_btn.classList.add("disabled");
+              submit_formHelp.innerHTML = "$noagreecgu_msg";
+              submit_formHelp.classList.add("wims_msg","warning");
+            }
+
+
+            !!/** Adds onchange on radios to activate the submit button */
+            Array.prototype.forEach.call(radio_options, function(option) {
+              option.addEventListener('change', changeHandler);
+            });
+
+           cgu_link = document.getElementById("js_cgu_link");
+           cgu_link.addEventListener('click', function() {
+              for (var i = 0; i < radio_options.length; ++i) {
+                  radio_options[i].disabled = false;
+              }
+            })
+          });
+        </script>
+      !else
+        <input type="hidden" name="agreecgu" value="yes" \>
+        $name_supcgu
+        !set wims_ref_id=js_cgu_link
+        !href target=wims_internal module=adm/light&phtml=cgu.phtml $(name_cgu[2])
+        .
+      !endif
+    </div>
+
+    <p>
+      !read lang/help.phtml.$modu_lang 2_1
+    </p>
+
+    <input type="hidden" name="step" value="1">
+
+    <fieldset class="property_fields blockcenter">
+      <legend>$wims_name_Supervisor</legend>
+      <div class="flex_box">
+        !set suplim2 =$[rint($suplim/3)]
+        !set emaillim2= $[rint(2*$emaillim/3)]
+        !if $Cltype=1
+          <div class="field box fullwidth">
+            !let firstname=$wims_firstname
+            !let lastname=$wims_lastname
+            <strong>$wims_name_lastname</strong>: $wims_firstname $wims_lastname
+          </div>
+        !else
+          <div class="field box halfwidth">
+            <label for="firstname">$wims_name_firstname</label>
+            <input type="text" pattern=".{2,$suplim}" size="$suplim2" name="firstname" value="$firstname" id="firstname" maxlength="$suplim" required="required">
+            <div class="formHelp">$name_atmost $suplim $name_characters</div>
+          </div>
+          <div class="field box halfwidth">
+            <label for="lastname">$wims_name_lastname</label>
+            <input type="text" pattern=".{2,$suplim}" size="$suplim2" name="lastname" value="$lastname" id="lastname" maxlength="$suplim" required="required">
+            <div class="formHelp">$name_atmost $suplim $name_characters</div>
+          </div>
+        !endif
+
+        <div class="field box fullwidth">
+          <label for="email">$wims_name_email</label>
+          !if $Cltype=1 and $email!=$empty
+            !default email=$email
+            &#58; <a href="mailto:$email">$email</a>
+          !else
+            <input type="email" size="$emaillim2" name="email" value="$email" id="email" maxlength="$emaillim" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="required">
+            <div class="formHelp">$name_atmost $emaillim $name_characters</div>
+          !endif
+          !if $regpolicy=email
+            <div class="formHelp">$name_regpolicy</div>
+          !endif
+        </div>
+
+        !if $Cltype!=1
+          <div class="field box">
+            <label for="passsup">$wims_name_Password ($name_sup)</label>
+            <input size="16" type="password" name="passsup" id="passsup" maxlength="16" pattern="$password_pattern" required="required">
+            <div class="formHelp">$name_warningpass. $name_help1</div>
+          </div>
+        !endif
+      </div>
+    </fieldset>
+
+    <fieldset class="property_fields blockcenter">
+      <legend>$name_classe</legend>
+      <div class="flex_box">
+        <div class="field box fullwidth">
+          <label for="institution">$name_Name_portal</label>
+          !if $Cltype isin 13
+            !let institution=$wims_institutionname
+            &#58; $institution
+          !else
+            <input type="text" size="$instlim" pattern=".{2,$instlim}" name="institution" value="$institution" id="institution" maxlength="$instlim" required="required">
+            <div class="formHelp">$name_atmost $instlim $name_characters</div>
+          !endif
+        </div>
+
+        <div class="field box halfwidth">
+          <label for="description">$wims_name_name $name_classesss</label>
+          <input type="text" size="28" pattern=".{2,$desclim}" name="description" value="$description" id="description" maxlength="$desclim" required="required">
+          <div class="formHelp">$name_atmost $desclim $name_characters</div>
+        </div>
+
+        <div class="field box halfwidth">
+          <label for="location">$name_location</label>
+          <input type="text" size="$desclim" name="location" value="$location" id="location" maxlength="$desclim">
+          <label for="geoloc">$name_geoloc</label>
+          <input type="text" size="$desclim" name="geoloc" value="$geoloc" id="geoloc" maxlength="$desclim" placeholder="X,Y">
+          !! ---------- add to read autocompletion location
+          !set auto=!lookup $lang in wimshome/log/stat/geoloc.dictionary
+          !if $auto!=$empty
+            !read adm/geoloc/$auto
+          !endif
+          <div class="formHelp">$name_location_help</div>
+        </div>
+
+        <div class="field box halfwidth">
+!! if no class password defined this mean that it s an open class (without advertising supervisor)
+!!          !if $Cltype isin 24
+            !set tmp=$ required="required"
+!!          !else
+!!            !reset tmp
+!!          !endif
+          <label for="password">$wims_name_Password ($name_classesss)</label>
+          <input size="16" type="password" name="password" id="password" maxlength="16" pattern="$password_pattern"$tmp>
+          !reset tmp
+          <div class="formHelp">
+            $name_warningpass.
+            !if $Cltype<2
+              $name_help2
+            !else
+              $name_help3
+            !endif
+          </div>
+        </div>
+
+        <div class="field box halfwidth">
+          <label for="exp_date">$wims_name_expiration</label>
+          !set begin=!sh date --date '1 day ago' +%Y%m%d
+          !set end=!sh date --date '1 years 3 months' +%Y%m%d
+          !read adm/datepickerform.phtml $exp_date\
+exp_date\
+"$begin","$end"
+          <div class="formHelp">$name_help_date</div>
+        </div>
+
+        <div class="field box halfwidth">
+          <label for="limit">$name_help_limit</label>
+          !let num=!charcnt $wims_class_user_limit
+          <input type="number" size="3" name="limit" value="$limit" id="limit" maxlength="$num">
+          <div class="formHelp">&lt; $wims_class_user_limit</div>
+        </div>
+
+        !if $Cltype notin 24
+          !set nblevel=!itemcnt $wims_listlevel
+          <div class="field box halfwidth">
+            <label for="level">$wims_name_level $name_classesss</label>
+            <select name="level" id="level">
+              !for k=1 to $nblevel
+                !if $(wims_listlevel[$k])=$level
+                  <option selected="selected" value="$(wims_listlevel[$k])">$(name_wims_listlevel[$k])</option>
+                !else
+                  <option value="$(wims_listlevel[$k])">$(name_wims_listlevel[$k])</option>
+                !endif
+              !next k
+            </select>
+          </div>
+        !endif
+
+        !if $cltype isin 024
+          !!! also in public_html/modules/adm/class/config/authtype.phtml
+          !set auth_cas_list=!defof cas_auth in wimshome/log/wims.conf
+          !set auth_cas_list=!replace internal | by ; in $auth_cas_list
+          !set auth_cas_url_list=$(auth_cas_list[;1])
+          <div class="field box halfwidth">
+            <label for="cas_auth">$name_cas ($name_optional)</label>
+            !if $jquery_defined=yes and $auth_cas_url_list!=$empty
+              !set auth_cas_cnt=!itemcnt $auth_cas_url_list
+              !reset auth_cas_name_list
+              !for j=1 to $auth_cas_cnt
+                !set tmp=$(auth_cas_list[$j;2])
+                !default tmp=$(auth_cas_url_list[$j])
+                !set auth_cas_name_list=!append item $tmp to $auth_cas_name_list
+                !reset tmp
+              !next
+              !formselect cas_auth list other,$auth_cas_url_list prompt $wims_name_otherurl,$auth_cas_name_list
+              <input type="url" size="35" name="cas_auth" value="$cas_auth" placeholder="https://sso.my-ent.org/cas">
+            !else
+              <input type="url" id="cas_auth" size="35" name="cas_auth" value="$cas_auth" placeholder="https://sso.my-ent.org/cas">
+            !endif
+            <div class="formHelp">$name_cas_help</div>
+          </div>
+          !if $jquery_defined=yes
+            <script>
+              $$('#cas_auth').on('change', function() {
+                var check = this.value === "other";
+                var text_input = $$(this).next();
+                !! only the select OR the input will be sent
+                text_input.toggle(check);
+                if(check){
+                  $$(this).prop('name', "");
+                  text_input.prop('name', "cas_auth");
+                }else{
+                  $$(this).prop('name', "cas_auth");
+                  text_input.prop('name', "");
+                }
+              }).change();
+            </script>
+          !endif
+        !endif
+        !if $Cltype=0
+          !set field_width=halfwidth
+        !else
+          !set field_width=fullwidth
+        !endif
+        <div class="field box $field_width">
+          <label for="secure">$name_secure ($name_sup)</label>
+          !default secure=all
+          <input type="text" size="30" name="secure" value="$secure" id="secure">
+          <div class="formHelp">$name_host</div>
+          !reset secure
+          !!!if $Cltype<3
+            !! $name_optional.
+          !!!endif
+        </div>
+      </div>
+    </fieldset>
+    <div class="wimscenter wimsform">
+!if $user_agreesupcgu!=yes
+      <input id="js_newclass_submit" type="submit" value="$name_continue">
+      <div id="js_newclass_formHelp" class="formHelp"></div>
+!else
+   <input type="submit" value="$name_continue">
+!endif
+    </div>
+  !formend
+  !exit
+!endif step 0
+
+!! STEP 1 : rechecking passwords
+!if $step=1
+  !read lang/help.phtml.$modu_lang step1
+
+  !form reply
+    <input type="hidden" name="step" value="2">
+    <fieldset class="property_fields blockcenter">
+      <legend>$name_password_check</legend>
+      !if $Cltype!=1
+        <div class="field box fullwidth">
+          <label for="passsup"> $wims_name_Password $name_sup</label>
+          <input type="password" name="passsup" id="passsup" maxlength="16" required="required">
+        </div>
+      !endif
+      !if $pword!=$empty
+        <div class="field box fullwidth">
+          <label for="password">$wims_name_Password $name_classesss</label>
+          <input type="password" name="password" id="password" maxlength="16" required="required">
+        </div>
+      !endif
+      <div class="wimscenter wimsform">
+        !set wims_ref_class=wims_button wims_secondary_button
+        !href module=$module&cmd=reply&step=0 $wims_name_back2
+        <input type="submit" value="$name_continue">
+      </div>
+    </fieldset>
+  !formend
+  !exit
+!endif step 1
+
+!if $step=2
+  !read lang/help.phtml.$modu_lang step2
+  !form reply
+    <input type="hidden" name="step" value="3">
+    <fieldset class="property_fields blockcenter">
+      <div class="field box">
+        <label for="typecode">$name_code</label>
+        <input size="12" name="typecode" id="typecode" type="text">
+      </div>
+      <div class="wimscenter wimsform">
+        <input type="submit" value="$name_continue">
+      </div>
+    </fieldset>
+  !formend
+  <span class="wims_warning">$wims_name_warning</span>:
+  <span class="warning_code">$name_warning_code</span>
+  !exit
+!endif step 2
+
+!if $step=3
+  !read lang/help.phtml.$modu_lang step3
+  !if $Cltype iswordof 0 1
+    !let tmp=!positionof item $ilevel in $wims_listlevel
+    ($wims_name_level <span class="wims_emph">$(name_wims_listlevel[$tmp])</span>).
+  !endif
+  !read adm/class/initclass $code,auth
+  !if $(class_authidp[1;])=cas
+    !set link_=$host_auth/login?service=
+  !else
+    !set link_=$wims_ref_name?
+  !endif
+  <br class="spacer">
+  !read adm/class/links.phtml $code
+  !exit
+!endif step 3

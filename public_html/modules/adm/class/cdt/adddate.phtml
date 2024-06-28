@@ -1,0 +1,64 @@
+
+!form reply
+<input type="hidden" name="job" value="adddate">
+<input type="hidden" name="job2" value="save">
+<fieldset class="property_fields blockcenter">
+  <legend>$name_workdone</legend>
+  <div class="field box">
+    <label for="jdate">$name_session:</label>
+    !default jdate=!char 1 to 8 of $wims_now
+    !read adm/datepickerform.phtml $jdate\
+jdate\
+"$class_creation","$jdate"
+  </div>
+  <div class="field box">
+    !set id0=!getopt id in $wims_id0
+    <label for="$id0">$name_workdone ( &lt; $desc_limit $name_character) :</label>
+  $
+    !set wims_ref_class=wims_button
+    !href target=wims_help cmd=new&module=$module&job=helplink&cible=$id0 $name_help_add
+    <textarea $wims_id0 rows="12" cols="120" name="jdesc">
+      !replace internal \( by &#92;( in $jdesc
+    </textarea>
+  </div>
+</fieldset>
+
+
+<fieldset class="property_fields blockcenter">
+  <legend>$name_worktodo</legend>
+  <div class="field box">
+    <label for="nbredevoir">$name_nb_date:</label>
+    <select id="nbredevoir" name="nbredevoir" onchange="submit()">
+    !for i=0 to $max_todo
+      !if $i=$nbredevoir
+        <option value="$i" selected="selected">$i</option>
+      !else
+        <option value="$i">$i</option>
+      !endif
+    !next i
+    </select>
+  </div>
+  !for i=1 to $nbredevoir
+    <div class="field box">
+      <label for="ddate$i">$name_todo2</label>
+        !default ddate$i=$jdate
+        !read adm/datepickerform.phtml $(ddate$i)\
+ddate$i\
+"$class_creation","$class_expiration"
+      &#58;
+    $
+      !set id0=!getopt id in $(wims_id$i)
+      !set wims_ref_class=wims_button
+      !href target=wims_help cmd=new&module=$module&job=helplink&cible=$id0 $name_help_add
+      <br><textarea $(wims_id$i) rows="6" cols="120" name="ddesc$i">
+        !replace internal \( by &#92;( in $(ddesc$i)
+      </textarea>
+    </div>
+  !next i
+</fieldset>
+
+<div class="wimscenter">
+  <input type="submit" value="$wims_name_tosave" $wims_on_click>
+</div>
+
+!formend

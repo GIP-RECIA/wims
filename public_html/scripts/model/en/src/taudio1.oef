@@ -1,0 +1,71 @@
+type=imaudio
+textarea="instruction data"
+iEdit="instruction"
+
+:Choose from the labels the word heard (records to be provided).
+
+<p>A sound is proposed and the correspondig label must be chosen.
+  The sound is taken from the WIMS recorded word audio database.
+  If the exercise is in a class, it can be used with audios put in this class.
+</p><p>
+To build an exercise with this model,
+ simply type the word list and the name of the record
+ (to be loaded in the exercise).
+</p><p>
+For more possibilities, use Quicktool.
+</p><p class="wims_credits">
+Author of the model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+
+:\title{Listen and recognize II}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Instructions
+\text{instruction=Click on the word heard.}
+
+:List of audio and words
+\text{data = name_audio1,doctor
+name_audio2,teacher
+name_audio3,journalist}
+
+:Number of disrupters
+\integer{cntpertub=3}
+
+:Height of the boxes (in pixels)
+\integer{sizev=200}
+
+:Width of the boxes on the left (in pixels)
+\integer{sizel=20}
+
+:%%%%%%%%%%%%% Now the statement in HTML. %%%%%%%%%%%%%%%%%%%%
+
+\text{cnt=rows(\data)}
+\text{N=shuffle(\cnt)}
+\text{mot=row(\N[1],\data)}
+\text{mot=wims(embraced randitem \mot)}
+\text{perturb=\N[2..\cntpertub+1]}
+\matrix{data=\data}
+\text{perturb=\data[\perturb;2]}
+\text{size=\sizev[]x\sizel[]}
+
+\statement{
+  <div class="instruction">\instruction</div>
+  <div class="wimscenter">
+    \audio{\imagedir/\mot[1]}
+  </div>
+  <div class="wimscenter">
+    \embed{r1,\size}
+  </div>
+}
+
+\answer{}{\mot[2];\perturb}{type=clickfill}

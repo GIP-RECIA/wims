@@ -1,0 +1,4 @@
+<p>Pour réaliser un algorithme, on peut commencer par le pratiquer soi-même plusieurs fois et noter ses étapes de calcul.
+ Pour le vérifier, on peut noter dans un tableau les valeurs successives des variables.
+ Il faut aussi se méfier des propriétés implicites qui sont vraies dans l'élaboration et qui pourraient ne pas l'être
+ dans l'utilisation.</p>

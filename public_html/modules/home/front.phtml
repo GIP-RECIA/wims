@@ -1,0 +1,16 @@
+!if $wims_user=$empty
+  <div class="wims_motd">
+    !read ./wimshome/log/motd.phtml.$lang
+  </div>
+  !read themes/_widgets/frontmsg.phtml
+  <div class="wims_frontpage">
+    !readproc wimshome/log/front.phtml.$lang
+    !if yes notin $front_exist
+      <div class="wims_widget_box blockcenter">
+        !read ./front.phtml.$lang
+      </div>
+    !else
+      !read wimshome/log/front.phtml.$lang
+    !endif
+  </div>
+!endif

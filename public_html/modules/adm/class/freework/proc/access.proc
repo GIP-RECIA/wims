@@ -1,0 +1,54 @@
+!readproc adm/vfilter/listvarfilter.proc
+
+!if $save!=$empty or ($old_allowtype!=$allowtype and ($allowtype=techvar and $old_allowtechvar!=$allowtechvar))
+  !! ------  manage of allow
+  !if $tv_listname=$empty
+    !bound allowtype within all,none,select default all
+  !else
+    !bound allowtype within all,none,select,techvar default all
+  !endif
+  !read adm/scorerestriction get
+  IPlist=get $_output
+  IPlist=!translate ,;\
+* to $    $ in $IPlist
+  IPlist=!trim $IPlist
+  !if $allowtype=select and $IPlist=$empty and $save!=$empty
+    allowtype=all
+  !endif
+  !if $allowtype=all
+    allow_parm=
+  !endif
+  !if $allowtype=none
+    allow_parm=none
+  !endif
+  !if $allowtype=select
+    allow_parm=$IPlist
+  !endif
+  old_allowtype=$allowtype
+  old_allowtechvar=$allowtechvar
+  !if $allowtype=techvar
+    !readproc adm/vfilter/shexselect.proc F$freework
+  !endif
+  setclass=$wims_class
+  !if $allow_parm=$empty
+    !sh for c in $setclass; do rm -f $wims_home/log/classes/$$c/.F$freework; done
+  !else
+    setclass=!words2items $setclass
+    !for c in $setclass
+      !writefile wimshome/log/classes/$c/.F$freework $allow_parm
+    !next c
+  !endif
+  wims_class_log=freework $freework allow $allowtype $allowshare by $wims_realuser
+  !! ---- end of saving
+  !! -------- end manage of allow
+!endif
+
+!! --- read saving configuration for allow parameters
+  !readproc adm/vfilter/shexread.proc F$freework
+  !! to distribute IPlist content into variable
+  !read adm/scorerestriction put\
+$IPlist
+  old_allowtype=$allowtype
+  old_allowtechvar=$allowtechvar
+!! --- end of reading
+

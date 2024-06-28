@@ -1,0 +1,175 @@
+type=classify
+textarea="data instruction"
+iEdit="instruction"
+
+:Classificar objectes per les seves propietats en una taula.
+
+Presentem una llista d'objectes i una llista d'atributs (propietats). Heu d'omplir
+una taula segons si els objectes verifiquen les propietats o no, omplint un quadre.
+
+<p>
+Per construir un exercici amb aquest model, només cal que introduïu la llista
+d'atributs i una llista d'objectes on s'indiqui si verifiquen o no
+les propietats en el mateix ordre que els atributs (amb un 0 o un 1)
+</p><p>
+Aquest exercici es pot transformar fàcilment per ser inclòs en un mòdul OEF
+si voleu posar les dades en un fitxer auxiliar. Per això,
+només has d'omplir el camp \text{file=} posant el nom del fitxer
+(una vegada que l'exercici s'ha transferit a un mòdul OEF d'un compte de Modtool).
+</p><p class="wims_credits">
+  Autor del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Taula per omplir (fill)}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciat
+\text{instruction= Remplir le tableau.}
+
+:Nombre d'objectes triats a l'atzar
+\integer{N=3}
+
+:Nom del fitxer
+Ompliu només si voleu transferir el codi d'aquest exercici a un compte de Modtool
+i utilitzeu un fitxer de dades (en un mòdul OEF)
+del tipus
+<pre>
+ poils,plumes,quatre pattes,ailes
+ :pie,0,1,0,1
+ :boeuf,1,0,1,0
+</pre>
+En aquest cas, no es tindrà en compte les dades següents.
+En cas contrari, ompliu les dades.
+
+\text{file=}
+
+:Llista d'atributs
+\text{attribut=poils,plumes,quatre pattes,ailes}
+
+:Dades
+Una línia per objecte.
+\text{data=pie,0,1,0,1
+boeuf,1,0,1,0
+chat,1,0,1,0
+moustique,0,0,0,1}
+
+:Codi per les etiquetes a inserir a la taula
+Introduïu el nom dels objectes seguit dels números 0 o 1, segons que l'atribut sigui cert o fals,
+un objecte per línia.
+\text{nonoui=--,X}
+
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+maximum 40 cases à remplir
+
+\integer{w=\size[1]+10}
+
+\css{<style>
+   .question {margin: 2% 2%;padding: 1%;}
+   .wimstable td, th {text-align:center;min-width:50px;}
+</style>}
+
+\if{\file notsametext}{
+  \text{file=randitem(\file)}
+  \text{attribut=wims(record 0 of \file)}
+  \integer{datacnt=wims(recordcnt \file)}
+  \integer{N=min(\N,\datacnt)}
+  \text{choix=shuffle(\datacnt)}
+  \text{choix=\choix[1..\N]}
+  \text{data=}
+  \for{s in \choix}{
+    \text{data=\data
+wims(record \s of \file)}
+  }
+  \matrix{data=\data}
+  \text{data=wims(replace internal ;; by ; in \data)}
+}{
+  \text{objet_cnt=rows(\data)}
+  \integer{N=min(\N,\objet_cnt)}
+  \text{bat=shuffle(\objet_cnt)}
+  \text{bat=\bat[1..\N]}
+  \matrix{data=\data}
+  \matrix{data=\data[\bat;]}
+}
+\integer{attribut_cnt=items(\attribut)}
+\integer{ch_cnt=items(\nonoui)}
+\text{Data=}
+\text{STEP=}
+\for{u=1 to \N}{
+  \text{STEP=\STEP
+   wims(makelist r x for x = (\u-1)*\attribut_cnt + 1  to  (\u)*\attribut_cnt)}
+  \text{Data=wims(append item \data[\u;2..-1] to \Data)}
+  \for{c=0 to \ch_cnt-1}{
+  \text{Data=wims(replace internal \c by \nonoui[\c+1] in \Data)}
+  }
+}
+\matrix{STEP=\STEP}
+\text{STEP1=wims(replace internal ; by , in \STEP)}
+\text{STEP1=wims(nonempty items \STEP1)}
+\steps{\STEP1}
+
+\statement{
+  <div class="instruction">\instruction</div>
+  <table class="wimstable">
+    <tr>
+      <th></th>
+      \for{k=1 to \attribut_cnt}{<th>\attribut[\k]</th>}
+    </tr>
+    \for{j=1 to \N}{
+      <tr>
+        <th>\data[\j;1]</th>
+        \for{k=1 to \attribut_cnt}{
+          <td>\embed{\STEP[\j;\k], \size[1] x \size[2]}</td>
+        }
+      </tr>
+    }
+  </table>
+}
+
+\answer{}{\Data[1]}{type=clickfill}
+\answer{}{\Data[2]}{type=clickfill}
+\answer{}{\Data[3]}{type=clickfill}
+\answer{}{\Data[4]}{type=clickfill}
+\answer{}{\Data[5]}{type=clickfill}
+\answer{}{\Data[6]}{type=clickfill}
+\answer{}{\Data[7]}{type=clickfill}
+\answer{}{\Data[8]}{type=clickfill}
+\answer{}{\Data[9]}{type=clickfill}
+\answer{}{\Data[10]}{type=clickfill}
+\answer{}{\Data[11]}{type=clickfill}
+\answer{}{\Data[12]}{type=clickfill}
+\answer{}{\Data[13]}{type=clickfill}
+\answer{}{\Data[14]}{type=clickfill}
+\answer{}{\Data[15]}{type=clickfill}
+\answer{}{\Data[16]}{type=clickfill}
+\answer{}{\Data[17]}{type=clickfill}
+\answer{}{\Data[18]}{type=clickfill}
+\answer{}{\Data[19]}{type=clickfill}
+\answer{}{\Data[20]}{type=clickfill}
+\answer{}{\Data[21]}{type=clickfill}
+\answer{}{\Data[22]}{type=clickfill}
+\answer{}{\Data[23]}{type=clickfill}
+\answer{}{\Data[24]}{type=clickfill}
+\answer{}{\Data[25]}{type=clickfill}
+\answer{}{\Data[26]}{type=clickfill}
+\answer{}{\Data[27]}{type=clickfill}
+\answer{}{\Data[28]}{type=clickfill}
+\answer{}{\Data[30]}{type=clickfill}
+\answer{}{\Data[31]}{type=clickfill}
+\answer{}{\Data[32]}{type=clickfill}
+\answer{}{\Data[33]}{type=clickfill}
+\answer{}{\Data[34]}{type=clickfill}
+\answer{}{\Data[35]}{type=clickfill}
+\answer{}{\Data[36]}{type=clickfill}
+\answer{}{\Data[37]}{type=clickfill}
+\answer{}{\Data[38]}{type=clickfill}
+\answer{}{\Data[39]}{type=clickfill}
+\answer{}{\Data[40]}{type=clickfill}

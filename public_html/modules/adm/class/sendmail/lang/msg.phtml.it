@@ -1,0 +1,48 @@
+!set wims_module_log=error: $error
+
+!if $error=nosupervisoremail
+  Non è stato indicato alcun indirizzo email. Non è quindi possibile inviare messaggi di posta elettronica.
+  !exit
+!endif
+
+!if empty_msg=$error
+  Il messaggio è vuoto!
+  !exit
+!endif
+
+!if empty_user=$error
+  Non è stato selezionato nessun iscritto. Verificate la definizione dei filtri.
+  !exit
+!endif
+
+!if empty_mailuser=$error
+  Nessuno degli iscritti ha un indirizzo email
+  !exit
+!endif
+
+!if noclass=$error
+  Questo strumento può essere utilizzato solo all'interno del corso. Non modificare gli indirizzi sulla barra di navigazione del browser!
+  !exit
+!endif
+
+!if notsupervisor=$error
+  Non sei il docente del corso. Non modificare gli indirizzi sulla barra di navigazione del browser!
+  !exit
+!endif
+
+!if nouser=$error
+  Nessuno degli iscritti a questo corso ha indicato un indirizzo di posta elettronica. Non è quindi possibile inviare alcun messaggio!
+  !exit
+!endif
+
+!if nousermail=$error
+  Nessuno degli iscritti che soddisfa i criteri di ricerca ha indicato un indirizzo di posta elettronica. Non è quindi possibile inviare alcun messaggio!
+  !exit
+!endif
+
+!if sendmailteacherclose=$error
+  Il docente di questo corso ha disattivato l'invio di messaggi o non ha definito un indirizzo di posta elettronica. Non è quindi possibile inviare alcune messaggio.
+  !exit
+!endif
+
+!msg $error

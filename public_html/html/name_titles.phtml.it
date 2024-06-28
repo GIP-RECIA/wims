@@ -1,0 +1,89 @@
+!set wims_name_title_whelp=Guida utente nelle prime versioni di WIMS
+
+!! variable for title in link (by default it is the name of the link)
+!! do not leave a space at the beginning of the line
+!! Home page of wims
+!distribute line Per accedere ai corsi predisposti dai vostri docenti\
+Per creare o gestire un corso\
+Corsi ad accesso libero per lavorare in autonomia\
+Domande frequenti\
+Documentazione sul linguaggio di programmazione WIMS\
+Navigazione guidata delle risorse pedagogiche\
+Elenco delle risorse pedagogice create o modificate di recente\
+Per aggiornare o installare un nuovo server WIMS\
+Elenco di server WIMS pubblicamente accessibili\
+Condizioni generali di utilizzo del server WIMS\
+Per impostare alcune opzioni di visualizzazione\
+Home page del server\
+Per accedere a un altro corso\
+Per informazioni sulla versione di WIMS installata, sulla gestinoe del sito...\
+Per informazioni relative al modulo $$module, l'autore, la versione, ...\
+  into wims_name_title_n_participant,wims_name_title_n_supervisor,wims_name_title_n_example,\
+  wims_name_title_faq,wims_name_title_doctec,\
+  wims_name_title_browse,wims_name_title_mod_new,\
+  wims_name_title_download,wims_name_title_mirror,wims_name_title_cgu,\
+  wims_name_title_pref,wims_name_title_home,wims_name_title_U_oclass,\
+  wims_name_title_aboutw,wims_name_title_about
+
+!!! tools
+!distribute line Strumenti per la creazione di esercizi\
+Per creare moduli di esercizi, documenti, ...\
+Strumento per la creazione di alcuni tipi di esercizi senza conoscenze di programmazione\
+Strumento per trasformare un documento latex in un documento WIMS\
+Strumento per creare esercizi che richiedono di interagire con immagini\
+Strumento per creare esercizi di chimica\
+Strumento per verificare il funzionamento dei software di calcolo o di disegno integrabili negli esercizi\
+  into wims_name_title_createxo,wims_name_title_modtool,wims_name_title_quicktool,\
+  wims_name_title_latex2wims,wims_name_title_coordclick, wims_name_title_chemtool,\
+  wims_name_title_scripttest
+
+!! note: these strings should not be too long
+
+!!! links in a class
+!distribute line per vedere i dati registrati dal server sul lavoro svolto nel corso\
+Per vedere i dettagli dei punteggi ottenuti su ogni esercizio e il calcolo del voto\
+Per lavorare sui test in modo che i punteggi ottenuti non siano tenuti in conto nel calcolo dei voti\
+Per fare in modo che il lavoro completato nei test sia tenuto in conto per il calcolo dei voti\
+Per poter rivedere il testo dell'esercizio e le risposte date\
+Strumenti di calcolo che possono essere utilizzati per risolvere l'esercizio\
+Aiuto sull'esercizio proposto dal vostro docente\
+Approfondimento sull'esercizio proposto dal vostro docente\
+  into wims_name_title_rawdata, wims_name_title_myscore, wims_name_title_scoreclose2, wims_name_title_scorereopen,\
+  wims_name_title_exolog, wims_name_title_tools, wims_name_title_feedbackexo,\
+  wims_name_title_feedbackplus
+
+!!documents
+!distribute lines Per visualizzare una versione del documento in un'unica pagina\
+Per tornare alla versione interattiva del documento\
+Per ricaricare la pagina\
+into wims_name_title_doch_printable, wims_name_title_doch_interactive, wims_name_title_doch_reload
+
+!!! links for a teacher in a class
+!distribute lines Per modificare i contenuti o le proprietà del test di autovalutazione\
+Per inserire il codice sorgente dell'esercizio in Createxo in modo da poterlo modificare\
+Per inserire l'esercizio in un test in preparazione nelle pagine del corso\
+Per inserire il documento tra i documenti del corso\
+Per impostare la presentazione di test, documenti, ... nella home page studenti del corso\
+Visione del corso come appare a uno studente\
+Esercizi creati o importati nel corso\
+Apparirà come aiuto a un esercizio nel test se il punteggio non è massimo\
+  into wims_name_title_sheetmanagement, wims_name_title_import,\
+  wims_name_title_add, wims_name_title_adddoc, wims_name_title_reorder,\
+  wims_name_title_participantview, wims_name_title_classexo,\
+  wims_name_title_addh
+!if adm/sheet isin $module
+  !set wims_name_title_import=Per aggiungere un nuovo test di autovalutazione nel corso
+!endif
+
+!!
+!distribute lines per creare più corsi importandoli da un file\
+into wims_name_title_addcsvclass
+
+!!set wims_name_title_moduback=Per andare alla pagina iniziale del modulo che contiene questo esercizio
+
+!! links for modtool
+!distribute lines file del modulo non modificabili on line (immagini, ...)\
+file del modulo modificabili on line\
+into wims_name_title_binfile,wims_name_title_otherfiles
+
+!set wims_name_title_recover=per reinserire uno studente escluso

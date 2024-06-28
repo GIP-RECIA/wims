@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=similarities
+!set gl_title=Similitude directe
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Une <strong>similitude directe</strong> est une similitude qui conserve les
+angles orientés&nbsp;:<br>
+si \(A\), \(B\), \(C\), \(D\) sont quatre points du plan tels que
+\(A\neq B\) et \(C\neq D\), et si A', B', C' et D' sont leurs images respectives
+par une similitude directe \(s\), alors
+<span style="white-space:nowrap">\((\overrightarrow{\mathrm{A}'\mathrm{B}'};
+\overrightarrow{\mathrm{C}'\mathrm{D}'})=
+(\overrightarrow{\mathrm{AB}};\overrightarrow{\mathrm{CD}})\).</span>
+</div>
+<div class="wims_thm"><h4>Théorème : écriture complexe d'une similitude directe
+</h4>
+Une transformation \(s\) est une similitude directe si et seulement si son
+écriture complexe est de la forme \(z'=a z+b\) et \(a \neq 0\)
+<br>
+(ce qui signifie qu'il existe deux nombres complexes \(a\) et \(b\) tels que
+\(a \neq 0\) et, pour tout point \(M\) d'affixe \(z\), si \(z'\) est l'affixe de
+\(s(M)\) alors <span style="white-space:nowrap">\(z'=a z+b\)).</span>
+</div>

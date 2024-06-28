@@ -1,0 +1,54 @@
+ <b>Orologio.</b> (nome: <span class="tt wims_code_words">clock</span>)<br>
+
+  Regolare l'ora su un orologio.
+ La risposta deve essere data nella forma
+ <span class="tt wims_code_variable">h:min:sec</span> dove
+ <span class="tt wims_code_variable">h</span>
+ indica le ore,
+ <span class="tt wims_code_variable">min</span> i minuti
+ e
+<span class="tt wims_code_variable">sec</span>i secondi.
+<h3>Esempio semplice</h3>
+<textarea id="wims_show1" cols="100" rows="5" name="wims_show" readonly="readonly">
+\statement{Sono le 9 e 39 minuti e 31 secondi
+\embed{r1,200x200}
+}
+\answer{}{9:39:31}{type=clock}
+</textarea>
+<h3>Opzioni</h3>
+<textarea id="wims_show2" cols="100" rows="5" name="wims_show" readonly="readonly">
+\statement{Sono le 9 e 30 minuti e 35 secondi
+\embed{r1,200x200}
+}
+\answer{}{9:30:35}{type=clock}{option=init=[5,45,5] button=[1,5,5] clocktype=0}
+</textarea>
+$table_header
+$table_tr<th></th><th colspan="2">$wims_name_Explanations</th><th>default</th></tr>
+$table_tr<td class="tt wims_code_words">clocktype</td><td>
+  Tipo di orologio
+</td><td>
+0: con tacche, 1: con le cifre, 2: con tacche
+</td><td>2</td></tr>$table_tr<td class="tt wims_code_words">color</td><td><span class="tt wims_code_variable">[H,M,S,B,F]</span>
+Personalizzazione dei colori dell'orologio
+</td><td>
+Si possono definire 5 colori: nell'ordine
+<span class="tt wims_code_variable">H</span>: lancetta delle ore,
+<span class="tt wims_code_variable">M</span>: lancetta dei minuti,
+<span class="tt wims_code_variable">S</span>: lancetta dei secondi,
+<span class="tt wims_code_variable">B</span>: sfondo,
+<span class="tt wims_code_variable">F</span>: cifre
+</td><td>[black,black,red,white,black]</td>
+</tr>$table_tr<td class="tt wims_code_words">init</td><td>
+  <span class="tt wims_code_variable">[h,m,s]</span> Impostazioni iniziali dell'orologio
+</td><td>
+  <span class="tt wims_code_variable">h</span> valore delle ore,
+  <span class="tt wims_code_variable">m</span> valore dei minuti,
+  <span class="tt wims_code_variable">s</span> valore dei secondi
+</td><td>[0,0,0]</td></tr>$table_tr<td class="tt wims_code_words">button</td><td>
+ <span class="tt wims_code_variable">[a,b,c]</span> Parametrizzazione dei comandi
+ </td><td>
+ la lancetta delle ore avanza di <span class="tt wims_code_variable">a</span> in <span class="tt wims_code_variable">a</span> ore,
+ la lancetta dei minuti avanza di <span class="tt wims_code_variable">b</span> in <span class="tt wims_code_variable">b</span> minuti,
+ la lancetta dei secondi avanza di <span class="tt wims_code_variable">c</span> in <span class="tt wims_code_variable">c</span> secondi.
+ </td><td>[1,1,1]</td></tr>
+$table_end

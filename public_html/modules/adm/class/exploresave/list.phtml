@@ -1,0 +1,399 @@
+$name_classnumber
+<br>
+$name_description
+!set wims_ref_class=wims_button_help
+!href target=wims_mhelp cmd=help $wims_name_help
+
+<div id="widget_supervisor_list">
+  !if $jquery_defined=yes
+    !read adm/tabscript supervisor_list
+  !endif
+  <ul id="wims_supervisor_summary">
+    !if $[$docpubliccnt+$doccnt]>0
+      <li><a class="wims_doc_item" href="#wims_supervisor_doc">$wims_name_Docs</a></li>
+    !endif
+    !if $sheetcnt>0
+      <li><a class="wims_sheet_item" href="#wims_supervisor_sheet">$wims_name_Sheets</a></li>
+    !endif
+    !if $examcnt>0
+      <li><a class="wims_exam_item" href="#wims_supervisor_exam">$wims_name_Examens</a></li>
+    !endif
+    !if $votecnt>0
+      <li><a class="wims_vote_item" href="#wims_supervisor_vote">$wims_name_Votes</a></li>
+    !endif
+    !if $toolcnt>0
+      <li><a class="wims_tool_item" href="#wims_supervisor_tool">$wims_name_tools</a></li>
+    !endif
+    !if $glossarycnt>0
+      <li><a class="wims_glossary_item" href="#wims_supervisor_glossary">$wims_name_Glossaries</a></li>
+    !endif
+    !if $freeworkcnt>0
+      <li><a class="wims_freework_item" href="#wims_supervisor_freework">$wims_name_Freeworks</a></li>
+    !endif
+  </ul>
+
+!! ------------- table of sheet
+  !set table_class=sortable
+  !if $sheetcnt>0
+    !set table_id=TABLE_supervisor_sheet
+    <div id="wims_supervisor_sheet">
+        $name_msgsheet
+        !if $classsheetcnt>=$max_sheets
+          <br>$name_touchlimit
+        !endif
+        !distribute item 1,no into wims_incremental,table_spacer
+        !form reply
+          <input type="hidden" name="job" value="import">
+          <input type="hidden" name="type" value="sheet">
+          $table_header
+          <thead><tr>
+            <th data-sort-method="none">
+              !if $listsheetimport!=$empty and $classsheetcnt<$max_sheets
+                !read js/mastercheckbox.phtml sheet_checkbox
+              !endif
+            </th>
+            <th>$name_number</th>
+            <th>$wims_name_title</th>
+            <th>$name_Exercices</th>
+            <th>$wims_name_comment</th>
+          </tr></thead>
+          !for i=1 to $sheetcnt
+            !set sh=!record $i of wimshome/sessions/$wims_session/upload/class/sheets/.sheets
+            !distribute lines $sh into ac,t_,ti
+            !let exocnt_=!recordcnt wimshome/sessions/$wims_session/upload/class/sheets/.sheet$i
+            $table_tr
+              <td>
+                !if $(listsheeterror[$i])=0 and $classsheetcnt<$max_sheets
+                  <input type="checkbox" class="sheet_checkbox" name="num" value="$i">
+                !endif
+              </td>
+              <td><span class="wims_sheet_item">$i</span></td>
+              <td>$ti</td>
+              <td>$exocnt_</td>
+              <td>
+                !if $(listsheeterror[$i])!=0
+                  !line $(listsheeterror[$i]) of $name_sheeterrormsg
+                !else
+                  !if $classsheetcnt<$max_sheets and $i isitemof $listsheetimport
+                    !set wims_ref_class=wims_button
+                    !href cmd=reply&+module=$module&+job=import&+type=sheet&+num=$i $wims_name_import
+                    !if $dropbuttonlink!=$empty
+                      !let t=!replace internal IIII by $i in $dropbuttonlink
+                      !read js/dropdownbutton.phtml dropbutton$i\
+                            $name_replace\
+                            $t
+                     !endif
+                  !else
+                    !if $classsheetcnt<$max_sheets
+                      $name_alreadyinclass
+                    !else
+                       $name_limittouch
+                    !endif
+                  !endif
+                !endif
+              </td>
+            </tr>
+          !next i
+          !reset exocnt_
+        $table_end
+        <div class="wimscenter">
+          <input type="submit" value="$name_importselected">
+        </div>
+        !formend
+        !read tablesort.phtml
+    </div>
+  !endif
+
+  !if $examcnt>0
+    !set table_id=TABLE_supervisor_sheet
+    <div id="wims_supervisor_exam">
+        $name_msgexam
+    </div>
+  !endif
+
+
+!! ------------ set table for document
+  !if $[$docpubliccnt+$doccnt]>0
+    !set table_id=TABLE_supervisor_doc
+    <div id="wims_supervisor_doc">
+        $name_msgdoc
+        !if $classdoccnt>=$max_doc or $classdocpubliccnt>=$max_linkdoc
+          <br>$name_touchlimitdoc
+        !endif
+        !distribute item 1,no into wims_incremental,table_spacer
+        !form reply
+          <input type="hidden" name="job" value="import">
+          <input type="hidden" name="type" value="doc">
+          $table_header
+          <thead>
+            <tr>
+              <th data-sort-method="none">
+                !if $listsheetimport!=$empty and ($classdoccnt<$max_doc or $classdocpubliccnt<$max_linkdoc)
+                  !read js/mastercheckbox.phtml doc_checkbox
+                !endif
+              </th>
+              <th>$name_number</th><th>$wims_name_title</th><th>$name_type</th><th>$wims_name_comment</th>
+            </tr>
+          </thead>
+          !! ------ private doc
+          !for i=1 to $doccnt
+            !set d=!record $i of wimshome/sessions/$wims_session/upload/class/doc/.index
+            !distribute lines $d into rep,ti
+            !let number=!char 2 to -1 of $rep
+            $table_tr
+              <td>
+                !if $number isitemof $listdocimport and $classdoccnt<$max_doc
+                  <input type="checkbox" class="doc_checkbox" name="num" value="$i">
+                !endif
+              </td>
+              <td><span class="wims_doc_item">$rep</span></td>
+              <td>$ti</td>
+              <td>$name_prive</td>
+              <td>
+                !if $number isitemof $listdocimport and $classdoccnt<$max_doc
+                  !set wims_ref_class=wims_button
+                  !href cmd=reply&+module=$module&+job=import&+type=doc&+num=$i $wims_name_import
+                !else
+                  !if $classdoccnt<$max_doc
+                    $name_alreadyinclass
+                  !else
+                    $name_limittouch
+                  !endif
+                !endif
+              </td>
+            </tr>
+          !next i
+          !! ------ link to public doc
+          !for i=1 to $docpubliccnt
+            !set d=!record $i of wimshome/sessions/$wims_session/upload/class/doc/.docindex
+            !distribute lines $d into rep,cmd,ti
+            $table_tr
+              <td>
+                !if P$i isitemof $listdocimport and $classdocpubliccnt<$max_linkdoc
+                  <input type="checkbox" name="num" value="P$i">
+                !endif
+              </td>
+              <td><span class="wims_doc_item">$i</span></td>
+              <td>$ti</td>
+              <td>$name_public</td>
+              <td>
+                !if $i isitemof $listdocpublicnomodule
+                  $name_docpublicnomodule
+                !else
+                  !if P$i isitemof $listdocimport and $classdocpubliccnt<$max_linkdoc
+                    !set wims_ref_class=wims_button
+                    !href cmd=reply&+module=$module&+job=import&+type=doc&+num=P$i $wims_name_import
+                    !if $i isitemof $listshdoc
+                      $name_doclinksheet
+                    !endif
+                  !else
+                    !if $classdocpubliccnt<$max_linkdoc
+                      $name_alreadyinclass
+                    !else
+                      $name_limittouch
+                    !endif
+                  !endif
+                !endif
+              </td>
+            </tr>
+          !next i
+        $table_end
+        <div class="wimscenter">
+          <input type="submit" value="$name_importselected">
+        </div>
+        !formend
+        !read tablesort.phtml
+    </div>
+  !endif
+
+  !if $votecnt>0
+    !set table_id=TABLE_supervisor_vote
+    <div id="wims_supervisor_vote">
+        $name_msgvote
+    </div>
+  !endif
+  
+  !! ------------ set table for tool
+  !if $toolcnt>0
+    !set table_id=TABLE_supervisor_tool
+    <div id="wims_supervisor_tool">
+        $name_msgtool
+        !if $classtoolcnt>=$max_tool
+          <br>$name_touchlimit
+        !endif
+        !distribute item 1,no into wims_incremental,table_spacer
+        !form reply
+          <input type="hidden" name="job" value="import">
+          <input type="hidden" name="type" value="tool">
+          $table_header
+          <thead>
+            <tr>
+              <th data-sort-method="none">
+                !if $listtoolimport!=$empty and $classtoolcnt<$max_tool
+                  !read js/mastercheckbox.phtml tool_checkbox
+                !endif
+              </th>
+              <th>$wims_name_Address</th><th>$wims_name_title</th><th>$wims_name_comment</th>
+            </tr>
+          </thead>
+          !! ------ tool
+          !for i=1 to $toolcnt
+            !set d=!record $i of wimshome/sessions/$wims_session/upload/class/tool/.toolindex
+            !distribute lines $d into rep,bl,ti
+            $table_tr
+              <td>
+                !if $i isitemof $listtoolimport and $classtoolcnt<$max_tool
+                  <input type="checkbox" class="tool_checkbox" name="num" value="$i">
+                !endif
+              </td>
+              <td><span class="wims_tool_item">$rep</span></td>
+              <td>$ti</td>
+              <td>
+                !if $i isitemof $listtoolimport and $classtoolcnt<$max_tool
+                  !set wims_ref_class=wims_button
+                  !href cmd=reply&+module=$module&+job=import&+type=tool&+num=$i $wims_name_import
+                !else
+                  !if $classtoolcnt<$max_tool
+                    $name_alreadyinclass
+                  !else
+                    $name_limittouch
+                  !endif
+                !endif
+              </td>
+            </tr>
+          !next i
+        $table_end
+        <div class="wimscenter">
+          <input type="submit" value="$name_importselected">
+        </div>
+        !formend
+        !read tablesort.phtml
+    </div>
+  !endif
+
+  !if $glossarycnt>0
+    !set table_id=TABLE_supervisor_glossary
+    <div id="wims_supervisor_glossary">
+        $name_msgglossary
+        !if $classglossarycnt>=$max_glossary
+          <br>$name_touchlimit
+        !endif
+        !distribute item 1,no into wims_incremental,table_spacer
+        !form reply
+          <input type="hidden" name="job" value="import">
+          <input type="hidden" name="type" value="glossary">
+          $table_header
+          <thead>
+            <tr>
+              <th data-sort-method="none">
+                !if $listglossaryimport!=$empty and $classglossarycnt<$max_glossary
+                  !read js/mastercheckbox.phtml glossary_checkbox
+                !endif
+              </th>
+              <th>$name_number</th><th>$wims_name_title</th><th>$wims_name_Description</th><th>$wims_name_comment</th>
+            </tr>
+          </thead>
+          !! ------ private doc
+          !for i=1 to $glossarycnt
+            !set d=!record $i of wimshome/sessions/$wims_session/upload/class/tool/.glossaryindex
+            !distribute lines $d into num,ti,desc
+            $table_tr
+              <td>
+                !if $i isitemof $listglossaryimport and $classglossarycnt<$max_glossary
+                  <input type="checkbox" class="glossary_checkbox" name="num" value="$i">
+                !endif
+              </td>
+              <td><span class="wims_glossary_item">$i</span></td>
+              <td>$ti</td>
+              <td>$desc</td>
+              <td>
+                !if $i isitemof $listglossaryimport and $classglossarycnt<$max_glossary
+                  !set wims_ref_class=wims_button
+                  !href cmd=reply&+module=$module&+job=import&+type=glossary&+num=$i $wims_name_import
+                !else
+                  !if $classglossarycnt<$max_glossary
+                    $name_alreadyinclass
+                  !else
+                    $name_limittouch
+                  !endif
+                !endif
+              </td>
+            </tr>
+          !next i
+        $table_end
+        <div class="wimscenter">
+          <input type="submit" value="$name_importselected">
+        </div>
+        !formend
+        !read tablesort.phtml
+    </div>
+  !endif
+
+
+  !if $freeworkcnt>0
+    !set table_id=TABLE_supervisor_sheet
+    <div id="wims_supervisor_freework">
+        !set table_id=TABLE_supervisor_freework
+        <div id="wims_supervisor_sheet">
+          $name_msgfreework
+          !if $classfreeworkcnt>=$max_freeworks
+            <br>$name_touchlimit
+          !endif
+          !distribute item 1,no into wims_incremental,table_spacer
+          !form reply
+            <input type="hidden" name="job" value="import">
+            <input type="hidden" name="type" value="freework">
+            $table_header
+            <thead><tr>
+              <th data-sort-method="none">
+                !if $listfreeworkimport!=$empty and $classfreeworkcnt<$max_freeworks
+                  !read js/mastercheckbox.phtml freework_checkbox
+                !endif
+              </th>
+              <th>$name_number</th>
+              <th>$wims_name_title</th>
+              <th>$wims_name_comment</th>
+            </tr></thead>
+            !for i=1 to $freeworkcnt
+              !set sh=!record $i of wimshome/sessions/$wims_session/upload/class/freeworks/.freeworks
+              !distribute lines $sh into ac,t_,ti
+              $table_tr
+                <td>
+                  !if $i isitemof $listfreeworkimport and $classfreeworkcnt<$max_freeworks
+                    <input type="checkbox" class="freework_checkbox" name="num" value="$i">
+                  !endif
+                </td>
+                <td><span class="wims_freework_item">$i</span></td>
+                <td>$ti</td>
+                <td>
+                  !if $classfreeworkcnt<$max_freeworks and $i isitemof $listfreeworkimport
+                    !set wims_ref_class=wims_button
+                    !href cmd=reply&+module=$module&+job=import&+type=freework&+num=$i $wims_name_import
+                    !if $fwdropbuttonlink!=$empty
+                      !let t=!replace internal IIII by $i in $fwdropbuttonlink
+                      !read js/dropdownbutton.phtml fwdropbutton$i\
+                            $name_replace\
+                            $t
+                    !endif
+                  !else
+                    !if $classfreeworkcnt<$max_freeworks
+                      $name_alreadyinclass
+                    !else
+                      $name_limittouch
+                    !endif
+                  !endif
+                </td>
+              </tr>
+            !next i
+          $table_end
+          <div class="wimscenter">
+            <input type="submit" value="$name_importselected">
+          </div>
+        !formend
+        !read tablesort.phtml
+    </div>
+  !endif
+
+</div>
+
+

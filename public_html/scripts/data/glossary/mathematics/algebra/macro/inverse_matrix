@@ -1,0 +1,9 @@
+!set gl_n=!randitem 2,2,2,3,3,4
+!set gl_m=$gl_n
+!readproc slib/matrix/invertible $gl_n
+!set gl_A=$slib_out
+!set gl_id=!exec pari matid($gl_n)
+!set gl_B=!exec pari A=[$gl_A]; A^(-1)
+
+!readproc slib/matrix/random $gl_m,$[$gl_m-1]
+!set gl_C=!exec pari C=[$slib_out]; C=C*mattranspose(C); C

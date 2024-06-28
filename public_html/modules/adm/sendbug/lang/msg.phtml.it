@@ -1,0 +1,13 @@
+!goto $err_
+
+:notallowed
+Non sei abilitato a utilizzare questo modulo. Non modificare gli indirizzi!
+!exit
+
+:confirm
+La tua segnalazione è stata spedita all'autore dell'esercizio. Ne riceverai una copia.
+!exit
+
+:no_comment
+Non hai incluso alcuna descrizione dell'errore riscontrato. Per favore danne una breve descrizione.
+!exit

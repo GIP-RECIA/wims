@@ -1,0 +1,9 @@
+Permet d'insérer une glose du glossaire public.
+<ul>
+ <li>Argument 1: l'adresse d'une glose</li>
+ </ul>
+<p>Par exemple,</p>
+<pre>
+\\glossary{mathematics/algebra/fr/matrix_prodscal}
+\\glossary{mathematics/algebra/fr/matrix_prodscal_1}
+</pre>

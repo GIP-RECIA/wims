@@ -1,0 +1,60 @@
+
+!!# Input variables: authdef=def file  / superclass
+!!# Parameters: NOTHING
+!!# Output : auth_test,auth_error
+
+!!# See https://apereo.github.io/cas/4.2.x/protocol/CAS-Protocol-Specification.html
+!! to know more about CAS protocol
+
+auth_test=ERROR
+
+cas_auth = !defof class_cas_auth in $authdef
+!default cas_auth=!defof cas_auth in wimshome/log/wims.conf
+
+ticket = !replace internal & by $\
+$ in $module_init_parm
+module_init_parm=!replace &ticket=.* by in $module_init_parm
+type= !getopt type in $ticket
+ticket = !getopt ticket in $ticket
+!if $ticket != $empty
+  url = $wims_ref_name?module=adm/class/classes&$module_init_parm
+  !read adm/codeurl $url
+  tmpdir=$wims_home/tmp/sessions/$wims_session
+  !sh mkdir -p $tmpdir
+
+  !! First, we test if the server handles service ticket validation [CAS 2.0]
+  response=!sh export wims_exec_parm="$cas_auth/serviceValidate?ticket=$ticket&service=$script_out" ;\
+    bin/webget > $tmpdir/getcas ; gunzip -c -f $tmpdir/getcas
+
+  !if cas:serviceResponse isin $response
+    !if authenticationFailure notin $response
+      !! Parse the serviceValidate answer (xml)
+      !set auth_user=!detag $response
+      !set auth_user=!nonempty lines $auth_user
+      !set auth_user=!line 1 of  $auth_user
+      !set auth_user=!nospace $auth_user
+      !set auth_user=!lowercase $auth_user
+      !set auth_test=OK
+    !endif
+  !else
+    !! it was probably not a CAS 2.0 server. We test for [CAS 1.0]
+    response=!sh export wims_exec_parm="$cas_auth/validate?ticket=$ticket&service=$script_out" ;\
+      bin/webget > $tmpdir/getcas ; gunzip -c -f $tmpdir/getcas
+    test2 = !line 1 of $response
+    !if $test2=yes
+      auth_user=!line 2 of $response
+      auth_user=!lowercase $auth_user
+      auth_test=OK
+    !endif
+  !endif
+
+  !if $auth_test!=OK
+    error=bad_cas_connexion
+    !exit
+  !endif
+
+!endif
+
+auth_user_orig=$auth_user
+auth_error=$wims_exec_error
+wims_exec_error=

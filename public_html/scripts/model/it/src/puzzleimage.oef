@@ -1,0 +1,66 @@
+type=order
+textarea="instruction data"
+iEdit="instruction"
+
+:Ricostruire una immagine (tipo puzzle).
+
+Una immagine viene tagliata a pezzi e i pezzi vengono rimescolati.
+È necessario ricostruire l'immagine.
+Possiamo scambiare due pezzi alla volta: per farlo
+cliccare sul primo pezzo e quindi sul secondo.
+
+<p class="wims_credits">
+Autore del modello: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENZIONE      %%%%%%%%%%%%%%%%%%%%
+
+Se si rimuovono le indicazioni del modulo modelli (le righe che
+cominciano con ':') è necessario rimuovere tutta questa parte
+introduttiva del file. Altrimenti Createxo potrebbe non accettare il
+codice dell'esercizio.
+
+:%%%%%%%% Parametri che possono essere ridefiniti %%%%%%%%%%%%%%%%%
+:\title{Puzzle di una immagine}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Consegna
+\text{instruction=Ricostruire l'immagine.
+Per scambiare due caselle, cliccare sulla prima e quindi sulla seconda.}
+
+:Dati principali.
+Ogni riga corrisponde a una immagine, con 4 parametri separati da una virgola:<ol>
+  <li>Il primo elemento è il nome dell'immagine (
+  che deve essere inserita nella cartella immagini dell'esercizio, una volta che l'esercizio è salvato).</li>
+  <li>Il secondo elemento è la dimensione dell'immagine.</li>
+  <li>Il terzo elemento indica i tagli.</li>
+  <li>Il quarto elemento è facoltativo e può essere una indicazione o il nome dell'immagine</li></ol>
+  Esempio: <code>photos/bird.gif,320x240,4 x 3,si tratta di un uccello</code> significa:<ol>
+  <li>Il nome del file è "photos/bird.gif"</li>
+  <li>La dimensione di questa immagine è 320 di larghezza e 240 di altezza.</li>
+  <li>Questa immagine deve essere tagliata in 4 colonne e 3 righe.</li>
+  <li>L'indiciazione "si tratta di un uccello" sarà mostrata allo studente</li></ol>
+\text{data=photos/bird.gif,320x240,4 x 3,si tratta di un uccello
+photos/bloom.gif,320x240,3 x 4
+}
+:%%%%%%%%%%%%%% Nulla da modificare fino all'enunciato %%%%%%%%%%%%%%%%
+
+\text{data=randrow(\data)}
+
+\text{v=wims(replace internal x by , in \data[3])}
+\integer{taille=80*\v[1]}
+
+:%%%%%%%%%%%%% Enunciato %%%%%%%%%%%%%%%%%
+
+\statement{
+  <div class="instruction">\instruction</div>
+  \if{\data[4] !=}{
+    <p style="font-weight:bold;">\data[4]</p>
+  }
+  <div class="wimscenter">\embed{r 1, \data[2]}</div>
+}
+
+:%%%%%%%%%%%%% Analisi delle risposte %%%%%%%%%%%%%%%%%
+
+\answer{1}{\data[1];\data[3] x 80}{type=puzzle}{option=nonstop}

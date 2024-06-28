@@ -1,0 +1,28 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=Bernadette, Perrin-Riou
+slib_title=Check Mol
+slib_example=datamodule/chemistry/mol2D.fr/data/60_18_4.mol
+slib_parms=1\
+ ,adresse interne à wims d'un fichier mol de molécules, ou le texte de ce fichier
+
+slib_out= quelques données relatives à la molécule, résultat de checkmol \
+  (voir la signification dans l'aide du type de réponse chemdraw)
+!exit
+
+:proc
+!set slib_mol=!replace internal $	$ by $\
+$ in $wims_read_parm
+slib_test=!linecnt $slib_mol
+!if $slib_test=1
+  slib_mol=!record 0 of $slib_mol
+!endif
+!set slib_mol=!replace internal &#33; by ! in $slib_mol
+!set slib_file=$wims_nowseconds.mol
+!readproc oef/togetfile.proc $slib_file new\
+$slib_mol
+!set slib_file=$wims_home/$wims_sesdir/getfile/$slib_file
+
+slib_out=!exec checkmol -X $slib_file

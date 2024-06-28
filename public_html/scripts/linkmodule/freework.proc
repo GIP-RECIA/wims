@@ -1,0 +1,19 @@
+!!
+!! test if freework administrative module is allowed or not
+!!
+!!
+!let wims_allowlink_freework=no
+!if $wims_class=$empty
+ !exit
+!endif
+
+!! freework allow only in :
+!! individual class  		: $wims_supertype=0
+!! class in a groupement	: $wims_supertype=2 and $wims_typename=class
+!! program/course  in a portail		: $wims_supertype=4 and ($wims_typename=program or $wims_typename=course)
+!if $wims_supertype=0 or ($wims_supertype=2 and $wims_typename=class) or ($wims_supertype=4 and ($wims_typename=program or $wims_typename=course))
+  !let wims_allowlink_freework=yes
+  !exit
+!endif
+
+

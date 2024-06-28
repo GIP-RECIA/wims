@@ -1,0 +1,118 @@
+<div id="intromenu_expert">
+  <fieldset class="oef_expert property_fields blockcenter">
+    <legend>$name_score_setup</legend>
+    !default intro_check=1,2
+    !reset name_prompt_expower2 name_prompt_sepower2
+    !set powercnt=!itemcnt $list_expow
+    !for j=1 to $powercnt
+      !set name_prompt_expower2=!append item $(name_prompt_expower[$j]) ($(list_expow[$j])) to $name_prompt_expower2
+      !set name_prompt_sepower2=!append item $(name_prompt_sepower[$j]) ($(list_sepow[$j])) to $name_prompt_sepower2
+    !next
+    !default intro_sepow=$(list_sepow[1])
+    !default intro_expow=$(list_expow[1])
+    !default intro_precw=$(list_precw[1])
+    <input type="hidden" name="intro_expert" value="yes">
+    <div class="field">
+      <strong>$name_expower</strong>
+      <div>
+        !set wims_ref_class=wims_formradio
+        !formradio intro_expow list $list_expow prompt $name_prompt_expower2
+        <div class="formHelp">$name_warning_expower</div>
+      </div>
+    </div>
+    <div class="field">
+      <strong>$name_sepower</strong>
+      <div>
+        !set wims_ref_class=wims_formradio
+        !formradio intro_sepow list $list_sepow prompt $name_prompt_sepower2
+        <div class="formHelp">
+          $name_warning_sepower $name_warning_pow
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <strong>$name_precweight</strong>
+      !set wims_ref_class=wims_formradio
+      !formradio intro_precw list $list_precw
+      <div class="formHelp">$name_help_precweight</div>
+    </div>
+  </fieldset>
+  <fieldset class="oef_expert property_fields blockcenter">
+    <legend>$name_help_setup</legend>
+    <div class="field">
+      !! about good_answer
+      !set wims_ref_id=introgivegood
+      !default intro_good=$(default_choice[6])
+      <strong>$(name_choice_check[3])</strong>
+      !!never, at the version number n
+      <div>
+        !formradio intro_good list 0 prompt $(name_choice[1])
+        !formradio intro_good list -1 prompt $(name_choice[3])
+        $(name_tries[1])
+        !formradio intro_good from 1 to $limit_version
+        $(name_tries[2])
+      </div>
+      <div class="formHelp">
+        $name_help_givegood
+      </div>
+    </div>
+    !! about present solution name change for retrocomtability
+    <div class="field">
+      <strong>$name_solutiongiven</strong>
+      !default intro_sol=$(default_choice[3])
+      !set wims_ref_id=sol
+      <div>
+        !!decalage is due to retrocomptability (2 was always)
+        !formradio intro_sol list 0 prompt $(name_choice[1])
+        !formradio intro_sol list -1 prompt $(name_choice[3])
+        $(name_tries[1])
+        !formradio intro_sol from 1 to $limit_version
+        $(name_tries[2])
+      </div>
+    </div>
+    !! about present feedback
+    <div class="field">
+      <strong>$name_feedgiven</strong>
+      !default intro_feed=$(default_choice[5])
+      !set wims_ref_id=feed1
+      <div>
+        !formradio intro_feed list 0 prompt $(name_choice[1])
+        !formradio intro_feed list -1 prompt $(name_choice[2])
+        !formradio intro_feed list -2 prompt $(name_choice[3])
+        $(name_tries[1])
+        !formradio intro_feed from 1 to $limit_version
+        $(name_tries[2])
+      </div>
+      <div class="formHelp">
+        $name_help_givefeed
+      </div>
+    </div>
+    !! about hint
+    <div class="field">
+      !!about
+      !default intro_hint=$(default_choice[7])
+      <strong>$(name_choice_check[4])</strong>
+      !set wims_ref_id=introhint
+      !!jamais, toujours, apres le nombre de versions
+      <div>
+        !formradio intro_hint list 0 prompt $(name_choice[1])
+        !formradio intro_hint list -1 prompt $(name_choice[2])
+        !formradio intro_hint list -2 prompt $(name_choice[3])
+        $(name_tries[1])
+        !formradio intro_hint from 1 to $limit_version
+        $(name_tries[2])
+      </div>
+    </div>
+    <div class="field">
+      !default intro_calc=0
+      !!calculette
+      <strong>$(name_choice_check[5])</strong>
+      <div>
+        !formradio intro_calc from 0 to 2 prompt $name_calc
+      </div>
+    </div>
+  </fieldset>
+  !if $oefintro_custom_choices_setup=$empty
+    !read oef/intromenu_choices.phtml
+  !endif
+</div>

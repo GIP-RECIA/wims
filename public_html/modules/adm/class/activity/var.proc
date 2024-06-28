@@ -1,0 +1,63 @@
+limitpart=10
+!default maxday=365
+!read adm/class/classlang names.phtml
+
+wims_prefix=class user tmp n sharing sharable wtime
+!read tabletheme
+!if $wims_user!=supervisor
+  user=$wims_user
+!endif
+
+!if $wims_user=supervisor
+  !read adm/vfilter/listvarfilter.proc
+  !read adm/vfilter/varfilter proc
+  !if $varfilterclear!=$empty
+    !reset varfilterclear,status
+  !endif
+  !bound job within activity,useractivity,workingtime,cfwtime default activity
+!else
+  !bound job within useractivity,workingtime default useractivity
+!endif
+
+!if $job=workingtime 
+  !! job not allowed in an open class
+  !if $wims_superclass=$empty
+    sclass=$wims_class
+  !else
+    sclass=$wims_superclass
+  !endif
+  !if $wims_class!=$empty and $sclass<10000
+    error=closedmodexcls
+    notallowed=1
+    !exit
+  !endif
+!endif
+
+!if $job=workingtime or $job=cfwtime
+  !! for list of months in variable months
+  !read adm/date.phtml
+  !read wimshome/log/classes/$wims_class/.def
+  !bound wtime_subval between 1 and 30 default 15
+  !bound wtime_open within 1,0 default 0
+  !bound wtime_nbsub between 3 and 10 default 4
+  ltcolor=#FFFFFF,#4682B4,#B0C4DE,#B0E0E6,#ADD8E6,#87CEEB,#87CEFA,#00BFFF,#6495ED,#1E90FF,#0000FF
+  wtime_ltcolor=!item 1 to $[$wtime_nbsub+1] of $wtime_ltcolor
+  !default wtime_ltcolor=#FFFFFF
+  nb=!itemcnt $wtime_ltcolor
+  !ifval $nb<$wtime_nbsub+1
+    tmp=!item $[-($wtime_nbsub+1-$nb)] to -1 of $ltcolor
+    wtime_ltcolor=!append item $tmp to $wtime_ltcolor
+  !endif
+  !if $wtime_open=0
+    !if $wims_user=supervisor
+      job=cfwtime
+    !else
+      error=notopen
+      notallowed=1
+      !exit
+    !endif
+  !endif
+!endif
+
+!read $job.proc
+

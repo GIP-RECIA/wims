@@ -1,0 +1,63 @@
+
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">Schema attività individuali</h2>
+  </div>
+Viene visualizzata una tabella con i seguenti dati:
+<ul><li>
+la data dell'ultimo esercizio svolto,
+</li><li>
+il numero delle sessioni di lavoro,
+</li><li>
+il numero di esercizi conclusi e il numero degli esercizi non conclusi (complessivo per tutti i test),
+</li><li>
+per ciascun test di autovalutazione selezionato il numero (contando le ripetizioni) degli
+esercizi conclusi (cioè per cui è stato attribuito un voto) e il tempo impiegato.
+</li></ul>
+<p>
+Vengono presi in considerazione <span class="bold">tutti gli esercizi</span>, sia che lo studente 
+abbia disattivato o meno la registraizone dei punteggi, contrariamente a
+quando viene fatto nel calcolo dei voti.
+</p><p>
+I grafici rappresentano il <span class="wims_emph">periodo di
+lavoro</span>, un grafico complessivo per tutti i test selezionati e
+grafici dettagliati per ciascun test, o, se è stato selezionato un
+solo test, per questo test e per ciascuno degli esercizi che contiene.
+Nel caso in cui in un periodi di più di 14 giorni non si siano registrate
+attività, viene mostrata un'unica banda grigia che
+raggruppa le settimana senza attività.
+</p>
+Per ciasuna data,
+<ul><li>
+una barra verticale indica il numero di esercizi terminati (cioè con voto);
+</li><li>
+le crocette verdi indicano gli esercizi svolti con successo: per
+esempio, una croce a livello 10 della barra verticale significa che la
+decima volta che si è svolto l'esercizio lo si è completato con
+successo (voto > 9);
+</li><li>
+la linea arancione rappresenta il numero di esercizi non conclusi.
+</li></ul>
+</div>
+
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">Periodi di attività</h2>
+  </div>
+  Si tratta del tempo totale in cui lo studente ha svolto attività di qualsiasi tipo nel corso quali: consultare i propri voti, leggere gli appunti,\
+  svolgere esercizi, lavorare su un documento, etc... contrariamente a quello che viene presentato nello schema attività individuali, in cui \
+  si tiene conto esclusivamente dello svolgimento degli esercizi di test di autovaluazione o di esami.
+  <ul>
+  <li>I dati vengono aggiornati periodicamente, in fase di aggiornamento del server, di solito di notte;</li>
+  <li>L'intervallo che viene preso in considerazione è l'anno scolastico, cioè a partire dalla data di creazione del corso (e/o al massimo a partire da un anno dalla data corrente) e termina un giorno prima della data corrente;</li>
+  !if $class_type=1 or $class_type=3
+  <li>In un coordinamento di corsi o in un portale di sede, le statistiche mostrate tengono conto dell'attività complessiva nella struttura (complessivamente in tutti i corsi);</li>
+  !endif
+  !if $wims_user=supervisor
+    <li>L'unità di tempo presa in considerazione e indicata da un quadretto colorato è modificabile nella pagina di configurazione del corso.</li>
+    !if $wims_show_stat!=yes
+      <li>Le statisstiche di accesso non sono attive su questo server.</li>
+    !endif
+  !endif
+</ul>
+</div>  

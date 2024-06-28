@@ -1,0 +1,79 @@
+
+!set embraced_randitem=<p>\
+<b>Questo campo accetta liste di parametri (tra parentesi graffe) tra cui \
+scegliere casualmente</b>\
+Se si mettono più parole (o frasi) separate da virgole tra parentesi graffe, \
+il sistema sceglierà casualmente una parola (o frase) da inserire nel testo \
+per gli studenti, permettendo così di avere variazioni sul testo.</p><p>\
+Ad esempio, se si inserisce il codice\
+<span class="tt">I will go to {Paris, New York, London} \
+{tomorrow, the next week}</span></p>,\
+<p>il risultato sarà una scelta casuale tra le seguenti frasi:</p>\
+<pre>\
+I will go to Paris tomorrow\
+I will go to New York tomorrow\
+I will go to London tomorrow\
+I will go to Paris the next week\
+I will go to New York the next week\
+I will go to London the next week\
+</pre>\
+In questo modo vengono presentati agli studenti sei testi differenti.\
+<br>\
+Se desiderate utilizzare formule matematiche, si consiglia\
+di disattivare questa possibilità impostando <span class="wims_code_words">\
+Scelte casuali di elementi inseriti tra parentesi graffe</span>\
+su <span class="tt">$wims_name_no</span>.
+
+!set name_random= Esempi di parametri generati in modo casuale:<ul>\
+ <li>un numero intero tra 10 e 100 (inclusi):\
+	 <span class="tt wims_code_words">randint(10..100)</span>\
+  </li><li>un intero multiplo di 10 tra 10 e 1000 (inclusi):\
+	<span class="tt wims_code_words">randint(1..100)*10</span>\
+  </li><li>un numero decimale tra 0 e 2:\
+	<span class="tt wims_code_words">random(0..2)</span>\
+  </li><li>un elemento casuale di una lista:\
+	<span class="tt wims_code_words">randitem(a,b,c,10,100,parola,una frase)</span>\
+  </li></ul>
+
+!set name_detail_parm=Per maggiori informazioni sui parametri random.
+
+!set image_help=<h4>Inserimento di immagini, di audio o di file in genere</h4>\
+È possibile inserire immagini, audio o in genere file da scaricare nell'esercizio \
+ nella maggior parte dei campi degli esempi già pronti (compresa la consegna). \
+È possibile cominciare a creare l'esercizio anche se i file relativi non sono ancora stati caricati sul server. \
+Una volta che l'esercizio è stato inserito nelle pagine del corso, seguire il link \
+<span class="tt">Carica un file</span> presente nel menu dell'esercizio oppure <span class="tt">$wims_name_downloadbinary</span>\
+e caricare tutti i file necessari. <br>\
+Se questi file devono apparire nella consenga dell'esercizio o in un feedback,\
+copiare il codice html che viene mostrato,\
+cliccare su <span class="tt">Indietro</span>, e quindi su <span class="tt">Modifica l'esercizio</span>\
+per incollare il codice html nella posizione desiderata (se il campo in cui si desidera inserire questo \
+codice html ha attivo un editor di testo, disattivare l'editor prima di incollare questo codice).<br>\
+Per esempio, per una immagine, il codice da inserire è della forma \
+<pre>&lt;img src="\imagedir/nome_file" alt="descrizione"></pre> \
+dove <ul><li><span class="tt">nome_file</span> è il nome del file dell'immagine (inclusa l'estensione <span class="tt">.jpg</span>, \
+<span class="tt">.png</span>, ...), \
+</li><li> <span class="tt wims_code_variable">\imagedir</span> rappresenta \
+il nome (della variabile) \
+ della directory in cui si trova l'immagine.\
+</li><li><span class="tt">descrizione</span> deve essere una breve descrizione dell'immagine dedicata ai sistemi per esempio per ipovedenti.\
+</li></ul> \
+Per le immagini, è raccomandato di non scegliere file troppo grandi \
+che possono rallentare l'esecuzione dell'esercizio (e possono saturare lo spazio disco riservato al ciascun corso). \
+
+!set math_help= <h4>Inserimento di formule matematiche</h4>\
+Per inserire formule matematiche nel testo, inserire il codice TeX/LaTeX tra i caratteri \
+<span class="tt wims_code_variable">\(</span>\
+e\
+<span class="tt wims_code_variable">\)</span>.\
+Per esempio,\
+<pre>\( x^2+\frac{3}{2} \)</pre>
+
+!set oef_help= <div class="wims_smallremark"><h4>Funzioni avanzate</h4>\
+è possibile utilizzare parametri random e la maggior parte delle \
+funzioni degli esercizi OEF.\
+</div>
+
+!set credits_help=<h4>Riferimenti</h4>\
+È possibile utilizzare il campo <span class="tt">$wims_name_credits</span> per inserire\
+brevi riferimenti ad esempio agli autori delle immagini utilizzate negli esercizi.

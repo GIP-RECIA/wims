@@ -1,0 +1,71 @@
+!! translate human readable condition to formal condition
+!! wims_read_parm is lines 
+!! line 1 : word formal translate human to formal / word human translate formal to human
+!! line 2 and next : condition
+
+!if $tv_varfilterreaden!=yes
+  !readproc adm/vfilter/listvarfilter.proc
+!endif
+!if $tv_Sclass=$empty
+  !exit
+!endif
+!let t_=!line 1 of $wims_read_parm
+!let data_=!line 2 to -1 of $wims_read_parm
+!bound t_ within human,formal default $empty
+
+!reset output_error
+!if $t_!=$empty
+  !goto $t_
+!else
+  !exit
+!endif
+
+:formal
+cnt_=!linecnt $data_
+!for u_=1 to $cnt_
+  l_=!line $u_ of $data_
+  l_=!words2items $l_
+  icnt_=!itemcnt $l_
+  o_=$empty
+  !for j_=1 to $icnt_
+    s_=!replace internal = by , in $(l_[$j_])
+    num_=!positionof item $(s_[1]) in $tv_listname
+    !if $num_=$empty
+      !if $(s_[1])!=$empty
+        !let output_error=!append item $(s_[1]) to $output_error
+      !else
+        !let output_error=!append item _ to $output_error
+      !endif
+    !endif
+    code_=!item $num_ of $tv_listcode
+    o_=!append item $code_=$(s_[2]) to $o_
+  !next j_
+  !if $u_=1
+    output_convertformat=$o_
+  !else
+    output_convertformat=$output_convertformat;$o_
+  !endif
+!next u_
+!let output_error=!listuniq $output_error
+!exit
+
+
+:human
+output_convertformat=$empty
+cnt_=!rowcnt $data_
+!for u_=1 to $cnt_
+  icnt_=!itemcnt $(data_[$u_;])
+  o_=$empty
+  !for j_=1 to $icnt_
+    s_=!replace internal = by , in $(data_[$u_;$j_])
+    num_=!positionof item $(s_[1]) in $tv_listcode
+    !if $num_=$empty
+      !let output_error=badtechvarname
+    !endif
+    code_=!item $num_ of $tv_listname
+    o_=!append word $code_=$(s_[2]) to $o_
+  !next j_
+  output_convertformat=!append line $o_ to $output_convertformat
+!next u_
+!exit
+

@@ -1,0 +1,48 @@
+!set titb=Tableau des méthodes
+!set keyw=
+!set datm=20200911
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<table class="wimsborder"><tr>
+<td><img src="$m_filedir/dessin2.png" alt="Dessin d'un garçon nommé Lébodé Sinclair"></td>
+<td>Dessiner, représenter le problème aide à comprendre et à se motiver.
+<br>
+Un dessin est déjà une abstraction.</td>
+<td><img src="$m_filedir/schemari.png" alt="Dessin d'une fille nommée Méchet Marie"></td>
+<td>Schématiser une situation permet de dégager l'essentiel, de relier les objets, repérer les paramètres importants et les constantes.</td></tr>
+<tr><td><img src="$m_filedir/tableau1.png" alt="Dessin d'une fille nommée Metab Laurie"></td>
+<td>Réaliser un tableau, c'est mettre en forme des données.
+<br>
+Cela peut donner des idées sur un traitement possible ou réfuter la proportionnalité…
+</td><td><img src="$m_filedir/graphe1.png" alt="Dessin d'un garçon nommé Vlad Egrafe"></td><td>Un graphique cartésien donne parfois une réponse approximative très rapidement.
+<br>Il peut donner de l'intuition sur le résultat.</td></tr>
+<tr><td><img src="$m_filedir/fraction.png" alt="Dessin d'un garçon nommé Gaspard Tition"></td><td>Utiliser les fractions et manier la proportionnalité des quantités ou des écarts permet de résoudre de nombreux problèmes ordinaires.</td>
+<td><img src="$m_filedir/operater.png" alt="Dessin d'un garçon nommé Léo Pérateur"></td><td>Repérer l'opération et l'opérateur pour passer d'une variable à une autre, permet d'être plus efficace et même de résoudre des équations ou inéquations.</td></tr>
+<tr><td><img src="$m_filedir/inconnu2.png" alt="Dessin d'un garçon nommé Constantin Connu"></td><td>Remplacer une valeur inconnue ou une variable par une lettre permet de faire un calcul sans «chiffres», puis d'écrire une équation et de résoudre des problèmes.</td>
+<td><img src="$m_filedir/kpart.png" alt="Dessin d'un garçon nommé Lucas Particulier"></td><td>Pour comprendre un problème qui repose sur une valeur inconnue, on peut essayer en partant d'une valeur particulière, puis remplacer cette valeur par une lettre.</td></tr>
+<tr><td><img src="$m_filedir/inequat1.png" alt="Dessin d'une fille nommée Inès Coassion"></td><td>Pour résoudre des inéquations, du premier degré, on peut procéder comme pour les équations.
+<br>Sinon il y a des techniques fondées sur les signes, les extrema, les variations et les encadrements.</td>
+<td><img src="$m_filedir/phonk2.png" alt="Dessin d'une fille nommée Phonk Siona"></td><td>Lorsqu'on s'intéresse à l'évolution d'une variable par rapport à une autre, la notion de fonction devient très pertinente.
+<br>Elle devient indispensable pour toute modélisation.</td></tr>
+<tr><td><img src="$m_filedir/canonick.png" alt="Dessin d'un garçon nommé Canot Nick"></td><td>Certaines formes d'écritures algébriques sont bien adaptées pour résoudre certains problèmes, notamment avec les trinômes.
+<br>Les connaître aide à résoudre des problèmes.</td>
+<td><img src="$m_filedir/algebre2.png" alt="Dessin d'une fille nommée Chantal Gèbre"></td><td>Savoir transformer les écritures algébriques est un outil puissant pour résoudre des problèmes, pour résoudre des équations, factoriser et étudier le signe, faire apparaître un extremum...</td></tr>
+<tr><td><img src="$m_filedir/geom.png" alt="Dessin d'un garçon nommé G.O. Maitrie"></td><td>Certains problèmes d'Analyse ont une traduction en Géométrie et réciproquement.
+<br>Cela peut guider les calculs ou les illustrer.</td>
+<td><img src="$m_filedir/axelog2.png" alt="Dessin d'un garçon nommé Axel Ogaritme"></td><td>Utiliser un graphique avec une graduation formée d'une suite géométrique permet de résoudre des problèmes d'interpolation ou d'extrapolation pour des phénomènes exponentiels.</td></tr>
+<tr><td><img src="$m_filedir/recursif3.png" alt="Dessin d'un garçon nommé Come André Curante"></td><td>Certains phénomènes sont décrits en se répétant d'étapes en étapes.
+<br>Il s'agit de procédures récurrentes.
+<br>La notion de suites numériques permet d'étudier ces situations.</td>
+<td><img src="$m_filedir/algorithm.png" alt="Dessin d'une fille nommée Chantal Goritme"></td><td>Automatiser des procédures en écrivant un algorithme puis en le programmant sur ordinateur ou calculatrice, permet d'aboutir rapidement à un résultat et permet de prendre du recul sur une technique.</td></tr>
+</table>
+

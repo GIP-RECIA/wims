@@ -1,0 +1,10 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 3
+grid 2,2,grey
+replyformat 10
+colorpalette orange,yellow,red,green,lightgreen,blue,lightblue,cyan
+canvastype 4
+userdraw clickfill,blue
+clearbutton REMOVE LAST RECTANGLE

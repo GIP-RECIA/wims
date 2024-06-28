@@ -1,0 +1,37 @@
+Commandes
+:mouse
+mouse green,22
+:draggable crosshairs
+linewidth 3
+drag xy
+crosshairs green,1,1,2,1,3,1
+:drag+snaptogrid
+linewidth 3
+drag xy
+snaptogrid
+rays green,0,0,1,1,1,2,1,4
+:drag+translation
+grid 2,2,grey,2,2,4,grey
+linewidth 10
+affine 1,0,0,1,-8,-8
+drag xy
+fcircle 5,5,40,green
+killaffine
+drag xy
+fcircle 5,5,40,blue
+mouse green,22
+:userdraw segments
+linewidth 2
+userdraw segments,red
+:usertextarea_xy
+usertextarea_xy
+linewidth 2
+userdraw segment,red
+:userinput_xy
+userinput_xy
+linewidth 2
+userdraw segment,red
+:clickfill:clear sets the color to be black
+rect 0,0,6,8,red
+clickfill blue
+:fine:fine

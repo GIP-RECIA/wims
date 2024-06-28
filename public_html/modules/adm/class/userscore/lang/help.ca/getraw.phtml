@@ -1,0 +1,84 @@
+!if $wims_user!=supervisor
+<p>
+La taula mostra totes les dades registrades pel servidor quan
+esteu treballant en un exercici d'un full d'exercicis o en un examen
+(la consulta d'un document de wims o l'agenda no es registra 
+pel servidor).
+</p><p>
+Quan inicieu sessió a la classe, se us assigna un número de sessió.
+Cada vegada que feu clic per obtenir l'enunciat d'una sèrie d'exercicis
+o que obtingueu una nota sobre una sèrie d'exercicis, una línia que conté les dades
+associades a aquesta sol·licitud es registra:
+data de la sol·licitud, número de la sessió, número del full i de l'exercici en qüestió,
+tipus de sol·licitud i número IP de la vostra connexió.
+</p><p>
+La menció <span class="wims_code_words">noscore</span> apareix quan la nota obtinguda en un exercici no es
+compta en el càlcul de la nota final d’un full d'exercicis
+(ja sigui que la gravació de notes es va tancar quan treballava,
+o bé vosaltres mateixos heu suspès l'enregistrament de notes).
+</p><p>
+Atenció, la numeració dels fulls que apareixen a la columna <span class="wims_code_words">sheet</span>
+correspon a l'ordre en què els fulls van ser creats pel professor;
+aquest ordre pot ser diferent de l'ordre en què va escollir el professor
+presentar-vos-els en els fulls d'exercicis.
+</p><p>
+Cal tenir en compte que quan comenceu a treballar a la classe en un exercici, 
+heu d’introduir les respostes a aquest exercici abans de començar-ne un altre 
+(treballar en el mateix exercici o en altres exercicis mentre esteu 
+connectat a la classe de wims des de una altra finestra del navegador 
+corre el risc de provocar el canvi de l'enunciat del primer exercici o la 
+no gravació del treball realitzat al primer exercici).
+</p>
+!goto common
+!else
+<p>
+La taula mostra totes les dades registrades pel servidor
+sobre el treball realitzat en un exercici en un full d’exercicis o en un examen
+(el servidor no registra la consulta d’un document wims ni de l'agenda).
+</p><p>
+Quan un participant inicia sessió a la classe, se li assigna un número de sessió.
+Cada vegada que fa clic per obtenir l’enunciat d’una sèrie d’exercicis o que obté
+una nota sobre una sèrie d’exercicis, s’enregistra una línia que conté les dades associades a aquesta 
+consulta: data de la sol·licitud, número de la sessió, número del full i de l'exercici en qüestió,
+tipus de sol·licituds i número IP de la seva connexió.
+</p><p>
+La menció <span class="wims_code_words">noscore</span> apareix quan la puntuació obtinguda en un exercici 
+no es compta en el càlcul de la nota final d’un full d'exercicis
+(ja sigui que la gravació de les notes es va tancar quan treballava,
+o que va suspendre l'enregistrament d'aquestes notes).
+</p><p>
+La numeració dels fulls que apareixen a la columna  <span class="wims_code_words">sheet</span>
+correspon a l’ordre en què es van crear els fulls a la classe.
+</p><p>
+Cal tenir en compte que si un participant inicia un exercici, l’ha d'acabar
+abans de començar-ne un altre; si està treballant en el mateix exercici o
+en altres exercicis mentre ha iniciat sessió a la classe
+en una altra finestra del navegador, la qualificació obtinguda en el primer exercici
+té el risc de no ser registrada i que pot canviar l'enunciat del seu primer exercici
+quan introdueix les respostes.
+</p>
+!endif
+:common
+<p>
+Els diferents tipus de sol·licituds són:
+</p>
+<ul><li>
+<span class="wims_code_words">new</span> : sol·licitud d'un enunciat
+</li><li>
+<span class="wims_code_words">renew</span> o <span class="wims_code_words">resume</span> :
+  sol·licitud d’un nou enunciat del mateix exercici del full.
+</li><li><span class="wims_code_words">rafale</span> : seqüència ràpida de diverses sol·licituds d'enunciats d'exercici.
+El servidor aplica automàticament una penalització a les notes
+per evitar aquesta pràctica.
+</li></ul>
+<p>
+Les dades registrades als exàmens apareixen al final de la taula
+(línies que comencen per <span class="wims_code_words">E</span>).
+Per a un examen, la columna  <span class="wims_code_words">sheet</span> correspon al número d'examen.
+</p>
+!if $wims_user=supervisor
+<p>
+L’origen dels exercicis que constitueixen un examen s’indica a la columna
+més a la dreta en forma  <span class="wims_code_words">(número del full).(número de l'exercici)</span>.
+</p>
+!endif

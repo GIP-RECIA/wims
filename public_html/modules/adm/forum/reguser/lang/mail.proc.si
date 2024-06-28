@@ -1,0 +1,21 @@
+!mailto $tmail\
+\
+Code from $title\
+\
+Here is the secret code from $title:\
+\
+<pre>$secode</pre>\
+\
+<p>Please copy this code into your web form now, to validate your registration.</p>\
+\
+<p>PLEASE be aware that this code is only used ONCE. If you have\
+made an error in your manipulation and want to try again, please\
+  wait for another code.</p>\
+\
+<p>This mail is useless and should be discarded,\
+  once the code is reported to the web form.</p>\
+\
+<p>If you do not know what it is: then this is because somebody else\
+have given your email address (wrongly) to an automatic software.\
+  In this case you can ignore this message.</p>\
+

@@ -1,0 +1,26 @@
+!!!! Multiples d'un entier !!!
+
+!!set gl_nb=!randint 1,500
+!set gl_nb=!randint 1,50
+!set gl_nbmult=!randint 5,10
+!set gl_listmultnoneval=!makelist x*$gl_nb for x=0 to $[$gl_nbmult-1]
+!set gl_listmultnoneval=!replace internal * by \times in $gl_listmultnoneval
+
+!set gl_listmultnoneval2=$gl_listmultnoneval
+
+!set gl_listmultnoneval=!replace internal , by &nbsp;; in $gl_listmultnoneval
+!set gl_listmult=!values x*$gl_nb for x=0 to $[$gl_nbmult-1]
+
+!set gl_listmultaff=
+!for gl_k=1 to $gl_nbmult
+  !if $(gl_listmult[$gl_k])>=1000
+    !readproc slib/numeration/ecriturenombre $(gl_listmult[$gl_k]),tex
+    !set gl_item=$slib_out
+  !else
+    !set gl_item=$(gl_listmult[$gl_k])
+  !endif
+  !set gl_listmultaff=!append item $gl_item to $gl_listmultaff
+!next $gl_k
+
+!set gl_listmultaff2=$(gl_listmultaff[1..-2])
+!set gl_listmultaff2=!replace internal , by &nbsp;; in $gl_listmultaff2

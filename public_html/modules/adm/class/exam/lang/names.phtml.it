@@ -1,0 +1,125 @@
+!set lang_exists=yes
+
+!set name_duplicateok=Esame copiato correttamente.
+!set name_title=Preparazione del tema d'esame
+!set wims_name_mainpage=Copertina del tema d'esame
+
+!if $activetest<=0
+ !set name_title=!nosubst Preparazione del tema d'esame
+!else
+ !set name_title=!nosubst Modifica dell'esame
+!endif
+!set name_examenlist=questa sessione d'esame, nell'esame,dell'esame,Questo esame,questo esame,l'esame
+
+!read adm/lang/date.phtml.$lang
+!read adm/lang/sheetexam.phtml.$lang
+!set wims_name_scoreexam=!nosubst $wims_name_myscore
+!set wims_name_title_scoreexam=Voti $(name_examenlist[2])
+!set name_Options=Opzioni
+!set name_All=Tutti
+
+!set name_done=completato
+
+!set name_instructions=Istruzioni
+
+!distribute lines Disponibili\
+Selezionati\
+into name_Availables, name_Selected
+
+!distribute lines Termina questa sessione d'esame\
+Torna a lavorare sull'esame\
+Tema d'esame (pagina del docente)\
+Pagina pubblica del tema d'esame\
+Punteggio ottenuto\
+Questo tema d'esame è vuoto. Non ci sono esercizi da svolgere. Si tratta probabilmente di un errore del docente.\
+Contenuti\
+Accesso negato.\
+Puoi sostenere l'esame una sola volta.\
+Non puoi più migliorare il punteggio fin qui ottenuto.\
+ATTENZIONE: questo è l'ultimo tentativo a disposizione.\
+il conto alla rovescia sarà avviato e il tentativo sarà conteggiato\
+il conto alla rovescia sarà avviato.\
+È necessario aver svolto con successo altri esercizi\
+Punteggio globale ottenuto in questa sessione d'esame\
+into wims_name_endexam,wims_name_backexam,wims_name_teacherview,name_presentation,\
+name_scoreexam,name_empty,name_content,name_examclosed,name_exam1,name_exam5,\
+name_lasttry,name_exam7,name_exam8,name_depend,name_scoreexam2
+
+!set name_exam2=!nosubst Hai un massimo di $stries possibilità per questo esame.
+!set name_exam3=!nosubst Hai già terminato il tuo esame, con $tried tentativi.
+!set name_exam4=!nosubst Hai già esaurito le tue <strong>$tried possibilità</strong>.
+!set name_exam6=!nosubst Hai ancora <strong>$tryremain possibilità</strong>.
+!set name_exam6bis=Non avete più sessioni disponibili per poter ripetere l'esame.
+!set name_exam9=!nosubst Ogni sessione d'esame dura al massimo <strong>$sdure minuti</strong>.
+!set name_exam9bis=!nosubst La sessione d'esame durerà al massimo <strong>$sdure minuti</strong>
+!set name_exam10=Quando aprirai uno degli esercizi
+!set name_exam11=!nosubst Indipendentemente dalla durata massima prefissata per l'esame, \
+saranno presi in considerazione solo i punteggi ottenuti negli esercizi \
+completati prima di questa data/ora: <strong>$time_end</strong>.
+!set name_simulation=<strong>Questa è la simulazione di un esame.</strong> A differenza del <em>vero</em>\
+esame il server non terrà alcun conto del tentativo.
+
+!set wims_name_examremain=!nosubst Tempo rimanente per completare il tema d'esame (sessione $[$stries-$tryremain]): $
+
+!distribute lines provvisorio\
+  Non hai ancora cominciato a lavorare sul tema d'esame\
+  Comincia.\
+  Il punteggio ottenuto non viene preso in considerazione, perché si tratta di una sessione di prova.\
+into name_pending,name_begin1,name_begin2,name_simulation2
+
+!set name_timeleft=!nosubst Il tempo è scaduto! Puoi solo terminare la sessione.
+!set name_realscore=!nosubst Il punteggio reale ottenuto è $lastscore.
+!set name_bestscore =!nosubst Il punteggio migliore per questo esame è $[$lastscore*$scoremax/10]/$scoremax.
+!set name_bestscore2=Si terrà conto solo del punteggio migliore.
+
+!! ---------------------------
+!! nouvelle partie
+
+!set statutname=$(wims_name_shstatus[1]),$wims_name_shstatus
+
+!set name_desc_duration=Un cronometro si avvia non appena viene visualizzata la prima domanda.
+!set name_units_duration=in minuti
+!let name_mkexam=Crea il tema d'esame
+
+!let name_shinfo_cutt=Orari sessioni multiple (cut-off)
+
+!! différents commentaires de la page de gestion
+!distribute lines Informazioni generali\
+Contenuti\
+Utilizzate i link nel menu per selezionare i contenuti dell'esame (gli esercizi possono essere scelti tra quelli dei test di autovalutazione attivi).\
+into name_info,name_contentsuper,name_warning
+
+!! titre du tableau de contenu de l'examen (file examcontent.phtml)
+!let name_extab=!nosubst $wims_name_number,$wims_name_title,Contenuto,$name_weight,$name_dependency,$wims_name_comment,$name_Options,$wims_name_action,Sposta
+
+!set name_contenu=Scelta dei contenuti
+!let name_cpsheet1=Stai per aggiungere tutti gli esercizi del test di autovalutazione selezionato \
+in fondo alla lista degli esercizi già inseriti nell'esame.<br/>\
+Ogni esercizio sarà aggiunto con peso 1.
+
+!let name_cpsheet3=Titolo di default per l'esercizio (facoltativo)
+!let name_cpsheet4=gli esercizi saranno numerati automaticamente. Se si lascia vuoto questo campo, \
+gli esercizi verranno presentati con lo stesso titolo che hanno nel test di autovalutazione da cui sono stati selezionati.
+
+!set name_warning_nonfinished=Non hai svolto tutti gli esercizi richiesti. Terminare la sessione ora\
+  significa salvare questo punteggio e perdere una delle possibilità\
+  di sostenere l'esame, la prossima volta dovrai infatti ricominciare da capo.\
+  <br>Sei sicuro/a di voler smettere ora?
+!set name_warning_nonfinished1=$name_warning_nonfinished
+!! wims_ ?
+!set wims_name_cpexam=Copia un esame attivo
+
+!set name_cpexam1=Stai per copiare un tema d'esame attivo già presente nel corso. I contenuti saranno poi modificabili fino a quando questa tema d'esame non sarà reso Attivo
+
+!set name_msg_exam_withip=I voti contrassegnati dal simbolo &ast; sono stati ridotti a causa di un cambiamento \
+    di IP di connessione durante la sessione d'esame.
+!set name_real_score=!nosubst $realtsco senza tener conto della variazione di indirizzo IP
+!set name_warning_notstartip=Attenzione: il tuo attuale indirizzo IP non è quello di inizio di questa sessione d'esame. Puoi comunque continuare a svolgere \
+gli esercizi e i punteggi ottenuti verranno comunque registrati. Tuttavia, non verranno, per ora, utilizzati nel calcolo del voto d'esame e sarà necessario l'intervento manuale del docente.
+!set name_modedesc=Questo esame è in modalità Gara. Si applicano le seguenti regole:<ul> <li>Gli esercizi si attivano uno dopo l'altro nell'ordine dato.</li><li>L'esame si interrompe se non si ottiene il voto massimo in un qualche esercizio.</li></ul>
+!set name_courseend=!nosubst Non hai risposto correttamente alla domanda $coursefalse: l'esame è terminato!!
+!set name_exammode_list=Standard,Gara
+!set name_progress=Progresso nella gara
+!! TODO_lang fr
+!set name_studentloc=!nosubst $user_firstname $user_lastname
+!set wims_name_coursewatch=Visualizza la gara

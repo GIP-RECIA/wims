@@ -1,0 +1,16 @@
+<!-- _widgets/supervisorsfreework.phtml -->
+!for i=1 to $freeworkcnt
+  !set sh=!record $i of wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !distribute lines $sh into ac,t_,ti,d_,bl,ty_
+  $table_tr
+   <td class="wims_freework_item">$wims_name_Freework $i</td>
+   <td>
+     !href module=adm/class/freework&freework=$i $ti
+   </td>
+   <td class="wims_status_$ac">$(wims_name_shstatus[$[$ac+1]])</td>
+   <td>
+    !read adm/freeworkaction.phtml freework,$i,$ac,1,$ty_
+   </td>
+  </tr>
+!next i
+<!-- end _widgets/supervisorsfreework.phtml -->

@@ -1,0 +1,23 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Crise économique
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Une <strong>crise économique</strong> est le
+<span class="wims_emph">passage d'une phase d'expansion à une phase de
+récession économique</span>.
+</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+Le terme de "crise" économique est souvent confondu avec celui de "récession"
+ou encore de "dépression" économique. Or, la crise est le point de
+<span class="wims_emph">retournement de conjoncture économique</span> qui par nature
+est de courte durée, alors que la récession et la dépression sont des périodes
+de baisse continue de l'activité économique qui par nature s'inscrivent dans une
+plus longue durée que celle d'une crise.
+</div>

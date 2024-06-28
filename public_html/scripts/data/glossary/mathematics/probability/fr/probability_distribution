@@ -1,0 +1,29 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,probability_distribution
+!set gl_title=Loi de probabilité
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définitions</h4>
+Soit &#937; l'univers associé à une expérience aléatoire.<br>
+On suppose &#937; fini&nbsp;; on note \(n\) le nombre d'éléments de &#937; (\(n\)
+est un entier naturel non nul) et \( x_1,x_2,\ldots,x_n \) les éléments de
+&#937;.<br>
+Définir une <strong>loi de probabilité</strong> sur &#937;, c'est associer à
+chaque événement élémentaire \( \{x_i\} \) (\(i\) entier naturel compris entre
+\(1\) et \(n\)) un nombre réel \( p_i \) positif ou nul de façon que&nbsp;:
+<div class="wimscenter">
+\( p_1 + p_2 + \ldots + p_n = 1 \).
+<br>\(\displaystyle{\sum_{i=1}^n p_i} = 1\).
+</div>
+Le nombre \( p_i \) est appelé <strong>probabilité</strong> de l'événement
+élémentaire <span style="white-space:nowrap">\( \{x_i\} \).</span>
+</div>
+<div class="wims_rem">
+<h4>Remarque</h4>
+Pour tout entier naturel \(i\) tel que \(1 \leqslant i \leqslant n\), on a
+\(0 \leqslant p_i \leqslant 1\).
+</div>

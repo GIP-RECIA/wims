@@ -1,0 +1,65 @@
+<b>Espressioni matematiche.</b>
+ (nomi: <span class="tt wims_code_words">algexp</span>, <span class="tt wims_code_words">litexp</span> e <span class="tt wims_code_words">formal</span>)
+ <p>
+ Si tratta di una espressione matematiche che viene confrontata con
+ la risposta corretta secondo differenti criteri.
+Si possono inserire più risposte corrette separate da virgole.
+ </p>
+ 
+ <p>
+ Per il tipo <span class="tt wims_code_words">algexp</span> (espressione algebrica), le espressioni equivalenti sono minime. Per esempio (x+1)(x-1) non è accettata 
+ se la risposta corretta è x^2-1, sin(x)^2+cos(x)^2 non è equivalente alla risposta corretta 1.
+ Invece  x-y*y et -y^2+x sono considerate equivalenti.
+ Questo tipo di risposta è utile per portare gli studenti a fare manipolazioni
+ di espressioni equivalenti.
+ </p>
+ 
+ <p>
+ Per <span class="tt wims_code_words">litexp</span> (espressione letterale), il confronto è letterale senza alcuna espressione algebrica. Per esempio
+ x+y non è equivalente a y+x, come 3/2 non è equivalente a 6/4. Ma 2x e 2*x
+ sono identificati, gli spazi sono esclusi dal confronto. Utilizzare con cautela.
+ <br>
+ È possibile utilizzare le seguenti opzioni che permettono di specificare
+ il tipo di analisi sintattica (per il tipo di risposta
+ <span class="tt wims_code_words">litexp</span>).
+!let old=$wims_backslash_insmath
+!let wims_backslash_insmath=yes
+<ul>
+  <li><span class="tt wims_code_words">polexpand</span> Questa opzione permette di verificare una risposta che deve essere un polinomio in \(\ZZ[X]) in forma sviluppata. Questo significa:
+    <ul>
+          <li>Ogni termine deve essere semplificato: non nella forma \(3\times x\times x).</li>
+          <li>I coefficienti numerici devono essere calcolati: non nella forma \(3\times 2 \times x^2).</li>
+          <li>L'espressoine deve essere ridotta: non nella forma \(2x+5x^2+3x).</li>
+          <li>Niente parentesi.</li>
+          <li>Niente simbolo di divisione.</li>
+          <li>In fase di programmazione dell'esercizio non è necessario fornire la risposta in forma sviluppata: la riposta accettata sarà costruita automaticamente a partire dalle espressioni fornite. 
+              Tuttavia, se lo si fa, la forma inserita viene poi mostrata come risposta corretta.</li>
+          <li>Le scritture \(x^0), \(x^1) non sono accettate.</li>
+          <li>Per i monomi, il coefficiente numerico deve essere scritto prima della variabile: \(x\times 12) non è accettato per il monomio \(12x).</li>
+          <li>Vengono mostrati messaggi d'errore specifici per scritture che non rispettano queste condizioni.</li>
+    </ul>
+  </li>
+  <li><span class="tt wims_code_words">polfactor</span> Questa opzione permette di verificare una risposta che è un polinomio in \(\ZZ[X]) in forma fattorizzata. Questo significa:
+        <ul>
+          <li>Vengono evidenziate le forme non fattorizzate: per esempio \(x^2+2x+1) al posto di \((x+1)^2).</li>
+          <li>C'è tolleranza a livello di segno \(-\): per esemmpio le risposte  \((x+1)(2x+3)), \(-(-x-1)(2x+3)), \((-x-1)(-2x-3)) e \(-(x+1)(-2x-3)) sono accettate.</li>
+          <li>Vengono evidenziate le espressioni che non sono prodotti e viene messa in ulteriore evidenza l'operazione che genera il problema.</li>
+          <li>Ogni fatto deve rispettare le regole per le espressioni sviluppate/ridotte enunciate sopra.</li>
+          <li>Vengono evidenziate le ripetizioni di fattori proporzionali: per esempio \((x-2)(2-x)) sarà rifiutato, al posto dell'espressione corretta \(-(x-2)^2).</li>
+          <li>Ogni fattore deve essere de contenant inversible dans \(\ZZ).</li>
+          <li>Viene accettato un solo coefficiente numerico. \(2*3*(x+3)) sarà rifiutato al posto di \(6(x+3)).</li>
+          <li>Se si utilizza l'ulteriore opzione <span class="wims_code_words">factorcontent</span>, anche i coefficienti dei polinomi devono essere scomposti. \(6*(x+3)) sarà rifiutato, al posto di \(2*3*(x+3)).</li>        
+          <li>In fase di programmazione dell'esercizio non è necessario fornire la risposta già fattorizzata: la riposta accettata sarà costruita automaticamente a partire dalle espressioni fornite. 
+             Tuttavia, se lo si fa, la forma inserita viene poi mostrata come risposta corretta.</li>
+          <li>Vengono mostrati messaggi d'errore specifici per scritture che non rispettano queste condizioni.</li>
+        </ul>
+  </li>
+</ul>
+!let wims_backslash_insmath=$old
+ </p>
+ 
+ <p>
+ Il tipo <span class="tt wims_code_words">formal</span> (espressione formale) permette il confronto
+ numerico esatto. Tutto ciò che è uguale numericamente alla risposta corretta
+ è accettato, senza approssimazioi.
+ </p>

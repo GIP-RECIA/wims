@@ -1,0 +1,23 @@
+slib_lang_exists_tmp=yes
+slib_title=Plugin pour JSXGraph adaptatif
+slib_parms=3\
+,id et nom du board de l'applet JSXGraph dans cet ordre et séparés par une espace.\
+,<span class="tt"><strong>[</strong>taille , options séparées par des espaces<strong>]</strong></span> entre crochets.<ul><li>taille : <span class="tt wims_code_words">width x height</span>(en px)</li><li>options :<ul><li><span class="tt wims_code_words">center</span> pour centrer l'applet dans son parent&nbsp;;</li><li><span class="tt wims_code_words">resize</span> pour redimensionner la taille des points en fonction de la taille de l'écran&nbsp;;</li><li><span class="tt wims_code_words">min</span>= <em>n</em>px ou <em>n</em>% ou ... pour indiquer la largeur minimale de l'applet en dessous de laquelle elle ne pourra être réduite&nbsp;;</li><li><span class="tt wims_code_words">max</span>= <em>n</em>px ou <em>n</em>% ou ... pour indiquer la largeur maximale de l'applet au-dessus de laquelle elle ne pourra être agrandie&nbsp;;</li><li><span class="tt wims_code_words">nocssjs</span> pour ne pas appeler le CSS et le javascript via la slib (voir les commentaires ci-dessous)&nbsp;;</li><li><span class="tt wims_code_words">scroll</span> pour faire apparaître une barre de défilement en cas de débordement.</li></ul></li></ul>\
+,script de construction dans le langage JSXGraph.
+
+slib_out=Le résulat du script en JSXGraph.
+slib_comment= <ul>\
+<li>Rétrocompatibilité&nbsp;: les applets créées avec l'ancienne syntaxe (id,width x height,script) sont toujours en mode non adapté mais une barre de défilement apparaît en cas de débordement.</li>\
+<li>Par défaut, le style CSS et le javascript utilisés par JSXGraph sont automatiquement appelés par la slib \
+sauf si l'option <span class="tt wims_code_words">nocssjs</span> est mise.\
+<br>Dans le cas de l'option <span class="tt wims_code_words">nocssjs</span>, il faut alors appeler \
+le CSS et le javascript avec <span class="nowrap">&lt;link rel="stylesheet" href="scripts/js/jsxgraph/jsxgraph.css"&gt;</span> \
+et <span class="nowrap">&lt;script src="scripts/js/jsxgraph/jsxgraphcore.js" charset="utf-8"&gt;&lt;/script&gt;</span> \
+dans &#92;css{} par exemple pour un exercice OEF.</li>\
+<li>On peut définir un style css pour .jxgbox et pour .jsxgraph_button.\
+ Par exemple&nbsp;:\
+ <pre>&lt;style>\
+.jxgbox {margin-left:auto;margin-right:auto}\
+.jsxgraph_button {text-align:center;}\
+&lt;/style></pre></li>\
+</ul>

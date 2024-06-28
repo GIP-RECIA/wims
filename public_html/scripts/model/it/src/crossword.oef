@@ -1,0 +1,112 @@
+type=game
+textarea="data instruction"
+iEdit="instruction"
+
+:Parole crociate
+Viene proposto uno schema di parole crociate costruito a partire da un elenco di parole e delle relative definizioni.
+<p class="wims_credits">
+Autore del modello: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENZIONE      %%%%%%%%%%%%%%%%%%%%
+
+Se si rimuovono le indicazioni del modulo modelli (le righe che
+cominciano con ':') è necessario rimuovere tutta questa parte
+introduttiva del file. Altrimenti Createxo potrebbe non accettare il
+codice dell'esercizio.
+
+:%%%%%%%% Parametri che possono essere ridefiniti %%%%%%%%%%%%%%%%%
+
+:\title{Parole crociate}
+:\author{Bernadette, Perrin-Riou}
+:\email{}
+:\credits{}
+
+:Consegna
+\text{instruction=}
+
+:Numero massimo di parole
+\text{N=7}
+
+:Opzioni
+Se si seleziona l'opzione <span class="tt wims_code_words">allhelp</span>, tutte le definizioni sono mostrate.
+Se l'opzione è <span class="tt wims_code_words">tooltip</span>, le definizioni appaiono in un
+"pop-up" quando si clicca sul numero. Lasciare vuoto se si vuole che le definizioni appaiano
+ad una ad una di fianco allo schema.
+\text{none=allhelp}
+
+:Nome del file
+Compilare questo campo solo se si vuole inserire questo esercizio in un modulo Modtool e per
+raccogliere le domande si vuole utilizzare un file di dati (in un modulo OEF) del tipo
+<pre>
+  &#58;RAM, Random Access Memory
+  &#58;ROM, Read Only Memory
+  &#58;FAI, Acronyme. Fournisseurs d'accès Internet
+  &#58;WIFI,Wireless Internet access
+  &#58;PC,Ordinateur individuel
+</pre>
+In questo caso i dati inseriti più sotto non saranno presi in considerazione. Se non
+si vuole utilizzare un file separato, inserire le frasi nel campo successivo.
+
+\text{file=}
+
+:Dati principali.
+Scrivere su ogni riga la parola (in lettere minuscole) e, separata da una virgola, la definizione.
+
+\text{data=bit,Plus petite unité d'information manipulable par un ordinateur ayant la valeur 1 ou 0, appartenant au système de numérotation binaire.
+octet,Ensemble ordonné de huit éléments binaires traités comme un tout.
+kibioctet, en deux mots. Unité de mesure correspondant à 2<sup>10</sup> octets soit 1024 octets.
+megaoctet, en deux mots. Unité de mesure correspondant à 10<sup>6</sup> octets soit 1 million d'octets
+mebioctet, en deux mots. Unité de mesure correspondant à 2<sup>20</sup> octets soit à 1 048 576 octets.
+gibioctet, en deux mots. Unité de mesure correspondant à 2<sup>30</sup> octets soit 1 073 741 824 octets.
+RAM, Random Access Memory
+ROM, Read Only Memory
+Modem, Appareil assurant l'adaptation des signaux échangés entre un appareil terminal numérique, par exemple un ordinateur, et une ligne téléphonique analogique.
+ADSL, Acronyme. Technique de communication qui permet d'utiliser une ligne téléphonique pour transmettre et recevoir des données numériques à des débits élevés
+FAI, Acronyme. Fournisseurs d'accès Internet
+WIFI,Wireless Internet access
+Bluetooth, Technologie sans fil qui permet à des ordinateurs portatifs ou des téléphones mobiles d'échanger des messages vocaux ou des données sur une courte distance, par liaison radio,.
+PC,Ordinateur individuel
+Netbook, Mini-ordinateur portatif
+PDA, Assistant numérique communicant
+Smartphone, Téléphone mobile couplé à un assistant numérique personnel (PDA).
+Internet, Réseau informatique mondial constitué d'un ensemble de réseaux nationaux, régionaux et privés, qui sont reliés par le protocole de communication TCP-IP.
+WWW,world wide web}
+
+:Scelte casuali di elementi inseriti tra parentesi graffe
+$embraced_randitem
+\text{accolade=item(1,1 sì,
+2 no)}
+
+:%%%%%%%%%%%%%% Nulla da modificare fino all'enunciato %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+
+\if{\file notsametext}{
+  \text{file=randitem(\file)}
+  \integer{datacnt=wims(recordcnt \file)}
+  \integer{N=min(\N,\datacnt)}
+  \text{choix=shuffle(\datacnt)}
+  \text{choix=\choix[1..\N]}
+  \text{data=}
+  \for{s in \choix}{
+    \text{data=\data
+wims(record \s of \file)}
+  }
+  \matrix{data=\accolade=1 ?wims(randitem embraced \data)}
+  \text{data=wims(replace internal ;; by ; in \data)}
+}{
+  \text{objet_cnt=rows(\data)}
+  \integer{N=min(\N,\objet_cnt)}
+  \text{bat=shuffle(\objet_cnt)}
+  \text{bat=\bat[1..\N]}
+  \matrix{data=\data}
+  \matrix{data=\data[\bat;]}
+}
+
+\text{data=slib(text/crossword \data) }
+
+\statement{
+  \instruction
+  \embed{r1}
+}
+
+\answer{}{\data}{type=crossword}{option=\none}

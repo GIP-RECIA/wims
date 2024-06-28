@@ -1,0 +1,154 @@
+Indicateurs de position et de dispersion
+Moyenne, médiane, écart-type, quartiles
+??,2021
+1
+H4
+statistics
+descriptive_statistics,mean,median,standard_deviation,quartile
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Statistique à une variable" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:H5/stat/oefstatlycee.fr
+exo=modeextr&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Mode, étendue et valeurs extrêmes
+Construction du <strong>tableau d'effectifs</strong> à partir de données brutes et détermination de <strong>mode</strong>, <strong>étendue</strong> et <strong>valeurs extrêmes.</strong>
+
+
+
+:H3/stat/oefstat.fr
+exo=Moyenne&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Moyenne 1
+Calcul de la <strong>moyenne</strong> de 3 nombres.
+
+
+
+calculator
+:H3/stat/oefstat.fr
+exo=mean&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Moyenne 2
+Calcul de <strong>moyenne</strong>, détermination de l'<strong>étendue</strong> et des <strong>valeurs</strong> extrêmes à partir de données brutes.
+
+
+
+calculator
+:H3/stat/oefstat.fr
+exo=Moyennesetcoef&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Moyenne pondérée 1
+Calcul d'une <strong>moyenne pondérée</strong> de trois notes.
+
+
+
+calculator
+:H3/stat/oefstat.fr
+exo=meanw&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Moyenne pondérée 2
+Calcul de <strong>moyenne pondérée</strong>, détermination de l'<strong>étendue</strong> et des <strong>valeurs</strong> extrêmes à partir de valeurs affectées de coefficients.
+
+
+
+calculator
+:H4/stat/OEFevalwimsstat2.fr
+exo=mean3
+10
+1
+Moyenne pondérée 3
+Calcul d'une <strong>moyenne</strong> pour une variable continue à partir du tableau des intervalles / effectifs.
+
+
+
+calculator
+:H4/stat/OEFevalwimsstat.fr
+exo=mediane1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Médiane 1
+Détermination de la <strong>médiane</strong> à partir de la série ordonnée d'une variable discrète.
+
+
+
+:H3/stat/oefstat.fr
+exo=mediane&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Médiane 2
+Détermination de la <strong>médiane</strong> à partir de la série non ordonnée d'une variable discrète.
+
+
+
+:H4/stat/OEFevalwimsstat.fr
+exo=mediane2
+10
+1
+Médiane 3
+Détermination de la <strong>médiane</strong> à partir de la série non ordonnée d'une variable discrète.
+
+
+
+:H5/stat/oefstatlycee.fr
+exo=quartiles&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Médiane et quartiles
+Détermination de la <strong>médiane et des quartiles</strong> à partir de la série non ordonnée d'une variable discrète.
+
+
+
+:H5/stat/OEFevalwimsstat.fr
+exo=quantile5
+10
+1
+Médiane et écart interquartile
+Interprétation de résultats.
+
+
+
+:H5/stat/oefstatlycee.fr
+exo=ecartvarcla&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Moyenne et écart-type 1
+Utilisation des fonctions statistiques d'une <strong>calculatrice</strong> (sur des valeurs regroupées par classes).
+
+
+
+calculator
+:H4/stat/stat-1.nl
+subject=1&level=1&total_exos=1&rounding=10&usage=2&taal=fr
+10
+1
+Moyenne et écart-type 2
+Calcul de <strong>moyenne</strong> et <strong>écart-type</strong> . Cliquer sur suivant pour afficher le tableau.
+
+
+
+calculator
+:H5/stat/OEFevalwimsstat.fr
+exo=ecartvar4
+10
+1
+Moyenne et écart-type 3
+Calcul de <strong>moyenne</strong> et <strong>écart-type</strong> de 3 séries, puis interprétation des résultats.
+
+
+
+calculator
+:H4/stat/stat-1.nl
+subject=1&level=4&total_exos=1&rounding=10&usage=2&taal=fr
+10
+1
+Moyenne, écart-type, médiane et quartiles
+Calculs à partir d'une série discrète. Cliquer sur suivant pour afficher le tableau.
+
+
+

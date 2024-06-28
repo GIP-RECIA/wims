@@ -1,0 +1,24 @@
+:signification
+insère un glose du glossaire général : le premier paramètre est l'adresse du glose.
+
+Le deuxième paramètre entre crochets contient des options : pour l'instant
+<ul><li>
+  <span class="tt">tooltip=[text_link,text_width]</span> apparait en tooltip sur le texte
+  <span class="tt">text_link</span> où
+  <span class="tt">text_width</span> est la largeur du tooltip (par défaut, 400px).
+</li><li>
+  <span class="tt">content=xxx</span> où
+  <span class="tt">xxx</span> est soit le mot <span class="tt">abstract</span>
+  soit la liste des numéros des contenus du glose entre crochets.
+</li></ul>
+:example
+<div class="wims_help_bloc example">
+<h2>Exemples</h2>
+<textarea id="wims_show101" cols="100" rows="8" readonly="readonly">
+\special{glossary mathematics/probability/fr/geometric_distribution}
+\special{glossary mathematics/probability/fr/geometric_distribution,tooltip=[distribution géométrique,300px] }
+\special{glossary mathematics/geometry/fr/altitude,tooltip=[hauteur] content=abstract}
+\special{glossary mathematics/geometry/fr/altitude,tooltip=[hauteur] content=[1,2]}
+\special{glossary mathematics/geometry/fr/altitude,content=[1]}
+</textarea>
+</div>

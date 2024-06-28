@@ -1,0 +1,163 @@
+!! display list of participant with usual information
+!! work to do
+!!ATTENTION : il faut faire un tableau different en fonction du niveau de structure de la classe d'appel (portail, superclass, etc...) reflechir à ce que l'on affiche.
+
+!read adm/title.phtml 1\
+$classname\
+$wims_name_part_list ($usercnt)
+
+!readproc userlist.mkdata
+
+!reset table_center
+!set typen=!defof class_typename in wimshome/log/classes/$wims_class/.def
+!if $usercnt=0
+  <div class="wimscenter">
+  $name_noyetparticipant
+  !if $typen!=level
+    $ $
+    !set wims_ref_class=wims_button
+    !href module=adm/class/reguser&step=1 $wims_name_addstudent
+    $ $
+  !endif
+  !!    20141016 : deconnecte pour l'instant, attente d'organisation.
+  !!    !set wims_ref_class=wims_button
+  !!    !href cmd=reply&job=csv $wims_name_csv
+  </div>
+!else
+  !! ------ manage ask for technical variable selection.
+  !if $tv_listtechvar!=$empty
+    !form reply
+    !read adm/vfilter/varfilter html
+    !formend
+  !endif
+  !! ----- displaying table of participant
+  !set table_id=TABLE_userlist
+  !set table_class=sortable
+  $table_header
+  <thead>
+  !if $nbtechvar>0
+    <tr>
+    !for k=1 to 6
+      <th></th>
+    !next k
+    <th colspan="$nbtechvar">$name_vars</th>
+    <th></th>
+    </tr>
+  !endif
+  $table_hdtr
+  <th scope="col">$name_studentglo</th>
+  !for k in $wims_name_Login,$wims_name_email,$name_regnum,$name_external_auth,$wims_name_lastconnect
+    <th scope="col">$k</th>
+  !next k
+  !if $nbtechvar>0
+    !for k in $(tv_listtechvar[;1])
+      <th scope="col">$k</th>
+    !next k
+  !endif
+  <th scope="col">$name_comments</th>
+    </tr>
+  </thead>
+  <tbody>
+  !set nbrec=!recordcnt $fileuserlist
+  !for i=1 to $nbrec
+    !set data=!record $i of $fileuserlist
+    !set uu=!item 2 of $data
+    !if $varfilter_!=$empty
+      !read adm/vfilter/testfilter $uu\
+$varfilter_
+    !endif
+    !if $(var_filter_test)=1 or $varfilter_=$empty
+      !!   !set UU=!hex $uu
+      !reset user_exists,user_email,user_regnum,user_external_auth,user_vars,user_comments$namecomment,user_comments
+      !readproc adm/class/userdef classes,$wims_class,$uu
+      !readdef $userdef
+      !readproc adm/vfilter/uservarfilter.proc $userdef
+      $table_tr
+      !reset css_connected
+      !if $uu isitemof $wims_connectedlogin
+        !set css_connected=class="wims_connected"
+        !set wims_ref_title=connected
+      !endif
+      <td $css_connected>
+        !href cmd=reply&+job=userprop&+getuser=$uu $(data[1])
+      </td>
+      <td>$(data[2])</td>
+      <td>
+        !if $wims_mail_hidden=yes
+          !if $(data[3])!=$empty
+            &#x2705;
+          !endif
+        !else
+          $(data[3])
+        !endif
+      </td>
+      <td>$(data[4])</td>
+      <td>$(data[5])</td>
+      <td data-sort="$(data[7])">$(data[6])</td>
+      !set data=!item 8 to -1 of $data
+      !set nbdata=!itemcnt $data
+      !if $nbdata=0
+        <td></td>
+      !else
+        !for val in $data
+          <td>$val</td>
+        !next val
+      !endif
+      </tr>
+    !endif
+  !next i
+   </tbody>
+  $table_end
+  !read tablesort.phtml
+!endif
+
+
+!! define wims_menu_items
+!set wims_menu_items=!append line itemsep,0,\
+csv,1,module=adm/class/userscore&job=csv\
+to $wims_menu_items
+!if $wims_typename iswordof group and $wims_supertype=2
+  !set wims_menu_items=!append line regmanage,1,module=adm/class/usermanage&job=regmanage to $wims_menu_items
+!endif
+!if $typen!=level
+  !set wims_menu_items=!append line addparticipant,1,module=adm/class/reguser&step=1\
+to $wims_menu_items
+!endif
+!if $deleted!=$empty
+  !set wims_menu_items=!append line recover,1,cmd=reply&job=recover\
+to $wims_menu_items
+!endif
+
+!! menubox links -> teacher list
+!set class_Supervisor=!defof class_Supervisor in wimshome/log/classes/$wims_class/.def
+!!## supervisor can see list of teacher and their access
+!if supervisor=$wims_user and $wims_supertype=2
+  !default wims_superclass=$wims_class
+  !set teacherlist=!record 0 of wimshome/log/classes/$wims_superclass/.teacherlist
+  !set teachercnt=!linecnt $teacherlist
+  !if $teachercnt>0 and $job!=teacher
+    !set wims_menu_items=!append line itemsep,0,\
+teacherlist,1,module=adm/class/usermanage&job=teacher\
+to $wims_menu_items
+  !endif
+  !!## only the administrator has the right to add a teacher to the superclass
+  !if $wims_typename iswordof group and $wims_supertype=2
+    !if $teachercnt=0 or $job=teacher
+      !set wims_menu_items=!append line itemsep,0, to $wims_menu_items
+    !endif
+    !set wims_menu_items=!append line addteacher,1,module=adm/class/reguser&step=1&utype=1 to $wims_menu_items
+  !endif
+!endif wims_typename=group etc
+
+!set wims_menu_items=!append line itemsep,0,$wims_name_classactivity\
+sendmail,1,module=adm/class/sendmail\
+photoboard,1,module=adm/class/photoboard\
+to $wims_menu_items
+!if $typen notwordof level portal program group class \
+    or ($wims_typename iswordof course or ($wims_typename iswordof class and $wims_supertype iswordof 0 2))
+  !set wims_menu_items=!append line itemsep,0,$wims_name_Evaluation\
+Score1,1,module=adm/class/userscore\
+livret,1,module=adm/class/livret\
+activity,1,module=adm/class/activity\
+  to $wims_menu_items
+!endif

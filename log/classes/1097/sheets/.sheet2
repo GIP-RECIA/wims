@@ -1,0 +1,59 @@
+Sums #1
+games with sums
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramid 1
+<p>Fill in the numbers into the pyramid so that the number above is the sum of the two numbers below.</p>
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramid 2
+Again, fill in the numbers into the pyramid, but this time you have to choose which number to use among the given ones.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Bowtie 1
+Fill in the numbers into the bowtie so that the sum of the numbers satisfy the given conditions.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Bowtie 2
+Again, fill in the numbers into the bowtie, but this time you have to choose which number to use among the given ones.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Double pyramid 1
+<p>Fill in the numbers into the double pyramid so that the numbers above are the sum of the two numbers below.</p>
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Double pyramid 2
+Again, fill in the numbers into double pyramid, but this time you have to choose which number to use among the given ones.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=1&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Double pyramid 3
+And finally, more and more difficult: fill in the numbers into the double pyramid choosing which ones to use among the given ones.

@@ -1,0 +1,81 @@
+type=imaudio
+textarea="instruction"
+iEdit="instruction"
+
+:Escribir la palabra escuchada (de los audios existentes en el servidor WIMS).
+
+Se propone un audio y el texto escuchado debe escribirse exactamente. El audio se
+toma de la base de datos de audio de palabras registradas de WIMS. Si el ejercicio está en una clase,
+con una adapatación, se puede usar con audios incluidos en la clase.
+<p>
+Para construir un ejercicio con este modelo, simplemente escriba la lista de
+palabras siempre que existan en la base de audio (para verificarlo, escriba
+swac en el motor de búsqueda y usar la herramienta propuesta).
+</p><p>
+Para más posibilidades, usa Quicktool.
+</p><p class="wims_credits">
+Autor del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Escuchar y escribir}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciado
+\text{instruction=Escriba la palabra escuchada, sin errores ortográficos.}
+
+:Lista de palabras
+\text{liste = doctor,teacher,journalist,policeman, fireman, postman}
+
+:Idioma de audio: las posibles opciones son <span class="tt">fra</span>, <span class="tt">eng</span>,  <span class="tt">dut</span> (y otros con menos posibilidades  <span class="tt">pol</span>,  <span class="tt">wol</span>,  <span class="tt">deu</span>,  <span class="tt">swe</span>)
+\text{lang = eng}
+
+:El tamaño vertical de los cuadros en números de caracteres
+\integer{size=12}
+
+:Dependiendo de la opción, se proponen todas las palabras o una al azar
+\text{choix=item(1,1 todas,
+2 una sola)}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+\text{choix=wims(word 1 of \choix)}
+\text{Audio =}
+\text{mots=\choix=1 ? shuffle(randrow(\liste)): randitem(randrow(\liste))}
+\integer{cnt=items(\mots)}
+\integer{cnt=min(10,\cnt)}
+\for{j=1 to \cnt}{
+  \text{audio = slib(lang/swac \mots[\j],\lang)}
+  \text{Audio = wims(append item \audio[1;1] to \Audio)}
+}
+\text{etape=wims(makelist r x for x=1 to \cnt)}
+\text{etape=wims(replace , by ; in \etape)}
+\steps{\etape}
+
+\statement{
+\instruction
+<div class="wimscenter">\Audio[\step]</div>
+
+<div class="wimscenter">
+ \embed{r \step, \size
+ default
+ autocomplete="off"}
+</div>
+}
+\answer{}{\mots[1]}{type=case}{option=nonstop}
+\answer{}{\mots[2]}{type=case}{option=nonstop}
+\answer{}{\mots[3]}{type=case}{option=nonstop}
+\answer{}{\mots[4]}{type=case}{option=nonstop}
+\answer{}{\mots[5]}{type=case}{option=nonstop}
+\answer{}{\mots[6]}{type=case}{option=nonstop}
+\answer{}{\mots[7]}{type=case}{option=nonstop}
+\answer{}{\mots[8]}{type=case}{option=nonstop}
+\answer{}{\mots[9]}{type=case}{option=nonstop}
+\answer{}{\mots[10]}{type=case}{option=nonstop}

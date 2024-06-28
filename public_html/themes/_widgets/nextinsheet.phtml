@@ -1,0 +1,39 @@
+!! this script make
+!! previous/ next exercise bouton in sheet
+!! next exercise in exam (only in course mode)
+
+
+!if ($wims_sheet>0 or P isin $wims_sheet) and $cmd=reply and $module_score!=$empty \
+  and $wims_listexo!=$empty
+  <div id="wims_nextinsheet">
+    !if $(wims_listexo[1])!=swork
+      !let p=!positionof item $wims_exo in $wims_listexo
+      !if $wims_exo!=$(wims_listexo[1])
+        !set wims_ref_class=wims_button
+        !href module=home&directworksheet=$wims_sheet.$(wims_listexo[$p-1]) $wims_name_previousseries
+      !endif
+      !if $wims_exo!=$(wims_listexo[-1])
+        !set wims_ref_class=wims_button
+        !href module=home&directworksheet=$wims_sheet.$($wims_listexo[$p+1]) $wims_name_nextseries
+      !endif
+    !else
+      !let p=!positionof item $wims_sheet.$wims_exo in $wims_listexo
+      !if $wims_sheet.$wims_exo!=$(wims_listexo[2])
+        !set wims_ref_class=wims_button
+        !href module=home&directworksheet=$(wims_listexo[$p-1]) $wims_name_previousseries
+      !endif
+      !if $wims_sheet.$wims_exo!=$(wims_listexo[-1])
+        !set wims_ref_class=wims_button
+        !href module=home&directworksheet=$($wims_listexo[$p+1]) $wims_name_nextseries
+      !endif
+    !endif
+  </div>
+!endif
+
+!if _exam isin $wims_session and $wims_examnextexo!=$empty and $cmd=reply
+  <div id="wims_nextinexam">
+    !! wims_pses and wims_pser defined in file html/headmenu_user.phtml
+    !! wims_examnextexo defined in scripts/examprogressbar.proc
+    <a href="#" onclick="window.opener.location='$wims_ref_name?session=$(wims_pses[1])&+cmd=reply&+job=student&+randomizer=$wims_pser&+directexo=$wims_examnextexo';" class="wims_button">$wims_name_nextseries</a>
+  </div>
+!endif

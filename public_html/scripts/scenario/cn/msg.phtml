@@ -1,0 +1,84 @@
+!if dontknow iswordof $error
+  实际上最后一步
+  !if $step_reason=OK
+    是对的. $step_remark
+  !else
+    是错的. $step_remark
+    <div>
+    !read reasons/$step_reason.det
+    </div>
+    最后一部的正确答复应为
+    <div class="wimscenter">
+    !line $step of $good
+    </div>
+  !endif
+  <p>
+   可惜你没有看清.
+  </p>
+  !goto gnext
+!endif
+
+<b>$wims_name_Error</b>
+
+!if step_error iswordof $error
+  !if $step_reason=OK
+    但这一步完全正确!
+    $step_remark
+  !else
+    !if $ask_reason>0 and $step_reason!=$ans
+      不, 最后一步是错的, 但不是你讲的理由.
+    !else
+      不, 最后一步确实是错的.
+    !endif
+    $step_remark
+    <div>
+    !read reasons/$step_reason.det
+    </div>
+    最后一步的正确答案应为
+    <div class="wimscenter">
+    !line $step of $good
+    </div>
+  !endif
+  :gnext
+  <p>
+  !if $step<$stepcnt
+    !href cmd=reply&ans=next 转到下一步.
+  !else
+    练习结束. 得分: $module_score/10.
+  !endif
+  </p>
+  !exit
+!endif
+
+!if bad_step iswordof $error
+  !if $badstep=0
+    你认为全部正确.
+  !else
+    你认为从第$badstep步开始出错.
+  !endif
+  !if $bad_steps=$empty
+    你错了: 所有步骤都对.
+    <p>
+    !line $badstep of $remarks
+    </p>
+  !else
+    不, <em>首先</em>出错的是第$sss步.
+    !if $badstep>0
+      !if $badstep isitemof $bad_steps
+        第$badstep步确实错了, 但这不是最早出错的地方.
+      !else
+        恰恰相反, 第$badstep步是对的.
+      !endif
+    !else
+      $bad_reason
+      <div>
+      !set rrr=!item 1 of $bad_reasons
+      !read reasons/$rrr.det
+      </div>
+    !endif
+  !endif
+  <p>得分: $module_score/10.</p>
+  !exit
+!endif
+
+!msg $error

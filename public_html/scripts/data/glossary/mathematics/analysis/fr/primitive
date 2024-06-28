@@ -1,0 +1,49 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=integral,derivative,primitive
+!set gl_title=Primitive d'une fonction numérique
+!set gl_level=H6 STI2D&nbsp;STL&nbsp;Spécialité, H6 Générale&nbsp;Spécialité, H6 Générale&nbsp;Complémentaire
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(f\) une fonction définie sur un intervalle
+<span style="white-space:nowrap">\(\mathrm{I}\).</span><br>
+On appelle <strong>primitive</strong> de \(f\) sur \(\mathrm{I}\) toute fonction
+\(F\) dérivable sur \(\mathrm{I}\) telle que pour tout
+<span style="white-space:nowrap">\(x \in \mathrm{I}\),</span>
+<span style="white-space:nowrap"> \(\displaystyle{F'(x)=f(x)}\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Toute fonction \(f\) continue sur un intervalle \(\mathrm{I}\) admet une
+primitive sur <span style="white-space:nowrap">\(\mathrm{I}\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(f\) une fonction continue sur un intervalle \(\mathrm{I}\) et \(F\) une
+primitive de \(f\) sur <span style="white-space:nowrap">\(\mathrm{I}\).</span>
+<ul>
+<li>Soit \(k\in \displaystyle{\RR }\).
+La fonction \(G\) définie pour tout \(x \in \mathrm{I}\)
+par \(G(x)=F(x)+k\) est une primitive de \(f\) sur
+<span style="white-space:nowrap">\(\mathrm{I}\).</span>
+</li>
+<li>
+Pour toute primitive \(G\) de \(f\) sur <span style="white-space:nowrap">
+\(\mathrm{I}\),</span> il existe un réel \(k\) tel que, pour tout
+<span style="white-space:nowrap">\(x \in \mathrm{I}\),</span>
+<span style="white-space:nowrap">\(G(x) =F(x) + k \).</span>
+</li>
+</ul>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(f\) une fonction continue sur un intervalle
+<span style="white-space:nowrap">\(\mathrm{I}\).</span><br>
+Soit \(x_0 \in \mathrm{I}\) et \(y_0 \in \RR \).<br>
+Il existe une unique primitive \(F\) de \(f\) sur \(\mathrm{I}\) telle que
+<span style="white-space:nowrap">\(F(x_0)= y_0\).</span>
+</div>

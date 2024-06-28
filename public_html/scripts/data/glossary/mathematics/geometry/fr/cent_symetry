@@ -1,0 +1,45 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=symmetry
+!set gl_title=Symétrie centrale
+!set gl_level=H1 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(\mathrm{I}\) un point du plan.<br>
+La <strong>symétrie centrale</strong> de centre \(\mathrm{I}\) est la
+transformation laissant \(\mathrm{I}\) invariant et par laquelle tout point
+\(\mathrm{M}\) distinct de \(\mathrm{I}\) a pour image le point \(\mathrm{M}'\)
+tel que \(\mathrm{I}\) est le milieu du segment
+<span style="white-space:nowrap">\(\lbrack \mathrm{MM}'\rbrack\).</span>
+</div>
+<div class="wims_thm">
+ <h4>Propriété</h4>
+ Le seul point invariant par une symétrie centrale est son centre.
+</div>
+:mathematics/geometry/fr/cent_symetry_1
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Une symétrie centrale conserve les distances&nbsp;: si \(s\) est une symétrie
+centrale et si <span style="white-space:nowrap">\(\mathrm{A}\),</span>
+<span style="white-space:nowrap">\(\mathrm{B}\),</span> \(\mathrm{A}'\) et
+\(\mathrm{B}'\) sont quatre points du plan tels que \(s(\mathrm{A})=\mathrm{A}'\)
+et <span style="white-space:nowrap">\(s(\mathrm{B})=\mathrm{B}'\),</span> alors
+<span style="white-space:nowrap">\(\mathrm{A}'\mathrm{B}'=\mathrm{AB}\).</span>
+</div>
+:mathematics/geometry/fr/cent_symetry_2
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Le quadrilatère ABCD est un parallélogramme si et seulement si la symétrie
+centrale qui transforme \(\mathrm{A}\) en <span style="white-space:nowrap">
+\(\mathrm{C}\),</span> transforme \(\mathrm{B}\) en
+<span style="white-space:nowrap">\(\mathrm{D}\).</span>
+</div>
+:mathematics/geometry/fr/cent_symetry_3
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Une symétrie axiale conserve les mesures des angles ainsi que les périmètres et
+les aires des figures.
+</div>

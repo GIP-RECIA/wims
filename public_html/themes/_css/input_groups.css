@@ -1,0 +1,85 @@
+/** Grouped input styles */
+.input-group{
+  justify-content: center;
+}
+
+div.input-group>:first-child {border-radius: 5px 0 0 5px;}
+div.input-group>:last-child>button  {border-radius: 0 5px 5px 0;}
+
+
+/* from Foundation for Sites by ZURB
+ * Version 6.4.3
+ * foundation.zurb.com
+*/
+
+
+/* select box */
+
+.input-group>select{
+  border-radius: 0 5px 5px 0;
+}
+
+/* input groups */
+.input-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+      -ms-flex-align: stretch;
+          align-items: stretch; }
+  .input-group > :first-child {
+    border-radius: 0 0 0 0; }
+  .input-group > :last-child > * {
+    border-radius: 0 0 0 0; }
+
+.input-group-label, .input-group-field, .input-group-button, .input-group-button a,
+.input-group-button input,
+.input-group-button button,
+.input-group-button label {
+  margin: 0;
+  white-space: nowrap; }
+
+.input-group-label {
+  padding: 0 1rem;
+  border: 1px solid #cacaca;
+  background: #e6e6e6;
+  color: #0a0a0a;
+  text-align: center;
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+          flex: 0 0 auto;
+      -ms-flex-align: center;
+          align-items: center; }
+  .input-group-label:first-child {
+    border-right: 0; }
+  .input-group-label:last-child {
+    border-left: 0; }
+
+.input-group-field {
+  border-radius: 0;
+      -ms-flex: 1 1 0;
+          flex: 1 1 0;
+  min-width: 0; }
+
+.input-group-button {
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto; }
+  .input-group-button a,
+  .input-group-button input,
+  .input-group-button button,
+  .input-group-button label {
+    -ms-flex-item-align: stretch;
+        align-self: stretch;
+    height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 1rem; }

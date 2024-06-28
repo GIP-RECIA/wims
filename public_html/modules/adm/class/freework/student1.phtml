@@ -1,0 +1,175 @@
+!! display freework page for student type=1 or type=2
+
+!if $emptypage=yes
+  !exit
+!endif
+
+!if $output=no
+  <div class="wims_msg info">
+  !if $beginning_!=$empty
+    $name_notyet $l_date_out $name_at $begh_:$begm_
+  !else
+    $name_notavailable
+  !endif
+  </div>
+  !exit
+!endif
+
+<div class="wims_freework_desc">$desc</div>
+
+<div class="wims_widget_box medium_size">
+  <div class="title_box">
+      <h2 class="wims_title">$(name_subject)</h2>
+  </div>
+  <div class="box_content">
+    !read proc/listfile.phtml subject 0
+  </div>
+</div>
+
+!if $activetest=1
+  <div class="wims_widget_box medium_size">
+    <div class="title_box">
+      <h2 class="wims_title">$(name_copie)</h2>
+    </div>
+
+    <div class="box_content">
+      !! --- type=1 - distribute only
+      !if $type=1
+        <div class="wims_msg
+          !if $activetest>=2
+            warning">$name_copie_toolate2
+          !else
+            !if $toolate=yes
+              warning">$name_copie_toolate
+            !else
+              info">$name_copie_type1
+            !endif
+
+            !read adm/date.phtml $deadline
+            !let time_out = !replace internal : by H in $(timedeadline)
+            <strong>$l_date_out $wims_name_at $time_out</strong>.
+          !endif
+        </div>
+      !else
+      !! --- type=2 - distribute & collect
+        !if $activetest>=2
+          <div class="wims_msg warning">$name_copie_toolate2</div>
+        !else
+          !if $toolate=yes
+            <div class="wims_msg warning">
+              $name_copie_toolate
+              !read adm/date.phtml $deadline
+              !set time_out=!replace internal : by H in $(timedeadline)
+              <strong>$l_date_out $wims_name_at $time_out</strong>.
+            </div>
+          !else
+            <div class="wims_msg info">
+              $name_copie_type2
+              !read adm/date.phtml $deadline
+              $l_date_out $wims_name_at
+              !replace internal : by H in $(timedeadline).
+            </div>
+            !if $seealltime=1
+              <div class="wims_msg info">$name_warningseealltime</div>
+            !endif
+          !endif
+          !if $data_0!=$empty
+              <div class="field box fullwidth">
+                !getfile freeworksdata/work$freework-$(data_0[2]) $name_oldwork
+                $name_the
+                !read adm/date.phtml $(data_0[3])
+                $l_date_out $wims_name_at
+                !replace internal : by H in $(data_0[4]).
+              </div>
+          !endif
+          !if $toolate=$empty
+            <div>
+              !! --- interface de chargement de fichier
+              !if $quota_free>=1
+                !set wims_form_method=file
+                !form reply
+                  <input type="hidden" name="job" value="student1" >
+                  <input type="hidden" name="freework" value="$freework" >
+                  <label for="wims_deposit">$name_depos</label>
+                  <input type="file" size="35" name="wims_deposit" id="wims_deposit" >
+                  <div class="formHelp">$name_copie_type2bis.
+                    !if $data_0!=$empty
+                      $name_msgstudenthavefile
+                    !endif
+                  </div>
+                  <input type="submit" value="$wims_name_submit"
+                    !if $wims_user=supervisor
+                      disabled
+                    !endif
+                  >
+                !formend
+              !else
+                <div class="wims_msg warning">$name_warning_fullclass</div>
+              !endif
+            </div>
+          !endif
+        !endif
+      !endif
+    </div>
+  </div>
+!endif
+
+!if $codownload=1 or $activetest>=2
+  <div class="wims_widget_box medium_size">
+    <div class="title_box">
+      <h2 class="wims_title">$(name_correctedwork)</h2>
+    </div>
+    <div class="box_content">
+      !if $codownload=1
+        !if $(data_0[5])!=$empty
+          !getfile freeworksdata/workco$freework-$(data_0[5]) $(data_0[5])
+        !else
+          <div class="wims_msg info">$name_nouploaded</div>
+        !endif
+      !else
+        <div class="wims_msg info">$(name_nomorecodownload).</div>
+      !endif
+      !if $scoring>0
+        <div class="field box">
+          !let k_=!positionof item $wims_user in $uulist
+          !if $k_!=$empty
+            !let t_=!record $[$k_+1] of wimshome/log/classes/$wims_class/.grades
+            !let t_=!item $[$scoring+2] of $t_
+          !else
+            !let t_=$empty
+          !endif
+          <strong>$(name_score)</strong>
+          !if $t_!=$empty
+            $t_/$maxscore
+          !else
+            $name_noscore
+          !endif
+        </div>
+      !endif
+    </div>
+  </div>
+!endif
+
+!if $flistsolution!=$empty
+  <div class="wims_widget_box medium_size">
+    <div class="title_box">
+      <h2 class="wims_title">$(name_solution)</h2>
+    </div>
+    <div class="box_content">
+      !if $displaysolution=1
+        !read proc/listfile.phtml solution 0
+      !else
+        <div class="wims_msg info">
+          $name_solutiondate
+          !read adm/date.phtml $soldate
+          !let time_out = !replace internal : by H in $(timesoldate)
+          <strong>$l_date_out $wims_name_at $time_out</strong>.
+        </div>
+      !endif
+    </div>
+  </div>
+!endif
+
+!if $activetest>1 and $type>=2
+  <div class="clearall wims_msg info">$name_userperimemessage</div>
+!endif

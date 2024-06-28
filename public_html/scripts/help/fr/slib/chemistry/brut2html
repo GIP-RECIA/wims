@@ -1,0 +1,7 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Forme HTML de la formule d'une molécule
+slib_parms=1\
+ , Molécules séparées par des virgules ou par / en cas de couple.
+
+slib_out= Donne le code html de molécules données sous forme brute.

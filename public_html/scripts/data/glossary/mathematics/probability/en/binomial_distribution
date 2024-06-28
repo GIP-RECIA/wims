@@ -1,0 +1,30 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Binomial distribution
+!set gl_level=U1,U2,U3
+:
+:
+:tool/stat/table.fr
+:
+<div class="wims_defn"><h4>Definition</h4>
+Let \(n) be a positive integer and let \(p) be a real number between 0 and 1.
+The <strong>binomial distribution</strong>
+\(\mathcal{B}(n,p)) is a probability \(q = (q(0),...,q(n))) on \(\{0,...,n\}) defined by
+
+ <div class="wimscenter">
+\( q(k) = C_n^k p^k (1 - p)^{n - k} )
+</div>
+for all \(k) in \(\{0,..., n\}\).
+ </div>
+<table class="wimsborder wimscenter"><tr><th>Expectation</th>
+<th>Variance</th><th>Probability generating function</th></tr><tr>
+<td> \(n p)</td><td>\(n p(1 - p))</td><td>\((1 - p + p z)^n)</td></tr></table>
+<div class="wims_example">
+<h4>Example</h4>Suppose that we toss a coin \(n\) times and that in each toss
+the probability of obtaining <span class="green">head</span> is <span class="green">\(p)</span>
+ and the probability of obtaining <span class="red">tail</span> is <span class="red">\(1 - p)</span>.
+The number of <span class="green">heads</span> in a such series of \(n\) tosses
+defines a random variable \(X\) binomially distributed with parameters \(n\) and \(p\).
+</div>
+

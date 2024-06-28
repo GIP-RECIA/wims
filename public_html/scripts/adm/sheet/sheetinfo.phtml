@@ -1,0 +1,192 @@
+!! Tableau d'information g�n�rale de la feuille d'exos
+!! ce fichier utilise des mots definis
+!! dans le fichier names.phtml.$lang du module adm/sheet
+!form reply
+<input type="hidden" name="job" value="text">
+<fieldset class="property_fields blockcenter">
+!!check
+<legend>$name_info
+!if $jquery_defined!=yes and $sheet<=$scnt
+  [
+  !href cmd=resume&infoshow=no $wims_name_hide
+  ]
+!endif
+</legend>
+<div class="field box">
+  <label for="title">$(name_shinfo[1])</label>
+  <input type="text" name="title" id="title" value="$title" required="required">
+  <div class="formHelp">$name_desc_title</div>
+</div>
+!ifval $activetest>-1
+  <div class="field box">
+    <label for="">$(name_shinfo[2])</label>
+    <span class="wims_status wims_status_$activetest">$(wims_name_shstatus[$activetest+1])</span>
+    !read adm/sheet/sheetaction.phtml sheet,$sheet,$activetest,0
+  </div>
+!endif
+<div class="field box fullwidth">
+  <label for="desc">$(name_shinfo[3])</label>
+  <div class="formHelp">$name_desc_desc</div>
+    <textarea id="desc" class="iEdit" rows="6" cols="65" name="desc">$desc</textarea>
+  </div>
+  <div class="field box">
+    <label for="comment">$(name_shinfo[8])</label>
+    <div class="formHelp">$name_desc_comment</div>
+    <textarea id="comment" class="iEdit" rows="6" cols="65" name="comment">$comment</textarea>
+  </div>
+  <div class="field box">
+  <label for="expdate">$(name_shinfo[4])</label>
+  !default expdate=$(expyear)$(expmon)$(expday)
+  !read adm/datepickerform.phtml $expdate\
+expdate\
+"$class_creation","$class_expiration"
+
+!! !endif
+</div>
+<div class="field box">
+  <label for="sh_weight">$(name_shinfo[11])</label>
+  !set wims_ref_class=wims_button_help float_right
+  !href target=wims_mhelp cmd=help&special_parm=weight $wims_name_help
+  !default weight=!word 1 of $df_severity
+  <input type="number" min="$min_weight" max="$max_weight" step="any" size="5" name="weight" value="$weight" id="sh_weight">
+</div>
+<div class="field box">
+  <label for="formulaA">$(name_shinfo[12])</label>
+  !set wims_ref_class=wims_button_help float_right
+  !href target=wims_mhelp cmd=help&special_parm=score $wims_name_help
+  !set formula_list=!record 0 of adm/class/sheetformula
+  !default formulaA=!word 2 of $df_severity
+  !formselect formulaA list 0,1,2,3,4,5,6 prompt $formula_list
+
+  !default formulaB=!word 3 of $df_severity
+  <label for="formulaB">I=</label>
+  !formselect formulaB list 0,1,2 prompt I0,I1,I2
+</div>
+<div class="field box">
+  <label for="exodescshow">$(name_shinfo[13])</label>
+  !set wims_ref_class=wims_button_help float_right
+  !href target=wims_mhelp cmd=help&special_parm=exodescshow $wims_name_help
+  !set tmp=!record $sheet of wimshome/log/classes/$wims_class/sheets/.sheets
+  !default exodescshow=!line 8 of $tmp
+  !reset tmp
+  !default exodescshow=0
+  !formradio exodescshow list 0,1 prompt $wims_name_no,$wims_name_yes
+</div>
+<div class="field box">
+  <label for="prpage">$(name_shinfo[5])</label>
+  !set wims_ref_class=wims_button_help float_right
+  !href target=wims_mhelp cmd=help&special_parm=sheetpage $wims_name_help
+  !if $prpage!=$empty and $prpage notitemof yes,no
+    <input size="30" name="prpage" id="prpage" value="$prpage">
+  !else
+    !default prpage=no
+    !formradio prpage list no,yes prompt $wims_name_no,$wims_name_yes
+  !endif
+</div>
+!if $tv_listallname!=$empty or $hidden_condition!=$empty
+  <div class="field box">
+    <label for="hidden_condition">$(name_shinfo[14])</label>
+    !set wims_ref_class=wims_button_help float_right
+    !href target=wims_mhelp cmd=help&special_parm=filter $wims_name_help
+    <textarea name="hidden_condition" cols="20" rows="3">$hidden_condition</textarea>
+  </div>
+!endif
+!if $activetest>=0
+  <div class="field box">
+    !if $activetest=0
+      <label for="indivtechvar">$name_desc_indivtechvar</label>
+      <select id="indivtechvar" name="indivtechvar">
+        !if $indivtechvar=0 or $indivtechvar=$empty
+            <option value="0" selected="selected">$name_noone</option>
+          !else
+            <option value="0">$name_noone</option>
+        !endif
+        !let tot=!itemcnt $tv_listlocalcode
+        !for i=1 to $tot
+          !if $(tv_listlocalcode[$i])=$indivtechvar
+            <option value="$(tv_listlocalcode[$i])" selected="selected">$(tv_listname[$(tv_listlocal[$i])])</option>
+          !else
+            <option value="$(tv_listlocalcode[$i])">$(tv_listname[$(tv_listlocal[$i])])</option>
+          !endif
+        !next i
+      </select>
+    !else
+      <strong>$name_desc_indivtechvar</strong>
+      !if $indivtechvar!=0 and $indivtechvar!=$empty
+       !let p=!positionof item $indivtechvar in $tv_listcode
+       $(tv_listname[$p])
+      !else
+         $name_noone
+      !endif
+    !endif
+    !set wims_ref_class=wims_button_help float_right
+    !href target=wims_mhelp cmd=help&special_parm=indivtechvar $wims_name_help
+  </div>
+  <input type="hidden" name="allow" value="yes">
+  <div class="field box">
+    <label for="allowtype">$(name_shinfo[6])</label>
+    !set wims_ref_class=wims_button_help float_right
+    !href target=wims_mhelp cmd=help&special_parm=allowtype $wims_name_help
+    <select id="allowtype" name="allowtype"
+            onchange="toggle_allowtype(this,{'select': '#js_restricted_time','techvar': '#js_restricted_techvar'})"
+      >
+      !if $tv_listname=$empty
+        !set list_allowtype=all,none,select
+      !else
+        !set list_allowtype=all,none,select,techvar
+      !endif
+      !let nboption=!itemcnt $list_allowtype
+      !for i=1 to $nboption
+        !if $(list_allowtype[$i])=$allowtype
+          <option value="$(list_allowtype[$i])" selected="selected">$(name_allowtype[$i])</option>
+        !else
+          <option value="$(list_allowtype[$i])">$(name_allowtype[$i])</option>
+        !endif
+      !next i
+    </select>
+
+    <div id="js_restricted_time"
+      !if $allowtype=select
+        style="display:block"
+      !else
+        style="display:none"
+      !endif
+      >
+      !readproc adm/scorerestriction get
+      !read adm/scorerestriction html
+    </div>
+
+    <div id="js_restricted_techvar"
+      !if $allowtype=techvar
+        style="display:block"
+      !else
+        style="display:none"
+      !endif
+      >
+      !read adm/vfilter/scoreregform.phtml
+    </div>
+    <script src="scripts/js/interface/ui_utils.js"></script>
+
+    !default allowshare=0
+    !if $sharers!=$empty
+      <div>
+        <label for="allowshare">$(name_shinfo[7])</label>
+        !formselect allowshare list 0,1 prompt $wims_name_no,$wims_name_yes
+      </div>
+    !else
+      <input type="hidden" name="allowshare" value="0">
+    !endif
+  </div>
+!endif
+</fieldset>
+
+<div class="wimscenter wimsform">
+  !ifval $activetest=-1
+    <input type="submit" value="$name_mksheet">
+  !else
+    <input type="submit" value="$wims_name_tosave" name="save">
+  !endif
+  !set wims_ref_class= wims_button wims_secondary_button
+  !href module=home $wims_name_giveup
+</div>
+!formend

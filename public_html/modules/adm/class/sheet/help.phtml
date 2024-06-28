@@ -1,0 +1,28 @@
+!set listhelp=dependancies,allowtype,general,status,variable,feedback,series,score,sheetpage
+
+!bound special_parm within $listhelp default $empty
+
+!if $special_parm iswordof sheetpage
+  !read help/$special_parm.phtml
+  !exit
+!endif
+
+!if $special_parm=filter
+  !changeto help/$moduclass_lang/$special_parm.phtml
+  !exit
+!endif
+
+!set idle_time=!getdef idle_time in wimshome/log/wims.conf
+!default idle_time=!getdef DF_idle_time in wimshome/public_html/bases/sys/defaults.conf
+!set idle_time=$[floor($idle_time/60)]
+
+!if $special_parm=score
+  !set list=!record 0 of adm/class/sheetformula
+  !set list=!items2lines $list
+  !set wims_backslash_insmath=yes
+  !let scoremax=!record 0 of wimshome/log/classes/$wims_class/sheet/.severity
+  !let scoremax=!line 1 of $scoremax
+  !default scoremax=10
+!endif
+
+!changeto lang/help.phtml.$moduclass_lang $special_parm

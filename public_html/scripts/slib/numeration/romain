@@ -1,0 +1,53 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+slib_author=Bernadette, Perrin-Riou
+
+slib_title=Numération romaine
+slib_parms=1\
+,number to convert (less than 3999)
+slib_out=Conversion en numération romaine
+
+slib_example=456\
+654\
+12
+
+!exit
+
+:proc
+
+slib_chif=$wims_read_parm
+
+slib_romain=
+!bound $slib_chif between 1 and 3999
+slib_number=1,I,V\
+10,X,L\
+100,C,D\
+1000,M,MMMMM
+slib_cnt=!charcnt $slib_chif
+!for slib_a = 1 to $slib_cnt
+  slib_digit=!char $[$slib_cnt - $slib_a+1] of $slib_chif
+  slib_i= $(slib_number[$slib_a;2])
+  slib_v=$(slib_number[$slib_a;3])
+  !if $slib_digit iswordof 1 2 3
+    slib_rom=!makelist $slib_i for x = 1 to $slib_digit
+    slib_romain= $slib_rom $slib_romain
+  !endif
+  !if $slib_digit=4
+    slib_romain= $slib_i $slib_v $slib_romain
+  !endif
+  !if $slib_digit=5
+    slib_romain= $slib_v $slib_romain
+  !endif
+   !if $slib_digit iswordof 6 7 8
+     slib_rom= !makelist $slib_i for x = 1 to $slib_digit -5
+     slib_romain=$slib_v$slib_rom $slib_romain
+   !endif
+   !if $slib_digit=9
+     slib_x=$(slib_number[$slib_a+1;2])
+     slib_romain=$slib_i$slib_x$slib_romain
+   !endif
+ !next
+
+ slib_out=!replace internal , by in $slib_romain
+ slib_out=!nospace $slib_out

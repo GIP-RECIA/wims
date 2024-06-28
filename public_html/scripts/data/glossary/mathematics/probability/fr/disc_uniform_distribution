@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability
+!set gl_title=Équiprobabilité
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définitions</h4>
+Soit &#937; l'univers associé à une expérience aléatoire.<br>
+On suppose &#937; fini&nbsp;; on note \(n\) le nombre d'éléments de &#937; (\(n\)
+entier naturel non nul).<br>
+Si l'on associe à chacun des \(n\) événements élémentaires contenus dans &#937;
+la même probabilité, on définit sur &#937; une <strong>loi équirépartie</strong>.
+On dit qu'on est en situation d'<strong>équiprobabilité</strong>.<br>
+Alors pour tout \(x\) de  &#937;, on a \( \mathrm{P}(\{x\})=\frac{1}{n}\).
+</div>
+<div class="wims_thm">
+<h4>Propriété</h4>
+Soit \(n\) un entier naturel non nul.<br>
+On considère une loi équirépartie sur un univers &#937; à \(n\) éléments.
+<br>Pour tout événement \(\mathrm{A}\) à \(k\) éléments avec
+<span style="white-space:nowrap">\(0 \leqslant k \leqslant n\),</span> on a&nbsp;:
+<span style="white-space:nowrap">\( \mathrm{P}(\mathrm{A})=\frac{k}{n}\).</span>
+</div>

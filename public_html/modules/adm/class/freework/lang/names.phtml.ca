@@ -1,0 +1,192 @@
+!set lang_exists=yes
+wims_name_freework=Tasca lliure
+name_info=Informacions generals
+name_content=Contingut de la tasca
+name_parametrage=Configuració de la tasca
+name_listwork=Llista de tasques retornades
+name_ltsolution=Tasques corregides (i data de presentació)
+name_ltannotation=Data de correcció
+name_solutiondeposit=Dipòsit de correcció
+name_correctedwork=Tasca corregida
+name_studentglo=Cognom i nom
+name_givedate=Tasques (i data de presentació)
+name_mega=MB
+name_studentname=!nosubst $lastname $firstname
+!let name_shinfo=!nosubst $wims_name_title,\
+Tipus,\
+$wims_name_Status,\
+Text explicatiu,\
+$wims_name_comment,\
+Data de caducitat,\
+Data de lliurament,\
+Data de correcció,\
+Qualificació,\
+El professorat sempre pot veure les tasques de l'alumnat,\
+Possibility of an early hand in of homework
+
+name_type_list=Difusió,Difusió i retorn,Resposta en línia
+name_desc_title=!nosubst Limitat a $title_limit caràcters
+name_desc_type=Un cop creada la tasca, ja no podreu canviar el seu tipus.
+name_desc_desc=!nosubst Limitat a $desc_limit caràcters ; Etiquetes HTML permeses
+name_desc_comment=Visible només per al professorat.
+name_desc_scoring=Permet assignar una nota manual a cada participant
+name_desc_seealltime=Si es marca aquesta casella, el professorat podrà consultar les tasques de l'alumnat abans de la data límit per al lliurament de la tasca (però, no serà possible corregir-la).
+name_desc_studentclose=Després de lliurar els deures, els alumnes ja no poden modificar el seu treball.
+name_mkfreework=Crear la tasca
+name_tmkfreework=!nosubst Creació de la tasca lliure $freework
+name_managefreework=!nosubst Gestió de la tasca lliure $freework
+name_datasubject=Fitxers corresponents
+name_datasolution=Fitxers per la correcció
+name_desc_deadline=Data abans de la qual l'alumnat ha de tornar la feina.
+name_desc_soldate=Data a partir de la qual  estarà disponible la correcció.
+name_nodeposit=Ja no podeu carregar un fitxer perquè el contingut de la classe és molt proper o ha superat el límit d'espai de disc autoritzat. Ho sento.
+name_depos=Nou fitxer&nbsp;
+name_limitestudent=Mida límit per al fitxer de l'alumnat
+name_available=Fitxer(s) ja descarregat(s)
+name_erase=Fitxer a eliminar
+name_badstatut=L'estat de la tasca lliure no permet afegir fitxers.
+name_subject=Feina
+name_solution=Correcció
+name_copie=Tornar la tasca
+name_solutiondate=La correcció estarà disponible per a la seva descàrrega el
+name_copie_type1=La tasca s'ha de tornar directament al vostre professor abans del
+name_copie_type2=Aquí podeu lliurar la vostra tasca fins el
+name_copie_type2bis=!nosubst Disposeu de $[0.25*$sizelimitfile] MB com a màxim
+name_usedstorage=!nosubst Heu utilitzat $[rint($used*100)/100] MB
+name_copie_toolate=És massa tard per realitzar o canviar la tasca. Havia de ser retornada abans del
+name_copie_toolate2=És massa tard per realitzar o canviar la tasca
+name_desc_sizelimitfile=Permet ajustar la mida límit de l'àrea de fitxers per a cada participant.
+name_fortheclass=per als participants de la classe
+name_oldwork=Fitxer penjat
+name_the=el
+name_userperimemessage=La vostra tasca corregida (si l'heu enviada) no està disponible per descarregar-la.
+name_userperimemessage3=La vostra obra ja no es pot veure.
+name_desc_listwork2=L'alumnat té accés a la seva tasca corregida tan aviat com ha passat la data d'emissió de la resposta general i s'envien totes les tasques corregides.
+name_desc_listwork3=L'alumnat pot presentar les seves tasques.
+name_desc_listwork31=Podeu recollir-les al final del període de dipòsit autoritzat
+name_desc_listwork32=Podeu visualitzar-los, però només podeu corregir-los després de la línia límit
+name_desc_listwork4=!nosubst L'alumnat encara pot desar i/o modificar la seva tasca fins a $date
+name_desc_listwork5=!nosubst La correcció ja no és possible després de la data de difusió ($date)
+name_allworkcorrected=Totes les tasques estan corregides.
+name_worknotcorrecteds=!nosubst Queden $notcorrected tasques no corregides.
+name_worknotcorrected=!nosubst Quada $notcorrected tasca no corregida.
+name_nbcopies=!nosubst $nbcopies alumnes han presentat les tasques.
+name_nbcopie=!nosubst $nbcopies alumne han presentat la tasca.
+name_datafile=Fitxers
+name_noscoring=Sense valoració
+name_usedscoring=Utilització de la nota manual
+name_none=Cap
+name_score=Nota
+name_workof=Tasca de
+name_remark=Nota mentre es treballa
+name_desc_remark=Qualsevol observació destinada a l'alumnat (serà immediatament visible per l'alumnat).
+name_finalremark=Apreciació final
+name_desc_finalremark=Escriviu a la finestra següent la valoració de la tasca i els comentaris que es destinin a l'alumnat. Només serà visible després de la data de venciment de la tasca.
+name_app=Apreciació
+
+
+name_zone=Zona
+name_titlezone=Títol de la zona
+name_desczone=Descripció de la zona
+name_zonepara_teacher=Construcció de l'enunciat
+name_zonepara_student=Construcció de la zona de resposta de l'alumnat
+name_zonetype=Tipus
+name_zonecontent=Contingut de la zona
+name_answerzone=Zona de resposta
+name_nbzone=Nombre de zones
+name_ztype=tipus de zona
+name_listofztype=GeoGebra,Text,Fitxer,Exercice Interactif,RandFile
+name_applet_geogebra=Opció de configuració de l'applet,Copiar el contingut de la zona ensenyant,Mostrar aquesta zona a l'alumnat
+name_noone=Cap
+name_noparameters=Cap paràmetre específic
+
+name_badstatutsubject=Ja no és possible afegir o modificar fitxers del tema.
+name_badstatutsolution=Ja no és possible afegir o modificar fitxers per a la solució.
+name_warningseealltime=El professorat pot veure la vostra tasca en qualsevol moment.
+name_warning_fullclass=Aquesta classe està plena, ja no és possible penjar un fitxer.\
+  Poseu-vos en contacte amb el professorat!
+name_warning_fullzone=Has superat la capacitat de l'espai d'emmagatzematge assignat pel professorat.
+name_noscore=sense puntuar
+name_nomorecodownload=La vostra tasca corregida ja no està disponible per descarregar-la
+name_nouploaded=No heu retornat cap tasca.
+
+name_textarealimit=!nosubst El text està limitat a $textezone_tmplimit caràcters
+name_nofile=Cap fitxer
+name_depositzone=Zona de dipòsit&nbsp;
+name_filedeposit=Pujant fitxers
+name_archivefreework=Arxivar la tasca
+name_desc_filearchive=Aquest fitxer conté les dades de l'alumnat de la classe (còpies i possibles correccions individuals)
+name_warning_archive=!nosubst Esteu a punt d'arxivar la tasca de casa número $freework.\
+  Se suprimiran del servidor les dades de l'alumnat relatives a aquesta tasca lliure\
+   (còpies / correccions individuals).\
+ Podeu recuperar l'arxiu que conté totes aquestes dades anteriors (si està disponible).\
+ Tingueu en compte que aquesta operació és irreversible. Un cop s'acabi, \
+ <ul><li>ja no tindreu accés a aquesta informació al servidor;</li>.\
+ <li>no serà possible utilitzar l'arxiu descarregat per tornar a posar la informació al servidor.</li></ul>\
+ Estàs segur que vols continuar?
+name_archivatedfreework=Aquesta tasca s'ha arxivat, ja no és possible accedir a les còpies de l'alumnat.
+
+name_msgstudenthavefile=Si pengeu un fitxer nou, substituirà el que ja heu penjat.
+name_toomany_users=!nosubst La vostra classe té massa participants (més de $max_userforgrades), per tant, no és possible modificar les notes de la tasca lliure en aquesta pàgina. Haureu d'editar manualment el fitxer de notes del mòdul:
+name_modulegrades=notes manuals
+name_preview=Previsualitzar els textos
+name_outpreview=Vista prèvia
+
+name_exochoice=Elecció d'exercicis
+name_nodeposit=Sense dipòsit
+name_wimsexo=Exercicis
+name_nofiledeposit=El dipòsit de còpia no està habilitat per a aquesta tasca lliure.
+name_insert=Voleu inserir un recurs del mòdul
+name_parm=amb els paràmetres d'execució
+name_choose_exo=Aquest recurs s'inserirà com a nou exercici de tasca lliure.
+name_choose=Tria una tasca lliure
+name_freeworkcheck=Consultar la tasca lliure
+name_end=!nosubst El recurs <span class="wims_mod_title">$title</span> s'ha inserit correctament a la tasca lliure $pickfreework
+name_listexo=Llista d'exercicis
+name_listexo_desc=Els exercicis es poden afegir de la mateixa forma que als fulls d'exercicis.
+name_num=No
+name_description=Descripció
+name_action=Acció
+name_typequatre_desc=S'han de resoldre els exercicis proposats a wims i obtenir la nota màxima de cada exercici. En cas contrari, l'exercici s'ha de reiniciar. Per a cada exercici, has d'escriure la solució en una còpia i lliurar-la al teu professor o dipositar-la al lloc (si el professor ha obert el dipòsit). Pots consultar en qualsevol moment els exercicis que has d'escriure.
+name_done=Fet
+name_teacher_noreplyzone=La còpia s'ha de lliurar directament al professorat sense passar per la interfície de Wims.
+name_maxnumberoffile=Nombre màxim de fitxers
+name_maxfilelimit=S'ha arribat al límit del nombre de fitxers. Si voleu pujar un altre fitxer, heu d'esborrar un dels fitxers que ja heu penjat.
+name_nowork=Lo studente non ha ancora iniziato il compito.
+name_correctedfile=Fitxer(s) corregit(s)
+name_textlimitsize=Nombre màxim de caràcters
+name_textlimitsizedesc=!nosubst Aquest número ha d'estar entre 1 i $textezone_limit.
+name_minscoretosave=Puntuació mínima
+name_desc_minscoretosave=Aquesta és la puntuació mínima que ha d'aconseguir l'alumne en un exercici perquè es pugui gravar automàticament o manualment.
+name_autoreg=Enregistrament automàtic
+name_remarkinwork=Nota(s) durant el treball
+name_ltremark=Data de qualificació
+name_seeco=Veure la correcció
+name_closeco=Entrega final
+name_co_para=Parametrització per a la correcció
+name_solutiongiven=Solució
+name_feedbackgiven=Feedback
+name_co_desc=Aquests elements s'afegiran només en llegir la còpia després del període de correcció.
+name_detailact=Detalls de l'activitat d'aquesta tasca lliure
+name_close_alertpre1=Tu decideixes lliurar la teva feina. La teva resposta es desarà tal com es mostra més avall. Llegiu atentament la vostra resposta i feu clic a sobre 
+name_close_alertpre2=a la part inferior de la pàgina.
+name_close_alertpost=Estàs lliurant la teva feina. Un cop ho confirmeu, ja no podreu modificar el vostre treball.
+name_close_confirm=Confirmeu l'entrega
+name_close_closed=Has lliurat el teu treball, ja no pots modificar-lo
+name_close_info=Si creieu que heu acabat, podeu desar i lliurar la vostra feina.
+name_close_doclose=Lliure-ho ara
+name_reopen=Torna a obrir
+
+!set name_showhidetitle=Condició per ocultar la seqüència als participants
+!let name_allowtype=visible per a tots, ocult per a tots, visible per a les següents estacions de treball (i/o hores), visibilitat establerta per una variable tècnica
+!set name_desc_allowtechvar=Elecció de la variable tècnica
+!set name_desctableval=Taula de filtres segons el valor de la variable tècnica
+!set name_value=Valor
+!set name_filtre=Filtre
+!set name_EMPTY=(cap valor)
+
+!set name_notyet=Aquesta tasca lliure estarà disponible a partir de 
+!set name_at=a
+!set name_notavailable=Aquesta tasca lliure no està disponible.
+
+!set wims_name_studscores=Participant's scores

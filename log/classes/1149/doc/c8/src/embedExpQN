@@ -1,0 +1,12 @@
+<h3 class="l2w_content thm">Rappel</h3><div class="l2w_content thm">
+Si \(p) et \(n) sont des entiers relatifs et si \(a) et \(b) sont des nombres réels non nuls alors :<br>
+\(a^n a^p = a^{n + p}), \(\frac{a^n}{a^p} = a^{n - p}) , \(a^0 = 1),
+\((a^n)^p = a^{n p}) et \(a^n b^n = (a b)^n).
+</div>
+<h3 class="l2w_content exemple">Exemples</h3><div class="l2w_content exemple">
+<ul><li>
+\(2^{-3} \times 5^{-3} = 10^{-3} = 0,001) ;</li><li>
+\((\sqrt{2})^6 = ((\sqrt{2})^2)^3 = 2^3 = 8) ;</li><li>
+\((\frac{\pi}{3})^2 = \frac{\pi^2}{9}) ;</li><li>
+\(\pi^0 = 1)</li></ul>
+</div>

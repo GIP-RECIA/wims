@@ -1,0 +1,13 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+axis
+axisnumbering
+precision 1
+grid 2,2,grey,2,2,5,grey
+multicolors orange,red,green,blue,cyan
+precision 1000
+userdraw functions3,red
+jscurve blue,x^2,-x^2,5*cos(x)
+precision 1
+mouse red,22

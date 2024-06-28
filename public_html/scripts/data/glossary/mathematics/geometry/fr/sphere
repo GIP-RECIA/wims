@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=volume,measurement,solid_geometry,3_shape
+!set gl_title=Sphère
+!set gl_level=H3 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(\mathrm{O}\) un point de l'espace et soit \(\mathrm{R}\) un nombre
+strictement positif.<br>
+La <strong>sphère</strong> de centre \(\mathrm{O}\) et de rayon \(\mathrm{R}\)
+est l'ensemble des points \(\mathrm{M}\) de l'espace tels que
+<span style="white-space:nowrap">\(\mathrm{OM} = \mathrm{R}\).</span>
+</div>
+
+<div class="wims_thm">
+<h4>Théorème</h4>
+L'aire \(\mathrm{A}\) d'une sphère de rayon \(\mathrm{R}\) est donnée par
+<span style="white-space:nowrap">\(\mathrm{A}= 4 \pi \mathrm{R}^2\).
+</span>
+</div>
+:mathematics/geometry/fr/sphere_1

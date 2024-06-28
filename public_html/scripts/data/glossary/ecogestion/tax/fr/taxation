@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Fiscalité
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">La <strong>fiscalité</strong> est une
+ <span class="wims_emph">branche du droit</span> dont l'objet est d'étudier
+ et d'établir les principes et les règles selon lesquels sont levés les
+ différents prélèvements fiscaux (impôts, taxes, redevances...) qui constituent les principales <span class="wims_emph">recettes budgétaires</span> de l'État.</div>
+<div class="spacer">La fiscalité est elle-même divisée en sous-branches : fiscalité des ménages, fiscalité des entreprises, fiscalité des revenus, fiscalité de la consommation, fiscalité du patrimoine...</div>
+
+</div>

@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 1,1,grey
+linewidth 2
+fillcolor orange
+opacity 200,50
+userdraw circle,green

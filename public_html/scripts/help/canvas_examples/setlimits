@@ -1,0 +1,15 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+precision 1
+xlabel T
+ylabel H
+axis
+axisnumbering
+grid 2,2,grey,2,2,5,grey
+precision 100
+multistrokecolors red,green,blue,orange
+multilinewidth 1,1,2,2
+multistrokeopacity 0.6,0.7,0.8,0.9
+jsplot red,1/x,-1,x,1/(x-3),1/(x+3)
+setlimits

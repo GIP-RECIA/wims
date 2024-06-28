@@ -1,0 +1,8 @@
+addnum: Agrega un número a ambos lados de una ecuación
+addterm: Agrega una expresión a ambos lados de una ecuación
+divnum: Dividir una ecuación por un número
+exsides: Intercambiar ambos lados de una ecuación
+lincomb: Suma de ecuaciones con coeficientes
+mulnum: Multiplicar una ecuación por un número
+rewrite: Reescribir una ecuación
+spliteq: Dividir casos según una (in)ecuación

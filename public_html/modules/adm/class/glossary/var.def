@@ -1,0 +1,6 @@
+deny:dir iniparm
+reply:pickglossary title new_glossary gl new_glossarydesc desc
+any:job modu_lang
+deny:smodule
+reply:new_desc title[MAX_SHEETS] delete[MAX_SHEETS]
+init:moduclass_lang gloss_dir Gloss_dir

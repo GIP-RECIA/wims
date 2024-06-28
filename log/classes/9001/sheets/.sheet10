@@ -1,0 +1,26 @@
+:classes/fr
+exo=chemformula&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+chemformula
+Divers types d'analyse d'une formule brute
+
+
+
+
+:classes/fr
+exo=chemdraw&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Dessiner une molécule
+
+:classes/fr
+exo=jmolclick&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Sélectionner dans l'espace
+Cliquer sur des atomes en 3D
+
+
+
+

@@ -1,0 +1,209 @@
+!set anstype=yes
+!if $lang=fr
+  !set ans_points=Insérer un point
+  !set ans_segments=Insérer un segment
+  !set ans_images=Insérer un objet
+  !set ans_arrows=Insérer une flèche
+  !set ans_arrows2=Insérer une flèche double
+  !set ans_circles=Insérer un cercle
+  !set ans_lines=Insérer une droite
+  !set ans_curvedarrows=Insérer une flèche courbe
+  !set ans_curvedarrows2=Insérer une flèche courbe double
+  !set ans_text=Insérer un texte
+  !set ans_text_label=Tapez le texte à insérer
+  !set ans_closedpoly=Insérer un polygone
+  !set ans_rects=Insérer un rectangle
+  !set ans_parallelograms=Insérer un parallélogramme
+  !set ans_triangle=Insérer un triangle
+  !set ans_math=Insérer un objet
+!else
+  !set ans_points=Insert a point
+  !set ans_segments=Insert a segment
+  !set ans_images=Insert an object
+  !set ans_arrows=Insert an arrow
+  !set ans_arrows2=Insert a double side arrow
+  !set ans_circles=Insert a circle
+  !set ans_lines=Insert a line
+  !set ans_curvedarrows=Insert a curved arrow
+  !set ans_curvedarrows2=Insert a double side curved arrow
+  !set ans_text=Insert a text
+  !set ans_text_label=Type the text to insert
+  !set ans_closedpoly=Insert a polygon
+  !set ans_rects=Insert a rectangle
+  !set ans_parallelograms=Insert un parallelogram
+  !set ans_triangle=Insert a triangle
+  !set ans_math=Insert an object
+!endif
+!default ans_circle=$ans_circles
+!default ans_arrow=$ans_arrows
+!default ans_erase=$wims_name_erase
+!if $wims_read_parm=def
+  !exit
+!endif
+!if $printing=yes
+  !set i=$wims_read_parm
+  !set id=$iii_$i
+!else
+  !set id=$i
+!endif
+!! order important imposed by canvasdraw
+!set order_type=point,points,circle,circles,line,lines,segment,segments,arrow,\
+  arrows,triangle,triangles,closedpoly,text,rect,rects,poly[3-9],polys[3-9],\
+  parallelogram,parallelograms,images,curvedarrow,curvedarrows,curvedarrow2,curvedarrows2
+!set color=!getopt color in $(replyoption$i)
+!default color=blue
+!set typelistduplicate=arrows, arrows2, curvedarrows, curvedarrows2, segments,lines
+!set typelist=!listuniq $(replygood$i[2..-1;1])
+!set typelist=!replace internal mathml by images in $typelist
+!set typelist=!replace internal polygon by closedpoly in $typelist
+!set typelistduplicate=!listintersect $typelistduplicate and $typelist
+!set typelist=!listuniq $typelist
+!set input_img=$(replygood$i[1;1])
+!for t in math, images
+  !set list_$t=!select $(replygood$i[2..-1;]) where column 1=$t
+  !set $(t)_=!declosing $(list_$t[2])
+!next
+!set inputsize=!replace internal $	$ by $\
+$  in $inputsize
+
+!set inputsize=!nonempty lines $inputsize
+!if ?analyze isin $input_img
+  !!FIXME: not tested
+  !set type=!line 2 of $inputsize
+  !set typelist=!words2items $type
+  !set parm3=!line 3 to -1 of $inputsize
+!endif
+!set Inputsize=!line 1 of $inputsize
+!set testinput=!text remove 0123456789x in $Inputsize
+
+!if $testinput issametext $empty
+  !set Inputsize=!replace internal x by , in $Inputsize
+  !distribute items $Inputsize into xsize,ysize
+!endif
+
+!set replygood$i=!lines2rows $(replygood$i)
+!if ?analyze notin $input_img
+  !set parm3=$(replygood$i[1;])
+!endif
+!set parm3=!declosing $parm3
+!set parm3=!replace internal $	$ by $\
+$ in $parm3
+!set parm3=!rows2lines $parm3
+!for tt in multistrokecolors
+  !set tmp=!select $parm3 where $tt iswordof column1
+  !if $tmp=$empty
+    !set color=!makelist black for x in $typelist
+    !set parm3=!append line $tt $color to $parm3
+  !endif
+!next
+!if arrows iswordof $typelist or arrows2 iswordof $typelist
+  !set arrow_head=!getopt arrow_head in $(replyoption$i)
+  !default arrow_head=10
+  !set option=$arrow_head,
+!endif
+
+!set oef_answer_option$i=$xsize,$ysize\
+$parm3\
+$typelist
+
+!if $typelistduplicate!=$empty
+  !set parm3=!append line duplicates to $parm3
+!endif
+
+!for tt in $typelist, stop
+  !default ans_$tt=$tt
+  !set name_l=!append item $(ans_$tt) to $name_l
+  !if $tt iswordof string images math
+    !set parm3=$parm3\
+centered
+  !endif
+!next
+!set typelist___=!replace internal math by images in $typelist
+!set parm3=$parm3\
+multilabel NOCONTROLS\
+multidraw $typelist___\
+#multilabel $name_l\
+#imagepalette $(image_)\
+
+!if $printing!=yes
+  <div>
+  !read oef/canvasdraw.phtml $xsize,$ysize\
+$parm3
+
+  !set canvasid=!text select 0123456789 in $canvasdraw_idclass
+  <script>
+  /*<![CDATA[*/
+  function my_canvasdraw$i() {
+    fun=eval('read_canvas$canvasid');
+    p = fun();
+    if( p != undefined) { document.getElementById('oefvar' + $i).value='reply\n' + p; }
+  };
+
+  function select_primitive(type, number) {
+    userdraw_primitive=number;
+    multidraw_click_cnt = 0;
+    const primitive_buttons = document.querySelectorAll(".userdraw_primitive");
+    primitive_buttons.forEach((button) => {
+      button.classList.remove("disabled");
+    });
+    document.getElementById("canvasdraw_"+type).classList.add("disabled");
+  }
+
+  </script>
+!endif
+  <input type="hidden" id="oefvar$i" name="reply$i" value="">
+
+!set cnt_types=!itemcnt $typelist
+
+!for type in $typelist
+  <div class="wimscenter">
+    !set number=!position item $type in $order_type
+    !if $type iswordof poly3 poly4 poly5 poly6 poly7 poly8 poly9
+      !set number=17
+    !endif
+    !if $type iswordof polys3 polys4 polys5 polys6 polys7 polys8 polys9
+      !set number=18
+    !endif
+    !if $type=math
+      !set number=!position item images in $order_type
+    !endif
+
+    !set number=$[$number-1]
+    !if $cnt_types > 1
+      <input class="wims_button userdraw_primitive" type="button" id="canvasdraw_$type" value="$(ans_$type)"
+             onclick="select_primitive('$type', $number)">
+    !else
+      <h2 class="small">$(ans_$type)</h2>
+    !endif
+    !if $type iswordof images
+      !set cnt_image=!itemcnt $images_
+      <ul class="inline wims_nopuce">
+      !for c=1 to $cnt_image
+        <li>
+          <img class="canvas_placeable" src="$(images_[$c])" id="img_$c" alt=""
+               onclick="select_primitive('$type', $number);place_image_on_canvas(this.id);">
+        </li>
+      !next
+      </ul>
+    !endif
+    !if $type iswordof math
+      !set cnt_math=!itemcnt $math_
+      <ul class="inline wims_nopuce">
+      !for c=1 to $cnt_math
+        !set tmp=!mathmlmath $(math_[$c])
+        <li><span class="canvas_placeable" onclick="javascript:place_image_on_canvas(this.id)" id="math_$c" >$tmp</span></li>
+      !next
+      </ul>
+    !endif
+    !if $type iswordof text
+      <label for="input_text_r">$ans_text_label</label>
+      <input type="text" size="4" value="" id="input_text_r">
+    !endif
+    <input class="wims_button wims_warning" type="button" value="$ans_erase"
+           onclick="javascript:var fun=eval('clear_draw_area'+$canvasid);fun($number,0);">
+  </div>
+!next
+!if $printing!=yes
+  </div>
+!endif
+!set oef_js_submit=$oef_js_submit my_canvasdraw$i();

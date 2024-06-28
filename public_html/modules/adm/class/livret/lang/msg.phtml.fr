@@ -1,0 +1,16 @@
+!set wims_module_log=error: $error
+<b>$wims_name_Error</b>.
+!if $error iswordof toomanycomp closedlivret
+  !goto $error
+!else
+  !msg $error
+  !exit
+!endif
+
+:toomanycomp
+ Vous ne pouvez plus ajouter de compétences, la limite est de $maxcomp !
+!exit
+
+:closedlivret
+ Le livret de compétence a été désactivé par votre enseignant.
+!exit

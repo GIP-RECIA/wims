@@ -1,0 +1,19 @@
+!set gl_type=dynamic
+!set gl_title=Résultat fiscal (Illustration chiffrée)
+
+!set gl_entetes=Élément,Réintégration,Déduction
+!set gl_traitement=Résultat comptable,Produits non imposables,Charges non déductibles,Total,Résultat fiscal
+!set gl_nomrc=bénéfice, perte
+
+!readproc data/glossary/ecogestion/tax/macro/tax_result
+
+<h4>Exemple de détermination d'un résultat fiscal</h4>
+On suppose les données suivantes :
+<ul>
+<li>résultat comptable ($gl_nomrc) : $gl_rc &euro; ;</li>
+<li>charges non déductibles : $gl_cnd &euro; ;</li>
+<li>produits non imposables :  $gl_pni &euro; .</li>
+</ul>
+<div class="spacer">Le résultat fiscal se détermine alors de la manière suivante :
+</div>
+$gl_datas

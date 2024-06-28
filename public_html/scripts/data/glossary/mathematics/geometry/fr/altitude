@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=altitude,triangles
+!set gl_title=Hauteur d'un triangle
+!set gl_level=H1 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit ABC un triangle.<br>
+La <strong>hauteur</strong> issue de A du triangle ABC est la droite passant par
+le sommet A et perpendiculaire à la droite (BC).
+</div>
+:mathematics/geometry/fr/altitude_1
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Les trois hauteurs d'un triangle sont concourantes.</div>
+:mathematics/geometry/fr/altitude_2
+:
+<div class="wims_rem"><h4>Remarque</h4>
+En certaines circonstances, le mot <em>hauteur</em> peut désigner le segment dont
+les extrémités sont un sommet d'un triangle et le projeté orthogonal de ce sommet
+sur le côté opposé&nbsp;; il peut aussi désigner la longueur de ce segment.
+</div>

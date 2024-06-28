@@ -1,0 +1,261 @@
+!set wims_backslash_insmath=yes
+# basic variable preparation.
+!if robot isin $session
+  !exit
+!endif
+!set tmp=!defof classification_open\
+allowed_optional_module in wimshome/log/wims.conf
+!distribute line $tmp into classification_open,wims_allowed_optional_module
+!reset tmp
+!if $classification_open=yes
+  !set tmp=wims_classification_open=yes
+!endif
+!if $wims_allowed_optional_module!=$empty
+  !set tmp=!append line wims_allowed_optional_module=$wims_allowed_optional_module to $tmp
+!endif
+!if $tmp!=$empty
+  !setdef $tmp in wimshome/sessions/$wims_session/var.stat
+!endif
+!if $wims_user=supervisor or $wims_supconnectshowed=yes
+  !readproc adm/whoconnect
+!endif
+
+!if $directworksheet!=$empty
+  !changeto launchseries.proc
+!endif
+
+wims_prefix=class user tmp cdt search m
+wims_writable=exolist titlelist exototal package lastsearch \
+  titb keyw datm prev next upbl dat1 dat2 front_exist
+wims_readable=session wims_session wims_class wims_user lang module cmd front_exist
+
+!read themes/_procs/frontmsg.proc
+
+!read ./tabletheme
+!read ./formcolors
+!read adm/search_engine/names.$lang
+module_language=$lang
+subclasscnt=0
+
+test=!record 0 of wimshome/public_html/modules/adm/browse/index
+!if $test!=$empty
+  has_browse=yes
+  browse_parm=job=$browse_job&parm=$browse_parm
+!endif
+
+!if $wims_user!=$empty and $wims_class!=$empty
+  !readdef ./wimshome/log/classes/$wims_class/.def
+  !default class_typename=class
+  !set class_authidp=!defof class_authidp in wimshome/log/classes/$wims_superclass/.def
+  !set auth_method_list=cas,ldap,php
+  !set auth_method=$(class_authidp[1;])
+  !if $(class_authidp[1;]) isitemof $auth_method_list
+    !set ext_login=$wims_external_auth
+  !endif
+  !if $wims_user!=supervisor
+    !default ext_login=$wims_user
+  !else
+    !default ext_login=$wims_realuser
+    !default ext_login=$wims_user
+    !default ext_login=supervisor
+  !endif
+  !if $ext_login=SUPERVISOR
+    ext_login=supervisor
+  !endif
+!endif
+
+!read names.$lang
+!if $wims_user=$empty or $wims_user=supervisor or _tool isin $wims_session
+  !read adm/search_engine/search.proc
+  s_lang=$search_lang
+  s_category=$search_category
+  s_keywords=$search_keywords
+  !if $s_keywords!=$empty and $s_category!=V and $readback!=yes
+    c=$gotcnt
+    !if $gottype!=search
+      c=0
+    !endif
+    !read wimshome/$s2dir/home_lastsearch
+    !if $s_lang,$s_category,$s_keywords!=$lastsearch
+      wims_module_log=$(s_lang)_$s_category=$c: $s_keywords
+      !writefile wimshome/$s2dir/home_lastsearch lastsearch=$s_lang,$s_category,$s_keywords
+    !endif
+  !endif
+!endif
+
+!if $wims_user=supervisor
+  docpubliccnt=!recordcnt wimshome/log/classes/$wims_class/doc/.docindex
+  doccnt=!recordcnt wimshome/log/classes/$wims_class/doc/.index
+  sheetcnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+  test=!defof allowed_optional_module in wimshome/log/wims.conf
+  !if class/freework isitemof $test
+    allowed_freework=yes
+  !else
+    !reset allowed_freework,freeworkcnt
+  !endif
+  !if $allowed_freework=yes
+    freeworkcnt=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+    min_freework_erasable=0
+    !for k=1 to $freeworkcnt
+      t=!record $k of wimshome/log/classes/$wims_class/freeworks/.freeworks
+      t=!line 1 of $t
+      !if $t>0
+        min_freework_erasable=$k
+      !endif
+    !next k
+  !endif
+  min_sheet_erasable=0
+  sheet_inpreparation=0
+  !for k=1 to $sheetcnt
+    t=!record $k of wimshome/log/classes/$wims_class/sheets/.sheets
+    t=!line 1 of $t
+    !if $t>0
+      min_sheet_erasable=$k
+    !else
+      sheet_inpreparation=1
+    !endif
+  !next k
+  examcnt=!recordcnt wimshome/log/classes/$wims_class/exams/.exams
+  min_exam_erasable=0
+  !for k=1 to $examcnt
+    t=!record $k of wimshome/log/classes/$wims_class/exams/.exams
+    t=!line 1 of $t
+    !if $t>0
+      min_exam_erasable=$k
+    !endif
+  !next k
+  votecnt=!recordcnt wimshome/log/classes/$wims_class/vote/.votes
+  !read wimshome/log/classes/$wims_class/Exindex
+  !read adm/class/quotafree.proc proc
+!endif
+
+!if $wims_user!=$empty
+  !if $wims_class_refcolor!=$empty
+    wims_ref_bgcolor=$wims_class_refcolor
+  !endif
+  !read ./var.msgcnt
+  !default class_type=0
+  !if $class_type=2
+    !exchange wims_institutionname, wims_classname
+  !endif
+  !if $class_type=1
+    parentcheck=!defof user_class in wimshome/log/classes/$wims_class/.users/$wims_user
+    !if $parentcheck!=$empty and $wims_superclass/ notin $parentcheck
+      class_parent=$wims_superclass/$parentcheck
+    !endif
+  !endif
+  !default wims_realuser=$wims_user
+  !read adm/class/userdef logclasses,$wims_class,$wims_realuser
+  supervisable=!defof user_supervisable,user_forcechpwd in $userdef
+  !distribute item $supervisable into supervisable forcechpwd
+  authidp=!defof class_authidp in wimshome/log/classes/$wims_class/.def
+  !if $wims_realuser!=supervisor and $forcechpwd=yes and $(authidp[1;])=$empty
+    test=!fileexists wimshome/sessions/$wims_session/var
+    !if $test!=yes
+      !writefile wimshome/$wims_sesdir/var REMOTE_ADDR=$httpd_REMOTE_ADDR\
+HTTP_REFERER=$httpd_HTTP_REFERER\
+QUERY_STRING=\
+HTTP_USER_AGENT=$httpd_HTTP_USER_AGENT\
+HTTP_COOKIE=$httpd_HTTP_COOKIE\
+w_cmd=new\
+w_lang=$class_lang\
+w_module=$module\
+w_session=$session\
+w_special_parm=\
+w_special_parm2=\
+w_useropts=$wims_useropts\
+w_wims_session=$wims_session\
+w_wims_subsession=$wims_subsession\
+w_wims_window=$wims_window\
+w_worksheet=\
+w_wims_exo=\
+w_wims_isexam=\
+w_wims_ismanager=$wims_ismanager\
+w_wims_mode=$wims_mode\
+w_wims_module_start_time=\
+w_wims_protocol=$wims_protocol\
+w_wims_req_time=$wims_req_time\
+w_wims_scorereg=\
+w_wims_session_serial=$wims_session_serial\
+w_wims_session_start_time=$wims_session_start_time\
+w_wims_sheet=
+    !endif
+    !restart module=adm/class/passwd&+job=user
+  !endif
+  !if $class_type>=2
+    !if $class_type=4
+      subclasses=!record 0 of wimshome/log/classes/$wims_class/classes
+      subclasses=!column 1 of $subclasses
+      subclasses=!makelist $wims_class/x for x in $subclasses
+      subclasscnt=!itemcnt $subclasses
+      !if $wims_user=supervisor
+        subclasscnt=0
+      !endif
+      subclass1=$wims_participate
+    !endif
+    !if $class_type isin 34
+      !if $class_type=3
+        subclasses=!record 0 of wimshome/log/classes/$wims_class/courses
+      !else
+        subclasses=!record 0 of wimshome/log/classes/$wims_class/classes
+      !endif
+      split=!translate internal / to , in $wims_class
+      subclasset=!record 0 of wimshome/log/classes/$(split[1])/$(split[2])/icourses
+      subclasses=!append line $subclasset to $subclasses
+      subclasset=!record 0 of wimshome/log/classes/$(split[1])/icourses
+      subclasses=!append line $subclasset to $subclasses
+      subclasses=!column 1 of $subclasses
+      subclasses=!listuniq $subclasses
+      subclasses=!makelist $wims_superclass/x for x in $subclasses
+      subclasscnt=!itemcnt $subclasses
+      !if $wims_user=supervisor
+        subclasscnt=0
+      !endif
+      subclass1=$class_ocourses
+      subclass1=!makelist $wims_superclass/x for x in $subclass1
+      upart=!listcomplement $wims_class in $wims_participate
+      upart2=!defof user_courses in wimshome/log/classes/$wims_class/.users/$wims_user
+      !if $upart2!=$empty
+        upart2=!makelist $wims_superclass/x for x in $upart2
+        upart=!append item $upart2 to $upart
+      !endif
+      subclass1=!listunion $subclass1 and $upart
+    !endif
+    !if $class_type=2
+      subclasses=!sh cut -d, -f1 $wims_home/log/classes/$wims_class/.subclasses
+      subclasses=!replace internal : by $ in $subclasses
+      subclasses=!words2items $subclasses
+      subcnt=!recordcnt wimshome/log/classes/$wims_class/.subclasses
+      subclasscnt=!itemcnt $subclasses
+      subclass1=$wims_participate
+    !endif
+    subclass1=!sort items $subclass1
+    subclass2=!listcomplement $subclass1 in $subclasses
+    !if $class_type iswordof 4 2
+      subclass3=$wims_supervise
+    !endif
+    subclasscnt1=!itemcnt $subclass1
+    subclasscnt2=!itemcnt $subclass2
+    subclasscnt3=!itemcnt $subclass3
+  !endif
+!endif
+
+!readproc ./var.cdt
+!if $wims_class!=$empty
+  !if / notin $wims_class and $wims_class<=9999
+    !! swork is always close in example class (protection against bad parameters in example class .def
+    swork_open=0
+  !else
+    swork_open=!defof swork_open in wimshome/log/classes/$wims_class/swork/.def
+  !endif
+!endif
+!read ./otherclass.proc
+!if $wims_sheet=$empty
+  !!! should be on the complete home page
+  !!distribute items no,no into wims_ariane_self,wims_ariane_home
+  !set wims_ariane_self=no
+!endif
+
+!if $(class_actcolor)!=$empty
+  !read adm/class/seqcolors
+!endif

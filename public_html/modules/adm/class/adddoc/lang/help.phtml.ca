@@ -1,0 +1,44 @@
+!if $wims_read_parm!=$empty
+ !goto $wims_read_parm
+!endif
+
+:linksh
+<h2 id="general">
+Enllaçar un document a un full d'exercicis
+</h2>
+<p>
+Pots optar per enllaçar el document a un full d'exercicis
+concret que conté les mateixes sèries d'exercicis que els que hi ha
+al document. Això permet registrar el treball
+realitzat pels alumnes quan fan clic als enllaços dels exercicis del document.
+</p><p>
+Pots crear el full d'exercicis tu mateix o utilitzar els enllaços de creació automàtica.
+</p>
+!exit
+
+:autogenerate
+<h2 id="statut">
+Creació automàtica del full d'exercicis d'un document
+</h2>
+<p>
+Aquesta funcionalitat permet la creació d'un nou full d'exercicis
+que conté la llista de tots els exercicis del document.
+</p><p>
+S'afegeix automàticament a la teva classe; la connexió entre
+aquest document i el full s'instal·la automàticament.
+</p><p>
+Després pots canviar els paràmetres de configuració,
+o possiblement eliminar alguns exercicis i modificar els pesos,
+usant la interfície habitual de gestió dels fulls d'exercicis
+a partir de la pàgina d'inici de la classe.
+</p><p>
+Aquesta funcionalitat només es pot utilitzar una vegada.
+Si es vol crear una còpia del full una altra vegada,
+s'ha d'utilitzar l'eina de duplicació del full d'exercicis.
+</p>
+
+!exit
+
+:nohelp
+No hi ha ajuda d'aquest tema.
+!exit

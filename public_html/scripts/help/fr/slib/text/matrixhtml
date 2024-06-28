@@ -1,0 +1,21 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Transforme une matrice en tableau HTML.
+slib_parms=3\
+1,la matrice au format WIMS (entre crochets : [])\
+,option:(séparés par des espaces) <span class="tt">center wimscenter wimsborder wimsnoborder</span> un_nombre (css_id)\
+,TH=[numéro des lignes d'en-têtes th, numéro des colonnes in th] CAPTION="text in caption" ROWSPAN=[row_cell1,col_cell1, width1;row_cell2,col_cell2, width2;...] COLSPAN=[row_cell3,col_cell3, width3;...] (optional)
+
+slib_out=html code
+
+slib_comment=Le second paramètre permet de définir le style css de la table.\
+S'il contient le mot <span class="tt">center</span>, le contenu des cellules est centré\
+dans les cases du tableau. \
+S'il contient un des mots <span class="tt">wimscenter wimsborder wimsnoborder</span>, \
+la classe css correspondante prédéfinie dans wims est utilisée. Il est possible de définir \
+soi-même la classe css <span class="tt">wims_matrix</span> ou \
+<span class="tt">wims_matrix</span>n si le second paramètre contient un nombre \
+<span class="tt">n</span>. Cette classe peut être définie dans le champ \
+<span class="tt">\css{}</span> pour un exercice.\
+Pour l'option ROWSPAN, écrire * dans la matrice quand la cellule est dans le\
+  "rowspan" ou "colspan" (sauf pour la première cellule, voir les exemples !).\

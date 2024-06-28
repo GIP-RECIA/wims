@@ -1,0 +1,48 @@
+!set help_isread=yes
+
+<h2 class="wims_subtitle">Condicions generals d'ús (CGU)</h2>
+
+L'ús d'un servidor WIMS implica el registre de certes dades per tal de
+poder calcular les qualificacions i notes.
+La següent informació estarà a disposició del professor d'una classe (tant en forma detallada com processada):
+<ul>
+ <li>tots els exercicis visualitzats i/o resolts </li>
+ <li>totes les notes obtingudes </li>
+ <li>els dies, hores i adreces IP de connexió dels alumnes mentre estan 
+treballant (fulls d'exercicis) a la classe WIMS (dades detallades).</li>
+</ul>
+Aquestes dades permeten al professor avaluar el progrés, les dificultats, les hores de treball, etc  de l'alumne.
+<p>
+Cada alumne té accés a les notes mitjana, màxima i mínima de la classe, 
+però no té accés a la informació sobre un altre alumne.
+També té accés a les seves dades detallades.
+</p><p>
+L'ús d'eines específiques (fòrum, missatge del dia, agenda, sistema de qualificació)
+estan sota la responsabilitat del professor de la classe, així com les còpies de seguretat de les dades
+de la classe que ell pugui fer.
+</p><p>
+  !if $save_logincgu!=$empty
+    Totes les dades de la classe s'arxiven automàticament el
+    !read date.phtml $class_expiration,notime
+    (no obstant això, aquesta data pot ser modificada pel professor).
+  !else
+    Totes les dades de la classe s'arxivaran automàticament el dia de la data de caducitat.
+  !endif
+  Tots els registres són eliminats habitualment pels administradors del servidor.
+</p>
+!endif
+
+<div class="wims_msg info">
+  En registrar-te a una classe d'aquest servidor,
+  acceptes aquestes condicions generals d'ús.
+ </div>
+<div class="wims_msg info">
+  En crear o gestionar una classe virtual,
+  acceptes la (co)responsabilitat de processar les dades de
+  caràcter personal de la classe que estàs creant.
+  Ets responsable dels recursos
+  que crees i poses a disposició dels alumnes.
+  Acceptes complir la normativa vigent
+  sobre les dades personals (per exemple,
+  si esteu transferint dades de la classe a l'ordinador).
+</div>

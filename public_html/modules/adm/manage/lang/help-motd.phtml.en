@@ -1,0 +1,13 @@
+<h2>The different editable files:</h2>
+<p>Each file has a version for each language on the server.</p>
+
+<h3>Server home page</h3>
+<p>The message is displayed on the home page of the server for all visitors.
+   The CSS style used is <span class="wims_code_words">wims_motd</span>.</p>
+<div class="wims_motd">Sample display with this style.</div>
+
+<h3>Supervisor home page</h3>
+<p>The message is displayed on the class home page,
+   only for the supervising teacher of the class.
+   The CSS style used is <span class="wims_code_words">wims_class_manager_msg</span>.</p>
+<div class="wims_class_manager_msg">Sample display with this style.</div>

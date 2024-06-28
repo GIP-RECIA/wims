@@ -1,0 +1,32 @@
+<div class="title_box"><h2 class="wims_title">Su questo sito</h2></div>
+<ul class="wims_home_list box_content">
+  <li>
+    !href module=$module&cmd=new&search_category=D Appunti delle lezioni e materiale bibliografico
+    su vari argomenti.
+  </li><li>
+    !href module=$module&cmd=new&search_category=T Strumenti di calcolo e plotter interattivi
+    su vari argomenti: numeri, funzioni, matrici, curve, superfici, funzioni statistiche, etc.
+  </li><li>
+    !href module=$module&cmd=new&search_category=X Esercizi interattivi
+    su vari argomenti e di vari livelli.
+  </li><li>
+    !href module=$module&cmd=new&search_category=R Giochi matematici
+    di vario tipo.
+  </li><li>
+    !href module=adm/tool/glossary&cmd=new Glossari
+    (in costruzione).
+  </li>
+  !if $wims_theme!=Nikaia
+    <li>
+      !href module=adm/class/classes Corsi aperti
+.
+    </li><li>
+      Possibilità di creare i vostri corsi interattivi virtuali.
+    </li>
+  !endif
+</ul>
+!if $wims_theme_version=0
+  Puoi anche
+  !href module=adm/browse&$browse_parm esplorare il sito
+  in modo guidato.
+!endif

@@ -1,0 +1,129 @@
+type=order
+textarea="instruction data"
+iEdit="instruction"
+
+:We present several words whose letters have been mixed
+
+<p>The learner must then reformulate the words.</p>
+<p>Warning: make sure that the words you propose do not have any possible anagrams
+   or indicate a clue that does not allow any ambiguity.</p>
+
+:%%%%%%%%%%%%%%%%%%       WARNING       %%%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Scrambled letters}
+:\author{Olivier, Bado}
+:\email{bado@unice.fr}
+:\credits{}
+Credits allow you to specify sources if, for example, the exercise contains images.
+
+:Instructions
+\text{instruction=Here are several verbs whose letters have been scrambled.
+<p>It's up to you to unscramble them!</p>}
+
+:List of words to scramble
+Place one word per line, without any space.
+Eventually, you can place a hint for each word by separating it with a comma.
+\text{data=eat, at lunch
+finish, to an end
+run
+put, place
+}
+
+:Feedback
+A text that appears once the learner has responded.
+\text{feedback=}
+
+:Number of words to present
+Maximum 20
+\integer{nb_words=2}
+
+:Width of the field to type
+Sufficient space must be provided for the longest property.
+\integer{size=20}
+
+:Type of response analysis
+The types <span class="tt">case</span> and <span class="tt">nocase</span> are especially suitable for language applications.
+In other cases, prefer<span class="tt">atext</span>.
+\text{atype=item(1,case (no error tolerance),
+  nocase (tolerate lowercase / uppercase),
+  atext (ignore plural / singular and articles))}
+
+:Custom Styles
+Here you can use CSS code to customize your exercise.<br>
+Example: Type <code>.name {color: # 599}</code> to color the words to be found in pastel blue.
+\text{styles=}
+
+:%%%%%%%%%%%%%% Nothing to change before the statement %%%%%%%%%%%%%%%%
+
+\text{melanges=}
+\matrix{reponses=}
+\matrix{indices=}
+\text{data=wims(nonempty rows \data)}
+\integer{datacnt=rows(\data)}
+\integer{nb_words=min(\nb_words,\datacnt)}
+\integer{nb_words=min(20,\nb_words)}
+
+\text{order=shuffle(\datacnt)}
+\text{data=row(\order,\data)}
+
+\for{i=1 to \nb_words}{
+  \text{mot=\data[\i;1]}
+  \text{indice=\data[\i;2]}
+  \if{\indice issametext }{
+    # prevent WIMS from blowing the empty line
+    \text{indice=##**##}
+  }
+  \text{mot=wims(nospace \mot)}
+  \integer{nbletter=wims(charcnt \mot)}
+  \text{order=shuffle(\nbletter)}
+  \text{melange=wims(char \order of \mot)}
+  \text{melanges=wims(append item \melange to \melanges)}
+  \matrix{reponses=wims(append line \mot to \reponses)}
+  \matrix{indices=wims(append line \indice to \indices)}
+}
+
+# only the first \nb_words are taken into account
+\text{qlist=wims(makelist reply x for x=1 to \nb_words)}
+\steps{\qlist}
+
+\css{<style>.big_bullet>li{font-size:1.4em;margin-bottom:.5em}.indice{color:#999}</style>}
+\text{styles=wims(nospace \styles)}
+:%%%%%%%%%%%%% Now the statement in html code. %%%%%%%%%%%%%%%%%%%%
+
+\statement{
+\if{\styles notsametext }{<style>\styles</style>}
+
+<div class="instruction">\instruction</div>
+<ul class="big_bullet">
+  \for{k=1 to \nb_words}{
+    <li class="oef_input">
+      <label for="reply\k" class="name">\melanges[\k] :</label>
+      \embed{r \k,\size
+        autocomplete="off"}
+      \if{\indices[\k;] notsametext ##**##}{
+        <span class="indice">(\indices[\k;])</span>
+      }
+    </li>
+  }
+</ul>
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Field 1}{\reponses[1;]}{type=\atype}{}
+\answer{Field 2}{\reponses[2;]}{type=\atype}{}
+\answer{Field 3}{\reponses[3;]}{type=\atype}{}
+\answer{Field 4}{\reponses[4;]}{type=\atype}{}
+\answer{Field 5}{\reponses[5;]}{type=\atype}{}
+\answer{Field 6}{\reponses[6;]}{type=\atype}{}
+\answer{Field 7}{\reponses[7;]}{type=\atype}{}
+\answer{Field 8}{\reponses[8;]}{type=\atype}{}
+\answer{Field 9}{\reponses[9;]}{type=\atype}{}
+\answer{Field 10}{\reponses[10;]}{type=\atype}{}
+
+\feedback{1=1}{\feedback}

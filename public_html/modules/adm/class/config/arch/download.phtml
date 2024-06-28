@@ -1,0 +1,71 @@
+
+!if $fsize=$empty
+  <div class="wims_msg warning">$name_download1</div>
+  !if $error!=file_too_large
+    <p>$name_try_other_format:</p>
+    <ul class="inline">
+      !for f in zip,tgz,tar.gz
+        !if $f!=$format
+          <li>
+          !set wims_ref_class=text_icon file
+          !href cmd=reply&job=arch&job2=download&selection=all&format=$f $f
+          </li>
+        !endif
+      !next
+    </ul>
+  !endif
+  !goto selection
+!endif
+
+!if $error=$empty
+  $name_download2
+  !getfile $fname.$format $fname.$format
+   ($fsize K)
+   $name_download3
+!endif
+
+!! you can always choose data in arch (CNIL compatibility)
+!!!if $fsize<50 and all isitemof $selection
+!! !exit
+!!!endif
+:selection
+!form reply
+  <input type="hidden" name="job" value="$job">
+  <input type="hidden" name="job2" value="$job2">
+  !if $fsize<$max_upload_size
+    $name_download4
+  !else
+    $name_download5
+  !endif
+
+  <script>
+    !read arch/select_all.js
+  </script>
+  !set selection=$select
+  !set nb_select=!itemcnt $select
+  !set nb_tot=!itemcnt $reclist
+
+  <div class="check_all_selection">
+    <input type="checkbox" onClick="toggle()" id="check_all_selection"
+    !if $nb_select >= $nb_tot
+      checked
+    !endif
+   ><label for="check_all_selection">$name_toggle_all</label>
+  </div>
+  !set wims_html_mode=div
+  <div class="arch_filters">
+    !formcheckbox selection list $reclist prompt $tot
+  </div>
+  <hr>
+
+  <label for="check_dependency">$name_check_dependency</label>
+  !formselect check_dependency list yes,no prompt $wims_name_yes,$wims_name_no
+  <div class="formHelp">$name_desc_dependency</div>
+
+  <p>$name_selective1 <input type="submit" value="$name_selective2">
+  $name_selective3
+  </p>
+  <div class="wims_msg info">
+    !read lang/names.phtml.$moduclass_lang download
+  </div>
+!formend

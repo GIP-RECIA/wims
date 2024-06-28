@@ -1,0 +1,107 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=complex_number,vectors,complex_plane
+!set gl_title=Argument d'un nombre complexe non nul
+!set gl_level=H5 STI2D&nbsp;Spécialité, H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème 1</h4>
+Un nombre complexe \(z\) est de module 1 si et seulement s'il existe un réel
+ \(\displaystyle{\theta}\) tel que
+  <span style="white-space:nowrap">\(z=\cos(\theta) + \mathrm{i}\, sin(\theta)\).</span>
+</div>
+<div class="wims_defn">
+<h4>Définition 1</h4>
+On appelle <strong>argument</strong> d'un nombre complexe \(z\) de module 1 tout
+ nombre réel \(\displaystyle{\theta}\) tel que
+  <span style="white-space:nowrap">\(z=\cos(\theta) + \mathrm{i}\, sin(\theta)\).</span>
+<br>
+Il arrive qu'on note, par abus de langage, \(\theta=\arg(z)\).
+</div>
+<div class="wims_thm">
+<div>
+<h4>Théorème 2</h4>
+Le plan est muni d'un repère orthonoré direct
+\((\mathrm{O}\,;\overrightarrow{u},\overrightarrow{v})\).
+ Soit \(z\) un nombre complexe de module 1 et \(\mathrm{M}\) le point d'affixe
+  <span style="white-space:nowrap">\(z\).</span>
+</div>
+<ul>
+	<li>
+	L'ensemble des arguments de \(z\) est l'ensemble des mesures en radians
+	de l'angle
+	<span style="white-space:nowrap">\((\overrightarrow{u},\overrightarrow{OM})\).
+	</span>
+	</li>
+	<li>
+	Soit \(\theta_1\) un argument de \(z\). Alors \(\theta_2\) est un argument de
+	 \(z\) si et seulement s'il existe un entier relatif \(k\) tel que
+	  <span style="white-space:nowrap">\(\theta_2=\theta_1+2k\pi\).</span></li>
+</ul>
+</div>
+<div class="wims_thm">
+<div>
+	<h4>Théorème 3</h4>
+	Le plan est muni d'un repère orthonormé direct <span style="white-space:nowrap">
+	\((\mathrm{O}\,;\overrightarrow{u},\overrightarrow{v})\).</span>
+</div>
+<ul>
+	<li>
+	Pour tout nombre complexe non nul \(z\), il existe un unique nombre complexe
+	 \(z_1\) de module 1 tel que <span style="white-space:nowrap">
+	 \(z=\left\|z\right\| z_1\).</span>
+	</li>
+	<li>
+	Soit \(z\) un nombre complexe non nul, \(z_1\) le nombre complexe de module 1
+	 tel que <span style="white-space:nowrap">\(z=\left\|z\right\|z_1\).</span>
+	<br>
+ 	Si \(\mathrm{M}\) et \(\mathrm{M}_1) sont les points d'affixes respectives
+ 	 \(z\) et \(z_1\), alors <span style="white-space:nowrap">
+ 	 \((\overrightarrow{u},\overrightarrow{OM}) =
+ 	 (\overrightarrow{u},\overrightarrow{OM_1}) \quad [2\pi]\).
+ 	 </span>
+	</li>
+</ul>
+</div>
+<div class="wims_defn">
+<h4>Définition 2</h4>
+Soit \(z\) un nombre complexe non nul, \(z_1\) le nombre complexe de module 1 tel
+ que <span style="white-space:nowrap">\(z=\left\| z\right\| z_1\).</span>
+<br>
+On appelle <strong>argument</strong> de \(z\) tout argument de \(z_1\).
+</div>
+<div class="wims_rem">
+La notation \(arg(z)\) désigne n'importe quel argument du nombre complexe
+ <span style="white-space:nowrap">\(z\).</span><br>
+Un intervalle \(\mathrm{I}\) semi-ouvert de longueur \(2\pi\) étant donné, on peut
+ construire une fonction <em>Arg</em> qui, à tout nombre complexe non nul, associe
+  celui de ses arguments qui appartient à l'intervalle
+   <span style="white-space:nowrap">\(\mathrm{I}\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème 4</h4>
+Soit \(z\), \(z_1\) et \(z_2\) trois nombres complexes non nuls.
+<ul>
+	<li>
+	\(\arg\left(\frac{1}{z}\right)=-\arg(z) \quad [2\pi]\)
+	</li>
+	<li>
+	\(\arg(z_1z_2)=\arg(z_1)+\arg(z_2) \quad [2\pi]\)
+	</li>
+	<li>
+	\(\arg\left(\frac{z_1}{z_2}\right)=\arg(z_1)-\arg(z_2) \quad [2\pi]\)
+	</li>
+	<li>
+	pour tout entier naturel \(n\), \(arg(z^n)=n\arg(z) \quad [2\pi]\)
+	</li>
+	<li>
+	\(arg(\overline{z})=-\arg(z) \quad [2\pi]\)
+	</li>
+	<li>
+	\(arg(-z)=\arg(z)+ \pi \quad [2\pi]\)
+	</li>
+</ul>
+</div>

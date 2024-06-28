@@ -1,0 +1,9 @@
+size 400,400
+xrange -6,6
+yrange -6,6
+fontfamily 22px Arial
+# you can use a single space for separation in formula...
+# use double space to create new word
+string blue,-5,3,H_3O^+ + OH^-  \u2192 2H_2O
+# you can use a single space for separation in formula...
+string red,-5,-3,H_3 O^+ + OH^\u2212  \u2192 2H_2 O

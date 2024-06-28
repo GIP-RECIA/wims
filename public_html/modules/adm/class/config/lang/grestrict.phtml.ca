@@ -1,0 +1,26 @@
+<p>Pots especificar des de quins ordinadors es tindran en compte les notes
+o des de quins ordinadors no es tindran en compte. 
+També pots restringir els intervals de temps durant els quals es 
+fa el registre de notes.
+Aquestes restriccions s'apliquen independentment de la configuració individual dels fulls.</p>
+</p>
+!read grestrictform.phtml
+<p>
+Pots escriure una o més paraules en cada camp. El servidor
+comprovarà cada paraula contra el nom o el número IP de cada lloc connectat.
+La regla corresponent s'aplicarà cada vegada. Una paraulaa definida aquí és una
+subcadena de caràcters del nom del lloc o del seu número IP.
+</p>
+<div class="wims_smallremark"><b>Indicació.</b>
+<span class="wims_label">Llocs admesos per puntuar</span>, pots imposar una
+  restricció de temps per a la gravació de notes afegint les
+  paraules
+ <span class="tt wims_code_words">
+&gt;aaaammjj.hh:mm</span>
+ (inici) i/o
+ <span class="tt wims_code_words">
+&lt;aaaammjj.hh:mm</span>
+ (fi). Les dates i hores han d'estar en temps local del SERVIDOR,
+ i aquestes paraules han d'estar separades les unes de les altres per espais.
+</div>
+

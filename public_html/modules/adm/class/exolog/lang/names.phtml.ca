@@ -1,0 +1,23 @@
+!set lang_exists=yes
+
+!set name_noexercise=No teniu cap l'exercic per a registrar.
+!set name_listexercise=!nosubst Exercicis del full d'exercicis $logsheet que poden registrar-se
+!set name_noexercise2=No hi ha cap exercici registrat per
+!set name_click= !nosubst Aquí estan els registres d'exercicis fets per $wims_firstname $wims_lastname.\
+Feu clic a la data per veure l'exercici corresponent.
+
+!distribute items Etapes,Número \
+into name_Step,name_number
+
+!set name_source=codi font
+!set name_sendmail=Error?
+!set name_bug=Si penses que l'exercici té errors, si us plau envia un correu clicant\
+al botó <span class="wims_button disabled">$name_sendmail</span> i adjunta el fitxer\
+<span class="wims_button disabled">$name_source</span>.
+
+!! TODO_lang
+!set name_ssendmail=Prévenir l'enseignant de la classe ? (vous pouvez également saisir un message à destination de votre enseignant)
+!set name_msg=!nosubst L'élève $ufirst $ulast a sauvegardé le $unow un exercice dans la classe $uclass de $ueta sous la référence $uref.
+!set name_comment=Il a ajouté le commentaire suivant :
+!set name_exolog=Enregistrer les détails d'un exercice
+!set wims_name_SE_mod=Message pour l'élève

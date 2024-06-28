@@ -1,0 +1,31 @@
+single:Crear un enllaç mitjançant la icona <img src='gifs/WIMSchem/BSingle.png' alt='BSingle'>\
+i un simple clic.
+
+atom:Fent clic amb el botó dret, seleccioneu l'àtom desitjat <img src='gifs/WIMSchem/ASelMenu.png' alt='ASelMenu'> \
+i feu clic a la posició escollida (ha d'aparèixer un cercle).
+
+double:Per afegir un enllaç, seleccioneu la icona <img src='gifs/WIMSchem/BSingle.png' alt='BSingle'> \
+feu clic a l'àtom de partida. Per transformar un enllaç únic en un doble enllaç, \
+només has de seleccionar la icona <img src='gifs/WIMSchem/BDouble.png' alt='BDouble'> feu clic a \
+l'enllaç.
+
+erasor:Per corregir un error o esborrar un àtom o un enllaç, feu clic a\
+<img src='gifs/WIMSchem/Erasor.png' alt='Erasor'> després sobre l'objecte a esborrar\
+(no us oblideu d'esborrar els àtoms restants).\
+Utilitzar <img src='gifs/WIMSchem/Undo.png' alt='Undo'> per tornar enrere.
+
+template:Alguns models estan predissenyats: per fer-los servir, feu clic a <img src='gifs/WIMSchem/Template.png' alt='Template'> \
+amb el botó dret, seleccioneu el model triat per un àtom o un enllaç i col·loqueu-lo a la ubicació desitjada, \
+feu clic a <img src='gifs/WIMSchem/Cursor.png' alt='Cursor'> per tornar al mode normal.
+
+select_atom:Abans de la selecció, feu clic a la icona <img src='gifs/WIMSchem/Select.png' alt='Select'>.\
+Els àtoms seleccionats apareixen en color rosa. En el cas d'un grup d'àtoms, cada àtom \
+del grup ha de ser seleccionat (no seleccioneu un enllaç).
+
+select_bond:Abans de la selecció, feu clic a la icona <img src='gifs/WIMSchem/Select.png' alt='Select'>.\
+Els enllaços seleccionats apareixen en color rosa.
+
+select_charge:Seleccionar del menú la icona <img src='gifs/WIMSchem/ACharge.png' alt='ACharge'>.\
+A continuació, fer un simple clic a l'àtom considerat per obtenir un protó i amb el botó dret \
+per la pèrdua d'un protó.
+

@@ -1,0 +1,66 @@
+type=imaudio
+textarea="instruction data"
+iEdit="instruction"
+
+:Elegir entre las etiquetas la palabra escuchada (se proporcionarán los audios).
+
+Se propone un audio y se debe elegir la etiqueta del texto. Los ficheros con los audios deben estar en la clase.
+<p>
+Para construir un ejercicio con este modelo, simplemente escriba la lista de
+palabras, así como el nombre del archivo (que se debe cargar en la clase).
+</p><p>
+Para obtener más posibilidades, utilice Quicktool.
+</p><p class="wims_credits">
+Autor del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Escuchar y reconocer II}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciado
+\text{instruction=Haga clic en la palabra que ha escuchado. Observe
+que el ejercicio sólo funcionará cuando haya cargado el audio al ejercicio.}
+
+:Lista de audio y de palabras
+\text{data = name_audio1,doctor
+name_audio2,teacher
+name_audio3,journalist}
+
+:Número de disruptores.
+\integer{cntpertub=3}
+:El tamaño vertical de los cuadros en píxeles
+\integer{sizev=200}
+
+:El tamaño horizontal de los cuadros de la izquierda en píxeles
+\integer{sizel=20}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+\text{cnt=rows(\data)}
+\text{N=shuffle(\cnt)}
+\text{mot=row(\N[1],\data)}
+\text{mot=wims(embraced randitem \mot)}
+\text{perturb=\N[2..\cntpertub+1]}
+\matrix{data=\data}
+\text{perturb=\data[\perturb;2]}
+\text{size=\sizev[]x\sizel[]}
+
+\statement{
+\instruction
+<div class="wimscenter">
+\audio{\imagedir/\mot[1]}
+</div>
+<div class="wimscenter">
+\embed{r1,\size}
+</div>
+}
+\answer{}{\mot[2];\perturb}{type=clickfill}

@@ -1,0 +1,17 @@
+!set gl_type=dynamic
+!set gl_title=Puissance entière d'un nombre (exemple)
+
+!readproc data/glossary/mathematics/algebra/macro/power
+
+<ul><li>
+\($gl_n^$gl_m1 =$gl_N1\)
+</li><li>
+\($gl_n^$gl_m1 \times  $gl_n^$gl_m2 =$gl_n^$gl_m3\)
+</li><li>
+\(\frac{$gl_n^$gl_m1}{ $gl_n^$gl_m2} =$gl_n^$gl_m4\)
+</li><li>
+\(($gl_n^$gl_m1)^$gl_m2 =$gl_n^$gl_m5\)
+</li>
+<li>
+\($gl_n^$gl_m1\times $gl_nn^$gl_m1 =$gl_p^$gl_m1\)
+</li></ul>

@@ -1,0 +1,13 @@
+<div class="wims_columns">
+ <div class="medium_size text_col">
+On peut utiliser la résolution de \(X^2 \ge k) ou \(X^2 \le k) <br>
+si le premier membre est un carré ou s'il est sous la forme canonique.
+</div><div class="medium_size img_col">
+<img style="width: 30%;"alt="Femme nommée Inès Coassion" src="\filedir/inequat1.png"/>
+</div></div>
+\fold{\embed{ParabIneqk}}{Exemple}
+<p class="decal">
+On peut aussi utiliser un tableau de signes si le premier membre est factorisé
+et le deuxième membre est nul.
+</p>
+\fold{\embed{ParabTabSign}}{Exemple}

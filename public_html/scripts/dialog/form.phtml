@@ -1,0 +1,42 @@
+
+!if $remcnt>0
+  !set wims_ref_anchor=#infogot
+  !form reply
+  <div>
+  !if $gotcnt<1
+    $name_tosolve
+    <input type="submit" value="$name_askquestion">
+  !else
+    $name_continue
+    <input type="submit" value="$name_askquestion">
+  !endif
+  $name_about $objname:
+  </div>
+  <div class="wimscenter">
+  !formselect ask list 0,$remlist prompt ?? $name_choosequestion ??,$prompts
+  </div>
+  !if $comment!=$empty
+    <div>$comment</div>
+  !endif
+
+  !formend
+  <p class="small"><b>$wims_name_warning</b>. $name_warning_score</p>
+  <hr style="width:50%">
+!endif
+
+!if $gotcnt<1
+  !exit
+!endif
+
+!set wims_ref_anchor=#ans
+!form reply
+!if $remcnt>0
+  $name_enough_information
+!else
+  $name_enough_information2
+!endif
+ <input type="submit" value="$name_giveanswer">&nbsp;:<div>
+ <div class="wimscenter">
+ !read $deffile form
+  </div>
+!formend

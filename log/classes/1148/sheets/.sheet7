@@ -1,0 +1,83 @@
+Résoudre graphiquement f(x)=g(x) ou f(x)>g(x)
+Sélection d'exercices correspondant au paragraphe "Résolution graphique d'équations et d'inéquations" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+analysis
+equations,inequations,functions,real_function
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant au paragraphe "Résolution graphique d'équations et d'inéquations" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=resolgr1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Équation 1
+Résoudre graphiquement une équation du style <strong>f(x)=a</strong>.
+
+
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=resolgr2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Équation 2
+Résoudre graphiquement une équation du style <strong>f(x)=g(x)</strong>.
+
+
+
+:H4/analysis/resoGraph2de.fr
+exo=resoGraphEq1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Équation 3
+Résoudre graphiquement une équation du style <strong>f(x)=g(x)</strong>.
+
+
+
+:H4/analysis/resoGraph2de.fr
+exo=resoGraphEq2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Équation 4
+Résoudre graphiquement une équation du style <strong>f(x)=g(x)</strong>.
+
+
+
+:H4/analysis/resoGraph2de.fr
+exo=signe&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Signe d'une fonction
+Résoudre graphiquement l'équation <strong>f(x)=0,</strong> en déduire le <strong>tableau de signes</strong> de f.
+
+bug signalé : la courbe n'apparait parfois pas.
+
+:H4/analysis/resoGraph2de.fr
+exo=resoGraphIn1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Inéquation 1
+Résoudre graphiquement une équation du style <strong>f(x)&lt;a</strong>.
+
+
+
+:H4/analysis/resoGraph2de.fr
+exo=resoGraphIn2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Inéquation 2
+Résoudre graphiquement une équation du style <strong>f(x)&lt;g(x)</strong>.
+
+
+
+:H4/analysis/resoGraph2de.fr
+exo=resoGraphIn3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Inéquation 3
+Résoudre graphiquement une équation du style <strong>f(x)&lt;g(x)</strong>.
+
+
+

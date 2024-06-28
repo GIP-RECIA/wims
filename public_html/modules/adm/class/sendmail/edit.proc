@@ -1,0 +1,30 @@
+
+!readproc adm/vfilter/listvarfilter.proc
+!readproc adm/vfilter/varfilter proc
+
+!default selfsend=0
+!default sendotherteacher=0
+
+!! --- preparing data for js/chooselist
+!! --- maybe problem if too many user in a class (variable data too long) to be solved
+wims_chooselist_select=wimshome/sessions/$wims_session/chooselist.list
+wims_chooselist_checked=wimshome/sessions/$wims_session/chooselist.select
+wims_chooselist_data=0
+!sh rm -f $wims_home/sessions/$wims_session/chooselist.select $wims_home/sessions/$wims_session/chooselist.list 2>/dev/null;
+!for lu =1 to $nb_user
+  us_=!record $lu of wimshome/sessions/$wims_session/.userlist_mail
+  !if $lu notitemof $select_user
+    !fileappend $wims_chooselist_select <option value="$lu">$(us_[1]) $(us_[2]) ($(us_[3]))</option>
+    !increase wims_chooselist_data
+  !else
+    !fileappend $wims_chooselist_checked <option value="$lu">$(us_[1]) $(us_[2]) ($(us_[3]))</option>
+  !endif
+!next lu
+!for type in list,select
+  test=!fileexists wimshome/sessions/$wims_session/chooselist.$type
+  !if $test!=yes
+    !writefile wimshome/sessions/$wims_session/chooselist.$type <option value=""></option>
+  !endif
+!next type
+
+local_js=<script src="scripts/js/chooselist.js"></script>

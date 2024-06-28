@@ -1,0 +1,73 @@
+!set wims_module_log=error: $error
+
+<span class="wims_warning">$wims_name_Error</span>.
+
+!if $error=badvariablename
+ Almenys una de les variables tècniques que utilitza no existeix o no es pot modificar a aquest nivell. El seu qüestionari no funcionarà correctament. 
+ !exit
+!endif
+
+!if $error=notechvar
+ No hi ha variables tècniques definides en aquesta classe. Per utilitzar aquest model de qüestionari, primer ha de definir una variable tècnica en la classe usant l'administrador de variables tècniques.
+ !exit
+!endif
+
+!if $error = not_user
+ El sistema de qüestionaris només està disponible per a les classes virtuals.
+ !exit
+!endif
+
+!if $error = bad_vote
+ El qüestionari/registre que sol·licita no existeix.
+ !exit
+!endif
+
+!if $error = already_voted
+ Ja ha votat. No pot tornar a votar perquè el qüestionari és anònim.
+ !exit
+!endif
+
+!if $error = too_many_votes
+ Hi ha massa qüestionaris/registres en la seva classe.
+  Per què en necessita tants?
+ !exit
+!endif
+
+!if $error = no_content
+ No ha omplert el contingut del qüestionari/registre.
+ !exit
+!endif
+
+!if $error = no_title
+ Ha de donar-li un títol al seu qüestionari/registre.
+ !exit
+!endif
+
+!if $error = bad_data
+ Algunes de les seves definicions no són correctes. Si us plau corregiu-les.
+ !exit
+!endif
+
+!if $error = not_secure
+ Podeu accedir a les dades del full de càlcul només des d'una ubicació segura.
+ !exit
+!endif
+
+!if $error = no_vote
+ Encara no ha votat, així que no pot veure els resultats.
+ !exit
+!endif
+
+!if $error = no_variable
+   No ha donat nom de variable o no és vàlid.
+   !exit
+!endif
+
+!if $error = bad_variable
+   El nom de variable que va lliurar (<span class="tt wims_code_words">$namevar</span>) no és convenient perquè
+    pot ser que ja sigui usat pel programari.
+   !exit
+!endif
+
+!msg $error
+

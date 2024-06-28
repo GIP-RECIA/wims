@@ -1,0 +1,16 @@
+
+size 300,300
+xrange -6,6
+yrange -6,6
+grid 1,1,grey
+linewidth 2
+slider 0,2*pi,300,28,angle degree, name
+fillcolor lightgreen
+#CLICK ON THE OBJECTS TO ACTIVATE
+opacity 255,30
+ftriangle 2,2,-2,2,0,0,red
+ftriangle -2,2,-2,-2,0,0,blue
+ftriangle -2,-2,2,-2,0,0,green
+ftriangle 2,-2,2,2,0,0,orange
+rotationcenter 0,0
+frect -2,2,2,-2,black

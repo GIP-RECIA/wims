@@ -1,0 +1,14 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=
+!set gl_title=Arbre
+!set gl_keywords=tree
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+  Un <strong>arbre</strong> est un graphe connexe sans cycle.
+</div>
+
+:mathematics/discrete_mathematics/fr/tree_1

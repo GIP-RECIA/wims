@@ -1,0 +1,4 @@
+any: job user job2 desc save numberses back mautorefresh autoclose tchat_open tchat_refreshtiming tchat_onlynonempty tchat_configfilesize
+init:statuttchat msg_limit msg_numberlimit msg_recordlimit msg_maxliving title_limit msg_min_timing conf_nofile
+deny: oldmsg ulist nlist nbuser
+reply:title ltreguser statut save living cf_open cf_refreshtiming cf_onlynonempty cf_preview mem_file mem_rec wims_deposit cf_configfilesize

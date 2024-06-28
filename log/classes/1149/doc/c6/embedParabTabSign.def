@@ -1,0 +1,218 @@
+!set titb=Tableau de signes pour Maud Elisée au pays des paraboles
+!set keyw=
+!set datm=20210513
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randitem -1,1
+
+!set m_s=$[rint($(tmp0))]
+
+!set tmp0=!randint 2, 5
+
+!set m_a=$[rint($m_s*$(tmp0))]
+
+!set tmp0=!randint 5, 9
+
+!set m_b=$[rint($m_s*$(tmp0))]
+
+!set tmp0=!randint 8, 12
+
+!set m_c=$[rint($(tmp0))]
+
+!set tmp0=!randint 1, 5
+
+!set m_d=$[rint(-$(tmp0))]
+
+!set t_=!rawmath -$m_b/$m_a 
+!set m_x1=!exec pari print($t_)
+
+!set t_=!rawmath -$m_d/$m_c 
+!set m_x2=!exec pari print($t_)
+
+!ifval $m_s>0 
+!set m_s1= \(-) 
+
+!else
+!set m_s1= + 
+
+!endif
+
+!ifval $m_s<0 
+!set m_s2= \(-) 
+
+!else
+!set m_s2= + 
+
+!endif
+
+!ifval $m_s>0 
+!set m_s3= positif 
+
+!else
+!set m_s3= négatif 
+
+!endif
+
+!ifval $m_s<0 
+!set m_s4= positif 
+
+!else
+!set m_s4= négatif 
+
+!endif
+
+!ifval $m_s>0 
+!set m_t1= $m_ge 
+
+!else
+!set m_t1= $m_le 
+
+!endif
+
+!ifval $m_s<0 
+!set m_t2= $m_ge 
+
+!else
+!set m_t2= $m_le 
+
+!endif
+
+!set m_f=!rawmath ($m_a*x+$m_b)*($m_c*x+$m_d) 
+
+On veut résoudre  
+!insmath (\a x+\b) (\c x + \d)
+ $m_ge 0 ou 
+!insmath (\a x+\b) (\c x + \d)
+ $m_le 0 sur 
+!insmath \,\RR
+.<br>
+On commence par étudier le signe de 
+!insmath f(x) = (\a x+\b) (\c x + \d)
+ sur 
+!insmath \,\RR
+.<br>
+
+!insmath \a x+\b = 0
+ équivaut à 
+!insmath x = \x1
+<br>
+Et comme $m_a est $m_s3, le signe de 
+!insmath \a x+\b
+ est $m_s1 puis $m_s2.<br>
+
+!insmath \c x+\d = 0
+ équivaut à 
+!insmath x = \x2
+<br>
+Et comme $m_c est positif, le signe de 
+!insmath \c x+\d
+ est 
+!insmath -
+ puis +.<br>
+<table align="center" cellpadding=10 border=1>
+<tr>
+ <td align="right">
+!insmath x
+
+ </td>
+ <td align="left">
+!insmath -\infty
+
+ </td>
+ <td align="center">$m_x1
+ </td>
+ <td align="center">&nbsp &nbsp &nbsp &nbsp &nbsp
+ </td>
+ <td align="center">$m_x2
+ </td>
+ <td align="right">
+!insmath +\infty
+
+ </td>
+</tr>
+<tr>
+ <td align="left" border=1>signe de 
+!insmath \a x+\b
+
+ </td>
+ <td align="center">&nbsp &nbsp $m_s1 &nbsp &nbsp
+ </td>
+ <td align="center">&nbsp 0 &nbsp
+ </td>
+ <td align="center">&nbsp &nbsp $m_s2 &nbsp &nbsp
+ </td>
+ <td align="center">&#0124
+ </td>
+ <td align="center">&nbsp &nbsp $m_s2 &nbsp &nbsp
+ </td>
+</tr>
+<tr>
+ <td align="left" border=1>signe de 
+!insmath \c x+\d
+
+ </td>
+ <td align="center">
+!insmath -
+
+ </td>
+ <td align="center">&#0124
+ </td>
+ <td align="center">&nbsp &nbsp 
+!insmath -
+ &nbsp &nbsp
+ </td>
+ <td align="center">&nbsp 0 &nbsp
+ </td>
+ <td align="center">&nbsp &nbsp + &nbsp &nbsp
+ </td>
+</tr>
+<tr>
+ <td align="right" border=1>signe de 
+!insmath f(x)
+
+ </td>
+ <td align="center">&nbsp &nbsp $m_s2 &nbsp &nbsp
+ </td>
+ <td align="center">&nbsp 0 &nbsp
+ </td>
+ <td align="center">&nbsp &nbsp $m_s1 &nbsp &nbsp
+ </td>
+ <td align="center">&nbsp 0 &nbsp
+ </td>
+ <td align="center">&nbsp &nbsp $m_s2 &nbsp &nbsp
+ </td>
+</tr>
+</table>
+<p>
+La question 
+!insmath (\a x+\b) (\c x + \d)
+ $m_t1 0 signifie que 
+!insmath f(x)
+ est $m_s3 ou nul,
+l'ensemble des solutions est alors &#58;<br>
+&#93 -$m_infty &#59 $m_x1 &#93 U &#91  $m_x2  &#59 +$m_infty &#91.</p>
+<p>La question 
+!insmath (\a x+\b) (\c x + \d)
+ $m_t2 0 signifie que 
+!insmath f(x)
+ est  $m_s4 ou nul,
+l'ensemble des solutions est alors &#58;<br>
+&#91 $m_x1 &#59; $m_x2 &#93</p>
+<p>Lorsque les inégalités sont strictes (
+!insmath >
+ ou 
+!insmath <
+), il suffit d'exclure
+les nombres $m_x1 et $m_x2.</p>
+

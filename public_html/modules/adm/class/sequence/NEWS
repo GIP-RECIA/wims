@@ -1,0 +1,20 @@
+20221115 [r17314] use native html5 form date (FG)
+------------- version 2.02 
+20220614 [r16801] share registration score restriction to shared classes (FG)
+20220614 [r16800] help file renovation + multi lang (FG)
+------------- version 2.01 
+20211203 [r16143] erase r15998 and replace by same interface for score in sheet and exam (FG)
+20210707 [r15998] add parameters hidedate and showdate to hide/show automatically sequence (FG)
+20210705 [r15989] protect variable visible from bad values (FG)
+20210705 [r15988] limit title and desc number of char (FG)
+20210705 [r15987] use of two tab in sequence parameter page (FG)
+20200317 [r14769] manage of freework (FG)
+20200317 [r14768] security : change allow to deny instead of any for variable doccnt sheetcnt etc  (FG)
+20180318 [r12338] one can now insert also a tool.
+2016-03-27: a file .seqinverse is created : dictionnary to know in which
+  sequences an activity is inserted. Used in the list of activities for the supervisor (bpr)
+2014-12-18 add job=changeopt to change show/hide status of a sequence directly in show page (FG)
+2010-02 : Version 2.00
+  This module replaces the module adm/class/sequence.xx
+
+Version 1.0

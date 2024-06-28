@@ -1,0 +1,23 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Loi de Poisson
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(\lambda) un réel strictement positif.
+La <strong>loi de Poisson</strong> \(\mathcal{P}(\lambda))
+est la loi de probabilité
+\(q=\{q(k), k\in \NN\})
+sur \(\NN) définie par
+<div class="wimscenter">
+\(q(k) = e^{-\lambda} \frac{\lambda^k}{k!} )
+pour \(k\in \NN).
+</div></div>
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th><th>Fonction caractéristique</th></tr>
+<tr><td>\(\lambda)</td><td>\(\lambda)</td><td>\(\exp(\lambda(z - 1)))
+</td></tr></table>

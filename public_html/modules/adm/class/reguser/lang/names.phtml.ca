@@ -1,0 +1,106 @@
+!set lang_exists=yes
+
+!set levelE=educació primària
+!set levelH=educació secundària
+!set levelU=universitat
+
+!set lang_fr=français
+!set lang_en=English
+!set lang_es=español
+!set lang_nl=nederlands
+!set lang_it=Italiano
+!set lang_cn=ÖÐÎÄ
+!set lang_ca=Català
+!set lang_tw=¤¤¤å(Big5)
+
+!if $cltype iswordof 2 4
+   !if $cltype=2
+    !set name_classe=grup de classes
+    !set name_sup=del professor-administrador
+    !set name_classes= el $name_classe
+    !set name_classess= un $name_classe
+    !set name_classesss= del $name_classe
+    !set name_classessss= El $name_classe
+   !else
+    !set name_classe=centre
+    !set name_sup=de l'administrador
+    !set name_classes= l'$name_classe
+    !set name_classess= un $name_classe
+    !set name_classesss= de l'$name_classe
+    !set name_classessss= L'$name_classe
+    !endif
+ !else
+   !set name_classe=classe
+   !set name_classes=la classe
+   !set name_classess=una classe
+   !set name_classesss= de la $name_classe
+   !set name_classessss= La $name_classe
+   !set name_sup=del professor
+ !endif
+
+!distribute lines el portal\
+  El portal\
+  com a <b>professor</b>\
+  com a <b>alumne</b>\
+  Si ets alumne, si us plau registra't\
+  a la classe que t'interessi\
+  està protegida per una contrasenya.\
+  anar a treballar\
+into name_portal,name_Portal,name_asateacher,name_asaparticipant,\
+ name_inscription_student,name_inyourclass,name_isprotected,name_gotowork
+
+!distribute lines llocs<br>disponibles\
+  curs\
+  oberta,protegida\
+  Registre a $name_classess\
+  reservat als professors\
+  Cap classe permet registrar-te o encara no està oberta. Ho sento, torna a provar més tard!\
+  Si us plau selecciona la classe a la qual vols registrar-te (clica al seu nom).\
+  està protegida per una contrasenya i el registre directe està reservat als <b>professors</b>.\
+  Clica sobre un nom per registrar-te a $$name_class.\
+  Aquest serà el nom que utilitzaràs per entrar a $$classname posteriorment.\
+  La contrasenya ha de contenir entre 4 i 16 caràcters alfanumèrics sense accent, ni espai.\
+  Per a verificar que la contrasenya sigui correcta, si us plau escriu-la una altra vegada\
+  L'adreça de correu electrònic no és vàlida.\
+  Transferir les activitats.\
+  Aquest alumne pot haver estat treballant en una altra classe.\
+  Escriure a l'administrador\
+  opcional\
+  Tipus de compte\
+  Recorda també posar aquest enllaç a la llista d'adreces d'interès.\
+  Ara podeu \
+  Escriu la contrasenya a fi de poder-te registrar\
+  ell us donarà la contrasenya.\
+  Hola\
+  El nom d'usuari ha de contenir entre 4 i 16 caràcters  alfanumèrics sense accent ni espai.\
+into name_remainig, name_year,name_statut,name_title,name_reserved,name_warning1,name_inscription,\
+name_warning_protected,name_clickname,name_warning_login,name_passwd_warning,name_passwd_exact,name_emptyemail,\
+name_transfer1,name_otheractivities,name_write_adm,name_optional,name_accounttype,name_bookmark,name_youcan,\
+name_writepasswd,name_obtainpasswd,name_hello,name_warning_login2
+
+!set name_remark1=Pots inscriure't lliurement a les classes obertes. \
+  Per contra, una classe protegida requereix una contrasenya que t'ha de donar el professor de la classe.
+
+!set name_access1=!nosubst Si l'administrador ($supervisor) et permet l'accés,
+!set name_access2=!nosubst Si el professor ($supervisor) et permet l'accés,
+!set name_research=Per trobar un alumne ja inscrit en el centre, introduiu una paraula del seu nom o nom d'usuari;
+!set name_nofound=!nosubst No s'ha trobat cap compte d'alumne amb <span class="tt wims_code_words">$search</span> aquest nom o nom d'usuari.
+
+!set name_student=!nosubst $firstn $lastn!
+!set name_studentadded=!nosubst L'alumne <span class="tt wims_login">$firstn $lastn</span> s'ha afegit a la vostra $name_classe amb el nom d'usuari
+!set name_welcome=!nosubst  Us donem la benvinguda a $name_classes $classname. Ara n'ets alumne, amb el nom d'usuari
+!set name_newparticipant=!nosubst Si us plau doneu la següent informació sobre el nou alumne a $classname.
+!set name_inscription2=!nosubst Per a registrar-te com a alumne a $name_classes $classname, si us plau dona la següent informació.
+!set name_inscription3=!nosubst T'estàs registrant com a alumne a $name_classesss $classname, amb el nom d'usuari
+!set name_inscription4= Per tal de validar el registre, has d'acceptar les condicions d'ús després de llegir-les
+!set name_inscription21=!nosubst Per a registrar un alumne a $name_classes $classname, si us plau dóna la següent informació.
+!set name_inscription31=!nosubst Estàs registrant un alumne a $name_classesss $classname, amb el nom d'usuari
+
+!set name_warning_direct=El registre directe a $name_classe està reservat als\
+  professors. Si ets un alumne, si us plau registra't
+
+!set name_cgu=Accepto les condicions generals d'ús (CGU)
+!set name_seecgu=Veure les CGU
+!set name_title_participant=Student registration
+!set name_title_supervisor=Teacher registration
+

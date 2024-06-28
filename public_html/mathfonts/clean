@@ -1,0 +1,4 @@
+#! /bin/sh
+
+cd `dirname $0`
+rm -fR [1-9]*/* ../w/texgif/* 2>/dev/null

@@ -1,0 +1,117 @@
+Transformations
+:rotate:flydraw not working with rectangles
+frectangle 0,0,5,6,blue
+rotate 45
+killrotate
+frectangle 0,0,5,6,yellow
+rotate 15
+frectangle 0,0,5,6,red
+killrotate
+:rotate
+fpoly yellow,0,0,4,3,2,5
+rotate 45
+fpoly violet,0,0,4,3,2,5
+killrotate
+rotate 90
+fpoly violet,0,0,4,3,2,5
+killrotate
+:translation
+fcircle 5,5,40,blue
+translation -10,-10
+fcircle 5,5,40,green
+killtranslation
+:translate
+fcircle 5,5,40,blue
+translate -10,-10
+fcircle 5,5,40,green
+killtranslate
+:translation:via affine
+fcircle 5,5,40,blue
+affine 1,0,0,1,-10,-10
+fcircle 5,5,40,green
+killaffine
+:translation:via affine
+fcircle 5,5,40,blue
+affine 1,0,0,1,-10,2
+fcircle 5,5,40,green
+killaffine
+:translation
+frectangle 0,0,7,7,yellow
+translation -5,-5
+frectangle 0,0,7,7,green
+killtranslation
+:translation
+frectangle 0,0,7,7,yellow
+translation -15,-15
+frectangle 0,0,7,7,green
+killtranslation
+:translation via affine
+frectangle 0,0,7,7,yellow
+affine 1,0,0,1,-5,-5
+frectangle 0,0,7,7,green
+killaffine
+:translation via affine
+frectangle 0,0,7,7,yellow
+affine 1,0,0,1,-15,-15
+frectangle 0,0,7,7,green
+killaffine
+:translation via affine:negative coordinates
+frectangle -1,-1,-7,-7,yellow
+affine 1,0,0,1,10,10
+frectangle -1,-1,-7,-7,green
+killaffine
+:translation
+linewidth 5
+parallel -1,0,-2,0,1,2,3,blue
+translation -5,-5
+parallel -1,0,-2,0,1,2,3,green
+killtranslation
+:translation with ellipse
+linewidth 4
+ellipse 0,0,2,2,blue
+translation -5,-5
+ellipse 0,0,2,2,green
+:translation with curve
+linewidth 4
+trange 0,1
+curve blue,2*t,sin(2*pi*t)
+translation -5,-5
+trange 0,1
+curve green,2*t,sin(2*pi*t)
+:affine
+fpolygon yellow, -1,-1,-1,-5,-3,-5,-5,5
+affine 0,1,1,0,0,0
+fpolygon green, -1,-1,-1,-5,-3,-5,-5,5
+:translation via affine:negative coordinates
+frectangle -1,-1,-7,-7,yellow
+affine 1,0,0,1,10,10
+frectangle -1,-1,-7,-7,green
+killaffine
+:affine
+fpolygon yellow, -1,-1,-1,-5,-3,-5,-5,5
+affine 0,1,1,0,0,0
+fpolygon green, -1,-1,-1,-5,-3,-5,-5,5
+:affine
+fpolygon yellow, -1,-1,-1,-5,-3,-5,-5,5
+affine 2,0,0,3,0,0
+fpolygon green, -1,-1,-1,-5,-3,-5,-5,5
+:affine
+fpolygon yellow, -1,-1,-1,-5,-3,-5,-5,5
+affine -2,1,1,3,1,1
+fpolygon green, -1,-1,-1,-5,-3,-5,-5,5
+killaffine
+:affine with parallel
+linewidth 5
+parallel -1,0,-2,0,1,2,3,blue
+affine 0,1,1,2,-1,1
+parallel -1,0,-2,0,1,2,3,green
+killaffine
+:affine with curve
+linewidth 4
+trange 0,1
+curve blue,2*t,sin(2*pi*t)
+affine 0,1,1,2,-1,1
+trange 0,1
+curve green,2*t,sin(2*pi*t)
+
+:fine:fine

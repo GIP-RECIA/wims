@@ -1,0 +1,35 @@
+!let test=!filexists wimshome/sessions/$wims_session/getfile/photoboard/$getuser
+!if $test=yes
+  <div id="userlogo" class="float_right">
+    <img src="$wims_ref_name?session=$wims_session&cmd=getfile&special_parm=photoboard/$getuser" alt="user photo">
+  </div>
+!else
+  !if $user_photourl!=$empty
+    <div id="userlogo" class="float_right">
+      <img src="$user_photourl" alt="user photo">
+    </div>
+  !endif
+!endif
+!read adm/title.phtml 1\
+$classname\
+$wims_name_account_property
+
+!form reply
+<input type="hidden" name="job" value="getclasspwd">
+<input type="hidden" name="action" value="1">
+<fieldset class="property_fields halfwidth blockcenter">
+  <div class="field box">
+    <label for="passcheck">$name_classpassword</label>
+    <input size="14" type="password" name="passcheck" id="passcheck" required="required">
+    <div class="formHelp">
+      $name_userprop_warning: $name_enterpassword
+    </div>
+  </div>
+  <div class="wimscenter wimsform">
+    <input type="submit" name="reg">
+    <input type="submit" name="abandon" value="$wims_name_giveup" class="wims_secondary_button">
+  </div>
+</fieldset>
+!reset action
+!formend
+

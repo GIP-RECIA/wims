@@ -1,0 +1,12 @@
+!! +var+
+tit:fileexists
+type:$type_var
+alias:filexists
+syntax:!fileexists ``file''
+mean: return ``yes'' if ``file'' is a file in the base directory ``public_html'' \
+  in the case of a non trusted module.\
+  If the command is executed from a trusted module, ``file'' \
+  may be of the form ``wimshome/address''. For example,\
+<pre>!fileexists themes/standard/_procs/tt.phtml</pre>\
+or for a trusted module,\
+<pre>!fileexists wimshome/log/classes/2001/Exindex</pre>

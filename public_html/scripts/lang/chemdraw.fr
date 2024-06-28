@@ -1,0 +1,42 @@
+single: Pour dessiner une liaison ou un cycle, sélectionner par un clic l'élément dans la barre horizontale\
+ du menu, puis cliquer à l'endroit de la fenêtre où l'élément doit être placé.
+
+atom: Pour ajouter un atome qui n'est pas un carbone, cliquer sur son symbole\
+ dans la barre verticale du menu, puis cliquer à l'endroit\
+ de la fenêtre où l'atome doit être placé.\
+ Utiliser l'icône <span style="font-weight:bold"> X</span> pour entrer un atome qui\
+ n'est pas proposé dans le menu (Si par exemple).\
+ Pour remplacer un hétéroatome par un carbone, cliquer sur le symbole C, puis sur l'hétéroatome.\
+
+funct_gr: L'icône <span class="tt">FG</span> propose différents groupes fonctionnels\
+ (le groupe carboxyle par exemple). Cliquer sur le groupe à ajouter, puis à l'endroit\
+ de la fenêtre où le groupe doit être placé.
+
+double: Pour transformer une liaison simple en liaison double, il suffit de cliquer sur la liaison.
+
+erasor: Pour effacer un atome ou une liaison, utiliser l'icône <span style="color:red">X</span> ; attention\
+l'icône <img src='gifs/WIMSchem/jsme_clean.png' alt='clean'> efface tout, même les structures préétablies.\
+Il est aussi possible d'annuler la dernière action en utilisant l'icône\
+ <img src='gifs/WIMSchem/jsme_undo.png' alt='undo'>.
+
+template: Certains modèles sont prédessinés. Pour les utiliser, sélectionner une molécule par un clic,\
+ la positionner dans la zone de dessin par un autre clic. Effacer grâce à l'icône\
+ <span style="color:red">X</span> le groupe qui doit être modifié ou doit participer à une liaison avec\
+ une seconde molécule.\
+Si une liaison doit être établie entre deux molécules, choisir une deuxième molécule,\
+ cliquer sur les groupes ou atomes qui participeront à la liaison, tout d'abord sur la\
+ molécule 2 puis sur la molécule 1.
+
+select_atom: Cliquer sur l'atome ou les atomes. Un deuxième clic annule la sélection.
+
+select_bond: Cliquer sur la liaison ou les liaisons. Un deuxième clic annule la sélection.
+
+charge: Utiliser l'icône <img src='gifs/WIMSchem/jsme_charge.png' alt='charge'>\
+ pour modifier la charge portée par un atome.
+
+drag: Une molécule peut être déplacée en se plaçant "devant" et en tirant.
+
+stereo: Pour définir l'orientation d'une liaison (en avant, en arrière du plan ou non définie),\
+ commencer par ajouter une liaison simple, puis cliquer sur l'icône\
+ <img src='gifs/WIMSchem/jsme_stereo.png' alt='stereo'> et enfin cliquer sur la liaison\
+ jusqu'à obtenir le symbole souhaité.

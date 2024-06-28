@@ -1,0 +1,11 @@
+!!!alphanumeric random generator!!!
+!!!Useful to generate an id for JSXGraph for example!!!
+
+!set gl_alphaNum=0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z
+!set gl_nbitem=!itemcnt $gl_alphaNum
+!set gl_rd=$empty
+!for gl_ii=1 to 6
+  !set gl_temp=!randint 1,$gl_nbitem
+  !set gl_rd=!append word $(gl_alphaNum[$gl_temp]) to $gl_rd
+!next gl_ii
+!set gl_rd=!nospace $gl_rd

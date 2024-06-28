@@ -1,0 +1,17 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontsize 24
+fontfamily 14px Arial
+crosshair -3,0,red
+crosshair 3,0,blue
+onclick
+stringup red,-3,0,-90,Hello World
+drag xy
+stringup red,-3,0,-45,Hello World
+stringup red,-3,0,45,Hello World
+stringup red,-3,0,90,Hello World
+stringup blue,3,0,-90,Hello World
+stringup blue,3,0,-45,Hello World
+stringup blue,3,0,45,Hello World
+stringup blue,3,0,90,Hello World

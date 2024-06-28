@@ -1,0 +1,61 @@
+!! desactivate freework
+!! change statut from 1 to 0 (return to preparation mode)
+
+!if $activetest!=1
+  job=configfw
+  !reset back
+  !changeto $job.proc
+!endif
+
+!! -------- desactivate freework of type=1
+!! nocondition
+
+!! -------- desactivate freework of type=2 or type=3
+!if $type=2 or $type=3
+!! desactivated is possible only if no student work
+  !reset list
+!!  list=!filelist $wims_home/log/classes/$wims_class/freeworksdata/$freework/work
+  list=!sh cd $wims_home/log/classes/$wims_class/freeworksdata/$freework/work;\
+find -type f
+  !if $list!=$empty
+    error=notallowed_desactivated
+    job=configfw
+    !changeto $job.proc
+  !endif
+!endif
+
+!! change statut
+activetest=0
+!if $scoring=0
+  scoring=no
+!endif
+update_content=0\
+$class_expiration\
+$title\
+$desc\
+$comment\
+$type\
+$deadline.$timedeadline\
+$soldate.$timesoldate\
+$sizelimitfile\
+$scoring\
+$seealltime\
+$studentclose
+
+update_field=$freework
+update_nbline=$fw_nbline
+!read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freeworks
+
+success=gooddeactivate
+!if $back=1
+  !restart module=home
+!else
+  job=configfw
+  !reset back
+  !changeto $job.proc
+!endif
+
+
+
+
+

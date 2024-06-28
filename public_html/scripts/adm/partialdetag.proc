@@ -1,0 +1,138 @@
+!! replace prohibited word for prevent HTML and JavaScript Injection
+!! see code injection samples here : https://www.codeproject.com/Articles/134024/HTML-and-JavaScript-Injection
+!! all prohibited words must be set without CAPS
+!! wims_read_parm input
+!! word 1: two option words are possible:
+!!  - file (to make process on a file)
+!!  - variable (to make process on the content of script_data_input,
+!!    the result is in script_data_output)
+!! word 2: (only if word 1 is file) is the name of the input file
+!! word 3: (only if word 1 is file) is the name of the output file
+!! additionnal word option can be pass in script_option:
+!!  - the word option "allowlink" means that the html links are left
+!!  as they are.
+
+!! Warning this script should be use after msg2wims to protect tex formula
+
+!! PS: there is a file named check_partialdetag in wimstest directory
+!!  with some general tests of the process.
+
+!if allowlink notwordof $script_option
+  list_replace=/^\s*!insmath /!s/\shref\s*=/\ href\&#61;/gi;\
+/^ *!insmath /!s/<\s*a /\&lt;a /gi;\
+/^ *!insmath /!s/<\s*\/\s*a\s*>/\&lt;\/a>/gi;
+!else
+  list_replace=$empty
+!endif
+list_replace=!append line /^ *!insmath /!s/<\s*script\s*>/\&lt;script>/gi;\
+/^ *!insmath /!s/<\s*form\s*>/\&lt;form>/gi;\
+/^ *!insmath /!s/<\s*meta\s*/\&lt;meta /gi;\
+/^ *!insmath /!s/<\s*\/\s*script\s*>/\&lt;\/script>/gi;\
+/^ *!insmath /!s/<\s*\/\s*form\s*>/\&lt;\/form>/gi;\
+/^ *!insmath /!s/behavior:/\&#98;ehavior\&#58;/gi;\
+/^ *!insmath /!s/javascript:/\&#106;avascript\&#58;/gi;\
+/^ *!insmath /!s/\s*onabort\s*=/ \&#111;nabort\&#61;/gi;\
+/^ *!insmath /!s/\s*class\s*=/ \&#99;lass\&#61;/gi;\
+/^ *!insmath /!s/\s*onafterprint\s*=/ \&#111;nafterprint\&#61;/gi;\
+/^ *!insmath /!s/\s*onanimationend\s*=/ \&#111;nanimationend\&#61;/gi;\
+/^ *!insmath /!s/\s*onanimationiteration\s*=/ \&#111;nanimationiteration\&#61;/gi;\
+/^ *!insmath /!s/\s*onanimationstart\s*=/ \&#111;nanimationstart\&#61;/gi;\
+/^ *!insmath /!s/\s*onbeforeprint\s*=/ \&#111;nbeforeprint\&#61;/gi;\
+/^ *!insmath /!s/\s*onbeforeunload\s*=/ \&#111;nbeforeunload\&#61;/gi;\
+/^ *!insmath /!s/\s*onblur\s*=/ \&#111;nblur\&#61;/gi;\
+/^ *!insmath /!s/\s*oncanplay\s*=/ \&#111;ncanplay\&#61;/gi;\
+/^ *!insmath /!s/\s*oncanplaythrough\s*=/ \&#111;ncanplaythrough\&#61;/gi;\
+/^ *!insmath /!s/\s*onchange\s*=/ \&#111;nchange\&#61;/gi;\
+/^ *!insmath /!s/\s*onclick\s*=/ \&#111;nclick\&#61;/gi;\
+/^ *!insmath /!s/\s*oncontextmenu\s*=/ \&#111;ncontextmenu\&#61;/gi;\
+/^ *!insmath /!s/\s*oncopy\s*=/ \&#111;ncopy\&#61;/gi;\
+/^ *!insmath /!s/\s*oncut\s*=/ \&#111;ncut\&#61;/gi;\
+/^ *!insmath /!s/\s*ondblclick\s*=/ \&#111;ndblclick\&#61;/gi;\
+/^ *!insmath /!s/\s*ondrag\s*=/ \&#111;ndrag\&#61;/gi;\
+/^ *!insmath /!s/\s*ondragend\s*=/ \&#111;ndragend\&#61;/gi;\
+/^ *!insmath /!s/\s*ondragenter\s*=/ \&#111;ndragenter\&#61;/gi;\
+/^ *!insmath /!s/\s*ondragleave\s*=/ \&#111;ndragleave\&#61;/gi;\
+/^ *!insmath /!s/\s*ondragover\s*=/ \&#111;ndragover\&#61;/gi;\
+/^ *!insmath /!s/\s*ondragstart\s*=/ \&#111;ndragstart\&#61;/gi;\
+/^ *!insmath /!s/\s*ondrop\s*=/ \&#111;ndrop\&#61;/gi;\
+/^ *!insmath /!s/\s*ondurationchange\s*=/ \&#111;ndurationchange\&#61;/gi;\
+/^ *!insmath /!s/\s*onended\s*=/ \&#111;nended\&#61;/gi;\
+/^ *!insmath /!s/\s*onerror\s*=/ \&#111;nerror\&#61;/gi;\
+/^ *!insmath /!s/\s*onfocus\s*=/ \&#111;nfocus\&#61;/gi;\
+/^ *!insmath /!s/\s*onfocusin\s*=/ \&#111;nfocusin\&#61;/gi;\
+/^ *!insmath /!s/\s*onfocusout\s*=/ \&#111;nfocusout\&#61;/gi;\
+/^ *!insmath /!s/\s*onfullscreenchange\s*=/ \&#111;nfullscreenchange\&#61;/gi;\
+/^ *!insmath /!s/\s*onfullscreenerror\s*=/ \&#111;nfullscreenerror\&#61;/gi;\
+/^ *!insmath /!s/\s*onhashchange\s*=/ \&#111;nhashchange\&#61;/gi;\
+/^ *!insmath /!s/\s*oninput\s*=/ \&#111;ninput\&#61;/gi;\
+/^ *!insmath /!s/\s*oninvalid\s*=/ \&#111;ninvalid\&#61;/gi;\
+/^ *!insmath /!s/\s*onkeydown\s*=/ \&#111;nkeydown\&#61;/gi;\
+/^ *!insmath /!s/\s*onkeypress\s*=/ \&#111;nkeypress\&#61;/gi;\
+/^ *!insmath /!s/\s*onkeyup\s*=/ \&#111;nkeyup\&#61;/gi;\
+/^ *!insmath /!s/\s*onload\s*=/ \&#111;nload\&#61;/gi;\
+/^ *!insmath /!s/\s*onloadeddata\s*=/ \&#111;nloadeddata\&#61;/gi;\
+/^ *!insmath /!s/\s*onloadedmetadata\s*=/ \&#111;nloadedmetadata\&#61;/gi;\
+/^ *!insmath /!s/\s*onloadstart\s*=/ \&#111;nloadstart\&#61;/gi;\
+/^ *!insmath /!s/\s*onmessage\s*=/ \&#111;nmessage\&#61;/gi;\
+/^ *!insmath /!s/\s*onmousedown\s*=/ \&#111;nmousedown\&#61;/gi;\
+/^ *!insmath /!s/\s*onmouseenter\s*=/ \&#111;nmouseenter\&#61;/gi;\
+/^ *!insmath /!s/\s*onmouseleave\s*=/ \&#111;nmouseleave\&#61;/gi;\
+/^ *!insmath /!s/\s*onmousemove\s*=/ \&#111;nmousemove\&#61;/gi;\
+/^ *!insmath /!s/\s*onmouseover\s*=/ \&#111;nmouseover\&#61;/gi;\
+/^ *!insmath /!s/\s*onmouseout\s*=/ \&#111;nmouseout\&#61;/gi;\
+/^ *!insmath /!s/\s*onmouseup\s*=/ \&#111;nmouseup\&#61;/gi;\
+/^ *!insmath /!s/\s*onmousewheel\s*=/ \&#111;nmousewheel\&#61;/gi;\
+/^ *!insmath /!s/\s*onoffline\s*=/ \&#111;noffline\&#61;/gi;\
+/^ *!insmath /!s/\s*ononline\s*=/ \&#111;nonline\&#61;/gi;\
+/^ *!insmath /!s/\s*onopen\s*=/ \&#111;nopen\&#61;/gi;\
+/^ *!insmath /!s/\s*onpagehide\s*=/ \&#111;npagehide\&#61;/gi;\
+/^ *!insmath /!s/\s*onpageshow\s*=/ \&#111;npageshow\&#61;/gi;\
+/^ *!insmath /!s/\s*onpaste\s*=/ \&#111;npaste\&#61;/gi;\
+/^ *!insmath /!s/\s*onpause\s*=/ \&#111;npause\&#61;/gi;\
+/^ *!insmath /!s/\s*onplay\s*=/ \&#111;nplay\&#61;/gi;\
+/^ *!insmath /!s/\s*onplaying\s*=/ \&#111;nplaying\&#61;/gi;\
+/^ *!insmath /!s/\s*onpopstate\s*=/ \&#111;npopstate\&#61;/gi;\
+/^ *!insmath /!s/\s*onprogress\s*=/ \&#111;nprogress\&#61;/gi;\
+/^ *!insmath /!s/\s*onratechange\s*=/ \&#111;nratechange\&#61;/gi;\
+/^ *!insmath /!s/\s*onresize\s*=/ \&#111;nresize\&#61;/gi;\
+/^ *!insmath /!s/\s*onreset\s*=/ \&#111;nreset\&#61;/gi;\
+/^ *!insmath /!s/\s*onscroll\s*=/ \&#111;nscroll\&#61;/gi;\
+/^ *!insmath /!s/\s*onsearch\s*=/ \&#111;nsearch\&#61;/gi;\
+/^ *!insmath /!s/\s*onseeked\s*=/ \&#111;nseeked\&#61;/gi;\
+/^ *!insmath /!s/\s*onseeking\s*=/ \&#111;nseeking\&#61;/gi;\
+/^ *!insmath /!s/\s*onselect\s*=/ \&#111;nselect\&#61;/gi;\
+/^ *!insmath /!s/\s*onshow\s*=/ \&#111;nshow\&#61;/gi;\
+/^ *!insmath /!s/\s*onstalled\s*=/ \&#111;nstalled\&#61;/gi;\
+/^ *!insmath /!s/\s*onstorage\s*=/ \&#111;nstorage\&#61;/gi;\
+/^ *!insmath /!s/\s*onsubmit\s*=/ \&#111;nsubmit\&#61;/gi;\
+/^ *!insmath /!s/\s*onsuspend\s*=/ \&#111;nsuspend\&#61;/gi;\
+/^ *!insmath /!s/\s*ontimeupdate\s*=/ \&#111;ntimeupdate\&#61;/gi;\
+/^ *!insmath /!s/\s*ontoggle\s*=/ \&#111;ntoggle\&#61;/gi;\
+/^ *!insmath /!s/\s*ontouchcancel\s*=/ \&#111;ntouchcancel\&#61;/gi;\
+/^ *!insmath /!s/\s*ontouchend\s*=/ \&#111;ntouchend\&#61;/gi;\
+/^ *!insmath /!s/\s*ontouchmove\s*=/ \&#111;ntouchmove\&#61;/gi;\
+/^ *!insmath /!s/\s*ontouchstart\s*=/ \&#111;ntouchstart\&#61;/gi;\
+/^ *!insmath /!s/\s*ontransitionend\s*=/ \&#111;ntransitionend\&#61;/gi;\
+/^ *!insmath /!s/\s*onunload\s*=/ \&#111;nunload\&#61;/gi;\
+/^ *!insmath /!s/\s*onvolumechange\s*=/ \&#111;nvolumechange\&#61;/gi;\
+/^ *!insmath /!s/\s*onwaiting\s*=/ \&#111;nwaiting\&#61;/gi;\
+/^ *!insmath /!s/\s*onwheel\s*=/ \&#111;nwheel\&#61;/gi to $list_replace
+
+
+!distribute word $wims_read_parm into option_,file_,ofile_
+!default ofile_=$file_
+!if $option_=file
+  !sh mkdir -p $wims_home/tmp/sessions/$wims_session/ ;\
+sed '$list_replace' $file_ > $wims_home/tmp/sessions/$wims_session/partialdetag.tmp;\
+mv $wims_home/tmp/sessions/$wims_session/partialdetag.tmp $ofile_;
+  !exit
+!endif
+
+!if $option_=variable
+  !writefile wimshome/s2/$wims_session/tmpdetag $script_data_input
+  script_data_output=!sh sed '$list_replace' $wims_home/s2/$wims_session/tmpdetag;\
+rm -f $wims_home/s2/$wims_session/tmpdetag;
+  !exit
+!endif
+
+!reset script_option

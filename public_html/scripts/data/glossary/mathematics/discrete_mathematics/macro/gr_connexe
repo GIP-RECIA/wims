@@ -1,0 +1,40 @@
+
+!set gl_n2=!randint 4,5
+!set gl_n2=!randitem 0,$gl_n2,$gl_n2,$gl_n2
+!if $gl_n2>0
+  !set gl_n1=!randint 3,5
+!else
+  !set gl_n1=!randint 5,7
+!endif
+!set gl_n3=0
+!if $gl_n2>0
+  !set gl_n3=!randint 0,5
+!endif
+!set gl_n=!listcomplement 0 in $gl_n1,$gl_n2,$gl_n3
+!readproc slib/graph/randomconnex $gl_n1
+!set gl_A1=$slib_out
+!if $gl_n2>0
+  !readproc slib/graph/randomconnex $gl_n2
+  !set gl_A2=$slib_out
+!endif
+!if $gl_n3>0
+  !readproc slib/graph/randomconnex $gl_n3
+  !set gl_A3=$slib_out
+!endif
+!set gl_c=!shuffle $[$gl_n1+$gl_n2+$gl_n3]
+!if $gl_n2+$gl_n3>0
+  !set gl_A=!exec pari A1=[$gl_A1]; A2=[$gl_A2]; A3=[$gl_A3]; matconcat(matdiagonal([A1,A2,A3]))
+!else
+  !set gl_A=$gl_A1
+!endif
+!set gl_A=$(gl_A[$gl_c;$gl_c])
+
+
+!set gl_n=!itemcnt $gl_n
+!if $gl_n>1
+  !readproc slib/graph/drawcc [$gl_A],,,2,html
+  !set gl_out1=$slib_out
+!endif
+
+!readproc slib/graph/draw [$gl_A],black,black,,,html
+!set gl_out2=$slib_out

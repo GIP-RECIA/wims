@@ -1,0 +1,38 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Épargne
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+En économie, l'<strong>épargne</strong> représente
+<span class="wims_emph">la partie du revenu non consommée</span>.
+<div class="wims_rem"><h4>Précisions</h4>
+L'épargne peut être constituée pour différentes raisons et sous différentes formes.
+<ol class="spacer">
+<li>Différents motifs peuvent expliquer la constitution d'une épargne :
+<ul  class="spacer">
+<li>le motif de <span class="wims_emph">transaction</span> : pour palier
+ des insuffisances de trésorerie dues aux décalages entre la perception
+du revenu et la nécessité de réaliser une dépense ;</li>
+<li>le motif de <span class="wims_emph">précaution</span> : pour
+faire face aux aléas de la vie qui nécessitent d'effectuer
+des dépenses imprévues ;</li>
+<li>le motif de <span class="wims_emph">spéculation</span> : pour
+opérer des opérations d'achat-vente d'actifs (financiers ou non financiers)
+en vue de réaliser des gains nommés <i>plus-values</i>.</li>
+</ul></li>
+<li>L'épargne peut être constituée sous différents formes. On distingue alors :
+<ul  class="spacer">
+<li>l'épargne <span class="wims_emph">financière</span> composée
+d'actifs financiers : comptes à terme, placements (actions, obligations, SICAV…)… ;</li>
+<li>l'épargne <span class="wims_emph">non financière</span> composée
+d'actifs non financiers : biens immobiliers, objets de collections, oeuvres d'arts…</li>
+</ul></li>
+</ol>
+</div>
+</div>
+

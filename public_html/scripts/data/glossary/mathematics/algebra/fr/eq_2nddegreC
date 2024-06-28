@@ -1,0 +1,54 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=canonical_form,trinomial,equations,roots,factorization,polynomials,complex_number
+!set gl_title=Équation du second degré dans \(\displaystyle{\CC}\)
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_thm"><h4>Théorème 1</h4>
+Soit \((E)\) : \(a z^2+ b z+ c=0\) une équation du second degré d'inconnue \(z\)
+à coefficients réels \((a \neq 0)\) et &Delta; son discriminant.
+<ul>
+  <li>
+  si \(\increment \lt 0\) alors l'équation \((E)\) a dans \(\displaystyle{\CC}\)
+  deux solutions complexes conjuguées distinctes \(z_1\) et \(z_2\) définies
+  par&nbsp;:
+  <div class="wimscenter">
+  \(z_1=\frac{-b + \mathrm{i}\sqrt{-\increment}}{2a}\) et
+  \(z_2=\frac{-b - \mathrm{i}\sqrt{-\increment}}{2a}\) ;
+  </div>
+  </li>
+    <li>
+    si \(\increment=0\) alors l'équation \((E)\) a dans \(\displaystyle{\CC}\)
+    une unique solution \(z_0\) définie par&nbsp;:
+   <div class="wimscenter">
+    \(z_0=\frac{-b}{2a}\) ;
+    </div>
+    </li>
+  <li>
+  si \(\increment \gt 0\) alors l'équation \((E)\) a dans \(\displaystyle{\CC}\)
+  deux solutions réelles distinctes \(z_1\) et \(z_2\) définies par&nbsp;:
+  <div class="wimscenter">
+    \(z_1=\frac{-b + \sqrt{\Delta}}{2a}\) et
+    \(z_2=\frac{-b - \sqrt{\Delta}}{2a}\).
+    </div>
+    </li>
+</ul>
+</div>
+<div class="wims_thm">
+<h4>Théorème 2</h4>
+   Soit \((E)\) : \(a z^2+ b z+ c=0\) une équation du second degré à coefficients
+   réels et &Delta; son discriminant.
+<ul>
+  <li>
+  si \(\increment=0\) alors, pour tout nombre complexe \(z\),
+  <span style="white-space:nowrap">\(a z^2+ b z+ c = a(z-z_0)^2\)&nbsp;;</span>
+  </li>
+  <li>
+  si \(\increment \neq 0\) alors, pour tout nombre complexe \(z\),
+   <span style="white-space:nowrap">\(a z^2+ b z+ c= a(z-z_1)(z-z_2)\).</span>
+  </li>
+</ul>
+</div>

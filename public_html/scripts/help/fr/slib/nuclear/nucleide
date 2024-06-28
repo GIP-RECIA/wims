@@ -1,0 +1,10 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Données au sujet de nucléides, ou typographie LaTeX
+slib_parms=3\
+, Un symbole ou un numéro atomique pour identifier l'élément du nucléide\
+, Quand ce paramètre existe, il doit contenir le mot-clé « tex », éventuellement suivi d'un nombre de masse, pour choisir un isotope ; si aucun nombre de masse n'est donné, et si l'élément du nucléide a des isotopes stables, l'isotope le plus abondant est choisi.\
+, charge électrique comme  +, 2+ ou -, 3-.
+
+slib_out= <ul><li>Quand il y a un seul paramètre, le résultat est une matrice avec le numéro atomique et le symbole de l'élément en première ligne, puis éventuellement les nombre de masse et l'abondance des isotopes stables dans les lignes suivantes.
+slib_comment=Pour le moment, le seul mot-clé supporté dans le deuxième paramètre est « tex ».

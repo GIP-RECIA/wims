@@ -1,0 +1,36 @@
+!! hide freework
+
+!if $activetest<2
+  job=configfw
+  !reset back
+  !changeto $job.proc
+!endif
+
+!! change statut
+activetest=3
+update_content=3\
+$class_expiration\
+$title\
+$desc\
+$comment\
+$type\
+$deadline.$timedeadline\
+$soldate.$timesoldate\
+$sizelimitfile\
+$scoring\
+$seealltime\
+$studentclose
+
+update_field=$freework
+update_nbline=$fw_nbline
+!read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freeworks
+
+success=goodhide
+
+!if $back=1
+  !restart module=home
+!else
+  job=configfw
+  !reset back
+  !changeto $job.proc
+!endif

@@ -1,0 +1,56 @@
+<!-- _widgets/supervisortool.phtml -->
+!set toolcnt=!recordcnt wimshome/log/classes/$wims_class/tool/.toolindex
+!for i=1 to $toolcnt
+  !set sh=!record $i of wimshome/log/classes/$wims_class/tool/.toolindex
+  !distribute lines $sh into s_,t_,ti,d_,o_,w_
+  $table_tr
+    <td class="wims_tool_item">$wims_name_Tool $i</td>
+    <td>
+  !href module=$s_&$t_ $ti
+    </td>
+  !if $seq_open=yes
+    !read themes/_procs/supervisorseq.proc tool,$o_
+  !endif
+  <td class="wims_tool_status_$o_">
+  !item $[$o_ +1] of $wims_name_status
+  </td><td>
+  !set wims_ref_class=wims_button
+  !href module=adm/class/adddoc&job=prop&tool=$i $wims_name_change
+  !!!! FIXME
+  !set wims_ref_class=wims_button
+  !href module=adm/class/adddoc&job=chstatus&tool=$i $(wims_name_actionlist[5-$o_])
+
+  !set wims_ref_class=wims_button wims_warning
+  !href module=adm/class/adddoc&job=deldoc&tool=$i $(wims_name_actionlist[6])
+  </td>
+  </tr>
+!next i
+!set glossarycnt=!recordcnt wimshome/log/classes/$wims_class/tool/.glossaryindex
+!for i=1 to $glossarycnt
+  !set sh=!record $i of wimshome/log/classes/$wims_class/tool/.glossaryindex
+  !distribute lines $sh into o_,t_
+  $table_tr
+  !default t_=$wims_name_Glossary
+  <td class="wims_glossary_item">$wims_name_Glossary $i</td><td>
+  !href module=adm/tool/glossary&gl=$i $t_
+  </td>
+  !if $seq_open=yes
+    !read themes/_procs/supervisorseq.proc glossary,$o_
+  !endif
+  <td class="wims_status_$o_">
+  !item $[$o_+1] of $wims_name_status
+  </td>
+    <td>
+  !if $i>0
+    !set wims_ref_class=wims_button
+    !href module=adm/class/glossary&job=mod&gl=$i $wims_name_change
+    !set wims_ref_class=wims_button
+    !href module=adm/class/glossary&job=chstatus&gl=$i $(wims_name_actionlist[5-$o_])
+    !!!set wims_ref_class=wims_button wims_warning
+    !!!href module=adm/class/glossary&job=deldoc&tool=$i $(wims_name_actionlist[6])
+  !endif
+  </td>
+  </tr>
+!next
+
+<!-- end _widgets/supervisortool.phtml -->

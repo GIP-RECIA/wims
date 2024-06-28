@@ -1,0 +1,117 @@
+!set titb=Puissances rationnelles
+!set keyw=
+!set datm=20210910
+!set prev=embedExpQN
+!set next=embedExpQR
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+Soit 
+!insmath n
+ un entier strictement positif alors la fonction qui à tout réel positif ou nul 
+!insmath x
+ associe 
+!insmath x^n
+ est
+définie, continue et strictement croissante sur &#91;0 ; 
+!insmath +\infty 
+&#91 et l'ensemble des images
+est 
+!insmath \rbrack 0 ; +\infty \lbrack
+.
+<h3 class="l2w_content thm">Conséquences</h3><div class="l2w_content thm">
+Si 
+!insmath a \ge 0
+ et si 
+!insmath n \in \NN^*
+, l'équation 
+!insmath x^n = a
+ admet une solution
+  et une seule dans 
+!insmath \rbrack 0 ; +\infty \lbrack
+ qui est appelée
+  la racine 
+!insmath n
+<sup>ième</sup> de 
+!insmath a
+.<br>
+Si 
+!insmath a
+ et 
+!insmath b
+ sont des réels positifs, si 
+!insmath n \in \NN^*
+ et si 
+!insmath a^n=b^n
+ alors 
+!insmath b=a
+.
+</div>
+<h3 class="l2w_content defn">Définition</h3><div class="l2w_content defn">
+Si 
+!insmath a \in \rbrack 0 ; +\infty \lbrack
+ et 
+!insmath n \in \NN^*
+,
+ on note 
+!insmath \root{n}{a}
+ l'unique solution réelle positive ou nulle de l'équation 
+!insmath x^n=a
+.
+</div>
+<p>Ceci permet de calculer le taux annuel moyen ou le taux mensuel moyen.</p>
+Si 
+!insmath a \gt 0
+ alors 
+!insmath (\root{4}{a^3})^100 = (a^3)^25 = a^75 = (\root{100}{a^75})^100
+,
+donc 
+!insmath \root{4}{a^3} = \root{100}{a^75}
+ ;
+or 
+!insmath \frac{3}{4} = \frac{75}{100}
+, d'où l'idée d'écrire
+
+!insmath \root{4}{a^3} = a^{\frac{3}{4}} = a^{\frac{75}{100}}= \root{100}{a^75}
+
+et plus généralement de noter la racine de 
+!insmath a
+ par 
+!insmath a^{\frac{1}{n}}
+.
+<h3 class="l2w_content defn">Définition</h3><div class="l2w_content defn">
+Si 
+!insmath a \in \rbrack 0 ; +\infty \lbrack
+ et 
+!insmath n \in \NN^*
+,
+on note 
+!insmath a^{1/n}
+ l'unique solution réelle positive ou nulle de l'équation 
+!insmath x^n=a
+.
+</div>
+Ainsi 
+!insmath \root{n}{a} = a^{1/n}
+ mais 
+!insmath 0^0
+ n'est pas défini.
+On démontre en exercice la cohérence de cette notation et que les règles
+sur les puissances entières s'appliquent aussi
+ aux puissances rationnelles de nombres réels strictement positifs.
+On définit ainsi 
+!insmath a^{p/n} = \root{n}{a^p}
+ et 
+!insmath a^{-p/n} = \frac{1}{\root{n}{a^p}}
+
+pour 
+!insmath a \gt
+ 0.
+

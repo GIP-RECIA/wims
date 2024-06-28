@@ -1,0 +1,30 @@
+!! this file manage autocompletion for location in France 
+!! using official api https://api-adresse.data.gouv.fr
+
+<script>
+$$("#location").autocomplete({
+    source: function (request, response) {
+        $$.ajax({
+            url: "https://api-adresse.data.gouv.fr/search/?city="+$$("input[name='location']").val()+"&type=municipality&limit=15",
+            data: { q: request.term },
+            dataType: "json",
+            success: function (data) {
+                var cities = [];
+                response($$.map(data.features, function (item) {
+                    if ($$.inArray(item.properties.cities) == -1) {
+                        cities.push(item.properties.cities);
+                        return { label: item.properties.postcode + " - " + item.properties.city, 
+                                 geoloc: item.geometry.coordinates,
+                                 value: item.properties.postcode + " - " + item.properties.city
+                        };
+                    }
+                }));
+            }
+        });
+    },
+    select: function(event, ui) {
+        $$('#geoloc').val(ui.item.geoloc[1]+","+ui.item.geoloc[0]);
+    }
+});
+</script>
+

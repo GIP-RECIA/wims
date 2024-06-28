@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability
+!set gl_title=Probabilité (collège)
+!set gl_level=H3 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+On considère une expérience aléatoire.
+<br>
+À chaque événement élémentaire, on associe un nombre compris entre \(0\) et
+\(1\) que l'on appelle <strong>probabilité</strong> de l'événement lorsque la
+somme de tous ces nombres est égale à <span style="white-space:nowrap">\(1\).</span>
+<br>
+On dit que l'on a défini une <strong>probabilité</strong>.
+<br>
+La probabilité d'un événement (autre que l'événement impossible) est égale à la
+somme des probabilités des événements élémentaires qui le composent.
+<br>
+La probabilité de l'événement impossible est égale à \(0\) et la probabilité de
+l'événement certain est égale à <span style="white-space:nowrap">\(1\).</span>
+</div>

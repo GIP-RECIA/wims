@@ -1,0 +1,124 @@
+type=question
+textarea="datatrue datafalse explain"
+iEdit="explain"
+asis="explain"
+
+:Choose the true sentence from a list.
+A number of sentences are picked from a list.
+We must identify and note those that are true.
+Good and bad sentences are selected randomly from respective lists.
+The number of good sentences in each presentation is not necessarily fixed.
+<p>
+The more data (sentences) are abundant,
+ the more the exercise is random and repeatable.
+But you can also do exercises with just the right phrases but no more.
+It will be in this case a multiple choice with several good choices.
+</p>
+<p class="wims_credits">Author of the model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Example parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Multiple true-false}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Number of sentences to present.
+\integer{tot=4}
+
+:Minimum of true sentences in each exercise. At least 1.
+\integer{mintrue=1}
+
+:Minimum of false sentences in each exercise. At least 1.
+\integer{minfalse=1}
+
+:True sentences. One sentence per line, semi-colon not allowed.
+Avoid long sentences!
+$embraced_randitem
+\matrix{datatrue=
+At equal voltage, the electric current passing through a resistor is inversely proportional to its resistance.
+At equal current, the voltage on a resistor is proportional to its resistance.
+The current flowing through a resistor is proportional to the applied voltage.
+The power dissipated by a resistor is proportional to the square of the applied voltage.
+The power dissipated by a resistor is proportional to the square of the current.
+}
+
+:False sentences. One sentence per line, semi-colon not allowed.
+Avoid long sentences!
+$embraced_randitem
+\matrix{datafalse=
+At equal voltage, the current flowing through a resistor is proportional to its resistance.
+At equal voltage, the current flowing through a resistor is independent of its resistance.
+The current passing through a diode is proportional to the applied voltage.
+The power dissipated by a resistor is proportional to the applied voltage.
+The power dissipated by a resistor is proportional to the current.
+}
+
+:Option
+Add the word <span class="tt wims_code_words">split</span> if you want to give a
+partial score for partially correct answers.
+\text{option=split}
+
+:Instructions
+$embraced_randitem
+\text{explain=asis(Which of the following statements are true? Check them.)}
+
+:Embraced random items
+$embraced_randitem
+\text{accolade=item(1,1 yes,
+2 no)}
+
+:%%%%%%%%%%%%%% Nothing to modify before the statement %%%%%%%%%%%%%%%%
+
+\text{accolade=wims(word 1 of \accolade)}
+\text{datatrue=wims(nonempty rows \datatrue)}
+\text{datafalse=wims(nonempty rows \datafalse)}
+\integer{truecnt=rows(\datatrue)}
+\integer{falsecnt=rows(\datafalse)}
+\integer{tot=\tot > min(\truecnt,\falsecnt)?min(\truecnt,\falsecnt)}
+\integer{mintrue=\mintrue<1?1}
+\integer{minfalse=\minfalse<1?1}
+\integer{mintrue=\mintrue>\tot-1?\tot-1}
+\integer{minfalse=\minfalse>\tot-1?\tot-1}
+\integer{tot<\mintrue+\minfalse?\mintrue+\minfalse}
+\text{tsh=shuffle(\truecnt)}
+\text{fsh=shuffle(\falsecnt)}
+\text{true=row(\tsh,\datatrue)}
+\text{false=row(\fsh,\datafalse)}
+\integer{truepick=randint(\mintrue..\tot-\minfalse)}
+\text{pick=row(1..\truepick,\true);row(1..\tot-\truepick,\false)}
+\text{ind=wims(makelist 1 for x=1 to \truepick),wims(makelist 0 for x=1 to \tot-\truepick)}
+
+\text{sh=shuffle(\tot)}
+\text{ind=item(\sh,\ind)}
+\text{pick=row(\sh,\pick)}
+\text{pick=\accolade=1 ? wims(embraced randitem \pick)}
+\text{ans=positionof(1,\ind)}
+\text{list=wims(values x for x=1 to \tot)}
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+
+:%%%%%%%%%%%%% Now the statement in html. %%%%%%%%%%%%%%%%%%%%
+
+::You don't need to modify this in general.
+
+\statement{
+<div class="instruction">
+\explain
+</div>
+<ul style="list-style-type:none">
+\for{i=1 to \tot}{
+ <li>
+  \embed{reply 1,\i}. &nbsp;\pick[\i;]
+  </li>
+}
+</ul>
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%
+
+\answer{The reply}{\ans;\list}{type=checkbox}{option=\option}

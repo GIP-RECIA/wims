@@ -1,0 +1,14 @@
+!set gl_type=dynamic
+!set gl_title=Croissance (Illustration chiffrée)
+
+!readproc data/glossary/ecogestion/economics/macro/growth
+
+<div class="wims_rem"><h4>Illustration chiffrée</h4>
+En supposant que pour l'année $gl_date1, le PIB d'un pays soit de
+$gl_pib1 milliards d'euros et qu'en $gl_date2 il s'élève à $gl_pib2 milliards d'euros,
+la variation relative du PIB serait donc de :
+\(\frac{PIB_$gl_date2 - PIB_$gl_date1}{PIB_$gl_date1}\) =
+\(\frac{$gl_pib2 - $gl_pib1}{$gl_pib1} \simeq $gl_percent1 \) ;
+et la <span class="wims_emph">croissance économique</span> serait
+de <span class="wims_emph">$gl_percent2%</span>.
+</div>

@@ -1,0 +1,70 @@
+!! manage of navigation message for freework
+!if $module=home or adm/ isin $module
+  !exit
+!endif
+!let freework_t=$wims_read_parm
+!bound freework_t within head,tail default head
+!set absscore=$[abs($wims_fwminscore)]
+
+!goto $freework_t
+
+:head
+  !if $wims_fwnumber>0
+    <!-- _widgets/freeworkmanage.phtml head-->
+    <div class="wims_msg info">
+      <h1 class="oeftitle">$wims_name_Freework $(wims_fwnumber) - $wims_name_Exercise $(wims_fwexo)</h1>
+      !if _check notin $wims_session
+        !if $module_score!=$empty
+          !if $module_score>=$absscore
+            !if $wims_fwminscore>0
+              !! in case of manuel selection of exercise
+              !line 3 of $wims_name_freework_intro
+              <ul>
+                <li>
+                  !line 4 of $wims_name_freework_intro
+                </li>
+                <li>
+                  !line 5 of $wims_name_freework_intro
+                </li>
+              </ul>
+              <div class="wimscenter">
+                !set wims_ref_class=wims_button
+                !href module=adm/class/freework&freework=$(wims_fwnumber)&job=exolog&exolog=$(wims_fwexo) $wims_name_freework_selexo
+                &nbsp;
+                !set wims_ref_class=wims_button
+                !href module=adm/class/freework&+job=directexo&+freework=$(wims_fwnumber)&+exonum=$(wims_fwexo) $wims_name_exorenew
+              </div>
+            !else
+              !! in case of automatic selection of exercise
+              !line 1 of $wims_name_freework_intro
+              !set wims_ref_class=wims_button
+              !href module=adm/class/freework&+freework=$(wims_fwnumber) $wims_name_bc2fw
+            !endif
+          !else
+            !line 6 of $wims_name_freework_intro
+          !endif
+        !else
+          !line 2 of $wims_name_freework_intro
+        !endif
+      !endif
+    </div>
+    <!-- end _widgets/freeworkmanage.phtml head -->
+  !endif
+!exit
+
+:tail
+  !if $wims_class!=$empty and $wims_user!=supervisor and $wims_user!=$empty and $wims_fwnumber>0 and $module_score!=$empty and _check notin $wims_session
+    <!-- _widgets/freeworkmanage.phtml tail-->
+    !let t=!positionof item $(wims_fwexo) in $wims_fwlistexo
+    !let nb=!itemcnt $wims_fwlistexo
+    !if $t>1
+      !set wims_ref_class=wims_button
+      !href module=adm/class/freework&job=directexo&freework=$(wims_fwnumber)&exonum=$(wims_fwlistexo[$t-1]) $wims_name_previousseries
+    !endif
+    !if $t<$nb
+      !set wims_ref_class=wims_button
+      !href module=adm/class/freework&job=directexo&freework=$(wims_fwnumber)&exonum=$(wims_fwlistexo[$t+1]) $wims_name_nextseries
+    !endif
+    <!-- end _widgets/freeworkmanage.phtml tail -->
+  !endif
+!exit

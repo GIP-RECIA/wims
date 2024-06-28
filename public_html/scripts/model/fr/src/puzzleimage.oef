@@ -1,0 +1,65 @@
+type=order
+textarea="instruction data"
+iEdit="instruction"
+
+:Reconstituer une image (type puzzle).
+
+Une image est coupée en morceaux et les morceaux sont mis dans le désordre.
+Il s'agit de reconstituer l'image.
+On ne peut qu'échanger deux étiquettes : pour cela,
+cliquer sur la première puis sur la seconde.
+
+<p class="wims_credits">
+Auteur du modèle : <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+:\title{Puzzle d'images}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Consigne
+\text{instruction=<p>Mettre l'image dans l'ordre.</p>
+Pour échanger deux cartes, cliquer sur la première puis sur la seconde.}
+
+:Données principales.
+Chaque ligne correspond à une image, avec 4 parametres séparés par une virgule&nbsp;:<ol>
+  <li>Le premier item est le nom de l'image (
+  que vous devrez transférer dans le dossier images de l'exercice une fois l'exercice sauvé).</li>
+  <li>Le deuxième item est la taille de l'image.</li>
+  <li>Le troisième item indique le découpage.</li>
+  <li>Le quatrième item est facultatif et peut être une indication ou le nom de l'image</li></ol>
+  Exemple : <code>photos/bird.gif,320x240,4 x 3,il s'agit d'un oiseau.</code> signifie&nbsp;:<ol>
+  <li>Le fichier d'image à afficher est "photos/bird.gif"</li>
+  <li>La taille de cette image est de 320 de large et 240 de haut.</li>
+  <li>Cette image est à découper en 4 colonnes et 3 lignes.</li>
+  <li>L'indication "il s'agit d'un oiseau." sera affichée à l'apprenant</li></ol>
+\text{data=photos/bird.gif,320x240,4 x 3,il s'agit d'un oiseau.
+photos/bloom.gif,320x240,3 x 4
+}
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+
+\text{data=randrow(\data)}
+
+\text{v=wims(replace internal x by , in \data[3])}
+\integer{taille=80*\v[1]}
+
+:%%%%%%%%%%%%% Énoncé %%%%%%%%%%%%%%%%%
+
+\statement{
+  <div class="instruction">\instruction</div>
+  \if{\data[4] !=}{
+    <p style="font-weight:bold;">\data[4]</p>
+  }
+  <div class="wimscenter">\embed{r 1, \data[2]}</div>
+}
+
+:%%%%%%%%%%%%% Analyse des réponses %%%%%%%%%%%%%%%%%
+
+\answer{1}{\data[1];\data[3] x 80}{type=puzzle}{option=nonstop}

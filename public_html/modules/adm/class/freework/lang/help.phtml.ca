@@ -1,0 +1,232 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+$wims_read_parm
+:type
+<h2>Tipus possibles de tasques lliures</h2>
+Es disposa de tres tipus de tasques lliures:
+<ul>
+  <li><b>$(name_type_list[1])</b>:
+    Permet simplement distribuir l'enunciat d'una tasca lliure (un fitxer) a l'alumnat
+    i més endavant distribuir la correcció de la tasca lliure.
+  </li>
+  <li><b>$(name_type_list[2])</b>:
+!if $conf_nofile=yes
+  <span style="color:grey">(desactivat en aquest servidor)</span>
+!endif
+    Permet distribuir l'enunciat d'una tasca lliure a l'alumnat (un fitxer) i més endavant
+      distribuir la correcció. L'alumnat pot retornar la seva feina,
+     el professorat pot:
+    <ul><li>
+    corregir i distribuir a cada alumne una còpia corregida
+    </li><li>
+    distribuir una correcció global
+    </li><li>
+    assignar una nota manual a aquesta tasca
+    </li></ul>
+    Aquesta activitat utilitza molta capacitat d'emmagatzematge de la classe.
+  </li>
+  <li><b>$(name_type_list[3])</b>:
+    Permet crear un conjunt de zones de resposta amb
+     text o diferents applets (ara per ara Geogebra).
+     Cada participant envia la seva composició
+     (a les diferents zones). El professor pot:
+    <ul><li>visualitzar les composicions de cada participant
+     </li><li>distribuir una correcció global
+    </li><li>assignar una nota manual per a aquesta tasca
+    </li></ul>
+  </li>
+</ul>
+!exit
+
+:sizelimitfile
+<h2>Limitació de la mida del fitxer</h2>
+La mida global dels fitxers que el participant pot penjar està limitada
+(en MB).
+La mida límit multiplicada pel nombre de participants ha de romandre inferior a
+l'espai disponible a la classe (que es mostra a la pàgina).
+<div class="wims_msg warning">
+Avís; un alumne no podrà penjar un fitxer ni tan sols de mida més petita
+que la mida límit quan s'assoleixi la capacitat global de la classe.
+</div>
+Per exemple: si teniu 30 MB en una classe amb 35 alumnes
+i definiu la capacitat per alumne a 0,75 MB, es pot activar la tasca lliure
+(ja que teòricament consumireu 26,25 MB). Tanmateix, si mentrestant tu
+penges fitxers a la classe o fas que els alumnes facin exercicis enregistrats
+o exàmens, l'espai disponible pot disminuir i alguns alumnes poden
+no poder presentar les tasques.<br>
+En el cas de tasca lliure de tipus 3, la mida s'aplica a totes les zones de tipus fitxer.
+!exit
+
+:datedeadline
+<h2>Data en què el participant ha de tornar la seva còpia.</h2>
+<ul>
+<li>Quan la tasca lliure sigui del tipus <span class="wims_code_words">$(name_type_list[2])
+</span> o <span class="wims_code_words">$(name_type_list[3])</span>, la interfície del
+dipòsit de còpies s'activa abans de la data i sempre que l'estat de la tasca lliure sigui
+<span class="wims_code_words">Actiu</span>.</li>
+<li>Un cop passada aquesta data, el professorat podrà descarregar les còpies
+de l'alumnat i arxivar la còpia corregida de cada alumne.</li>
+<li>L'alumnat no pot accedir a la seva còpia corregida fins que 
+no es presenten totes les còpies corregides i la data de difusió de
+la solució no se supera.</li>
+</ul>
+!exit
+
+:datetimesoldate
+<h2>Data a partir de la qual la correcció estarà disponible
+per a la descàrrega de l'alumnat.</h2>
+<ul>
+<li>Els fitxers comuns de solució es poden afegir/modificar/eliminar en qualsevol moment.</li>
+<li>L'alumnat també pot, després d'aquesta data, descarregar-ne la còpia
+corregida un cop que totes les correccions de còpia han estat enviades 
+pel professorat de la classe i sempre que l'estat de la tasca lliure es mantingui actiu.</li>
+<li>Quan l'estat ha caducat, l'alumnat ja no pot descarregar 
+la seva còpia corregida, sinó només els fitxers d'enunciat i de correcció comuns 
+a tots (independentment de la data de publicació de la solució).</li>
+<li>L'alumnat pot accedir als fitxers comuns de correcció tan aviat
+ja ha passat la data de solució, encara que no totes les còpies estiguin corregides
+en el cas dels tipus <span class="wims_code_words">$(name_type_list[2])</span> o
+<span class="wims_code_words">$(name_type_list[3])</span>.</li>
+</ul>
+!exit
+
+:scoring
+<h2>Puntuació</h2>
+És possible afegir una nota manual per a cada alumne de la classe.
+<br>
+La interfície us permet entrar directament la nota de cada estudiant
+alhora que la presentació de les còpies corregides.<br>
+Quan aquesta opció està activada, una columna (amb un títol genèric i un coeficient 1)
+s'afegeix automàticament a la taula de notes manuals quan s'activa la tasca lliure.
+<br>
+Aquesta opció no està disponible en un portal.
+!exit
+
+:typezone
+<h2>Tipus de les zones</h2>
+Una tasca està formada per dues parts:
+<ul>
+<li>la part de construcció de l'enunciat (que després serà visible per a l'alumnat) ;</li>
+<li>la part de construcció de la zona de resposta de l'alumnat. Aquesta part permetrà
+l'alumnat introduir la seva resposta.</li>
+</ul>
+Cada part està formada per un cert nombre de zones. Hi ha tres tipus 
+de zones (tant per a l'enunciat com per a les respostes de l'alumnat):
+<ul>
+<li><b>geogebra</b> Mostra un applet Geogebra interactiu.</li>
+<li><b>text</b> una zona d'entrada de text. Les etiquetes HTML són acceptades.
+És possible escriure fórmules matemàtiques situant-les entre \( i ).<br>
+Per exemple, \(\sqrt{2}) mostrarà
+!insmath \sqrt{2}
+.
+</li>
+<li><b>fitxer</b>
+!if $conf_nofile=yes
+  <span style="color:grey">(desactivat en aquest servidor)</span>
+!endif
+ una zona de dipòsit de fitxers. Podeu penjar diversos fitxers a
+cada zona de fitxer.</li>
+<li><b>Randfile</b> (només per a la part d'enunciat)
+!if $conf_nofile=yes
+  <span style="color:grey">(desactivat en aquest servidor)</span>
+!endif
+ una zona de dipòsit de fitxers. Podeu penjar diversos fitxers a
+cada zona de fitxer, un d'aquests fitxers serà seleccionat a l'atzar i es mostrarà a l'alumnat.</li>
+<li><b>exercici WIMS </b> (només per a la part d'enunciat)
+Una llista d'exercicis WIMS a realitzar. L'alumnat ha d'aprovar la sèrie abans de poder guardar-la i després escriure una solució detallada. Aquesta solució es pot donar al professor mitjançant els camps de la part de resposta. Si no s'ha configurat cap zona de resposta, és que s'ha de fer una presentació en paper.
+</li>
+</ul>
+Hi pot haver diverses zones del mateix tipus tant a la part de l'enunciat com
+a la part de resposta de l'alumnat. El nombre de zones de resposta utilitzades
+i el seu tipus es trien lliurement.
+!exit
+
+:zonegeogebra
+Descripció dels camps a completar per a aquest tipus de zona:
+<ul>
+<li><b>Títol :</b> el títol de la zona. Si aquest camp roman buit, es generarà un títol automàtic.</li>
+<li><b>Descripció :</b> una descripció de la zona pot contenir instruccions
+   específiques (es mostrarà amb l'estil css
+  <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Opció per configurar l'applet:</b> aquesta zona permet definir les opcions
+   de configuració de l'applet (vegeu el lloc web de GeoGebra per a més detalls).
+   Cal escriure una opció per línia. Per exemple:
+<pre>
+showToolBar=true
+customToolBar="0|40|||1|2|5@10"
+width=800
+height=500
+number=1
+</pre></li>
+<li><b>Mostrar aquesta zona per a l'alumnat</b> (opció disponible només 
+  a la zona de l'enunciat): aquesta opció permet que aquesta zona aparegui o no
+  a la pàgina de l'enunciat de l'alumnat (es pot combinar amb la següent opció,
+  permet proporcionar a l'alumnat una zona GeoGebra amb contingut).
+  Si aquesta zona es mostra a la pàgina de l'alumnat, aquests no la podran
+  modificar.</li>
+<li><b>Copiar el contingut de la zona del professorat número</b> (opció disponible
+  només a la part de resposta de l'alumnat): aquesta opció permet carregar
+  l'applet amb el contingut d'un dels applets GeoGebra de la zona d'ensenyament
+  (per exemple, per contenir una figura inicial).</li>
+<li><b>Contingut de la zona</b> (només a la part de l'enunciat) una finestra de l'applet
+   permet realitzar la figura.</li>
+</ul>
+!exit
+
+:zonetexte
+Descripció dels camps a completar per a aquest tipus d'àrea:
+<ul>
+<li><b>Títol:</b> el títol de la zona. Si aquest camp roman buit, es generarà un títol automàtic.</li>
+<li><b>Descripció:</b> una descripció de la zona pot contenir instruccions
+   específiques (es mostrarà amb l'estil css
+    <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Contingut de la zona</b> (només a la part de l'enunciat) una zona de
+  text permet introduir el text de l'enunciat.</li>
+</ul>
+!exit
+
+:zonefile
+Descripció dels camps a completar per a aquest tipus d'àrea:
+<ul>
+<li><b>Títol:</b> el títol de la zona. Si aquest camp roman buit, es generarà un títol automàtic.</li>
+<li><b>Descripció:</b> una descripció de la zona pot contenir instruccions
+   específiques (es mostrarà amb l'estil css
+  <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Nombre màxim de fitxers </b>(només a la part de resposta):
+ permet limitar el nombre de fitxers penjats pels participants.</li>
+<li><b>Contingut de la zona</b> (només a la part de l'enunciat):
+  permet dipositar els fitxers per a l'enunciat
+   (la interfície de dipòsit es troba a la part inferior de la pàgina)</li>
+</ul>
+!exit
+
+:zonerandfile
+Descripció dels camps a completar per a aquest tipus d'àrea:
+<ul>
+<li><b>Títol:</b> el títol de la zona. Si aquest camp roman buit, es generarà un títol automàtic.</li>
+<li><b>Descripció:</b> una descripció de la zona pot contenir instruccions
+   específiques (es mostrarà amb l'estil css
+  <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Contingut de la zona</b> (només a la part de l'enunciat):
+  permet dipositar els fitxers per a l'enunciat
+   (la interfície de dipòsit es troba a la part inferior de la pàgina).
+  Només un d'aquests fitxers, escollit a l'atzar, es mostrarà a l'alumnat.</li>
+</ul>
+!exit
+
+:zonewimsexo
+Descripció dels camps a completar per a aquest tipus d'àrea:
+<ul>
+<li><b>Títol:</b> el títol de la zona. Si aquest camp roman buit, es generarà un títol automàtic.</li>
+<li><b>Descripció:</b> una descripció de la zona pot contenir instruccions
+   específiques (es mostrarà amb l'estil css
+  <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Contingut de la zona</b> Una taula presenta la llista d'exercicis a processar. L'addició d'exercicis es fa pel mateix mètode que per als fulls d'exercicis (utilitzant el cercador de recursos).
+</li>
+</ul>
+!exit
+
+:allowtype
+!! check adm/class/sheet/lang/help.phtml.ca and change accordingly
+!exit

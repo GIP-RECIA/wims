@@ -1,0 +1,122 @@
+!!set backup_delete=$(wims_read_parm[2])
+!!set sitemanager=$(wims_read_parm[1])
+!!set size=$(wims_read_parm[3])
+!!set day=$(wims_read_parm[4])
+!!set protocol=$(wims_read_parm[5])
+!!set cookies = $(wims_read_parm[6])
+<h2 class="wims_subtitle">Informació sobre el processament i la protecció de dades</h2>
+
+!!!<h3>Administrador de dades</h3>
+!!!
+!!!Aquí apareix l'administrador del lloc / classe / portal de centre si correspon
+!!!<strong>$(wims_read_parm[1])</strong>
+!!!
+!!!especifiqui el responsable legal (director / president en el cas d'un servidor de centre)
+
+
+<h3>Objectius</h3>
+<p class="wimscenter">
+  <strong>Educar els alumnes practicant exercicis en línia.</strong>
+</p>
+<p>
+  WIMS (Web Interactive Multipurpose Server) és una plataforma d'aprenentatge en línia
+  que posa a disposició de tothom recursos d'aprenentatge (exercicis interactius, documents interactius, eines informàtiques)
+  i permet als professors tenir un espai protegit on poden organitzar recursos docents en sessions de treball,
+  crear i controlar les activitats dels alumnes.
+</p>
+
+<h3>Naturalesa de les dades registrades</h3>
+<ul>
+  <li>En el cas d'usuaris no registrats,
+    les úniques dades que es registren són les IP dels usuaris en fitxers de registre al servidor
+    no utilitzats que s'emmagatzemen temporalment per a un funcionament correcte del servidor.
+  </li><li>Cas d'una persona que crea una classe.<br>
+    Les dades gravades són:
+    <ul>
+      <li>el cognom, el nom i el correu electrònic que es donen en crear la classe;</li>
+      <li>els números IP de connexió que només són visibles per aquesta persona i l'administrador del servidor.</li>
+    </ul>
+  </li><li>Casos d'usuaris inscrits en una classe virtual.<br>
+    L'ús de les classes virtuals d'un servidor WIMS implica guardar
+     algunes dades de connexió per calcular notes i avaluacions.
+
+    La informació personal següent és accessible al professor connectat
+      en la seva classe WIMS, així com a l'aprenent en forma detallada o en forma processada:
+    <ul>
+      <li>nom i cognom;</li>
+      <li>correu electrònic i foto (opcional);</li>
+      <li>els exercicis visualitzats i/o resolts;</li>
+      <li>totes les notes obtingudes;</li>
+      <li>els dies, hores i IP de la connexió de l'alumne en realitzar una feina (fulls de treball)
+        a la classe WIMS (dades detallades).</li>
+    </ul>
+  </li>
+</ul>
+
+!if $(wims_read_parm[6])=yes
+  <p>
+    Les cookies s'utilitzen per ajudar al visitant no registrat a mantenir les seves preferències.
+  </p>
+!endif
+
+<h3>Període de retenció de dades</h3>
+<p>
+  Els fitxers de registre fora de classe del servidor que contenen
+   les dades de connexió s'esborren regularment
+</p>
+   <ul><li>
+    aucune donnée de plus de $(wims_read_parm[3]) jours n'est conservée;
+  </li><li>
+    només els darrers $(wims_read_parm[3]) bytes es conserven.
+  </li></ul>
+<p>
+El professor crea una classe per un màxim d'un any de durada.
+El professor té l'oportunitat de fer una còpia de seguretat que contingui
+  les dades dels alumnes de la seva classe a l'ordinador,
+   allargar la durada de la seva classe i esborrar les dades dels alumnes de la seva classe.
+</p><p>
+  Les dades dels alumnes d'una classe s'emmagatzemen al servidor no més
+   de $(wims_read_parm[2]) dies després de la data de caducitat de la classe.
+</p>
+
+!!<h3>Legitimitat</h3>
+!!En el cas de l'educació pública, en principi serà
+!! "l'execució d'una missió d'interès públic",
+!! però també es pot utilitzar una classe WIMS per a l'execució d'un contracte,
+!! o privades, amb el consentiment dels alumnes (acceptació del T.O.S.).
+!! Es podria proposar la llista de la possible legitimitat durant la creació de la classe, per exemple
+!!
+
+<h3>Destinataris de les dades</h3>
+!! Inutile de préciser que le gestionnaire/admin a acces au donnée : c'est intrinsèque à la fonction.
+!! Le gestionnaire du site peut avoir accès à toutes les données (sans intérêt pour lui).
+<p>Els professors tenen accés només a la informació
+ disponible de la classe de la que en són responsables.</li>
+
+<p>Tingueu en compte que els inscrits (anomenats alumnes) a una classe i les seves dades
+  no són visibles per als altres alumnes.
+  Només els professors d'una classe veuen la llista d'alumnes i les seves dades.</p>
+
+<h3>Seguretat</h3>
+!if $(wims_read_parm[5])=https
+  <p>El lloc web pot utilitzar el protocol $(wims_read_parm[5]).</p>
+!endif
+<p>El control d'accés d'usuari està configurat mitjançant contrasenyes personals.</p>
+<p>El registre de connexió es realitza al servidor.</p>
+
+
+<h3>Informació sobre els drets</h3>
+<p>Sota el <b>R</b>eglament <b>G</b>eneral de <b>P</b>rotecció de <b>D</b>ades (RGPD) EU 2016/679,
+  vostè té dret d'accés (article 15),
+  de rectificació (article 16), de supressió (article 17),
+   i d'oposició (article 21) per motius legítims
+   a les vostres dades personals. <br>
+   Podeu exercir aquest dret contactant amb el professor de la vostra classe,
+   així com amb l'administrador del servidor $(wims_read_parm[1]).</p>
+<p>
+  També teniu la possibilitat, en aplicació
+   de l'article 40-1 de la llei n. 78-17 del 6 de gener de 1978
+   relativa a la informàtica, els fitxers i les llibertats per definir
+   directrius sobre el destí de les seves dades personals
+   després de la teva mort.
+</p>

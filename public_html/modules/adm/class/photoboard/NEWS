@@ -1,0 +1,7 @@
+ ------------ version 2.01 
+20171021 [r12076] replace use of user_photofile by use of command filexists (FG)
+20171010 [r12019] can use of photofile (FG)
+20170220 [r11315] bugfix when use button reset of varfilter (FG)
+2010-02 : Version 4.00
+  This module replaces several previously existing module adm/class/photoboard.xx.
+  

@@ -1,0 +1,66 @@
+
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">Évaluation des activités individuelles</h2>
+  </div>
+Le tableau affiche
+<ul><li>
+ la date du dernier exercice effectué,
+</li><li>
+ le nombre de sessions différentes,
+</li><li>
+ le nombre d'exercices terminés et le nombre d'exercices non terminés
+ (toutes feuilles confondues),
+</li><li>
+pour chaque feuille le nombre (compté avec répétition) d'exercices terminés
+(ayant obtenu une note), le nombre d'exercices non terminés et le temps passé.
+</li></ul>
+<p>
+Il est tenu compte de <span class="bold">tous les exercices</span>, que l'élève
+ait désactivé le score ou pas, contrairement à ce qui apparait dans le bilan
+des évaluations par les notes.
+</p><p>
+Les différents graphiques donnent une représentation des
+<span class="wims_emph">périodes de travail</span>
+sur un ensemble de feuilles et sur chacune de ces feuilles
+ou, si une seule feuille est sélectionnée,
+sur cette feuille et sur chacun de ses exercices.
+Dans le cas où une période de plus de 14 jours est sans activité, une bande
+grisée de 7 graduations rassemble les semaines inactives.
+</p>
+Pour chaque date,
+<ul><li>
+un bâton vertical a comme hauteur le nombre d'exercices
+terminés (avec notes) ;
+</li><li>
+les croix indiquent la position des exercices réussis :
+par exemple, une croix à l'ordonnée 10 du bâton signifie que
+la dixième fois que l'exercice a été fait, il a été réussi
+(note > 9) ;
+</li><li>
+un bâton orange représentant le nombre d'exercices non terminés.
+</li></ul>
+</div>
+
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">Temps de connexion</h2>
+  </div>
+  Il s'agit du temps de connexion dans la classe quelle que soit l'activité : regarder ses notes, le cahier de texte,\
+      faire des exercices, travailler sur un document, etc... Contrairement aux données présentées dans les tableaux d'activités
+      individuelles qui elles concernent uniquement le travail sur des exercices d'une feuille ou d'un examen.
+<ul>
+  <li>Les données sont mises à jour une fois par nuit lors de la maintenance du serveur.</li>
+  <li>La plage de date démarre à la création de la classe (ou au plus un an avant le jour courant) et se termine la veille du jour courant.</li>
+  !if $class_type=1 or $class_type=3
+    <li>Dans un groupement ou un portail d'établissement, les statistiques d'activités concernent l'activité globale dans la structure
+    (toutes classes confondues).</li>
+  !endif
+  !if $wims_user=supervisor
+    <li>L'unité de temps qui permet de régler l'échelle de couleur est modifiable dans le panneau de configuration de la classe.</li>
+    !if $wims_show_stat!=yes
+      <li>Les statistiques de connexion ont été désactivées par l'administrateur du serveur.</li>
+    !endif
+  !endif
+</ul>
+</div>

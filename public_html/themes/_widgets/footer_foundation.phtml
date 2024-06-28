@@ -1,0 +1,76 @@
+!if $jquery_defined=yes
+
+  <!-- Foundation for Sites 6 footer template (see http://foundation.zurb.com/sites/docs/)  -->
+
+  <script src="scripts/js/external/what-input/what-input.min.js"></script>
+
+  <script src="html/themes/_inc/foundation/foundation.core.js"></script>
+  <script src="html/themes/_inc/foundation/foundation.util.mediaQuery.js"></script>
+
+  <script src="html/themes/_inc/foundation/foundation.util.keyboard.js"></script>
+  <script src="html/themes/_inc/foundation/foundation.util.box.js"></script>
+  <script src="html/themes/_inc/foundation/foundation.util.nest.js"></script>
+  <script src="html/themes/_inc/foundation/foundation.util.touch.min.js"></script>
+
+!! By now, foundation.util.triggers must be disabled to avoid a conflict with the Dynapi lib.
+!! ( it duplicates every item created by dynapi)
+!! see here for sample : localhost/wims/?module=H1%2Falgebra%2Faddfig.fr&cmd=new
+!!  <script src="html/themes/_inc/foundation/foundation.util.triggers.js"></script>
+!!en attendant, on charge au moins certaines parties
+  <script src="html/themes/_inc/basic_triggers.js"></script>
+
+
+  <script src="html/themes/_inc/foundation/foundation.util.motion.js"></script>
+  !!<!-- Reveal (modal popups) -->
+  <script src="html/themes/_inc/foundation/foundation.reveal.js"></script>
+
+  !!<!-- dropdown Menu (used by languages selector) -->
+  <script src="html/themes/_inc/foundation/foundation.dropdownMenu.js"></script>
+
+  !! periode de test : on ne l'active que sur certains modules pour l'instant.
+  !if adm/class/ isin $module
+    !!<!-- Accordion (used in adm/class/addmodule) -->
+    <script src="html/themes/_inc/foundation/foundation.dropdown.min.js"></script>
+  !endif
+
+
+  !! periode de test : on ne l'active que sur certains modules pour l'instant.
+  !if adm/class/ isin $module or $module=home
+    !!<!-- Accordion (used in adm/class/addmodule) -->
+    <script src="html/themes/_inc/foundation/foundation.accordion.min.js"></script>
+  !endif
+
+  !! periode de test (et c'est plus optimisé)
+  !! On ne l'active que sur certains modules pour l'instant.
+  !set testmsg=!defof frontmsg in wimshome/log/wims.conf
+  !if $testmsg!=$empty
+    !set has_frontmsg=yes
+    !reset testmsg
+  !endif
+  !if $module=home and $wims_user=$empty
+    !if $wims_frontmsg!=$empty and $front_nbslide>0
+      !! permet de faire un "caroussel"
+      <script src="scripts/js/external/slick/slick.min.js"></script>
+      <script>
+        jQuery(function($$) {
+          $$('.carousel').slick({
+            autoplay: true,
+            dots: true,
+          });
+        });
+      </script>
+    !endif
+  !endif
+
+  !! il semble que tooltip ne fonctionne pas bien. voir pourquoi ?
+  !! il doit y avoir un conflit... ?
+  !!<script src="html/themes/_inc/foundation/foundation.tooltip.js"></script>
+
+  !! avant de mettre foundation complet, il faut d'abord remplacer
+  !! les reveals JqUI, car ils sont incompatibles ?
+  !!<script src="html/themes/_inc/foundation.min.js"></script>
+  !! voir les occurences de ".dialog(" dans :
+  !! _inc/session_warn.js (alerte de fin de session)
+
+  <script>jQuery(function($$) {$$(document).foundation();});</script>
+!endif

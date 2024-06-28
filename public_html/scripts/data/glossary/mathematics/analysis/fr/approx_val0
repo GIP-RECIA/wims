@@ -1,0 +1,40 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_number,inequalities
+!set gl_title=Valeur approchée (collège)
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(x\) et \(a\) deux nombres.<br>
+Le nombre \(a\) est <strong>une valeur approchée</strong> de \(x\) <strong>à
+l'unité près</strong> ou à la précision 1 lorsque \(0\leqslant x-a \leqslant 1)
+ou \(0\leqslant a-x \leqslant 1) c'est-à-dire lorsque
+<span style="white-space:nowrap">\(a-1\leqslant x \leqslant a+1 \).</span>
+<br>
+Le nombre \(a\) est <strong>une valeur approchée</strong> de \(x\) <strong>au
+dixième près</strong> ou à la précision 0,1 lorsque
+\(0\leqslant x-a\leqslant 0,1 \) ou \( 0\leqslant a-x\leqslant 0,1 \)
+c'est-à-dire lorsque <span style="white-space:nowrap">
+\( a-0,1 \leqslant x \leqslant a+0,1 \).</span>
+<br>
+Le nombre \(a\) est <strong>une valeur approchée</strong> de \(x\) <strong>au
+centième près</strong> ou à la précision 0,01 lorsque
+\( 0\leqslant x-a\leqslant 0,01 \) ou \(0\leqslant a-x\leqslant 0,01\)
+c'est-à-dire lorsque <span style="white-space:nowrap">
+\(a-0,01 \leqslant x \leqslant a+0,01 \).</span>
+</div>
+Cela signifie que la distance entre \(x\) et \(a\), c'est-à-dire l'erreur commise
+en remplaçant \(x\) par \(a\) est inférieure à 1, à 0,1 ou à 0,01.
+
+<div class="wims_rem">
+<h4>Remarque</h4>
+Soit \(p\) un nombre strictement positif. Le nombre \(a\) est <strong>une valeur
+approchée</strong> de \(x\) à <strong>\(p\) près</strong> ou à la précision
+\(p\) lorsque \( 0\leqslant x-a\leqslant p \) ou \( 0\leqslant a-x \leqslant p\),
+c'est-à-dire lorsque <span style="white-space:nowrap">
+\(a-p\leqslant x \leqslant a+p\).</span>
+</div>

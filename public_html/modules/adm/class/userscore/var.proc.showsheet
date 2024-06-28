@@ -1,0 +1,23 @@
+sheetcnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+!bound numshowsheet between integer 1 and $sheetcnt default 1
+tmp=!record $numshowsheet of wimshome/log/classes/$wims_class/sheets/.sheets
+sh_title=!line 3 of $tmp
+nbexo=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$numshowsheet
+!! ----- definition for individual sheet with technical variable
+indtechvar=!line 10 of $tmp
+!if $indtechvar!=$empty
+  !reset list_indiv
+  !for k=1 to $nbexo
+    tmp=!record $k of wimshome/log/classes/$wims_class/sheets/.sheet$numshowsheet
+    tmp=!line 11 of $tmp
+    list_indiv=!append line $tmp to $list_indiv
+  !next k
+!endif
+!if / isin $wims_class
+  dirtechvar=$wims_superclass
+!else
+  dirtechvar=$wims_class
+!endif
+!! ------ end of definition
+require=!getscorerequire sheet=$numshowsheet
+usercnt=!recordcnt wimshome/log/classes/$wims_class/.userlist

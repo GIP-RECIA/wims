@@ -1,0 +1,119 @@
+Simmetria
+giochi sulla simmetria
+??, 2020 	 
+1 	 
+E3 	 
+elementary_mathematics 	 
+symmetry,rotation,levelE3,levelE4,levelE5
+Marina, Cazzola 	 
+wims@unimib.it 	 
+Gioca con la matematica
+
+:E6/geometry/oefsymmetry.fr
+exo=sym2&exo=sym1&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Assi di simmetria #1
+Colora i quadretti in modo da costruire figure con un asse di simmetria (lo sai cos'è un asse di simmetria, vero?)
+
+:E6/geometry/oefsymmetry.fr
+exo=sym3&exo=sym31&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Assi di simmetria #2
+Colora i quadretti in modo da costruire figure con un asse di simmetria. Ma attenzione, che ora le cose diventano più difficili.
+
+:E6/geometry/oefsymmetry.fr
+exo=sym21&exo=sym11&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Assi di simmetria #3
+Colora i quadretti in modo da costruire figure con un asse di simmetria. Ancora!
+
+:E6/geometry/oefsymmetry.fr
+exo=sym4&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Assi di simmetria #4
+Colora i quadretti in modo da costruire figure con un asse di simmetria. Ancora una volta!
+
+:E6/geometry/oefsymmetry.fr
+exo=braille2&exo=braille1&exo=lettre2&exo=lettre0&exo=lettre1&confparm1=1&confparm2=1&qnum=5&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Assi di simmetria lettere o numeri
+Ora prova a costruire figure simmetriche rispetto a una retta.
+
+:U2/geometry/oefrosoni.it
+exo=assi1&qnum=1&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Trova l'asse di simmetria #1
+Ora la figura la disegno io e tu devi trovare un asse di simmetria.
+
+:U2/geometry/oefrosoni.it
+exo=assi2&qnum=1&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Trova l'asse di simmetria #2
+La figura la disegno io e tu devi trovare due assi di simmetria.
+
+:U2/geometry/oefrosoni.it
+exo=assi3&qnum=1&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Trova l'asse di simmetria #3
+La figura la disegno io e tu devi trovare due assi di simmetria che siano più vicini possibile.
+
+:E6/geometry/oefsymmetry.fr
+exo=sym2&exo=sym3&exo=sym0&exo=sym1&exo=sym11&confparm1=2&qnum=1&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1
+10
+1
+Simmetria #1
+Colorando i quadretti costruisci figure che abbiano un certo tipo di simmetria.
+
+&nbsp;&nbsp;
+:H2/geometry/oeffrieze.fr
+exo=frise1&exo=frise4&exo=frise3&exo=frise2&exo=frise5&exo=frise7&exo=frise6&qnum=1&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1
+10
+1
+Simmetria #2
+Colorando i quadretti costruisci figure che abbiano un certo tipo di simmetria. Questo è proprio difficile!
+
+&nbsp;&nbsp;
+:U2/geometry/oefrosoni.it
+exo=rosoniqq3&exo=rosoniqq4&qnum=1&scoredelay=&seedrepeat=4&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Girandole #1
+Costruisci girandole e scopri quante simmetrie posseggono.
+
+:U2/geometry/oefrosoni.it
+exo=rotazioni2&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Girandole #2
+Facciamo girare la figura! Ci sono rotazioni che mandano la figura in se stessa? Sei capcace di indicarne una?
+
+:U2/geometry/oefrosoni.it
+exo=rotazioni3&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Girandole #3
+Facciamo girare la figura! Ci sono rotazioni che mandano la figura in se stessa? Sei capcace di indicare la più piccola?
+
+:U2/geometry/oefrosoni.it
+exo=rotazioni4&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Girandole #4
+Facciamo girare la figura! Ci sono rotazioni che mandano la figura in se stessa? Sei capcace di elencarle tutte?
+
+:U2/geometry/oefrosoni.it
+exo=rotazioni1&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Girandole #5
+Facciamo girare la figura! Ora che puoi osservarla, rispondi di nuovo alla domanda: ci sono rotazioni che mandano la figura in se stessa?
+
+

@@ -1,0 +1,26 @@
+!set methtit=Intercambiar ambos lados de una ecuación
+!set methparmtype=parm equation
+!set methhelp=Este método reescribe la ecuación \(a = b) a \(b = a).
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!exit
+:form
+Intercambiar ambos lados de la ecuación
+!read deduc/methparm.phtml 1
+
+!exit
+:check
+!distribute items $methparmobj1 into data,left,sign,right
+methexp=Intercambiar ambos lados de \($left $sign $right)
+
+newobject1=$right $sign $left
+oldobject=1
+
+contextlist=$ct_Always,\
+	$ct_Onlywhen ambos lados son positivos,\
+	$ct_Onlywhen mbos lados tienen el mismo signo
+
+!exit

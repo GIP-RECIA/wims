@@ -1,0 +1,25 @@
+\title{chemformula}
+\language{fr}
+\range{-5..5}
+\computeanswer{no}
+\format{html}
+\precision{10000}
+
+\statement{
+<div class="spacer">
+\special{editarea
+\answer{}{H2SO4}{type=chemformula}{option=order=no}
+\answer{}{H2SO4}{type=chemformula}{option=order=hill}
+\answer{}{H2SO4}{type=chemformula}{option=order=[C,N,H,S,O,Cu,Al]}
+}
+</div>
+<ul>
+  <li> ordre sans importance: H2SO4 \embed{r1}</li>
+  <li> ordre hill: H2SO4 \embed{r2}</li>
+  <li> ordre [C,N,H,S,O,Cu,Al]: \embed{r3}</li>
+</ul>
+}
+
+\answer{}{H2SO4}{type=chemformula}{option=order=no}
+\answer{}{H2SO4}{type=chemformula}{option=order=hill}
+\answer{}{H2SO4}{type=chemformula}{option=order=[C,N,H,S,O,Cu,Al]}

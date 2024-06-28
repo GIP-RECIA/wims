@@ -1,0 +1,29 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Distribuzione Gamma
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Siano \(a) e \(b) due numeri positivi. La <strong>distribuzione Gamma</strong>
+con parametri \(a) e
+\(b) (denotata da \(Gamma(a,b))) è una distribuzione continua su
+\(\RR_+)
+con funzione di densità
+
+ <div class="wimscenter">
+ \(x\mapsto\frac{b^a e^{-b x}x^{a-1}}{\Gamma(a) }1_{x>0})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Valore atteso</th><th>Varianza</th><th>Funzione caratteristica</th></tr>
+<td>\(\frac{a}{b})</td><td>\(\frac{a}{b^2})</td><td>\((1-\frac{i t}{b})^{-a})</td></tr></table>
+
+<p>
+se \(a) è un intero positivo, \(Gamma(a,b)) è la distribuzione
+della somma di \(a) variabili aleatorie esponenziali indipendenti e tutte
+con parametro \(b).
+</p>

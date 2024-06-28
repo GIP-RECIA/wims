@@ -1,0 +1,202 @@
+Prévoir à partir de deux informations
+Cette feuille accompagne le chapitre 1 de Maths pour tous en Première. Comment prévoir à partir de deux informations (2 nombres et leurs images), les images pour d'autres nombres et trouver une formule pour n'importe quel nombre <em>x</em> ? On utilise ici les modèles des fonctions affines et des suites arithmétiques. Les connaissances mathématiques utilisées sont précisées dans les documents c1 et c2.
+??,2022
+2
+H5
+mathematics,
+H5
+Rémi, Belloeil
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=extrapol1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Coût d'un lot de savons
+Calculer le coût d'un lot de savons en choisissant sa méthode (dessin, schéma, tableau, graphique, équations).
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=tabvalachat&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de valeurs pour un achat par correspondance
+Compléter le tableau de valeurs en utilisant la proportionnalité des écarts.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=tabvalaf1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de valeurs d'une fonction affine 1
+Compléter le tableau de valeurs d'une fonction affine par proportionnalité des écarts.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=tabvalaf2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de valeurs d'une fonction affine 2
+Compléter le tableau de valeurs d'une fonction affine et calcul du coefficient directeur.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=tabvalaf3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de valeurs d'une fonction affine 3
+Compléter le tableau de valeurs d'une fonction affine et trouver sa formule.
+
+
+
+
+:H3/analysis/oefaffif.fr
+exo=qcmfonct&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Quelle est la fonction ?
+Choisir la bonne formule pour une fonction affine.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=affine&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Fonction affine d'après graphique
+Déterminer une fonction affine d'après le graphique.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=voiture&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Coût d'un lot de voitures miniatures
+Recherche guidée de la formule.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=extrapol3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Coût d'un lot d'objets
+Trouver le coût pour un autre nombre, le coût unitaire, le coût du transport et la formule.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=extrapol6&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Trouver une fonction affine 1
+Déterminer une fonction affine d'après deux nombres et leurs images.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=meilleurtarif&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Le meilleur tarif
+Pour combien de tee-shirts le tarif de PA est-il plus avantageux que celui de GT ? Avec le choix de la méthode.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=renctrain2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Rencontre de trains N°1
+Déterminer graphiquement l'heure et le lieu du croisement de deux trains avec une lecture graphique aisée.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=renctrain3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Rencontre de trains N°2
+Déterminer l'heure et le lieu de croisement des trains avec un point d'intersection moins précis. Les vitesses sont données.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=renctrain4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Rencontre de trains N°3
+Déterminer les équations des déplacements de deux trains puis l'instant où ils se croisent.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=equschema2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Trouver les opérateurs et résoudre une équation
+Trouver les opérateurs utilisés dans une fonction affine, puis les opérateurs réciproques et résoudre une équation.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=termeU1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Numéro d'un contrôle
+Déterminer le numéro d'ordre d'un contrôle et l'année du premier contrôle.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=vedette1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+La vedette de Bréhat
+Déterminer le nombre de clients qui attendent sur le quai à 12h en choisissant la méthode (dessin,tableau,suite).
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=calcsuite&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Nombre de clients en attente 2
+Déterminer le nombre de clients en attente après un certain nombre d'étapes avec des départs et des arrivées.Indication de représentation et de méthodes.
+
+
+
+
+:H5/algebra/oeffonctaffine.fr
+exo=demaffecarts&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Fonctions affines et proportionnalité des écarts
+Compléter la démonstration et la réciproque par les quantificateurs "il existe un nombre réel" ou "pour tous les nombres réels".
+
+
+
+

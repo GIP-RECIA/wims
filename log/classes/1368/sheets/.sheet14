@@ -1,0 +1,54 @@
+Geometria e geometrie
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+elementary_geometry,euclidean_geometry
+Marina, Cazzola
+wims@unimib.it
+
+
+:U1/geometry/oefgeo2D.it
+exo=triangle&qnum=2&qcmlevel=1&scoredelay=&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+30
+1
+Equiestensione
+Dalla formula dell'area del triangolo, leggiamo proprietà di equiestensione.
+
+:U1/geometry/oefgeo2D.it
+exo=chevron&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_check=2&intro_expert=yes
+20
+1
+Aree di triangoli
+Dalla formula dell'area del triangolo, leggiamo proprietà della misura dell'area di alcuni triangoli.
+
+:E6/geometry/perimetarea.it
+exo=airetrirec&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+10
+1
+Area di un triangolo rettangolo
+Proprietà del triangolo rettangolo e calcolo della sua area.
+
+
+:tool/geometry/rulecomp.fr
+exo=equilateral&allowlevel=1&menutype=normal&allowsolution=yes&allowhint=yes
+0
+0
+Costruzioni con riga e compasso #1
+Costruire un triangolo equilatero.
+
+:tool/geometry/rulecomp.fr
+exo=midper&allowlevel=1&menutype=normal&allowsolution=yes&allowhint=yes
+0
+0
+Costruizioni con riga e compasso #2
+Costruire l'asse di un segmento.
+
+:tool/geometry/rulecomp.fr
+exo=perpendicular&allowlevel=1&menutype=normal&allowsolution=yes&allowhint=yes
+0
+0
+Costruzioni con riga e compasso #3
+Costruire una retta perpendicolare a una retta data.
+

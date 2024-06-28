@@ -1,0 +1,43 @@
+!set arrows=!record 0 of expldir
+!set src=rankdir=LR;\
+node [style = filled];\
+$arrows
+
+!set cnt=!recordcnt expldir
+!for j=1 to $cnt
+  !set l=!record $j of expldir
+  !set src=$src\
+$(l[1])
+ !reset complement
+  !if _1 isin $(l[1]) or _2 isin $(l[1])
+    !set label=!replace internal _1 by in $(l[1])
+    !set label=!replace internal _2 by in $label
+    !set complement=label="$label";
+  !endif
+  !if $(l[2])!=$empty
+   !set complement=$(complement)tooltip="$(l[2..-2])"
+  !endif
+  !if $(l[-1])!=$empty
+  !set complement=$(complement)URL="$(l[-1])" target="wims_internal"
+!endif
+  !if $complement!=$empty
+    !set src=$src[$complement]
+  !endif
+!next
+
+!set src=digraph{$src}
+!set graphviz_output=svg
+!set swout1=!exec graphviz $src
+!!set swout1=!item 1 of $swout1
+!set swoutcnt=!linecnt $swout1
+!for l=7 to $swoutcnt
+  !set gs=!line $l of $swout1
+  !if __plain isin __$gs
+    !break
+  !endif
+  !set swout=!append line $gs to $swout
+!next
+
+$swout
+
+

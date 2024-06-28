@@ -1,0 +1,62 @@
+!! fichier d'affichage principal
+
+!read adm/css.phtml
+!read adm/class/classname.phtml $wims_classname\
+$wims_institutionname
+
+!! ---- gestion du haut de page automatique
+!header1
+!read adm/title.phtml 1\
+$classname\
+$name_modtitle
+
+!! ----- gestion des messages error/alert/info
+
+  <div class="wims_msg warning" id="msgwarning" >
+    $name_workinprogress
+  </div>
+
+!if $error!=$empty
+  <div class="wims_msg alert" id="msgerror" >
+    <b>$wims_name_Error:</b>
+    !read msg.phtml $error
+  </div>
+!else
+  !if $success!=$empty
+    <div class="wims_msg success">
+      !read msg.phtml $success
+    </div>
+  !endif
+  !if $warning!=$empty
+    <div class="wims_msg warning">
+      !read msg.phtml $warning
+    </div>
+  !endif
+!endif
+!if $notallowed=1
+  !goto end
+!endif
+
+!read $job.phtml
+
+
+:end
+!if $wims_user=supervisor
+  !if $job!=config
+    !set wims_menu_items=!append line config,1,module=$module&cmd=reply&job=config to $wims_menu_items
+  !endif
+  !if $job!=userlist
+    !set wims_menu_items=!append line part_list,1,module=$module&cmd=reply&job=userlist to $wims_menu_items  
+  !endif
+!else
+  !if $job!=log
+    !set wims_menu_items=!append line logwork,1,module=$module&cmd=reply&job=log to $wims_menu_items  
+  !endif
+  !if $job!=swork
+    !set wims_menu_items=!append line swork,1,module=$module&cmd=reply&job=swork to $wims_menu_items  
+  !endif
+
+!endif
+
+!reset job
+!tail

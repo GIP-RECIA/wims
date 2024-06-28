@@ -1,0 +1,17 @@
+# PutCSV
+# Envoie le listing place en $data1 dans la classe $qclass
+!! putCSV is at very early draft state. Do not use it yet (WIP).
+
+
+!bound format within csv, tsv default csv
+
+!read scripts/check.class
+!if $error!=$empty
+ !exit
+!endif
+
+!readdef $classdeffile
+!writefile wimshome/$wims_sesdir/user-deposit $data1
+
+!read scripts/putcsv
+

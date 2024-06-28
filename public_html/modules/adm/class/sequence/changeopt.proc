@@ -1,0 +1,9 @@
+!bound option within 0,1,$empty default $empty
+!if $option!=$empty
+  !if $seq>0 and $seq<=$seq_cnt
+    x_=!record 1 of wimshome/log/classes/$wims_class/seq/.sequence$[$seq]
+    x_=!replace line number 4 by $option in $x_
+    !writefile wimshome/log/classes/$wims_class/seq/.sequence$[$seq] :$x_
+  !endif
+!endif
+job=show

@@ -1,0 +1,16 @@
+type_exo=QCM
+title=Expressions idiomatiques
+author=Csilla, Ducrocq
+email=csilla.ducrocq@u-psud.fr
+source=swac_expressions
+file=expressions
+instruction=Choisissez la signification de l'expression idiomatique.
+alea=yes
+partialscore=split
+percent=1
+format=checkbox
+style_reponse=
+style_question=
+
+packs=fra
+player=player

@@ -1,0 +1,79 @@
+!! decide if right is open or note for the user according to the file .E$exam .S$seq or .$sheet
+!! wims_read_parm : file name
+!! output : output=yes output=no
+!!          condition= the condition string 
+
+data_=!record 0 of wimshome/log/classes/$wims_class/.$wims_read_parm
+cle_=!word 1 of $data_
+!! process for technical variable definition (replace data_ by value decide by the technical variable)
+!if \ isin $cle_
+  idtechvar_=!line 1 of $data_
+  idtechvar_=!char 2 to -1 of $idtechvar_
+  !readproc adm/class/userdef ,$wims_class,$wims_user
+  val_=!defof user_techvar_$(idtechvar_) in $userdef
+  !default val_=EMPTY
+  !reset data_
+  data_=!defof techvar_$val_ in wimshome/log/classes/$wims_class/.$wims_read_parm
+  !default data_=none
+  sequence_withtechvar=1
+!endif
+!! end process technical variable
+
+condition=$data_
+!! check condition
+output=yes
+!! for display of sequence in case of supervisor condition without technical variable are used 
+!! (so supervisor can see real page of user)
+!if $wims_user=supervisor and (S notin $wims_read_parm or \ isin $cle_)
+  !exit
+!endif
+
+!if $condition=none
+  output=no
+  !exit
+!endif
+!if $condition!=$empty
+  data_=!words2items $condition
+  symb_=<,>
+  !reset IP_,expiration_,beginning_
+  !for l_ in $data_
+    !set c_=!char 1 of $l_
+    !if $(symb_[1])=$c_
+      expiration_=!char 2 to -1 of $l_
+    !else
+      !if $(symb_[2])=$c_
+        beginning_=!char 2 to -1 of $l_
+      !else
+        IP_=!text select 0123456789.  in $l_
+      !endif
+    !endif
+  !next l_
+!!  !! ------ test for IP
+!!  !! TODO this test is not operationnel
+!!  !if $IP_!=$empty_
+!!    nb_=!charcnt $IP_
+!!    user_=!char 1 to $nb_ of http_REMOTE_ADDR
+!!    !if $user_!=$IP_
+!!      output=no
+!!      !exit
+!!    !endif
+!!  !endif
+  now_=!text select char 0123456789 in $wims_now
+  now_=!char 1 to 12 of $now_
+  !! ----- test for expiration
+  !if $expiration_!=$empty
+    expiration_=!text select char 0123456789 in $expiration_
+    !if $now_>$expiration_
+      output=no
+      !exit
+    !endif
+  !endif
+  !! ----- test for begin
+  !if $beginning_!=$empty
+    beginning_=!text select char 0123456789 in $beginning_
+    !if $now_<$beginning_
+      output=no
+      !exit
+    !endif
+  !endif
+!endif

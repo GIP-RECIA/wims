@@ -1,0 +1,39 @@
+Paths #1
+games with paths
+??, 2019
+1
+E3
+elementary_mathematics
+levelE3,elementary_geometry,spatial_skill
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:E3/geometry/oefspatial.fr
+exo=deplacement1&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Utilisez la boussole (niveau 1)
+Suivez les directions de la boussole et tracez l'itinéraire.
+
+:E3/geometry/oefspatial.fr
+exo=deplacement2&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Utilisez la boussole (niveau 2)
+Suivez les directions de la boussole et trouvez votre destination.
+
+:E3/geometry/oefspatial.fr
+exo=deplacement3&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Utilisez la boussole (niveau 3)
+Suivez les directions de la boussole et trouvez votre destination.
+
+:E3/geometry/oefspatial.fr
+exo=deplacement7&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Suivez les flèches
+Suivez les flèches et trouvez votre destination.
+

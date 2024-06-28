@@ -1,0 +1,177 @@
+!set wims_module_log=error: $error
+
+!if bad_maxexams=$error
+  El nombre d'exàmens està limitat a $max_exams.
+  !exit
+!endif
+
+!if not_supervisor=$error
+  Ho sento, però l'operació de preparació/modificació d'un examen
+   està reservat al professor registrat d'una classe.
+  !exit
+!endif
+
+!if $error=no_sheet
+  <p>
+  El contingut d'un examen s'ha d'agafar dels fulls d'exercicis activats
+  (actius o caducats).
+  </p><p>
+  La vostra classe encara no té fulls d'exercicis activats.
+   Comenceu, doncs, creant i activant un full d'exercicis.
+  </p>
+  !exit
+!endif
+
+!if bad_exam=$error
+  El vostre número d'examen no és vàlid. Error del programa?
+  !exit
+!endif
+
+!if $error=simuchange
+  Aquest full d'examen ha canviat el seu estat. Si us plau
+  !href cmd=reply&job=scorereg cliqueu aquí
+  per acabar la vostra sessió.
+  !exit
+!endif
+
+!if already_registered=$error
+  La vostra nota ja està registrada.
+  !exit
+!endif
+
+!if no_more_registration=$error
+  En aquest examen tens la possibilitat de fer només $stries sessions.
+  Ja no pots fer altres sessions d'aquest examen.
+  !exit
+!endif
+
+!if bad_source=$error
+  L'item número $bad_source del codi font que acabeu d'enviar
+  no és vàlid..
+  !href cmd=reply&job=prep_putsource&source=$source Corregir el codi
+  .
+  !exit
+!endif
+
+!if no_title=$error
+  Vols enregistrar un examen sense títol, la qual cosa no és aconsellable.
+  Error de manipulació?
+  !exit
+!endif
+
+!if prep_activate=$error
+  Has demanat activar l'examen $exam, és a dir, fer-lo
+  accessible als alumnes de la classe.
+  <div class="wims_warning">
+  Pensa que una vegada acticat l'examen, ja no el podràs modificar.
+  Vols continuar&nbsp;?
+  </div>
+  <div class="wimscenter">
+    !set wims_ref_class=wims_button wims_warning
+    !href cmd=reply&job=activate $wims_name_yes ; $(wims_name_actionlist[1])
+    &nbsp;
+    !set wims_ref_class=wims_button wims_secondary_button
+    !href cmd=resume $wims_name_no ; $wims_name_giveup
+  </div>
+  !exit
+!endif
+
+!if prep_erase=$error
+ Vols realment esborrar aquest examen número $exam ($title)?
+  <div class="wimscenter">
+  !set wims_ref_class=wims_button wims_warning
+  !href cmd=reply&job=erase $wims_name_yes; $wims_name_erase
+  !set wims_ref_class=wims_button
+  !href cmd=resume $wims_name_no; $wims_name_giveup
+  </div>
+  !exit
+!endif
+
+!if prep_expire=$error
+  L'examen número $exam ($title) caduca normalment el $expday
+  !item $expmon of $months
+  $expyear. Vols que caduqui ara?
+  <div class="wimscenter">
+  !href cmd=reply&job=expire $wims_name_yes; $(wims_name_actionlist[2])
+  $ $
+  !href cmd=resume $wims_name_no; $wims_name_giveup
+  </div><b>Observació.</b> Els vostres alumnes no poden treballar en un
+   examen caducat. Però, les notes registrades es conserven, són visibles
+   i es tenen en compte en les estadístiques.
+  !exit
+!endif
+
+!if nodeactivate=$error
+  L'examen no pot ser desactivat perquè
+  !if badstructure isin $deactivate
+   l'estructura de la vostra classe no ho permet!
+  !else
+    !if score isin $deactivate
+      els alumnes ja han començat a treballar-hi!
+    !else
+      comparteixes els teus exàmens amb una altra classe!
+    !endif
+  !endif
+  !exit
+!endif
+
+!if active_exam=$error
+  Ho sento, aquest examen està actiu, de manera que no es pot modificar.
+  !exit
+!endif
+
+!if $error=prep_noexercise
+  El contingut de l'exercici $exo de l'examen està vuit. Torna a començar.
+  !exit
+!endif
+
+!if $error=addexook
+  Sha afegit correctement l'exercici.
+  !exit
+!endif
+
+!if exam_hidden iswordof $error
+  Aquest examen no és accessible per a vostè. No jugueu amb la barra d'adreces!!
+  !exit
+!endif
+
+!if badtechvarname iswordof $error
+  !let code=!word 2 to -1 of $error
+  !if $code=_
+    une des conditions <span class="wims_code_words">Condition pour cacher la feuille aux participants</span> n'a pas de nom de variable
+  !else
+    Un des noms de variable (
+    !let code=!listcomplement _ in $code
+    $code
+    ) n'est pas un nom correct de variable technique. Les noms incorrects de variable technique
+    ont été supprimés du champs <span class="wims_code_words">Condition pour cacher l'examen aux participants</span>.
+  !endif
+  !exit
+!endif
+
+!if $error=badallowshare
+  La variable technique que vous souhaitez utiliser n'est pas disponible dans toutes les classes en partage de ressources avec votre
+  classe.
+  Vous ne pouvez donc pas propager ces réglages aux autres classes en partage.
+  !exit
+!endif
+
+!if $error=noclass
+  Vous n'êtes pas connecté à une classe. Cette situation peut se produire si vous étiez en train de travailler
+  sur un examen et que votre enseignant a clôturé votre session. Il faut vous reconnecter à la classe.
+  !exit
+!endif
+
+!if other_exam isin $error
+  Vous avez déjà commencé un autre examen (le numéro
+  !word 2 of $error
+  ). Vous ne pouvez pas en commencer un autre tant que vous ne l'avez pas terminé.
+  !exit
+!endif
+
+!if $error=hiddenbadtechvar
+  Attention, la <span class="wims_code_words">condition pour cacher l'examen aux participants</span> en utilisant une variable technique est incorrecte. Vous devez la corriger.
+  !exit
+!endif
+
+!msg $error

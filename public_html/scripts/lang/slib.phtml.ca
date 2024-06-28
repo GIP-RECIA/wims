@@ -1,0 +1,34 @@
+!set slib_lang_exists=yes
+!distribute lines Script\
+ Resultat\
+ Paràmetre\
+ Paràmetres\
+ Programari utilitzat\
+ Cridada des d'un mòdul\
+ Cridada des de OEF / Doc\
+ Llista de scripts disponibles\
+ Llista de variables d'items separades per comes\
+ per defecte\
+ el resultat es pot utilitzar a través de variable\
+ Tots\
+into wims_name_slib,wims_name_Output,wims_name_Parameter,wims_name_Parameters,wims_name_Required_Software,\
+  wims_name_call1,wims_name_call2,wims_name_listslib,wims_name_variable_list,wims_name_default,wims_name_result,wims_name_All
+
+!set wims_name_upto=!nosubst Fins a $slpcnt, separats per comes.
+!set wims_name_instruction=Els scripts d'aquesta biblioteca es poden cridar des d'un mòdul usant l'ordre\
+<span class="tt">!read</span> \
+(o\
+<span class="tt">!readproc</span> \
+des d'un fitxer phtml).\
+Per exemple, la línia\
+<pre>\
+ !read slib/matrix/random 3, 5, 10\
+</pre>\
+permet construir una matriu 3&times;5 amb coeficients enters aleatoris de [-10, 10].\
+El resultat s'assigna a la variable <span class="tt">slib_out</span>.\
+Per cridar a un script de slib des d'un exercici OEF, des d'un document o des d'un missatge del fòrum,\
+s'ha d'utilitzar la funció \
+<span class="tt">slib()</span>. Per exemple <span class="tt">\text{a=slib( ... ) }</span><p>\
+Només les variables amb el prefix\
+<span class="tt">slib_</span>\
+són modificades per aquests scripts.</p>

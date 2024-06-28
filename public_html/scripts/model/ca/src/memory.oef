@@ -1,0 +1,86 @@
+type=game
+textarea="data instruction1 instruction2"
+iEdit="instruction1 instruction2"
+
+:Es mostra un text o una imatge durant un temps limitat, i després es fa una pregunta
+
+<div class="small">
+Aquest exercici es pot transformar fàcilment per ser inclòs en un mòdul OEF
+si voleu posar les dades en un fitxer auxiliar. Per això,
+simplement ompliu el camp \text{file=} posant el nom del fitxer
+(una vegada que l'exercici s'ha transferit a un mòdul OEF d'un compte de Modtool).
+Existeix un exercici més complet del mateix tipus a Quicktool.
+</div>
+
+Autor del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Joc de memòria}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciat a la primera etapa
+\text{instruction1=Memoritza el text següent. A continuació, fes clic al botó Començar.}
+
+:Temps mínim, màxim, tolerat en mil·lisegons
+\text{time=100,100000}
+:Enunciat a la segona etapa
+\text{instruction2=Escriu en lletres el número que has llegit.}
+
+:Tipus de resposta a la segona etapa
+\text{atype=item(1,symtext,
+	numeric,function)}
+:Dades
+Escriure una pregunta per línia.
+El primer element d'aquesta línia es mostra al primer pas.
+La resposta que s'ha de donar és el segon element. És possible
+no proposar un segon element. En aquest cas, la resposta que s'ha de donar
+és el primer element.
+
+\text{data=2,dos
+4,quatre
+1,un}
+:Opcions el cas de symtext
+Les opcions poden ser "nopunct", "nocase", "case"
+
+\text{option=}
+
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+\css{<style>
+.texte {border:solid black 1pt; padding:2em; margin:3em}
+</style>}
+
+\text{data=randrow(\data)}
+
+\text{STEP=r1
+r2}
+\steps{\STEP}
+\text{cnt=items(\data)}
+\if{\cnt>1}{
+  \text{question1=\data[1..-2]}
+  \text{question2=\data[-1]}
+}{
+  \text{question1=\data}
+  \text{question2=\data}
+}
+\statement{
+ \if{\step=1}{
+  <div class="instruction">\instruction1</div>
+  <div class="texte">\question1</div>
+\embed{r1}
+ }
+ \if{\step >= 2}{
+   <div class="instruction">\instruction2</div>
+   <div class="wimscenter">\embed{r2,50}</div>
+ }
+}
+\answer{}{\time}{type=time}{option=nonstop noanalyzeprint}{weight=0}
+\answer{}{\question2}{type=\type}{option=\option}{weight=100}

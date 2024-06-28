@@ -1,0 +1,109 @@
+type=game
+textarea="data instruction"
+iEdit="instruction"
+
+:Crucigrama
+Se propone un crucigrama a partir de las palabras y sus definiciones.
+<p class="wims_credits">
+Autor del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+:\title{Crucigrama}
+:\author{Bernadette, Perrin-Riou}
+:\email{}
+:\credits{}
+
+:Enunciado
+\text{instruction=}
+
+:Número máximo de palabras
+\text{N=7}
+
+:Opciones
+Si el parámetro es <span class="tt wims_code_words">allhelp</span>, aparecen todas las definiciones.
+Si el parámetro es <span class="tt wims_code_words">tooltip</span>, las definiciones aparecerán
+en "pop-up" haciendo clic en el número. Dejarlo en blanco para que aparezcan
+uno por uno al lado.
+\text{none=allhelp}
+
+:Nombre del archivo
+Rellene solo si desea transferir el código de este ejercicio a una cuenta de Modtool
+y use un archivo de datos (en un módulo OEF)
+del tipo
+<pre>
+  &#58;RAM, Random Access Memory
+  &#58;ROM, Read Only Memory
+  &#58;FAI, Acronyme. Fournisseurs d'accès Internet
+  &#58;WIFI,Wireless Internet access
+  &#58;PC,Ordinateur individuel
+</pre>
+En este caso, los siguientes datos no serán tomados en cuenta.
+De lo contrario, complete los datos.
+
+\text{file=}
+
+:Datos principales
+Escriba en cada línea la palabra en minúscula, luego sepárela por una coma, su definición.
+
+\text{data=bit,Plus petite unité d'information manipulable par un ordinateur ayant la valeur 1 ou 0, appartenant au système de numérotation binaire.
+octet,Ensemble ordonné de huit éléments binaires traités comme un tout.
+kibioctet, en deux mots. Unité de mesure correspondant à 2<sup>10</sup> octets soit 1024 octets.
+megaoctet, en deux mots. Unité de mesure correspondant à 10<sup>6</sup> octets soit 1 million d'octets
+mebioctet, en deux mots. Unité de mesure correspondant à 2<sup>20</sup> octets soit à 1 048 576 octets.
+gibioctet, en deux mots. Unité de mesure correspondant à 2<sup>30</sup> octets soit 1 073 741 824 octets.
+RAM, Random Access Memory
+ROM, Read Only Memory
+Modem, Appareil assurant l'adaptation des signaux échangés entre un appareil terminal numérique, par exemple un ordinateur, et une ligne téléphonique analogique.
+ADSL, Acronyme. Technique de communication qui permet d'utiliser une ligne téléphonique pour transmettre et recevoir des données numériques à des débits élevés
+FAI, Acronyme. Fournisseurs d'accès Internet
+WIFI,Wireless Internet access
+Bluetooth, Technologie sans fil qui permet à des ordinateurs portatifs ou des téléphones mobiles d'échanger des messages vocaux ou des données sur une courte distance, par liaison radio,.
+PC,Ordinateur individuel
+Netbook, Mini-ordinateur portatif
+PDA, Assistant numérique communicant
+Smartphone, Téléphone mobile couplé à un assistant numérique personnel (PDA).
+Internet, Réseau informatique mondial constitué d'un ensemble de réseaux nationaux, régionaux et privés, qui sont reliés par le protocole de communication TCP-IP.
+WWW,world wide web}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+
+\if{\file notsametext}{
+  \text{file=randitem(\file)}
+  \integer{datacnt=wims(recordcnt \file)}
+  \integer{N=min(\N,\datacnt)}
+  \text{choix=shuffle(\datacnt)}
+  \text{choix=\choix[1..\N]}
+  \text{data=}
+  \for{s in \choix}{
+    \text{data=\data
+wims(record \s of \file)}
+  }
+  \matrix{data=\accolade=1 ?wims(randitem embraced \data)}
+  \text{data=wims(replace internal ;; by ; in \data)}
+}{
+  \text{objet_cnt=rows(\data)}
+  \integer{N=min(\N,\objet_cnt)}
+  \text{bat=shuffle(\objet_cnt)}
+  \text{bat=\bat[1..\N]}
+  \matrix{data=\data}
+  \matrix{data=\data[\bat;]}
+}
+
+\text{data=slib(text/crossword \data) }
+
+\statement{ \instruction
+
+\embed{r1} }
+\answer{}{\data}{type=crossword}{option=\none}

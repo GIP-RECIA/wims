@@ -1,0 +1,89 @@
+!reset xsize ysize
+
+!set anstype=yes
+!set anstyle=dprompt
+!set ans_require=checkmol,matchmol,jsmol
+
+!if $wims_read_parm=def
+  !exit
+!endif
+!set oef_js_submit=$oef_js_submit getMolfile$i()
+
+!set wims_backslash_insmath=no
+
+!set oef_applet_option=!replace internal $	$ by $\
+$ in $inputsize
+!set oef_applet_option=!replace internal ; by $\
+$ in $oef_applet_option
+!set oef_applet_option=!nonempty lines $oef_applet_option
+!set Inputsize=!line 1 of $oef_applet_option
+!set testinput=!text remove 0123456789x in $Inputsize
+!if $testinput issametext $empty
+  !set Inputsize=!replace internal x by , in $Inputsize
+  !set oef_applet_option=!line 2 to -1 of $oef_applet_option
+  !distribute items $Inputsize into xsize,ysize
+!endif
+!set oef_answer_option$i=$oef_applet_option
+!default xsize=540
+!default ysize=380
+
+!set show_hydrogen=!getopt show_hydrogen in $oef_applet_option
+!set keep_hydrogen=!getopt keep_hydrogen in $oef_applet_option
+
+!bound show_hydrogen within yes, no default yes
+!bound keep_hydrogen within yes,no,hetero default yes
+
+!if bonds isin $(replygood$i)
+  !set mark=markBondOnly
+!else
+  !set mark=markAtomOnly
+!endif
+
+!!for the analysis
+!set oef_answer_option$i=$Inputsize\
+$oef_applet_option
+
+!set file=!rows2lines $(replygood$i)
+!set file=!replace internal ; by $\
+$ in $file
+
+!set file=!line 2 to -1 of $file
+!set file=!replace internal $	$ by $\
+$ in $file
+!set test_file=!linecnt $file
+!set File=
+
+!if $file!= and $test_file=1
+  !set file=!words2items $file
+  !set cnt=1
+  !for files in $file
+    !set temp=!record 0 of $files
+    !set file0=!replace internal / by , in $files
+    !readproc oef/togetfile.proc $(file0[-1]) new\
+$temp
+    !set temp=!replace internal $\
+$ by \n in $temp
+    !set File=$File var mol$cnt ="$temp";jsmeApplet$i.readMolFile(mol$cnt);
+    !increase cnt
+  !next
+!else
+  !if $test_file>1
+    !set file1=jmol_$wims_nowseconds_$i
+    !readproc oef/togetfile.proc $file1 new\
+$file
+  !endif
+!endif
+
+!if help isin $(replyoption$i)
+  !set help_option=!getopt help in $(replyoption$i)
+  !set help_option=!replace internal help by in $help_option
+  !set help_option=!declosing $help_option
+  !set help_option=!words2items $help_option
+  !set help_option=!nonempty items $help_option
+  !default help_option=select_atom,select_bond
+  !read anstype/chemdraw.inc $help_option
+!endif
+
+!read anstype/chemclickjsme_input.inc
+
+<input type="hidden" name="reply$i" id="WIMSchemreply$i" value="">

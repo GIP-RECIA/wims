@@ -1,0 +1,24 @@
+\def{integer k=2*randint(12..20)}
+\def{integer p=2*randint(22..28)}
+\def{integer n=25*\k}
+\def{integer g=\p*\n/100}
+<div class="wims_question"><p>
+Dans un lycée, il y a \n élèves dont \g garçons. Quel est le pourcentage des garçons parmi les élèves ?
+</p>
+On peut bien sûr réaliser un tableau de proportionnalité et chercher le nombre qui manque :
+<table class="wimscenter wimsborder">
+<caption>Tableau de proportionnalité</caption>
+<tr><td></td><th>Effectif</th><th>Pourcentage</th></tr>
+<tr><th>Garçons</th><td>\g</td><td></td></tr>
+<tr><th>Total</th><td>\n</td><td>100</td></tr>
+</table>
+<p>
+Il revient au même de résoudre l'équation \(\frac{p}{100}=\frac{\g}{\n}).
+La proportion est \(\frac{\g}{\n} = 0,\p = \frac{\p}{100}).
+</p><p>
+On voit que le calcul du rapport donne le pourcentage demandé à condition d'interpréter 0,\p comme \p %, c'est
+pourquoi on note 0,\p = \p %.<br>
+En statistique 0,\p est la fréquence des garçons parmi les élèves du lycée.<br>
+On peut aussi dire que sur 100 élèves de ce lycée, il y a \p garçons.
+</p>
+</div>

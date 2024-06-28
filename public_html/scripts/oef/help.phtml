@@ -1,0 +1,37 @@
+
+!if $special_parm=oef_help_chrono
+  !set tmp=$module_title
+  !set title=$wims_name_help
+  !read help/$lang/chrono.phtml
+  !!!set module_title=$tmp
+  !exit
+!endif
+
+!set tmp_test=0
+!for tmp=1 to $replycnt
+  !if $(replytype$tmp) iswordof formal
+    !set tmp_test=$[max($tmp_test,1)]
+  !endif
+  !if $(replytype$tmp) iswordof function
+    !set tmp_test=$[max($tmp_test,2)]
+  !endif
+!next
+!if $help=$empty and $tmp_test=0
+  <div class="wims_msg alert">
+  $name_warning_help
+  </div>
+!else
+  !set m_help_subject=$special_parm
+  <div>
+  !read $deffile help
+  </div>
+!endif
+!if $tmp_test>0
+  !set ch_=!record 0 of help/fr/math2.phtml
+  !set ch_=!getopt level$tmp_test in $ch_
+  !for tmp in $ch_
+    <div class="wims_instruction">
+    !record $tmp of help/fr/math2.phtml
+    </div>
+  !next
+!endif

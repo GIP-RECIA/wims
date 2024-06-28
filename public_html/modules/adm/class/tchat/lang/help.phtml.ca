@@ -1,0 +1,78 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:general
+El xat permet intercanviar missatges alfanumèrics entre el professorat
+  i un determinat alumne o un grup d'alumnes. Podeu introduir
+  fórmules matemàtiques
+  a <code>&#8726;(...&#8726;)</code>. Les etiquetes HTML i els enllaços no estan permesos.
+!if $wims_user=supervisor
+  <ul>
+   <li>El xat es pot desactivar a la classe mitjançant l'enllaç de configuració
+    del menú (està desactivat per defecte quan es crea la classe).</li>
+   <li>És possible crear salons que agrupin determinats estudiants de la classe
+    mitjançant l'enllaç de monitorització dels salons.</li>
+   <li>El saló "classe" conté tots els alumnes de la classe està present d'inici
+     i no es pot suprimir, però es pot desactivar.</li>
+   <li>Cada alumne disposa d'un saló individual on és l'únic (amb el professor)
+     per poder llegir i escriure.
+        Aquest saló no es pot suprimir ni desactivar.</li>
+   <li>Quan un estudiant obre el seu xat, el professorat pot veure les pàgines d'exercicis
+        que consulta per ajudar-lo en conceptes específics. A continuació, apareix al
+        xat individual una llista de botons que permeten obrir una pàgina que conté
+        una captura de la pàgina de l'estudiant en el moment del clic.
+   </li>
+   !if $tchat_configfilesize>0
+      <li>Podeu dipositar un fitxer temporal perquè el vostre professor el vegi. Aquest fitxer no es conservarà després de tancar la sessió de treball.
+      </li>
+   !endif
+  </ul>
+!else
+  <ul>
+   <li>El xat pot contenir diversos salons. Si és així, quan s'obre la finestra,
+    teniu un botó per canviar d'un saló a un altre.</li>
+   <li>A cadascun dels salons, podeu veure la llista d'alumnes de la classe
+    que estiguin inscrits al saló. No obstant això, aquesta llista pot canviar en qualsevol moment
+    ja que el professorat pot canviar les inscripcions.</li>
+   <li>Quan la finestra de xat està oberta, podeu continuar navegant
+    mitjançant la finestra principal.</li>
+   <li>Quan el xat està obert, el professor pot veure captures de pantalla
+    de l'exercici que esteu fent.
+    Així us pot ajudar més fàcilment.</li>
+   <li>A la finestra principal, l'enllaç de xat va precedit del símbol
+    <span class="tchatopen"></span> si el xat està obert
+     i del símbol <span class="tchatclose"></span> si no.</li>
+   <li>Per tancar el xat, és indispensable tancar la finestra de xat
+       mitjançant l'enllaç <span class="tt wims_code_words">tancar la finestra</span> de wims
+       i no els botons del navegador (en cas contrari, el vostre xat resta obert).
+   </li>
+   <li><b>$name_configfilesize</b> aquesta opció permet que l'alumnat pugui penjar un fitxer temporal quan estiguin connectats al seu saló personal.
+        La mida del fitxer està limitada pel professorat de la classe (aquesta opció també la pot desactivar el professorat). La publicació d'un nou fitxer per part de l'alumnat esborra l'anterior. El fitxer no es conserva després que l'alumne tanca la sessió.
+       !if $conf_nofile=yes
+          <i>Aquesta opció ha estat desactivada per l'administrador del servidor.</i>
+       !endif       
+   </li>
+!endif
+!exit
+
+:config
+  Les opcions són les següents:
+  <ul>
+    <li><b>$name_opentchat </b> Permet obrir o tancar el xat. Si el xat està tancat,
+      els participants no hi tenen accés, però el professorat continua podent consultar els missatges que ja estan gravats.</li>
+    <li><b>$name_timing</b> Es tracta del retard en uns segons després del qual les pàgines del xat
+     (tant del professorat com de l'alumnat) es tornaran a carregar i, per tant, apareixeran els nous missatges.</li>
+    <li><b>$name_onlynonempty</b> Si aquesta opció està a $wims_name_yes,
+      a la taula de seguiment només apareixeran els salons que continguin almenys un estudiant connectat
+      (i que tinguin el xat obert) o l'últim missatge que no sigui el del professor.
+      Aquesta opció és útil per esperar a que apareguin nous missatges quan s'obrin diversos salons simultàniament.</li>
+  </ul>
+!exit
+
+:listliving
+  Aquest tauler de configuració recopila informació sobre els diferents salons.
+  Permet enumerar els participants en cadascun d'ells
+   i gestionar la seva obertura i tancament, així com la modificació de la llista de participants.<br>
+  Els salons individuals no es mostren.
+!exit

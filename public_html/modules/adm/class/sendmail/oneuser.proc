@@ -1,0 +1,81 @@
+!default step=1
+
+!if $class_sendmailteacher=no
+  error=sendmailteacherclose
+  !reset job
+  !exit
+!endif
+
+
+!if $step=1
+  !if $target=supervisor
+    !readproc adm/class/userdef ,$wims_class,
+    tmp=!defof user_email,user_firstname,user_lastname in $userfolder/$wims_user
+    sendermail=$(tmp[1])
+    sendername=$(tmp[2]) $(tmp[3])
+    tmp=!defof class_email,class_Supervisor,class_supervisor in wimshome/log/classes/$wims_class/.def
+    !if $(tmp[2])=$empty
+      recipientname=$(tmp[3])
+      recipientmail=$(tmp[1])
+    !else
+      tmp=!defof user_email,user_firstname,user_lastname in wimshome/log/classes/$wims_superclass/.users/$(tmp[2])
+      recipientmail=$(tmp[1])
+      recipientname=$(tmp[2]) $(tmp[3])
+    !endif
+  !endif
+!endif
+
+!if $step=2
+  !if $sendermail!=$empty
+    !bound selfsend within 0,1 default 0
+  !else
+    selfsend=0
+  !endif
+  save_selfsend=$selfsend
+  save_subject=!char 1 to 100 of $subject
+  save_subject=!detag $save_subject
+  !!  -------- for the moment use detag
+  !!  script_data_input=!char 1 to 1000 of $msg
+  !!!readproc adm/partialdetag.proc variable
+  !! save_subject=$script_data_output
+  save_msg=!char 1 to 1000 of $msg
+  save_msg=!detag $save_msg
+!endif
+
+!if $step=3
+  !if $wims_mail_hidden=yes
+     sender=$empty
+  !else
+    sender=$sendermail
+  !endif
+    !mailto $recipientmail\
+$sender\
+[WIMS $wims_classname] $save_subject\
+$save_msg\
+<br>\
+#######<br>\
+Send by : $sendername<br>\
+#######<br>
+
+
+  !if $save_selfsend=1
+    !mailto $sendermail\
+$sender\
+[WIMS $wims_classname] $save_subject\
+$save_msg\
+<br>\
+#######<br>\
+Copy of message send to : $recipientname<br>\
+#######<br>
+
+  !endif
+  !if $wims_class!=$empty
+    !set wims_module_log=class $wims_class: sendmail
+    date=!translate : to . in $wims_now
+    !appendfile wimshome/log/classes/$wims_class/.log $date $httpd_REMOTE_ADDR	$wims_user send mail to supervisor
+  !endif
+
+!endif
+
+
+

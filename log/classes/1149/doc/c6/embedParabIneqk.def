@@ -1,0 +1,79 @@
+!set titb=Résolution avec X² > k
+!set keyw=
+!set datm=20210502
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randint 10, 99
+
+!set m_k=$[rint($(tmp0))]
+
+!set tmp0=!randint 1, 9
+
+!set m_d=$[rint($(tmp0))]
+
+<table class="wimscenter wimsborder">
+<tr>
+ <td>
+!insmath (x - \d)^2 \ge \k
+<br>
+équivaut à<br>
+
+!insmath x - \d \le - \sqrt{\k}
+ ou 
+!insmath x - \d \ge \sqrt{\k}
+<br>
+
+!insmath x \le \d - \sqrt{\k}
+ ou 
+!insmath x \ge \d + \sqrt{\k}
+<br>
+ </td>
+ <td>
+!insmath (x - \d)^2 \le \k
+<br>
+équivaut à<br>
+
+!insmath - \sqrt{\k} \le x - \d \le \sqrt{\k}
+<br>
+
+!insmath \d - \sqrt{\k} \le x \le \d + \sqrt{\k}
+<br>
+ </td>
+</tr><tr>
+ <td>
+!insmath (x - \d)^2 \ge 0
+<br>
+est vraie pour tous les nombres réels.<br>
+ </td>
+ <td>
+!insmath (x - \d)^2 \le 0
+<br>
+n'est vraie que pour 0.<br>
+ </td>
+</tr><tr>
+ <td>
+!insmath (x - \d)^2 \ge -\k
+<br>
+est vraie pour tous les nombres réels.<br>
+ </td>
+ <td>
+!insmath (x - \d)^2 \le -\k
+<br>
+n'a pas de solution dans 
+!insmath \,\RR
+.<br>
+ </td>
+</tr>
+</table>
+

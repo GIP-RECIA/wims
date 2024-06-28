@@ -1,0 +1,22 @@
+
+!mailto $sup_email\
+\
+Codice di accesso alla gestione di un corso WIMS\
+\
+<p>\
+Avete provato ad accedere alle pagine di configurazione del vostro corso \
+vituale\
+              $wims_classname presso $httpd_HTTP_HOST,\
+per il quale non avete configurato alcun accesso di gestione (host sicuro).\
+</p><p>\
+Questo è il codice segreto da utilizzare per questo scopo \
+(al più presto e valido una sola volta): <strong>$code</strong>\
+</p><p>\
+Fate un copia e incolla del codice nella pagina di accesso alla gestione del \
+corso per poter operare.\
+</p><p>\
+Se non sapete di che cosa si sta parlando, allora qualcuno si è impossessato\
+della password di gestione del vostro corso. Cambiatela non appena possible.\
+</p>\
+<p style="text-align:right">$wims_site_manager</p>\
+

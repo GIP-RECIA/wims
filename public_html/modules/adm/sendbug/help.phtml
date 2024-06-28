@@ -1,0 +1,9 @@
+!let listhelp=$empty
+
+!bound special_parm within $listhelp default $empty
+
+!if $special_parm=$empty
+  !exit
+!else
+  !changeto lang/help.phtml.$lang $special_parm
+!endif

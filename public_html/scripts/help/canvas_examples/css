@@ -1,0 +1,5 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+css wims_button_help
+input 0,0,10,1,Hello

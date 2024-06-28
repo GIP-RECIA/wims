@@ -1,0 +1,63 @@
+!!!### langage independant
+!!
+# wims_read_parm is file to update
+# update_field is number of field to update (could be 0)
+# update_content is the new content of the field
+# update_nbline is the number of line of each field (format field to the good number of line : do nothing if empty)
+
+scnt_=!recordcnt $wims_read_parm
+!if $update_field<0 or $update_field>$scnt_+1
+  error=badfile
+  !exit
+!endif
+
+!if $update_nbline!=$empty
+  blfield_=$empty
+  !for k_=1 to $update_nbline
+   blfield_=$blfield_\
+$empty
+  !next k_
+!else
+  blfield_=$empty
+!endif
+
+!! ------------- add a field
+!ifval $update_field=$scnt_+1
+  !ifval $update_nbline!=$empty
+    data_=:$update_content\
+$blfield_
+    data_=!line 1 to $update_nbline of $data_
+  !else
+    data_=:$update_content
+  !endif
+  !appendfile $wims_read_parm $data_
+  !exit
+!endif
+
+!! ------------- modify a field
+!! ----- keep old field
+!for s_=0 to $scnt_
+  field$(s_)_=!record $s_ of $wims_read_parm
+  !if $update_nbline!=$empty
+    field$(s_)_=!line 1 to $(update_nbline) of $(field$(s_)_)\
+$blfield_
+  !endif
+!next s_
+!! ----- make new field
+field$(update_field)_=$update_content
+!if $update_nbline!=$empty
+  field$(update_field)_=!line 1 to $(update_nbline) of $(update_content)\
+$blfield_
+!else
+  field$(update_field)_=$update_content
+!endif
+
+!! ----- save to file
+data_=$(field0_)\
+$empty
+!for k_=1 to $[max($scnt_,$update_field)]
+  data_=$data_:$(field$(k_)_)\
+$empty
+!next k_
+!writefile $wims_read_parm $data_
+!reset update_field,update_content,update_nbline

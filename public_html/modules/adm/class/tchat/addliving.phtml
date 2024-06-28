@@ -1,0 +1,48 @@
+!form reply
+  <input type="hidden" name="job" value="addliving">
+  <input type="hidden" name="living" value="$living">
+  <fieldset class="property_fields blockcenter">
+    <legend>$name_configliving $living</legend>
+    <div class="field box fullwidth">
+      <label for="title">$name_title</label>
+      <input size="65" name="title" id="title" value="$title">
+      <div class="formHelp">$name_desc_title</div>
+    </div>
+    <div class="field box fullwidth">
+      <strong>$name_statut</strong>
+      !if $living>$nbliving
+        $name_close
+      !else
+        !if $(livingst_$living)=0
+          $name_close
+          !let wims_ref_class=wims_button
+          !href module=$module&+living=$living&+job2=1&+job=$job&+cmd=reply $name_opening
+        !else
+          $name_open
+          !let wims_ref_class=wims_button
+          !href module=$module&+living=$living&+job2=0&+job=$job&+cmd=reply $name_closing
+        !endif
+      !endif
+    </div>
+    <div class="field box fullwidth">
+    !if $living>0
+      <label for="ltreguser">$name_regusers</label>
+      !let ltreguser=$(livingusers_$living)
+      !let wims_ref_id=ltreguser
+      !formcheckbox ltreguser list $ulist prompt $nlist
+    !else
+      <strong>$name_regusers</strong> $name_all
+    !endif
+    </div>
+</fieldset>
+
+<div class="wimscenter wimsform">
+  !ifval $activetest=-1
+    <input type="submit" value="$name_mkliving" name="save">
+  !else
+    <input type="submit" value="$wims_name_tosave" name="save">
+  !endif
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href module=$module&job=listliving $wims_name_giveup
+</div>
+!formend

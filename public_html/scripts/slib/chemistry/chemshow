@@ -1,0 +1,93 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=Bernadette, Perrin-Riou
+
+slib_example=datamodule/chemistry/mol2D.fr/data/60_18_4.mol,number=1 show_valence=no,reaction\
+
+slib_commment= Only one applet.
+!exit
+
+:proc
+!reset slib_jsmeoption slib_out
+!distribute items $wims_read_parm into slib_file,slib_option,slib_jsmeoption
+!set slib_appletdir=java/jmol
+
+!default slib_xsize=540
+!default slib_ysize=450
+
+!for slib_opt in number,show_hydrogen,show_valence
+  !set slib_$slib_opt=!getopt $slib_opt in $slib_option
+!next
+!default slib_show_hydrogen=yes
+
+!! TODO: l'analyse des options dans le langage jsme
+!if $slib_show_valence=no
+  !set slib_jsmeoption=$slib_jsmeoption noValenceState
+!endif
+!!!A modifier d'après le slib chemdraw ne fonctionne pas pour l'instant
+!!! traiter les options précdentes de la même manière
+!!! pour les autres
+!set slib_template=!getopt template in $slib_option
+!if $slib_template notsametext
+  !set slib_templ=
+  !set slib_cnt_=0
+  !set slib_template=!words2items $slib_template
+  !set slib_temp_cnt=!itemcnt $slib_template
+  !for slib_s_=1 to $slib_temp_cnt
+    !set slib_temp_mol=!record 0 of data/$dir/$(slib_template[$slib_s_])
+    !if $slib_temp_mol=
+      !set slib_temp_mol=!record 0 of data/chem/templ/$(slib_template[$slib_s_]).el
+    !endif
+    !readproc oef/togetfile.proc $(slib_template[$slib_s_]) new\
+$slib_temp_mol
+    !set cnt_=$[$cnt_+1]
+    !set slib_templ=$slib_templ\
+  !next
+!endif
+
+!set slib_file=!replace internal $	$ by $\
+$ in $slib_file
+!set slib_file=\
+$slib_file
+
+!set slib_test=!linecnt $slib_file
+!if $slib_test=1
+  !set slib_temp=!record 0 of $slib_file
+!else
+  slib_temp=$slib_file
+!endif
+!set slib_file0=!randint 1,5000
+!set slib_file0=$(slib_file0).mol
+slib_jmolfile=!replace internal $\
+$ by \n in $slib_temp
+
+!readproc oef/togetfile.proc $slib_file0 new\
+$slib_temp
+
+!set slib_File=$wims_ref_name?session=$session&+cmd=getfile&+special_parm=$slib_file0
+
+slib_jmolfile=var mol$slib_number ="$slib_jmolfile";jsmeApplet$slib_number.readMolFile(mol$slib_number);
+
+!set slib_jsmeoption=!singlespace $slib_jsmeoption
+
+!! in case of two applets in the same page, all of them must be declared in
+!! function jsmeOnLoad()
+!! How to do it with slib ??
+
+slib_jsmeout=$slib_jsmeout\
+ jsmeApplet$slib_number = new JSApplet.JSME("jsme_container$slib_number", "$(slib_xsize)px", "$(slib_ysize)px",\
+      {"options": "$slib_jsmeoption"});\
+  $slib_jmolfile
+
+slib_out=$slib_out\
+<script src="$slib_appletdir/jsme/jsme/jsme.nocache.js"></script>\
+<div id="jsme_container$slib_number"></div>\
+<script>\
+/*<![CDATA[*/\
+  function jsmeOnLoad() {\
+      $slib_jsmeout\
+  }\
+/*]]>*/\
+</script>

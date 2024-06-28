@@ -1,0 +1,226 @@
+N_manage = manteniment de WIMS en línia
+wims_name_mirror  = Rèpliques
+wims_name_Mirror  = Rèpliques
+!! was erased by another definition
+!!wims_name_pref    = Preferències
+
+name_nopreparationsheet=No teniu cap full de treball en preparació per inserir recursos. Us recomanem que creeu un full de treball abans de continuar la cerca d'activitats.
+
+N_within = entre
+## define also in scripts/adm/search_engine
+N_clear = tornar a començar
+
+N_go = anar
+name_importfromtest=materials educatius de la zona de proves.
+N_at = a
+N_hide = Amagar
+name_allexampleclass=Totes les classes obertes
+
+name_example_motd=Heu entrat com a visitant anònim en aquesta classe.\
+Si voleu tenir una visió clara del vostre treball, heu de tancar la sessió\
+a continuació, registreu-vos com a participant. Les inscripcions es netegen regularment,\
+però no durant el curs escolar.
+
+V_title = WWW Interactive Multipurpose Server
+V_cls = Classes Virtuals
+!! no more useful
+wims_name_n_participant = Alumnat
+!! no more useful
+wims_name_n_supervisor = Professorat
+!! samething as wims_name_wsup
+wims_name_mail = Escriure al professorat
+!! transfer in html/names.phtml.fr
+wims_name_pref = Canviar preferències
+
+wims_name_ref           = Enllaços inversos
+wims_name_stat          = Estadístiques
+wims_name_title_stat=Estadístiques d'ús d'aquest lloc WIMS
+
+CR_1 = Creació
+CR_Docs=Tutorials
+## old version
+CR_OEF = Exercicis interactius
+CR_mod = Mòduls d'alt nivell
+CR_sequence=Heu optat per presentar a l'alumnat els següents recursos en seqüència. \
+  Recordeu que la seqüència s'ha d'actualitzar cada vegada que afegiu \
+  un nou recurs.
+##
+
+E_comp    = compilat el
+E_manager = Gestor del lloc
+E_software= Programari interconnectat
+!set name_wimsabout1=Si heu tingut algun problema amb el servidor,\
+podeu posar-vos en contacte amb el
+!set name_wimsabout2=especificant:\
+<ul><li> el <strong>número de la classe</strong> si el problema s'ha produït mentre treballàveu en una classe (o en fallar el seu enllaç) ;\
+    </li><li> la <strong>data i hora</strong> en les que s'ha produït el problema ;\
+    </li><li> el <strong>tipus de sistema</strong> en el qual estaveu treballant (per ex : <span class="tt">Ubuntu versió 14.04</span>, <span class="tt">Windows 10</span>...);\
+    </li><li> el <strong>navegador</strong> que estaveu utilitzant (per ex : <span class="tt">firefox versió 55.0.2</span> ...);\
+    </li><li> la <strong>naturalesa del problema</strong>, especificant què estaveu fent quan s'ha produït el problema.\
+</li></ul>\
+Si heu oblidat la contrasenya o l'identificador que us permet entrar a la vostra classe,\
+    <strong>poseu-vos en contacte amb el vostre professor</strong>.
+wims_name_About_icons=Tema de les icones
+wims_name_Change_log=Novetats d'aquesta versió (Change log)
+
+RE_prev         = !nosubst Resultats anteriors
+RE_next         = !nosubst Resultats següents
+RE_found        = !nosubst Hem trobat $Gotcnt $tt amb la teua cerca
+RE_found2       = Es classifiquen d'acord amb el tipus d'activitat.\
+  Feu clic al botó corresponent per veure'ls.
+RE_warning_more = !nosubst Hi ha massa resultats, per tant no es mostren tots \
+  (limitat a $gotlim2 de cada tipus). Podeu refinar la cerca \
+  afegint paraules clau i seleccionant el tipus de cerca a totes les paraules \
+  (tots els grups de paraules).
+RE_nomatch      = !nosubst La teua cerca no ha tingut èxit
+RE_pop          = !nosubst Aquestes són les $gotcnt $tt més populars
+RE_pop2         = !nosubst $gotcnt $tt per ordre de popularitat\
+(número $[$list_start+1] - $[$list_start+$gotcnt])
+RE_try          = Prova
+RE_noKeyword    = Heu d'escriure una paraula clau
+
+U_greet = !nosubst Hola, $wims_firstname $wims_lastname, us donem la benvinguda!!!
+
+U_newmsg  = Hi ha $$newmsgcnt nou(s) missatge(s) al fòrum.
+U_nosheet = Encara no tens full de treball.\
+Sisplau torna-hi més endavant.
+
+U_assign      = Aquí tens els recursos i les tasques d'aquesta classe.
+U_expired     = caducada
+U_done        = fet
+U_average     = qualitat
+U_examworking = Estaves fent un examen.
+U_examdouble  = En aquest cas tu no pots connectar-te des d'un altre lloc.
+U_examcont    = Continuar aquest examen.
+wims_name_U_oclass  = Zones de treball
+wims_name_U_account = El meu compte
+wims_name_coeff     = pes
+
+U_gotoclass1  = Anar com a alumnat a:
+U_gotoclass3  = Anar com a professorat a:
+U_gotoclass0  = Les teves zones de treball:
+U_gotoclass11 = $U_gotoclass1
+U_gotoclass31 = $U_gotoclass3
+U_gotoclass01 = $U_gotoclass0
+U_nogotoclass = Aucune classe en accès enseignant.
+
+U_inscription1     = Per registrar-te en una zona de treball, fes clic a una de les classes :
+U_inscription2     = Registrar en una altra zona de treball com a alumne.
+U_clickhere        = Clica ací
+U_supervise        = Registrar en una altra zona de treball com a professorat.
+!if $class_type=4
+  name_gotosupervise = Per entrar en una altra classe com a professorat, contacta amb l'administrador\
+del Portal de centre.
+!else
+  name_gotosupervise = Per entrar en una altra classe com a professorat, contacta amb l'administrador \
+del grup de classes.
+!endif
+SU_greet             = !nosubst Hola, $wims_firstname $wims_lastname! Us donen la benvinguda a la pàgina de gestió de la classe.
+SU_Bhome             = Tornar a la pàgina d'inici del professorat
+SU_log               = pel professorat
+SU_exp1              = Recordeu que la classe caduca el
+SU_exp2 =
+SU_nosheet           = La teua classe encara no té recursos.
+
+!!! In a group of classes
+!if $class_type=2
+SU_nosheet = Aquest zona està destinada a la configuració d'un grup de classes.\
+<ul><li>\
+Feu clic al botó "Guia" per obtenir ajuda sobre com treballar amb un grup de classes.\
+</li><li>\
+Recordeu configurar l'autenticació dels participants i els professors (a "Config/Manteniment")\
+abans de procedir amb les inscripcions.\
+</li></ul>
+!endif
+!!! In a class zone in an institutional structure:
+!if $class_typename=class and $class_type=3
+SU_nosheet = Aquesta àrea està pensada per al registre de participants que tindran accés\
+ a un sol conjunt de cursos.\
+ <ul><li>Podeu completar aquesta zona escrivint un missatge\
+ del dia visible per als participants quan entren en aquesta classe abans de\
+ treballar en un dels cursos oferts (vegeu la secció "Vida de la classe").\
+</li><li>\
+ Els enllaços de la secció "Eines de la classe" us permeten afegir recursos.\
+</li><li>\
+ Es proposarà una ajuda adaptada quan feu clic a un dels enllaços.\
+</li></ul>
+!endif
+!!! In a test zone:
+!if /0// isin $wims_class//
+SU_nosheet = Aquesta àrea està pensada per a la preparació dels recursos.\
+ Per crear un recurs de l'àrea de proves accessible als participants,\
+ primer caldrà importar-lo a l'àrea de programa.\
+<div>\
+Consell: utilitzeu aquest quadre per restaurar recursos a l'àrea de programa d'un\
+  any a l'altre.</div>
+!endif
+
+!!! In an individual class or a program zone:
+!if $class_typename=program or $class_type=0 or\
+   ($class_type=1 and $class_typename!=course and /0// notin $wims_class//)
+
+SU_nosheet = Per començar ràpidament:\
+<ul><li>\
+Utilitzeu el motor de cerca per seleccionar i després importar fulls d'exercicis\
+  o documents preparats per altres professors.\
+</li><li>\
+Utilitzeu la secció "Eines de la classe" si voleu dissenyar\
+els vostres propis fulls d'exercicis o documents.\
+</li><li>\
+ Un full d'exercicis pot contenir exercicis trobats a través del motor de cerca\
+  o els vostres propis exercicis (vegeu la secció "Creació" i després Createxo per crear-los)\
+</li><li>\
+ Es proposarà una ajuda adaptada quan feu clic a un dels enllaços.\
+</li><li>\
+Per obtenir més informació, vegeu la secció "$CR_Docs".\
+</li></ul>
+!endif
+SU_shlist            = Recursos existents
+wims_name_SU_Gateway = Gestió de l'estructura
+SU_Bprogram          = Tornar al programa
+SU_nopartconnected   =Ara mateix no hi ha alumnat en línia
+SU_numpartconnected  =!nosubst Hi ha actualment $wims_numpartconnected alumne(s) en línia
+U_supconnected       = El professorat està connectat.
+
+wims_name_SE_list       = Gestió d'alumnes i notes (old)
+wims_name_n_participant = Com veu la classe l'alumnat
+
+wims_name_SE_mod     = Missatge del dia
+wims_name_SE_secu    = Gestió de la seguretat
+
+ADD_1     = Afegir un
+ADD_doc   = document
+ADD_sheet = full de treball
+ADD_exam  = examen
+ADD_exo   = exercici
+ADD_vote  = qüestionari
+ADD_class = classe
+ADD_2     =
+ADD_3     = Afegir una
+ADD_cdt   = Agenda
+
+CL_Names      = Nivells,Classes,Programes,Cursos,Cursos Interclasse
+CL_Name       = nivell,classe,programa,curs,curs interclasse
+CL_Test       = Zona de test
+CL_otherNames = Altres $(CL_Names[2]),$(CL_Names[3]),$(CL_Names[4]) de la classe
+
+!if $wims_supertype = 4
+ wims_name_U_oclass = Canviar de zona
+!else
+ wims_name_U_oclass = Altres classes
+!endif
+
+## mettre dans un commun
+!set name_deps = Has de millorar les teues notes als exercicis
+!set name_dep  = Has de millorar la teua nota a l'exercici
+!set name_dep2 = abans de començar a treballar.
+!set name_dep3 = Tornar al full d'exercicis.
+
+
+!set name_msg_openclasses=Heu entrat com a visitant anònim en aquesta classe,\
+per tant, les notes tenen en compte totes les respostes de tots els visitants anònims.\
+Si voleu tenir una visió clara del vostre treball, heu de tancar la sessió\
+a continuació, registreu-vos com a participant.\
+Les inscripcions es netegen regularment, però no durant el curs escolar.
+
+name_sequence_withtechvar_warning=Tingueu en compte que la visualització de determinades seqüències està controlada per una variable tècnica. La visió de l'estudiant proposada no ho té en compte.

@@ -1,0 +1,33 @@
+!if $(module_title_$lang)!=$empty
+  !set module_title=$(module_title_$lang)
+!endif
+!read adm/language lang/names
+!default gloss_lang=!listintersect $modu_lang and $listlang
+!if $glossary_self=no and $wims_class!=$empty and $gl!=$empty
+  !set module_title=!record $gl of wimshome/log/classes/$wims_class/tool/.glossaryindex
+  !set module_title=!line 2 of $module_title
+!endif
+
+!! dynamic tree display
+!set wims_html_header=!append line \
+  <link type="text/css" rel="stylesheet" href="scripts/js/tree_JS/tree.css">\
+  <script src="scripts/js/tree_JS/tree.js"></script>\
+  to $wims_html_header
+
+!header
+
+!if $compute=yes
+  !if $error!=$empty
+    <div class="wims_msg alert">
+      !read msg.phtml
+    </div>
+    !read menu.phtml
+    !goto end
+  !else
+    !read answer.phtml
+  !endif
+!else
+  !read menu.phtml
+!endif compute=yes?
+:end
+!tail

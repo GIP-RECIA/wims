@@ -1,0 +1,5 @@
+init:modu_lang
+any:sh exo job seq choosevalue latexuser printlatex
+
+deny:deps	prcnt techvarlistval nametechvar
+

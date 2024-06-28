@@ -1,0 +1,18 @@
+!mailto $email\
+\
+Codi WIMS per a la creació del fòrum\
+\
+Aquest és el codi per al fòrum  $title :\
+\
+<pre>$code</pre>\
+\
+<p>Si us plau copia el codi a la pàgina de creació del fòrum.</p>\
+\
+<p>NOTA que aquest codi s'utilitza una sola vegada, durant la creació del fòrum.\
+Per connectar-te al fòrum, has d'utilitzar la contrasenya que\
+  TU vas posar.</p>\
+\
+<p>Si no saps de què es tracta: és que algú \
+ha donat la teva adreça de correu electrònic (erròniament) a un programari automàtic.\
+  En aquest cas, pots ignorar aquest missatge.</p>\
+

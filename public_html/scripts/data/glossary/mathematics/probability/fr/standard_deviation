@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,standard_deviation
+!set gl_title=Ecart type d'une loi de probabilité
+!set gl_level=H5
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit &#937; l'univers associé à une expérience aléatoire.<br>
+On suppose que &#937; a un nombre fini d'éléments, que ces derniers sont réels
+et qu'une loi de probabilité est définie sur &#937;.<br>
+On note \(\mathbf{V}\) la variance de cette loi de probabilité.
+<br>
+L'<strong>écart type</strong> de la loi de probabilité est le nombre
+\( \mathbf{\sigma} \) défini par&nbsp;:
+<span style="white-space:nowrap">\(\mathbf{\sigma} = \sqrt{\mathbf{V}}\).</span>
+</div>
+<div class="wims_rem">
+<h4>Remarque</h4>
+L'écart type d'une loi de probabilité est un réel positif.
+</div>

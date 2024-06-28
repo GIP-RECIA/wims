@@ -1,0 +1,15 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+fillcolor black
+strokecolor yellow
+rotationcenter 0,0
+fontsize 28
+slider 0,2*pi,400,30,angle degrees active, rotate...
+plot red,5*sin(x)
+filled
+linewidth 1
+opacity 150,50
+fillcolor orange
+angle 0,0,pi,0,0,blue

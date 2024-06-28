@@ -1,0 +1,85 @@
+!!
+!! description of format of file .sheets
+
+each record is a sheet.
+
+:status
+expiration date
+title of the sheet
+description of the sheet
+yes/no --> if yes use a special file sheet$i.def for presentation use (instead of the theme) format of a doc
+comment (display only for teacher)
+icone
+1 or 0 according to exo description shown or not to students (only for OEF exercises).
+Condition to hide the sheet with a technical variable
+name of the technical variable for individualisation of the sheet (use in line 11 for each exercise of the sheet)
+
+!!
+!! description of format of file .sheet$i
+
+each record is a series of exercices
+
+:module
+parameters
+points
+weight
+title
+description
+score dependency
+comment (display only for teacher)
+internal link for help
+icone
+list of values for which the exercise is open for the student (individualisation of the sheet by the technical variable)
+
+!!
+!! description of format of file .exams
+
+each record is an exam
+
+:status
+expiration date
+timesession numbertry
+title of the exam
+description of the exam
+cut time
+comment (display only for teacher)
+Condition to hide the sheet with a technical variable
+
+!!
+!! description of format of file .exam$i
+
+each record is an exercise
+
+:weight
+list of exercise format sheet.exo
+title
+score dependency
+
+
+!!
+!! description of format of file .freeworks
+
+each record is an freework
+
+:status (0=in preparation, 1=active, 2=expired, 3=archived)
+date (but not in use)
+title of freework
+description of freework
+comment (display only for teacher)
+type of freework (1, 2 or 3)
+YYYYMMDD.HH.MM (end of work for student)
+YYYYMMDD.HH.MM (begin of solution display)
+sizelimitfile (for student deposit file)
+scoring (no/-1/number of manual score )
+seealltime (1/0 1:supervisor can always see work of student 0:only after date end of student work)
+studentclose (1/0 1:button for early consigne)
+
+
+!!
+!! description of format of file .freework$k
+
+it depend of type...
+
+
+
+

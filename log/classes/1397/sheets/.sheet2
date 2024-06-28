@@ -1,0 +1,75 @@
+Addizioni #1 	 
+giochi con le addizioni 	 
+??, 2019 	 
+1 	 
+E3 	 
+elementary_mathematics,levelE2
+number,operation 	 
+Marina, Cazzola 	 
+wims@unimib.it 	 
+Gioca con la matematica
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Piramide 1
+Inserisci i numeri nella piramide in modo che quello sopra sia la somma di quelli che gli stanno sotto.
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Piramide 2
+Di nuovo, inserisci i numeri nella piramide, ma questa volta devi scegliere i numeri che fanno al caso tuo tra quelli che ti vengono proposti.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Fiocco 1
+Completa il fiocco in modo che la somma dei numeri inseriti soddisfi la condizione richiesta.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Fiocco 2
+Di nuovo, completa il fiocco, ma questa volta devi scegliere quali numeri utilizzare tra quelli che ti vengono proposti.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Doppia piramide 1
+Inserisci i numeri nella doppia piramide in modo che ognuno dei numeri che sta sopra sia la somma di quelli che gli stanno sotto.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Doppia piramide 2
+Di nuovo, inserisci i numeri nella doppia piramide, ma questa volta devi scegliere quali numeri utilizzare tra quelli che ti vengono proposti.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=1&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Doppia piramide 3
+E per concludere, sempre più difficile: inserisci i numeri nella doppia piramide scegliendo quali numeri utilizzare tra quelli che ti vengono proposti.
+
+:E3/number/oefdobble.fr
+exo=add&confparm1=6&confparm2=3&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Trova la somma corretta
+E ora un gioco diverso. Devi trovare e accoppiare la somma e il suo risultato.
+
+
+:E3/number/oefdobble.fr
+exo=add&confparm1=6&confparm2=3&qnum=1&scoredelay=120,60&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Trova la somma ... a tempo
+E ora di nuovo, ma questa volta devi essere il più veloce possibile. Trova e accoppia la somma e il suo risultato.
+

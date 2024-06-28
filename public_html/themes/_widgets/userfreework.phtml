@@ -1,0 +1,32 @@
+!!read themes/_widgets/user_varfreework.phtml
+!if $fwcnt>0
+  <!-- _widgets/usersfreework.phtml -->
+  <div class="wims_seq" id="wims_user_freework">
+  <ul class="wims_work_list">
+  !for i in $fw_list
+    !set s_=!item $i of $ds_list
+    !set sh=!record $i of wimshome/log/classes/$wims_class/freeworks/.freeworks
+    !distribute lines $sh into ac,bl,ti,d_,bl,bl,t_
+    <li class="wims_freework_item">
+      <span class="wims_user_freework_type">$wims_name_Freework $i.</span>
+      <span class="wims_user_freework_title">
+        !href module=adm/class/freework&freework=$i $ti
+      </span>
+      <ul class="wims_freework_info">
+        !if $ac>=2
+          <li><span class="wims_status wims_status_3">$U_expired</span></li>
+        !else
+!!          !if showshexpire iswordof $class_option
+!! if a parameter is needed, a new name should be choose.
+            <li class="wims_user_freework_expire small">
+              !read misc/expire.phtml.$lang $t_
+            </li>
+!!          !endif
+        !endif
+      </ul>
+  !next i
+  </ul>
+  </div>
+<!-- end _widgets/usersfreework.phtml -->
+!endif
+

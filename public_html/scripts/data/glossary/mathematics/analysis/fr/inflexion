@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function,convexity,derivative,tangent,function_variation
+!set gl_title=Point d'inflexion
+!set gl_level=H6 Générale&nbsp;Spécialité, H6 Générale&nbsp;Complémentaire
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Le plan est muni d'un repère orthogonal <span style="white-space:nowrap">
+  \((\mathrm{O}\,;\overrightarrow{i},\overrightarrow{j})\).</span><br>
+Soit \(\mathrm{I}\) un intervalle de \(\displaystyle{\RR}\) et soit \(f\) une
+fonction dérivable sur l'intervalle <span style="white-space:nowrap">
+\(\mathrm{I}\).</span><br>
+On note \(C\) la courbe représentative de la fonction \(f\) dans le repère
+<span style="white-space:nowrap">
+\((\mathrm{O}\,;\overrightarrow{i},\overrightarrow{j})\).</span><br>
+Soit \(A\) un point de \(C\) et \(T\) la tangente à \(C\) en
+<span style="white-space:nowrap">\(A\).</span><br>
+ Le point \(A\) est un <strong>point d'inflexion</strong> de \(C\) si et
+ seulement si la courbe traverse la tangente \(T\) en
+ <span style="white-space:nowrap">\(A\).</span>
+</div>

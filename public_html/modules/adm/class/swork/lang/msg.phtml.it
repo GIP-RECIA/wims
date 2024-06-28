@@ -1,0 +1,9 @@
+!goto $err_
+
+:toomanyuser
+  questa funzionalità è disponibile solo per corsi con meno di $maxuser studenti.
+!exit
+
+:notopen
+  il vostro docente non ha abilitato quseta funzione.
+!exit

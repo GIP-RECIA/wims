@@ -1,0 +1,114 @@
+!! Model2 is used when editing an exercice in "adaptative mode"
+
+!set name_title=$wims_name_title
+!set name_author=$wims_name_Author (<span class="tt">$wims_name_firstname, $wims_name_lastname</span>)
+!set name_email=$wims_name_email
+!set name_credits=$wims_name_credits
+!set name_keywords=$wims_name_Keywords
+!set name_description=$wims_name_Description
+!set name_css=CSS
+
+!form reply name="replyform" id="replyform"
+<input type="hidden" name="level" value="3">
+<div class="model_desc">$desc</div>
+!reset table_center
+$table_header
+<caption>$model_title
+  !set wims_ref_class=wims_button_help
+  !href target=wims_mhelp cmd=help&special_parm=model,1 $wims_name_help
+</caption>
+
+!set ta=
+!for i in $sps,$parms
+  !reset reply$i
+  !if $(type$i)!=matrix and $(name$i) notwordof $model_textarea
+    !set val=!replace internal " by &#34; in $(val$i)
+    !if $i isitemof $sps
+      !set title$i=$(name_$(name$i))
+    !endif
+    !if $(type$i) iswordof integer int real and $i notitemof $sps and \
+	      $(name$i) notwordof $model_random $model_computed
+      !set input_type=number
+    !else
+      !set input_type=text
+    !endif
+    $table_tr
+      <td>
+        <label for="reply$i">$(title$i)</label>
+        !if $(help$i)!=$empty or $(name$i) iswordof $model_helped
+          !set wims_ref_class=wims_button_help
+          !href target=wims_mhelp cmd=help&module=$module&special_parm=model,$i $wims_name_help
+        !endif
+      </td><td class="field halfwidth">
+        !if $(menu$i)!=$empty
+          !set t_=!itemcnt $(menu$i)
+          !set t_=!makelist x for x=1 to $t_
+          !set reply$i=$val
+          !formselect reply$i list $t_ prompt $(menu$i)
+        !else
+          !set l_=!charcnt $val
+          !if $l_ > 50
+            !set val=!reinput $val
+            <textarea name="reply$i" id="reply$i" rows="3">$val</textarea>
+          !else
+            <input type="$input_type" name="reply$i" id="reply$i" value="$val"
+            !if $(type$i)=real and $input_type=number
+              step=0.0001
+            !endif
+           >
+          !endif
+        !endif
+      </td>
+    </tr>
+  !else
+    !set ta=!append item $i to $ta
+  !endif
+!next i
+$table_end
+
+!if $ta!=$empty
+  !for i in $ta
+    <div class="field" id="textarea$i" style="text-align:center; padding:10px;">
+      <label for="reply$i">$(title$i)</label>
+      !set val=!reinput $(val$i)
+
+      !if $(name$i) iswordof $model_asis
+        !! Check if param value is set as "asis()", so it will not be printed to users
+        !set debut=!char 1..4 of $val
+        !if $debut issametext asis
+          !set val=!char 6..-2 of $val
+        !endif
+      !endif
+      !!! leave the space in value, if not, it does not clean the textarea
+      <a class="wims_button smaller" href="#textarea$i"
+        !if $(name$i) iswordof $model_iEdit
+onclick="event.preventDefault();document.getElementById('reply$i').value=' ';tinymce.get('reply$i').setContent(' ');"
+        !else
+onclick="event.preventDefault();document.getElementById('reply$i').value=' '"
+        !endif
+      >$name_clean</a>
+      !if $(help$i)!=$empty
+        !set wims_ref_class=wims_button_help
+        !href target=wims_mhelp cmd=help&module=$module&special_parm=model,$i $wims_name_help
+      !endif
+      <br>
+      <textarea name="reply$i" id="reply$i" cols="120" rows="10" class="wims_model_textarea
+      !if $(type$i) iswordof matrix
+nowrap
+      !endif
+      !if $(name$i) iswordof $model_iEdit
+iEdit
+      !endif
+      ">$val</textarea>
+    </div>
+  !next i
+!endif
+
+<div class="wimscenter">
+  <input type="submit" value="$wims_name_send">
+ $ $
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=reply&level=1 $wims_name_giveup
+</div>
+
+!formend

@@ -1,0 +1,102 @@
+\define{real x1=sqrt(10)-1}
+\define{real x2=sqrt(20)-1}
+\define{text cadre=xrange -2.5,6.5
+yrange -1.5,5.5
+
+arrow -2.5,0,6.5,0,10,black
+arrow 0,-2.5,0,5.5,10,black
+text black,1,-0.1,small,a
+text black,3,-0.1,small,x
+text black,5,-0.1,small,b
+}
+\define{text gr1=\cadre
+plot blue,0.1*(x+1)^2+1+0*sqrt(x)
+dline 1,0,1,1.4,black
+dline 3,0,3,2.6,black
+dline 5,0,5,4.6,black
+line -2.5,2,6.5,2,red
+text red,-2.5,2.8,small,cible C
+dline \x1,0,\x1,2,red
+}
+\define{text gr2=\cadre
+plot blue,0.1*(x+1)^2+1+0*sqrt(x)
+dline 1,0,1,1.4,black
+dline 3,0,3,2.6,black
+dline 5,0,5,4.6,black
+line -2.5,3,6.5,3,red
+text red,-2.5,3.8,small,cible C
+dline \x2,0,\x2,3,red
+}
+\define{text gr3=\cadre
+plot blue,-0.1*(x+1)^2+5+0*sqrt(x)
+dline 1,0,1,4.6,black
+dline 3,0,3,3.4,black
+dline 5,0,5,1.4,black
+line -2.5,4,6.5,4,red
+text red,-2.5,4.8,small,cible C
+dline \x1,0,\x1,4,red
+}
+\define{text gr4=\cadre
+plot blue,-0.1*(x+1)^2+5+0*sqrt(x)
+dline 1,0,1,4.6,black
+dline 3,0,3,3.4,black
+dline 5,0,5,1.4,black
+line -2.5,3,6.5,3,red
+text red,-2.5,3.8,small,cible C
+dline \x2,0,\x2,3,red
+}
+
+<p>Pour adapter l'algorithme de la fonction cube à toute fonction soit croissante, soit décroissante, observons la situation où
+ on connaît un intervalle &#91 \(a ; b) &#93 contenant la solution cherchée de l'équation \(f(x) = C) et on cherche à réduire de moitié la longueur de cet intervalle.</p>
+<p>On calcule \(x = \frac{a + b}{2}) puis l'image de \(x) par \(f).</p>
+<b>Si la fonction \(f) est croissante sur &#91 \(a ; b) &#93 : \(f(a) \le f(b))</b>
+<ul class="inline wims_nopuce">
+  <li>
+  <table class="wimsnoborder wimscenter">
+    <tr>
+    <td>\draw{180,140}{\gr1}</td><td>\(x = \frac{a + b}{2})<br>
+  \(f(b) - f(a) \ge 0) et \(f(x) - C \ge 0)<br>
+  Le produit <span class="math">\((f(b) - f(a)) (f(x) - C))</span> est positif.</td>
+     </tr>
+    </table>
+  Si \(f(x) \ge C), la solution est dans  &#91 \(a) ; \(x) &#93.
+</li><li>
+  <table class="wimsnoborder wimscenter">
+     <tr>
+     <td>\draw{180,140}{\gr2}</td>
+     <td>\(x = \frac{a + b}{2})<br>\(f(b) - f(a) \ge 0) et
+     \(f(x) - C \le 0)<br>
+     Le produit <span class="math">\((f(b) - f(a)) (f(x) - C))</span> est négatif.</td>
+     </tr>
+     </table>
+Si \(f(x) \le C), la solution est dans  &#91 \(x) ; \(b) &#93.</td>
+</li></ul>
+<b>Si la fonction \(f) est décroissante sur &#91\(a ; b)&#93 : \(f(a) \ge f(b))</b>
+<ul class="inline wims_nopuce">
+  <li>
+  <table class="wimsnoborder wimscenter">
+  <tr>
+     <td>\draw{180,140}{\gr4}</td>
+     <td>\(x = \frac{a + b}{2})<br>
+     \(f(b) - f(a) \le 0) et \(f(x) - C \ge 0)
+     <br>Le produit
+     <span class="math">\((f(b) - f(a)) (f(x) - C))</span> est négatif.</td>
+     </tr>
+   </table>
+  Si \(f(x) \ge C), la solution est dans  &#91 \(x) ; \(b) &#93.
+  </li><li>
+  <table class="wimsnoborder wimscenter">
+    <tr>
+      <td>\draw{180,140}{\gr3}</td>
+      <td>\(x = \frac{a + b}{2})<br>
+      \(f(b) - f(a) \le 0) et \(f(x) - C \le 0)
+      <br>Le produit <span class="math">\((f(b) - f(a)) (f(x) - C))</span> est positif.</td>
+      </tr>
+   </table>
+Si \(f(x) \le C), la solution est dans  &#91 \(a) ; \(x) &#93.
+  </li></ul>
+<p>
+La condition \(f(x) \ge C) ne conduit pas au même intervalle selon que la fonction est croissante ou décroissante.<br>
+Par contre, le signe du produit \((f(b) - f(a)) (f(x) - C)) indique le bon intervalle.<br>
+Et si le produit \((f(b) - f(a)) (f(x) - C)) est nul, c'est que \(a=b) ou \(f(x)=C).
+</p>

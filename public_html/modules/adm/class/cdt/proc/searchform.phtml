@@ -1,0 +1,31 @@
+
+!form reply
+  <fieldset class="property_fields blockcenter">
+  <legend>$name_find2</legend>
+  <div class="field box">
+  !formselect job list work,todo prompt $name_done,$name_todo
+  $name_between
+    !read adm/datepickerform.phtml $(jdate)\
+jdate\
+"$class_creation","$class_expiration"
+  $name_and
+    !read adm/datepickerform.phtml $(jdate2)\
+jdate2\
+"$class_creation","$class_expiration"
+  <div class="formHelp">$name_warning1</div>
+  </div>
+  <div class="wimscenter"><input type="submit" value="$name_find"> </div>
+</fieldset>
+!formend
+
+!if $wims_user=supervisor and $cdt_supervise=yes
+  !set wims_menu_items= !append line adddate,1,cmd=new&job=adddate\
+ addfile,1,cmd=reply&job=addfile\
+ addtodo,1,cmd=new&job=addtodo\
+ config,1,cmd=reply&job=config\
+ to $wims_menu_items
+!endif
+
+!if ($job isitemof home,todo or work isin $job and $jour_begin!=$empty) and $cdt_nbdate<$max_defaffi
+  !set wims_menu_items=!append line back2,1,cmd=new&job=home to $wims_menu_items
+!endif

@@ -1,0 +1,232 @@
+!goto $err_
+
+:notallowedmodule
+Ce module n'est pas activé sur ce serveur. Contactez l'administrateur.
+!exit
+
+:badsoldate
+La date d'apparition du corrigé doit être supérieure à la date de remise du devoir par les participants.
+!exit
+
+:badmaxfreework
+Le nombre de devoirs libres est limité à $max_freework. Vous ne pouvez donc plus en créer.
+!exit
+
+:badstatutsubject
+Le statut du devoir libre ne permet pas d'ajouter des fichiers pour le sujet.
+!exit
+
+:badstatutsolution
+Le statut du devoir libre ne permet pas d'ajouter des fichiers pour le corrigé.
+!exit
+
+:goodstatut
+Changement de statut réussi.
+!exit
+
+:goodsave
+Enregistrement réussi.
+!exit
+
+:gooderasefile
+Fichier supprimé correctement.
+!exit
+
+:goodaddfile
+Fichier ajouté.
+!exit
+
+:notnow
+Désolé cette fonctionnalité n'est pas encore mise en place.
+!exit
+
+:fwnotperime
+Action impossible le devoir libre n'est pas périmé.
+!exit
+
+:fwnotactive
+Action impossible le devoir libre n'est pas actif.
+!exit
+
+:badfilename
+Le nom de votre fichier n'est pas compatible. Renommer le avant d'essayer de le charger à nouveau.
+!exit
+
+:noterasable
+Ce devoir libre n'est pas effaçable. Il doit y avoir un autre devoir libre activé de numéro supérieur.
+!exit
+
+:gooderase
+Devoir libre correctement effaçé.
+!exit
+
+:gooddeactivate
+Devoir libre à nouveau en préparation. Attention, certains participants de la classe ont peut-être déjà téléchargé les fichiers du devoir maison&nbsp;!
+!exit
+
+:goodhide
+Devoir libre caché aux participants.
+!exit
+
+:goodarchive
+Devoir libre archivé correctement.
+!exit
+
+:notenoughfreespace
+L'espace disque de la classe est insuffisant pour stocker l'ensemble des fichiers des participants. Vous devez soit réduire la taille maximale de la zone de fichier de chaque participant ou demander à l'administrateur du serveur de vous allouer plus de place.
+!exit
+
+:badstudentfilesize
+La taille de votre fichier dépasse la taille autorisée qui est de $[0.25*$sizelimitfile] Mo.
+!exit
+
+:quota_file
+Cette classe est pleine, il n'est plus possible de déposer de fichier. Contactez votre enseignant&nbsp;!
+!exit
+
+:quota_filestudent
+Vous ne pouvez pas ajouter ce fichier car votre espace personnel n'est pas suffisant ou le nombre de fichiers déposés a atteint le maximum.
+!exit
+
+:badallows
+Vous n'êtes pas autorisé à visionner cette page. Ne jouez pas avec la barre d'adresse&nbsp;!
+!exit
+
+:putworknotallow
+Il n'est pas possible de déposer des corrigés de copie pour ce devoir libre (mauvais statut ou date de dépôt des copies par les participants non encore dépassée).
+!exit
+
+:studentwithoutfw
+Ce participant n'a pas déposé de copie, il n'est donc pas possible de déposer une copie corrigée.
+!exit
+
+:notallcorrected
+Certaines copies n'ont pas été corrigées. Il n'est pas possible d'expirer ce devoir libre.
+!exit
+
+:expire_nosoldisplay
+Le devoir libre ne peut pas être expiré : la date de visualisation du corrigé n'est pas dépassée.
+!exit
+
+:putworkusernotexists
+Bizarre mais ce participant n'existe pas ! Ne pas jouer avec la barre d'adresse du navigateur.
+!exit
+
+:toomanychar
+Vous utilisez trop de caractères dans votre texte. Il doit être limité à $textezone_limit caractères.
+!exit
+
+:notallowed_desactivated
+Ce devoir libre ne peut pas être désactivé car certains participants ont déjà commencé à déposer un travail.
+!exit
+
+:addrplay
+Votre requête n'est pas correcte. Ne jouez pas avec la barre d'adresse&nbsp;!
+!exit
+
+:notauthsupervisor
+Votre poste de travail n'a pas été identifié comme un poste sûr ou vous n'avez pas défini de poste sûr. Vous ne pouvez donc pas procéder à l'archivage de votre devoir libre. Pour continuer vous devez d'abord entrer la
+!href module=adm/class/config zone de configuration de la classe
+ pour certifier votre connexion.
+!exit
+
+:not_secure
+Cette action n'est accessible qu'à partir d'un poste sûr. Accès refusé.
+!exit
+
+:alreadyarchivated
+Ce devoir libre a été archivé. Il n'est plus possible de revenir en statut actif.
+!exit
+
+:file_too_large
+Il n'a pas été possible de créer un fichier de sauvegarde contenant les données participants de ce devoir libre à cause de la taille.
+<br>Les archives sont limitées à <strong>$max_arch_size Ko</strong>.
+!exit
+
+:addexo-nofreework
+Insertion impossible ! Aucun devoir libre de type "réponse en ligne" avec une zone de réponse "Exercice WIMS" n'est en préparation.
+!exit
+
+:not_exo
+La ressource que vous avez sélectionnée n'est pas un exercice&nbsp;: vous ne pouvez pas l'insérer dans un devoir libre.
+!exit
+
+:insert_fail
+L'insertion n'a pas abouti. Seuls les exercices peuvent être insérés dans un devoir libre.
+!exit
+
+:no_pick
+L'insertion n'a pas abouti : il n'y a pas de devoir libre sélectionné ou le devoir libre n'était pas du bon type.
+!exit
+
+:bad_freework
+Etrange ! Le numéro de devoir libre est incorrect.
+!exit
+
+:too_many_exos
+Ce devoir libre contient déjà le nombre maximal d'exercices.
+!exit
+
+:already_exist
+Cette ressource a déjà été insérée dans le devoir libre avec les mêmes paramètres.
+!exit
+
+:exo-insert
+L'exercice a correctement été inséré dans le devoir libre.
+!exit
+
+:exolog-noexo
+Pas d'exercice sélectionné.
+!exit
+
+:exolog-exoexists
+Vous avez déjà enregistré l'exercice $exolog pour ce devoir libre. Il n'est plus possible d'en changer.
+!exit
+
+:exolog-badparameter
+Les paramètres de l'exercice que vous essayez d'enregistrer ne correspondent pas à l'énoncé. Ne jouez pas avec la barre d'adresse.
+!exit
+
+:exolog-nofile
+Étrange ! Aucun fichier enregistré sur cet exercice.
+!exit
+
+:exolog-nouser
+Le participant n'existe pas&nbsp;!
+!exit
+
+:ok-delexo
+L'exercice a été correctement supprimé.
+!exit
+
+:noinlineanswer
+Bizarre ! mais ce devoir libre ne contient pas de réponse en ligne. Il faut éviter de jouer avec la barre d'adresse.
+!exit
+
+:badscore
+La note que vous avez saisie est incorrecte. La note doit être un entier compris entre 0 et $maxscore.
+!exit
+
+:printversion
+  Il est impossible d'insérer une version imprimable dans une feuille d'exercices.
+!exit
+
+:exolog-badscore
+Vous essayez d'enregistrer un exercice avec un score insuffisant par rapport au score exigé. Ne jouez pas avec la barre d'adresse.
+!exit
+
+:toomanywimsexo
+Vous ne pouvez pas définir plus d'une zone de type exercice interactif.
+!exit
+
+:duplicateok
+Feuille de travail correctement dupliquée.
+!exit
+
+:truncatedtext
+Le texte inséré est trop long et a été retravaillé et coupé.
+!exit
+
+:geogebratoolong
+La construction Geogebra est trop complexe et ne peut pas être sauvegardée. Réessayez&nbsp;!
+!exit

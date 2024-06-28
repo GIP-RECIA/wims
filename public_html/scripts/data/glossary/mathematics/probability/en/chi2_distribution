@@ -1,0 +1,23 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Chi-squared distribution
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Let \(n) be a positive integer.
+The <strong>chi-squared distribution</strong> with \(n) degrees
+of freedom (denoted by \(\chi^2(n))), is the distribution
+of the sum of \(n) independent \(\mathcal{N}(0,1)) distributed random
+variables.
+Its density function is
+<div class="wimscenter">
+\( \displaystyle{ x \mapsto \frac{x^{\frac{n}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{n}{2}}\Gamma(\frac{n}{2})}1_{x>0 }})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th><th>Characteristic function</th></tr>
+<tr><td>\(n)</td><td>\(2n)</td><td>\((1-2i t)^(-n/2))</td></tr></table>

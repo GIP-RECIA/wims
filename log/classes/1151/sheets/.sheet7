@@ -1,0 +1,58 @@
+
+:H5/financialmath/oefcalcLP.fr
+exo=interets2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Intérêts composés
+<strong>Calculer</strong> la valeur acquise et les intérêts rapportés par un placement
+
+
+:H6/financialmath/oeftaux.fr
+exo=placem
+10
+1
+Placement bancaire
+<strong>Calculer</strong> la valeur acquise obtenue par un placement
+
+
+:H6/financialmath/oeftaux.fr
+exo=actual
+10
+1
+Capital actualisé
+<strong>Calculer</strong> la valeur nominale d'un placement
+
+
+:U3/economics/oeffinmath.fr
+exo=interet11&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Valeur acquise par annuités constantes 1
+<strong>Calculer</strong> les valeurs acquises au bout de 2 périodes différentes et les intérêts rapportés par un placement
+
+
+:H5/analysis/oefcapitalisation.fr
+exo=placement&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Le bon placement
+Problème par étapes. <strong>Calculer</strong> les valeurs acquises par un capital placé en jours, mois ou années
+
+
+:H5/analysis/oefcapitalisation.fr
+exo=dureplacement&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Durée d'un placement
+<strong>Calculer</strong> par différents moyens (dont la fonction ln) d'une durée d'un placement.
+
+
+:H5/analysis/oefcapitalisation.fr
+exo=actua&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Actualisation
+Problème guidé d'actualisation d'un achat à crédit.
+
+
+

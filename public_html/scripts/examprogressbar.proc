@@ -1,0 +1,48 @@
+!! make a progress bar for exam
+!! for the moment only compatible for course mode
+!! wims_read_parm is list of scores for each exercise (-1=noscore)
+!! output : wims_progressbar
+!! if $wims_read_parm is empty list of score is calculated
+
+!if $wims_read_parm!=$empty
+  progressbar_=$wims_read_parm
+  !goto html
+!endif
+
+!! ---- calculate list of score only work for exam in course mode
+pses_=!translate _ to , in $wims_session
+t_=!replace internal exam by $empty in $(pses_[2])
+t_=!replace internal t by , in $t_
+!distribute item $t_ into bl,exam_,exo_
+pos_=!positionof item $exo_ in $(wims_exrandomlist[1;])
+!if $pos_>1
+  progressbar_=!values 10 for v=1 to $[$pos_-1]
+!else
+  !reset progressbar_
+!endif
+sco_=$module_score
+!default sco_=-1
+progressbar_=!append item $sco_ to $progressbar_
+tmp_=!itemcnt $(wims_exrandomlist[1;])
+!if $pos_<$tmp_
+  tmp_=!values -1 for v=$[$pos_+1] to $tmp_
+  progressbar_=!append item $tmp_ to $progressbar_
+  wims_examnextexo=$(wims_exrandomlist[1;$pos_+1])
+!else
+  !reset wims_examnextexo
+!endif
+
+:html
+wims_progressbar=<div class="inline wims_score_bar">
+!for i_ in $progressbar_
+  !if $i_=10
+    wims_progressbar=$wims_progressbar <div class="inline wims_seed_item" style="background-color:blue" title="$i_"></div>
+  !else
+    !if $i_=-1
+      wims_progressbar=$wims_progressbar <div class="inline wims_seed_item" style="background-color:#FFF" title="todo"></div>
+    !else
+      wims_progressbar=$wims_progressbar <div class="inline wims_seed_item" style="background-color:red" title="$i_"></div>
+    !endif
+  !endif
+!next i_
+wims_progressbar=$wims_progressbar </div>

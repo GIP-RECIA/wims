@@ -1,0 +1,156 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=
+slib_parms=6\
+,[zone de dessin x min,max et y min,max]\
+,coordonnees des 2 points D=(xb,yb) et F=(xe,ye)\
+,(optionnel) sens de la parabole up pour dessus du segment, down en dessous
+
+slib_title=
+
+slib_out=3ème point x,y de la courbe par la méthode de Bezier, \
+  puis les points (éventuellement) modifiés de départ et d'arrivée de la courbe.\
+  doit pouvoir être amélioré !
+
+slib_comment=[zone de dessin xmin et xmax,zone de dessin ymin et ymax],\
+  coordonnées xb et yb du point D,coordonnées xe et ye du point F,\
+  (optionnel) sens de la parabole up dessus et down dessous
+
+slib_example=[-10,10,-10,10],8,8,-7,0,down\
+[-10,10,-10,10],8,8,-7,0,up\
+[-10,10,-10,10],8,0,-7,8,down\
+[-10,10,-10,10],8,0,-7,8,up\
+[-10,10,-10,10],8,0,-7,0,down\
+[-10,10,-10,10],8,0,-7,0,up\
+[-10,10,-10,10],-7,0,8,8,down\
+[-10,10,-10,10],-7,0,8,8,up\
+[-10,10,-10,10],-7,8,8,0,down\
+[-10,10,-10,10],-7,8,8,0,up\
+[-10,10,-10,10],-7,0,8,0,down\
+[-10,10,-10,10],-7,0,8,0,up\
+[-10,10,-10,10],8,0,8,8,down\
+[-10,10,-10,10],8,0,8,8,up\
+[-10,10,-10,10],8,8,8,0,down\
+[-10,10,-10,10],8,8,8,0,up\
+
+!exit
+
+:proc
+
+!!--- init
+!reset slib_out slib_med
+!distribute items $wims_read_parm into slib_zone,slib_xb,slib_yb,slib_xe,slib_ye,slib_pos
+!set slib_zone=!declosing $slib_zone
+!set slib_xmin=$($slib_zone[1])
+!set slib_xmax=$($slib_zone[2])
+!set slib_ymin=$($slib_zone[3])
+!set slib_ymax=$($slib_zone[4])
+slib_xy=$slib_xb,$slib_yb,$slib_xe,$slib_ye
+!!slib_xyinitial=$slib_xy
+!!distribute items $slib_xy into slib_xb,slib_yb,slib_xe,slib_ye
+!!--- calculs pour trouver down ou up
+!if $slib_pos=
+  !set slib_L=$[sqrt((($slib_xe-$slib_xb)^2)+(($slib_ye-$slib_yb)^2))]
+  !set slib_xm=$[($slib_xe+$slib_xb)/2]
+  !set slib_ym=$[($slib_ye+$slib_yb)/2]
+  !set slib_m=$[max($[$slib_xmax-$slib_xmin],$[$slib_ymax-$slib_ymin])]
+  !set slib_b=$[min($[$slib_xmax-$slib_xm],$[$slib_ymax-$slib_ym])]
+  !set slib_d=$[min($[$slib_xm-$slib_xmin],$[$slib_ym-$slib_ymin])]
+  !set slib_s=$[max($[($slib_m-$slib_L)/4],$[$slib_m/10])]
+  !if $slib_s < $slib_b
+    !set slib_pos=up
+  !else
+    !set slib_pos=down
+  !endif
+!endif
+!!on change un peu les extrémités
+!distribute item 0,0,0,0, into slib_signxb,slib_signyb,slib_signxe,slib_signye
+!set slib_ss=1
+!if $slib_pos=up
+  !set slib_ss=1
+!endif
+!if $slib_pos=down
+  !set slib_ss=-1
+!endif
+!if $slib_xb < $slib_xe and $slib_yb < $slib_ye
+    !distribute item 0,$slib_ss,0,($slib_ss) into slib_signxb,slib_signyb,slib_signxe,slib_signye
+!endif
+!if $slib_xb < $slib_xe and $slib_yb > $slib_ye
+  !distribute item 0,($slib_ss),0,($slib_ss) into slib_signxb,slib_signyb,slib_signxe,slib_signye
+!endif
+!if $slib_xb < $slib_xe and $slib_yb = $slib_ye
+  !distribute item 0,$slib_ss,0,$slib_ss into slib_signxb,slib_signyb,slib_signxe,slib_signye
+!endif
+!if $slib_xb > $slib_xe and $slib_yb < $slib_ye
+  !distribute item 0,$slib_ss,0,$slib_ss into slib_signxb,slib_signyb,slib_signxe,slib_signye
+!endif
+!if $slib_xb > $slib_xe and $slib_yb > $slib_ye
+  !distribute item 0,$slib_ss,0,$slib_ss into slib_signxb,slib_signyb,slib_signxe,slib_signye
+!endif
+!if $slib_xb > $slib_xe and $slib_yb = $slib_ye
+  !distribute item 0,$slib_ss,0,$slib_ss into slib_signxb,slib_signyb,slib_signxe,slib_signye
+!endif
+!if $slib_xb = $slib_xe and $slib_yb > $slib_ye
+  !distribute item $slib_ss,0,$slib_ss,0 into slib_signxb,slib_signyb,slib_signxe,slib_signye
+!endif
+!if $slib_xb = $slib_xe and $slib_yb < $slib_ye
+  !distribute item $slib_ss,0,$slib_ss,0 into slib_signxb,slib_signyb,slib_signxe,slib_signye
+!endif
+!set slib_med=!getopt med in $wims_read_parm
+!if $(slib_med[1])=0
+  !distribute items 0,0 into slib_signxb,slib_signyb
+!endif
+!if $(slib_med[2])=0
+  !distribute items 0,0 into slib_signxe,slib_signye
+!endif
+!set slib_tmp=0.15
+slib_tmp=($slib_signxb)*$slib_tmp,($slib_signyb)*$slib_tmp,($slib_signxe)*$slib_tmp,($slib_signye)*$slib_tmp
+slib_xy=!exec pari [$slib_xy]+3*[$slib_tmp]
+
+!distribute items $slib_xy into slib_xb,slib_yb,slib_xe,slib_ye
+!!--- calculs preliminaires
+!set slib_L=$[sqrt((($slib_xe-$slib_xb)^2)+(($slib_ye-$slib_yb)^2))]
+
+!set slib_xm=$[($slib_xe+$slib_xb)/2]
+!set slib_ym=$[($slib_ye+$slib_yb)/2]
+
+!set slib_m=$[max($[$slib_xmax-$slib_xmin],$[$slib_ymax-$slib_ymin])]
+!set slib_b=$[min($[$slib_xmax-$slib_xm],$[$slib_ymax-$slib_ym])]
+!set slib_d=$[min($[$slib_xm-$slib_xmin],$[$slib_ym-$slib_ymin])]
+
+!set slib_s=$[max($[($slib_m-$slib_L)/4],$[$slib_m/10])]
+
+!if $slib_pos issametext up
+  !set slib_h=$[min($slib_s,$slib_b)]
+!else
+  !if $slib_pos issametext down
+    !set slib_h=$[-min($slib_s,$slib_d)]
+  !endif
+!endif
+
+!!--- determination XC,YC
+
+!if $[abs(($slib_xb-$slib_xe))] < 1.E-6
+  !set slib_xc=$[$slib_xb+$slib_h]
+  !set slib_yc=$slib_ym
+!else
+  !set slib_r=$[($slib_ye-($slib_yb))/($slib_xe-($slib_xb))]
+  !set slib_xc=$[-($slib_h*$slib_r/(1+($slib_r)^2)^0.5) + (($slib_xb+$slib_xe)/2)]
+  !set slib_yc=$[($slib_h/((1+($slib_r)^2)^0.5)) + (($slib_yb+$slib_ye)/2)]
+!endif
+
+slib_out=$slib_xc,$slib_yc,$slib_xy
+
+!!for debug
+!!!slib_out=!exec canvasdraw\
+!!!size 400,400\
+!!!xrange $(slib_zone[1,2])\
+!!!yrange $(slib_zone[3,4])\
+!!!grid 1,1,grey\
+!!!linewidth 4\
+!!!points red, $slib_xyinitial\
+!!!linewidth 1\
+!!!curvedarrows blue,$(slib_out[3,4,1,2,5,6])
+

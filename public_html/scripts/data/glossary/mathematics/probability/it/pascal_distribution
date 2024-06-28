@@ -1,0 +1,35 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Distribuzione binomiale negativa
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Sia \(r) un intero positivo e sia \(p) un numero reale tra 0 e 1.
+La <strong>distribuzione binomiale negativa </strong>
+(anche detta <span class="wims_emph">distribuzione di Pascal</span>)
+ con parametri
+<span class="green">\(r)</span> e <span class="green">\(p)</span> è una probabilità \(q) su \(\NN) definita da
+<div class="wimscenter">
+\(q(k)=C^{r-1}_{r+k-1}p^{r}(1-p)^{k}) pour tout entier
+ \(k\geq 0)
+</div>
+</div>
+<div class="wims_example">
+<h4>Esempio</h4> Una moneta truccata viene lanciata ripetutamente finché non sono comparse
+\(r) teste. Supponiamo che ogni volta
+ci sia una probabilità <span class="green">\(p)</span> che appaia
+<span class="green">testa</span>  e una probabilità
+<span class="red">\(1 - p)</span> che appaia <span class="red">croce</span>. Il numero di
+<span class="red">croci</span> prima della \(r)-esima
+ <span class="green">testa</span>
+è una variabile aleatoria; essa ha distribuzione binomiale negativa con
+ parametri \(r), \(p).
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Valore atteso</th><th>Varianza</th><th>Funzione generatrice di probabilità</th></tr><tr>
+<td>\(r(\frac{1}{p}-1))</td><td>\(r\frac{1-p}{p^2})</td><td>
+\((\frac{p}{1-(1-p)z})^r) </td></tr></table>

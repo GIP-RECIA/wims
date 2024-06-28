@@ -1,0 +1,9 @@
+!set lang_exists=yes
+
+!distribute lines Versió curta\
+  Descripció\
+  Recursos\
+  Conceptes relacionats\
+  ??\
+into name_abstract,name_definition,name_activities, name_connexe,\
+  name_choose

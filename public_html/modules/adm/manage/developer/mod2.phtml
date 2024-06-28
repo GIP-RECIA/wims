@@ -1,0 +1,8 @@
+!if $badfield=exist
+  <div class="wims_msg warning"><span class="wims_warning">$wims_name_Error</span>. $name_error1</div>
+!else
+  <div class="wims_msg warning"><span class="wims_warning">$wims_name_Error</span>. $name_error2</div>
+!endif
+
+<br>
+!read developer/modform.phtml

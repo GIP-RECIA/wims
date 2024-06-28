@@ -1,0 +1,9 @@
+tit=Méthodes pour Maud Elisée au pays des paraboles.
+author=Rémi, Belloeil
+email=remi.belloeil@orange.fr
+copyright=gnu
+docopen=1
+doctoc=no
+dlang=all
+header=<link rel="stylesheet" href="html/themes/_css/l2w.css" />
+desc=Descriptions des méthodes de ce chapitre.

@@ -1,0 +1,260 @@
+!set title=Ruote e traslazioni
+!if $wims_read_parm!=$empty
+ !goto $wims_read_parm
+!endif
+oef2wims_version=3.22
+author=YAMEOGO, Joachim
+email=yameogo@unice.fr
+language=fr
+leftrange=-5.000000
+rightrange=5.000000
+computeanswer=no
+precision=10000
+
+ansorder=r
+varcnt=73
+prevarcnt=72
+postvarcnt=0
+replycnt=1
+choicecnt=0
+conditioncnt=0
+feedbackcnt=0
+format=html
+
+val1=$imagedir
+val2=$confparm1
+val3=$confparm2
+val4=$confparm3
+val5=$confparm4
+
+!if $testcondition=yes
+ !goto test
+!endif
+!if $status=waiting
+ !exit
+!endif
+
+val6=$[rint(5)]
+val7=$[rint(100*($val6))]
+val8=lightblue
+tmp0=!randint 50, 150
+
+val9=$[rint($(tmp0))]
+val10=$[rint($val9-20)]
+val11=$[rint($val9-10)]
+tmp0=!randint $val10, $val11
+
+val12=$[rint($(tmp0))]
+val13=$[($val12)/50]
+val14=$[($val9)/50]
+val15=$[(sqrt(3))/2]
+val16=$[1/2]
+val17=1,0,0,1
+val18=-1,0,0,-1
+val19=0,-1,1,0
+val20=0,1,-1,0
+tmp=!trim $val17	$val18	$val19	$val20	
+val21=!translate internal $	\
+$ to ;; in $tmp
+val22=($val13)*($val15),(-$val13)*($val16)
+val23=0,$val13
+val24=(-$val13)*($val15),(-$val13)*($val16)
+tmp0=!randitem -7,-6,-5
+
+val25=$[rint($(tmp0))]
+tmp0=!randitem -3,-2,-1
+
+val26=$[rint($(tmp0))]
+tmp0=!randitem 1,2,3
+
+val27=$[rint($(tmp0))]
+tmp0=!randitem 5,6,7
+
+val28=$[rint($(tmp0))]
+tmp0=!randint -7, 7
+
+val29=$[rint($(tmp0))]
+tmp0=!randint -7, 7
+
+val30=$[rint($(tmp0))]
+tmp0=!randint -7, 7
+
+val31=$[rint($(tmp0))]
+tmp0=!randint -7, 7
+
+val32=$[rint($(tmp0))]
+val33=blue
+val34=green
+val35=orange
+val36=black
+tmp0=!shuffle 4
+
+val37=$(tmp0)
+tmp0=!item 1 of $val37
+
+val38=$(tmp0)
+tmp0=!item 2 of $val37
+
+val39=$(tmp0)
+tmp0=!item 3 of $val37
+
+val40=$(tmp0)
+val41=$val38
+tmp0=!shuffle $val38,$val39,$val40,$val41
+
+val37=$(tmp0)
+tmp0=!positionof item $val38 in $val37
+
+val42=$(tmp0)
+tmp0=!item 1 of $val42
+
+val43=$(tmp0)
+tmp0=!item 2 of $val42
+
+val44=$(tmp0)
+tmp0=!item 1 of $val37
+
+val38=$(tmp0)
+tmp0=!item 2 of $val37
+
+val39=$(tmp0)
+tmp0=!item 3 of $val37
+
+val40=$(tmp0)
+tmp0=!item 4 of $val37
+
+val41=$(tmp0)
+val38=$(val21[$val38;])
+val39=$(val21[$val39;])
+val40=$(val21[$val40;])
+val41=$(val21[$val41;])
+tmp0=!shuffle $val33,$val34,$val35,$val36
+
+val45=$(tmp0)
+tmp0=!item 1 of $val45
+
+val46=$(tmp0)
+tmp0=!item 2 of $val45
+
+val47=$(tmp0)
+tmp0=!item 3 of $val45
+
+val48=$(tmp0)
+tmp0=!item 4 of $val45
+
+val49=$(tmp0)
+tmp0=!item $val43 of $val45
+
+val50=$(tmp0)
+tmp0=!item $val44 of $val45
+
+val51=$(tmp0)
+
+!ifval $val50 iswordof blue
+val50=blu
+!endif
+
+!ifval $val50 iswordof green
+val50=verde
+!endif
+
+!ifval $val50 iswordof black
+val50=nero
+!endif
+
+!ifval $val50 iswordof orange
+val50=arancio
+!endif
+
+!ifval $val51 iswordof blue
+val51=blu
+!endif
+
+!ifval $val51 iswordof green
+val51=verde
+!endif
+
+!ifval $val51 iswordof black
+val51=nero
+!endif
+
+!ifval $val51 iswordof orange
+val51=arancio
+!endif
+val52=blu e verde,blu e arancio,blu e nero,verde e arancio,verde e nero,arancio e nero
+val53=$val50 e $val51
+
+!ifval ($val50 iswordof verde ) and ($val51 iswordof blu)
+val53=$val51 e $val50
+!endif
+
+!ifval ($val50 iswordof arancio ) and ($val51 iswordof blu)
+val53=$val51 e $val50
+!endif
+
+!ifval ($val50 iswordof nero ) and ($val51 iswordof blu)
+val53=$val51 e $val50
+!endif
+
+!ifval ($val50 iswordof arancio) and ($val51 iswordof verde)
+val53=$val51 e $val50
+!endif
+
+!ifval ($val50 iswordof nero ) and ($val51 iswordof verde)
+val53=$val51 e $val50
+!endif
+
+!ifval ($val50 iswordof nero ) and ($val51 iswordof arancio)
+val53=$val51 e $val50
+!endif
+tmp0=!positionof item $val53 in $val52
+
+val54=$(tmp0)
+replytype1=radio
+replyname1=SCELTA:
+replygood1=$val54;$val52
+question=__EXECUTED_1692754_EXERCISE__
+
+!goto stat
+
+!exit
+
+:question
+$()<div>	      Considerate le ruote seguenti nel piano.	Due di queste sono mandate l'una nell'altra per mezzo di una	traslazione. Quali?  	 </div>	<div class="wimscenter spacer">	 
+!read oef/draw.phtml $val7,$val7 \
+xrange -10,10	yrange -10,10		gridfill 0,0,10,10,$val8		linewidth 2		translate 0.2,0.2	vline 0,0,$val8	vline 2,0,$val8	vline 4,0,$val8	vline 6,0,$val8	vline 8,0,$val8	vline 10,0,$val8	vline -2,0,$val8	vline -4,0,$val8	vline -6,0,$val8	vline -8,0,$val8	vline -10,0,$val8	hline 0,0,$val8	hline 0,2,$val8	hline 0,4,$val8	hline 0,6,$val8	hline 0,8,$val8	hline 0,10,$val8	hline 0,-2,$val8	hline 0,-4,$val8	hline 0,-6,$val8	hline 0,-8,$val8	hline 0,-10,$val8	killtranslate 		affine $val38,$val25,$val29	circle 0,0,$val12,$val46	circle 0,0,$val9,$val46	line 0,0,$val22,$val46	line 0,0,$val23,$val46	line 0,0,$val24,$val46	killaffine		affine $val39,$val26,$val30	circle 0,0,$val12,$val47	circle 0,0,$val9,$val47	line 0,0,$val22,$val47	line 0,0,$val23,$val47	line 0,0,$val24,$val47	killaffine		affine $val40,$val27,$val31	circle 0,0,$val12,$val48	circle 0,0,$val9,$val48	line 0,0,$val22,$val48	line 0,0,$val23,$val48	line 0,0,$val24,$val48	killaffine		affine $val41,$val28,$val32	circle 0,0,$val12,$val49	circle 0,0,$val9,$val49	line 0,0,$val22,$val49	line 0,0,$val23,$val49	line 0,0,$val24,$val49	killaffine		 
+$()	</div>		
+$()
+!exit
+
+:hint
+$()
+$()
+!exit
+
+:help
+$()
+$()
+!exit
+
+:solution
+$()
+$()
+!exit
+
+:latex
+$()
+$()
+!exit
+
+:feedback
+
+!exit
+
+:test
+
+!exit
+
+:stat
+vsavelist=7,8,9,12,22,23,24,25,26,27,28,29,30,31,32,38,39,40,41,46,47,48,49
+embedcnt=0

@@ -1,0 +1,29 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=angles,measurement
+!set gl_title=Angles opposés par le sommet
+!set gl_level=H1 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>
+    Définition
+  </h4>
+  Deux angles sont dits <strong>opposés par le sommet</strong> lorsque
+  <ul>
+    <li>
+      ils ont même sommet ;
+    </li><li>
+      les côtés de l'un sont dans le prolongement des côtés de l'autre.
+    </li>
+  </ul>
+</div>
+
+<div class="wims_thm">
+  <h4>
+    Propriété
+  </h4>
+  Deux angles opposés par le sommet ont même mesure.
+</div>

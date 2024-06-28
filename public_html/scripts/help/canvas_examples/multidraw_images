@@ -1,0 +1,19 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 1,1,grey
+drag xy
+# use special function to read the drag coordinates
+copy 0,0,-1,-1,-1,-1,gifs/images/skull_and_crossbones50.png
+fontcolor green
+fontfamily Bold 42pt Arial
+imagepalette gifs/ca.gif,gifs/en.gif,gifs/nl.gif,gifs/fr.gif,gifs/cn.gif,gifs/de.gif,gifs/kh.gif,gifs/it.gif
+multiuserinput 0,0,1
+css color:blue;
+multisnaptogrid 1,1,1
+multilinewidth 0,4,0
+# attention: use unicode text input without the slash 
+# u222D ---> u222D at least will sometimes work
+# otherwise cut&past unicode symbols into inputfield...
+multilabel TEXT,REACTION ARROW,FLAGS,STOP DRAWING
+multidraw text,arrow,images

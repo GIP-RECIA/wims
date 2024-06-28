@@ -1,0 +1,16 @@
+
+!set gl_n=!randint 5,8
+!set gl_m=!shuffle $gl_n
+!set gl_p=!randint 2,4
+!set gl_m=$(gl_m[1..$gl_p])
+!readproc slib/matrix/random $gl_n,$gl_n,1
+!set gl_A1=!exec pari B=[$slib_out]; B=B+mattranspose(B);\
+  B=matrix($gl_n,$gl_n,i,j,i!=j && B[i,j]!=0); B
+
+!set gl_A2=!exec pari m=[$gl_m]; for(i=1,$gl_p, B[m[i],m[i]]=1); B
+!set gl_list=!makelist x for x=1 to $gl_n
+!readproc slib/graph/draw [$gl_A1],red,blue,[$gl_list],,html
+!set gl_out1=$slib_out
+
+!readproc slib/graph/draw [$gl_A2],red,blue,[$gl_list],,html
+!set gl_out2=$slib_out

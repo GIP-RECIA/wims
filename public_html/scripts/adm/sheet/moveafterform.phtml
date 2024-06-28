@@ -1,0 +1,38 @@
+!! make htmlform to the moveafter menu in sheet and exam
+!! input are :
+!! exocnt : number of exo in the sheet/exam
+!! i : item number
+!! wims_read_parm : name of button
+
+!reset listval_ listname_
+!if $exocnt>1
+  !if $i>1
+    !let listval_=$[$i-1]
+    !let listname_=$wims_name_up
+  !endif
+  !let val_=!values v for v=1 to $exocnt-1
+  !let val_=!listcomplement $i,$[$i-1] in $val_
+  !let t_=!makelist $wims_name_moveafter v for v in $val_
+  !if $val_!=$empty
+    !let listval_=!append item $val_ to $listval_
+    !let listname_=!append item $t_ to $listname_
+  !endif
+  !if $i<$exocnt
+    !let listval_=!append item $exocnt to $listval_
+    !let listname_=!append item $wims_name_moveafter $wims_name_end to $listname_
+  !endif
+  !! link for sendbug
+  !reset t
+  !let nb_=!itemcnt $listval_
+  !for k=1 to $nb_
+    !let l=cmd=reply&+job=moveto&+movesource=$i&+movetarget=$(listval_[$k]) $(listname_[$k])
+    !let t=!append line $l to $t
+  !next k
+  !read js/dropdownbutton.phtml dropbutton_$i\
+$wims_read_parm\
+$t
+
+
+
+!!  !formend
+!endif

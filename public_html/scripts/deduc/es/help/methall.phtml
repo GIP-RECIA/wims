@@ -1,0 +1,19 @@
+<h4>$name_methodtitle</h4>
+
+<dl>
+!for m in $mthlist
+  !read deduc/meth/$modu_lang/$m.def
+  <dt><b>$methtit.</b></dt>
+  <dd>
+  $methhelp
+  </dd>
+!next m
+!set nc=!linecnt $m_context
+!if prf/cleanhyp notitemof $mthlist and $nc>10
+  !read deduc/meth/$modu_lang/prf/cleanhyp.def
+  <dt><b>$methtit.</b></dt>
+  <dd>
+  $methhelp
+  </dd>
+!endif
+</dl>

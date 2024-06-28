@@ -1,0 +1,161 @@
+!! procedure for testing right to make a class 
+!if $wims_user=$empty
+  !bound cltype within 0,2,4 default 0
+  !distribute items $wims_class_regpass into regpass0,regpass2,regpass4
+  !default regpass0=email
+  !default regpass2=$regpass0
+  !default regpass4=deny
+  regpolicy0=!word 1 of $regpass0
+  regpolicy2=!word 1 of $regpass2
+  regpolicy4=!word 1 of $regpass4
+  !distribute words $regpass0 into regpolicy,regpasswd,regpassmail
+  !if $cltype>0 and $regpolicy notwordof deny file
+    !distribute words $(regpass$cltype) into regpolicy,regpasswd,regpassmail
+  !endif
+  regpassmail=!replace internal | by , in $regpassmail
+  !if $wims_ismanager<2
+    alltypes=0
+    !if $regpolicy2 notwordof deny file
+      alltypes=0,2
+    !endif
+    !if $regpolicy4 notwordof deny file and 2 isitemof $alltypes
+      alltypes=!append item 4 to $alltypes
+    !endif
+    !if $regpolicy=deny
+      error=not_manager
+      !exit
+    !endif
+  !else
+    alltypes=0,2,4
+    regpolicy=all
+  !endif
+  !if $regpolicy!=file and ($step=$empty or $step=pre) and $wims_ismanager<2
+    !exit
+  !endif
+!else  $wims_user!=$empty
+  !read adm/class/userdef classes,$wims_class,$wims_user
+  supervisable=!defof user_supervisable\
+user_mkclass in $userdef
+  !distribute line $supervisable into supervisable,mkclass
+  !if $wims_supertype!=2 or ($wims_user!=supervisor and $supervisable!=yes) or \
+      $wims_class!=$wims_superclass or $mkclass=no
+    error=no_subclass
+    !exit
+  !endif
+  !default name_supervisorname=$wims_firstname $wims_lastname
+  supervisor=$name_supervisorname
+  !if $wims_user!=supervisor
+    !default email=!defof user_email in $userdef
+  !else
+    !default email=!defof user_email in wimshome/log/classes/$wims_class/supervisor
+  !endif
+  !readdef wimshome/log/classes/$wims_class/.def
+  !default level=$class_level
+  cltype=1
+  regpolicy=all
+  authgood=yes
+  regid=!defof class_defid in wimshome/log/classes/$wims_class/.def
+  max_subclasses=!defof MAX_SUBCLASSES in wimshome/public_html/bases/sys/define.conf
+  codee=0
+  test=yes
+  !while $test=yes and $codee<$max_subclasses
+    !increase codee
+    test=!fileexists wimshome/log/classes/$wims_superclass/$codee/.def
+  !endwhile
+  !if $test=yes
+    error=subclasslimit
+    !exit
+  !endif
+  r_code=$wims_superclass/$codee
+  toomany=no
+!endif    $wims_user=$empty?
+
+!if $adresse1!=$empty and $regpolicy=passwd
+  !read adm/language lang/mail2.proc
+!endif
+
+!if $regpolicy=passwd and $regpasswd=$empty
+  regpolicy=all
+!endif
+
+test=0
+!if $regpolicy iswordof email all passwd
+  test=1
+!endif
+
+!if $regpolicy!=$empty and $regpolicy notwordof\
+    email all deny passwd file
+  test=!checkhost $wims_class_regpass
+!endif
+!if $regpolicy=file
+  !if $authgood!=yes and ($regid=$empty or $regpass=$empty)
+    error=getid
+    !exit
+  !else
+    data=!defof $regid in wimshome/log/classes/.ids
+    !distribute items $data into prefix,regpasswd,r_name,r_expire,r_quota1,r_quota2,r_quota3,r_right
+    !default r_right=1
+    alltypes=0,2,4
+    !if $r_right < 3
+      alltypes=0,2
+    !endif
+    !if $r_right < 2
+      alltypes=0
+    !endif
+    !bound cltype within $alltypes default 0
+    !if $prefix<1000 or ($authgood!=yes and $regpasswd notsametext $regpass)
+      error=getid
+      !exit
+    !else
+      test=1
+      class_defined=yes
+      !for code2=1 to $r_quota1
+        deftest=!defof class_defined in wimshome/log/classes/$prefix$[1000+$code2]/.def
+        !if $deftest!=yes
+          !break
+        !endif
+      !next code2
+      r_remain=$[$r_quota1-$code2]
+      !if $deftest=yes
+        error=class_quota
+        !exit
+      !endif
+      r_code=$prefix$[1000+$code2]
+    !endif
+  !endif
+  defid=$regid
+!else
+  defid=
+!endif
+
+!if $regpolicy issametext passwd and $regpasswd notsametext $regpass
+  error=getpass
+  !exit
+!endif
+
+!if $test<1
+  error=no_right
+  !exit
+!endif
+!if $toomany=$empty
+  n=!recordcnt wimshome/log/classes/.index
+  !if $n>=$wims_class_limit
+    toomany=yes
+    wims_module_log=Refused toomany
+    !exit
+  !endif
+  toomany=no
+!endif
+
+
+!if $job!=cloneexemple
+  !if $step=$empty or $step=pre
+    !if ($regpolicy=file and $r_remain<1) or $cltype>0
+      step=0
+    !endif
+  !endif
+!else
+  !if $step=0 and $ssourcecls=$empty
+    step=-3
+  !endif
+!endif

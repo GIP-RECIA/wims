@@ -1,0 +1,161 @@
+
+:1
+21000625
+Ajustement d'un nuage de points associé à une série statistique à deux variables
+À l'aide d'outils numériques,<ul><li>choisir un modèle adapté pour réaliser un ajustement d'un nuage de points associé à une série statistique à deux variables</li><li>utiliser un ajustement pour interpoler ou extrapoler des valeurs inconnues.</li></ul>
+
+
+
+0
+
+:1
+21000625
+Probabilités
+<ul><li>Arbres de probabilités pondérés <em>noeud, branche, chemin.</em></li><li>Probabilité conditionnée par un événement de probabilité non nulle.</li><li>Règles de calculs des probabilités.</li><li>Formule des probabilités totales.</li><li>Indépendance de deux évènements de probabilités non nulles.</li></ul>
+
+
+
+0
+
+:1
+21000625
+Suite numérique
+<p>Suite géométrique définie par son premier terme et par une relation de récurrence ou par l'expression du terme de rang &#119899;.</p><ul><li>Relation &#119906;<sub>&#119899;+1</sub> = &#119906;<sub>&#119899;</sub> × &#119902; et la donnée du premier terme.</li><li>Expression du terme de rang &#119899; en fonction du premier terme et de la raison.</li><li>Sens de variation.</li><li>Somme des &#119899; premiers termes d'une suite géométrique</li></ul>
+
+
+
+0
+
+:1
+21000625
+Fonction polynôme de degré 3 - Dérivation - Variations
+<p>Utiliser les formules et les règles de dérivation pour déterminer la dérivée d'une fonction polynôme de degré inférieur ou égal à 3.</p><p>Dresser, à partir du signe de la dérivée, le tableau de variations d'une fonction polynôme de degré inférieur ou égal à 3.</p><p>Exploiter le tableau de variations d'une fonction polynôme &#119891; de degré inférieur ou égal à 3.</p>
+
+
+
+0
+
+:1
+21000625
+Fonctions exponentielles de base &#119902;
+<p>Représenter graphiquement les fonctions exponentielles de base &#119902;, définies sur un intervalle donné, par &#119909; &#10236; &#119902;<sup>&#119909;</sup> (avec &#119902; nombre réel strictement positif et différent de 1).</p><p>Variations des fonctions exponentielles de base &#119902;, définies sur un intervalle donné par &#119909; &#10236; &#119902;<sup>&#119909;</sup> (avec &#119902; nombre réel strictement positif et différent de 1).</p><p>Utiliser les propriétés opératoires des fonctions exponentielles étudiées pour transformer des écritures numériques ou littérales.</p>
+
+
+
+0
+
+:1
+21000625
+Fonction logarithme décimal &#119909; &#8614; log (&#119909;)
+<p>Représenter graphiquement la fonction logarithme décimal sur un intervalle donné.</p><p>Variations de la fonction logarithme décimal.</p><p>Propriétés opératoires de la fonction logarithme décimal.</p><p>Résoudre par le calcul, graphiquement, ou à l'aide d'outils numériques</p><ul><li>des équations du type &#119902;<sup>&#119909;</sup> = &#119886; et log( &#119909;) = &#119886;</li><li>des inéquations du type &#119902;<sup>&#119909;</sup> &#8805; &#119886; et log(&#119909;) &#8805; &#119886;</li></ul>
+
+
+0
+
+:1
+21000625
+Les intérêts composés
+<p>Calculer le montant du capital obtenu après &#119899; périodes d'un placement à intérêts composés.</p><p>Formule &#119862;<sub>&#119899;</sub> = &#119862;<sub>0</sub> (1 + &#119905;)<sup>&#119899;</sup>.</p><p>Déterminer la durée &#119899; de placement d'un capital initial &#119862;<sub>0</sub> à un taux &#119905; donné, pour obtenir un capital donné.</p>
+
+
+
+0
+
+:1
+21000625
+Compléter un tableau d'amortissement
+<p>Emprunt &#58; remboursement par annuités constantes, remboursement par amortissement constant.</p><p>Coût d'un emprunt.</p>
+
+
+
+0
+
+:1
+21000625
+Taux mensuel, taux annuel, taux moyen
+<p>Calculer un taux mensuel équivalent à un taux annuel donné.</p><p>Calculer un taux moyen.</p>
+
+
+
+0
+
+:1
+21000625
+Représentation de vecteurs - coordonnées
+<p>Déterminer graphiquement les coordonnées d'un vecteur dans l'espace muni d'un repère orthonormé.</p><p>Représenter, dans l'espace muni d'un repère orthonormé, un vecteur dont les coordonnées sont données.</p>
+
+
+
+0
+
+:1
+21000625
+Vecteurs dans l'espace - Vecteurs de Fresnel.
+<p>Calculer la norme d'un vecteur dans l'espace muni d'un repère orthonormé.</p><p>Calculer les coordonnées du vecteur somme de deux vecteurs dans l'espace muni d'un repère orthonormé.</p><p>Coordonnées du produit d'un vecteur par un nombre réel dans l'espace muni d'un repère orthonormé.</p><p>Reconnaître, à l'aide de leurs coordonnées, des vecteurs égaux ou colinéaires dans l'espace muni d'un repère orthonormé.</p><p>Établir des liens entre le vecteur de Fresnel d'une tension ou d'une intensité sinusoïdale de la forme &#119886; sin (w &#119905; + phi) et la courbe représentative de la fonction qui à &#119905; associe &#119886; sin (w &#119905; + phi).</p><p><em>Programme Complémentaire &#58; </em><em>Produit scalaire de deux vecteurs; Vecteurs égaux ou colinéaires.</em></p>
+no
+
+
+0
+
+:1
+21000625
+Équations de la forme cos &#119909; = &#119886;, sin &#119909; = &#119887;
+<p>Résoudre les équations de la forme &#58; cos &#119909; = &#119886;, sin &#119909; = &#119887;.</p>
+
+
+
+0
+
+:1
+21000625
+Algorithme
+Générer une liste. Manipuler des éléments d'une liste.
+no
+
+
+0
+
+:1
+21000625
+(PC) Primitives d'une fonction sur un intervalle
+<p><em>Ce module fait partie du programme complémentaire</em>.</p><p>Déterminer les primitives des fonctions usuelles par lecture inverse d'un tableau des dérivées.</p><p>Déterminer, avec ou sans outils numériques, les primitives d'une somme de fonctions, du produit d'une fonction par un réel.</p>
+no
+
+
+0
+
+:1
+21000625
+(PC) Calculer l'intégrale, sur un intervalle [&#119886; , &#119887;]
+<p><em>Ce module fait partie du programme complémentaire</em>.</p><p>Définition de l'intégrale, sur un intervalle [&#119886;, &#119887;], d'une fonction &#119891; admettant une primitive &#119865; sur cet intervalle.</p><p>Interpréter l'intégrale d'une fonction définie et positive.</p>
+
+
+
+0
+:1
+21000625
+(PC) Fonction logarithme népérien &#119909; &#8614; ln(&#119909;)
+<p><em>Ce module fait partie du programme complémentaire</em>.</p><p>Définition du nombre <em>e</em>.</p><p>Propriétés opératoires de la fonction logarithme népérien.</p><p>Étudier les variations et représenter graphiquement la fonction logarithme népérien, sur un intervalle donné.</p><p>Utiliser les propriétés opératoires de la fonction logarithme népérien pour transformer des écritures numériques ou littérales.</p>
+
+
+
+0
+
+:1
+21000625
+(PC) Fonction exponentielle de base e
+<p><em>Ce module fait partie du programme complémentaire</em>.</p><ul><li>Passer de ln(&#119909;) = &#119886; à &#119909; = e&#119886; et inversement, &#119886; étant un réel et &#119909; un réel strictement positif.</li><li>Utiliser les propriétés opératoires de la fonction exponentielle pour transformer des écritures numériques ou littérales.</li><li>Étudier les variations et représenter graphiquement la fonction exponentielle sur R.</li></ul>
+
+
+
+0
+
+:1
+21000625
+(PC) Nombres complexes
+<p><em>Ce module fait partie du programme complémentaire</em>.</p><p>Calculer et interpréter géométriquement dans le plan rapporté à un repère orthonormé direct, la partie réelle, la partie imaginaire, le conjugué, le module d'un nombre complexe et un argument d'un nombre complexe non nul.</p><p>Passer de la forme algébrique à la forme trigonométrique et réciproquement.</p>
+
+
+
+0
+

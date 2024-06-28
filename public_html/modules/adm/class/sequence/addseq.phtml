@@ -1,0 +1,323 @@
+!if $jquery_defined!=yes
+  !changeto addseq-old.phtml
+!endif
+!if $(module_description_$moduclass_lang)!=$empty
+  !set module_description=$(module_description_$moduclass_lang)
+!endif
+!read adm/title.phtml 1\
+$classname\
+$module_description\
+$wims_name_sequence $seq
+
+<div id="seq_management">
+  <script>
+    /*<![CDATA[*/
+    jQuery(function($$) {
+      // Get in sessionStorage if a tab was previously selected, and activate it.
+      var selectedTabId = sessionStorage.getItem("seq_management_selectedTab");
+      selectedTabId = selectedTabId === null ? 0 : selectedTabId; //default tab = 0
+      $$("#seq_management").tabs({
+        active: selectedTabId,
+        activate : function( event, ui ) {
+            selectedTabId = $$("#seq_management").tabs("option", "active");
+            sessionStorage.setItem("seq_management_selectedTab", selectedTabId);
+        }
+      });
+    });
+    /*]]>*/
+  </script>
+  <ul>
+    <li><a href="#seqinfo">$name_info</a></li>
+    <li><a href="#seqliste">$name_content</a></li>
+  </ul>
+
+  !! Read some translation vars (like $C_A)
+  !readproc adm/search_engine/names.$lang
+
+  !set data=!record 1 of wimshome/log/classes/$wims_class/seq/.sequence$seq
+  !form reply
+    !! ---- manage of seqinfo panel
+    <div id="seqinfo"><fieldset class="property_fields blockcenter">
+      <div class="field box fullwidth">
+        <label for="seq_title">$wims_name_title</label>
+!!          !set wims_ref_class=wims_button_help float_right
+!!          !href target=wims_mhelp cmd=help&special_parm=weight $wims_name_help
+        <input id="seq_title" name="seq_title" size="65" value="$(data[1;])" required="required" maxlength="$title_limit">
+        <div class="formHelp">$name_desc_title</div>
+      </div>
+      <div class="field box fullwidth">
+        <label for="visible">$wims_name_Status</label>
+        !set visible=$(data[4;])
+        !formselect visible list 0,1 prompt $wims_name_shstatus[1..2]
+      </div>
+      <div class="field box fullwidth">
+        <label for="seq_desc"> $wims_name_Description</label>
+        <div class="formHelp">$name_desc_desc</div>
+        <textarea id="seq_desc" class="iEdit" rows="6" cols="85" name="seq_desc" maxlength="$desc_limit">$(data[2;])</textarea>
+      </div>
+!! --------------- add for selecte show
+  <div class="field box">
+    <label for="allowtype">$(name_showhidetitle)</label>
+    !set wims_ref_class=wims_button_help float_right
+    !href target=wims_mhelp cmd=help&special_parm=allowtype $wims_name_help
+    <select id="allowtype" name="allowtype"
+            onchange="toggle_allowtype(this,{'select': '#js_restricted_time','techvar': '#js_restricted_techvar'})"
+      >
+      !if $tv_listname=$empty
+        !set list_allowtype=all,none,select
+      !else
+        !set list_allowtype=all,none,select,techvar
+      !endif
+      !let nboption=!itemcnt $list_allowtype
+      !for i=1 to $nboption
+        !if $(list_allowtype[$i])=$allowtype
+          <option value="$(list_allowtype[$i])" selected="selected">$(name_allowtype[$i])</option>
+        !else
+          <option value="$(list_allowtype[$i])">$(name_allowtype[$i])</option>
+        !endif
+      !next i
+    </select>
+
+    <div id="js_restricted_time"
+      !if $allowtype=select
+        style="display:block"
+      !else
+        style="display:none"
+      !endif
+      >
+      !readproc adm/scorerestriction get
+      !read adm/scorerestriction html
+    </div>
+
+    <div id="js_restricted_techvar"
+      !if $allowtype=techvar
+        style="display:block"
+      !else
+        style="display:none"
+      !endif
+      >
+      !read adm/vfilter/scoreregform.phtml
+    </div>
+    <script src="scripts/js/interface/ui_utils.js"></script>
+
+    !default allowshare=0
+    !if $sharers!=$empty
+      <div>
+        <label for="allowshare">$name_allowshare</label>
+        !formselect allowshare list 0,1 prompt $wims_name_no,$wims_name_yes
+      </div>
+    !else
+      <input type="hidden" name="allowshare" value="0">
+    !endif
+  </div>
+
+!! ---------------- end of add
+
+
+
+    </div></div>
+
+    !! ---- manage of seqliste panel
+    <div id="seqliste">
+     $name_addseq
+     $table_header
+      <caption>$wims_name_Docs, $wims_name_Votes & $C_A</caption>
+      $table_hdtr
+        <th scope="col">$wims_name_title</th>
+        <th scope="col">$wims_name_Status</th>
+        <th scope="col">$wims_name_Position</th>
+      </tr>
+      !set listc=!filelist $wims_home/log/classes/$wims_class/doc
+      !set listc=!replace internal c by in $listc
+      !set listc=!lines2items $listc
+      !set listc=!sort numeric items $listc
+
+      !! -- doc of the class data
+      !for i=1 to $doccnt
+        !set ci_=!item $(wims_sort_order[$i]) of $listc
+        !set sh=!record $ci_ of wimshome/log/classes/$wims_class/doc/.index
+        !distribute lines $sh into s_,t_,bidon,bidon,bidon,o_
+        !set ss_=!replace internal c by c$ $ in $s_
+        !set c_$i=!positionof item $ss_ in $(data[3;])
+        !set ss_=!replace internal c by c_ in $s_
+        !if $s_!=
+          $table_tr
+            <td>
+              <label for="$ss_">
+                !set wims_ref_class=wims_doc_item
+                !href module=adm/doc&job=read&doc=$s_&block=main $t_
+              </label>
+            </td>
+            <td class="wims_status_$o_">
+              !item $[$o_+1] of $wims_name_status
+              !set wims_ref_class=wims_button
+              !href module=adm/doc&job=prop&doc=$s_ $wims_name_change
+            </td>
+            <td>
+             <input type="number" name="$ss_" size="5" value="$(c_$i)" id="$ss_">
+            </td>
+          </tr>
+        !endif
+      !next i
+
+      !! -- public doc data
+      !for i=1 to $docpubliccnt
+        !set sh=!record $i of wimshome/log/classes/$wims_class/doc/.docindex
+        !distribute lines $sh into s_,t_,ti,d_,o_
+        $table_tr
+          <td>
+            !set wims_ref_class=wims_doc_item
+            <label for="doc_$i">
+              !href module=$s_&$t_ $ti
+            </label>
+          </td>
+          <td class="wims_status_$o_">
+            !item $[$o_+1] of $wims_name_status
+            !set wims_ref_class=wims_button
+            !href module=adm/class/adddoc&job=prop&doc=$i $wims_name_change
+          </td>
+          <td>
+            !set doc_$i=!positionof item doc $i in $(data[3;])
+            <input type="number" name="doc_$i" size="5" value="$(doc_$i)" id="doc_$i">
+          </td>
+        </tr>
+      !next i
+
+      !! -- sheet data
+      !for i=1 to $sheetcnt
+        !set sh=!record $i of wimshome/log/classes/$wims_class/sheets/.sheets
+        !distribute lines $sh into ac,t_,ti
+        $table_tr
+        <td>
+          !set wims_ref_class=wims_sheet_item
+          <label for="sheet_$i">
+            !href module=adm/class/sheet&sheet=$i $ti
+          </label>
+        </td>
+        <td class="wims_status_$ac">
+          $(wims_name_shstatus[$ac+1])
+        </td>
+        <td>
+          !set sheet_$i=!positionof item sheet $i in $(data[3;])
+          <input type="number" name="sheet_$i" size="5" value="$(sheet_$i)" id="sheet_$i">
+        </td>
+      </tr>
+    !next i
+
+    !! -- exam data
+    !for i=1 to $examcnt
+      !set sh=!record $i of wimshome/log/classes/$wims_class/exams/.exams
+      !distribute lines $sh into ac,t_,d_,ti
+      $table_tr
+        <td>
+          <label for="exam_$i">
+            !set wims_ref_class=wims_exam_item
+            !href module=adm/class/exam&exam=$i $ti
+          </label>
+        </td>
+        <td class="wims_status_$ac">
+          $(wims_name_shstatus[$ac+1])
+        </td>
+        <td>
+          !set exam_$i=!positionof item exam $i in $(data[3;])
+          <input type="number" name="exam_$i" size="5" value="$(exam_$i)" id="exam_$i">
+        </td>
+      </tr>
+    !next i
+
+
+    !! -- vote data
+      !for i=1 to $votecnt
+        !set sh=!record $i of wimshome/log/classes/$wims_class/vote/.votes
+        !distribute lines $sh into st_,ti_,op_,re_
+        $table_tr
+        <td>
+          <label for="vote_$i">
+            !set wims_ref_class=wims_vote_item
+            !href module=adm/vote&job=read&vote=$i $ti_
+          </label>
+        </td>
+        <td class="wims_status_$st_">
+          $(wims_name_status[$st_+1])
+        </td>
+        <td>
+          !set vote_$i=!positionof item vote $i in $(data[3;])
+          <input type="number" name="vote_$i" size="5" value="$(vote_$i)" id="vote_$i">
+        </td>
+      </tr>
+    !next i
+
+    !! -- tool data
+    !for i=1 to $toolcnt
+      !set sh=!record $i of wimshome/log/classes/$wims_class/tool/.toolindex
+        !distribute lines $sh into s_,t_,ti,d_,o_
+        $table_tr
+          <td>
+            <label for="tool_$i">
+              !set wims_ref_class=wims_tool_item
+              !href module=$s_&$t_ $ti
+            </label>
+          </td>
+          <td class="wims_status_$o_">
+            !item $[$o_+1] of $wims_name_status
+            !set wims_ref_class=wims_button
+            !href module=adm/class/adddoc&job=prop&tool=$i $wims_name_change
+          </td>
+          <td>
+            !set doc_$i=!positionof item tool $i in $(data[3;])
+            <input type="number" name="tool_$i" size="5" value="$(tool_$i)" id="tool_$i">
+          </td>
+        </tr>
+      !next i
+
+      !! -- glossary data
+      !for i=1 to $glossarycnt
+        !set sh=!record $i of wimshome/log/classes/$wims_class/tool/.glossaryindex
+        !distribute lines $sh into o_,ti
+        $table_tr
+        <td>
+          <label for="glossary_$i">
+            !set wims_ref_class=wims_glossary_item
+            !href module=adm/tool/glossary&gl=$i $ti
+          </label>
+        </td>
+        <td class="wims_status_$o_">
+          !item $[$o_+1] of $wims_name_status
+          !set wims_ref_class=wims_button
+          !href module=adm/class/glossary&job=chstatus&gl=$i $wims_name_change
+        </td>
+        <td>
+          !set glossary_$i=!positionof item glossary $i in $(data[3;])
+          <input type="number" name="glossary_$i" size="5" value="$(glossary_$i)" id="glossary_$i">
+        </td>
+      </tr>
+    !next i
+
+    !! -- freework data
+    !for i=1 to $freeworkcnt
+        !set sh=!record $i of wimshome/log/classes/$wims_class/freeworks/.freeworks
+        !distribute lines $sh into o_,bl,ti
+        $table_tr
+          <td>
+            <label for="freework_$i">
+              !set wims_ref_class=wims_freework_item
+              !href module=adm/class/freework/&freework=$i $ti
+            </label>
+          </td>
+          <td class="wims_status_$o_">
+            $(wims_name_shstatus[$o_+1])
+          </td>
+          <td>
+            !set freework_$i=!positionof item freework $i in $(data[3;])
+            <input type="number" name="freework_$i" size="5" value="$(freework_$i)" id="freework_$i">
+          </td>
+        </tr>
+    !next i
+  </div>
+  $table_end
+</div>
+
+
+<div class="wimscenter wimsform"><input type="submit" value="$wims_name_tosave" name="save"></div>
+!formend
+</div>

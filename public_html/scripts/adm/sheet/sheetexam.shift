@@ -1,0 +1,90 @@
+!!
+!! move a field of a .sheet$sheet or .exam$exam to another position
+!! keep correct score dependancy
+!! input parameter :
+!! item 1 : word exam or word sheet (...)
+!! item 2 : num of exam or sheet to be tranform
+!! item 3 : the position where the field be inserted after (next are translated). if empty, the field is deleted if 0 the field is placed in first position
+!! item 4 : the position of the source field 
+!! wims_read_parm : name of record
+
+!distribute item $wims_read_parm into type_,num_,target_,source_
+!! line number containt score dependancy (not same for exam and sheet)
+!if $type_=sheet
+  li_=7
+!else
+  li_=4
+!endif
+ecnt_=!recordcnt wimshome/log/classes/$wims_class/$(type_)s/.$(type_)$num_
+!for e_=1 to $ecnt_
+  field_$e_=!record $e_ of wimshome/log/classes/$wims_class/$(type_)s/.$(type_)$num_
+  field_$e_=!line 1 to 11 of $(field_$e_)\
+\
+\
+\
+\
+\
+\
+\
+
+
+!next e_
+list_=!values v for v=1 to $ecnt_
+list_=!replace item number $source_ by $empty in $list_
+!if $target_!=$empty
+  !if $target_=0
+    list_=$source_,$list_
+  !else
+    !if $target_=$[$ecnt_+1]
+      list_=$list_,$source_
+    !else
+      !if $target_!=$empty
+        !if $target_<$source_
+          list_=!replace item $target_ by $source_,$target_ in $list_
+        !else
+          list_=!replace item $target_ by $target_,$source_ in $list_
+        !endif
+      !endif
+    !endif
+  !endif
+!endif
+list_=!nonempty item $list_
+mlist_=$empty
+!for i_=1 to $ecnt_
+  p_=!positionof item $i_ in $list_
+  !if $p_=$empty
+    p_=EMPTY
+  !endif
+  mlist_=!append item $p_ to $mlist_
+!next i_
+ecnt_=!itemcnt $list_
+!writefile wimshome/log/classes/$wims_class/$(type_)s/.$type_$num_ $empty
+!for e_=1 to $ecnt_
+  !! ------- check for score dependancy
+  sco_=!line $li_ of $(field_$(list_[$e_]))
+  !if $sco_!=$empty
+    nsco_=$empty
+    sco_=!items2lines $sco_
+    sco_=!replace internal : by , in $sco_
+    sco_=!replace internal + by , in $sco_
+    nbl_=!linecnt $sco_
+    !for i_=1 to $nbl_
+      nbi_=!itemcnt $(sco_[$i_;])
+      nli_=$empty
+      !for j_=1 to $nbi_-1
+        !if $(mlist_[$(sco_[$i_;$j_])])!=EMPTY
+          nli_=!append item $(mlist_[$(sco_[$i_;$j_])]) to $nli_
+        !endif
+      !next j_
+      nli_=!nonempty item $nli_
+      nli_=!replace internal , by + in $(nli_)
+      !if $nli_!=$empty
+        nli_=$nli_:$(sco_[$i_;$nbi_])
+        nsco_=!append item $nli_ to $nsco_
+      !endif
+    !next i_
+    field_$(list_[$e_])=!replace line number $li_ by $nsco_ in $(field_$(list_[$e_]))
+  !endif
+  !! save field
+  !appendfile wimshome/log/classes/$wims_class/$(type_)s/.$type_$num_ :$(field_$(list_[$e_]))
+!next e_

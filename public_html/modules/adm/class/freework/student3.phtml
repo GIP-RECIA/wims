@@ -1,0 +1,236 @@
+!! display freework page for student and type=3
+
+!if $emptypage=yes
+  !exit
+!endif
+
+!if $output=no
+  <div class="wims_msg info">
+  !if $beginning_!=$empty
+    $name_notyet $l_date_out $name_at $begh_:$begm_
+  !else
+    $name_notavailable
+  !endif
+  </div>
+  !exit
+!endif
+
+!if $activetest>=2
+  <div class="wims_msg info">
+    $name_copie_toolate2
+  </div>
+!else
+    !if $toolate=yes
+      <div class="wims_msg info">
+      $name_copie_toolate
+      !read adm/date.phtml $deadline
+      $l_date_out $wims_name_at
+      !replace internal : by H in $(timedeadline).
+      </div>
+    !else
+      !if $nbrezonestudent=0
+        $name_copie_type1
+      !else
+        $name_copie_type2
+      !endif
+      !read adm/date.phtml $deadline
+      $l_date_out $wims_name_at
+      !replace internal : by H in $(timedeadline).
+
+      !if $studentclose=1
+        !if $job2=consigne
+           <div class="wims_msg alert">
+           $name_close_alertpre1
+           <span class="wims_button disabled">$name_close_confirm</span>
+           $name_close_alertpre2
+           </div>
+        !else
+          !if $studentmode=0
+             !let closetime=!char 10 to 14 of $test_close
+             !read adm/date.phtml $test_close
+             <div class="wims_msg info">$(name_close_closed[1]) $l_date_out $wims_name_at $closetime ($(name_close_closed[2])).</div>
+          !else
+            !form reply
+             <div>$name_close_info
+             <input type="hidden" name="job" value="$job" >
+             <input type="hidden" name="freework" value="$freework" >
+             <input type="hidden" name="job2" value="consigne" >
+             <input type="submit" name="consigne" value="$name_close_doclose" >
+             </div>
+            !formend
+          !endif
+        !endif
+      !endif
+
+      !if $seealltime=1
+        <div>$name_warningseealltime</div>
+      !endif
+    !endif
+!endif
+!if $activetest>1
+    <div class="wims_msg info">$name_userperimemessage3</div>
+!endif
+!if $desc!=$empty
+  <div class="wims_freework_desc">$desc</div>
+!endif
+
+<div class="wims_widget_box">
+  <div class="title_box">
+    <h2 class="wims_title">$(name_subject)</h2>
+  </div>
+  <div class="box_content">
+    !for i=1 to $nbrezoneteacher
+      !if $(ztypeteacher$i)=wimsexo
+        !read applet/$(ztypeteacher$i) displayhtml teacher $i $studentmode $wims_user
+      !else
+        !read applet/$(ztypeteacher$i) displayhtml teacher $i 0 $wims_user
+      !endif
+    !next i
+  </div>
+</div>
+
+!if $nbrezonestudent>0
+!if $studentmode=1
+  <div class="wims_widget_box">
+  <fieldset class="property_fields blockcenter">
+    <legend>$(name_answerzone)</legend>
+    !set wims_form_method=post
+    !form reply
+      <input type="hidden" name="job" value="$job" >
+      <input type="hidden" name="freework" value="$freework" >
+      <input type="hidden" name="job2" value="savezone" >
+      !reset with_text
+      !for i=1 to $nbrezonestudent
+          !read applet/$(ztypestudent$i) displayhtml student $i $studentmode $wims_user
+          !if $(ztypestudent$i)=texte
+            !let with_text=1
+          !endif
+      !next i
+      !if $onclickactionlist!=$empty
+        !let onclickactionlist=onclick="$onclickactionlist"
+      !endif
+      <div class="wimscenter">
+        !if $wims_user=supervisor
+          <input type="submit" value="$wims_name_tosave" disabled >
+        !else
+          <input type="submit" value="$wims_name_tosave" $onclickactionlist >
+          !if $with_text=1
+            <input type="submit" name="cf_preview" value="$name_preview" class="wims_secondary_button" >
+            !reset cf_preview
+          !endif
+        !endif
+      </div>
+    !formend
+    !! ------- manage of file form upload in all zone
+    !if $ltdownloadzone!=$empty
+      !if $wims_user=supervisor
+        !read proc/uploadfileform.phtml $ltdownloadzone\
+1\
+disabled
+      !else
+        !read proc/uploadfileform.phtml $ltdownloadzone\
+1
+      !endif
+    !endif
+  </fieldset>
+  </div>
+!else
+  !if $activetest<2
+    <div class="wims_widget_box">
+      <div class="title_box">
+        <h2 class="wims_title">$(name_answerzone)</h2>
+      </div>
+      <div class="box_content">
+        !for i=1 to $nbrezonestudent
+            !read applet/$(ztypestudent$i) displayhtml student $i $studentmode $wims_user
+        !next i
+      </div>
+    </div>
+  !endif
+!endif
+!endif
+
+!if $activetest<2
+  !if $studentclose=1 and $job2=consigne
+    !form reply
+    <div class="wims_widget_box">
+      <div class="title_box">
+        <h2 class="wims_title">$name_close_confirm</h2>
+      </div>
+    <div class="box_content">
+    <div class="wims_msg alert">
+      $name_close_alertpost
+    </div>
+    <div class="wimscenter">
+      <input type="hidden" name="job" value="$job" >
+      <input type="hidden" name="freework" value="$freework" >
+      <input type="hidden" name="job2" value="confirm" >
+      <input type="submit" name="confirm" value="$name_close_confirm" >
+      <input type="submit" name="giveup" class="wims_secondary_button" value="$wims_name_giveup">
+    </div>
+    </div>
+    </div>
+    !formend
+  !endif
+!endif
+
+!! shouldn't this be set by mkglobalvar
+!if $codownload=1 or $activetest>=2
+  <div class="wims_widget_box">
+    <div class="title_box">
+      <h2 class="wims_title">$(name_app)</h2>
+    </div>
+    <div class="box_content">
+      !if $sizelimitfile>0
+        <div><strong>$(name_correctedfile)</strong>
+           !read proc/listfile.phtml usersol 0 $userv
+        </div>
+      !endif
+      !if $seealltime=1 and $nbrestudent>0
+        <div><strong>$name_remark</strong>$remark</div>
+      !endif
+      <div><strong>$name_finalremark</strong>$finalremark</div>
+      !if $scoring>0
+        <div>
+          !let k_=!positionof item $wims_user in $uulist
+          !if $k_!=$empty
+            !let t_=!record $[$k_+1] of wimshome/log/classes/$wims_class/.grades
+            !let t_=!item $[$scoring+2] of $t_
+          !else
+            !let t_=$empty
+          !endif
+          <strong>$(name_score)</strong> $t_/$maxscore
+        </div>
+      !endif
+    </div>
+  </div>
+!else
+  !if $seealltime=1 and $remark!=$empty
+    <div class="wims_widget_box">
+    <div class="box_content">
+      <div class="title_box"><h2 class="wims_title">$(name_remarkinwork)</h2></div>
+      <div>$remark</div>
+    </div>
+    </div>
+  !endif
+!endif
+
+
+!if $flistsolution!=$empty
+  <div class="wims_widget_box">
+    <div class="title_box">
+      <h2 class="wims_title">$(name_solution)</h2>
+    </div>
+    <div class="box_content">
+      !if $displaysolution=1
+        !read proc/listfile.phtml solution 0
+      !else
+        $name_solutiondate
+        !read adm/date.phtml $soldate
+        $l_date_out
+        $wims_name_at
+        !replace internal : by H in $(timesoldate).
+      !endif
+    </div>
+  </div>
+!endif

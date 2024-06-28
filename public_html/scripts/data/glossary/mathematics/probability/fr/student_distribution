@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Loi de Student
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(n) un entier strictement positif. La <strong>loi de Student</strong>
+\(\mathcal{T}(n)) à \(n) degrés de liberté est la loi de la variable aléatoire
+\(\frac{X}{\sqrt{Y/n}}) lorsque \(X) est une variable aléatoire de loi normale
+\(\mathcal{N}(0,1)) et \(Y) est une variable aléatoire indépendante de \(X) de
+loi du chi-deux \(\chi^{2}(n)). C'est la loi continue sur \(\RR) qui a comme
+densité
+
+<div class="wimscenter">
+\(x\mapsto\frac{\Gamma(\frac{n+1}{2})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{x^2}{n})^{-\frac{n+1}{2}})
+</div>
+</div>
+
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th><th>Fonction caractéristique</th></tr>
+<tr><td>0 si \(n>1) </td><td>\(\frac{n}{n-2}) si \(n>2)</td><td></td></tr></table>

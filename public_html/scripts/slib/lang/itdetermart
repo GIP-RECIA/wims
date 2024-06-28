@@ -1,0 +1,102 @@
+!if $wims_read_parm!=slib_header
+ !goto proc
+!endif
+
+slib_author=Marina,Cazzola
+
+slib_example=casa,f\
+muro,m\
+articolo,m\
+articoli,mg\
+albicocca,f\
+albicocca,f,di\
+albicocche,fg\
+ananas,mg\
+ananas,m\
+labbra,fg
+
+!exit
+
+:proc
+!distribute item $wims_read_parm into slib_word,slib_genere,slib_prop
+slib_out=
+
+!! eventuali eccezioni: esempio "le labbra", diventano fg e mg
+
+slib_iniz=!char 1 of $slib_word
+slib_iniz=!lower $slib_iniz
+slib_due=!char 1..2 of $slib_word
+slib_due=!lower $slib_due
+
+!default slib_prop=
+
+slib_out=$slib_word $slib_due $slib_genere
+slib_prenome=
+
+!if $slib_prop=di
+ slib_prop=de
+!endif
+
+!if $slib_prop=in
+ slib_prop=ne
+!endif
+
+!if $slib_prop iswordof a da de su ne
+ slib_prenome=l
+!endif
+
+!if $slib_genere=f
+!! femminile: l' quando segue vocale, altrimenti la
+ !if $slib_iniz isin aeiou
+  slib_out=$slib_prop$(slib_prenome)l'$slib_word
+  !goto fine
+ !else
+  slib_out=$slib_prop$(slib_prenome)la $slib_word
+  !goto fine
+ !endif
+!endif
+
+!if $slib_genere=m
+!! lo se pn, ps, gn, z, x, y, s inpura, i + vocale
+ !if $slib_due iswordof pn ps gn sc st sp sg ia ie io iu ii
+  slib_out=$slib_prop$(slib_prenome)lo $slib_word
+  !goto fine
+ !endif
+ !if $slib_iniz isin zxy
+  slib_out=$slib_prop$(slib_prenome)lo $slib_word
+  !goto fine
+ !endif
+ !if $slib_iniz isin aeiou
+!! l' se (altra) vocale
+  slib_out=$slib_prop$(slib_prenome)l'$slib_word
+  !goto fine
+ !endif
+!! il in tutti gli altri casi
+ !if $slib_prop iswordof de su
+   slib_prenome=$(slib_prop)l
+ !else
+   slib_prenome=il
+ !endif
+ slib_out=$slib_prenome $slib_word
+ !goto fine
+!endif
+
+!if $slib_genere=fg
+!! plurale femminile, articolo "le"
+ slib_out=$slib_prop$(slib_prenome)le $slib_word
+!endif
+
+!if $slib_genere=mg
+!! plurale maschile, "i" e "gli" con le stesse regole sopra
+ !if $slib_due iswordof pn ps gn sc st sp sg
+   slib_out=$(slib_prop)gli $slib_word
+   !goto fine
+ !endif
+ !if $slib_iniz isin zxyaeiou
+   slib_out=$(slib_prop)gli $slib_word
+   !goto fine
+ !endif
+   slib_out=$(slib_prop)i $slib_word
+!endif
+
+:fine

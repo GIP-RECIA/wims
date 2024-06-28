@@ -1,0 +1,18 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Matrice puissance (exemple)
+
+!readproc data/glossary/mathematics/algebra/macro/matrix_operation
+
+
+Soit \(A\) la matrice carrée définie par \(A = [$gl_A4]\).
+<br>La puissance $gl_p$-ième de la matrice \(A\) est \(A^{$gl_p$} =\) \([$gl_Ap]\).
+
+
+!if $gl_n!=$gl_m
+<div><span class="wims_warning">
+  $wims_name_warning</span>:
+  On ne peut pas prendre la puissance $gl_p$-ième de la matrice
+  \([$gl_A1]\) car elle n'est pas carrée.
+</div>
+!endif

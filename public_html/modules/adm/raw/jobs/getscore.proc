@@ -1,0 +1,50 @@
+# GetScore
+# Fournit les resultats de l'utilisateur quser
+
+#on commence par verifier la classe $qclass
+!read scripts/check.class
+!if $error!=$empty
+ !exit
+!endif
+
+!read scripts/check.user
+!if $error!=$empty
+  !exit
+!endif
+
+!if $qsheet!=$empty
+  type=sheets
+  !read scripts/check.proc
+  !if $error!=$empty
+    !exit
+  !endif
+  summary      = !getscorepercent class=$qclass user=$quser
+  summary      = !line  $qsheet of $summary
+  gotdetail    = !getscore        class=$qclass user=$quser sheet=$qsheet
+  meandetail   = !getscoremean    class=$qclass user=$quser sheet=$qsheet
+  remain       = !getscoreremain  class=$qclass user=$quser sheet=$qsheet
+  best_detail  = !getscorebest    class=$qclass user=$quser sheet=$qsheet
+  level_detail = !getscorelevel   class=$qclass user=$quser sheet=$qsheet
+  weights      = !getscoreweight class=$qclass user=$quser sheet=$qsheet
+  requires     = !getscorerequire class=$qclass user=$quser sheet=$qsheet
+!else
+  summary      = !getscorepercent class=$qclass user=$quser
+  gotdetail    = !getscore        class=$qclass user=$quser
+  meandetail   = !getscoremean    class=$qclass user=$quser
+  remain       = !getscoreremain  class=$qclass user=$quser
+  best_detail  = !getscorebest    class=$qclass user=$quser
+  level_detail = !getscorelevel   class=$qclass user=$quser
+  weights      = !getscoreweight class=$qclass user=$quser
+  requires     = !getscorerequire class=$qclass user=$quser
+!endif
+
+examscore    = !examscore       class=$qclass user=$quser
+score_status = !getscorestatus  class=$qclass
+
+m=!record 0 of wimshome/log/classes/$qclass/sheets/.severity
+scoremax=!word 1 of $m
+
+option=!listintersect $option and $userdefs
+!if $option=$empty
+  option=$userdefs
+!endif

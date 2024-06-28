@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 3
+filled
+fillcolor blue
+square 0,0,120,green

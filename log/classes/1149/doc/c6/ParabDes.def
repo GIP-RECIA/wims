@@ -1,0 +1,140 @@
+!set titb=Méthode pour les Paraboles :<br> Utiliser le lien entre l'Analyse et la Géométrie
+!set keyw=
+!set datm=20210827
+!set prev=
+!set next=embedParabTab
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randitem 2,3,4
+
+!set m_a=$[rint($(tmp0))]
+
+!set tmp0=!randitem -1,1
+
+!set tmp1=!randitem 2,4
+
+!set m_xS=$[rint($(tmp0)*$(tmp1))]
+
+!set tmp0=!randitem -1,1,2,3
+
+!set m_yS=$[rint($(tmp0))]
+
+!ifval $m_yS>0 
+!set m_s= + 
+
+!else
+!set m_s= 
+
+!endif
+
+<p>
+Les paraboles sont des objets géométriques auxquels on peut appliquer
+des transformations géométriques, notamment des translations.
+Celles qui ont un axe vertical ont une équation du type
+
+!insmath y = a*x^2 + b*x + c
+ avec 
+!insmath a \neq 0
+ dans un repère orthonormé donné.
+Ce sont aussi les courbes des fonctions trinômes.
+Chaque transformation géométrique va modifier la formule du trinôme associé.
+<br>
+Comprendre le lien entre les transformations et les fonctions associées permet de
+trouver une formule de fonction à partir d'une fonction de référence en observant
+les points particuliers de sa courbe.
+<br>
+C'est l'enjeu de l'exercice "La fusée retardée 1".
+<br>
+<p>Il faut d'abord que la courbe de la fonction soit une parabole d'axe vertical.
+puis repérer les coordonnées 
+!insmath (x_S ; y_S)
+ du point d'intersection
+de cet axe avec la parabole,
+repérer si ce point correspond à un minimum ou un maximum,
+ce qui donne le signe de 
+!insmath a
+ (respectivement positif ou négatif).
+</p><p>
+La courbe est alors l'image de celle de la fonction 
+!insmath x \mapsto a x^2
+
+par la translation de vecteur 
+!insmath x_S \vec{i} + y_S \vec{j}
+ et la formule de la fonction est &#58;
+</p><div class="wimscenter">
+ 
+!insmath f(x) = a (x - x_S)^2 + y_S
+.
+ </div><p>
+Pour déterminer 
+!insmath a
+, on peut remarquer que 
+!insmath f (x_S + 1) - f (x_S) = a
+,
+ce qui ressemble à la technique du coefficient directeur mais n'est valable
+qu'en partant du sommet 
+!insmath S
+
+de la parabole et seulement pour le point d'abscisse 
+!insmath x_S + 1
+.
+<br>
+D'ailleurs 
+!insmath a
+ ne s'appelle pas le coefficient directeur du trinôme mais on peut
+l'appeler le coefficient du carré.
+</p><p>
+Savoir trouver la forme canonique à partir d'une expression algébrique
+permet de résoudre des problèmes de géométrie.</p><p>
+La formule d'un trinôme peut représenter l'aire d'une surface constituée de figures géométriques ;
+en effet si 
+!insmath x
+ peut représenter une longueur, 
+!insmath x^2
+ représente l'aire du carré de côté 
+!insmath x
+,
+et 
+!insmath x =
+ 1 
+!insmath x
+ représente l'aire du rectangle de côtés 1 et 
+!insmath x
+.
+C'est une autre façon de voir les formules algébriques et cela peut permettre
+de se rappeler les identités remarquables.
+</p><div class="float_right">
+<img alt="Garçon nommé G.O.Maitrie" src="$m_filedir/geom.png" />
+</div>
+<h3 class="l2w_content exemple">Exemple</h3>
+  <div class="l2w_content exemple">
+
+!insmath a=\a
+&nbsp;
+!insmath x_S = \xS
+&nbsp;
+!insmath y_S = \yS
+
+!insmath f(x) = \a*(x-\xS)^2+\yS
+
+!read primitives.phtml 1, draw, 300,300, xrange = -5,7	yrange=-2,10	parallel -5,-2,-5,10,1,0,13,lightblue	parallel -5,-2,7,-2,0,1,13,lightblue	arrow -5,0,7,0,10,black	arrow 0,-2,0,10,10,black	text black,-0.2,-0.1,medium,0		text black,-1.1,-0.1,medium,-1	text black,-2.1,-0.1,medium,-2	text black,-3.1,-0.1,medium,-3	text black,-4.1,-0.1,medium,-4	text black,0.9,-0.1,medium,1	text black,1.9,-0.1,medium,2	text black,2.9,-0.1,medium,3	text black,3.9,-0.1,medium,4	text black,4.9,-0.1,medium,5	text black,5.9,-0.1,medium,6	text black,6.9,-0.1,medium,7	text black,-0.3,1.3,medium,1	text black,-0.3,2.3,medium,2	text black,-0.3,3.3,medium,3	text black,-0.3,4.3,medium,4	text black,-0.3,5.3,medium,5	text black,-0.3,6.3,medium,6	text black,-0.3,7.3,medium,7	text black,-0.3,8.3,medium,8	text black,-0.3,9.3,medium,9	plot green,\a*x^2	dline 1,0,1,\a,black	plot red,\a*(x-\xS)^2+\yS	arrow 0,0,\xS,\yS,10,black	text red,\xS,\yS-0.1,medium,S	dline \xS,\yS,\xS+1,\yS,black	dline \xS+1,\yS,\xS+1,\yS+\a,black	text red,\xS+1.1,0.5*\a+\yS,medium,a	text red,1.1,0.5*\a,medium,a	 
+
+<br>
+Le sommet a pour coordonnées ($m_xS ; $m_yS).
+Le vecteur de la translation est &#58;
+<div class="wimscenter">
+!insmath \xS \vec{i}
+ $m_s 
+!insmath \yS \vec{j}
+.</div>
+</div>
+

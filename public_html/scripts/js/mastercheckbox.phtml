@@ -1,0 +1,23 @@
+!! put a master check box to check/uncheck all checkbox of class $wims_read_parm
+
+<input id="$(wims_read_parm)_master" type="checkbox" onclick="allcheck('$wims_read_parm','$(wims_read_parm)_master')" />
+
+!if $configuration_mastercheckboxread_!=yes
+  <script type="text/javascript" > 
+      function allcheck(classe,masterid){
+         tabl_c = document.getElementsByClassName(classe);
+         if (document.getElementById(masterid).checked){
+             for (var i = 0; i < tabl_c.length; i++){
+              tabl_c[i].checked = true;
+             }
+         }
+         else {
+            for (var i = 0; i < tabl_c.length; i++){
+              tabl_c[i].checked = false;
+            }
+         } 
+      }
+  </script>
+  !let configuration_mastercheckboxread_=yes
+!endif 
+

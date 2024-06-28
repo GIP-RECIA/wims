@@ -1,0 +1,35 @@
+
+!set scorestat=!getscorestatus sheet=$wims_sheet
+!if $exotrymax>0 and $cmd notwordof next reply and $scorestat!=no
+  !set tmp=!getscorealltries sheet=$wims_sheet work=$wims_exo
+  !set tmp2=!getscoremaxexotry sheet=$wims_sheet work=$wims_exo
+  <div class="wims_msg info">
+  !if $tmp2=yes or $exotrymax<=$tmp
+    $wims_name_maxexotry1
+  !else
+      $wims_name_maxexotry0
+    !if $cmd!=resume
+      $[$tmp+1].
+    !else
+      $tmp.
+    !endif
+    $wims_name_maxexotry2 $exotrymax.
+    <p>
+    !if $wims_scorereg=suspend
+      $wims_name_maxexotry_warning2
+    !else
+      $wims_name_maxexotry_warning1
+    !endif
+    </p>
+  !endif
+  </div>
+!endif
+!if $module_score<9.8 and $status=$empty and $seedlastcnt < $seedrepeat and $cmd iswordof reply and $scorestat!=no
+  <div class="wims_msg info">
+  !if $qnum>1
+    $name_tryagain2
+  !else
+    $name_tryagain
+  !endif
+  </div>
+!endif

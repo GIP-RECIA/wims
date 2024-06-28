@@ -1,0 +1,211 @@
+!! ------- display list of user of the living
+<div id="living_props">
+  <strong>$name_regusers</strong>: $name_teacher
+  !if $(livingusers_$living)=all
+    $name_and $(name_all).
+  !else
+    $(listnameusers).
+  !endif
+</div>
+
+!if $tchat_configfilesize>0 and . notin $user
+!! html interface to upload a file + show actual file
+  !if $wims_user!=supervisor
+    !set wims_form_method=file
+    !form reply
+      <div class="field box">
+        <input type="hidden" name="job" value="uploadfile" >
+        <label for="deposit">$name_depos:</label>
+        <input type="file" size="35" name="wims_deposit" id="deposit" onchange="document.getElementById('msgerror').style.display='none'" >
+        <input type="submit" value="$wims_name_submit" class="wims_button" >
+        !if $usertmpfile!=$empty
+          $name_actualfile:
+  !!        !getfile tchat/$usertmpfile $usertmpfile
+          <a href="$wims_protocol://$httpd_HTTP_HOST/wims/getfile/tchat/$usertmpfile?session=$wims_session" download="$usertmpfile">$usertmpfile</a>
+        !endif
+        <div class="formHelp">$name_usertmpfiledesc</div>
+      </div>
+  !else
+    !let nb=!linecnt $list_tmpfile
+    !if $nb>0
+      <div class="field box">
+        $name_depos2:
+        !let nb=!linecnt $list_tmpfile
+        !for k=1 to $nb
+  !!        !getfile tchat/$user/$(list_tmpfile[$k;2]) $(list_tmpfile[$k;2])
+          <a href="$wims_protocol://$httpd_HTTP_HOST/wims/getfile/tchat/$user/$(list_tmpfile[$k;2])?session=$wims_session" download="$(list_tmpfile[$k;2])">$(list_tmpfile[$k;2])</a>
+        !next k
+      </div>
+    !endif
+  !endif
+!endif
+
+!if $job2=newmsg
+  !form reply
+    <fieldset class="property_fields blockcenter">
+      <input type="hidden" name="job" value="edit">
+      <div class="field box fullwidth">
+        <label for="desc">$wims_name_newmsg</label>
+        !let insmath_rawmath=no
+        !let wims_backslash_insmath=no
+        <textarea id="desc" name="desc" rows="6" maxlength="$msg_limit" required>$desc</textarea>
+        !let insmath_rawmath=yes
+        !let wims_backslash_insmath=yes
+      </div>
+      !if $desc!=$empty
+        <div class="field box fullwidth">
+          <strong>$name_Message</strong>: $desc
+        </div>
+      !endif
+      <div class="wimscenter">
+        <input type="submit" name="save" value="$wims_name_tosave">
+        &nbsp;
+        !set wims_ref_class=wims_button wims_secondary_button
+        !href module=adm/class/tchat $wims_name_giveup
+        &nbsp;
+        <input type="submit" name="cf_preview" value="$name_preview" class="wims_secondary_button" >
+      </div>
+    </fieldset>
+  !formend
+!else
+  !let wims_menu_items=!append line newmsg,1,cmd=reply&+job=edit&+job2=newmsg to $wims_menu_items
+!endif
+
+
+!! display for viewsession (list for supervisor and warning for user)
+!if . notin $user
+  !if $wims_user=supervisor
+    !if $list_window!=$empty
+      $name_viewpage
+        !let nbses=!itemcnt $list_window
+        !for k=1 to $nbses
+          !if $(list_window[$k])!=$empty
+              &nbsp;
+              !set wims_ref_class=wims_button
+              !set rd=!randint 111111,999999
+              !set tmp=!line $k of $list_title
+              !href target=wims_check module=adm/class/tchat&+job=viewpage&+numberses=$k&+user=$user&+serial=$rd $tmp
+          !endif
+        !next k
+    !else
+      <div class="wims_msg info">
+        !if $userconnected=no
+          $name_partnotconnected
+        !else
+          !if $sharescreen=no
+            $name_nosharingscreen
+          !else
+            $name_nopagetoview
+          !endif
+        !endif
+      </div>
+    !endif
+  !endif
+!endif
+
+<div class="msg_list">
+!if $nbmsg>0
+  !let nblastrecord=!recordcnt wimshome/log/classes/$wims_class/tchat/$user
+  !for k=1 to $nbmsg
+    <div class="tchat-item">
+      !if $k<=$nblastrecord
+        !let mem_file=$user
+        !let mem_rec=-$k
+      !else
+        !let mem_file=$(user).old$nbfile
+        !let mem_rec=-$[$k-$nblastrecord]
+      !endif
+      !let data=!record $mem_rec of wimshome/log/classes/$wims_class/tchat/$mem_file
+      !let tmp=!line 1 of $data
+      !let msg=!line 2 to -1 of $data
+      !let msg=!detag $msg
+      !distribute word $tmp into muser,date,hide
+      !if $muser!=supervisor
+        !let type=user
+        !let p=!positionof item $muser in $ulist
+        !let username=$(nlist[$p])
+      !else
+        !let type=supervisor
+      !endif
+      !if $hide!=hide or $wims_user=supervisor
+        <div class="tchat-msg tchat-$type
+        !if $hide=hide
+          tchat-hidden
+        !endif
+        ">
+          <div class="tchat-date">
+            !let dt1=!char 1 to 8 of $date
+            !let dt2=!char 10 to 14 of $date
+            !readproc adm/date.phtml $dt1
+            $l_date_out $wims_name_at
+            !replace internal : by H in $dt2
+          </div>
+          <div class="tchat-username">
+            !if $type=supervisor
+              $wims_name_nameteacher
+            !else
+              $username
+            !endif
+          </div>
+          !if $hide=hide
+            <span class="tchat-status">($(wims_name_status[1]))</span>
+          !endif
+          <div class="tchat-text">$msg</div>
+        </div>
+        !if $wims_user=supervisor
+          <div class="tchat-actions">
+            !let wims_ref_class=wims_button
+            !if $hide=hide
+              !href cmd=reply&+module=$module&+job=showhide&+mem_file=$mem_file&+mem_rec=$mem_rec&+user=$user#living_props $wims_name_Show
+            !else
+              !href cmd=reply&+module=$module&+job=showhide&+mem_file=$mem_file&+mem_rec=$mem_rec&+user=$user#living_props $wims_name_hide
+            !endif
+          </div>
+        !endif
+      !endif
+    </div>
+  !next k
+!else
+  $name_nomsg
+!endif
+</div>
+
+!! ---------- make list of living and make link in the wims_menu_items
+!if $wims_user!=supervisor and $otherliving!=$empty
+    !let wims_menu_items=!append line itemsep,0,$name_living to $wims_menu_items
+    !for k in $otherliving
+      &nbsp;
+      !if $k=$wims_user
+        !let name=$name_ownliving
+        !let wims_name_livingown=$name_ownliving
+        !let etiq=livingown
+      !else
+        !let name=!text select 0123456789 in $k
+        !let name=$(livingname_$name)
+        !let etiq=!char 2 to -1 of $k
+        !let wims_name_$etiq=$name
+      !endif
+      !let wims_menu_items=!append line $etiq,1,module=$module&job=edit&user=$k to $wims_menu_items
+    !next k
+!endif
+
+!! ------ wims_menu_item for user
+!if $wims_user!=supervisor
+  !set wims_menu_items=!append line ,0,$wims_name_setup to $wims_menu_items
+  !if $wims_sharescreen=yes
+    !set wims_menu_items=!append line living_stopshare,1,cmd=reply&+module=$module&+job=sharescreen\
+      to $wims_menu_items
+  !else
+    !set wims_menu_items=!append line living_activeshare,1,cmd=reply&+module=$module&+job=sharescreen\
+      to $wims_menu_items
+  !endif
+  !if $autorefresh=yes
+    !set wims_menu_items=!append line living_stoprefresh,1,cmd=resume&+module=$module&+job=edit&+mautorefresh=no\
+      to $wims_menu_items
+  !else
+    !set wims_menu_items=!append line living_activerefresh,1,cmd=resume&+module=$module&+job=edit&+mautorefresh=yes\
+      to $wims_menu_items
+  !endif
+!endif
+
+!reset job2,save,cf_abandon,cf_preview,desc

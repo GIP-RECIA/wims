@@ -1,0 +1,71 @@
+!! verification de la classe
+!if $wims_class=$empty
+  !restart module=home
+!endif
+
+!! gestion des autorisations sur les variables (securisation)
+wims_prefix=class user swork
+
+!! max user in a class to activate this module (maybe can be change with test)
+maxuser=50
+
+!readproc tabletheme
+
+!! --------- gestion des jobs du module
+!if $wims_user=supervisor
+  listjob=userlist,config,log
+  defjob=userlist
+  test=!fileexists wimshome/log/classes/$wims_class/swork
+  !sh mkdir -p $wims_home/log/classes/$wims_class/swork
+!else
+  listjob=swork,log
+  defjob=swork
+!endif
+!bound job within $listjob default $defjob
+
+!! ------------- traitement commun à tous les jobs du module
+nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+!if $nbuser>$maxuser
+  error=toomanyuser
+  notallowed=1
+  !exit
+!endif
+
+!if / isin $wims_class
+  userclass=$wims_superclass
+!else
+  userclass=$wims_class
+!endif
+
+!! ------------ log du module
+wims_module_log=$job
+
+!! lecture du fichier de langue
+!read adm/language lang/names.phtml
+
+!! ---- read class configuration file for swork
+!read wimshome/log/classes/$wims_class/swork/.def
+!bound swork_refreshtiming between 1 and 1000 default 2
+!bound swork_open within 1,0 default 0
+!bound swork_allowrefresh within 1,0 default 0
+!bound swork_nbexo between 1 and 10 default 5
+!bound swork_minsore between 0 and 10 default 0
+nbsheet=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+listsh=!values v for v=1 to $nbsheet
+swork_excludesh=!listintersection $swork_excludesh and $listsh
+
+!if $wims_user=supervisor and $swork_open!=1
+  job=config
+!endif
+
+!if $wims_user!=supervisor and $swork_open=0
+  error=notopen
+  notallowed=1
+  !exit
+!endif
+
+severity=!record 0 of wimshome/log/classes/$wims_class/sheets/.severity
+formulas=!record 0 of adm/class/sheetformula
+
+!! lecture du fichier spécifique du job appelé
+!changeto $job.proc

@@ -1,0 +1,20 @@
+title=OEF documentation
+description=
+author=
+address=
+copyright=&copy; 2020 (<a href="COPYING">GNU GPL</a>)
+version=1.00
+# minimal version of wims server under which the module may run
+wims_version=4.19g
+language=en
+
+# Possible categories: exercise, tool, dictionary, course, recreation, doc
+category=doc
+level=
+
+# e.g. algebra, analysis, geometry, etc.
+domain=
+
+# Anything you like.
+keywords=wims,wimshelp
+

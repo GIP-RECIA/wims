@@ -1,0 +1,19 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph
+!set gl_title=Graphe orienté
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  On appelle <strong>graphe orienté</strong> tout graphe dont les arêtes sont
+  définies par leur origine et leur extrémité, c'est-à-dire dont les arêtes sont
+  orientées, munies d'un sens.
+  <br>
+  Une arête d'un graphe orienté est définie par la donnée d'un couple de sommets.
+
+</div>
+

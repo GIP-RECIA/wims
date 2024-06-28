@@ -1,0 +1,9 @@
+tit=Liste des méthodes
+author=Rémi, Belloeil
+email=remi.belloeil@orange.fr
+copyright=gnu
+docopen=1
+doctoc=
+dlang=all
+header=<link rel="stylesheet" href="html/themes/_css/l2w.css" />
+desc=Les méthodes pour résoudre les problèmes avec leurs icones.

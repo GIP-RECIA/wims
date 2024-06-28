@@ -1,0 +1,6 @@
+# ListSheets
+# Liste les feuilles de la classe qclass
+
+list_type=sheets
+!read scripts/check.class
+!read scripts/listing.proc

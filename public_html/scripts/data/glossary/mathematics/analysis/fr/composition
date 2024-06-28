@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function
+!set gl_title=Composée de deux fonctions
+!set gl_level=H6 Générale&nbsp;Spécialité, H6 STI2D&nbsp;STL&nbsp;Spécialité
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(f\) une fonction numérique définie sur un ensemble \(\mathrm{I}\) dont
+l'image est incluse dans un ensemble \(\mathrm{J}\) et soit \(g\) une fonction
+définie sur <span style="white-space:nowrap">\(\mathrm{J}\).</span><br>
+On appelle <strong>fonction composée de \(f\) par \(g\)</strong> la fonction
+notée \(g\circ f\) définie pour tout \(x\in\mathrm{I}\) par
+<span style="white-space:nowrap">\(g\circ f(x)=g\left(f(x)\right)\).</span>
+</div>

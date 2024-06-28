@@ -1,0 +1,43 @@
+$wims_name_edfile
+<span class="wims_fname">$fname</span>
+$name_in_module
+<span class="wims_mod_title">$title</span>:
+!if $makeerror!=$empty
+  <div class="wims_msg alert">$makeerror</div>
+!else
+  !if $wims_module_log!=$empty and $error=$empty
+    <div class="wims_msg success" data-closable>
+      $name_save_done.
+      <button class="close-button wims-closer" aria-label="Dismiss alert" type="button" data-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  !endif
+!endif
+
+!form reply
+<input type="hidden" name="fname" value="$fname">
+
+<div class="wimscenter">
+  !sh content=`cat $devdir/$mod/$fname | sed 's/\&/\&amp;/g;s/</\&lt;/g'`\
+  cat <<@\
+  <textarea id="wims_deposit" class="nowrap" name="wims_deposit" cols="70" rows="10">$$content\
+</textarea>\
+@
+
+  <p>
+    <input type="submit" name="register" value="$wims_name_tosave">
+    $ $
+    <input type="submit" name="abandon" value="$wims_name_giveup" class="wims_secondary_button">
+  </p>
+</div>
+!formend
+
+!set wims_form_method=file
+!form reply
+  <input type="hidden" name="fname" value="$fname">
+  <input type="hidden" name="register" value="file_mode">
+  <input type="submit" value="$wims_name_send">
+  <label for="wims_deposit2">$name_replace:</label>
+  <input type="file" name="wims_deposit" id="wims_deposit2">
+!formend

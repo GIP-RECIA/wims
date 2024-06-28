@@ -1,0 +1,76 @@
+Vocabulaire des probabilités-Fluctuation
+
+??,2021
+1
+H4
+probability
+events,probability
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fluctuations d’une fréquence selon les échantillons, probabilités" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+
+:H3/probability/oefstatproba.fr
+exo=dailly1&qnum=1&qcmlevel=3&scoredelay=
+10
+1
+Probabilités 1
+Associer texte et <strong>probabilité</strong>.
+
+
+:H4/stat/oefprobacollege.fr
+exo=oefcarte1&exo=oefcarte2&exo=oefcarte3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=3
+10
+1
+Probabilités 2
+Calcul de <strong>probabilités</strong>. Tirage d'une carte d'un jeu. Résultat demandé <strong>sous une forme déterminée</strong> (variable selon les exercices).
+
+Résultat attendu sous une forme déterminée (fraction ; % ; ou décimale).
+:H4/stat/oefprobacollege.fr
+exo=oefroue3
+10
+1
+Probabilités 3
+Calcul de <strong>probabilités</strong>. Roue (type loterie).
+
+
+
+calculator
+:H3/probability/oefstatproba.fr
+exo=dailly3&qnum=1&qcmlevel=3&scoredelay=
+10
+1
+Probabilités 4
+Calcul de <strong>probabilités</strong>. Lancer d'un dé.
+
+
+:H3/probability/oefstatproba.fr
+exo=dailly5&qnum=1&qcmlevel=3&scoredelay=
+10
+1
+Probabilités 5
+Calcul de <strong>probabilités</strong>; événement <strong>contraire</strong>. Tirage d'une boule dans une urne.
+
+
+:H4/programming/oefechpython.fr
+exo=freq1&confparm1=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Python et probabilité 1
+Initialiser <strong>1 variable</strong>. Lancer, observer, envoyer la réponse.
+
+
+
+
+
+:H4/programming/oefechpython.fr
+exo=de4&confparm1=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Python et probabilité 2
+Exercice en 2 étapes: 1. Compléter un programme de <strong>simulation de lancers de dé</strong>. 2. Calculer des <strong>fréquences</strong> sur les résultats de la simulation.
+
+
+
+
+

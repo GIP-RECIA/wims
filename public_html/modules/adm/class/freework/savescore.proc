@@ -1,0 +1,35 @@
+!! ------------ save new score for all participant in the class
+!if $putiworkco!=0 or $codownload!=1
+  !restart module=adm/class/freework&job=configfw&freework=$freework
+!endif
+!sh mv $wims_home/log/classes/$wims_class/.grades $wims_home/log/classes/$wims_class/.grades.old
+data=!record 1 of wimshome/log/classes/$wims_class/.grades.old
+!writefile wimshome/log/classes/$wims_class/.grades :$data
+!!-- save score for old user
+ltolduser=!listcomplement $ulist in $uulist
+!if $ltolduser!=$empty
+  nb=!itemcnt $ltolduser
+  !for i=1 to $nb
+    key=!positionof item $(ltolduser[$i]) in $uulist
+    update_content=!record $[$key+1] of wimshome/log/classes/$wims_class/.grades.old
+    !appendfile wimshome/log/classes/$wims_class/.grades :$update_content
+  !next i
+!endif
+
+!for i=1 to $nbuser
+  student=!item $i of $ulist
+  key=!positionof item $student in $uulist
+  !bound score$i between 0 and $maxscore default $empty
+  !if $key=$empty
+    list=!values 0 for v=1 to $nbscore
+    list=!replace internal 0 by $empty in $list
+    list=!replace item number $scoring by $(score$i) in $list
+    !appendfile wimshome/log/classes/$wims_class/.grades :$student,$(flist[$i]) $(llist[$i]),$list
+  !else
+    update_content=!record $[$key+1] of wimshome/log/classes/$wims_class/.grades.old
+    update_content=!replace item number $[$scoring+2] by $(score$i) in $update_content
+    !appendfile wimshome/log/classes/$wims_class/.grades :$update_content
+  !endif
+!next i
+!sh rm -f $wims_home/log/classes/$wims_class/.grades.old
+!restart module=adm/class/freework&job=configfw&freework=$freework

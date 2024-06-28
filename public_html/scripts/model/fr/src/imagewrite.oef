@@ -1,0 +1,75 @@
+type=imaudio
+textarea="data instruction"
+iEdit="instruction"
+
+:Choisir parmi des étiquettes ce qui correspond à l'image (ou au texte présenté)
+Attention, ce modèle ne fonctionnera bien que si vous chargez les images sur wims.
+<p>
+Pour construire un exercice avec ce modèle, il suffit de taper la liste des images et
+des étiquettes correspondantes.
+</p>
+<p class="wims_credits">
+Auteur du modèle : <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Reconnaître une image}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Consigne
+\text{instruction=<p>Écris le mot correspondant à l'image.</p>
+<p><em>(L'exercice ne fonctionnera que quand vous y aurez chargé des images.)</em></p>}
+
+:Données
+<p>
+Les données pour les images sont à entrer en utilisant le format simple suivant (une ligne par image) :
+<pre>fichier1, mot1 
+fichier2, mot2
+...
+</pre>
+où fichier1, fichier2 ... sont les noms des fichiers des images (extensions comprises) et
+mot1 correspond au mot qui est à associer à l'image fichier1, ...
+\text{data=amphitheatre.png,l'amphithéâtre
+aqueduc.png, l'aqueduc
+arcdetriomphe.png,l'arc de triomphe
+cirque.png, le cirque
+domus.png, la domus
+temple.png, le temple
+theatre.png, le théâtre
+thermes.png, les termes
+}
+
+:La taille des cases en pixels.
+\text{sizeh=40}
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+\text{mot = randrow(\data)}
+\text{mot=wims(embraced randitem \mot)}
+\text{image=\mot[1]}
+\text{ext=item(2,wims(replace internal . by , in wims(lowercase \image)))}
+\text{mot =\mot[2]}
+
+\statement{
+  \instruction
+  <p class="wimscenter">
+    \if{\ext isitemof png,gif,jpg,jpeg}{
+      \img{\imagedir/\image}
+    }
+    {\image}
+  </p>
+  <div class="wimscenter">
+    \embed{r1,\sizeh
+      default
+      autocomplete="off"}
+  </div>
+}
+
+\answer{}{\mot}{type=case}

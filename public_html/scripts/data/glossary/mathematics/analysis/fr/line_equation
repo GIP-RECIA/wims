@@ -1,0 +1,31 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=line,line_equation,analytic_geometry
+!set gl_title=Équation cartésienne d'une droite du plan
+!set gl_level=H4
+:
+:
+:
+:
+Le plan est muni d'un repère.
+<div class="wims_thm">
+<h4>Théorème 1</h4>
+Soit \(D\) une droite.<br>
+Il existe trois nombres réels \(a\), \(b\) et \(c\) où \((a,b) \neq (0,0)\),
+tels que \(D\) soit l'ensemble des points \(\mathrm{M}\) de coordonnées \((x;y)\)
+vérifiant <span style="white-space:nowrap">\(a x + b y + c = 0\).</span>
+</div>
+
+<div class="wims_thm">
+<h4>Théorème 2</h4>
+Soit \(a\), \(b\) et \(c\) trois nombres réels tels que
+<span style="white-space:nowrap">\((a,b) \neq (0,0)\).</span><br>
+L'ensemble des points \(\mathrm{M}\) de coordonnées \((x;y)\) tels que
+\(a x + b y + c = 0\) est une droite <span style="white-space:nowrap">\(D\).
+</span></div>
+
+<div class="wims_defn">
+<h4>Définition</h4>
+L'équation \(a x + b y + c = 0\) est appelée <strong>équation cartésienne</strong>
+de la droite <span style="white-space:nowrap">\(D\).</span>
+</div>

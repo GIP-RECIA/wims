@@ -1,0 +1,116 @@
+:Instrucciones
+
+:instrucción,número de<br/>parámetros,descripción,parámetros opcionales,palabras de opción reconocidas
+
+:title
+1
+define el título del ejercicio
+
+:language
+1
+el idioma del ejercicio, tal como <span class="tt wims_code_words">en</span>, <span class="tt wims_code_words">es</span> o <span class="tt wims_code_words">fr</span>
+
+:author
+1
+define el autor del ejercicio. Escrito de la forma <span class="tt wims_code_words">apellido, nombre</span> (en caso de varios autores, usar un punto y coma entre ellos).
+
+:email
+1
+define la dirección de correo electrónico del autor (en caso de varios autores, usar una coma entre ellas).
+
+:format
+1
+formato del enunciado.
+
+
+help=format
+:css
+1
+define el estilo css
+
+:keywords
+1
+Palabras clave del ejercicio (preferiblemente tomar las palabras clave oficiales separadas por comas)
+
+:credits
+1
+permite insertar créditos al final del ejercicio (se evalúan las variables).
+
+:description
+1
+descripción del ejercicio para los estudiantes
+
+:observation
+1
+descripción del ejercicio para los profesores
+
+:precision
+1
+precisión al comparar la respuesta del usuario con la solución. Escriba un entero positivo n aquí: la comparación se hará con una tolerancia de 1/n.
+
+:range
+1
+rango de variables cuando se evalúa una función proporcionada por el usuario. Debe escribirse de la forma <span class="tt wims_code_words">n1..n2</span>, donde n1 es el punto inicial, y n2 es el punto final.
+
+:computeanswer
+1
+La instrucción <span class="tt wims_code_words">\computeanswer{ no }</span> especifica que el estudiante tiene que hacer los cálculos él mismo y entrar el valor final. Por otro lado, si especificamos <span class="tt wims_code_words">\computeanswer{ yes }</span>, el estudiante puede entrar una expresión como <span class="tt wims_code_words">5*5</span>, dejando que el ordenador haga los cálculos.
+
+:statement
+1
+El parámetro es el enunciado del ejercicio. Tiene que usarse una sola vez en el ejercicio.
+
+:answer
+2-5
+define una respuesta libre. El primer parámetro es el texto de la pregunta, y el segundo, la respuesta correcta. La respuesta será analizada según el tipo (numérica, funcional, textual, etc.).
+type option weight
+reorder shuffle nonstop
+help=reply
+
+:choice
+3-5
+define una elección múltiple. El primer parámetro es el texto que presenta las opciones, el segundo, la(s) opción(es) correcta(s), y el tercero la(s) opción(es) equivocada(s). Los últimos dos parámetros son listas de objetos separados por comas. Se permiten múltiples opciones correctas. Si una opción aparece en la lista de opciones correctas y erróneas, se tomará como buena.
+option weight
+shuffle noidontknow
+
+:condition
+2-4
+define una condición especial para la evaluación de las respuestas libres.
+option weight
+hide
+help=reply
+
+:solution
+1
+da la solución del ejercicio con la explicación. El gestor OEF puede decidir si mostrar esta explicación al usuario, de acuerdo con el nivel de dificultad asignado. Puede usarse una sola vez en el ejercicio.
+
+:hint
+1
+da una pista sobre cómo se hace el ejercicio. El gestor de OEF puede decidir mostrar o no esta pista, según el nivel de dificultad. Puede usarse una sola vez en el ejercicio.
+
+:help
+1
+proporciona una ayuda para la realización del ejercicio. El usuario podrá siempre acceder a esta ayuda, que se presentará en una ventana emergente. Puede usarse una sola vez en el ejercicio.
+
+:feedback
+2
+añadir un comentario cuando la respuesta cumpla determinada condición. Normalmente se utiliza para advertir de un error típico.
+
+
+help=feedback
+
+:steps
+1
+se utiliza para definir las preguntas que aparecen en cada etapa; debe estar antes de la orden <span class="tt wims_code_words">statement</span>(ver la variable <span class="tt wims_code_variable">\step</span>). Puede usarse una sola vez en el ejercicio.
+
+:nextstep
+1
+se utiliza para definir de forma dinámica las preguntas que se le pregunte; debe estar antes de la orden <span class="tt wims_code_words">statement</span> (ver la variable <span class="tt wims_code_variable">\step</span>). Puede usarse una sola vez en el ejercicio.
+
+:conditions
+1
+permite indicar los números de las condiciones útiles para el ejercicio utilizadas para controlar las respuestas del usuario.
+
+:latex
+1
+permite escribir una versión en látex del ejercicio utilizando las variables definidas en el ejercicio y descargable en la versión imprimible del ejercicio (accesible únicamente a los desarrolladores o profesores de una clase). Es aconsejable poner el enunciado en un entorno de látex <span class="tt wims_code_words">\begin{statement} \end{statement}</span> y la solución en el entorno <span class="tt wims_code_words">\begin{solution} ... \end{solution}</span>.

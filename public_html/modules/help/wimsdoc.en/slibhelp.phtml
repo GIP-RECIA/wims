@@ -1,0 +1,17 @@
+<pre>
+!set text=!record 0 of slib/README.md
+!set text=!replace internal '' by $emphend in $text
+!replace internal `` by $emph in $text
+
+##############
+!record 1 of slib/README.md
+$():proc
+!record 2 of slib/README.md
+
+##############
+
+!set text=!record 3 of slib/README.md
+!set text=!replace internal '' by $emphend in $text
+!replace internal `` by $emph in $text
+
+</pre>

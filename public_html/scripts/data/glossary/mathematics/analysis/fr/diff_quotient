@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function
+!set gl_title=Taux d'accroissement
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(a\) et \(b\) deux nombres réels avec \(a \neq 0\).<br/>
+Le <strong>taux d'accroissement</strong> entre \(a\) et \(b\) est le nombre réel
+\(t\) défini par&nbsp;:
+<div class="wimscenter">
+\(t=\frac{b-a}{a}\).
+</div>
+</div>

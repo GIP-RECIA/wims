@@ -1,0 +1,36 @@
+!default wims_superclass=$wims_class
+!read adm/class/userisinclass $wims_superclass,$getuser
+!set class_Supervisor=!defof class_Supervisor in wimshome/log/classes/$wims_class/.def
+!if yes notin $script_reply
+  error=bad_usercls
+  !reset job,getuser
+  !exit
+!endif
+
+!if $wims_realuser=$class_Supervisor
+  !restart module=adm/class/usermanage
+!endif
+
+!read adm/class/userdef classes,$wims_class,$getuser
+!defread $userdef
+!read adm/class/initclass $wims_class
+
+!if $user_exists!=yes or $abandon!=$empty
+ !restart module=adm/class/usermanage
+!endif
+
+!if $action=1
+  !!cryptage if not crypted
+  class_pass=!defof class_password in wimshome/log/classes/$wims_class/.def
+  class_pass=!passcrypt $class_pass
+  !setdef !set class_password=$class_pass in wimshome/log/classes/$wims_class/.def
+  passclass_check=!passcheck $passcheck and $class_pass
+  !if $passclass_check!=yes
+    error=bad_classpass
+  !else
+    allowchange=yes
+    job=userprop
+    !changeto $job.proc
+  !endif
+!endif
+

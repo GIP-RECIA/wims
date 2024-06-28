@@ -1,0 +1,30 @@
+Sums #5
+game with sums
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:H1/algebra/addfig.en
+exo=grill&exo=house&exo=bigsquare&exo=threesqr&confparm1=4&confparm2=0&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Level 8
+You have 8 numbers to fill into the diagrams.
+:H1/algebra/addfig.en
+exo=foursqr&exo=M&exo=pizza4&exo=pyramid1d&exo=pyramid2b&exo=diag&exo=W&confparm1=4&confparm2=0&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Level 9
+Now you have 9 numbers to fill into the diagrams.
+
+:H1/algebra/addfig.en
+exo=pentagon&exo=pentagram&exo=pyramid3&confparm1=4&confparm2=0&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Level 10
+And finally, now you have 10 numbers to fill into the diagrams.

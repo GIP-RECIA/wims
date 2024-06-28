@@ -1,0 +1,32 @@
+!set wims_module_log=error: $error
+
+!if no_pick=$error
+  Si us plau
+  !href cmd=resume trieu un glossari
+   abans de fer clic al botó  <span class="wims_button disabled">$wims_name_Insert</span>.
+  !exit
+!endif
+
+!if not_supervisor=$error
+   Ho sento, però, l'operació de modificar un glossari
+   està reservat per al professorat registrat d'una classe.
+  !exit
+!endif
+
+!if bad_sheet=$error
+  Número de glossari incorrecte.
+  !exit
+!endif
+
+!if too_many_exos=$error
+  El glossari $picksheet ja conté el màxim de $max_exos
+  objectes. Esborra'n alguns abans d'inserir-ne d'altres.
+  !exit
+!endif
+
+!if already_exist=$error
+  La glossa que voleu inserir ja existeix al glossari $test.
+  !exit
+!endif
+
+!msg $error

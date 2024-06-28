@@ -1,0 +1,57 @@
+<h2> Compartir recursos entre clases vecinas </h2>
+<p>
+Las
+!href cmd=help&special_parm=neighbor clases vecinas
+pueden compartir recursos selectivamente entre ellas.
+</p><p>
+Los recursos compartidos se vuelven iguales en todas las clases 
+que los comparten, incluidos los cambios. Entonces, si se 
+cambian en una de las clases, todas las demás clases compartidas 
+verán el mismo cambio.
+</p><p>
+Por ejemplo, un panel de discusión compartido muestra todos los mensajes 
+enviados a todas las clases que lo comparten. Y si las cuentas de participante 
+se comparten entre varias clases, un participante inscrito en una de las clases 
+tendrá automáticamente el mismo registro en todas las demás y una modificación
+de su contraseña también se verá reflejada en todas las clases.
+El mismo fenómeno es cierto para la cuenta del maestro, pero es
+!href cmd=help&special_parm=supshare particularmente peligroso
+.
+</p><p>
+Si se comparten hojas de trabajo o hojas de examen, todas las clases 
+que las comparten tienen el mismo contenido y gravedad de la puntuación
+de la hoja, pero la información de apertura de la hoja no se comparte. Si 
+un maestro de clase abre el registro de calificaciones de una hoja compartida, 
+ese registro solo es válido para su clase.
+</p><p>
+Entre las clases que comparten el mismo tipo de recursos, debe haber una 
+clase magistral donde los recursos residen físicamente. Los demás deben 
+compartir los recursos de la clase magistral. No es posible compartir 
+en cascada.
+</p><p>
+Es responsabilidad de la clase magistral declarar las clases
+!href cmd=help&special_parm=sharable que pueden compartir
+ sus recursos.  Luego, depende de las otras clases comenzar
+ o detener el intercambio. La clase magistral no tiene derecho
+ a detener una acción activa (porque eso significaría modificar
+ otra clase).
+</p><p>
+Si permite compartir recursos con otras clases,
+ya no podrá restaurar archivos de respaldo en su salón de clases.
+Por tanto, es necesario realizar las operaciones de restauración
+antes de compartir recursos.
+</p><p>
+Si desea compartir un tipo de recurso con otra clase,
+los recursos correspondientes en su propia clase deben estar vacíos.
+Debido a que muchos recursos no se pueden borrar debido a
+!href cmd=help&special_parm=dependencies interdependencias
+entre diferentes tipos de recursos, los recursos compartidos deben 
+decidirse e instalarse solo al comienzo de las instalaciones de la clase.
+En general, una vez que las actividades de los participantes hayan comenzado,
+ ya no será posible compartir muchos recursos.
+</p><p>
+Por otro lado, una clase secundaria de compartir puede
+!href cmd=help&special_parm=stopshare detener la compartición
+en todo momento. Pero por la razón anterior, puede ser en
+la imposibilidad de reiniciar el intercambio dejado.
+</p>

@@ -1,0 +1,72 @@
+# GetClass
+# Fournit les informations de la classe qclass
+
+!read scripts/check.class
+!if $error!=$empty
+ !exit
+!endif
+
+# dans la variable $supp, on ajoute des informations supplementaires aux infos de base presentes dans le .def de la classe
+supp=connections,creation
+!readdef $classdeffile
+
+
+userlist=!sh cd $wims_home/log/classes/$qclass/.users; ls | sort
+class_userlist=!singlespace $userlist
+class_usercount=!wordcnt $class_userlist
+class_userlist= !words2items $class_userlist
+
+userindex_cnt=!recordcnt wimshome/log/classes/$qclass/.userlist
+
+!if $class_usercount != $userindex_cnt
+  !read adm/class/mkuserlist $qclass
+!endif
+
+##course list,  program list
+!if $class_type>=2
+  super_defs=programs,classes,icourses,levels,courses
+
+  !for typ in $super_defs
+    class_$(typ)_list=!record 0 of wimshome/log/classes/$qclass/$typ
+    !!class_$typ=!lines2rows $(class_$typ)
+    !!class_$typ=$(class_$typ[;1])
+    supp=$supp,$(typ)_list
+  !next
+!endif
+
+!if $class_type=2
+#Cas du groupement de classes
+  class_subclassescount=!recordcnt wimshome/log/classes/$qclass/.subclasses
+  !for i=1 to $class_subclassescount
+    current_class = !record $i of wimshome/log/classes/$qclass/.subclasses
+    !set cur_class_id=$(current_class[1])
+    !set cur_class_title=$(current_class[4])
+    !set cur_class_teacher=$(current_class[9])
+    class_subclasses_list= !append line $cur_class_id,$cur_class_title,$cur_class_teacher to $class_subclasses_list
+  !next
+  supp=$supp,subclasses_list,subclassescount
+!endif
+
+class_sheetcount=!recordcnt wimshome/log/classes/$qclass/sheets/.sheets
+class_examcount=!recordcnt wimshome/log/classes/$qclass/exams/.exams
+
+
+# homepage = parametre obsolete  ?
+supp=$supp, userlist, usercount, examcount, sheetcount
+
+
+# l'option "all_even_hidden" est un raccourci pour obtenir la liste complete des infos possibles
+!if all_even_hidden isin $option
+ option=$classdefs,$supp,hidden_sheets
+!endif
+
+option=!listintersect $option and $classdefs,$supp,hidden_sheets
+!if $option=$empty
+  option=$classdefs,$supp
+!endif
+
+# l'option 'hidden_sheets' permet d'obtenir, en plus des infos de la classe, des infos sur les feuilles de celle-ci.
+!if hidden_sheets isin $option
+  list_type=sheets
+  !read scripts/listing.proc
+!endif

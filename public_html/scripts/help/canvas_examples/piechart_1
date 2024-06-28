@@ -1,0 +1,6 @@
+size 300,200
+xrange -10,10
+yrange -10,10
+legend cars:motorcycles:bicycles:trikes
+opacity 255,120
+piechart -5,0,75,22:red:8:blue:63:green:7:purple

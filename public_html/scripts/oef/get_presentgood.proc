@@ -1,0 +1,31 @@
+!default introgivegood=1
+!read getparm $module_init_parm intro_check intro_good qcmlevel
+!if $get_intro_good!=$empty
+  !set introgivegood=$get_intro_good
+!endif
+!if 3 isin $get_intro_check
+  !set introgivegood=1
+!endif
+!if $get_qcmlevel!=$empty
+  !! copied from exo.init
+  !set givegood=!item $get_qcmlevel of 1,1,1,1,1,1,0,0,0
+  !set introgivegood=$givegood
+!endif
+!default seedrepeat=0
+!read oef/default
+!bound introgivegood between -1 and $limit_version default 1
+!if $introgivegood=-1
+  !set scorestat=!getscorestatus sheet=$wims_sheet
+!endif
+!if (($introgivegood=1 and $seedrepeat<=1) or\
+    ($introgivegood>=1 and $introgivegood<=$seedcnt and $seedlastcnt>=$seedrepeat)\
+    or ($introgivegood>=1 and _exam isin $wims_session)\
+    or ($introgivegood=-1 and $scorestat=no)\
+    )
+  !set presentgood=1
+!else
+  !set presentgood=0
+!endif
+
+!!to be used as \presentgood in an oef exercise.
+!!set oefenv_presentgood=$presentgood

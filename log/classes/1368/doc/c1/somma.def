@@ -1,0 +1,22 @@
+!set titb=Somma
+!set keyw=
+!set datm=20180717
+!set prev=
+!set next=
+!set upbl=1_1
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+!exit
+
+:content
+La somma di numeri naturali è introdotta informalmente nel capitolo 1 e nel paragrafo 1.3 ne sono illustrate alcune proprietà.
+<br>
+Potete svolgere l'esercizio
+!read primitives.phtml 1, exercise, 1/1
+ partendo dai vostri ricordi e provando a riflettere su quali
+caratteristiche debbano avere i numeri <em>da mettere in alto</em> rispetto a quelli <em>da mettere in basso</em>.

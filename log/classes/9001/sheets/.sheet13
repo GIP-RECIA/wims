@@ -1,0 +1,36 @@
+
+:classes/fr
+exo=jsxgraph1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Exemple de jsxgraph
+Marquer un point
+
+:classes/fr
+exo=jsxgraph2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Exemple de jsxgraphcurve (droite)
+Dessiner une droite
+
+:classes/fr
+exo=drawarrows&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+draw (arrows)
+Dessiner des flèches
+
+:classes/fr
+exo=drawcircle&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+draw (circle)
+Dessiner des cercles
+
+:classes/fr
+exo=drawline&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+draw (lines)
+Dessiner des droites
+

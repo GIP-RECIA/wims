@@ -1,0 +1,35 @@
+!set titb=Algorithme d'encadrement par dichotomie
+!set keyw=
+!set datm=20210912
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<ol>
+   <li>
+!read primitives.phtml 1, fold, \embed{ExpQAlg1}, Présentation 
+</li>
+   <li>
+!read primitives.phtml 2, fold, \embed{ExpQAlg2}, Avant de programmer 
+</li>
+   <li>
+!read primitives.phtml 3, fold, \embed{ExpQAlg3}, Exemple pour la fonction cube 
+</li>
+   <li>
+!read primitives.phtml 4, fold, \embed{ExpQAlg4}, Dichotomie pour une autre fonction 
+</li>
+   <li>
+!read primitives.phtml 5, fold, \embed{ExpQAlg5}, Observation 
+</li>
+   <li>
+!read primitives.phtml 6, fold, \embed{ExpQAlg6}, Ce qu'il faut modifier 
+</li>
+</ol>

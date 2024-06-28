@@ -1,0 +1,12 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+noreset
+drag xy
+linewidth 4
+filled
+rect -4,4,-2,2,blue
+triangle -3,-3,0,0,1,-5,green
+circle 0,0,50,orange
+noreset
+rect 2,4,4,2,blue

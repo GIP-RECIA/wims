@@ -1,0 +1,484 @@
+!if $wims_read_parm!=$empty
+ !goto $wims_read_parm
+!endif
+!if $job=student
+  !goto student
+ !exit
+!endif
+!if $wims_read_parm=$empty
+ !goto general
+!endif
+
+:student
+Un esame è costituito da esercizi WIMS da svolgere in un tempo definito
+stabilito dal docente.
+<p>A differenza di un test di autovalutazione WIMS,</p>
+<ul><li>
+non è possibile cambiare versione dell'esercizio durante un esame,
+né disattivare la registrazione dei punteggi.
+</li><li>
+una volta che si clicca sull'esercizio, l'enunciato appare in
+un'altra finestra del navigatore. 
+</li><li>
+!if $coursefalse!=0
+  In un esame in modalità Gara, gli esercizi devono essere svolti nell'ordine
+  dato. Inoltre per passare all'esercizio successivo è necessario aver
+  ottenuto il voto massimo. Una volta ottenuto il voto massimo, sarà
+  disponibile un link <span class="tt wims_code_words">Serie seguente</span>
+  per passare direttamente all'esercizio successivo. Se non si è ottenuto il
+  voto massimo, l'unica possibilità è di tornare all'elenco degli esercizi
+  tramite il link
+  <span class="tt wims_code_words">Torna al tema d'esame</span>.
+!else
+  Non è necessario aver risposto a un esercizio per poter passare
+  all'esercizio seguente (a meno che il docente non imposti delle
+  condizioni ad hoc), l'enunciato viene conservato. Il link
+  <span class="tt wims_code_words">Torna al tema d'esame</span>
+  permette di tornare all'elenco degli esercizi e quindi passare
+  a un altro esercizio.
+!endif
+</li><li>
+Il docente potrebbe dare la possibilità di sostenere più volte l'esame.
+Una volta che si è termiana una sessione d'esame, per cominciarne un'altra
+sarà necessario cliccare su
+<span class="tt wims_code_words">$wims_name_endexam</span> e quindi
+effettuare di nuovo l'accesso al corso per cominciare una
+nuova sessione d'esame.
+</li></ul>
+<p>
+Nel caso in cui il docente abbia dato la possibilità di sostenere più volte
+l'esame WIMS per calcolare le medie tiene conto solo del voto più alto o
+ttenuto nei vari tentativi.
+La durata dell'esame corrisponde allora alla durata massima dei
+tentativi.
+</p><p>
+Indipendentemente dal tempo limite per un esame, il docente può anche
+indicare un calendario preciso nel quale vengono registrati i voti.
+</p><p>
+Vengono prese in considerazione solo le risposte inviate al server
+prima della scadenza del tempo limite per l'esame.
+</p>
+!if $tryremain>0 and $stries >1
+  <p>
+  Esempio:
+  Se nella pagina dell'esame compare il testo:
+  </p>
+  !set h_min=$[rint(9*60+$stries*($sdure) - $sdure/2)]
+  !set h_fin= $[rint($h_min/60)] h $[$h_min%60] min
+  !set h_d2=$[rint($sdure - $sdure/3)]
+  !set h_min2=$[min($sdure,$h_d2)]
+  !set d_1=$[rint(min(10,$sdure/2))]
+  !set h_min3=$[9*60+$d_1]
+  !set h_3=$[rint($h_min3/60)] h $[$h_min3%60] min
+  <pre>
+  $name_exam2
+  $name_exam6
+  $name_exam9
+  $name_exam7
+  </pre>
+  e il docente ha aperto la registrazione dei voti tra le 9h e le $h_fin,
+  significa che potete cominciare a lavorare sull'esame a partire dalle 9h
+  e dovete terminare i $stries tentativi prima delle $h_fin:
+  <ul><li>
+  Se sono stati necessari $d_1 minuti per completare il primo tentativo e
+  cominciate il secondo tentativo alle $h_3, allora avete a disposizione $sdure
+  minuti per completare il secondo tentativo.
+  </li><li>
+  Se cominciare il vostro ultimo tentativo $h_d2 minuti prima delle $h_fin, avrete
+  a disposizione solo
+  $h_min2 minuti per completare un'altra sessione d'esame.
+  </li></ul>
+  <p>
+  Per iniziare il secondo tentativo, cliccare su
+  <span class="tt wims_code_words">$wims_name_endexam</span>.
+  In questo modo viene chiusa la sessione e effettuato il logout. Dovrete
+  allora ritornare nel corso per ricomincare.
+  Per visionare i risultati dei tentativi precedenti
+  potete cliccare su
+  <span class="tt wims_code_words">$wims_name_myscore</span>.
+  Una volta aperta la pagina del tema d'esame, si consiglia di
+  cliccare su
+  <span class="tt wims_code_words">$wims_name_refresh</span>
+   in modo da visualizzare i voti.
+  </p>
+!endif
+!if $class_examscore_withoutip!=yes
+  Se cambia il vostro numero di IP durante l'esame, gli esercizi che avete
+  svolto da un IP diverso da quello con cui si è iniziata la sessione d'esame
+  saranno registrati ma i punteggi non saranno tenuti in considerazione
+  per il calcolo del voto finale d'esame.<br>
+  Tuttavia, il vostro docente può, in ogni momento, decidere di non tenere
+  contro del cambio di IP. In questo caso, il voto d'esame sarà ricalcolato
+  (in questo caso è possibile un ritardo di 24 ore prima che il voto
+  corretto sia visibile).
+!endif
+!if $wims_read_parm!=$empty or $job=student
+ !exit
+!endif
+
+:general
+<h2 id="general">Introduzione</h2>
+
+<p>
+Un esame è costituito da una serie di esercizi scelti tra gli esercizi
+dei test di autovalutazione attivi o terminati.
+</p><p>
+Una volta che uno studente comincia a lavorare su un esame, ha a disposizione
+un tempo limitato per svolgere tutti gli esercizi (tempo stabilito
+dal docente nel campo
+ <span class="wims_emph">$(name_shinfo[9])</span>).
+Gli studenti non hanno la possibilità di cambiare la versione dell'esercizio
+loro proposto o di disattivare la registrazione dei voti.
+</p><p>
+L'insegnante può dare la possibilità di ripetere
+più volte un esame (campo <span class="wims_emph">$(name_shinfo[10])</span>):
+si parla in questo caso di sessioni d'esame. Il voto di una sessione d'esame
+è la media (pesata) dei voti ottenuti in ciascun esercizio.
+Il voto finale dell'esame è il voto più alto ottenuto dallo studente
+nei vari tentativi.
+</p><p>
+Gli enunciati di ciascun esercizio proposto allo studente durante un
+esame, come pure tutte le risposte date sono registrate e visibile
+sia per il docente che per lo studente dopo ogni sessione d'esame.
+</p><p>
+È possibile proporre agli studenti una simulazione d'esame: gli
+studenti possono allora provare l'esame senza che i tentativi vengano
+conteggiati e i punteggi registrati.
+</p><p>
+Come per i test di autovalutazione, il docente può stabilire un calendario
+per lo svolgimento degli esami e l'effettiva registrazione dei voti,
+impostando le condizioni di accesso (si veda la documentazione
+più avanti).
+</p>
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:statut
+<h2 id="statut">Stato di un esame</h2>
+Un esame può essere in uno dei 4 seguenti stati:
+<span class="wims_emph">
+!replace internal , by ,$ $ in $(wims_name_shstatus).
+</span>
+<p>
+<span class="wims_emph">$(wims_name_shstatus[1]):</span>
+lo stato iniziale dell'esame. In questa fase, l'esame non è visibile
+per gli studenti.
+</p><p>
+<span class="wims_emph">$(wims_name_shstatus[2]):</span>
+una volta che si è cliccato su
+<span class="tt wims_code_words">$(wims_name_actionlist[1])</span>,
+l'esame diventa visibile per gli studenti (che possono lavorare
+sugli esercizi a meno che qualche parametro del campo
+<span class="tt wims_code_words">$(name_shinfo[4])</span>
+non lo impedisca), i contenuti a questo punto
+non sono più modificabili, eccetto i titoli e il testo di presentazione
+dell'esame e il campo
+<span class="tt wims_code_words">$(name_shinfo[6])</span>
+</p><p>
+Si passa dallo stato
+<span class="tt wims_code_words">$(wims_name_shstatus[2])</span>,
+allo stato
+<span class="tt wims_code_words">$(wims_name_shstatus[3])</span>
+ cliccando su
+ <span class="tt wims_code_words">$(wims_name_actionlist[2])</span>.
+Non è più possibile tornare allo stato
+<span class="tt wims_code_words">$(wims_name_shstatus[1])</span>.
+</p><p>
+<span class="wims_emph">$(wims_name_shstatus[3]):</span>
+gli studendi accedono al tema d'esame, ma possono vedere solo i titoli
+degli esercizi e non possono più lavorare.
+</p><p>
+Una volta che il tema d'esame è
+<span class="tt wims_code_words">$(wims_name_shstatus[3])</span>,
+può essere nascosto agli studenti cliccando su
+<span class="tt wims_code_words">$(wims_name_actionlist[4])</span>,
+ma può anche essere rimesso nello stato
+<span class="tt wims_code_words">$(wims_name_shstatus[2])</span>.
+ </p>
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:session
+
+<h2 id="duration">Numero di tentativi (sessioni) d'esame e durata delle sessioni</h2>
+
+<p>
+Durante un esame lo studente non ha la possibilità di cambiare la
+versione dell'esercizio che gli viene proposto, né di disattivare la
+registrazione dei voti.
+Il docente può lasciare la possibilità di ripetere più volte un esame
+impostando il <span class="tt wims_code_words">$(name_shinfo[10])</span>.
+Un tentativo corrisponde a una sessione d'esame.
+</p><p>
+La <span class="wims_emph">$(name_shinfo[9])</span> è il tempo
+a disposizione dello studente per completare l'esame una volta.
+Quando lo studente comincia l'esame, WIMS fa partire il cronometro.
+Ogni volta che lo studente inizia un nuovo tentativo, il cronometro
+riparte da zero. Quando il cronometro arriva al limite stabilito
+lo studente non può più lavorare sull'esame.
+</p><p>
+La durata di una sessione d'esame può essere impostata tra i due valori
+di $duration_min minuti e di $duration_max minuti.
+</p><p>
+<span class="wims_warning">Attenzione:</span> su questo server
+le sessioni non attive vengono cancellate dopo $[floor($idle_time/60)]
+minuti. Tenere presente questo valore quando si stabilisce la durata di una
+sessione d'esame.
+</p>
+<span class="wims_warning">Attenzione:</span> la durata di una
+sessione d'esame in generale è diversa dal tempo in cui gli studenti
+possono svolgere l'esame (quest'ultimo è regolato dal parametro
+<span class="tt wims_code_words">$(name_shinfo[6])</span>).
+In altre parole, se si prevede che l'esame duri due ore nel
+laboratorio informatico e che il docente abbia stabilito che ogni
+sessione d'esame dura 90 minuti e che il numero di tentativi è 3
+(questi sono i valori di default), se lo studente termina il suo
+primo tentativo dopo 50 minuti, gli restano ancora 120 - 50 = 70 e
+due tentativi per cercare di migliorare il voto. Se impiega di nuovo
+50 minuti per il secondo tentativo, per l'eventuale terzo tentativo
+resteranno 20 minuti.
+</p>
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:exammode
+<h2 id="exammode">Modalità di visualizzazione</h2>
+Sono disponibili due modalità di visualizzazione degli esami:
+<ul>
+ <li><span class="wims_code_words">Standard</span>. Gli studenti possono svolgere gli esercizi nell'ordine che preferiscono, senza alcun vincolo. È la modalità utilizzata di default.</li>
+ <li><span class="wims_code_words">Gara</span>. Gli esercizi devono essere svolti nell'ordine in cui sono dati e l'esame si interrompe al primo esercizioin cui lo studente non ottiene il voto massimo.</li>
+</ul>
+
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+:allowtype
+<h2 id="allowtype">Opzioni per la registrazione dei voti</h2>
+<p>
+Potete selezionare il modo
+<span class="tt wims_code_words">$(name_allowtype[2])</span>
+nel campo
+<span class="tt wims_code_words">$(name_shinfo[6])</span>
+per permettere agli studenti di svolgere l'esame senza che
+i risultati e i tentativi siano revistrati dal server (di fatto è
+la modalità con cui l'esame viene visualizzato dal docente quando
+clicca su <span class="tt wims_code_words">Vista studente</span>).
+</p><div>
+ È possibile inserire un controllo per limitare la registrazione dei voti
+a determinati periodi e/o a determinate postazioni,
+selezionando
+<span class="tt wims_code_words">$(name_allowtype[4])</span>
+oppure
+<span class="tt wims_code_words">$(name_allowtype[5])</span>
+nel campo
+<span class="tt wims_code_words">$(name_shinfo[6])</span>.
+Sarà quindi visibile una interfaccia ad hoc che permetterà di selezionare
+date e ore in un calendario e inserire gli IP delle postazioni abilitate
+alla registrazione dei voti d'esame.
+Queste restrizioni sono configurabili mediante tre parametri
+(che possono essere presenti in tutto o in parte):
+<ul>
+  <li>Data e orario di inizio;</li>
+  <li>Data e orario di termine;</li>
+  <li>Uno o più indirizzi IP.</li>
+</ul>
+  Le date e gli orari devono essere espresse nel fuso orario del
+ SERVER, e devono essere separate l'una dall'altra da spazi.
+ </div><p>
+ I parametri del campo <span class="tt wims_code_words">$(name_shinfo[6])</span>
+ sono modificabili anche nel corso dell'esame (esame <span class="wims_emph">Attivo</span>).
+</p><p>
+Esempio:
+</p><pre>
+$wims_name_from <span class="tt wims_code_words">20131007</span> $wims_name_at <span class="tt wims_code_words">10:30</span> $wims_name_to <span class="tt wims_code_words">20131001</span> $wims_name_at <span class="tt wims_code_words">10:00</span> $wims_name_IP<span class="tt wims_code_words">127.0.</span>
+</pre>
+<p>permette la registrazione dei voti nel periodo tra le due date inserite e solamente per i numeri di IP che cominciano
+con <span class="tt wims_code_words">127.0.</span>.
+</p><p>
+<span class="wims_warning">Attenzione:</span>
+le date di inizio e di termine dell'esame non sono visibili agli studenti.
+Questa informazione può essere data dal docente nel testo "Introduzione"
+che è visibile.
+</p>
+
+<p><strong>Formato utilizzabile per gli IP delle postazioni:</strong></p>
+!read help/hosts.phtml
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+
+:cutt
+<p><strong>$name_shinfo_cutt</strong></p>
+<p>
+Inserendo dei <span class="wims_emph">$name_shinfo_cutt</span>
+è possibile suddividere gli esami in sessioni differenti.
+Uno studente che ha cominciato l'esame prima di un'ora di cut-off
+non può più cominciare una nuova sessione d'esame dopo tale ora
+anche se non ha ancora utilizzato tutti i tentativi permessi dal docente.
+</p><p>
+Formato degli orari di cut-off:
+<span class="tt wims_code_words">aaaammjj.hh:mm</span>
+(separare con spazi i diversi orari).
+</p><p>
+Esempio:
+un primo gruppo A di studenti sostiene l'esame tra le 9 e le 10 del
+10/02/2015 e un altro gruppo B invece dalle 10 alle 11
+dello stesso giorno.
+<ul><li>
+Mettere <span class="tt">20150210.10:00</span> nel campo
+<span class="tt wims_code_words">$name_shinfo_cutt</span>
+</li><li>
+Mettere nel campo
+<span class="tt wims_code_words">$(name_shinfo[6])</span>:
+$wims_name_from <span class="tt wims_code_words">20150210</span> $wims_name_at <span class="tt wims_code_words">9:00</span> $wims_name_to <span class="tt wims_code_words">20150210</span> $wims_name_at <span class="tt wims_code_words">11:00</span>.
+</li></ul>
+In questo modo, i numeri e i titoli degli esercizi del tema d'esame
+sono visibili per tutti gli studenti a partire dalle ore 9, se lo
+studente clicca sull'esercizio dell'esame tra le 9 e le 10 non potrà
+aprire una nuova sessione d'esame dopo le 10.
+
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:variable
+<p id="variable">
+Per indicare le limitazioni di accesso alla registrazione dei voti è possibile
+utilizzare <span class="wims_emph">variabili tecniche</span> indicandone il nome nel campo <span class="tt wims_code_words">$(name_shinfo[6])</span>. Tale variabile deve
+allora essere definita per ciascuno studente secondo le regole indicate
+sopra. Questo può essere fatto manualmente nelle "opzioni account" dello
+studente oppure attraverso l'upload di un file csv (nel campo variabili
+tecniche).
+Se si vuole lasciare la scelta agli studenti (ad esempio proponendo una
+serie di date), è possibile utilizzare un questionario creato
+da un modello (si vedano le pagine di help corrispondenti).
+</p>
+
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:contenu
+
+<h2 id="contenu">Contenuto di un esercizio</h2>
+<p>
+Un esercizio di un tema d'esame è un esercizio di un test di autovalutazione
+attivo o terminato o una lista di esercizi di tali test (in quest'ultimo
+caso l'esecizio sarà scelto casualmente nella lista data).
+</p><p>
+Dopo aver cliccato sul link <span class="tt wims_code_words">$wims_name_addexo</span>
+vi sarà mostrata a sinistra la lista degli esercizi disponibili; sarà
+sufficiente trascinare nel riquadro di destra quello o quelli che si vuole
+costituiscano l'esercizio d'esame. Al termine della selezione cliccare su
+<span class="tt wims_code_words">$wims_name_tosave</span>.
+</p><p>
+<span class="wims_emph">$(wims_name_thsheet[2])</span>: il titolo dell'esercizio
+visibile per gli studenti quando il tema d'esame è
+<span class="wims_emph">$(wims_name_shstatus[2])</span>
+o
+<span class="wims_emph">$(wims_name_shstatus[3]). </span>
+Il valore di default è <span class="wims_emph">Ex.</span>
+</p><p>
+<span class="wims_emph">$(wims_name_thsheet[4])</span>: il voto di
+una sessione d'esame è una media pesata secondo i pesi definiti
+per ciascun esercizio in questo campo.
+Il valore di default è 1.
+</p><p>
+È anche possibile utilizzare il link
+<span class="tt wims_code_words">$wims_name_addsexo</span>
+per inserire tutti gli esercizi di un test di autovalutazione (ogni
+esercizio del test diventa allora un esercizio del tema d'esame).
+</p><p>
+È possibile modificare il contenuto del tema d'esame fino a che lo
+stato è
+<span class="wims_emph"> $(wims_name_shstatus[1]).</span></p>
+
+<strong>Nota.</strong> Gli esercizi inseriti negli esami mantengono la stessa configurazione che hanno nei test di autovalutazione da cui sono tratti, con l'eccezione dei seguenti parametri
+<ul><li>
+visualizzazione delle Istruzioni  (i tasti <span class="wims_button_help disabled inline">Istruzioni</span>
+et <span class="wims_button_help disabled inline">Suggerimento</span> in un esame vengono visualizzati come collegamenti non cliccabili);
+</li><li>
+visualizzazione della risposta corretta, dei feedback e della soluzione (il docente può selezionare l'opzione
+<span class="tt wims_code_words">mai</span> che disabilita la visualizzazione);
+</li><li>
+il Numero massimo di tentativi presi in considerazionee il Numero massimo di tentativi con la stessa versione della serie di esercizi (questi 2 parametri non sono presi in considerazione in un esame; inoltre, anche se alcune variabili sono le stesse in più esercizi di una serie, in un esame i valori possono cambiare tra un esercizio e l'altro).
+</li>
+</ul>
+
+
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:dependency
+<h2 id="dependency">Punteggi con dipendenza</h2>
+<p>
+  Punteggi &ldquo;con dipendenza&rdquo; significa che un candidato deve
+  ottenere un determinato punteggio in altri esercizi dell'esame prima di
+  poter affrontare questo. Per esempio,
+  <span class="tt wims_code_words">1:50,2:30,3+4+5:60</span>
+  significa che il candidato deve ottenere un 50% nell'esercizio 1, un 30%
+  nell'esercizio 2, e una media del 60% negli esercizi 3,4,5.
+ </p>
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:options
+<h2 id="options">Opzioni</h2>
+<p>
+Al momeno è disponibile una sola opzione
+</p>
+<ul>
+<li><span class="tt wims_code_words">autogen</span> significa che l'esercizio viene generato automaticamente
+anche se l'utente non ci clicca sopra. In questo modo può consultare
+l'esercizio anche a sessione chiusa. Non raccomandato se non per gli esercizi
+che prevedono una valutazione da parte del docente (cioè che <b>non</b>
+prevedono una valutazione automatica).
+</li></ul>
+
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:globalparam
+<h2 id="globalparam">Ulteriori configurazioni</h2>
+Altri parametri di default relativi agli esami sono configurabili
+nelle pagine di 
+<span class="text_icon SE_config">Configurazione del corso</span>:
+<ul><li>
+Se il numero di IP di uno studente cambia durante una sessione d'esame, di default
+  il voto ottenuto in tale sessione sarà calcolato tenendo conto solo dei voti
+  ottenuti dagli esercizi svolti prima del cambio di IP:
+  questo comportamento è regolato dal parametro 
+<span class="wims_emph">Bloccare l'esame in caso di cambiamento di IP</span>,
+impostato di default a <span class="tt wims_code_words">sì</span>. Se si vuole che invece non si tenga conto dei cambiamenti di IP è necessario
+impostare tale parametro a <span class="tt wims_code_words">no</span> nella
+pagina 
+<span class="text_icon config_list">Configurazione generale</span>).
+</li><li>
+Di default, uno studente può prendere visione degli esercizi svolti in una sessione d'esame registrata: questo comportamento è regolato dal parametro
+<span class="wims_emph">visibili per gli studenti</span> impostato di default a
+<span class="tt wims_code_words">sì</span> (modificabile nella pagina
+<span class="text_icon config_list">Configurazione generale)</span>.
+</li><li>È possbile impedire agli studenti di accedere a risorse del corso
+come gli strumenti, i documenti... (si veda la pagina
+<span class="text_icon config_restr">Accesso agli strumenti</span>)
+</li></ul>
+<strong>Nota.</strong>
+Il numero di sessioni d'esame che possono essere salvate per ogni studente è al massimo $wims_examlog_limit
+(quando questo numero viene superato, le registrazioni più vecchie vengono automaticamente sostituite da quelle più nuove).
+
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+
+
+
+

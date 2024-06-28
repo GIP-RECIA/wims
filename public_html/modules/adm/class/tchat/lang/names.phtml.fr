@@ -1,0 +1,78 @@
+!set lang_exists=yes
+
+wims_name_newmsg=Nouveau message
+name_viewpage=Page(s) visible(s) du participant
+name_partnotconnected=Ce participant n'est pas connecté au tchat.
+name_nopagetoview=Aucune des pages du participant n'est affichable.
+name_nosharingscreen=Le participant a désactivé le partage d'écran.
+name_nomsg=Pas de message.
+name_userlist=Liste des élèves
+name_noparticipant=Il n'y a pas de participant dans la classe.
+name_tchatwith=Tchat avec
+name_warninguser=Lorsque vous êtes connecté au tchat, l'enseignant peut voir \
+  (lorsqu'il est également connecté) une copie de vos pages de navigation. \
+  L'objectif est de pouvoir échanger sur les exercices que vous êtes en train de résoudre.
+name_tchatopen=Connectés
+name_answer=Répondre
+name_page=Fenêtre
+name_living=Salons
+name_ownliving=Salon personnel
+name_changeliving=Changer de salon
+name_open=Ouvert
+name_opening=Ouvrir
+name_close=Fermé
+name_closing=Fermer
+name_regusers=Inscrits&nbsp;
+name_all=Tous
+name_configliving=Configuration du salon
+name_mkliving=Créer
+name_title=Nom du salon
+name_desc_title=!nosubst Nom du salon (limité à $title_limit caractères)
+name_statut=Statut
+wims_name_listliving=Configurer les salons
+wims_name_addliving=Ajouter un salon
+name_confliving=Configurer un salon
+wims_name_userlistliving=Surveillance des salons
+name_listall=tous les élèves de la classe
+name_teacher=l'enseignant
+name_yourself=vous même
+name_and=et
+name_opentchat=Ouvrir le tchat pour cette classe
+name_timing=Délai de rafraîchissement des pages
+name_desc_refreshtiming=!nosubst Un entier au moins égal à $msg_min_timing
+name_configuration=Paramètres
+name_onlynonempty=Afficher seulement les salons occupés
+name_desc_onlynonempty=Permet d'afficher seulement les salons avec au moins un participant connecté sur la page de surveillance
+name_onlynonemptyliving=Seuls les salons occupés ou comportant un dernier message d'un participant sont affichés.
+name_preview=Prévisualiser
+name_Message=Message
+name_autorefreshon=Le rafraîchissement automatique de la page est activé.\
+  Désactivez-le si vous n'êtes pas en attente d'un message.
+name_autorefreshon1=Cela peut perturber le chargement des autres pages.
+name_autorefreshoff=Le rafraîchissement automatique de la page est désactivé.
+name_sharescreen=le partage de page
+name_autorefresh=le rechargement automatique
+name_active=Actif
+name_desactive=Désactivé
+
+!!For titles of links: has to be checked, if too long, there is a bug in the link.
+
+!set wims_name_title_living_activeshare=En activant, votre enseignant pourra voir certaines \
+  des pages sur lesquelles vous travaillez et vous aider.
+!set wims_name_title_living_stopshare=Actuellement, votre enseignant peut voir certaines \
+  des pages sur lesquelles vous travaillez pour vous aider.
+!set wims_name_title_living_activerefresh=$name_autorefreshoff Vous pouvez le réactiver.
+!set wims_name_title_living_stoprefresh=$name_autorefreshon
+
+name_depos=Dépôt d'un fichier temporaire
+name_depos2=Fichier(s) temporaire(s) déposé(s) par l'élève
+name_actualfile=Fichier actuel
+name_usertmpfiledesc=!nosubst Le fichier n'est pas conservé à la fermeture de votre session. Le dépôt d'un nouveau fichier efface l'ancien. La taille du fichier doit être inférieure à $[$tchat_configfilesize*0.25] Mo.
+name_configfilesize=Autoriser le dépôt de fichier temporaire par les participants
+name_desc_configfilesize=Permet aux élèves de déposer un fichier qui n'est pas conservé après déconnexion ; la taille maximale du fichier est paramétrable.
+name_disable_configfilesize=Cette option a été désactivée par l'administrateur du serveur.
+
+name_Sheet=Feuille
+name_Examen=Examen
+name_Doc=Document
+name_Exercise=Exercice

@@ -1,0 +1,70 @@
+!set lan=fr
+
+!set wims_html_header=!append line <style type="text/css">\
+.faq_Q {font-style: italic; padding:0.3em;color:blue;}\
+.faq_R {padding:0.3em;}\
+ol.doc_toc>li{margin-bottom:.6em;}\
+.section_content{margin-top:.6em;}\
+.doc_toc h3{font-size:1.2rem;font-weight:normal;display:inline;}\
+</style>\
+to $wims_html_header
+
+!header1
+
+<div id="wimsmhelp">
+
+!robottrap
+
+!if $chapter>0
+ !set l=!line 1 of $(chapter$chapter)
+ !set ll=!word $chapter of I II III IV V VI VII IIIV IX X
+ !set l=$wims_name_doch_Chapter $ll. $l
+!else
+ !if $chapter<0
+  !set l=$wims_name_doch_printable
+ !else
+  !set l=$name_main
+ !endif
+!endif
+
+<h1 class="wims_docu_title">$module_title_lang</h1>
+<h2 class="wims_docu_titleb">$l</h2>
+
+<ul id="docnavigation" class="wimsmenu menu">
+
+  !if $style=print
+    <li class="menuitem" role="menuitem">
+      !set wims_ref_class=doch_interactive
+      !href module=$module&chapter=0 $wims_name_doch_interactive
+      !set chapter=-1
+    </li>
+    !goto tabend
+  !endif
+
+  !if $chapter>0
+    <li class="menuitem" role="menuitem">
+      !set wims_ref_class=doch_docs
+      !href module=$module&chapter=0 $wims_name_doch_main
+    </li>
+  !endif
+
+  <li class="menuitem" role="menuitem">
+    !set wims_ref_class=doch_printable
+    !href module=$module&style=print $wims_name_doch_printable
+  </li>
+
+  !if $chapter>1
+    <li class="menuitem" role="menuitem">
+      !set wims_ref_class=doch_prev
+      !href module=$module&chapter=$[$chapter-1] $wims_name_doch_prev_chapt
+    </li>
+  !endif
+
+  !if $chapter<$chaptercnt
+    <li class="menuitem" role="menuitem">
+      !set wims_ref_class=doch_next
+      !href module=$module&chapter=$[$chapter+1] $wims_name_doch_next_chapt
+    </li>
+  !endif
+:tabend
+</ul>

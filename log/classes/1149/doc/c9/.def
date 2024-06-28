@@ -1,0 +1,9 @@
+tit=La fonction réciproque
+author=Rémi, Belloeil
+email=remi.belloeil@orange.fr
+copyright=gnu
+docopen=1
+doctoc=
+dlang=all
+header=<link rel="stylesheet" href="html/themes/_css/l2w.css" />
+desc=Complément de la synthèse sur les puissances rationnelles

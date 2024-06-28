@@ -1,0 +1,185 @@
+!set list_activities=$wims_name_Sheet,$wims_name_Examen,$wims_name_doc,$wims_name_Freework
+!set list_activities_js=!replace internal ' by \' in $list_activities
+<script>
+  var iEdit=window.opener.iEdit;
+  function addsheet(num,msg){
+    iEdit['$cible'].disable();
+    var ta1=window.opener.document.getElementById('$cible');
+    ta1.value=ta1.value+' $(list_activities_js[1]) n<sup>o</sup> '+num+' : \\exercise{module=adm%2Fsheet&+sh='+num+'}{'+msg+'}';
+    iEdit['$cible'].enable();
+  }
+  function addexam(num,msg){
+    iEdit['$cible'].disable();
+    var ta1=window.opener.document.getElementById('$cible');
+    ta1.value=ta1.value+' $(list_activities_js[2]) n<sup>o</sup> '+num+' : \\exercise{module=adm%2Fclass%2Fexam&+exam='+num+'}{'+msg+'}';
+    iEdit['$cible'].enable();
+  }
+  function addfile(msg){
+    iEdit['$cible'].disable();
+    var ta1=window.opener.document.getElementById('$cible');
+    ta1.value=ta1.value+'\\href{'+msg+'}{'+msg+'}';
+    iEdit['$cible'].enable();
+  }
+  function adddoc(num,msg){
+    iEdit['$cible'].disable();
+    var ta1=window.opener.document.getElementById('$cible');
+    ta1.value=ta1.value+' $(list_activities_js[3]) : \\exercise{module=adm%2Fdoc&+job=read&+doc='+num+'}{'+msg+'}';
+    iEdit['$cible'].enable();
+  }
+  function addpdoc(num,msg){
+    iEdit['$cible'].disable();
+    var ta1=window.opener.document.getElementById('$cible');
+    ta1.value=ta1.value+' $(list_activities_js[3]) : \\exercise{module='+num+'}{'+msg+'}';
+    iEdit['$cible'].enable();
+  }
+  function addfreework(num,msg){
+    iEdit['$cible'].disable();
+    var ta1=window.opener.document.getElementById('$cible');
+    ta1.value=ta1.value+' $(list_activities_js[4]) n<sup>o</sup> '+num+' : \\exercise{module=adm%2Fclass%2Ffreework&+freework='+num+'}{'+msg+'}';
+    iEdit['$cible'].enable();
+  }
+</script>
+!read lang/names.phtml.$moduclass_lang
+
+<p>$name_Add</p>
+<div id="cdtlink_management">
+!if $jquery_defined=yes
+  <script>
+    /*<![CDATA[*/
+    jQuery(function($$) {
+      // Get in sessionStorage if a tab was previously selected, and activate it.
+      var selectedTabId = sessionStorage.getItem("cdtlink_management_selectedTab");
+      selectedTabId = selectedTabId === null ? 0 : selectedTabId; //default tab = 0
+      $$("#cdtlink_management").tabs({
+        active: selectedTabId,
+        activate : function( event, ui ) {
+            selectedTabId = $$("#cdtlink_management").tabs("option", "active");
+            sessionStorage.setItem("cdtlink_management_selectedTab", selectedTabId);
+        }
+      });
+    });
+    /*]]>*/
+  </script>
+  <ul>
+  !if $nbsheets>0
+    <li><a href="#cdtsheet">$wims_name_Sheet</a></li>
+  !endif
+  !if $nbexams>0
+    <li><a href="#cdtexam">$wims_name_Examens</a></li>
+  !endif
+  !if $nbfile>0
+    <li><a href="#cdtfile">$wims_name_addfile</a></li>
+  !endif
+  !if  $nbdocs+ $nbpdocs >0
+    <li><a href="#cdtdoc">$wims_name_Docs</a></li>
+  !endif
+  !if $nbfreeworks>0
+    <li><a href="#cdtfreework">$wims_name_Freework</a></li>
+  !endif
+  </ul>
+!endif
+
+!if $nbsheets!=0
+  !if $jquery_defined=yes
+    <div id="cdtsheet">
+  !else
+    <div class="field box">
+    <h2>$wims_name_Sheet:</h2>
+  !endif
+    <ul class="wims_sheet_list">
+    !for i in $sheet_nums
+      <li class="wims_sheet_item">
+        !set title_js=!replace internal ' by \' in $(sheet_titles[$i])
+        <a href="javascript:addsheet($i,'$title_js');">$(sheet_titles[$i])</a>
+      </li>
+    !next i
+    </ul>
+  </div>
+!endif
+
+!if $nbexams!=0
+  !if $jquery_defined=yes
+    <div id="cdtexam">
+  !else
+    <div class="field box">
+    <h2>$wims_name_Examens:</h2>
+  !endif
+    <ul class="wims_sheet_list">
+      !for i in $exam_nums
+        <li class="wims_exam_item">
+          !set title_js=!replace internal ' by \' in $(exam_titles[$i])
+          <a href="javascript:addexam($i,'$title_js');">$(exam_titles[$i])</a>
+        </li>
+      !next i
+    </ul>
+  </div>
+!endif
+
+!if $nbfile > 0
+  !if $jquery_defined=yes
+    <div id="cdtfile">
+  !else
+    <div class="field box">
+    <h2>$wims_name_addfile:</h2>
+  !endif
+    <ul class="wims_sheet_list">
+      !for i=1 to $nbfile
+        <li class="wims_file_item">
+          <a href="javascript:addfile('$(file_titles[$i])');">$(file_titles[$i])</a>
+        </li>
+      !next i
+    </ul>
+  </div>
+!endif
+
+!if  $nbdocs+ $nbpdocs >0
+  !if $jquery_defined=yes
+    <div id="cdtdoc">
+  !else
+    <div class="field box">
+    <h2>$wims_name_Docs:</h2>
+  !endif
+    <ul class="wims_sheet_list">
+    !if $nbdocs > 0
+      !for i=1 to $nbdocs
+        !set title_js=!replace internal ' by \' in $(doc_titles[$i])
+        !if $title_js!=
+          <li class="wims_doc_item">
+            <a href="javascript:adddoc('$(doc_nums[$i])','$title_js');">$(doc_titles[$i])</a>
+          </li>
+        !endif
+      !next i
+    !endif
+
+    !if $nbpdocs > 0
+      !for i=1 to $nbpdocs
+        !set title_js=!replace internal ' by \' in $(pdoc_titles[$i])
+        !if $title_js!=
+          <li class="wims_doc_item">
+            <a href="javascript:addpdoc('$(pdoc_adds[$i])','$title_js');">$(pdoc_titles[$i])</a>
+          </li>
+        !endif
+      !next i
+    !endif
+    </ul>
+  </div>
+!endif
+
+!if $nbfreeworks!=0
+  !if $jquery_defined=yes
+    <div id="cdtfreework">
+  !else
+    <div class="field box">
+    <h2>$wims_name_Freework:</h2>
+  !endif
+    <ul class="wims_sheet_list">
+    !for i in $freework_nums
+      <li class="wims_freework_item">
+        !set title_js=!replace internal ' by \' in $(freework_titles[$i])
+        <a href="javascript:addfreework($i,'$title_js');">$(freework_titles[$i])</a>
+      </li>
+    !next i
+    </ul>
+  </div>
+!endif
+

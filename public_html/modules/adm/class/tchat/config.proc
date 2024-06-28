@@ -1,0 +1,17 @@
+name_title=$name_configuration
+!if $save!=$empty
+ $cf_refresh_timing
+  !bound cf_refreshtiming between $msg_min_timing and 1000 default $tchat_refreshtiming
+  !bound cf_open within yes,no default $tchat_open
+  !bound cf_onlynonempty within yes,no default $tchat_onlynonempty
+  !bound cf_configfilesize between 0 and 4 default 0
+  !setdef !set tchat_refreshtiming=$cf_refreshtiming\
+!set tchat_open=$cf_open\
+!set tchat_onlynonempty=$cf_onlynonempty\
+!set tchat_configfilesize=$cf_configfilesize in wimshome/log/classes/$wims_class/tchat/.def
+  tchat_open=$cf_open
+  tchat_refreshtiming=$cf_refreshtiming
+  tchat_onlynonempty=$cf_onlynonempty
+  tchat_configfilesize=$cf_configfilesize
+!endif
+!reset save

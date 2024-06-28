@@ -1,0 +1,59 @@
+Sommes #1
+Jeux de sommes
+??, 2019
+1
+E3
+elementary_mathematics
+levelE3,number,operation
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide (1)
+Mettez les nombres dans la pyramide de manière à ce que le nombre soit la somme des deux nombres au-dessous.
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide (2)
+De nouveau, mettez les nombres dans la pyramide, mais cette fois-ci vous devez choisir quel nombre utiliser parmi ceux qui sont donnés.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Noeud papillon (1)
+Mettez les nombres dans le noeud papillon de manière à ce que la somme des nombres vérifient les conditions données.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Noeud papillon (2)
+De nouveau, mettez les nombres dans le noeud papillon, mais cette fois-ci vous devez choisir quel nombre utiliser parmi ceux qui sont donnés.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide double (1)
+Mettez les nombres dans la pyramide double de manière à ce que les nombres soient la somme des deux nombres au-dessous.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide double (2)
+De nouveau, mettez les nombres dans la pyramide double, mais cette fois-ci vous devez choisir quel nombre utiliser parmi ceux qui sont donnés.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=1&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide double (3)
+Et finalement, de plus en plus difficile : mettez les nombres dans la pyramide double en choisissant quel nombre utiliser parmi ceux qui sont donnés.

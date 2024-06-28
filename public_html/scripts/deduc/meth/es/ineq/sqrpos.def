@@ -1,0 +1,41 @@
+!set methtit2=el cuadrado de un numero real es positivo o cero
+!set methtit=Positividad de un cuadrado
+!set methenv=ZZ QQ RR
+!set methparmtype=function
+!set methhelp=Este método agrega una condición como \(U^2 >= 0) en\
+   las hipótesis, donde \(U) es una expresión algebraica de su elección.
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!exit
+:form
+Se aplica \(U^2 >= 0), donde \(U) =
+!read deduc/methparm.phtml 1
+
+!exit
+:check
+!if / isin $methparm1
+  error=¡La división no está permitida en este método!
+  !exit
+!endif
+!read deduc/sub/simplify ($methparm1)^2
+!if $out=$empty
+  error=bad_data
+  !exit
+!endif
+sqr=$out
+oldobject=0
+newobject0=$sqr >= 0
+methexp=Positividad del cuadrado de \($methparm1)
+
+contextlist=$ct_Onlywhen $m_U representa un número real,\
+	$ct_Always,\
+	$ct_Onlywhen $m_U es positivo o nulo,\
+	$ct_Onlywhen $m_U es un entero
+
+resultlist=$newobject0,\
+  $sqr > 0
+
+!exit

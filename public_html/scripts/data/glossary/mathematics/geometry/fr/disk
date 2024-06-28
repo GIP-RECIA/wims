@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=area,measurement
+!set gl_title=Disque
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+
+Soit \(\mathrm{O}\) un point du plan et soit \(\mathrm{R}\) un nombre strictement
+positif.<br>
+Le <strong>disque</strong> de centre \(\mathrm{O}\) et de rayon \(\mathrm{R}\)
+est l'ensemble des points \(\mathrm{M}\) du plan tels que
+<span style="white-space:nowrap"> \(\mathrm{OM} \leqslant \mathrm{R}\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit un disque de rayon \(\mathrm{R}\).<br>
+L'aire \(A\) de ce disque est égale au produit du carré de la longueur de son
+rayon par <span style="white-space:nowrap">\(\displaystyle{\pi}\),</span> soit
+\(A=\pi \times \mathrm{R} \times \mathrm{R}\) ou encore
+<span style="white-space:nowrap">\(A=\pi \mathrm{R}^2\).</span>
+</div>
+:mathematics/geometry/fr/disk_1

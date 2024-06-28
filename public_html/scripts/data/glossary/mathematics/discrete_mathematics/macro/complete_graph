@@ -1,0 +1,11 @@
+!set gl_cnt=4
+!set gl_n=!shuffle 12
+!set gl_n=!listcomplement 1 in $gl_n
+!set gl_n=$(gl_n[1..$gl_cnt])
+!set gl_n=!sort numeric item $gl_n
+!for g=1 to $gl_cnt
+  !set gl_g=$(gl_n[$g])
+  !set gl_M=!exec pari matrix($gl_g,$gl_g,i,j,i!=j)
+  !readproc slib/graph/draw [$gl_M],red,red,,,html
+  !set gl_out$g = $slib_out
+!next

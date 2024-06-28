@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Sous-graphe
+!set gl_keywords=graph
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+  Soit \(G_1\) et \(G_2\) deux graphes.
+  Le graphe \(G_2\) est un <strong>sous-graphe</strong> de \(G_1\) si et
+  seulement si&nbsp;:
+  <ul>
+    <li>
+      les sommets de \(G_2\) sont des sommets de \(G_1\) ;
+    </li><li>
+      deux sommets de \(G_2\) sont adjacents si et seulement si ces deux sommets
+      sont adjacents pour le graphe <span style="white-space:nowrap">\(G_1\).
+      </span>
+    </li>
+  </ul>
+  Autrement dit&nbsp;: \(G_2\) est un sous-graphe de \(G_1\) si et seulement si
+  \(G_2\) est composé de certains sommets de \(G_1\) et de toutes les boucles et
+  arêtes qui les relient dans <span style="white-space:nowrap">\(G_1\).</span>
+</div>
+:mathematics/discrete_mathematics/fr/subgraph_1

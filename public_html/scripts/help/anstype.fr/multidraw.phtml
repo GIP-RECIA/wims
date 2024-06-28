@@ -1,0 +1,161 @@
+<b>Géométrie avec canvasdraw</b>
+(nom : <span class="tt wims_code_words">multidraw</span>).
+
+<p>
+Ce type de réponse permet à l'utilisateur de tracer plusieurs types d'objets
+géométriques (parmi des points, croix, cercles, droites, segments, flèches, rectangles,
+polygones, flèches courbes) mais aussi de positionner des images ou d'écrire du texte sur un dessin.
+</p><p>
+La bonne réponse doit être donnée sous la forme d'une matrice (le
+séparateur de lignes est le point-virgule `;').
+La première ligne est le code dans la syntaxe canvasdraw entre [ ].
+Les lignes suivantes sont constituées de la forme pouvant être dessinée parmi
+<span class="tt wims_code_words">points, crosshairs, circles, lines,
+segments, arrows, arrows2, rects, closedpoly, curvedarrows, curvedarrows2</span> ou placée parmi
+<span class="tt wims_code_words">images, text, math</span>
+suivie de la description des bonnes réponses.
+</p>
+<pre>
+\answer{}{[code canvasdraw du dessin];type_obj1,good_ans1;type_obj2,good_ans2;...}{type=multidraw}
+</pre>
+<p>
+Les coordonnées des points doivent être dans le repère mathématique défini dans le
+code de canvasdraw.
+Les dimensions du dessin doivent être mises sur la première ligne du champ
+<span class="tt wims_code_words">\embed{}.</span>
+</p><p>
+Les options possibles sont pour l'instant
+<span class="tt wims_code_words">eqweight split</span> pour le calcul de notes.
+</p><p>
+La réponse vide est autorisée.
+</p><p>
+Dans le cas où l'on désire analyser la réponse par des conditions,
+mettre sur la deuxième ligne du champ <span class="tt wims_code_words">\embed{}</span>
+les types possibles de tracés (séparés par un espace)
+et mettre le code <span class="tt wims_code_words">canvasdraw</span>
+comme troisième ligne de ce champ.
+</p>
+<p><b>Limite : </b> il n'est pas possible de faire apparaitre un dessin utilisant les commandes
+ canvasdraw dans l'énoncé avant la commande <span class="tt wims_code_words">\embed{}.</span>
+</p>
+<b>Remarques sur quelques commandes canvasdraw que l'on peut ajouter dans le code du dessin :</b>
+<ul><li>par défaut, les tracés de lignes, polygones ... sont de couleur noire.
+La commande canvasdraw <span class="tt wims_code_words">multistrokecolors color1,color2,...</span>
+permet de définir des couleurs différentes pour chaque type de tracés.
+</li><li>
+Il est possible de limiter les endroits où les formes pourront être dessinées
+ou positionnées à l'aide la commande canvasdraw
+<span class="tt wims_code_words">multisnaptogrid</span> combinée
+éventuellement avec <span class="tt wims_code_words">snaptopoints.</span>
+</li></ul>
+$table_header
+<caption>Exemples de syntaxe pour décrire la bonne réponse</caption>
+$table_hdtr<th >Type d'objet</th><th>Description de la bonne réponse</th><th>Explications</th></tr>
+$table_tr<td>images</td><td>[adresse_img1,adresse_img2,...],x1,y1,n1,x2,y2,n2,...</td>
+<td>l'image numéro n1 dans la liste entre [ ] doit être positionnée au point (x1,y1) ...
+(une même image peut être positionnée à plusieurs endroits)</td></tr>
+$table_tr<td>math</td><td>[formule1,formule2,...],x1,y1,n1,x2,y2,n2,...</td>
+<td>la formule numéro n1 (en code latex) dans la liste entre [ ] doit être positionnée au point (x1,y1) ...
+(une même formule peut être positionnée à plusieurs endroits)</td></tr>
+$table_tr<td>text</td><td>x1,y1,text1,x2,y2,text2,...</td>
+<td>text1 doit être positionné au point (x1,y1),...</td></tr>
+$table_tr<td>curvedarrows</td><td>xb1,yb1,xe1,ye1,xc1,yc1,...</td>
+<td>une flèche doit partir du point B1=(xb1,yb1) et arriver au point E1=(xe1,ye1) ;
+C1=(xc1,yc1) est utilisé pour définir le tracé en courbe dans l'affichage de
+la bonne réponse mais n'est pas utilisé pour l'analyse de la réponse
+(courbe quadratique de vecteurs tangents (xc1-xb1,yc1-yb1) en B1 et (xe1-xc1,ye1-yc1) en E1),...</td>
+</tr>
+$table_end
+<strong><label for="wims_show1">Exemples avec analyse</label></strong>
+<textarea id="wims_show1" cols="100" rows="16" name="wims_show" readonly="readonly">
+\text{canvas_code=xrange -10,10
+  yrange -10,10
+  opacity 155,155
+  linewidth 1
+  grid 1,1,grey
+  opacity 255,255
+  hline 0,0,black
+  vline 0,0,black
+  precision 10
+  linewidth 2
+  multisnaptogrid 1,1,1
+}
+\statement{
+\embed{r1,200x200}
+}
+\answer{}{[\canvas_code];arrows,0,3,3,0,0,3,-3,0;points,0,0;circles,0,0,5}{type=multidraw}
+</textarea>
+<textarea id="wims_show2" cols="100" rows="16" name="wims_show" readonly="readonly">
+\text{canvas_code=xrange -10,10
+yrange -10,10
+grid 1,1,black,0.5,0.5,grey
+multisnaptogrid 1,1
+linewidth 2
+point 0,0,red
+multiuserinput 4,0
+}
+\statement{
+\embed{r1,400x400}
+}
+\answer{}{[\canvas_code];images,[gifs/ca.gif,gifs/fr.gif,gifs/domains/sciences/mb_ordinateur.svg],0.5,1.5,1,3.5,4.5,2;text,5,5,un texte}{type=multidraw}
+</textarea>
+<textarea id="wims_show3" cols="100" rows="16" name="wims_show" readonly="readonly">
+\text{canvas_code=xrange -10,10
+yrange -10,10
+grid 1,1,black,0.5,0.5,grey
+multisnaptogrid 1,1
+linewidth 2
+point 0,0,red
+multiuserinput 4,0
+}
+\statement{
+\embed{r1,400x400}
+}
+\answer{}{[\canvas_code];math,[\overrightarrow{AB},\overrightarrow{BC},\overrightarrow{CD}],1,1,2,3,3,1}{type=multidraw}
+</textarea>
+<textarea id="wims_show3" cols="100" rows="16" name="wims_show" readonly="readonly">
+\text{canvas_code=xrange -10,10
+yrange -10,10
+grid 1,1,black,0.5,0.5,grey
+multisnaptogrid 1,1
+linewidth 2
+point 0,0,red
+multiuserinput 4,0
+}
+\statement{
+\embed{r1,400x400}
+}
+\answer{}{[\canvas_code];text,1,1,A,3,3,B}{type=multidraw}
+</textarea>
+<p>
+<strong><label for="wims_show4">Exemple sans analyse</label> :</strong>
+</p>
+<textarea id="wims_show3" cols="100" rows="13" name="wims_show" readonly="readonly">
+\text{canvas_code=xrange -4,4
+  yrange -4,4
+  opacity 155,155
+  linewidth 1
+  grid 1,1,grey
+  opacity 255,255
+  hline 0,0,black
+  vline 0,0,black
+  precision 10
+  linewidth 2
+  multisnaptogrid 1,1
+  multistrokecolors navy,cyan
+}
+\statement{
+\embed{r1,200x200
+arrows lines
+[\canvas_code]}
+}
+\answer{}{\rep}{type=multidraw}
+</textarea>
+<p>
+Dans cet exemple, l'élève pourra dessiner des flèches et des droites ; les flèches
+seront dessinées avec la couleur <span class="tt wims_code_words">navy</span>
+et les lignes avec la couleur <span class="tt wims_code_words">cyan</span>.
+La 1ère ligne de <span class="tt wims_code_words">\reply1</span>
+contiendra une description des flèches tracées et la seconde ligne une description
+des droites tracées.
+</p>

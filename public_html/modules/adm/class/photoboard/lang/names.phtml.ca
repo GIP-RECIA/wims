@@ -1,0 +1,15 @@
+!set lang_exists=yes
+!! see index
+!!set module_title=Orla
+
+!set name_nophoto=No hi ha fotos disponibles
+
+!set name_intro=Si s'han introduït adreces de fotos dels alumnes, podeu crear l'orla \
+corresponent a la classe o a una part de la classe i imprimir-la.
+
+!set name_expert=En el cas que també s'hagin introduït variables tècniques per als alumnes, \
+és possible filtrar les fotos segons els seus valors.
+
+!distribute items Menú per experts, Filtres, Llista de logins\
+into name_menu,name_filter,name_loginlist
+

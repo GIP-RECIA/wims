@@ -1,0 +1,98 @@
+!nocache
+!if $oefsteps!=$empty
+  !set fieldtot=!itemcnt $thisstep
+!else
+  !set fieldtot=$[$choicecnt+$replycnt]
+!endif
+
+!if $fieldtot<1
+  !changeto oef/noreply.phtml
+!endif
+
+<!-- Begin oef/form.phtml-->
+!if $hasembedding!=yes
+  <fieldset class="oefform">
+  !set enter_reply_tag=legend
+!else
+  !set enter_reply_tag=h2
+!endif
+
+!set N_=!itemcnt $embedded
+!if $fieldtot<=$N_
+  !goto send
+!endif
+
+<$enter_reply_tag class="oef_enterreply">
+!if $error=$empty
+  $name_enterreply:
+!else
+  $name_correctreply:
+!endif
+</$enter_reply_tag>
+
+!if $hasembedding!=yes
+  <datalist id="emptylist"><option value="??"></datalist>
+  !form reply name="replyform" onsubmit="return formcheck();" id="a_oefform" autocomplete="off" spellcheck="false"
+!endif
+
+!if $oefsteps!=$empty and $oefstepcnt>1
+  <div>
+  !if $dynsteps=yes
+    ($name_step $oefstep)
+  !else
+    ($name_step $oefstep/$oefstepcnt)
+  !endif
+  </div>
+!endif
+
+<table class="oefnoembed">
+!distribute item 1,1 into cntr,cntc
+!for t in $ansorder
+  !if $oefsteps=$empty or $t$(cnt$t) isitemof $thisstep
+    !read oef/form$t.phtml $(cnt$t)
+  !endif
+  !advance cnt$t
+!next t
+</table> <!-- end table oefnoembed -->
+
+:send
+!if $wims_fill_list!=$empty and $fillcnt>0 and $wims_fill_type!=$empty
+  !read anstype/$wims_fill_type.after
+!endif
+!if $oef_formnosubmit!=yes
+  !if $oef_js_submit!=
+    !set oef_js_submit=onclick="javascript:$oef_js_submit;"
+  !else
+    !set oef_js_submit=
+  !endif
+  <div class="send_answer">
+    !if _check notin $wims_session
+      <input type="submit" $oef_js_submit value="$name_sendanswer">
+    !else
+      <input type="submit" $oef_js_submit value="$name_sendanswer" disabled="disabled">
+    !endif
+    !if $jquery_defined=yes
+      <div class="reveal" id="exo_formCheck" data-reveal>
+        <h1>$name_are_you_sure</h1>
+        <div class="wims_msg info small">$name_exo_form_check</div>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="wimscenter">
+          <button class="submit wims_button" onclick="document.getElementById('a_oefform').submit();">$wims_name_yes</button>
+          <button type="button" class="wims_button wims_secondary_button" data-close>$wims_name_no</button>
+        </div>
+      </div>
+    !endif
+  </div>
+!endif
+
+!formend
+!if $hasembedding!=yes and $fieldtot>0
+  </fieldset>
+  !! end of "oefform" fieldset
+!endif
+
+!if $qcmgood<1 and $choicecnt>0
+  <p class="small">$name_remark</p>
+!endif

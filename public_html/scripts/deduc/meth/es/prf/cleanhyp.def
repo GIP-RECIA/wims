@@ -1,0 +1,53 @@
+!set methtit=Borrar suposiciones innecesarias
+!set methparmtype=special
+!set methparmrelax=1
+!set stepnocount=yes
+!set methhelp=Puede utilizar este método para eliminar suposiciones\
+ innecesarias, con el fin de aclarar la situación. ¡Pero <b>cuidado</b>! ¡Si\
+ elimina una hipótesis esencial, no podrá tener éxito!\
+  <p>\
+  Puedes aplicar este método tantas veces como quieras sin ser\
+  penalizado en tu puntuación, ya que no avanza el contador de pasos de\
+  la puntuación.\
+  </p>
+!set N_=!linecnt $m_context
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!if $N_<1
+  !set error1=¡No hay más suposiciones en el estado actual!
+!endif
+
+!exit
+:form
+$methhelp
+<p>
+Aquí están las suposiciones actuales. Marca las que quieras eliminar.
+</p><ul>
+!for i=1 to $N_
+  !set l=!line $i of $m_context
+  <li> <input type="checkbox" name="methparm1" value="$i"> \($l) </li>
+!next i
+ </ul>
+!exit
+:check
+!reset newobject,oldobject
+n_=!itemcnt $methparm1
+!if $n_=0
+  methexp=Paso vacío
+  !exit
+!endif
+nc=
+!for i=1 to $N_
+  !if $i notitemof $methparm1
+    l=!line $i of $m_context
+    nc=!append line $l to $nc
+  !endif
+!next i
+m_context=$nc
+!read deduc/objects.combine
+methexp=Borrar $n_ suposiciones
+
+!exit

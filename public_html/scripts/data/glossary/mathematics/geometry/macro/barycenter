@@ -1,0 +1,107 @@
+!set gl_coeff=!randint 1,5 repeat 3
+!set gl_coeff=!shuffle 5
+!set gl_coeff=$(gl_coeff[1,2,3])
+!set gl_h=$[$(gl_coeff[1])+$(gl_coeff[2])+$(gl_coeff[3])]
+!set gl_B = 0,1
+!set gl_C = 1,0
+!set gl_A = -1,-1
+!set gl_G=!exec pari coeff=[$gl_coeff];(coeff[1]*[$gl_A]+coeff[2]*[$gl_B] + coeff[3]*[$gl_C])/(coeff[1]+coeff[2]+coeff[3])
+!set gl_G3=!exec pari coeff=[$gl_coeff];1.2*(coeff[1]*[$gl_A]+coeff[2]*[$gl_B])/(coeff[1]+coeff[2])
+!set gl_G2=!exec pari coeff=[$gl_coeff];1.1*(coeff[1]*[$gl_A]+coeff[3]*[$gl_C])/(coeff[1]+coeff[3])
+!set gl_G1=!exec pari coeff=[$gl_coeff];1.1*(coeff[2]*[$gl_B]+coeff[3]*[$gl_C])/(coeff[2]+coeff[3])
+
+!set gl_xrange=!exec pari P=[$(gl_A[1]),$(gl_B[1]),$(gl_C[1])];[vecmin(P)-0.5,vecmax(P)+0.5]
+!set gl_yrange=!exec pari P=[$(gl_A[2]),$(gl_B[2]),$(gl_C[2])];[vecmin(P)-0.5,vecmax(P)+0.5]
+!set insdraw_size=500,500
+!set gl_A1=!exec pari 1.1*[$gl_A]
+!set gl_B1=!exec pari 1.1*[$gl_B]
+!set gl_C1=!exec pari 1.1*[$gl_C]
+!set gl_G=!exec pari 1.1*[$gl_G]
+!set gl_draw0=xrange $gl_xrange\
+yrange $gl_yrange\
+triangle $gl_A,$gl_B,$gl_C,black\
+text black,$gl_A1, large, A\
+text black,$gl_B1, large, B\
+text black,$gl_C1, large, C
+!set gl_draw1=$gl_draw0\
+text black,$gl_G1, large, G1\
+text black,$gl_G2, large, G2\
+text black,$gl_G3, large, G3
+
+!for gl_i = 1 to $(gl_coeff[2]) + $(gl_coeff[3])-1
+  !set gl_P = !exec pari ($gl_i*[$gl_B] + ($(gl_coeff[2])+$(gl_coeff[3])-$gl_i)*[$gl_C])/($(gl_coeff[2])+$(gl_coeff[3]))
+  !if $gl_i=$(gl_coeff[2])
+    !set gl_draw1 = $gl_draw1\
+linewidth 3
+  !else
+    !set gl_draw1 = $gl_draw1\
+linewidth 1
+  !endif
+  !set gl_draw1 = $gl_draw1\
+line $gl_P,$gl_A, $(gl_couleur[1])
+!next
+!for gl_i = 1 to $(gl_coeff[1]) + $(gl_coeff[3])-1
+  !set gl_Q = !exec pari ($gl_i*[$gl_A] + ($(gl_coeff[1])+$(gl_coeff[3])-$gl_i)*[$gl_C])/($(gl_coeff[1])+$(gl_coeff[3]))
+  !if $gl_i=$(gl_coeff[1])
+    !set gl_draw1 = $gl_draw1\
+linewidth 3
+  !else
+    !set gl_draw1 = $gl_draw1\
+linewidth 1
+  !endif
+  !set gl_draw1 = $gl_draw1\
+line $gl_Q,$gl_B, $(gl_couleur[2])
+!next
+!for gl_i = 1 to $(gl_coeff[1]) + $(gl_coeff[2])-1
+  !set gl_R = !exec pari ($gl_i*[$gl_A] + ($(gl_coeff[1])+$(gl_coeff[2])-$gl_i)*[$gl_B])/($(gl_coeff[1])+$(gl_coeff[2]))
+  !if $gl_i=$(gl_coeff[1])
+    !set gl_draw1 = $gl_draw1\
+linewidth 3
+  !else
+    !set gl_draw1 = $gl_draw1\
+linewidth 1
+  !endif
+  !set gl_draw1 = $gl_draw1\
+line $gl_R,$gl_C, $(gl_couleur[3])
+!next
+
+!insdraw $gl_draw1\
+text black,$gl_G,large, G\
+
+!set gloss_out=<div class="wimscenter"><img src="$ins_url" alt=""></div>
+
+!set gl_draw2=$gl_draw0
+
+!set gl_couleur=red,blue,green
+!!set gl_couleur=orange,orange,orange
+!for gl_i = 1 to $gl_h-1
+  !set gl_P = !exec pari ($gl_i*[$gl_A] + ($gl_h-$gl_i)*[$gl_B])/$gl_h
+  !set gl_Q = !exec pari ($gl_i*[$gl_A] + ($gl_h-$gl_i)*[$gl_C])/$gl_h
+  !set gl_R = !exec pari ($gl_i*[$gl_B] + ($gl_h-$gl_i)*[$gl_C])/$gl_h
+  !set gl_S = !exec pari ($gl_i*[$gl_C] + ($gl_h-$gl_i)*[$gl_B])/$gl_h
+  !ifval $gl_i=$(gl_coeff[1])
+    !set gl_draw2 = $gl_draw2\
+    linewidth 4
+  !endif
+  !set gl_draw2 = $gl_draw2\
+line $gl_P,$gl_Q, $(gl_couleur[1])\
+linewidth 1
+  !ifval $gl_i=$gl_h-$(gl_coeff[3])
+    !set gl_draw2 = $gl_draw2\
+linewidth 4
+  !endif
+  !set gl_draw2 = $gl_draw2\
+line $gl_R,$gl_Q, $(gl_couleur[3])\
+linewidth 1
+  !ifval $gl_i=$gl_h-$(gl_coeff[2])
+    !set gl_draw2 = $gl_draw2\
+linewidth 4
+  !endif
+  !set gl_draw2 = $gl_draw2\
+line $gl_P,$gl_S, $(gl_couleur[2])\
+linewidth 1
+!next
+
+!insdraw $gl_draw2\
+text black,$gl_G,large, G
+!set gloss_out1=<div class="wimscenter"><img src="$ins_url" alt=""></div>

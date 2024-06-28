@@ -1,0 +1,25 @@
+any:title desc comment prpage job infoshow exodescshow
+init:sheet
+reply:allowtype begindscore begintscore enddscore endtscore IPscore \
+ allow allowshare allowtechvar save save_indiv datecheck hidden_condition indivtechvar wims_deposit
+deny:listed title_save desc_save comment_save prpage_save activetest \
+  expirable confirmed test_expire old_allowtype old_allowtechvar\
+  exodescshow_save formal_hidden_condition_save indivtechvar_save listval
+reply:delete movetarget movesource modif mod_title mod_desc \
+  mod_feedback mod_require mod_weight mod_dep \
+  mod_comment mod_attribut mod_exotrymax mod_indiv\
+  weight formulaA formulaB
+reply:expdate source confirm exodescshow
+any:num iniparm
+init:moduclass_lang module_language back
+reply:update_ex[MAX_EXOS]
+reply:begindscore[MAX_TECHVARVAL]
+reply:begintscore[MAX_TECHVARVAL]
+reply:enddscore[MAX_TECHVARVAL]
+reply:endtscore[MAX_TECHVARVAL]
+reply:IPscore[MAX_TECHVARVAL]
+reply:datecheck[MAX_TECHVARVAL]
+reply:indiv[MAX_EXOS]
+reply: begindscore0 begintscore0 endtscore0 enddscore0 datecheck0
+reply: require[200] weight[200]
+deny:ssource

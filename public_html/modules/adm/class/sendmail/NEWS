@@ -1,0 +1,28 @@
+20221108 [r12276] correct identification of sender of message in case of several teacher in a class (FG)
+------------- version 2.03 
+20220921 [r17089] forbidden access in example class (FG)
+20220415 [r16581] hidde sender mail in case of wims_mail_hidden=yes (FG)
+20220404 [r16530] replace accordion by toggle script for selecting recipient (FG)
+20220401 [r16512] new job=oneuser : user of a class can send mail to supervisor (FG)
+20220324 [r16502] use detag to protect subject and msg of message (FG)
+20220324 [r16482] option sendotherteacher to send copie of message to all other teacher of the class or not (FG)
+20220324 [r16482] option selfsend to send copie of message to supervisor or not (FG)
+20220323 [r16481] transfert data to chooselist script with file instead of variable to prevent too_long_variable error in case of many user in the class (FG)
+20220323 [r16479] not display email of user or supervisor (FG)
+20220323 [r16479] restructuration of module for preparing future request (FG)
+20220318 [r16479] bugfix in case of no email defined for all user of the class (FG)
+ ------------ version 2.02 
+20170220 [r11314] bugfix when use initialisation button of varfilter (FG)
+20160628 [r10462] varfilter interface display only if one variable filter exists (FG)
+20160413 [r10001] use new technical variable (FG)
+20160412 [r10000] error message in standard format (FG)
+20160412 bugfix : real forbidden access to module when user is not supervisor of class (FG)
+20141010 :
+  In class: if the mails are not send to all the students, their list is added to the
+   message send to other teachers.
+20120622: fix filter
+
+------------------------ version 2.01
+20100308: use of script/js/chooselist.js au lieu du fichier local js (FG)
+2010-02 : Version 2.00
+  This module replaces several previously existing module adm/sendmail.fr.

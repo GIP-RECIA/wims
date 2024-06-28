@@ -1,0 +1,55 @@
+!! file to add link 
+!!   - from class level to all program in portal
+!!   - from course level to the program of the course
+
+!set class=$wims_read_parm
+!! --------- not use in zonetest of program
+!set test=!replace internal / by , in $class
+!if $(test[-1])=0
+  !exit
+!endif
+!if $class_typename=course
+  !let data=!replace internal / by , in $class
+  !let courses=$(data[2])/$(data[3])/$(data[4])
+  !let list_supervise=!defof user_supervise in wimshome/log/classes/$wims_superclass/.users/$wims_realuser
+  !let statut=supervise
+!else
+  !set courses=!record 0 of wimshome/log/classes/$class/courses
+  !set courses=!column 1 of $courses
+!endif
+!if $courses=$empty
+ !exit
+!endif
+!set nbcourses=!itemcnt $courses
+
+!reset courses_right
+!for k=1 to $nbcourses
+  !let data=$(courses[$k])
+  !let data=!replace internal / by , in $data
+  !if $wims_superclass/$(data[1])/$(data[3]) isitemof $list_supervise,$(user_$(statut)_) or $wims_realuser=supervisor
+    !set courses_right=!append item $(data[1])/$(data[3]) to $courses_right
+  !endif
+!next k
+!if $courses_right=$empty
+  !exit
+!endif
+
+!if $class_typename=course
+  <div>
+  <details open><summary>$U_gotoclass31</summary>
+  <ul class="wims_subclasses">
+!endif
+!for cours in $courses_right
+  !let don=!defof class_typename,class_description,class_supervisor in wimshome/log/classes/$wims_superclass/$cours/.def
+  <li class="inline"><span class="wims_classes_direct_program">
+  !if $statut=supervise
+    !href module=adm/class/classes&type=authsupervisor&class=$wims_superclass/$cours&auth_user=supervisor $(don[2])
+  !else
+    !href module=adm/class/classes&type=authparticipant&class=$wims_superclass/$cours&auth_user=$u_ $(don[2])
+  !endif
+  </span></li>
+!next cours
+!if $class_typename=course
+  </ul></details></div>
+  !read ./classlegend.phtml
+!endif

@@ -1,0 +1,11 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontfamily 14px Arial
+crosshair -3,-3,red
+crosshair 3,3,blue
+string red,-3,-3,Hello World
+fontfamily Italic 18px Arial
+string red,3,3,Hello World
+fontfamily 22pt STIX
+string black,-10,8,\u03B1 \u03B2 \u03B3 \u03B4 \u03B5 \u03B6 \u03B7 \u03B8 \u03B9 \u03BA \u03BB \u03BC \u03BD \u03BE \u03BF

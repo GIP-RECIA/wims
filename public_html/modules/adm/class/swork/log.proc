@@ -1,0 +1,33 @@
+!! display log activity of participant duser
+
+!! check valid duser
+!if $wims_user!=supervisor
+  duser=$wims_user
+!else
+  !readproc adm/class/authchars
+  duser=!text select char $char_login in $duser
+  !readproc adm/class/userdef ,$wims_class,$duser
+  !read $userdef
+  !if $user_exists!=yes
+    job=userlist
+    !changeto $job.proc
+  !endif
+  name_modtitle=$name_modtitle ( $user_firstname $user_lastname )
+!endif
+
+nbwork=!recordcnt wimshome/log/classes/$wims_class/swork/log.$duser
+minwork=$[max(1,$nbwork-50)]
+!read proc/listwork.proc $duser
+nb=!linecnt $exolist
+!if $nb!=0
+ data=!word 2 of $cfdata
+ data=$data,
+ !for k=1 to $nb
+   l=!line $k of $exolist
+   !readproc proc/exoscore.proc $(l[1]),$(l[2]),$duser
+   data=!append item $(l[1]) $(l[2]) $[$(l[3])/100] $score_out to $data
+ !next k
+!else
+  data=$empty
+!endif
+

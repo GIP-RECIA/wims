@@ -1,0 +1,147 @@
+
+!set wims_module_log=error: $error $wims_class
+
+<b>$wims_name_Error</b>.
+
+!if not_secure iswordof $error
+ !if $code!=$empty
+ÃÜÂë²»¶Ô.
+ !else
+Ö»ÄÜ´Ó°²È«Ö÷»ú½øÈë±¾Ä£¿é.
+ !endif
+¾Ü¾ø½øÈë.
+ !exit
+!endif
+
+!if checkhost iswordof $error
+Äãµ±Ç°µÄÁ¬½Ó²»ÔÚĞÂ¶¨ÒåµÄ°²È«Ö÷»ú·¶Î§ÄÚ.
+Õâ¿ÉÄÜÊÇÒ»¸ö´íÎó»áµ¼ÖÂÄãÊ§È¥°à¼¶µÄ¿ØÖÆ.
+ËùÓĞ°²È«Ö÷»úµÄ¶¨ÒåÃ»ÓĞ¸Ä±ä.
+ !exit
+!endif
+
+!if bad_file iswordof $error
+¶Ô²»Æğ, <em>$wims_deposit</em> ²»ÏñÊÇ°à¼¶µÄ±¸·İÎÄ¼ş.
+»òÕßÊÇÄãËÍ³öÁËÒ»¸ö´íÎóµÄÎÄ¼ş, »òÕßÊÇÎÄ¼şÒÑËğ»µ.
+ !exit
+!endif
+
+!if empty_file iswordof $error
+ÔÚÄãµÄ±¸·İÎÄ¼ş <span class="tt wims_fname">$wims_deposit</span> ÀïÃ»ÓĞ·¢ÏÖ°à¼¶×ÊÔ´.
+ !exit
+!endif
+
+!if no_upload iswordof $error
+ÉÏ´«Êı¾İ³¬Ê±: ²Ù×÷Ê§°Ü. ÇëÖØÊÔ.
+ !exit
+!endif
+
+!if remote_sharing iswordof $error
+ÄãµÄÏàÁÚ°àÕıÔÚ¹²ÏíÄãµÄ×ÊÔ´. ³ı·ÇÄÇ±ßÍ£Ö¹¹²Ïí,
+Äã¼È²»ÄÜÖĞÖ¹¹²Ïí, Ò²²»ÄÜ´ÓÄãµÄÏàÁÚ±íÄÚÉ¾³ı.
+ !exit
+!endif
+
+!if share_dep iswordof $error
+×ÊÔ´¹²ÏíÒª¹Ë¼°Ïà¹ØĞÔ:
+ !if sheet iswordof $error
+  Èç¹ûÄãÒª¹²Ïí×÷ÒµÒ³, ¾ÍÏÈÒª¹²ÏíÁ·Ï°.
+ !else
+  !if exam iswordof $error
+  ÈôÒª¹²Ïí¿¼ÊÔ, ÔòÏÈÒª¹²ÏíÁ·Ï°Óë×÷ÒµÒ³.
+  !else
+   !if livret iswordof $error
+  ÈôÒª¹²Ïí¼¼ÄÜ¼ÇÂ¼±¾, ÔòÏÈÒª¹²ÏíÁ·Ï°Óë×÷ÒµÒ³.
+   !else
+    !if userphoto iswordof $error
+     les comptes de participants avant de partager les photos individuelles.
+    !endif
+   !endif
+  !endif
+ !endif
+ !exit
+!endif
+
+!if stopshare_dep iswordof $error
+×ÊÔ´¹²ÏíÒª¹Ë¼°Ïà¹ØĞÔ:
+ !if sheet iswordof $error
+  Èç¹ûÄãÒªÍ£Ö¹¹²Ïí×÷ÒµÒ³, ¾ÍÒªÏÈÍ£Ö¹¹²Ïí¿¼ÊÔÓë¼¼ÄÜ¼ÇÂ¼±¾.
+ !else
+  !if exo iswordof $error
+   Èç¹ûÄãÒªÍ£Ö¹¹²ÏíÁ·Ï°, ¾ÍÒªÏÈÍ£Ö¹¹²Ïí×÷ÒµÒ³.
+  !else
+   !if user iswordof $error
+    des photos individuelles avant celui des comptes de participants.
+   !endif
+  !endif
+ !endif
+ !exit
+!endif
+
+!if not_neighbor iswordof $error
+Äã³¢ÊÔ²Ù×÷µÄ°à¼¶²»ÊÇÓĞĞ§ÏàÁÚµÄ°à¼¶.
+ <br>
+½öµ±Ë«·½»¥ÏàÉùÃ÷¶Ô·½ÊÇÏàÁÚ°àÊ±, ²ÅÄÜ½¨Á¢ÓĞĞ§µÄÏàÁÚ¹ØÏµ.
+ !exit
+!endif
+
+!if localmirror iswordof $error
+ÔÚÍ¬Ò»·şÎñÆ÷ÉÏ×÷°à¼¶µÄ¾µÏñÊÇÃ»ÓĞÒâÒåµÄ.
+ !exit
+!endif
+
+!if toobigfile iswordof $error
+ ÄãµÄÎÄ¼şÌ«´óÁË, ²»ÄÜ³¬¹ı 12K.
+ !exit
+!endif
+
+!if file_too_large iswordof $error
+  <p>It was not possible to archive this class because of its size. Archives are limited to <strong>$max_arch_size KB</strong>.</p>
+  <p>We invite you to make a selective backup by selecting only certain data.</p>
+  !if $format!=zip
+    <p>NB: even if the browser allows you to download the generated file, it may not be usable.</p>
+  !endif
+  !exit
+!endif
+
+!if emptycloningpwd iswordof $error
+  You must put a password with at least $passwd_min characters and at most
+  $passwd_max characters amongs the characters <span class="tt">$char_passwd</span>
+  !exit
+!endif
+
+!if expdate_sharing iswordof $error
+ !let date=!word 2 of $error
+ vous ne pouvez pas définir une date d'expiration après la date d'expiration d'une classe avec laquelle vous partagez des ressources.
+ La date d'expiration de votre classe doit être située avant le
+ !read date.phtml $date,notime
+ !exit
+!endif
+
+!if sharing_expdate iswordof $error
+ !let date=!word 2 of $error
+ vous ne pouvez pas partager des ressources avec une classe dont la date d'expiration est inférieure à la date d'expiration de votre classe.
+ Si vous voulez partager les ressources de cette classe, la date d'expiration de votre classe doit être située avant le
+ !read date.phtml $date,notime
+ !exit
+!endif
+
+!if expdate_sharable iswordof $error
+ !let date=!word 2 of $error
+ vous ne pouvez pas définir une date d'expiration précédent la date d'expiration d'une classe que vous autorisez à partager vos ressources.
+ La date d'expiration de votre classe doit être située après le
+ !read date.phtml $date,notime
+ !exit
+!endif
+
+!if sharable_expdate iswordof $error
+ !let date=!word 2 of $error
+ vous ne pouvez pas proposer un partage de ressources avec une classe dont la date d'expiration est supérieure à la date d'expiration de votre classe.
+ Si vous voulez proposer de partager vos ressources à cette classe, la date d'expiration de votre classe doit être située après le
+ !read date.phtml $date,notime
+ !exit
+!endif
+
+
+!msg $error
+

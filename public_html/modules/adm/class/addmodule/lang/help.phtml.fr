@@ -1,0 +1,15 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:series
+<p>
+En général, les exercices d'une série sont tirés aléatoirement
+et au moins un exercice de chaque type est proposé si le nombre
+demandé le permet.
+</p><p>
+Vous avez demandé dans le paramétrage de l'exercice que l'ordre ne soit
+pas aléatoire,
+vous pouvez ici changer l'ordre des exercices de la série.
+</p>
+!exit

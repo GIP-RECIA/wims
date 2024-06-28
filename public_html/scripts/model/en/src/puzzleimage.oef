@@ -1,0 +1,56 @@
+type=game
+textarea="instruction data"
+iEdit="instruction"
+
+:Reconstitute a picture (puzzle type).
+
+A picture is cut into pieces that are put in the mess.
+You have to reconstruct the original image.
+You can only exchange two pieces: to do this, click on the first then on the second.
+
+<p class="wims_credits">
+Author of the model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+:\title{Picture puzzle}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Instructions
+\text{instruction=Rebuild the image.
+To swap two pieces, click on the first and then on the second.}
+
+:Main data.
+Each line corresponds to an image
+The first item is the name of the image that should be loaded
+ into the images folder of the exercise once it is saved.
+The second item is the size of the image.
+The third item indicates cutting.
+The fourth item is optional and can be an indication or the name of the image.
+\text{data=photos/bird.gif,320x240,4 x 3,it's a bird.
+photos/bloom.gif,320x240,3 x 4
+}
+:%%%%%%%%%%%%%% Nothing to modify until statement %%%%%%%%%%%%%%%%
+
+\text{data=randrow(\data)}
+
+\text{v=wims(replace internal x by , in \data[3])}
+\integer{taille=80*\v[1]}
+
+\statement{
+  <div style="padding:10px;">
+    <div class="instruction">\instruction</div>
+    \if{\data[4] !=}{
+      <strong>\data[4]</strong>
+    }
+  </div>
+  <div class="wimscenter">\embed{r 1, \data[2]}</div>
+}
+
+\answer{1}{\data[1];\data[3] x 80}{type=puzzle}{option=nonstop}

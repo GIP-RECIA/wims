@@ -1,0 +1,38 @@
+!! create a datepicker form with some option (in line) in wims_read_parm
+!!line 1 : default value
+!!line 2 : name form
+!!line 3 : minDate,maxDate (use datepicker format)
+!!
+!! example call :
+!! !read adm/datepickerform.phtml $expirydate\
+!! expirydate\
+!! "-1d","+1y"
+
+!distribute line $wims_read_parm into default_,name_,date_
+!distribute item $date_ into mdate_,Mdate_
+
+!reset option_ y_ m_ d_
+!if $mdate_!=$empty
+  !set mdate_=!text select char 0123456789 in $mdate_
+  !set y_=!char 1 to 4 of $mdate_
+  !set m_=!char 5 to 6 of $mdate_
+  !set d_=!char 7 to 8 of $mdate_
+  !set option_=$option_ min="$y_-$m_-$d_"
+  !reset y_ m_ d_
+!endif
+!if $Mdate_!=$empty
+  !set Mdate_=!text select char 0123456789 in $Mdate_
+  !set y_=!char 1 to 4 of $Mdate_
+  !set m_=!char 5 to 6 of $Mdate_
+  !set d_=!char 7 to 8 of $Mdate_
+  !set option_=$option_ max="$y_-$m_-$d_"
+  !reset y_ m_ d_
+!endif
+!if $default_!=$empty
+  !set default_=!text select char 0123456789 in $default_
+  !set y_=!char 1 to 4 of $default_
+  !set m_=!char 5 to 6 of $default_
+  !set d_=!char 7 to 8 of $default_
+  !set option_=$option_ value="$y_-$m_-$d_"
+!endif
+<input type="date" name="$name_" id="$name_" $option_>

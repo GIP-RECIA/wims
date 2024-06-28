@@ -1,0 +1,88 @@
+option:text
+
+!if $lang=fr
+  !set name_searchmore=... cherchez un peu plus
+!else
+  !set name_searchmore=... you should search a little more
+!endif
+
+!if $wims_read_parm=nocompare
+  !exit
+!endif
+
+reply=$(reply$i)
+replyurl=$(reply[2;])
+reply$i=$(reply[1;])
+repclic=$(reply[3;])
+
+!set answer=!lines2rows $(replygood$i)
+!set answer=!lines2rows $answer
+!set N=!line 3 of $(oef_answer_option$i)
+!distribute items $N into ny,nx,width,height
+!set nb_im=$[$nx*$ny]
+!set test=!line 1 of $(oef_answer_option$i)
+!set rep=$(reply$i)
+!set good_url=!line 2 of $(oef_answer_option$i)
+
+!set test=!nospace $test
+!set rep=!nospace $rep
+
+!set diff=
+!for a = 1 to $nb_im
+  !if $(test[$a])=$(rep[$a])
+    !set diff=!append item 1 to $diff
+  !else
+    !set diff=!append item 0 to $diff
+  !endif
+!next
+!if $test issametext $rep
+  score=1
+!else
+  score=0
+!endif
+!read anstype/puzzle_css.inc
+
+!if text notwordof $(replyoption$i)
+  !set row_style=$empty
+!else
+  !set row_style=style="flex-wrap:wrap"
+!endif
+
+!set r_out=$empty
+!set g_out=$empty
+!for y=1 to $ny
+  r_out=$r_out <div class="puzzle_row" $row_style>
+  g_out=$g_out <div class="puzzle_row" $row_style>
+  !for x=1 to $nx
+    !set t_rep=!item $[$x+($y-1)*($nx)] of $replyurl
+    !set t_good=!item $[$x+($y-1)*($nx)] of $good_url
+    !if $t_rep issametext $t_good
+      !set t_class=oef_indgood
+    !else
+      !set t_class=oef_indbad
+    !endif
+    !set r_out=$r_out\
+    <div class="puzzle_piece $t_class" style="width:$(width)px;height:$(height)px">$t_rep</div>
+
+    !set g_out=$g_out\
+    <div class="puzzle_piece oef_indgood" style="width:$(width)px;height:$(height)px">$t_good</div>
+  !next x
+  r_out=$r_out </div>
+  g_out=$g_out </div>
+!next y
+
+m_reply$i=$diff
+
+reply_$i=$r_out
+!if $repclic > 2
+  replyGood$i=$g_out
+!else
+  replyGood$i=&nbsp; $name_searchmore
+!endif
+reply__$i=&nbsp;
+!if $score=1
+  diareply$i=good
+  !advance freegot
+!else
+  diareply$i=bad
+!endif

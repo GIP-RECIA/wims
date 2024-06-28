@@ -1,0 +1,50 @@
+Formes
+jeux en géométrie
+??, 2019
+1
+E3
+elementary_mathematics
+levelE3,elementary_geometry,2_shape
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:E3/geometry/oefgeo2D.fr
+exo=tracerect2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Rectangle
+Tracez un rectangle en suivant l'instruction. <br/><strong>NOTE</strong>  Vous devez cliquer sur les quatre sommets du rectangle puis de nouveau sur le premier pour fermer la ligne.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracecircle&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Cercle
+Tracer un cercle en suivant l'instruction.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracetrirect&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Triangle rectangle
+Tracer un triangle rectangle (vous savez ce que c'est, n'est-ce pas ?). <br/><strong>NOTE</strong> Vous devez cliquer sur les trois sommets du triangle puis de nouveau sur le premier pour fermer la ligne.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracetri&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Triangle non rectangle
+Maintenant, tracez un triangle qui <strong>n'est pas</strong> rectangle. <br/><strong>NOTE</strong> Vous devez cliquer sur les trois sommets du triangle puis de nouveau sur le premier pour fermer la ligne.
+
+
+:E3/geometry/oefgeo2D.fr
+exo=centre&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Centre d'un cercle
+Vous savez ce qu'est le centre d'un cercle, n'est-ce pas ? Montrez-le !
+
+
+
+

@@ -1,0 +1,50 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:general
+
+Ce module permet d'analyser la sauvegarde d'une classe pour importer/remplacer
+les ressources en les sélectionnant (une par une ou en groupe de même type).
+Aucune ressource existante de la classe n'est modifiée. Les ressources de la sauvegarde
+dont il existe une copie dans la classe ne sont pas importables.
+<br>
+Les ressources importables sont :
+<ul>
+  <li><b>Les feuilles</b>: elles sont ajoutées avec un statut en préparation
+  et la date d'expiration est fixée à celle de la classe.
+  Les feuilles ne peuvent pas être ajoutées à la classe si
+    <ul>
+      <li>elles sont identiques à une feuille de la classe,</li>
+      <li>elles contiennent des exercices de la classe,</li>
+      <li>elles font appel à des modules d'exercices non présents sur le serveur
+      (la vérification se limite à l'existence du module sans vérifier la version
+      ou la présence des exercices cibles dans le module). Les liens d'aide des
+      exercices ne sont pas vérifiés.</li>
+    </ul>
+  </li><li>
+  <b>Les documents (privés)</b>: il s'agit des documents propres à la classe.
+    Ils sont importés avec le même statut de lecture/écriture que le document d'origine.
+  </li><li>
+  <b>Les liens vers les documents publics</b>: ils sont importés avec le statut "caché".
+  Une vérification d'existence du document sur le serveur est effectuée.
+  Le lien éventuel du document vers une feuille d'exercices de la sauvegarde
+  n'est pas conservé (un message apparaît alors dans la colonne commentaires).
+  Si vous souhaitez obtenir cette feuille d'exercices, il faudra la faire générer
+  à partir de l'interface du document une fois que le lien vers ce dernier est importé.
+  </li><li>
+  <b>Les liens vers des outils</b>: ils sont importés avec le statut "caché".
+  Une vérification d'existence de l'outil sur le serveur est effectuée.
+  </li><li>
+  <b>Les glossaires</b> : ils sont importés avec le statut "caché".
+  Aucune vérification de l'existence de chacune des gloses sur le serveur
+  n'est effectuée.
+  </li>
+</ul>
+Le remplacement de ressources ne peut se faire que pour des ressources
+  dont le statut est <span class="tt">En préparation</span>
+  (autrement dit des ressources non encore utilisées
+  par les participants). Pour l'instant cette option n'est disponible que pour
+  les feuilles de travail.
+
+!exit

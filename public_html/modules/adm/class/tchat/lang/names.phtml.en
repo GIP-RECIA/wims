@@ -1,0 +1,78 @@
+!set lang_exists=yes
+
+wims_name_newmsg=New message
+name_viewpage=Participant's visible page(s)
+name_partnotconnected=This participant is not connected to the chat.
+name_nopagetoview=None of the participant's pages can be displayed.
+name_nosharingscreen=The participant has disabled screen sharing.
+name_nomsg=No message.
+name_userlist=List of students
+name_noparticipant=There is no participant in the class.
+name_tchatwith=Chat with
+name_warninguser=When you are connected to the chat, the teacher can see \
+  (when also connected) a copy of your navigation pages.\
+  The objective is to be able to discuss the exercises that you are currently solving.
+name_tchatopen=Connected
+name_answer=Reply
+name_page=Window
+name_living=Lounges
+name_ownliving=Personnal lounge
+name_changeliving=Change lounge
+name_open=Open
+name_opening=Open
+name_close=Closed
+name_closing=Close
+name_regusers=Registered
+name_all=All
+name_configliving=Lounge configuration
+name_mkliving=Create
+name_title=Lounge name
+name_desc_title=!nosubst Name of the lounge (Limited to $title_limit characters)
+name_statut=Status
+wims_name_listliving=Configure lounges
+wims_name_addliving=Add a lounge
+name_confliving=Configure a lounge
+wims_name_userlistliving=Lounge monitoring
+name_listall=all students in the class
+name_teacher=the teacher
+name_yourself=yourself
+name_and=and
+name_opentchat=Open chat for this class
+name_timing=Chat refresh rate
+name_desc_refreshtiming=!nosubst An integer at least equal to $msg_min_timing
+name_configuration=Parameters
+name_onlynonempty=Show only occupied lounges
+name_desc_onlynonempty=Allows you to display only the lounges with at least one participant connected on the monitoring page
+name_onlynonemptyliving=Only lounges occupied or with a last message from a participant are displayed.
+name_preview=Preview
+name_Message=Message
+name_autorefreshon=Automatic page refresh is enabled.\
+  Disable it if you're not waiting for a message.
+name_autorefreshon1=This can disrupt the loading of other pages.
+name_autorefreshoff=Automatic page refresh is disabled.
+name_sharescreen=page sharing
+name_autorefresh=automatic refresh
+name_active=Active
+name_desactive=Disabled
+
+!!For titles of links: has to be checked, if too long, there is a bug in the link.
+
+!set wims_name_title_living_activeshare=By activating, your teacher will be able to see some\
+  pages you work on and help you.
+!set wims_name_title_living_stopshare=Currently your teacher can see some\
+  pages you're working on to help you.
+!set wims_name_title_living_activerefresh=$name_autorefreshoff You can re-enable it.
+!set wims_name_title_living_stoprefresh=$name_autorefreshon
+
+name_depos=Dépôt d'un fichier temporaire 
+name_depos2=Fichier(s) temporaire(s) déposé(s) par l'élève 
+name_actualfile=Fichier actuel 
+name_usertmpfiledesc=!nosubst Le fichier n'est pas conservé à la fermeture de votre session. Le dépôt d'un nouveau fichier efface l'ancien. La taille du fichier doit être inférieure à $[$tchat_configfilesize*0.25] Mo.
+name_configfilesize=Autoriser le dépôt de fichier temporaire par les participants
+name_desc_configfilesize=Permet aux élèves de déposer un fichier qui n'est pas conservé après déconnexion ; la taille maximale du fichier est paramétrable.
+name_disable_configfilesize=Cette option a été désactivée par l'administrateur du serveur.
+
+name_Sheet=Sheet
+name_Examen=Exam
+name_Doc=Document
+name_Exercise=Exercise

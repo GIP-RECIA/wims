@@ -1,0 +1,49 @@
+!goto $err_
+
+:notallowedmodule
+  Questo modulo non è stato attivato sul server. Consultate il responsabile del server.
+!exit
+
+:nouser
+  Lo studente indicato non esiste.
+!exit
+
+:usernotintchat
+  Questo studente non è collegato alla chat, o non sta svolgendo alcun esercizio. Non ci sono pagine da visualizzare.
+!exit
+
+:adressplay
+  La richiesta al server non è corretta. Non modificare l'indirizzo di navigazione del browser!
+!exit
+
+:workinprogress
+  La funzione che permette di visualizzare gli esercizi degli studenti è in fase di test. Sono possibili malfunzionamenti.
+!exit
+
+:badright
+  Questa pagina non è visualizzabile. Non modificare l'indirizzo di navigazione del browser!
+!exit
+
+:disconnected
+  Ti sei correttamente scollegato dalla chat
+!exit
+
+:toomuchliving
+  Il numero massimo di sale è $msg_maxliving. Non è possibile creare una nuova sala.
+!exit
+
+:goodsave
+Salvataggio effettuato.
+!exit
+
+:notopen
+Il vostro docente non ha attivato la chat.
+!exit
+
+:toobigfile
+Il file che si vuole caricare è troppo grande. Ridurre le dimensioni prima di riprovare a caricarlo.
+!exit
+
+:badfilename
+Il nome del file non è compatibile. Modificare il nome prima di riprovare a caricarlo. (Formato accettato: nome.estension con nome e estensione composti solo da caratteri alfanumerici senza accenti e senza spazi.)
+!exit

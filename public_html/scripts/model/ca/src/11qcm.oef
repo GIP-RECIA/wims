@@ -1,0 +1,168 @@
+type=question first
+textarea="datatrue datafalse explain"
+iEdit="explain"
+asis="datatrue datafalse explain"
+
+:Una pregunta d'opcions múltiples amb permutació aleatòria d'opcions.
+
+Aquest és un model de pregunta d'opcions múltiples. L'ordre de les opcions és aleatori,
+així com les opcions si n'hi ha prou de definides.
+Quan hi ha diverses opcions correctes, només cal triar-ne una, no importa quina.
+
+<p>El text no és aleatori. Un altre model <b>Opció múltiple avançada QCM</b>
+permet tenir també un text aleatori.</p>
+
+<p>Autor del model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓ      %%%%%%%%%%%%%%%%%%%%
+
+Elimineu la capçalera anterior si esborreu les etiquetes per al model!
+(Són les línies que comencen amb un ':'.)
+En cas contrari l'exercici pot no funcionar sota Createxo.
+
+:%%%%%%%% Paràmetres d'exemple a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Opcions múltiples}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Nombre d'opcions a presentar. Com a màxim 10
+Has de definir prou opcions per escollir. En cas contrari l'exercici només mostrarà el que està disponible.
+\integer{tot=5}
+
+:El nombre d'opcions correctes en cada exercici. No pot excedir el total
+\integer{givetrue=2}
+
+:Nombre d'opcions incorrectes "obligatòries"
+Per exemple, si aquest número és 2, als exercicis generats sempre es mostraran les dues primeres opcions incorrectes de la llista.
+<p> En cas de dubte, posar 0.</p>
+\integer{minfalse=0}
+
+:L'enunciat de l'exercici
+$embraced_randitem
+\text{explain=Aquest és un model de pregunta d'opcions múltiples. L'ordre de les opcions és aleatori, així com les opcions si n'hi ha prou de definides.
+Canvieu els textos i tindreu la vostra pregunta d'opcions múltiples.<br>
+Trieu l'opció correcta. <br>
+Quan hi ha diverses opcions correctes, només cal triar-ne una, no importa quina.
+}
+
+:L'(es) opció(ons) correcta(es), una per línia
+Se'n poden col·locar diverses (una per línia) per triar a l'atzar.
+Eviteu frases massa llargues. Cap punt i coma a la frase.
+
+$embraced_randitem
+\matrix{datatrue=Opció correcta n°1
+Opció correcta n°2
+Opció correcta n°3
+Opció correcta n°4
+}
+
+:Les opcions incorrectes, una per línia
+Se'n poden col·locar diverses (una per línia) per triar a l'atzar.
+Eviteu frases massa llargues! Cap punt i coma a la frase.
+$embraced_randitem
+\matrix{datafalse=Opció incorrecta n°1
+Opció incorrecta n°2
+Opció incorrecta n°3
+Opció incorrecta n°4
+Opció incorrecta n°5
+Opció incorrecta n°6
+Opció incorrecta n°7
+Opció incorrecta n°8
+}
+
+:Opcions:  <span class="tt wims_code_words">checkbox</span>,  <span class="tt wims_code_words">split</span>
+Afegir la paraula <span class="tt wims_code_words">checkbox</span> si hi ha diverses opcions correctes i l'estudiant ha d'escollir totes les opcions correctes (en lloc de només una).
+En aquest cas, també afegir la paraula <span class="tt wims_code_words">split</span> si permetem una nota parcial quan només es tria una part de les respostes correctes.
+\text{option=}
+
+:Feedback general
+Aquest text apareixerà després de la resposta de l'alumne, estigui bé o malament.
+\text{feedback_general=}
+
+:Feedback en cas de resposta correcta
+Aquest text apareixerà després de la resposta de l'alumne, si la resposta és bona o en cas de resposta parcial.
+\text{feedback_bon=}
+
+:Feedback en cas de resposta equivocada
+Aquest text apareixerà després de la resposta de l'alumne, si ha escollit com a mínim una resposta incorrecta.
+\text{feedback_mauvais=}
+
+:Indicació
+Un text que pot ajudar l'alumne a trobar la resposta correcta
+\text{exo_hint=}
+
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+
+:%%%%%%%%%%%%%% Res a canviar abans de l'enunciat %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+
+\text{empty=}
+\if{\feedback_general != \empty}{
+  \text{feedback_general=<p class="feedback">\feedback_general</p>}
+}
+\if{\feedback_bon != \empty}{
+  \text{feedback_bon=<p class="feedback good_answer">\feedback_bon</p>}
+}
+\if{\feedback_mauvais != \empty}{
+  \text{feedback_mauvais=<p class="feedback bad_answer">\feedback_mauvais</p>}
+}
+\if{\exo_hint != \empty}{
+  \hint{\exo_hint}
+}
+
+\text{datatrue=wims(nonempty rows \datatrue)}
+\text{datafalse=wims(nonempty rows \datafalse)}
+\integer{truecnt=rows(\datatrue)}
+\integer{falsecnt=rows(\datafalse)}
+\integer{givetrue=\givetrue<1?1}
+\integer{givetrue=\givetrue>\truecnt?\truecnt}
+\integer{tot=\tot > \falsecnt+\givetrue?\falsecnt+\givetrue}
+\integer{givetrue=\givetrue>\tot-1?\tot-1}
+\integer{minfalse=\minfalse>\tot-\givetrue?\tot-\givetrue}
+\text{tsh=shuffle(\truecnt)}
+\text{true=row(\tsh,\datatrue)}
+\if{\minfalse>0}{
+ \text{false1=row(1..\minfalse,\datafalse);}
+ \text{false2=row(\minfalse+1..\falsecnt,\datafalse)}
+}{
+ \integer{minfalse=0}
+ \text{false1=}
+ \text{false2=\datafalse}
+}
+\text{fsh=shuffle(\falsecnt)}
+\text{false2=row(\fsh,\false2)}
+\text{pick=row(1..\givetrue,\true);\false1 row(1..\tot-\givetrue-\minfalse,\false2)}
+\text{ind=wims(makelist 1 for x=1 to \givetrue),wims(makelist 0 for x=1 to \tot-\givetrue)}
+
+\text{sh=shuffle(\tot)}
+\text{ind=item(\sh,\ind)}
+\text{pick=row(\sh,\pick)}
+\text{pick=\accolade=1 ? wims(embraced randitem \pick)}
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+\text{ans=positionof(1,\ind)}
+\text{list=item(1..\tot,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z)}
+\text{anstype=checkbox iswordof \option?checkbox:radio}
+
+:%%%%%%%%%%%%% Ara l'enunciat en format HTML. %%%%%%%%%%%%%%%%%%%%
+
+::Vostè no necessita canviar això en general.
+
+\statement{
+  <div class="oef_explain">\explain</div>
+  \for{i=1 to \tot}
+  {<div class="oefreply">\embed{reply 1,\i, \list[\i] : \pick[\i;]}</div>}
+}
+
+:%%%%%%%%%%%%% Res a canviar per sota. %%%%%%%%%%%%%%%%%5
+
+\answer{Resposta}{\ans;\list}{type=\anstype}{option=\option}
+
+\feedback{1=1}{\feedback_general}
+\feedback{\reply1 isitemof \list[\ans]}{\feedback_bon}
+\feedback{\reply1 notitemof \list[\ans]}{\feedback_mauvais}

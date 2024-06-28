@@ -1,0 +1,9 @@
+!goto $err_
+
+:toomanyuser
+  cette fonctionnalité n'est pas disponible pour les classes contenant plus de $maxuser participants.
+!exit
+
+:notopen
+  votre enseignant n'a pas ouvert cette fonctionnalité.
+!exit

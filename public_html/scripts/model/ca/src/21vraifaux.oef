@@ -1,0 +1,140 @@
+type=question
+textarea="datatrue datafalse explain"
+iEdit="explain"
+asis="explain"
+
+:Triar les frases certes d'una llista proposada.
+Es proposa una llista amb un cert nombre de frases. S'han d'identificar i marcar les que són certes. Les frases certes i les falses es trien a l'atzar de les respectives llistes. El nombre de frases certes a cada presentació no és sempre el mateix.
+<p>
+Com més dades (en aquest cas, frases) hi poseu, més aleatori i repetible serà l'exercici. Però també podeu fer exercicis només amb les frases que necessiteu. Serà en aquest cas un QCM
+amb diverses opcions correctes.
+<p class="wims_credits">
+Autor del model : <a href="mailto:qualite@wimsedu.info">Gang Xiao</a>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Cert/fals múltiple}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Nombre de frases a presentar
+\integer{tot=4}
+
+:Mínim de frases certes en cada exercici presentat. Almenys 1
+\integer{mintrue=1}
+
+:Mínim de frases falses en cada exercici presentat. Almenys 1
+\integer{minfalse=1}
+
+:Frases certes. Una per línia, no poseu punt i coma.
+Eviteu frases llargues!
+$embraced_randitem
+\matrix{datatrue=
+À tension égale, le courant passant par un résistor est inversement proportionnel à sa résistance.
+À courant égal, la tension sur un résistor est proportionnelle à sa résistance.
+Le courant passant par un résistor est proportionnel à la tension appliquée.
+La puissance dissipée par un résistor est proportionnelle au carré de la tension appliquée.
+La puissance dissipée par un résistor est proportionnelle au carré du courant.
+À tension alternative égale, le courant passant par un condensateur est proportionnel à la capacité.
+À courant égal, la tension alternative sur un condensateur est inversement proportionnelle à la capacité.
+À tension alternative égale, le courant passant par un solénoïde est inversement proportionnel à l'inductance.
+À courant égal, la tension alternative sur un solénoïde est proportionnelle à l'inductance.
+Un condensateur idéal ne consomme pas d'énergie.
+Un solénoïde idéal ne consomme pas d'énergie.
+}
+
+:Frases falses. Una per línia, no poseu punt i coma.
+Eviteu frases llargues!
+$embraced_randitem
+\matrix{datafalse=
+À tension égale, le courant passant par un résistor est proportionnel à sa résistance.
+À courant égal, la tension sur un résistor est inversement proportionnelle à sa résistance.
+À courant égal, la tension sur un résistor est indépendante de sa résistance.
+À tension égale, le courant passant par un résistor est indépendant de sa résistance.
+Le courant passant par une diode est proportionnel à la tension appliquée.
+La puissance dissipée par un résistor est proportionnelle à la tension appliquée.
+La puissance dissipée par un résistor est proportionnelle au courant.
+À tension alternative égale, le courant passant par un condensateur est inversement proportionnel à la capacité.
+À courant égal, la tension alternative sur un condensateur est proportionnelle à la capacité.
+À tension alternative égale, le courant passant par un condensateur est indépendant de la capacité.
+À tension continue égale, le courant passant par un condensateur est proportionnel à la capacité.
+À courant égal, la tension continue sur un condensateur est inversement proportionnelle à la capacité.
+À courant égal, la tension alternative sur un condensateur est indépendante de la capacité.
+À tension alternative égale, le courant passant par un solénoïde est proportionnel à l'inductance.
+À courant égal, la tension alternative sur un solénoïde est inversement proportionnelle à l'inductance.
+La puissance dissipée par un condensateur est proportionnelle {à,au carré de} la tension appliquée.
+La puissance dissipée par un condensateur est proportionnelle {au,au carré du} courant.
+La puissance dissipée par un solénoïde idéal est proportionnelle {à,au carré de} la tension appliquée.
+La puissance dissipée par un solénoïde idéal est proportionnelle {au,au carré du} courant.
+}
+
+:Opcions
+Afegiu la paraula  <span class="tt wims_code_words">split</span> a la definició si voleu donar una nota
+parcial per a respostes parcialment correctes.
+\text{option=split}
+
+:Enunciat
+$embraced_randitem
+\text{explain=asis(Quines de les següents afirmacions són certes? Marqueu-les.)}
+
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Nothing to modify before the statement %%%%%%%%%%%%%%%%
+
+\text{accolade=wims(word 1 of \accolade)}
+\text{datatrue=wims(nonempty rows \datatrue)}
+\text{datafalse=wims(nonempty rows \datafalse)}
+\integer{truecnt=rows(\datatrue)}
+\integer{falsecnt=rows(\datafalse)}
+\integer{tot=\tot > min(\truecnt,\falsecnt)?min(\truecnt,\falsecnt)}
+\integer{mintrue=\mintrue<1?1}
+\integer{minfalse=\minfalse<1?1}
+\integer{mintrue=\mintrue>\tot-1?\tot-1}
+\integer{minfalse=\minfalse>\tot-1?\tot-1}
+\integer{tot<\mintrue+\minfalse?\mintrue+\minfalse}
+\text{tsh=shuffle(\truecnt)}
+\text{fsh=shuffle(\falsecnt)}
+\text{true=row(\tsh,\datatrue)}
+\text{false=row(\fsh,\datafalse)}
+\integer{truepick=randint(\mintrue..\tot-\minfalse)}
+\text{pick=row(1..\truepick,\true);row(1..\tot-\truepick,\false)}
+\text{ind=wims(makelist 1 for x=1 to \truepick),wims(makelist 0 for x=1 to \tot-\truepick)}
+
+\text{sh=shuffle(\tot)}
+\text{ind=item(\sh,\ind)}
+\text{pick=row(\sh,\pick)}
+\text{pick=\accolade=1 ? wims(embraced randitem \pick)}
+\text{ans=positionof(1,\ind)}
+\text{list=wims(values x for x=1 to \tot)}
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+
+:%%%%%%%%%%%%% Now the statement in html. %%%%%%%%%%%%%%%%%%%%
+
+::You don't need to modify this in general.
+
+\statement{
+<div class="instruction">
+\explain
+</div>
+<ul style="list-style-type:none">
+\for{i=1 to \tot}{
+ <li>
+  \embed{reply 1,\i}. &nbsp;\pick[\i;]
+  </li>
+}
+</ul>
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%
+
+\answer{The reply}{\ans;\list}{type=checkbox}{option=\option}

@@ -1,0 +1,18 @@
+!!
+!! delete a field of a record 
+!! should be replace by a c instruction
+!! needed information in wims_read_parm
+!! word1 : field to be deleted
+!! word2 : name of file 
+
+!distribute word $wims_read_parm into number_,file_
+ecnt_=!recordcnt $file_
+!for e_=1 to $ecnt_
+  field_$e_=!record $e_ of $file_
+!next e_
+!writefile $file_ $empty
+!for e_=1 to $ecnt_
+  !if $number_!=$e_
+    !appendfile $file_ :$(field_$e_)
+  !endif
+!next e_

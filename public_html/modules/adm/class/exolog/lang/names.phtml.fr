@@ -1,0 +1,23 @@
+!set lang_exists=yes
+
+!set name_noexercise=Vous n'avez aucun exercice à enregistrer.
+!set name_listexercise=!nosubst Exercices de la feuille $logsheet pouvant être enregistrés&nbsp;
+!set name_noexercise2=Il n'y a aucun exercice enregistré par
+!set name_click= !nosubst Voici les enregistrements d'exercices faits par $(names[1]) $(names[2]).\
+Cliquez sur la date pour revoir l'exercice correspondant.
+
+!distribute items Etapes,Numéro \
+into name_Step,name_number
+
+!set name_source=source
+!set name_sendmail=Bug?
+!set name_bug=Si vous pensez que l'exercice a un bug, merci d'envoyer un message en cliquant\
+  sur le bouton <span class="wims_button disabled">$name_sendmail</span> et en mettant le fichier \
+  <span class="wims_button disabled">$name_source</span> en pièce jointe.
+
+!set name_ssendmail=Prévenir l'enseignant de la classe ? (vous pouvez également saisir un message à destination de votre enseignant)
+!set name_msg=!nosubst L'élève $ufirst $ulast a sauvegardé le $unow un exercice dans la classe $uclass de $ueta sous la référence $uref.
+!set name_comment=Il a ajouté le commentaire suivant :
+!set name_exolog=Enregistrer les détails d'un exercice
+!set wims_name_SE_mod=Message pour l'élève
+

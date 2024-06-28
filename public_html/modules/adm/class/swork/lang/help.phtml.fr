@@ -1,0 +1,40 @@
+!goto $wims_read_parm
+
+:user
+ <ul>
+  <li>Cette page permet d'obtenir une proposition d'exercices pour améliorer vos résultats.</li>
+  <li>La proposition est recalculée au bout d'un certain temps soit automatiquement soit en utilisant le bouton "modifier".</li>
+  <li>Il est possible que la liste des exercices proposés contienne des exercices non cliquables. Cela vient du fait que les paramètres d'accès aux exercices ont évolué depuis la date où
+    la proposition de travail a été effectuée. </li>
+  <li>Pour chaque exercice un objectif de score ainsi que le score actuel sont affichés.</li>
+  </ul>
+!exit
+
+
+:supervisor
+ <ul>
+  <li>Ce module n'est pas utilisable pour des classes contenant plus de 50 participants.</li>
+  <li>Cette page permet d'obtenir la liste des propositions de travail pour chaque participant de la classe.</li>
+  <li>Les participants avec une ligne vide dans le tableau ne se sont jamais connectés pour obtenir une proposition de travail.</li>
+  <li>Les participants avec une ligne ne contenant qu'une date se sont connectés mais aucune proposition n'a été effectuée (voir descriptif des propositions).</li>
+  <li>Vous décidez dans le panneau de configuration de la durée minimale de chaque proposition. Une fois cette durée minimale passée deux possibilités se présentent&nbsp;:
+    <ul>
+      <li>Vous décidez de laisser le participant choisir du moment où il fait un renouvellement. Dans ce cas, la proposition reste disponible tant que le participant ne clique pas sur le bouton "Modifier".</li>
+      <li>Vous ne laissez pas le participant choisir et la proposition sera automatiquement modifiée.</li>
+    </ul>
+  </li>
+  <li>Les exercices avec un &#x2705; correspondent à des exercices pour lesquels le participant a atteint l'objectif de score.</li>
+  <li>Les exercices avec un &#x274C; correspondent à des exercices pour lesquels le participant ne peut pas actuellement travailler (changement de statut de la feuille, modification de valeur d'une variable technique ...).</li>
+  <li>La proposition est établie en proposant&nbsp;:
+    <ul>
+      <li>En priorité, les exercices où le participant a un score inférieur à la moyenne de la classe&nbsp;;</li>
+      <li>Ensuite, les exercices où le participant a un score inférieur à la note maximale obtenue par les participants de la classe sur cet exercice&nbsp;;</li>
+      <li>Enfin, les exercices où le participant n'a pas la note maximale&nbsp;;</li>
+      <li>Plus le score du participant sur un exercice est faible par rapport à la moyenne des scores (ou du score moyen ou de la note maximale) de la classe, plus l'exercice a des chances d'être proposé&nbsp;;</li>De même, plus les poids de l'exercice et de la feuille sont importants,  plus l'exercice a des chances d'être proposé&nbsp;;</li>
+      <li>L'indice de difficulté de l'exercice est aussi utilisé pour établir la hiérarchie des propositions (consulter l'aide du module des statistiques par exercice pour plus de détails à son sujet)&nbsp;;</li>
+      <li>Le calcul du score du participant à un exercice tient compte de la formule de sévérité de la feuille (utilisant les différents indicateurs).</li>
+    </ul>
+  </li>
+  <li>À tout moment, vous pouvez supprimer une proposition de travail pour un  (ce qui lui permettra d'en obtenir une nouvelle à la première connexion).</li>
+ </ul>
+!exit

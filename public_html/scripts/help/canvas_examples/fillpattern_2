@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 3
+fillcolor green
+fillpattern hatch
+#fillpattern dot,diamond,grid,imageurl
+userdraw circle,red

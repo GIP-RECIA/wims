@@ -1,0 +1,38 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Cosinus et sinus d'un nombre réel
+!set gl_keywords=trigonometry,trigonometric_circle
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Le plan est muni d'un repère orthonormé direct
+<span style="white-space:nowrap">\((\mathrm{O}\,;\mathrm{I},\mathrm{J})\).</span>
+<br><strong>Le cercle trigonométrique</strong> est le cercle de centre
+\(\mathrm{O}\) et de rayon 1.
+</div>
+
+<div class="wims_defn">
+<h4>Définition</h4>
+Le plan est muni d'un repère orthonormé direct
+<span style="white-space:nowrap">\((\mathrm{O}\,;\mathrm{I},\mathrm{J})\).</span>
+<br>On note \(C\) le cercle trigonométrique.<br>
+Pour tout réel \(x\), on considère son image \(\mathrm{M}\) sur le cercle
+trigonométrique&nbsp;:
+<ul>
+  <li>
+le <b>cosinus</b> du réel \(x\), noté \(cos(x)\), est l'abscisse du point
+<span style="white-space:nowrap">\(\mathrm{M}\) ;</span>
+</li>
+<li>
+le <b>sinus</b> du réel\(x\), noté \(sin(x)\), est l'ordonnée du point
+<span style="white-space:nowrap">\(\mathrm{M}\).</span>
+</li>
+</ul>
+</div>
+
+:mathematics/analysis/fr/trigonometric_circle_1
+

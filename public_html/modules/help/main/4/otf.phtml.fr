@@ -1,0 +1,4 @@
+!set lang_exists=yes
+
+Prévu pour le futur&nbsp;: WIMS va vous permettre de créer vos propres outils
+(de calcul ou de graphisme) directement sur votre navigateur.

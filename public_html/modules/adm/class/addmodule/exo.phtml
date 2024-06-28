@@ -1,0 +1,118 @@
+!!
+!! page edition to add exo to a sheet
+!!
+
+!if $cmd=new or $cmd=resume
+  <p>
+    $name_insert <span class="tt wims_fname">$dir</span>
+    !if $iniparm!=$empty
+      $name_parm
+      <span class="tt wims_parm">
+        !replace internal & by &amp; in $iniparm
+      </span>
+    !endif
+  </p>
+  <p>$name_choose_exo</p>
+
+  !form reply
+  <fieldset class="property_fields halfwidth blockcenter">
+  <legend>$wims_title_title</legend>
+  <div class="field box">
+    <label for="picksheet">$name_choose</label>
+    <select name="picksheet" id="picksheet">
+    !for i=1 to $sheetcnt
+      !set sh=!line $i of $sheets
+      !set se=!item 1 of $sh
+      !set ti=!item 2 to -1 of $sh
+      !if $se=$sheetcnt
+     <option value="$se" selected="selected">$wims_name_Sheet $se: $ti</option>
+      !else
+     <option value="$se">$wims_name_Sheet $se: $ti</option>
+      !endif
+     !next i
+    </select>
+  </div>
+
+  !set iniparm1=!replace internal & by $ $ in $iniparm
+  !set exo=!getopt exo in $iniparm1
+  !if __classes/ isin __$dir
+    !set title1=!lookup $exo in wimshome/log/classes/$wims_class/Extitles
+  !else
+    !if $tr_lang=yes
+      !set title1=!lookup $exo in wimshome/public_html/modules/$dir/Extitles_$lang
+    !endif
+    !default title1=!lookup $exo in wimshome/public_html/modules/$dir/Extitles
+  !endif
+  !default title1=!module title $dir
+  !if $title1!=$empty
+    !set title=$title1
+  !endif
+  !set title=!trim $title
+  !default title=$wims_name_Exercise
+  <div class="field box">
+    <label for="title">$wims_name_title</label>
+    <input size="50" name="title" value="$title" id="title">
+    <div class="formHelp">$name_modifytitle</div>
+  </div>
+  <div class="field box">
+    <label for="new_desc">$wims_name_Description</label>
+    <textarea name="new_desc" rows="5" cols="50" id="new_desc">$desc</textarea>
+  </div>
+  !! form for attribute (some icone before the title)
+  <div class="field box">
+    !read adm/class/attribut.phtml
+  </div>
+
+  !if $scoring=yes
+    <ul class="accordion fullwidth" data-accordion data-allow-all-closed="true">
+    <li class="accordion-item" data-accordion-item>
+      <a href="#scoring" class="accordion-title">$wims_name_Scoring</a>
+      <div class="accordion-content" data-tab-content id="scoring">
+        <div class="field box">
+          <label for="require">$name_required</label>
+          <select name="require" id="require">
+            <option value="0">0</option>
+            <option value="10" selected>10</option>
+            !for i=2 to $require_limit
+             <option value="$[10*$i]">$[10*$i]</option>
+            !next
+          </select>
+         <div class="formHelp">$name_repeat</div>
+        </div>
+        !default newexotrymax=$get_exotrymax
+        <div class="field box">
+          <label for="exotrymax">$name_exotrymax</label>
+          <input size="2" maxlength="2" name="newexotrymax" value="$newexotrymax" id="exotrymax">
+          <div class="formHelp">$name_exotrymax_hint</div>
+        </div>
+        <div class="field box">
+          <label for="weight">$name_weight</label>
+          <input size="6" name="weight" value="$weight" id="weight">
+          <div class="formHelp">$name_weight_hint</div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  !endif
+
+  !read adm/class/exo_order.phtml
+
+  <div class="wimscenter wimsform"><input type="submit" value="$wims_name_Insert"></div>
+  </fieldset>
+  !formend
+!endif
+
+!if $cmd=reply
+  <div class="wims_msg success">$name_end $picksheet.</div>
+  <div class="wimscenter menuitem">
+    !set wims_ref_class=sheetcheck
+    !href module=adm/class/sheet&sheet=$picksheet $wims_name_sheetcheck
+  </div>
+!!<p>
+ !! !href target=wims_test module=adm/tool/classification&dir=$dir&iniparm=$iniparm $wims_name_Indexation
+!!</p>
+
+  !set wims_menu_items=!append line sheetcheck,1, module=adm/class/sheet&sheet=$picksheet\
+to $wims_menu_items
+
+!endif

@@ -1,0 +1,55 @@
+!! wims_chooselist_checked
+!! wims_chooselist_select
+!! wims_chooselist_option
+!! wims_chooselist_data  : empty is default mode if non empty wims_chooselist_checked and wims_chooselist_select are name of file to read data instead of data
+!!                        (in this case wims_chooselist_data should be number of line of file wims_chooselist_select).
+!! select : names of the three variables left form, right form, invisible form
+!set select_=!words2items $wims_read_parm
+
+!if $wims_chooselist_data=$empty
+  !set cnt_chooselist=!linecnt $wims_chooselist_select
+!else
+  !set cnt_chooselist=$wims_chooselist_data
+!endif
+!default wims_chooselist_option=style="min-width:200px" multiple="multiple" size="$[max(min($cnt_chooselist,15),2)]"
+<table class="wimscenter wimsnoborder" id="wims_chooselist">
+ <tr>
+  <td valign="top">
+   <select  $wims_chooselist_option name="$(select_[1])"
+    ondblclick="moveSelections(this.form.elements['$(select_[1])'], this.form.elements['$(select_[2])'], this.form.elements['$(select_[3])'], 'add')">
+    !if $wims_chooselist_data!=$empty
+      !record 0 of $wims_chooselist_select
+    !else
+      $wims_chooselist_select
+    !endif
+   </select>
+  </td><td>
+    <input name="add" value=" &gt;&gt; " type="button" class="wims_button"
+      onclick="moveSelections(this.form.elements['$(select_[1])'],
+      this.form.elements['$(select_[2])'], this.form.elements['$(select_[3])'], 'add'); return false;"/>
+    <br/>
+    <input name="remove" value=" &lt;&lt; " type="button" class="wims_button"
+      onclick="moveSelections(this.form.elements['$(select_[1])'],
+      this.form.elements['$(select_[2])'], this.form.elements['$(select_[3])'], 'remove'); return false;"/>
+  </td><td valign="top">
+   <select $wims_chooselist_option name="$(select_[2])" ondblclick="moveSelections(this.form.elements['$(select_[1])'],
+    this.form.elements['$(select_[2])'], this.form.elements['$(select_[3])'], 'remove')">
+    !if $wims_chooselist_data!=$empty
+      !record 0 of $wims_chooselist_checked
+    !else
+      $wims_chooselist_checked
+    !endif
+    </select>
+   <select style="overflow: hidden; visibility: hidden; width: 1px; height: 0;" name="$(select_[3])"
+    multiple="multiple" size="10">
+    !if $wims_chooselist_data!=$empty
+      !record 0 of $wims_chooselist_checked
+    !else
+      $wims_chooselist_checked
+    !endif
+    </select>
+  </td>
+ </tr>
+</table>
+
+!reset wims_chooselist_data

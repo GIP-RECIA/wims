@@ -1,0 +1,37 @@
+!set wims_frontmsg=!defof frontmsg in wimshome/log/wims.conf
+!if $wims_frontmsg!=$empty
+  !distribute items $wims_frontmsg into newsdir,blocnews,blocexamples
+  !set tmp=!wordcnt $newsdir
+  !if $tmp>1
+    !set newsdir1=!word 1 of $newsdir
+    !if $lang iswordof $newsdir
+      !set newsdir=!nospace $newsdir1.$lang
+    !else
+      !set l_=!word 2 of $newsdir
+      !set newsdir=!nospace $newsdir1.$l_
+    !endif
+  !endif
+  !default blocnews=blocnews
+  !default blocexamples=blocexamples
+  !set path_front_module=wimshome/public_html/modules/$newsdir
+  !set front_nbactu=!defof nbactu in $path_front_module/data/$blocnews
+  !set front_n_actu=$front_nbactu
+  !if [ isin $front_n_actu
+    !set front_n_actu=!declosing $front_n_actu
+    !set front_n_actu=!listuniq $front_n_actu
+    !set front_nbactu=!itemcnt $front_n_actu
+  !else
+    !set nb_temp=!itemcnt $front_n_actu
+      !if $nb_temp=1
+        !!! for retrocompatibility
+        !set front_n_actu=1,$front_n_actu
+      !else
+        !set front_n_actu=!sort numeric list of $front_n_actu
+      !endif
+    !set front_nbactu=$[$(front_n_actu[2])-$(front_n_actu[1])+1]
+    !set front_n_actu=!makelist v for v=$(front_n_actu[1]) to $(front_n_actu[2]) step 1
+  !endif
+  !set front_nbslide=!defof nbslide in $path_front_module/data/$blocexamples
+  !bound front_nbactu between 0 and 10
+  !bound front_nbslide between 0 and 10
+!endif

@@ -1,0 +1,21 @@
+.msg_list{
+  max-width: 500px;
+  margin:1em auto;
+}
+
+.tchat-item{display: flex;margin: 5px 0;}
+.tchat-msg{flex-grow: 1;padding: .5em;}
+.tchat-user {background-color: lightyellow;}
+.tchat-supervisor {background-color: lightblue;}
+.tchat-hidden {background-color: #DFDFDF}
+
+.tchat-status{font-size: 90%;float:right;font-style: italic;}
+.tchat-username{font-weight: bold}
+
+.tchat-date, .tchat-date2 {
+  font-size: 9pt;
+  color:#4D4D4D;
+}
+.tchat-date {
+  float: right;
+}

@@ -1,0 +1,265 @@
+/* Utilities.css
+ *
+ * Put an explanation for each line as it is used to generate help for css in createxo
+ * explanation format: "arobatcss_class, explanation"
+ * check with css.pl when it is changed -> createxo help
+ */
+
+/* @text-right, align to the right */
+.text-right{text-align: right;}
+/* @text-left, align to the left */
+.text-left {text-align: left;}
+
+/* @center, center content */
+.center, .wimscenter{text-align: center;}
+/* @wimscenter, center with margins */
+div.wimscenter{ margin: .8em .5em .8em .5em; }
+/* */
+.wimscenter>.ggbapplet,.wimscenter>[id^="jmolApplet"],
+.wimscenter table{margin: 0 auto;}
+/* @blockcenter, center a block as a table */
+.blockcenter{
+  margin-right:auto;
+  margin-left: auto;
+}
+
+/* */
+img.wimscenter { margin-left:auto;margin-right:auto;}
+/* @white, background in white */
+.white{background-color: white;}
+/* @float_right, text float on the right */
+.float_right{ float:right;}
+/* @float_left, text float on the left */
+.float_left{ float:left;}
+/* @clearall, use it to stop float for example with br/ */
+.clearall{ clear: both;}
+
+/* @clearfix, use it to contain floats without altering what's next.*/
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* @small, text is smaller */
+.small { font-size: 90%;}
+/* @smaller, text smaller than small */
+.smaller { font-size: 70%;}
+/* @bold, text in bold */
+.bold { font-weight:bold;}
+/* @larger, text larger */
+.larger { font-size: 120%;}
+
+/* @wims_emph, emphasis some part of the text */
+.wims_emph {font-style:italic;font-weight:bold;}
+
+/* @inline, text in line (if you put inline directly on li, there will be no margin)*/
+/*.inline{ }*/
+div.inline, li.inline {/*zoom:1;*/display:inline-block;min-width: 1em}
+
+/* @inline, Inline general lists */
+.inline>li{margin-right:2em;}
+
+/* @inline, Inline Ordered Lists*/
+ol.inline{overflow: auto;}
+/* */
+ol.inline>li {float:left;}
+/* */
+ol.inline::after {clear: both;}
+
+/* @inline, Inline Unordered Lists */
+ul.inline>li{display:inline-block;}
+
+/* @wims_nopuce, list without puce */
+.wims_nopuce {list-style-type:none}
+.wims_nopuce ul{list-style-type:disc}
+.wims_nopuce ul ul{list-style-type:circle}
+.wims_nopuce ul ul ul{list-style-type:square}
+
+/* @spacer, use spacer on div to add extra spaces */
+.spacer{
+  content: " ";
+  display: block;
+  padding-top: .6em;
+  /* on Mozilla, only margin is taken on <br> (not padding) */
+  margin-top: .6em;
+  margin-bottom: .6em;
+}
+/* @spacer,use spacer on lists (ul/ol) to add extra spaces on all li */
+ul.spacer>li,ol.spacer>li{
+  margin-bottom: .6em;
+}
+
+/* @unbreakable, use unbreakable on a div surrounding a large text element that must not be wrapped (like a long math formula). But be aware of small screens! */
+.unbreakable {
+  display:block;
+  overflow-x:auto;
+  white-space: nowrap;
+}
+/* @wims_scrollable, use for non responsive contents that cannot be shrinked on small screens */
+.wims_scrollable{
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* @wims_video, default for HTML5 video player */
+.wims_video {
+  box-sizing: border-box;
+  max-width:100%;
+  margin:0;
+  background-color:#000;
+  box-shadow:2px 2px 2px gray;
+  white-space: nowrap;
+}
+
+/* @wims_audio, default for audio */
+.wims_audio:not(.minimal_size) {
+  /** each browser has its own audio player look.*/
+  /* audio width can't be below 87px */
+  width:50%;
+  margin:10px 0;
+  padding:0 5px;
+}
+.wims_audio{
+  min-width:87px;
+  white-space: nowrap;
+}
+audio.minimal_size{
+  margin:2px;
+  /* With Chrome, audio height is always 54px and can't be changed */
+  /*height:1.2em;*/
+  vertical-align:middle;
+}
+
+/* @feedback, style for feedback in oef exercise */
+.feedback {
+    background-color: #FFF;
+    border-color:#EEE;
+    border-color: rgba(0, 0, 0, .1);
+    border: 1px solid;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .25) inset;
+    margin-right: 15em;
+    padding: .5em;
+}
+
+/* styles for emphasing results of the student */
+/* CSS vars (*-* are replaced by mkcss.pl) */
+:root {
+  --oef_indgood: *-*oef_indgood;
+  --oef_condgood: *-*oef_condgood;
+  --oef_indbad: *-*oef_indbad;
+  --oef_condbad: *-*oef_condbad;
+  --oef_indforget: *-*oef_indforget;
+  --oef_indpartial: *-*oef_indpartial;
+  --oef_indprec: *-*oef_indprec;
+}
+
+/* @oef_indgood, emphasing results of the student: good answer */
+.oef_indgood { color: *-*oef_indgood; font-weight: bold;}
+/* @oef_condgood, emphasing results of the student: good condition */
+.oef_condgood{ color: *-*oef_condgood; font-weight: bold;}
+/* @oef_indbad, emphasing results of the student: bad answer */
+.oef_indbad { color: *-*oef_indbad; font-weight: bold;}
+/* @oef_condbad, emphasing results of the student: bad condition */
+.oef_condbad { color: *-*oef_condbad; font-weight: bold;}
+/* @oef_indforget, emphasing results of the student: forgotten item in the answer */
+.oef_indforget { color: *-*oef_indforget; font-weight: bold;}
+/* @oef_indpartial, emphasing results of the student: partial answer */
+.oef_indpartial{ color: *-*oef_indpartial; font-weight: bold;}
+/* @oef_indprec, emphasing results of the student: poor precision */
+.oef_indprec   { color: *-*oef_indprec; font-weight: bold;}
+/* @oef_indneutral, emphasing results of the student, with no tip of answer status */
+.oef_indneutral{color: initial; font-weight: bold;}
+
+/* @jxgbox, style for including a jsxgraph figure */
+.wims_form .jxgbox {margin: .5rem auto .5rem auto}
+/* */
+.jsxgraph_button {text-align: center;}
+/* */
+.jxgboxchild {margin-left: auto; margin-right: auto;}
+
+/* @wims_contribute, contributor citation or credits */
+/* @wims_credits, contributor citation or credits */
+.wims_contribute, .wims_credits  {
+  padding-top: 10px;
+  padding-right: 20px;
+  text-align: right;
+  color: #555;
+  font-weight: bold;
+  font-size: .8em;
+}
+
+/* @wims_instruction, Technical instructions in exercises for example*/
+/* @wims_smallhelp, small help */
+/* @wims_difficultylevel, Difficulty level of the exercise or any other hint on the level */
+.wims_instruction, .wims_smallhelp, .wims_difficultylevel {
+  font-style: italic;
+  color: rgb(100,100,100);
+  background-color: rgba(230,230,230,.3);
+  border: 1px solid silver;
+}
+
+.wims_instruction{
+  padding: 1rem;
+  margin: 0 auto 1rem auto;
+}
+
+.wims_smallhelp {
+  font-size: small;
+  padding: 0 5px 1em;
+  margin: 1.5rem .5rem .2rem .5rem;
+}
+
+.wims_instruction>h2,.wims_smallhelp>h2{
+  display: inline-block;
+  font-size: .8em;
+  padding: .4rem;
+  margin : -.3rem .5em .3em 0;
+  color: rgb(80,80,80);
+  background-color: silver;
+}
+
+.wims_difficultylevel {
+  font-size:small;
+  padding: .1em 1px .1em;
+}
+
+/* @wims_smallremark, remark in small */
+.wims_smallremark {font-size: small;}
+
+/* @tt, tt*/
+.tt{
+  font-family: monospace, "Courier New";
+  border-left-width: 3px;
+  margin: 0;
+  padding: 0 3px;
+}
+
+/* @unselectable, Prevent text selection */
+.unselectable{
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* @wims_question, use wims_color1 */
+.wims_question {
+  border: 1px solid #CCC;
+  border-left-color: var(--wims_ref_bgcolor);
+  border-left-width: .2em;
+  margin: 2% 2%;
+  padding: 1em;
+}
+
+/* for print version, to replace input radio or checkbox, it is a try ...*/
+ul.wims_list {
+  border: 1px solid var(--wims_ref_bgcolor);
+  padding-left:1em;
+  padding-right:2em
+}
+ul.wims_list li {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--wims_ref_bgcolor);
+  text-align:left;
+}
+.wims_checkbox li {list-style-type: square}
+.wims_radio li, .wims_menu li, .wims_click li {list-style-type: circle}

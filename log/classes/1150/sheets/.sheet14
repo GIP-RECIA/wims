@@ -1,0 +1,273 @@
+:H1/geometry/geobase.fr
+exo=cest&qnum=5&qcmlevel=3&scoredelay=&confparm1=1&confparm1=2&confparm1=3&confparm1=4&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Plan : Vocabulaire des segments, droites... 1
+Savoir reconnaître et nommer un point, un segment, une demi-droite, une droite.
+
+
+
+:H1/geometry/geobase.fr
+exo=cest2&qnum=5&qcmlevel=3&scoredelay=&confparm1=1&confparm1=2&confparm1=3&confparm1=4&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Plan : Vocabulaire des segments, droites... 2
+Savoir nommer un point, un segment, une droite, une demi-droite et les points qu'ils contiennent
+
+
+
+:H1/geometry/OEFevalwimsgeo1.fr
+exo=oefdistegal1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Plan : Coder
+Savoir coder le milieu d'un segment
+
+
+
+:H1/geometry/OEFevalwimsgeo1.fr
+exo=oefdroite1&exo=oefdroite2&exo=oefdroite4&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Plan : Reconnaître le tracé d'une droite
+
+
+
+
+:H1/geometry/OEFevalwimsgeo1.fr
+exo=oefdroitseg2&exo=oefdroitseg3&exo=oefdroitseg1&qnum=3
+10
+1
+Plan : Notation d'une droite, d'un segment, d'une demi-droite
+Vocabulaire, nommer, appartient ou pas
+
+
+
+:H1/geometry/OEFevalwimsgeo1.fr
+exo=oefmilieu1&exo=oefmilieu2&exo=oefmilieu3&exo=oefmilieu2&qnum=3
+10
+1
+Plan : Milieu 1-3
+Définition, calculs, reconnaissance. Difficulté 1 à 3 aléatoirement
+:H1/geometry/OEFevalwimsgeo1.fr
+exo=oefmilieu4&exo=oefmilieu5&exo=oefmilieu3&exo=oefmilieu2&qnum=3
+10
+1
+Plan : Milieu 3-5
+Définition, calculs, reconnaissance. Difficulté 3 à 5 aléatoirement
+
+
+
+:H1/geometry/OEFevalwimsgeo1.fr
+exo=oefnompoint1&exo=oefnompoint2&exo=oefnompoint3&oefnompoint4&qnum=3
+10
+1
+Plan : Nommer un point
+Cliquer sur un point, ou sur le nom. 4 exercices choisis aléatoirement.
+
+
+
+:H1/geometry/OEFevalwimstrian.fr
+exo=oefconstri4&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Triangle Pgm de construction animation & phrases
+Savoir construire un triangle dont on connaît les 3 longueurs
+
+
+
+:H1/geometry/OEFevalwimstrian.fr
+exo=oefconstri3&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Triangle Pgm de construction animation & outils
+Savoir construire un triangle dont on connaît les 3 longueurs
+
+
+
+:H1/geometry/OEFevalwimstrian.fr
+exo=oefconstri2&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Triangle Pgm de construction animation
+Savoir construire un triangle dont on sait qu'on connaît les 3 longueurs
+
+
+
+:H1/geometry/OEFevalwimstrian.fr
+exo=oefconstri5&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Triangle Pgm de construction phrases
+Savoir construire un triangle dont on connaît les 3 longueurs
+
+
+
+:H1/geometry/OEFevalwimstrian.fr
+exo=oefconstri1&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Triangle : construction & outils
+Savoir construire un triangle dont on connaît les 3 longueurs
+
+
+
+:H1/geometry/OEFevalwimsquad.fr
+exo=oefrecqua1&exo=oefrecqua2&exo=oefrecqua3&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Quadrilatères : reconnaître sa nature 1-3
+Savoir reconnaître un carré un rectangle, un losange, un parallélogramme. Difficulté 1 à 3 aléatoirement
+
+
+
+:H1/geometry/OEFevalwimsquad.fr
+exo=oefrecqua3&exo=oefrecqua4&exo=oefrecqua5&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Quadrilatères : reconnaître sa nature 3-5
+Savoir reconnaître un carré un rectangle, un losange, un parallélogramme. Difficulté 3 à 5 aléatoirement
+
+
+
+:H1/geometry/OEFevalwimsquad.fr
+exo=oefquadprop2&exo=oefquadprop3&exo=oefquadprop1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Quadrilatères propriétés 1-3
+Savoir les propriétés d'un quadrilatère quelconque, d'un carré , d'un rectangle, d'un losange, d'un parallélogramme. Difficulté 1 à 3 aléatoirement
+
+
+
+:H1/geometry/OEFevalwimsquad.fr
+exo=oefquadprop4&exo=oefquadprop3&exo=oefquadprop5&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Quadrilatères propriétés 3-5
+Savoir les propriétés d'un quadrilatère quelconque, d'un carré , d'un rectangle, d'un losange, d'un parallélogramme.  Difficulté 3 à 5 aléatoirement
+
+
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Solides : description nature
+Savoir reconnaître les principaux solides
+
+
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide2&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Solides : description faces
+Savoir repérer et dénombrer les faces d'un polyèdre
+
+
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Solides : description sommets
+Savoir repérer et dénombrer les sommets d'un polyèdre
+
+
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide4&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Solides : description arêtes
+Savoir repérer et dénombrer les arêtes d'un polyèdre
+
+
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefsolide2&exo=oefsolide3&exo=oefsolide4&exo=oefsolide5&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Solides : description tout
+4 exercices aléatoirement
+
+
+
+
+:H1/geometry/OEFvocSolides.fr
+exo=pave&qnum=3&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Solides : Vocabulaire pavé droit, cube.
+Nommer , compter ses faces, arêtes, sommets.
+
+
+
+:H1/geometry/OEFvocSolides.fr
+exo=prisme&qnum=3&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Solides : Vocabulaire prismes droits.
+Nommer, compter ses faces, arêtes, sommets.
+
+
+
+:H1/geometry/OEFvocSolides.fr
+exo=pyrcone&qnum=3&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Solides : Vocabulaire Pyramide
+Nommer, compter ses faces, arêtes, sommets. (Collège).
+
+
+
+:E5/geometry/oefgeo3D.fr
+exo=caracteristique1&qnum=2&qcmlevel=1&scoredelay=&confparm1=2&seedrepeat=0
+10
+1
+Solides : Caractéristiques des solides
+
+
+
+
+:E5/geometry/oefgeo3D.fr
+exo=composition&qnum=2&qcmlevel=1&scoredelay=&confparm1=2&seedrepeat=0
+10
+1
+Solides : Composition des patrons
+
+
+
+
+:E5/geometry/oefgeo3D.fr
+exo=caracteristique&qnum=2&qcmlevel=1&scoredelay=&confparm1=2&seedrepeat=0
+10
+1
+Solides : Décrire un solide
+
+
+
+
+:E5/geometry/oefgeo3D.fr
+exo=patron&qnum=2&qcmlevel=1&scoredelay=&confparm1=2&seedrepeat=0
+10
+1
+Solides : Patrons de cube
+
+
+
+
+:E5/geometry/oefgeo3D.fr
+exo=question&qnum=2&qcmlevel=1&scoredelay=&confparm1=2&seedrepeat=0
+10
+1
+Solides : Questions successives sur les polyèdres
+
+
+
+
+:E5/geometry/oefgeo3D.fr
+exo=reconnaissance&qnum=2&qcmlevel=1&scoredelay=&confparm1=2&seedrepeat=0
+10
+1
+Solides : Reconnaître des solides

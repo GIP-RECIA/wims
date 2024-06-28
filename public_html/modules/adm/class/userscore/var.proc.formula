@@ -1,0 +1,42 @@
+
+!if $formula=$empty
+  job=
+  !exit
+!endif
+
+!set min_maxscore = 1
+!set max_maxscore = 1000
+
+!set tmp=!defof DF_SEVERITY\
+MAX_WEIGHT\
+MIN_WEIGHT in wimshome/public_html/bases/sys/define.conf
+!distribute line $tmp into tmp,max_weight,min_weight
+!distribute words $tmp into tmp_w,tmp_s,tmp_ss
+
+!if $formula=prep
+  !exit
+!endif
+
+!reset formula reg
+reg=
+!for i=1 to $totsheets
+  !bound w$i between $min_weight and $max_weight default $tmp_w
+  !bound s$i between integer 0 and 6 default $tmp_s
+  !bound ss$i between integer 0 and 2 default $tmp_ss
+  reg=!append line $(w$i) $(s$i) $(ss$i) to $reg
+!next i
+!reset tmp tmp_w tmp_s tmp_ss
+!bound maxscore between integer $min_maxscore and $max_maxscore default 10
+scoremax=$maxscore
+defaultformula=$reg
+!writefile wimshome/log/classes/$wims_class/sheets/.severity $maxscore\
+$reg
+
+reg=
+!for i=1 to $totexams
+  !bound ew$i between 0 and 100000 default 1
+  reg=!append line $(ew$i) to $reg
+!next i
+!writefile wimshome/log/classes/$wims_class/exams/.eseverity $reg
+
+!read adm/class/sheetweights

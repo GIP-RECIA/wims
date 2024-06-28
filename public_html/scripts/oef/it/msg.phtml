@@ -1,0 +1,235 @@
+!if $error=noexists
+  Attenzione: l'esercizio richiesto non esiste nel modulo. Viene
+  mostrato un esercizio del modulo scelto a caso.
+  !exit
+!endif
+!if empty_out iswordof $error
+  Il codice inserito non ha prodotto output. Correggere.
+  !if $m_reply_err!=$empty
+    <pre><span class="wims_warning">$m_reply_err</span></pre>
+  !endif
+  !exit
+!endif
+
+!! empty_data bad_data double_reply are in html/msg.phtml.fr - suppress on test
+
+!if bad_answer iswordof $error
+  !! ------------- begin of error message for litexp option polfactor polexpand
+  !if notreduced iswordof $test
+    !if termealgsimp iswordof $test
+      Un termine dell'espressione inserita non è stato semplificato correttamente:
+      <span class="tt">
+      !word -1 of $test
+      </span>
+. Dovete utilizzare la notazione con esponenti.
+      !exit
+    !endif
+    !if termenumsimp iswordof $test
+      Il coefficiente di un termine dell'espressione inserita non è stato calcolato completamente:
+      <span class="tt">
+      !word -1 of $test
+      </span>
+.
+      !exit
+    !endif
+    !if termesamepower iswordof $test
+      L'espressione inserita non è ridotta
+      !let th=!word -1 of $test
+.
+      I termini
+      <span class="tt">$(th[1])</span>
+      e
+      <span class="tt">$(th[2])</span>
+      devono essere semplificati.
+      !exit
+    !endif
+    !if parenthesis iswordof $test
+      L'espressione inserita non è stata semplificata correttamente: verificare i termini tra parentesi.
+      !exit
+    !endif
+    !if power0 iswordof $test
+      La scrittura del termine
+      <span class="tt">
+      !word -1 of $test
+      </span>
+      può essere semplificata ulteriormente (potenze con esponente 0 o 1).
+      !exit
+    !endif
+    !if constantbefore iswordof $test
+      Il termine
+      <span class="tt">
+      !word -1 of $test
+      </span>
+      non è scritto correttamente (mettere il coefficiente prima della variabile).
+      !exit
+    !endif
+  !endif
+  !if badform iswordof $test
+    !if notcomplete iswordof $test
+      Il fattore
+      <span class="tt">
+      !word -1 of $test
+      </span>
+      non è stato scomposto completamente. Verificare la scomposizione.
+      !exit
+    !endif
+    !if notfactorised iswordof $test
+      L'espressione inserita non è scomposta
+      !let p=!word -1 of $test
+      <span class="tt">
+      !char 1 to $p-1 of $dd
+      <span class="oef_indbad">
+        !char $p of $dd
+      </span>
+      !char $p+1 to -1 of $dd
+      </span>
+.
+      !exit
+    !endif
+    !if usedivide iswordof $test
+      L'espressione inserita non è scritta come dovrebbe essere. Inserite una nuova risposta senza utilizzare il simbolo di divisione.
+      !exit
+    !endif
+    !if fparenthesis iswordof $test
+      L'espressione inserita non è completamente semplificata. Il fattore
+      <span class="tt">
+        !word -1 of $test
+      </span>
+      contiene parentesi.
+      !exit
+    !endif
+    !if multifactor iswordof $test
+      L'espressione inserita può essere scritta più semplicemente utilizzando le potenze. In particolare verificare il fattore:
+      <span class="tt">
+        !word -1 of $test
+.
+      </span>
+      !exit
+    !endif
+    !if twofactorcst iswordof $test
+      L'espressione inserita contiene due fattori costanti:
+      <span class="tt">
+        !word -2 of $test
+        e
+        !word -1 of $test
+      </span>
+.
+      !exit
+    !endif
+    !if factorcontent iswordof $test
+      Anche i fattori numerici devono essere scomposti:
+      <span class="tt">
+      !word -1 of $test
+      </span>
+.
+      !exit
+    !endif
+  !endif
+  !! ------------- end of error message for litexp option polfactor polexpand
+  !if illegalname iswordof $test
+    Il codice inserito contiene la parola non ammessa <span class="tt">$illegal_name</span>. Correggere.
+    !exit
+  !endif
+  !if lengthoverflow iswordof $test
+    Il codice inserito supera la lunghezza massima inseribile. È
+    necessario riscriverlo.
+    !exit
+  !endif
+  !if badsize iswordof $test
+    È necessario selezionare
+    !word 3 of $test
+     oggetti.
+    !exit
+  !endif
+  La risposta
+  <span class="tt">$bad_value</span> che avete inserito
+  !if unknownword iswordof $test
+    !set w=!word 3 of $test
+    non è comprensibile: la parola <span class="tt">$w</span>
+    contenuta nella risposta data non ha nulla a che fare con il
+    problema posto. Correggere e riproporre la risposta.
+    !exit
+  !endif
+  !if nocompute iswordof $test
+    non è accettata: occorre svolgere i conti e dare solo il risultato finale.
+    !exit
+  !endif
+  !if nocomputecomplex iswordof $test
+    non è accettata.
+    Per favore inserisci il numero complesso nella forma cartesiana standard
+    <span class="tt"> a + b i </span>
+    dove
+    <span class="tt">a</span>
+    e
+    <span class="tt">b</span>
+    sono i risultati dei calcoli richiesti.
+    Per esempio, <span class="tt">-1/5 + 2/5*i</span> o <span class="tt">2/3 - 5*i/3</span>.
+    !exit
+  !endif
+  !if badform iswordof $test
+    !if noreduced iswordof $test
+      non è una scrittura irriducibile. Riscrivete la frazione ridotta ai minimi termini.
+      !exit
+    !endif
+      non è scritta come richiesto. Riscriverla nella forma corretta.
+    !exit
+  !endif
+  !if notunit iswordof $test
+    è solo un numero: occorre specificare l'unità di misura.
+    !exit
+  !endif
+  !if bad_variable iswordof $test
+    non è comprensibile. Contiene variabili non ammesse.
+    !exit
+  !endif
+    non è comprensibile. Correggere e riproporre la risposta.
+  !exit
+!endif
+
+!if bad_exo iswordof $error
+  !for j=1 to 50
+    !if bad_exo $j isin $error
+      !set whichexo=!nosubst (la risposta corretta per la domanda $j \
+      <span class="tt">$(replyname$j)</span>\
+      non è valida)
+      !!goto end_bad
+      !break
+    !endif
+  !next
+:end_bad
+  À cause d'une erreur dans l'exercice $whichexo, il est impossible d'analyser
+  votre réponse. La seule solution pour vous est de changer d'exercice&nbsp;;
+  toutes nos excuses.
+  <p>
+  Per segnalare l'errore è necessario
+  !if $email!=$empty
+    !mailurl $email contattare direttamente l'autore
+  !else
+    contattare l'autore
+  !endif
+  dell'esercizio.
+  </p>
+  !exit
+!endif
+
+!if too_many_print iswordof $error
+  Hai richiesto troppe versioni stampabili.
+  !exit
+!endif
+
+!if chemclick_empty_data iswordof $error
+  Non è stato selezionato alcun atomo o legame. Consulta le istruzioni.
+  !exit
+!endif
+
+!if chemdraw_empty_data iswordof $error
+  Non è stata modificata l'applet. Completare la risposta.
+  !exit
+!endif
+
+!if draw_bad_object iswordof $error
+  Non avete tracciato correttamente gli oggetti richiesti ($type). Provate di nuovo.
+  !exit
+!endif
+
+!msg $error

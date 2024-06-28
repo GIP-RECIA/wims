@@ -1,0 +1,67 @@
+\title{Ex de styles css}
+\css{
+ <style>
+ .descr { background-color: #eeeeee;
+  color: navy;
+  margin: 2% 1%;
+  padding:3px;}
+ .cadre{ border-style:none;
+  border-width:10px;
+  margin-left:auto;margin-right:auto;}
+ table.cadre th { border-style:solid;
+  border-width:1px;
+  color:navy;
+  background-color: #eeeeee;
+  padding:2px 10px;
+  text-align:center;}
+ table.cadre td {border-right-style:solid;border-bottom-style:solid;
+  border-width:1px;
+  padding:2px 10px;
+  text-align:center;}
+ .cvide {border-left-style:hidden;border-top-style:hidden;}
+ div.compl {border-left:2px  solid navy; padding-left:5px;}
+ span.compl {color:navy;font-weight: bold;}
+ </style>
+}
+
+\statement{
+ Le tableau donne les coordonnées de 4 points du plan.
+  <table class="cadre">
+    <tr><td class="cvide"></td><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+    <tr><th> Abscisse </th><td>-1</td><td>2</td><td>-2</td><td>-1</td></tr>
+    <tr><th> Ordonnée </th> <td>-3</td><td>3</td><td>-5</td><td>-1</td></tr>
+  </table>
+  <p>On note \(D_1\) la droite passant par les points A et B et \(D_2\)
+    la droite passant par les points C et D.</p>
+<div class="wims_question">
+  Compléter la description suivante de ces deux droites :
+  <ul class="wims_nopuce spacer">
+    <li><span class="descr">Droite \(D_1\).</span>
+    <label for="reply1">Sa pente est</label> \embed{reply1,5}.
+    Elle intersecte la droite d'équation \(y=0\) au point E de
+    <label for="reply2">coordonnées \embed{reply2,5}. </label>
+    </li>
+    <li><span class="descr">Droite \(D_2\).</span>
+    <label for="reply3">Sa pente est </label>\embed{reply3,5}.
+    Elle intersecte la droite d'équation \(x=0\) au point F de
+    <label for="reply4">coordonnées</label> \embed{reply4,5}.
+    </li>
+  </ul>
+</div>
+<div class="wims_instruction">
+  Séparer les coordonnées des points E et F par une virgule.
+</div>
+}
+\answer{Pente de \(D_1\)}{2}{type = numexp}
+\answer{E}{0.5,0}{type = vector}
+\answer{Pente de \(D_2\)}{4}{type = numexp}
+\answer{F}{0,3}{type = vector}
+\integer{test1=1-\sc_reply1*\sc_reply2}
+\integer{test2=1-\sc_reply3*\sc_reply4}
+\feedback{\test1*\test2==0}{<div class="compl">
+  <span class="compl">Complément. </span>
+  La droite \(D_1\) est l'ensemble des points du plan de
+  coordonnées \((x,y)\) tels que \(y=2x-1\).
+  La droite \(D_2\) est l'ensemble des points du plan de
+  coordonnées \((x,y)\) tels que \(y=4x+3\).
+</div>}

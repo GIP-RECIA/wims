@@ -1,0 +1,66 @@
+!set methtit=Suma de ecuaciones con coeficientes
+!set methparmtype=parm equation >,parm equation >,\
+	number, number, choice 2
+!set methparmrelax=5
+!set methhelp=Este método calcula la suma con los coeficientes de dos ecuaciones.\
+El resultado puede agregarse a las suposiciones o reemplazar\
+una de las dos ecuaciones iniciales.
+
+!if $wims_read_parm iswordof form check
+ !goto $wims_read_parm
+!endif
+
+!exit
+:form
+Introducir una nueva ecuación que es <br>
+ !default methparm3=1
+ !default methparm4=1
+ !read deduc/methparm.phtml 3,5
+ veces la ecuacion
+ !read deduc/methparm.phtml 1
+ <br> plus
+ !read deduc/methparm.phtml 4,5
+ veces la ecuacion
+ !read deduc/methparm.phtml 2
+ <br>
+Esta nueva ecuación va a
+ !formselect methparm5 list 0,1,2 prompt \
+  añadirse a los supuestos,\
+  reemplazar al primero,\
+  reemplazar al segundo
+!exit
+:check
+ !ifval $methparm3=0 and $methparm4=0
+  error=¡Los coeficientes son cero!
+  !exit
+ !endif
+ !ifval ($methparm=1 and $methparm3=0) or \
+	($methparm=2 and $methparm4=0)
+  error=¿Quieres reemplazar una ecuación cuyo coeficiente en\
+    la suma es cero? ¡Esto hará que pierdas\
+    información!
+  !advance penalty
+  !exit
+ !endif
+ !distribute items $methparmobj1 into data1,left1,sign1,right1
+ !distribute items $methparmobj2 into data2,left2,sign2,right2
+ !if $data1 issametext $data2
+  error=Este método prohíbe la suma de una ecuación consigo misma.
+  !exit
+ !endif
+ methexp=\(($methparm3)*($left1 $sign1 $right1) + ($methparm4)*($left2 $sign2 $right2))
+
+ !read deduc/sub/simplify ($methparm3)*($left1) + ($methparm4)*($left2)\
+	($methparm3)*($right1) + ($methparm4)*($right2)
+ !distribute lines $out into newleft, newright
+ !if $newleft=$empty or $newright=$empty
+  error=bad_data
+  !exit
+ !endif
+
+ newobject$methparm5=$newleft = $newright
+ oldobject=$methparm5
+ forcereplace=$methparm5
+
+!exit
+

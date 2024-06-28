@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Loi Gamma
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Pour des nombres réels \(a > 0) et \(b > 0), la <strong>loi Gamma</strong> \(Gamma(a,b)) est
+la loi continue sur \(\RR_+) qui a comme densité
+ <div class="wimscenter">
+ \(x\mapsto\frac{b^a e^{-b x}x^{a-1}}{\Gamma(a) }1_{x>0})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th><th>Fonction caractéristique</th></tr>
+<tr><td>\(\frac{a}{b})</td><td>\(\frac{a}{b^2})</td><td>\((1-\frac{i t}{b})^{-a})</td></tr></table>
+<p>
+Si \(a) est un entier strictement positif, la loi \(Gamma(a,b)) est la
+loi de la somme de \(a) variables aléatoires indépendantes de loi
+exponentielle de paramètre \(b).
+</p>

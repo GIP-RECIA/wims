@@ -1,0 +1,28 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Distribuzione normale
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Sia \(m) un numero reale e sia \(\sigma) un numero reale positivo.
+La <strong>distribuzione normale (o Gaussiana)</strong> con
+parametri \(m) e \(\sigma) (denotata da
+\(\mathcal{N}(m,\sigma^2)\)) è una distribuzione continua su \(\RR) con
+funzione di densità:
+
+<div class="wimscenter">
+\(x\mapsto\frac{1}{\sigma\sqrt{2\pi}}\exp(-\frac{(x-m)^2}{2\sigma^2}))
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Valore atteso</th><th>=</th><th>Funzione caratteristica</th></tr>
+<td>\(\m)</td><td>\(\sigma^2)</td><td>\(\exp(i m t-\frac{1}{2}\sigma^2 t^2))</td></tr></table>
+
+<p>
+Se \(X) ha distribuzione \(\mathcal{N}(0,1)\), allora
+\(Y=m + \sigma X) ha distribuzione \(\mathcal{N}(m,\sigma^2)\).
+</p>

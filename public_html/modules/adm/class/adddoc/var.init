@@ -1,0 +1,11 @@
+!if $wims_class!=$empty
+  !sh mkdir -p $wims_home/log/classes/$wims_class/tool
+  !sh mkdir -p $wims_home/log/classes/$wims_class/doc
+!endif
+
+max_sheets=!defof MAX_SHEETS in wimshome/public_html/bases/sys/define.conf
+max_doc=32
+max_tool=32
+doctot=!recordcnt wimshome/log/classes/$wims_class/doc/.docindex
+tooltot=!recordcnt wimshome/log/classes/$wims_class/tool/.toolindex
+

@@ -1,0 +1,27 @@
+!set methtit=Fórmula de integración de sen/cos/sh/ch
+!set methenv=ZZ QQ RR
+!set methparmtype=parm function integrate, choice
+
+!set basic=a*cos(t),a*sin(t),a*ch(t),a*sh(t)
+!set basiccnt=!itemcnt $basic
+!set basicp=!replace internal , by ), \( in \($basic)
+!set methhelp=Este método reconoce las integrales de las siguientes funciones.\
+ <p>$basicp</p>
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!exit
+:form
+La integral
+!read deduc/methparm.phtml 1
+$ es bien conocida, porque es de la forma
+<div class="wimscenter">
+\(integrate())
+!formselect methparm2 from 1 to $basiccnt prompt $basic
+\(dt), </div>
+donde \(a) es una constante.
+!exit
+:check
+!changeto deduc/meth/$modu_lang/integrate/basicheck

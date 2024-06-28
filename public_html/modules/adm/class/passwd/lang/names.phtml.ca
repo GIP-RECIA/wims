@@ -1,0 +1,26 @@
+!set lang_exists=yes
+
+!!set module_title=Canvi de contrasenya
+
+!distribute line Seleccioneu el tipus de contrasenya&nbsp;\
+  Accés professor/administrador\
+  Contrasenya que permet entrar a la classe.\
+  Contrasenya d'alumne\
+  Registre dels alumnes\
+  Contrasenya de la classe que permet a un alumne registrar-se.\
+  Registre dels professors\
+  Contrasenya de la classe que permet a un professor registrar-se.\
+  Escriviu la contrasenya actual&nbsp;\
+  Només cal quan es canvia la contrasenya del professor/administrador\
+  La nova contrasenya&nbsp;\
+  Repetiu la nova contrasenya&nbsp;\
+  Per les contrasenyes personals&nbsp;: precediu la nova contrasenya del signe <span class="tt">+</span> si vols afegir contrasenyes d'un sol ús.\
+  Només ha de tenir entre 4 i 16 caràcters alfanumèrics.\
+  Una contrasenya de classe buida és acceptada pel programari, però el gestor del lloc pot prohibir classes sense contrasenya.\
+into name_passwdtype, name_userpasswd, name_userpasswd_hlp, name_partpasswd, name_classpasswd, name_classpasswd_hlp, name_classpasswdt, name_classpasswdt_hlp,\
+name_actualpasswd, name_actualpasswd_hlp, name_newpasswd,  name_newpasswd2, name_jetable, name_alphanumer, name_emptypasswd
+
+name_desc_forcechpwd=La teva contrasenya personal ha estat restablerta (ja sigui pel teu professor o utilitzant\
+  un procediment automàtic). Has de configurar una contrasenya nova per garantir la seguretat del teu compte.
+name_desc_forcechpwd2=Votre mot de passe actuel a été défini par le serveur procédure d'expédition de mot de passe par message électronique) \
+ou par l'administrateur du groupement/portail. Vous devez définir un nouveau mot de passe pour garantir la sécurité de votre compte.

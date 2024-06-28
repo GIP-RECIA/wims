@@ -1,0 +1,34 @@
+
+ <b>Corrispondenza uno-a-uno di oggetti.</b>
+ (nome: <span class="tt wims_code_words">correspond</span>)
+ <p>
+ Viene mostrata all'utente una tabella in cui le due colonne sono gli elementi
+ di due insiemi finiti con lo stesso numero di elementi disposti in modo casuale.
+ L'utente deve cliccare sugli oggetti in modo da meterli in ordine e da ottenere 
+ la corretta corrispondenza tra gli elementi dell'uno e dell'altro.
+ </p><p>
+ La risposta corretta deve essere data come matrice di due righe.
+ La prima riga (una lista di elementi separati da virgole) contiene gli
+ oggetti del primo insieme, ovvero la colonna di sinistra nella tabella, e la
+ seconda riga contiene gli oggetti del secondo insieme, la colonna di destra
+ della tabella. Le due righe della matrice (per esempio definite mediante
+ due variabili diverse) devono essere separate da un punto e virgola `;'.
+ È possibile avere elementi ripetuti più volte nella colonna di destra,
+ ma non nella colonna di sinistra.
+ </p><p>
+ Gli oggetti delle due liste possono essere di tipo testo, immagini (in formato HTML),
+ o formule matematiche, utilizzando il comando <span class="tt">\(...)</span>.
+ </p><p>
+ È meglio inserire questo tipo di risposta nell'enunciato con un comando 
+ \embed{}, inserendo le dimensioni del campo di input come opzione di tale comando 
+ nella forma <span class="tt wims_code_words">VxH1xH2</span>, dove V è la dimensione verticale degli elementi della lista,
+ e H1,H2 sono rispettivamente le larghezze delle due colonne della tabella. Per esempio
+ </p>
+ <pre>\embed{reply1,200 x 100 x 100}</pre>
+ <p>
+ Di default, viene assegnato un voto 0 alle risposte in cui non sono indicate correttamente
+ tutti gli accoppiamenti. È possibile utilizzare l'opzione <span class="tt wims_code_words">split</span> 
+ per assegnare invece un punteggio proporzionale al numero di coppie corrette indicate.
+ </p>
+ Basato su DynAPI, potrebbe non funzionare con alcuni browser.
+

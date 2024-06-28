@@ -1,0 +1,24 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Écriture d'un nombre en lettres.
+
+slib_parms=3\
+,Le nombre en question (ou la liste de nombres entre crochets)\
+fr,Le langage (pour l'instant, uniquement le français,anglais et italien)\
+,Une liste d'options facultatives dans un ordre indifférent, de la forme nom=valeur, séparées par un espace et mise entre crochets.
+
+slib_comment=Les options pour le français sont actuellement:\
+  <ul><li>frrule (trad/1990, default=1990) : la règle orthographique qui est \
+  soit trad (règle traditionnelle avec des espaces entre les mots), \
+  soit 1990 ("nouvelle orthographe" de 1990, mots séparés par des tirets).</li>\
+  <li>type (card/ord, default=card) : le type de nombre qui est soit card (nombre cardinal),\
+  soit ord (nombre ordinal).</li><li>plural (yes/no, default=no), applicable \
+  lorsque le type est ord.</li><li>fracdenom (yes/no, default=yes), \
+  applicable lorsque le type est ord, permettant de distinguer un vrai nombre ordinal\
+  d'un dénominateur de fraction, quand c'est un entier au plus égal à 4.</li>\
+  <li>70,80,90 (mots désignant ces nombres), utilisés par exemple en Suisse ou Belgique.\
+  On pourra par exemple utiliser [70=septante 90=nonante] pour la Belgique et \
+  [70=septante 80=huitante 90=nonante] pour certains cantons de Suisse.</li></ul>
+
+slib_out=Le(s) nombre(s) écrit(s) dans la langue demandée.
+

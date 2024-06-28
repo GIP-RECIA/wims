@@ -1,0 +1,43 @@
+test=!defof allowed_optional_module in wimshome/log/wims.conf
+!if class/freework notitemof $wims_allowed_optional_module
+  notallowed=1
+  !exit
+!endif
+test=!defof optionalmod_parameter in wimshome/log/wims.conf
+!if freework_nofile isitemof $test
+  conf_nofile=yes
+!endif
+
+!if $wims_class!=$empty
+  test=!fileexists wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !if $test!=yes
+    !sh mkdir $wims_home/log/classes/$wims_class/freeworks;\
+    touch wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !endif
+  statutfreework=open
+!else
+  statutfreework=closed
+  !exit
+!endif
+
+!!if $wims_user=supervisor
+!! --- check for list of user
+  nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+  !reset ulist,flist,llist,uulist
+  !for i=1 to $nbuser
+    u_=!record $i of wimshome/log/classes/$wims_class/.userlist
+    !distribute item $u_ into l_,f_,n_
+    ulist=!append item $n_ to $ulist
+    flist=!append item $f_ to $flist
+    llist=!append item $l_ to $llist
+  !next i
+!!endif
+
+!! number maximal/minimal of zone in type=3
+!! if change, some limit in var.def have to be adapted.(and zonelistlabel...)
+!! do not put more than 9 (some process cannot work with two digit)
+max_zone=3
+!distribute item 0,1 into min_zonestudent,min_zoneteacher
+zonelistlabelstudent=student1,student2,student3
+zonelistlabelteacher=teacher1,teacher2,teacher3
+zonelistlabel=$zonelistlabelstudent,$zonelistlabelteacher

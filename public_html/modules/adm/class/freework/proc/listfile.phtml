@@ -1,0 +1,53 @@
+!! list file for a determinate zone in the list subject,solution,teacher1,teacher2,teacher3,student1,student2,student3,usersol
+!! three word option
+!! first (val_) is the zone
+!! second (authdel_) is flag 1 allow deleting file ; 0 not allow deleting file
+!! third (fuser_) is user
+!!
+!! output: html formatting of list of files (stored in variable flist$val_)
+
+!distribute word $wims_read_parm into val_,authdel_,fuser_
+!bound val_ within subject,solution,usersol,$zonelistlabel default $empty
+!bound fuser_ within $ulist default $empty
+!if $val_=$empty
+  !exit
+!endif
+
+!if $val_ isitemof subject,solution
+  !let dir_=freeworks/$freework
+!else
+  !if $val_=usersol
+    !let dir_=freeworksdata/$freework/co/$(fuser_)-file
+  !else
+    !let n_=!char -1 of $val_
+    !if student isin $val_
+      !let dir_=freeworksdata/$freework/work/$fuser_-file$n_
+    !else
+      !let dir_=freeworks/$freework/teacher-file$n_
+    !endif
+  !endif
+!endif
+
+!if $(flist$val_)!=$empty
+  <ul class="file_list">
+    !for f in $(flist$val_)
+      <li>
+        !set wims_ref_class=text_icon file
+!!        !increase windowfilenumber
+!!        <a href="http://$httpd_HTTP_HOST/wims/getfile/$dir_/$(f)?session=$wims_session" target="wims_file$windowfilenumber">$f</a>
+          <a href="$wims_protocol://$httpd_HTTP_HOST/wims/getfile/$dir_/$(f)?session=$wims_session" download="$(f)">$f</a>
+!!          <a href="$wims_protocol://$httpd_HTTP_HOST/wims/getfile/$dir_/$(f)?session=$wims_session" download>$f</a>
+!!        !set wims_ref_target=wims_file$windowfilenumber
+!!        !getfile $dir_/$f $f
+        !reset wims_ref_class
+        !if $authdel_=1
+          !set wims_ref_class=link_icon erase
+          !set wims_ref_title=$wims_name_erase
+          !href module=$module&+cmd=reply&+job=$job&+freework=$freework&+job2=erase$val_&+namefile=$f &#x2716;
+        !endif
+      </li>
+    !next f
+  </ul>
+!else
+  $name_nofile
+!endif

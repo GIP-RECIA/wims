@@ -1,0 +1,56 @@
+!nocache
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>$tit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="html/themes/_css/robots.css">
+    </head>
+<body>
+!if $error!=$empty
+  <div class="wims_alertmsg">
+  !read docu/msg.phtml
+  </div>
+  !exit
+!endif
+<div id="docprint">
+<h1 class="wims_docu_title">$tit</h1>
+
+!if $titb=$empty
+  <p>$name_noncreate</p>
+  !exit
+!endif
+
+!if $datetest<0
+  <p>$name_noread</p>
+  !exit
+!endif
+
+!if $datetest>0
+  <p>$name_expired</p>
+  !exit
+!endif
+
+:newblock
+<h2 id="$block">$titb</h2>
+
+!read $docdir/$doc/$block.def content
+
+!if $waitblock$(waitblock_$block)!=$empty
+  !set waitblock=$(waitblock_$block),$waitblock
+  !set waitblock=!nonempty items $waitblock
+  !set block=!item 1 of $waitblock
+  !set gotblock=!append item $block to $gotblock
+  !set waitblock=!item 2 to -1 of $waitblock
+  <div>
+  !read $docdir/$doc/$block.def
+  </div>
+  !goto newblock
+!endif
+!if $doctoc=yes
+  <hr>
+  !read $docdir/$doc/doctoc.def content
+!endif
+</div><!-- end of docprint -->
+</body>
+</html>

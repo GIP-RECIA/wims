@@ -1,0 +1,19 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function,monotonic_function,function_variation
+!set gl_title=Fonction croissante
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>
+    Définition
+  </h4>
+  Soit \(f\) une fonction définie sur un intervalle \(\mathrm{I}\).<br>
+  \(f\) est dite <strong>strictement croissante</strong> sur \(\mathrm{I}\) si
+  et seulement si, pour tous réels \(a\) et \(b\) de \(\mathrm{I}\) tels que
+  <span style="white-space:nowrap">\(a \lt b\),</span>
+  <span style="white-space:nowrap"> \(f(a) \lt f(b) \).</span>
+</div>

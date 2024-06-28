@@ -1,0 +1,17 @@
+
+reply:sheet_[MAX_SHEETS] doc_[64] c_[64] vote_[MAX_VOTES] \
+  exam_[MAX_EXAMS] show[64] tool_[64] glossary_[64] freework_[MAX_FREEWORKS]
+reply:seq_desc seq_title visible moveup seq_reverse \
+  seq_description seq_set seq_abandon seq_Title seq_open \
+  showdate hidedate
+deny:doccnt sheetcnt docpubliccnt examcnt votecnt toolcnt glossarycnt freeworkcnt
+any:job seq seq_cnt option
+init:maxseq sequence_supervise
+reply:begindscore[MAX_TECHVARVAL]
+reply:begintscore[MAX_TECHVARVAL]
+reply:enddscore[MAX_TECHVARVAL]
+reply:endtscore[MAX_TECHVARVAL]
+reply:IPscore[MAX_TECHVARVAL] save
+reply:datecheck[MAX_TECHVARVAL]
+reply: begindscore0 begintscore0 endtscore0 enddscore0 datecheck0
+reply: allowtype begindscore begintscore enddscore endtscore IPscore allowshare allowtechvar datecheck

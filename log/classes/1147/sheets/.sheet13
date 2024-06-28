@@ -1,0 +1,221 @@
+Calculs commerciaux et financiers
+Pourcentage, taux d'évolution, facture, intérêt simple
+??,2021
+1
+H4
+financial_mathematics
+financial_mathematics,percents,variation_coefficient
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Calculs commerciaux et financiers" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:E6/number/oefeuro.fr
+exo=exo4c
+10
+1
+Problème concret 1
+Rendre la <strong>monnaie</strong>.
+
+
+
+
+:H1/analysis/OEFevalwimsprop.fr
+exo=oefrelpourcfract4
+10
+1
+Pourcentage 1
+Associer <strong>fraction</strong> et <strong>pourcentage</strong>.
+
+
+
+
+:H2/algebra/oefpourcent.fr
+exo=pourcentage&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Pourcentage 2
+Déterminer le <strong>coefficient</strong> <strong>multiplicateur</strong> correspondant à une <strong>variation en %</strong>.
+
+
+
+
+:H2/algebra/oefpourcent.fr
+exo=pourcentage2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Pourcentage 3
+Déterminer la <strong>variation en %</strong> correspondant à un <strong>coefficient</strong> <strong>multiplicateur</strong>.
+
+
+
+
+:H3/analysis/oefproppour.fr
+exo=soldes&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Problème concret 2
+Calculer la <strong>remise</strong> ou le <strong>prix après remise</strong>.
+
+
+
+
+:H5/financialmath/oefcalcLP.fr
+exo=soldes&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Les soldes
+
+
+
+
+
+:H5/algebra/OEFpctprem.fr
+exo=taux1
+10
+1
+Taux d'évolution 1
+Calculer un prix après <strong>augmentation</strong> ou <strong>réduction</strong>.
+
+
+
+
+:H3/analysis/oefproppour.fr
+exo=augmentation&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Problème concret 3
+Calculs autour d'une <strong>augmentation de prix</strong>.
+
+
+
+
+:H5/algebra/OEFpctprem.fr
+exo=taux3
+10
+1
+Taux d'évolution 2
+Retrouver le <strong>prix initial</strong>.
+
+
+
+
+:H5/algebra/OEFpctprem.fr
+exo=evolsucc1&exo=evolsucc2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Evolutions successives 1
+Calculs autour de deux <strong>évolutions successives</strong>.
+
+base de 2 énoncés
+
+
+:H5/algebra/OEFpctprem.fr
+exo=evolsucc4
+10
+1
+Evolutions successives 2
+Calculs autour de deux <strong>évolutions successives</strong>.
+
+
+
+
+:H2/algebra/oefpourcentage.fr
+exo=AgentImmobilier&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Problème concret 4
+Déterminer le <strong>pourcentage</strong> d'un loyer par rapport aux revenus.
+
+
+
+
+:H2/algebra/oefpourcentage.fr
+exo=promotions&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Problème concret 5
+Calculer un <strong>prix soldé</strong>.
+
+
+
+
+:H2/algebra/oefpourcentage.fr
+exo=assurance&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Problème concret 6
+Calculer une <strong>prime d'assurance</strong>.
+
+
+
+
+:H5/algebra/OEFpctprem.fr
+exo=proportion5
+10
+1
+Proportionnalité
+Calculer les sommes pour un <strong>partage proportionnel</strong>.
+
+
+
+
+:H5/financialmath/oefcalcLP.fr
+exo=facture1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Facture fournisseur 1
+
+
+
+
+
+:H5/financialmath/oefcalcLP.fr
+exo=facture2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Facture fournisseur 2
+
+
+
+
+
+:H5/financialmath/oefcalcLP.fr
+exo=facture3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Facture fournisseur 3
+
+
+
+
+
+:H5/financialmath/oefcalcLP.fr
+exo=facture4&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Facture fournisseur 4
+
+
+
+
+
+:H5/algebra/OEFpctprem.fr
+exo=tva&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Facture et TVA
+Compléter une <strong>facture</strong>.
+
+
+
+
+:H5/financialmath/oefcalcLP.fr
+exo=interets1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Intérêts simples
+
+
+
+
+

@@ -1,0 +1,5 @@
+!default wims_superclass=$wims_class
+!read adm/class/initclass $wims_class
+!read adm/class/teacherlist wimshome/log/classes/$wims_superclass
+class_Supervisor=!defof class_Supervisor in wimshome/log/classes/$wims_class/.def
+!readproc mksubclslist.proc

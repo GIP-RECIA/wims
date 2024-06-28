@@ -1,0 +1,200 @@
+Gli oggetti della geometria
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+elementary_geometry,2_shape
+Marina, Cazzola
+wims@unimib.it
+
+
+:U2/geometry/oefgeoprim.it
+exo=definizioni&qnum=2&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+80
+1
+Definizioni #1
+Riconoscere alcune proprietà geometriche di una figura data.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracerect2&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Disegnare un rettangolo
+Dalla definizione al disegno: costruire un rettangolo.<br /> <strong>ATTENZIONE</strong> occorre cliccare sui quattro vertici del rettangolo e poi di nuovo sul primo per <span class="wims_emph">chiudere</span> la figura.
+
+ 
+:E3/geometry/oefgeo2D.fr
+exo=tracetri&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Disegnare un triangolo non rettangolo
+Dalla definizione al disegno: costruire un triangolo non rettangolo. <br /><strong>ATTENZIONE</strong> occorre cliccare sui tre vertici del triangolo e poi di nuovo sul primo per <span class="wims_emph">chiudere</span> la figura.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracecircle&qnum=1&scoredelay=&lang_choice=it&qcmlevel=1
+10
+1
+Disegnare un cerchio
+Dalla definizione al disegno: disegnare un cerchio.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracetrirect&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Disegnare un triangolo rettangolo
+Dalla definizione al disegno: costruire un triangolo rettangolo. <br /><strong>ATTENZIONE</strong> occorre cliccare sui tre vertici del triangolo e poi di nuovo sul primo per <span class="wims_emph">chiudere</span> la figura.
+
+:E4/geometry/oefpolyqq.it
+exo=triisoAB&exo=triisonorettAB&exo=trirettAB&exo=triisorettAB&exo=trirettnoisoAB&qnum=5&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangoli
+Dalla definizione al disegno: costruire vari tipi di triangoli.
+
+
+:E3/geometry/oefgeo2D.fr
+exo=centre&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Trovare il centro del cerchio
+Proprietà di una figura geometrica data: trovare il centro di un cerchio.
+
+:H1/geometry/OEFgeog.fr
+exo=cercle3&exo=cercle1&exo=cercle2&exo=cercle5&exo=cercle4&exo=ligne3&exo=ligne1&exo=point1&exo=point2&exo=ligne2&qnum=1&scoredelay=&seedrepeat=1&qcmlevel=1
+10
+1
+Geometria dinamica (geogebra)
+Apprendere il funzionamento del software geogebra e completare alcune costruzioni geometriche di base.
+
+:H4/geometry/trishoot.en
+type=1&type=2&type=3&type=4&shoots=3&size=256
+10
+1
+Punti notevoli di un triangolo
+Individuare i punti notevoli di un triangolo dato.
+
+:H4/geometry/trishoot.en
+type=5&type=6&type=7&shoots=3&size=256
+10
+1
+Trova il triangolo
+Ricostruire il triangolo con certe proprietà: dati due vertici e uno dei punti notevoli.
+
+:E4/geometry/oefpolyqq.it
+exo=onerect&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero con almeno due lati perpendicolari
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=duerett&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero con almeno due coppie di lati perpendicolari
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=duerett2&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero con esattamente due angoli retti
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=rectangle&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero con tutti gli angoli retti
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=quadripar1&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero con almeno due lati paralleli
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=quadripar3&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero con due lati paralleli
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=quadripar2&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero con i lati a due a due paralleli
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=quadripar4&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero senza lati paralleli
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=qduelati&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero con almeno due lati uguali
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=qequil&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Quadrilatero con tutti i lati uguali
+Costruzione di quadrilateri con particolari proprietà.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=duerett&exo=quadripar1&exo=onerect&exo=qduelati&exo=quadripar3&exo=duerett2&exo=quadripar2&exo=qdiagperp&exo=qdiageq&exo=norett&exo=rectangle&exo=qnoequi&exo=qequil&exo=quadripar4&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+40
+1
+Quadrilateri: riepilogo #1
+Costruzioni di riepilogo sui quadrilateri.
+
+
+
+:E4/geometry/oefpolyqq.it
+exo=quadril1&exo=quadril2&exo=quadril3&exo=quadril4&exo=quadril5&exo=quadril6&exo=quadril7&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+30
+1
+Quadrilateri: riepilogo #2
+Costruzioni di riepilogo sui quadrilateri.
+
+
+
+:U2/geometry/oefdefin.it
+exo=quadrato&exo=rettangolo&exo=rombo&qnum=1&scoredelay=&seedrepeat=5&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+60
+1
+Caratteristiche dei quadrilateri
+Individuare le caratteristiche che possono permettere di riconoscere se un dato quadrilatero sia o meno un quadrato, un rettangolo o un rombo.
+
+
+

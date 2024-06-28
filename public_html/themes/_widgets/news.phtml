@@ -1,0 +1,54 @@
+!set bloc=$path_front_module/data/$blocnews
+<div id="actualites" class="wims_widget_box cell small-12
+!if $front_nbslide>0
+  medium-6
+!else
+  medium-10 large-8
+!endif
+">
+  <div class="title_box">
+    <h2 class="wims_title">$wims_name_Infos</h2>
+  </div>
+  <div class="box_content smaller">
+    <ul class="wims_home_list">
+    !for numactu=1 to $front_nbactu
+      !set rec_actu=!record $(front_n_actu[$numactu]) of $bloc
+      !distribute lines $rec_actu into titre_actu,date_actu
+      !set content_actu=!line 3 to -1 of $rec_actu
+      <li>
+        <h3 class="actu_title">
+          $titre_actu
+          <span class="actu_date">$date_actu</span>
+        </h3>
+        <div class="actu_content">$content_actu</div>
+      </li>
+      !reset rec_actu contenu_actu titre_actu date_actu content_actu
+    !next
+    </ul>
+    !if $jquery_defined=yes
+      <a class="float_right" data-open="ActuArchive">$wims_name_seemore...</a>
+      <br class="clearall">
+      <div class="reveal" id="ActuArchive" data-reveal>
+        <h2 class="center">$wims_name_Infos</h2>
+        !set nb_tot_actu=!recordcnt $bloc
+        <ul class="wims_home_list">
+          !for numactu=1 to $nb_tot_actu
+            !set rec_actu=!record $numactu of $bloc
+            !distribute lines $rec_actu into titre_actu,date_actu,content_actu
+            <li>
+              <h3 class="actu_title">
+                $titre_actu
+                <span class="actu_date">$date_actu</span>
+              </h3>
+              <div class="actu_content">$content_actu</div>
+            </li>
+            !reset rec_actu contenu_actu titre_actu date_actu content_actu
+          !next
+        </ul>
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    !endif
+  </div>
+</div>

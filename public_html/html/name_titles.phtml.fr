@@ -1,0 +1,98 @@
+!! variable for title in link (by default it is the name of the link)
+!! do not create in another language if you do not translate it !!
+
+!! do not leave a space at the beginning of the line
+
+!set wims_name_title_whelp=Guide d'utilisation des premières versions de WIMS
+
+!! Home page of wims
+!distribute line Pour accéder aux classes organisées par vos enseignants\
+Pour créer ou gérer une classe\
+Classes en accès libre pour travailler en autonomie\
+Documents d'aide créés par des enseignants\
+Questions fréquemment posées\
+Documentation pour la création d'exercices en langage OEF\
+Documentation sur le langage WIMS\
+Différents classements des ressources pédagogiques\
+Liste des nouvelles fonctionnalités et des ressources pédagogiques créées ou modifiées récemment\
+Pour télécharger les sources du serveur WIMS\
+Liste des autres serveurs WIMS publics\
+Conditions générales d'utilisation du serveur WIMS\
+Pour régler certains paramètres d'affichage\
+Page d'accueil du serveur\
+Pour accéder à une autre classe\
+Pour des informations sur la version de WIMS installée, le gestionnaire du site ...\
+Pour des informations sur le module $$module, son auteur, la version ...\
+  into wims_name_title_n_participant,wims_name_title_n_supervisor,wims_name_title_n_example,\
+  wims_name_title_dochelp,wims_name_title_faq,wims_name_title_docoef,wims_name_title_doctec,\
+  wims_name_title_browse,wims_name_title_mod_new,\
+  wims_name_title_download,wims_name_title_mirror,wims_name_title_cgu,\
+  wims_name_title_pref,wims_name_title_home,wims_name_title_U_oclass,\
+  wims_name_title_aboutw,wims_name_title_about
+
+!!! tools
+!distribute line Outils pour la création d'exercices\
+Espace permettant de créer des modules d'exercices, des documents, ...\
+Outil facilitant la création de quelques types d'exercices sans programmation\
+Outil permettant de transformer un document latex en un document WIMS\
+Outil permettant de faire des exercices demandant de légender des images\
+Outil permettant de préparer des exercices de chimie\
+Outil permettant de tester les logiciels de calcul ou de dessin utilisables dans des exercices\
+  into wims_name_title_createxo,wims_name_title_modtool,wims_name_title_quicktool,\
+  wims_name_title_latex2wims,wims_name_title_coordclick, wims_name_title_chemtool,\
+  wims_name_title_scripttest
+
+!!! links in a class
+!distribute line pour voir les données enregistrées par le serveur sur son travail dans la classe\
+Pour voir le détail des notes obtenues sur chaque exercice et le barème\
+Pour travailler sur la feuille d'exercices sans que les résultats ne soient pris en compte dans le calcul des notes\
+Pour que le travail que vous allez faire sur la feuille d'exercices soit pris en compte dans le calcul des notes\
+Pour pouvoir revoir l'énoncé obtenu et les réponses données\
+Outils pouvant être utilisés pour faire l'exercice\
+Aide sur l'exercice proposé par votre enseignant\
+Complément sur l'exercice proposé par votre enseignant\
+  into wims_name_title_rawdata, wims_name_title_myscore, wims_name_title_scoreclose2, wims_name_title_scorereopen,\
+  wims_name_title_exolog, wims_name_title_tools, wims_name_title_feedbackexo,\
+  wims_name_title_feedbackplus
+
+!!documents
+!distribute lines Pour voir une version du document sur une seule page web\
+Pour revenir à la version interactive du document\
+Pour recharger la page web\
+into wims_name_title_doch_printable, wims_name_title_doch_interactive, wims_name_title_doch_reload
+
+!!! links for a teacher in a class
+!distribute lines Pour modifier le contenu ou les propriétés de la feuille d'exercices\
+Pour importer le source de l'exercice dans Createxo afin de pouvoir le modifier\
+Pour ajouter l'exercice dans une feuille d'exercices en préparation dans la classe\
+Pour ajouter le document dans la liste des documents de la classe\
+Pour configurer la présentation des feuilles, documents ... dans la page d'accueil d'un participant\
+Vue de la classe semblable à celle d'un participant\
+Exercices créés ou importés dans la classe\
+Pour faire apparaître comme aide à un exercice d'une feuille lorsqu'il n'a pas été réussi\
+Pour définir et modifier des variables permettant de définir des groupes de participants \
+Pour exporter des données ou en importer dans la classe\
+Pour dialoguer avec un participant en ligne et voir son écran s'il le souhaite\
+  into wims_name_title_sheetmanagement, wims_name_title_import,\
+  wims_name_title_add, wims_name_title_adddoc, wims_name_title_reorder,\
+  wims_name_title_participantview, wims_name_title_classexo,\
+  wims_name_title_addh, wims_name_title_techvar,wims_name_title_csv,wims_name_title_tchat
+!if adm/sheet isin $module
+  !set wims_name_title_import=Pour en faire une nouvelle feuille d'exercices dans la classe
+!endif
+
+!!
+!distribute lines pour créer des classes multiples par fichier tableur\
+into wims_name_title_addcsvclass
+
+!!set wims_name_title_moduback=Pour aller à la page d'introduction du module contenant cet exercice
+
+!! links for modtool
+!distribute lines fichiers du module non modifiables en ligne (images, ...)\
+fichiers du module modifiables en ligne\
+into wims_name_title_binfile,wims_name_title_otherfiles
+
+!set wims_name_title_recover=pour réinscrire un participant supprimé
+
+!distribute lines pour faire des exercices sans programmation\
+into wims_name_title_model

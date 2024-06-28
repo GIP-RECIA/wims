@@ -1,0 +1,18 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 2,2,grey
+# attention: left mouse click on the image will activate dragging...
+# keep left mouse button pressed while moving the image !
+drag xy
+# a function read_canvas_images() 
+copy -6,6,-1,-1,-1,-1,gifs/fr.gif
+snaptogrid
+drag xy
+copy 6,6,-1,-1,-1,-1,gifs/en.gif
+snaptogrid
+drag xy
+copy 6,-6,-1,-1,-1,-1,gifs/it.gif
+snaptogrid
+drag xy
+copy -6,-6,-1,-1,-1,-1,gifs/cn.gif

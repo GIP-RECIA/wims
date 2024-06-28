@@ -1,0 +1,49 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:general
+
+Questo modulo permette di analizzare i contenuti di un file di backup di un corso per importare e/o ripristinare
+le risorse specifiche che vengono selezionale (una alla volta, oppure globalmente tutte le risorse di uno stesso tipo).
+Nessuna risorsa esistente nel corso viene modificata. Le risorse contenute nell'archivio di backup per cui esiste
+già una copia contenuta nel corso non possono essere ripristinate.
+<br>
+Le risorse ripristinabili sono:
+<ul>
+  <li><b>Test di autovalutazione</b>: sono aggiunti nello stato "in preparazione"
+  e la data di termine è resa uguale alla data di termine del corso.
+  I test non possono essere inseriti nel corso se
+    <ul>
+      <li>il corso contiene già un test identico a quello contenuto nell'archivio,</li>
+      <li>il test contiene esercizi del corso (cioè non pubblici),</li>
+      <li>il test contiene esercizi contenuti in moduli che non sono presenti sul server
+      (si effettua solo la verifica dell'esistenza del corso senza alcuna verifica della versione del modulo 
+      o dell'effettiva presenza nel modulo degli esercizi menzionati nel test). Gli eventuali riferimenti alla voce "Bisogno d'aiuto?" non sono verificati.</li>
+    </ul>
+  </li><li>
+  <b>I documenti privati</b>: si trata dei documenti che il docente rende disponibili per gli studenti.
+    Sono ripristinati con lo stesso stato di lettura/scrittura del documento contenuto nell'archivio.
+  </li><li>
+  <b>I documenti pubblici</b>: sono ripristinati con lo stato "nascosto".
+  Viene effettuata una verifica dell'effettiva esistenza sul server del documento che si vuole ripristinare.
+  L'eventuale link del documento su un test di autovalutazione non è
+  conservato (in questo caso appare un messaggio nella colonna "commenti").
+  Se si vuole ripristinare anche tale test, è possibile farlo semplicemente
+  rigenerando il test a partire dall'interfaccia del documento, una volta
+  che il documento pubblico è stato importato.
+  </li><li>
+  <b>Collegamenti verso strumenti</b>: sono ripristinati con stato "nascosto". 
+  Viene effettuata una verifica dell'effettiva esistenza dello strumento sul server.
+  </li><li>
+  <b>Le voci di glossario</b>: sono ripristinati con stato "nascosto".
+  Non viene effettuata alcuna verifica dell'effettiva esistenza delle voci sul
+  server.
+  </li>
+</ul>
+Possono essere sostituite solo quelle risorse che sono modificabili,
+  cioè per esempio nello stato <span class="tt">In lavorazione</span>
+  (ovvero le risorse non ancora utilizzate dagli studenti).
+  Al momento questa opzione è disponibile solo per i test di autovalutazione.
+
+!exit

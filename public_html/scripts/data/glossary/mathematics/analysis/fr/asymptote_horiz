@@ -1,0 +1,23 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function,limit,asymptote
+!set gl_title=Asymptote horizontale
+!set gl_level=H6 STI2D&nbsp;STL&nbsp;Spécialité, H6 Générale&nbsp;Spécialité, H6 Générale&nbsp;Complémentaire
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(a\) et \(b\) deux nombres réels et \(f\) une fonction numérique définie
+sur  \(\lbrack a\,;+\infty \lbrack \) (respectivement
+\(\rbrack-\infty\,;a \rbrack \)).<br>
+On note \(C\) la courbe représentative de \(f\) dans le plan muni d'un repère
+orthogonal.<br>
+Si la fonction \(f\) admet pour limite \(b\) en \(+\infty \) (respectivement en
+\(-infty \)), alors la courbe \(C\) admet la droite d'équation \(y=b\) pour
+asymptote en \(+\infty \) (respectivement en \(-\infty \)).<br>
+La droite d'équation \(y=b\) est parallèle à l'axe des abscisses et est dite
+<strong>asymptote horizontale</strong> à la courbe \(C\) en \(+\infty \)
+(respectivement en \(-\infty \)).
+</div>

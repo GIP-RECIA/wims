@@ -1,0 +1,64 @@
+!!  select recipient for theme with jquery use
+!!  file selecttrecipient.old need to be synchronise
+!!
+      <script src="scripts/js/interface/ui_utils.js"></script>
+      $name_recipients
+      <select id="method" name="method"
+            onchange="toggle_select_options(this,{'select': '#js_restricted_select','login': '#js_restricted_login','filter': '#js_restricted_filter'})"
+      >
+        !if $tv_listtechvar=$empty
+          !set list_method=all,select,login
+        !else
+          !set list_method=all,select,login,filter
+        !endif
+        !set list_method_name=$name_allparticipants,$name_select,$name_loginlist,$wims_name_filter
+        !let nboption=!itemcnt $list_method
+        !for i=1 to $nboption
+          !if $(list_method[$i])=$method
+            <option value="$(list_method[$i])" selected="selected">$(list_method_name[$i])</option>
+          !else
+            <option value="$(list_method[$i])" >$(list_method_name[$i])</option>
+          !endif
+        !next i
+      </select>
+      !! --------------- html for method=select
+      <div id="js_restricted_select"
+        !if $method=select
+          style="display:block"
+        !else
+          style="display:none"
+        !endif
+      >
+        <div class="help-text" id="jobHelpText">$name_expert1</div>
+        <div class="wimscenter">
+          !read js/chooselist.phtml select_user1,select_user2,select_user
+        </div>
+      </div>
+      !! --------------- html for method=login
+      <div id="js_restricted_login"
+        !if $method=login
+          style="display:block"
+        !else
+          style="display:none"
+        !endif
+        >
+        <p class="wimscenter">
+          <label for="loginlist">$name_expert2</label>
+          <textarea name="loginlist" cols="20" rows="5" id="loginlist">$loginlist</textarea>
+        </p>
+      </div>
+      !if $tv_listtechvar!=$empty
+        !! --------------- html for method=filter
+        <div id="js_restricted_filter"
+          !if $method=filter
+            style="display:block"
+          !else
+            style="display:none"
+          !endif
+         >
+         <p class="wimscenter">
+           <label for="loginlist">$name_expert3</label>
+           !read adm/vfilter/varfilter htmldiv
+         </p>
+        </div>
+      !endif

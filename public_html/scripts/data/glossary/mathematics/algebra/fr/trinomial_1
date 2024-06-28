@@ -1,0 +1,17 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Fonction polynôme du second degré (exemple)
+
+!readproc data/glossary/mathematics/algebra/macro/seconddegre
+
+<ul>
+  <li>La fonction \(f\) définie pour tout réel \(x\) par \(f(x)=$gl_expr \)
+  est une fonction polynôme du second degré.</li>
+  <li>La fonction \(g\) définie pour tout réel \(x\) par \(g(x)=$gl_expr1 \)
+    n'est pas une fonction polynôme du second degré mais une fonction affine.</li>
+  <li>La fonction \(h\) définie pour tout réel \(x\) par \(h(x)=$gl_expr2 \)
+    n'est pas une fonction polynôme du second degré mais une fonction polynôme
+    de degré 3.</li>
+  <li>La fonction \(k\) définie pour tout réel non nul \(x\) par \(k(x)=$gl_expr3 \)
+    n'est pas une fonction polynôme du second degré mais une fonction rationnelle.</li>
+</ul>

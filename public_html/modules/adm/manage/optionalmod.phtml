@@ -1,0 +1,23 @@
+<fieldset class="property_fields blockcenter">
+  <legend>$name_optionalmod</legend>
+!if $optionalmod=$empty
+  !readproc optionalmod.proc
+!endif
+!form reply
+  <input type="hidden" name="job" value="optionalmod">
+  $name_optionalmoddesc
+  <div class="field box">
+    !formcheckbox up_optionalmod list $optionalmod_list
+  </div>
+  $name_optionalmod_parameter_desc
+  <div class="field box">
+    !formcheckbox up_optionalmod_parameter list $optionalmod_parameter prompt $optionalmod_parameter_prompt
+  </div>
+  <div class="wimscenter wimsform">
+    <input type="submit" name="save" value="$wims_name_tosave">
+    !set wims_ref_class=wims_button wims_secondary_button
+    !href module=$module&+job=list $wims_name_giveup
+  </div>
+!formend
+</fieldset>
+!reset up_optionalmod up_optionalmod_parameter

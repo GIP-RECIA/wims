@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=area,measurement,rectangles
+!set gl_title=Aire d'un rectangle
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_thm">
+  <h4>Théorème</h4>
+  <div><em>Une unité de longueur étant donnée dans le plan, on considère l'unité d'aire associée.</em></div>
+  <div class="spacer">
+  L'aire d'un rectangle est égale au produit de sa longueur par sa largeur.
+  </div>
+  <div class="spacer">
+  Autrement dit :<br>
+  Si  \(L\) désigne la longueur du rectangle, \(l\) sa largeur et \(A\) l'aire de ce rectangle, alors&nbsp;:<br>
+    <div class="wimscenter">
+      <span class="nowrap">\(A=L \times l\).</span>
+    </div>
+  </div>
+</div>
+
+:mathematics/geometry/fr/rectangle_area_1

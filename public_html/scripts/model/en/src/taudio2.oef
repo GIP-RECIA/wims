@@ -1,0 +1,59 @@
+type=imaudio
+textarea="data instruction"
+iEdit="instruction"
+
+:Write the word heard (records to be provided).
+
+An audio is proposed and the text heard must be written exactly.
+ The audio is taken from the WIMS recorded word audio database.
+ If the exercise is in a class, it can be used with audios put in the class.
+<p>
+  To build an exercise with this model, simply type the word list
+  as long as they exist in the audio database
+  (to check, type "swac" in the search engine and use the proposed tool).
+</p><p>
+  For more possibilities, use Quicktool.
+</p><p class="wims_credits">
+Author of the model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Listen and write II}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Instructions
+\text{instruction=Write the word heard, without misspelling.}
+
+:List of audio and words
+\text{data=name_audio1,doctor
+name_audio2,teacher
+name_audio3,journalist}
+
+:Height of the boxes (in numbers of characters)
+\integer{size=12}
+
+:%%%%%%%%%%%%% Now the statement in HTML. %%%%%%%%%%%%%%%%%%%%
+
+\text{mot=randrow (\data)}
+
+\statement{
+ <div class="instruction">\instruction</div>
+ <div class="wimscenter">
+  \audio{\imagedir/\mot[1]}
+ </div>
+
+ <div class="wimscenter">
+  \embed{r1, \size
+   default
+   autocomplete="off"}
+ </div>
+}
+
+\answer{}{\mot[2..-1]}{type=case}

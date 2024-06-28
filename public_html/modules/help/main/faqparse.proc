@@ -1,0 +1,26 @@
+!set faqcnt=!recordcnt $faqfile
+!if $faqcnt>0
+<ul>
+ !for j=1 to $faqcnt
+ <li>
+  !set tmp=!record $j of $faqfile
+  !set tmpcnt=!linecnt of $tmp
+  !for t=1 to $tmpcnt
+    !set lt=!line $t of $tmp
+    !set lt=!replace internal `` by <span class="wims_emph"> in $lt
+    !set lt=!replace internal '' by </span> in $lt
+    !if $t=1
+   <div class="faq_Q"><b>$name_question</b>:
+    !set lt=!replace @Q: by in $lt
+    !endif
+    !if @R isin $lt
+   </div><div class="faq_R"><b>$name_answer</b>:
+    !set lt=!replace @R: by in $lt
+    !endif
+    $lt
+  !next
+  </div>
+ </li>
+!next
+</ul>
+!endif

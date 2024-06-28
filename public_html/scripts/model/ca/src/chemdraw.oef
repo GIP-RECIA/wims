@@ -1,0 +1,69 @@
+type=chemistry
+textarea="data file pre post"
+iEdit="pre post"
+
+:Dissenyar una molècula en 2D
+
+Demanem dissenyar una molècula en un applet.
+<p>
+Per construir un exercici amb aquest model, simplement doneu el fitxer
+de l'estructura.
+
+<p>
+Autors del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Dissenyar una molècula}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Fitxer MDMol
+\text{file=xxx
+JME 2006.05 Mon Jul 07 08:51:48 CEST 2008
+
+  5  4  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6373    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4249    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2124    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4248    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  4  1  0  0  0  0
+  2  5  1  0  0  0  0
+  3  5  1  0  0  0  0
+  4  5  1  0  0  0  0
+M  END
+}
+
+:La mida de l'applet, en píxels, amplada x alçada
+\text{size1=300x300}
+
+:Text abans de l'applet
+\text{pre=Dissenyar la molècula de <b>Méthylbutane</b>}
+
+:Opcions
+\text{option=show_hydrogen=no show_carbon=yes}
+
+:Text després de l'applet
+\text{post=<i>Comproveu que el zoom del navegador estigui a la mida normal.</i>}
+
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+
+\statement{\pre
+<p class="wimscenter">
+\embed{reply 1, \size1
+atoms="\atoms" \option}
+</p>
+\post
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{}{\file}{type=chemdraw}

@@ -1,0 +1,57 @@
+!set methtit2=Dividir una desigualdad por un número distinto de cero
+!set methtit=Dividir una desigualdad por un número
+!set methenv=ZZ QQ RR
+!set methparmtype=number,parm inequality
+!set methhelp=Este método transforma una desigualdad del estilo \(A > B)\
+  en la desigualdad equivalente \(A/n > B/n) (o \(A/n < B/n)), donde \(n) es un número\
+  distinto de cero.
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!exit
+:form
+Dividir la desigualdad
+!read deduc/methparm.phtml 2
+$ entre un número
+!read deduc/methparm.phtml 1,10
+
+!exit
+:check
+!distribute items $methparmobj2 into data,left,sign,right
+!ifval $methparm1=0
+  error=¡División por cero!
+  !advance penalty
+  !exit
+!endif
+methexp=Diviser \($left $sign $right) par \($methparm1)
+
+!read deduc/sub/simplify ($left) / ($methparm1)\
+	($right) / ($methparm1)
+!distribute lines $out into newleft, newright
+!if $newleft=$empty or $newright=$empty
+  error=bad_data
+  !exit
+!endif
+!if $methparm1<0
+  newsign=!translate internal <> to >< in $sign
+!else
+  newsign=$sign
+!endif
+newobject2=$newleft $newsign $newright
+oldobject=2
+
+contextlist=$ct_Onlywhen el divisor es distinto de cero,\
+	$ct_Onlywhen el divisor es positivo,\
+	$ct_Always,\
+	$ct_Onlywhen ambos lados son positivos,\
+	$ct_Onlywhen ambos lados tienen el mismo signo,\
+	$ct_Onlywhen la desigualdad es estricta
+
+badsign=!translate internal <> to >< in $newsign
+ resultlist=$newobject2,\
+	$newright $newsign $newleft,\
+	$newleft $badsign $newright
+
+!exit

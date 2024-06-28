@@ -1,0 +1,15 @@
+
+<fieldset class="property_fields blockcenter">
+<legend>$name_exolog</legend>
+!form reply
+  <input type="hidden" name="job" value="log">
+  <input type="hidden" name="smail" value="yes">
+  <label for="msg">$name_ssendmail</label>
+  <textarea id="msg" name="msg" rows="6" column="40" maxlength="200"></textarea>
+  <div class="wimscenter">
+    <input type="submit" value="$wims_name_yes">
+    !set wims_ref_class=wims_button
+    !href cmd=reply&+smail=no $wims_name_no
+  </div>
+!formend
+</fieldset>

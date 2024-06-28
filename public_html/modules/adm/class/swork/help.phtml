@@ -1,0 +1,9 @@
+!! help manage
+
+!if $wims_user=supervisor
+  !let special_parm=supervisor
+!else
+  !let special_parm=user
+!endif
+
+!changeto lang/help.phtml.$lang $special_parm

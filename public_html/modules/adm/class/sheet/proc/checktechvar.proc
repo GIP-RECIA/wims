@@ -1,0 +1,73 @@
+!! check if sheet have reference to technical variable not defined in the class
+!! hidden_condition is not checked (done in var.proc directly not a activate problem)
+!! wims_read_parm is keyword 
+!! clean : cleaning the sheet from individual technical variable data
+!! empty : just check if techvar is in use for individualisation of sheet
+!!         in this case listvalues is the list of values used
+!!                      listcompatibletechvar is the list of technival variable compatible with listvalues
+!if $wims_read_parm=clean
+  !goto clean
+!endif
+
+!! ---------------- process to check usage of technical variable
+!reset listvalues listcompatibletechvar
+data_=!record $sheet of wimshome/log/classes/$wims_class/.sheets
+!! -------- check for individualisation sheet parameter
+ecnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+!for k_=1 to $ecnt
+  d_=!record $k_ of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+  lt_=!line 11 of $d_
+  !if $lt_!=$empty
+    listvalues=!append item $lt_ to $listvalues
+  !endif
+!next k_
+listvalues=!listuniq $listvalues
+!if $listvalues=$empty
+  !exit
+!endif
+!! calculate compatible technical variable
+nb_=!recordcnt wimshome/log/classes/$wims_class/.techvar
+t_=!itemcnt $listvalues
+!for k_=1 to $nb_
+  dt_=!record $k_ of wimshome/log/classes/$wims_class/.techvar
+  !distribute line $dt_ into name_,val_
+  t2_=!listintersection $val_ and $listvalues
+  t2_=!itemcnt $t2_
+  t3_=!itemcnt $val_
+  !if $t2_=$t_ and $t3_=$t2_
+    listcompatibletechvar=!append item $name_ to $listcompatibletechvar
+  !endif
+!next k_
+!if $indivtechvar!=$empty
+  !reset t2_,t3_
+  t2_=!positionof item $indivtechvar in $tv_listlocalcode
+  t3_=!item $t2_ of $tv_listlocalname
+  !if $t2_!=$empty and $t3_ isitemof $listcompatibletechvar
+    !reset listvalues listcompatibletechvar
+  !endif
+!endif
+!exit
+
+:clean
+!! ---- process to clean sheet 
+data_=!record $sheet of wimshome/log/classes/$wims_class/sheets/.sheets
+a_=!line 1 of $data_
+!if $a_!=0
+  !exit
+!endif
+update_content=!replace line number 11 by $empty in $data_
+update_field=$sheet
+!readproc adm/uprecord wimshome/log/classes/$wims_class/sheets/.sheets
+!sh mv $wims_home/log/classes/$wims_class/sheets/.sheet$sheet $wims_home/log/classes/$wims_class/sheets/.sheettmp
+nb_=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheettmp
+!for k_=1 to $nb_
+  dt_=!record $k_ of wimshome/log/classes/$wims_class/sheets/.sheettmp
+  !for j_=3 to 4
+    t_=!line $j_ of $dt_
+    t_=!row 1 of $t_
+    dt_=!replace line number $j_ by $t_ in $dt_
+  !next j_
+  dt_=!replace line number 11 by $empty in $dt_
+  !appendfile wimshome/log/classes/$wims_class/sheets/.sheet$sheet :$dt_
+!next k_
+!sh rm -f $wims_home/log/classes/$wims_class/sheets/.sheettmp

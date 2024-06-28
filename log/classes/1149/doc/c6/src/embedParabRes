@@ -1,0 +1,28 @@
+<div class="wims_columns">
+ <div class="medium_size text_col">
+Si un problème comporte plusieurs variables ou plusieurs inconnues,<br>
+on utilise une ou des relations entre elles pour les exprimer en fonction d'une seule<br>
+et étudier les variations ou résoudre l'équation.
+</div><div class="medium_size img_col">
+<img alt="Garçon du nom de Constantin Connu" src="\filedir/Inconnu2.png"/>
+</div></div>
+\fold{\embed{ParabSys}}{Exemple}
+</p>
+<p class="decal">
+Si on connaît la forme canonique du trinôme, on peut résoudre l'équation \(f(x)=k)<br>
+en l'écrivant sous la forme \((x-x_S)^2=-y_S/a) et en utilisant la résolution de \(X^2=k) :<br>
+<ul>
+  <li>Si \(k \gt 0) alors \(X^2=k) équivaut à \(X=-sqrt(X)) ou \(X=sqrt(X)).</li>
+  <li>Si \(k = 0) alors \(X^2=0) équivaut à \(X=0).</li>
+  <li>Si \(k \lt 0) alors \(X^2=k) n'a pas de solution dans \(\,\RR).</li>
+</ul>
+</p>
+<p class="decal">
+Si on connaît la forme factorisée du trinôme, on pourra utiliser la propriété :<br>
+"Un produit de facteurs est nul si et seulement si l'un ou l'autre des facteurs est nul."</p>
+<p class="decal">
+Si on ne dispose que de la forme développée \(a*x^2+b*x+c), ou si on peut facilement la retrouver,<br>
+on peut alors utiliser directement les résultats de ce chapitre :<br>
+calculer le discriminant \(\Delta=b^2-4 a c) puis les solutions si \(\Delta \ge 0) :<br>
+\(x_1=\frac{-b-\sqrt{\Delta}}{2 a}) et \(x_2=\frac{-b+\sqrt{\Delta}}{2 a}).
+</p>

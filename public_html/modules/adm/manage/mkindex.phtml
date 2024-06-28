@@ -1,0 +1,34 @@
+
+!read adm/title.phtml 3\
+\
+$title
+
+!if $atdate!=$empty
+  <p class="wims_msg info">$name_scheduled</p>
+  !goto end
+!endif
+
+<p class="wims_msg warning"><strong class="wims_warning">$wims_name_warning</strong> $name_rebuilding</p>
+
+!if $lastdate!=$empty
+  :result
+  <p>$name_result $lastdate:</p>
+  <pre>$output</pre>
+  <p>
+    !href cmd=reply&job2=run $name_click
+    $name_restart
+  </p>
+!else
+  <p>
+    !href cmd=reply&job2=run $name_click
+    $name_start
+  </p>
+!endif
+
+:end
+!reset job2
+
+<div class="wimscenter">
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=new&job=modules $wims_name_back2
+</div>

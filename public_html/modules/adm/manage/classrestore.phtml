@@ -1,0 +1,66 @@
+!if $error!=$empty
+  <div class="wims_msg alert">
+    !read lang/msg.phtml.$modu_lang
+  </div>
+  <div class="wimscenter">
+    !set wims_ref_class=wims_button wims_secondary_button
+    !href cmd=new&job=classrestore $wims_name_back2
+  </div>
+  !reset error
+  !exit
+!endif
+
+!if $stepcl=$empty or $stepcl<1
+  !if $cnt>0
+    $name_restore_choose
+    !form reply
+    <ul>
+      !for y in $listyear
+      <li>
+        !if $(listclass$y)!=toomuch
+          $y
+          <ul>
+            !for cl in $(listclass$y)
+            <li>
+              !set wims_ref_id=$(y)_$cl
+              !formradio clrestore list $(y)_$cl prompt $cl
+            </li>
+            !next
+          </ul>
+        !else
+          !set wims_ref_id=$y
+          !formradio clrestore list $(y)
+. $name_toomuchbackup
+          <div class="wimscenter wims_form">
+            <input type="number" name="clrestore1" value="">
+          </div>
+        !endif
+      </li>
+      !next
+    </ul>
+    <div class="wimscenter wimsform">
+      <input type="hidden" name="stepcl" value="1">
+      <input type="submit" name="" value="$wims_name_restore">
+    </div>
+    !formend
+  !else
+    $name_restore_noclass
+    !reset stepcl
+  !endif
+!else
+  !if $test!=$empty
+    !exit
+  !endif
+  <div class="wims_msg info">
+    $name_restore_done
+  </div>
+  $name_class_link
+  <a href="$(wims_ref_name)?module=adm/class/classes&type=authsupervisor&class=$class">$(wims_ref_name)?module=adm/class/classes&type=authsupervisor&class=$class</a>
+
+  <div class="wimscenter">
+    !set wims_ref_class=wims_button wims_secondary_button
+    !href module=adm/manage $module_title
+  </div>
+
+  !reset stepcl clrestore clrestore1
+!endif

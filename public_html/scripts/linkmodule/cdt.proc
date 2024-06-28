@@ -1,0 +1,10 @@
+!!
+!! test if cdt administrative module is allowed or not
+!!
+!!
+!if $wims_class!=$empty and ($wims_supertype=0 or ($wims_supertype=2 and $wims_typename=class) or\
+  ($wims_supertype=4 and $wims_typename isitemof class,course))
+  !let wims_allowlink_cdt=yes
+!else
+  !let wims_allowlink_cdt=no
+!endif

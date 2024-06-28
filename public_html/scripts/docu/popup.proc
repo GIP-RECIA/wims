@@ -1,0 +1,13 @@
+!if $module_language iswordof en fr ca cn
+  !set ll=$module_language
+!endif
+!default ll=$lang
+
+formdir=docu/popup.$ll/form
+default_size=400x500
+default_module=tool/wcalc.$ll
+default_color=bisque
+default_precision=12
+winname=new
+jsdef=onclick="window.open('','$winname','location=no,status=no,toolbar=yes,menubar=no,scrollbars=yes')"
+sizeinput=!nosubst <input type="hidden" name="wims_window" value="$op_size">

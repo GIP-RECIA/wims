@@ -1,0 +1,92 @@
+!! display list of participant with course information
+
+
+!set module_has_help = no
+
+!read adm/class/classname.phtml $wims_classname\
+$wims_institutionname
+
+!read adm/title.phtml 1\
+$classname\
+$name_progress
+
+!reset table_center
+!set typen=!defof class_typename in wimshome/log/classes/$wims_class/.def
+!if $usercnt=0
+  <div class="wimscenter">
+  $name_noyetparticipant
+  </div>
+  !exit
+!endif
+
+!! ------ manage ask for technical variable selection (use new varfilter variable)
+!if $nblisttechvar>0
+  !form reply
+    <input type="hidden" name="job" value="coursewatch" >
+    !read adm/vfilter/varfilter html
+  !formend
+!endif
+
+
+!! ----- displaying table of participant
+<div>
+  $name_userlistdesc
+</div>
+!set table_id=TABLE_userlist
+!set table_class=sortable
+$table_header
+<thead>
+  $table_hdtr
+    <th scope="col">$name_studentglo</th>
+    <th scope="col"></th>
+  </tr>
+</thead>
+<tbody>
+  !for i=1 to $usercnt
+    !set uu=!record $i of wimshome/log/classes/$wims_class/.userlist
+    !distribute items $uu into bl,bl,uu
+    !if $varfilter_!=$empty
+      !read adm/vfilter/testfilter $uu\
+$varfilter_
+    !endif
+    !if $(var_filter_test)=1 or $varfilter_=$empty
+      !reset user_exists,$lttechvarid
+      !readproc adm/class/userdef classes,$wims_class,$uu
+      !readdef $userdef
+      $table_tr
+        !reset css_connected
+        !if $uu isitemof $wims_connectedlogin
+          !set css_connected=class="wims_connected"
+          !set wims_ref_title=connected
+        !endif
+        <td $css_connected>
+          $name_studentloc
+        </td>
+        <td>
+          !let data=!record 0 of wimshome/log/classes/$wims_class/.parmreg/$(uu).exam
+          !distribute word $data into bl,ses,time,ex
+          !if $ex=$exam
+            !let progress=$emptyprogress
+            !let nbl=!recordcnt wimshome/sessions/$ses/examscore.$exam
+            !for k=1 to $nbl
+              !let dt=!record $k of wimshome/sessions/$ses/examscore.$exam
+              !distribute word $dt into bl,exo,type,sco
+              !if $type=score
+                !let progress=!replace item number $exo by $sco in $progress
+              !endif
+            !next k
+            !readproc examprogressbar.proc $progress
+            $wims_progressbar
+          !endif
+        </td>
+      </tr>
+    !endif
+  !next i
+  </tbody>
+$table_end
+!read tablesort.phtml
+!let wims_menu_items=!append line refresh,1,cmd=reply&job=coursewatch\
+back2,1,cmd=reply to $wims_menu_items
+!reset job
+!tail
+

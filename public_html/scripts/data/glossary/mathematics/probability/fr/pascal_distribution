@@ -1,0 +1,34 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Loi binomiale négative
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soient \(r) un entier strictement positif et \(p) un réel tel que
+ \(0 \leq p\leq 1).
+La <strong>loi binomiale négative</strong>
+(appelée aussi <span class="wims_emph">loi de Pascal</span>) de paramètres
+\(r) et \(p) est la loi \(q) sur \(\NN) définie par
+<div class="wimscenter">
+\(q(k)=C^{r-1}_{r+k-1}p^{r}(1-p)^{k}) pour tout entier
+ \(k\geq 0)
+</div>
+</div>
+<div class="wims_example">
+<h4>Exemple</h4> On dispose d'une pièce qui a une probabilité
+<span class="green">\(p) </span>
+de tomber sur <span class="green">face</span> et \(1-p) de tomber sur
+<span class="red">pile</span>. Le nombre de fois où la pièce est tombée sur
+<span class="red">pile</span> avant de tomber pour la \(r)-ième
+fois sur <span class="green">face</span>
+définit une variable aléatoire de loi binomiale négative de paramètres
+\(r) et \(p).
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th><th>Fonction génératrice</th></tr><tr>
+<td>\(r(\frac{1}{p}-1))</td><td>\(r\frac{1-p}{p^2})</td><td>
+\((\frac{p}{1-(1-p)z})^r) </td></tr></table>

@@ -1,0 +1,22 @@
+
+!! frontmsg.proc must be read before frontmsg.phtml
+!! Call it with "!read themes/_procs/frontmsg.proc"
+!! then, call frontmsg.phtml only !if $wims_frontmsg!=$empty
+
+!if $front_nbactu>0 or $front_nbslide>0
+  <div class="accordion" data-accordion data-allow-all-closed="true">
+    <div class="accordion-item is-active" data-accordion-item>
+      <a href="#" class="accordion-title">$wims_name_Infos</a>
+      <div class="accordion-content" data-tab-content>
+        <div class="grid-x grid-margin-x align-center">
+          !if $front_nbactu>0
+            !read themes/_widgets/news.phtml
+          !endif
+          !if $front_nbslide>0
+            !read themes/_widgets/examples.phtml
+          !endif
+        </div>
+      </div>
+    </div>
+  </div>
+!endif

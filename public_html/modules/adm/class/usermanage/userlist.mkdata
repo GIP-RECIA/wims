@@ -1,0 +1,68 @@
+!! process the data for userlist
+
+!set typen=!defof class_typename in wimshome/log/classes/$wims_class/.def
+!if $usercnt=0
+  !exit
+!endif
+fileuserlist=wimshome/sessions/$wims_session/userlist-usermanage
+Fileuserlist=$wims_home/sessions/$wims_session/userlist-usermanage
+!readproc adm/class/mkcomment name
+namecomment=$scriptout
+
+!if $cmd!=resume
+  !sh rm -f $Fileuserlist
+  !! build ligne for each participant
+  !for i=1 to $usercnt
+    !reset ldata
+    !set uu=!record $i of wimshome/log/classes/$wims_class/.userlist
+    !distribute items $uu into bl,bl,uu
+    !reset user_exists,user_email,user_regnum,user_external_auth,user_vars,user_comments$namecomment,user_comments
+    !readproc adm/class/userdef classes,$wims_class,$uu
+    !readdef $userdef
+    !readproc adm/vfilter/uservarfilter.proc $userdef
+    ldata=$name_studentloc
+    ldata=$ldata,$uu
+    !for k in email,regnum,external_auth
+      ldata=$ldata,$(user_$(k))
+    !next k
+    lt=!defof user_lastconnect in wimshome/log/classes/$wims_class/.users/$uu
+    !if $lt!=$empty
+      !read date.phtml $lt,noprint
+      ldata=$ldata,$slib_out,$lt
+    !else
+      ldata=$ldata,,
+    !endif
+    !if $nbtechvar>0
+      val=!column 2 of $user_vars
+      ldata=$ldata,$val
+      !! seems not to be useful : user_vars has exactly nbtechvar lines
+      !!      tmp=!linecnt $user_vars
+      !!      !for v = 1 to $[$nbtechvar-$tmp]
+      !!        ldata=$ldata,
+      !!      !next v
+    !endif
+    !readproc adm/class/mkcomment val
+    tmp=!replace internal , by &#44; in $scriptout
+    ldata=$ldata,$tmp
+    !appendfile $fileuserlist :$ldata
+  !next i
+!endif
+
+tmp=!record 1 of $fileuserlist
+lastri=!itemcnt $tmp
+
+!if $tri!=$empty
+  type=!char 1 of $tri
+  !if $type=U
+    type=$empty
+  !else
+    type=r
+  !endif
+  num=!char 2 to -1 of $tri
+  !bound num between 1 and $lastri default $empty
+  !if $num!=$empty
+    !sh cat $Fileuserlist | sort -t, -k$num$type,$num > $(Fileuserlist)2;\
+mv $(Fileuserlist)2 $Fileuserlist
+  !endif
+  !reset tri
+!endif

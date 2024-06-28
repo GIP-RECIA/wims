@@ -1,0 +1,141 @@
+!! menu definition file
+!if $glossary_self=no
+  !if $de_!=$empty
+    <div>$de_</div>
+  !endif
+  <ul>
+  !for j=1 to $Listfilecnt
+    !set tmp=!line $j of $Listfile
+    !set tmp_=$(tmp[2;])
+    !set tmp_=!replace internal , by / in $tmp_
+    !set tmp_=!nospace $tmp_
+    !set gl_title=$(tmp[1;])
+    !default gl_title=!getdef gl_title in $data_dir/$tmp_
+    !set gl_type=!getdef gl_type in $data_dir/$tmp_
+    !default gl_title=$(tmp[-2])
+     <li>
+    !if $gl_type=dynamic
+      !href cmd=reply&module=$module&special_parm=$tmp_&job=$gl_type&gl=$gl&gl_title=$gl_title $gl_title
+    !else
+      !href cmd=reply&module=$module&special_parm=$tmp_&gl=$gl&gl_title=$gl_title $gl_title
+    !endif
+    </li>
+  !next
+  </ul>
+  !exit
+!endif
+!set level1=!column 1 of $Listfile
+!set level1=!listuniq $level1
+!set level2=!column 2 of $Listfile
+!set level2=!listuniq $level2
+!if $gl=0
+  !reset level1prompt level2prompt
+  !set level1=!column 1 of $Listfile
+  !set level1=!listuniq $level1
+  !for j in $level1
+    !set level1_=!lookup $j in bases/sys/domain/domain.$modu_lang
+    !set level1prompt=!append item $level1_ to $level1prompt
+  !next
+  !set level2=!column 2 of $Listfile
+  !set level2=!listuniq $level2
+  !for j in $level2
+    !set level2_=!lookup $j in bases/sys/domain/domain.$modu_lang
+    !default level2_=$j
+    !set level2prompt=!append item $level2_ to $level2prompt
+  !next
+  !form config
+  <div class="float_right">
+    !default gloss_lang=$gl_lang
+    !default gloss_domain=$gl_domain
+    !formselect gloss_lang list ??,$listlang
+    !formselect gloss_domain list ??,$level1 prompt ??,$level1prompt
+    !formselect gloss_zone list ??,$level2 prompt ??,$level2prompt
+    <input type="submit" name="pref" value="OK">
+  </div>
+  !formend
+!endif
+!set level1cnt=!itemcnt $level1
+!if $gloss_domain!=?? and $gloss_domain!=$empty
+  !set level1=!listintersect $gloss_domain and $level1
+!endif
+!set level1cnt=!itemcnt $level1
+
+<ul class="tree">
+!for j1=1 to $level1cnt
+  !set t=!lookup $(level1[$j1]) in bases/sys/domain/domain.$modu_lang
+  !default t=$(level1[$j1])
+  <li>$t
+  !set level1_=!select $Listfile where column 1=$(level1[$j1])
+  !set level2=!column 2 of $level1_
+  !set level2=!listuniq $level2
+  !if $gloss_zone!=?? and $gloss_zone!=$empty
+    !set level2=!listintersect $gloss_zone and $level2
+  !endif
+  !set level2cnt=!itemcnt $level2
+  <ul>
+  !for j2=1 to $level2cnt
+    !set level2_=!select $level1_ where column 2=$(level2[$j2])
+    !set level3=!column 3 of $level2_
+    !set level3=!listuniq $level3
+    !if $gloss_lang!=?? and $gloss_lang!=$empty
+      !set level3=!listintersect $gloss_lang and $level3
+    !endif
+    !set level3cnt=!itemcnt $level3
+    !if $level3cnt!=0
+      !set t=!lookup $(level2[$j2]) in bases/sys/domain/domain.$modu_lang
+      !default t=$(level2[$j2])
+      <li>$t
+      !reset t
+      !if $level3cnt>1
+        <ul>
+      !endif
+      !for j3=1 to $level3cnt
+        !set t=!lookup $(level3[$j3]) in bases/sys/domain/domain.$modu_lang
+        !default t=$(level3[$j3])
+        !if $level3cnt>1
+          <li>$t
+        !endif
+        !set level3_=!select $level2_ where column 3=$(level3[$j3])
+       !set level4=!column 4 of $level3_
+        !set level4=!listuniq $level4
+        !set level4cnt=!itemcnt $level4
+        !if $level4cnt!=0
+          !reset gl_list gl_list_tmp
+          !for j4=1 to $level4cnt
+            !set tmp=!row $j4 of $level3_
+            !set tmp_=$(tmp[1])/$(tmp[2])/$(tmp[3])/$(tmp[4])
+            !set gl_title=!getdef gl_title in $data_dir/$tmp_
+            !default gl_title=!lookup $(tmp[4]) in bases/sys/domain/domain.$(tmp[3])
+            !default gl_title=$(tmp[4])
+            !set gl_list=!append line [$gl_title],$tmp_,$(tmp[-1]) to $gl_list
+            !set gl_list_tmp=!append line $gl_title to $gl_list_tmp
+          !next
+          !set gl_list_tmp=!sort nocase line of $gl_list_tmp
+          !set gl_list=$(gl_list[$wims_sort_order;])
+          <ul>
+          !for j4=1 to $level4cnt
+            !set tmp=!line $j4 of $gl_list
+            !set gl_title=!declosing $(tmp[1])
+            <li>
+              !href cmd=reply&module=$module&special_parm=$(tmp[2])&job=$(tmp[-1]) $gl_title
+              !!<span class="small hidden">$tmp_</span>
+            </li>
+            !reset tmp gl_title
+          !next
+          </ul>
+        !endif
+        !reset tmp
+        !if $level3cnt>1
+          </li>
+        !endif
+      !next
+      !if $level3cnt>1
+        </ul>
+      !endif
+      </li>
+    !endif
+  !next
+  </ul>
+!next
+</li>
+</ul>

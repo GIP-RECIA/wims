@@ -1,0 +1,13 @@
+!goto $err_
+
+:notallowed
+Vous n'êtes pas autorisé à utiliser ce module. Ne jouez pas avec la barre d'adresse !
+!exit
+
+:confirm
+Le message a été expédié à l'auteur de l'exercice. Vous recevrez une copie du message.
+!exit
+
+:no_comment
+Vous n'avez pas décrit le bug rencontré. Merci de l'expliquer brièvement svp.
+!exit

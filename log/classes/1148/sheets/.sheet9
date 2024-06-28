@@ -1,0 +1,47 @@
+Fonction polynôme de degré 2 (forme factorisée)
+Sélection d'exercices correspondant à une partie du paragraphe "Fonctions polynômes de degré 2" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+analysis
+equations,inequations,functions,real_function,polynomials,trinomial,factorization
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fonctions polynômes de degré 2" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H4/algebra/develop.fr
+exo=dev1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Développer
+Déterminer la <strong>forme développée</strong> d'un polynôme du style (ax+b)(cx+d).
+
+
+
+:H4/algebra/factorracine.fr
+exo=deg2ent1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Factoriser 1
+Factoriser un polynôme 1 racine connue.
+
+
+
+:H5/algebra/oefsecdeg.fr
+exo=Factorisationd
+10
+1
+Factoriser 2
+Factoriser sous la forme a(x-x<sub>1</sub>)(x-x<sub>2</sub>).
+
+
+
+:H4/algebra/oefseconddegree.fr
+exo=sdequ7&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Résoudre
+Résoudre une équation du style a(x-x<sub>1</sub>)(x-x<sub>2</sub>)=0.
+
+
+

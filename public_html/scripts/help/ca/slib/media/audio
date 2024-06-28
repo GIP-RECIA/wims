@@ -1,0 +1,14 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Insertion d'un contenu sonore
+slib_parms=3\
+,URL du fichier audio\
+,parametre pour la balise audio (exemple : <span class="tt">style="width:300px;height:25px"</span>)\
+,[<code>option=rename</code>] [<code>player=player_mp3_multi</code>]
+
+slib_out=Insertion du lecteur audio dans la page html.
+slib_comment=La valeur de l'option "player" (3e paramètre) peut être vide ou \
+indiquer le lecteur flash suivant : <span class="tt">player_mp3_multi</span>.\
+<br> Quand la valeur est vide, on peut alors utiliser la classe CSS \
+<span class="tt">wims_audio</span> pour modifier le look par défaut \
+ou bien préciser dans les options un style css (voir les exemples).

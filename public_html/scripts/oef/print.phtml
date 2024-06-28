@@ -1,0 +1,137 @@
+!nocache
+!set wims_html_header=!append line $oefcss to $wims_html_header
+!header1
+!set module_title=!module title_$lang $module
+!default module_title=!module title $module
+<h1 class="wimscenter">
+!href module=$module&cmd=intro WIMS
+ $module_title<br>
+<span class="smaller">--- $name_print ---</span></h1>
+
+!if $error!=$empty
+  !changeto oef/msg.phtml
+!endif
+
+!if ($wims_developer!= or $wims_user=supervisor) and $latex_exists=1
+  <div class="wimscenter">
+  !read oef/latex.proc print
+  </div>
+!endif
+!if $printlatex!=yes
+  <h2 class="wimscenter">$wims_name_Exercices</h2>
+  !for iii=1 to $n
+    <h3>
+    !href target=wims_light module=$module&exo=$(name_$iii)&cmd=new <span class="bold">$name_exo</span> $iii.
+    <span id="title_$iii">$(title_$iii)</span>
+    </h3>
+    !if $(question_$iii)=$empty
+      ($name_noprint)
+    !else
+      !set wims_parm_detag=label
+      !if __EXECUTED_ isin $(question_$iii) and _EXERCISE__ isin $(question_$iii)
+        !set thisexo=$(name_$iii)
+        !!!!FIXME 5
+        !readproc oef/imagedir.proc
+        !for k=1 to $(varcnt_$iii)+5
+          !set val$k=!line $k of $(var_$iii)
+        !next k
+        <div id="exo_$iii">
+        !read $(class_header)def/$(name_$iii).def question
+        </div>
+      !else
+        <div id="exo_$iii">
+        $(question_$iii)
+        </div>
+      !endif
+      !if $(chce_$iii)!=$empty
+        <div class="wims_answer">$(chce_$iii)</div>
+      !endif
+      !reset wims_parm_detag
+    !endif
+    <br class="clearall">
+    !if $i__>=$(cnt_$iii) and $prompt___!=$empty
+      <div class="spacer">$prompt___</div>
+      !reset prompt___
+    !endif
+    !if $(embedcnt$iii)=0 or $(embedcnt$iii)=$empty
+      !set tmp_cnt=!itemcnt $(Replyname$iii)
+      <ul>
+      !for k=1 to $tmp_cnt-1
+        <li>
+        !set tmp=!item $k of $(Replyname$iii)
+        !if $tmp!=$empty
+          <em>$tmp</em>:
+        !endif
+        !set tmp=!line $k of $(Rg$iii)
+        !set tmp=!nonempty items $tmp
+        !if $((Replytype$iii)[$k]) iswordof dragfill clickfill reorder compose
+          !replace internal , by </div>$ $<div class="drag_label" style="display:inline-block;"> \
+in <div class="drag_label" style="display:inline-block;">$tmp</div>
+        !else
+          !if $((Replytype$iii)[$k]) iswordof radio menu checkbox
+            !replace internal , by </li><li> in <ul><li>$tmp</li></ul>
+          !else
+            $tmp
+          !endif
+        !endif
+        !reset tmp
+        </li>
+      !next
+      </ul>
+    !endif
+  !next
+
+  !if $wims_user!=$empty and $wims_user!=supervisor
+    !goto noans
+  !endif
+
+  !if $test_print=1
+    <div class="wims_solution">
+    <h2 class="wimscenter">$name_answers</h2>
+    !for iii=1 to $n
+      !set t=!linecnt $(ans_$iii)
+      !if $t>0
+        <div id="answer_$iii">
+        <h3>$name_answer_i $iii.</h3>
+        !if $t>1
+          <ol style="list-style-type:square;">
+        !endif
+        !for k=1 to $t
+          !if $(Replytype$iii[$k]) iswordof coord clock jsxgraphcurve jsxgraph draw
+            !break
+          !endif
+          !set l__=!line $k of $(ans_$iii)
+          !if $l__ !=
+            !if $t>1
+              <li style="counter-reset:$k">
+            !endif
+              $l__
+            !if $t>1
+              </li>
+            !endif
+            !reset l__
+          !endif
+        !next k
+        !if $t>1
+          </ol>
+        !endif
+        </div>
+      !endif
+    !next iii
+    </div><!--end of wims_solution-->
+  !endif
+!endif
+
+:noans
+
+!set wims_menu_items=!append line renew,1,cmd=reply&print=yes\
+  to $wims_menu_items
+!if $latex_exists=1
+  !set wims_menu_items=!append line printlatex,1,cmd=reply&print=yes&printlatex=yes\
+to $wims_menu_items
+!endif
+!if $wims_user=$empty
+  !set wims_menu_items=!append line back2,1,module=$module&cmd=intro\
+    to $wims_menu_items
+!endif
+!tail

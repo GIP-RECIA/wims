@@ -1,0 +1,21 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function,derivative
+!set gl_title=Fonction dérivée
+!set gl_level=H5 Générale&nbsp;et&nbsp;Technologique
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(f\) une fonction définie sur un intervalle \(\mathrm{I}\).<br>
+\(f\) est dite <strong>dérivable</strong> sur \(\mathrm{I}\) si et seulement si,
+pour tout <span style="white-space:nowrap">\(a\in\mathrm{I}\),</span> \(f\) admet
+un nombre dérivé en <span style="white-space:nowrap">\(a\).</span><br>
+La fonction définie sur \(\mathrm{I}\) qui, à tout réel \(a\) de
+<span style="white-space:nowrap">\(\mathrm{I}\),</span> associe le nombre dérivé
+de \(f\) en \(a\) est appelée <strong>fonction dérivée</strong> de
+<span style="white-space:nowrap">\(f\).</span><br>
+Cette fonction est notée \(f'\).
+</div>

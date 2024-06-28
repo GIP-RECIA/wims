@@ -1,0 +1,151 @@
+Résolution d'un problème du premier degré
+Équations, inéquations, résolution de problèmes
+??,2021
+1
+H4
+probability
+pbsolving,equations,inequations
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant au paragraphe "Résolution d'un problème du premier degré" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=solution4
+10
+1
+Solution d'une équation
+Déterminer si un nombre donné est <strong>solution d'une équation</strong>.
+
+:H3/algebra/oefeqineq.fr
+exo=Equation3&exo=Equation4&confparm2=2&confparm1=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Équation de base
+Résoudre une <strong>équation de base</strong> ax=b ou x+a=b.
+
+:H3/algebra/eqineq.fr
+mode=1&natcoef=entierrel&difficulte=1&nocalcul=1
+10
+1
+Équations 1
+Indiquer <strong>l'étape suivante</strong> pour résoudre une équation de la forme a x+b=c. <strong>Le calcul est automatique</strong>. Possibilité de retour en cas d'impasse.
+
+:H3/algebra/eqineq.fr
+mode=1&natcoef=entierrel&difficulte=2&nocalcul=1
+10
+1
+Équations 2
+Indiquer l'<strong>étape suivante</strong> pour résoudre une équation de la forme ax+b=cx+d. <strong>Le calcul est automatique</strong>. Possibilité de retour en cas d'impasse.
+
+:H3/algebra/eqineq.fr
+mode=3&natcoef=entierrel&difficulte=1&nocalcul=1
+10
+1
+Inéquations
+Indiquer l'<strong>étape suivante</strong> pour résoudre une inéquation de la forme ax+b&gt;c. <strong>Le calcul est automatique</strong>. Possibilité de retour en cas d'impasse.
+
+:H3/algebra/oefeqineq.fr
+exo=CORequ4&qnum=1&qcmlevel=4&scoredelay=&confparm2=2&confparm1=1
+10
+1
+Correspondance équations
+Associer 5 <strong>solutions</strong> à 5 <strong>équations</strong> de la forme ax+b=0.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=equationC1&exo=equationC2&exo=equationC3&exo=equationC4&exo=equationC5&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Résolution équation 1
+Résoudre une équation de la forme ax+b=c.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=equationD1&exo=equationD2&exo=equationD3&exo=equationD4&exo=equationD5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Résolution équation 2
+Résoudre une équation de la forme <strong>ax+b=cx+d</strong>.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=miseequation1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Mettre en équation 1
+Mettre en <strong>équation</strong>. Partage d'une somme.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=miseequation2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Mettre en équation 2
+Mettre en <strong>équation</strong>. Partage de voitures.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=miseequation3
+10
+1
+Mettre en équation 3
+Mettre en <strong>équation</strong>. Contenance d'un bidon.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=miseequation4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Mettre en équation 4
+Mettre en <strong>équation</strong>. Longueur d'un rectangle.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=miseequation5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Mettre en équation 5
+Mettre en <strong>équation</strong>. Tables.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=resoudre1&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Résoudre 1
+Résoudre un problème concret à l'aide d'une <strong>équation</strong>. Nombre de personnes dans un bus.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=resoudre2&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Résoudre 2
+Résoudre un problème concret à l'aide d'une <strong>équation</strong>. Partage d'un terrain.
+
+:H3/algebra/OEFevalwimsequat.fr
+exo=resoudre3&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Résoudre 3
+Résoudre un problème concret à l'aide d'une <strong>équation</strong>. Quel âge?
+
+:H3/number/oefproblem.fr
+exo=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Petit problème 1
+Résoudre un petit problème à l'aide d'une <strong>équation</strong>. Trois nombres.
+
+:H3/number/oefproblem.fr
+exo=2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Petit problème 2
+Résoudre un petit problème à l'aide d'une <strong>équation</strong>. Retrouver le nombre initial.
+
+:H3/number/oefproblem.fr
+exo=3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Petit problème 3
+Résoudre un petit problème à l'aide d'une <strong>équation</strong>. Le double de l'âge.
+
+:H3/number/oefproblem.fr
+exo=4
+10
+1
+Petit problème 4
+Résoudre un petit problème à l'aide d'une <strong>équation</strong>. Question d'âge.
+

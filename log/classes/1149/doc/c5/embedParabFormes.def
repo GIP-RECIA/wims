@@ -1,0 +1,109 @@
+!set titb=Forme développée et forme canonique d'un trinôme
+!set keyw=
+!set datm=20210823
+!set prev=embedParabRap
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<p>La fonction 
+!insmath f
+ est un trinôme si son expression développée est 
+!insmath f(x)=a*x^2+b*x+c
+
+avec 
+!insmath a \ne 0
+.
+</p><p>
+Deux trinômes 
+!insmath a*x^2+b*x+c
+ et 
+!insmath a'*x^2+b'*x+c'
+ sont égaux sur un intervalle ouvert non vide<br>
+si et seulement si 
+!insmath a=a'
+, 
+!insmath b=b'
+ et 
+!insmath c=c'
+.
+</p><p>
+Tout trinôme 
+!insmath a*x^2+b*x+c
+ a une forme canonique 
+!insmath a (x - x_S)^2 + y_S
+ où 
+!insmath x_S = \frac{-b}{2 a}
+ et 
+!insmath y_S = f(x_S)
+.<br>
+Le coefficient 
+!insmath a
+ est le même dans la forme développée et dans la forme canonique.
+</p><p>
+<strong>Si 
+!insmath a \gt 0
+</strong> alors la fonction 
+!insmath f
+ admet un <strong>minimum</strong> sur 
+!insmath \RR
+
+ en 
+!insmath x=x_S
+ qui est égal à 
+!insmath f(x_S)=y_S
+.<br>
+De plus, 
+!insmath f
+ est strictement décroissante sur &#93 
+!insmath -\infty
+ ; 
+!insmath x_S
+ &#93
+et 
+!insmath f
+ est strictement croissante sur &#91 
+!insmath x_S
+ ; 
+!insmath +\infty
+ &#91.
+</p><p>
+<strong>Si 
+!insmath a \lt 0
+</strong> alors la fonction 
+!insmath f
+ admet un <strong>maximum</strong> sur 
+!insmath \RR
+
+ en 
+!insmath x=x_S
+ qui est égal à 
+!insmath f(x_S)=y_S
+.<br>
+De plus, 
+!insmath f
+ est strictement croissante sur &#93 
+!insmath -\infty
+ ; 
+!insmath x_S
+ &#93
+et 
+!insmath f
+ est strictement décroissante sur &#91 
+!insmath x_S
+ ; 
+!insmath +\infty
+ &#91.
+</p><p>
+On peut remarquer que 
+!insmath a = f(x_S + 1) - f(x_S)
+.
+</p>
+

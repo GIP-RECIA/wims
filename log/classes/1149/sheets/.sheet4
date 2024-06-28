@@ -1,0 +1,190 @@
+Maud Elisée au pays des paraboles I
+Cette feuille accompagne le chapitre 1 de Maths pour tous en Première. Activités sur les trinômes et paraboles. 1ère partie.
+??,2022
+2
+H5
+mathematics,
+H5
+Rémi, Belloeil
+
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=fuseerep&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+La fusée au sommet
+Déterminer les formules des courbes représentant l'altitude de la fusée avec un décalage dans le temps et lecture graphique d'une équation.
+
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=fusee1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+La fusée retardée 1
+Déterminer les formules des courbes représentant l'altitude de la fusée avec un décalage dans le temps et lecture graphique d'une équation.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=fusee2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+La fusée retardée 2
+Trouver la formule de l'altitude de la fusée puis résoudre une équation avec un carré.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=formuleanim2&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Trouver la fonction associée à x^2 par translation (animation)
+Écrire la formule d'une fonction associée à x^2 (translation horizontale). Série de 3 questions.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=choixfonct&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Choix d'une fonction associée à x^2
+Choisir parmi 3 réponses. Série de 4 questions.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=formule&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Trouver une formule associée à x^2 ou à son opposé
+Trouver la formule d'une parabole associée à x^2, éventuellement l'opposé.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=carre&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Fonction carré
+Placer 6 points à coordonnées entières de la courbe de la fonction carré.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=carre2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Fonction a*x^2 avec a positif
+Placer 4 points de la courbe de la fonction qui à <em>x</em> associe <em>a x</em>² avec <em>a</em>&gt;0.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=extremum&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+A l'extrême
+Déterminer et placer le sommet de la parabole d'après la forme canonique du trinôme (avec a=1) puis placer un deuxième point.
+
+
+module=adm/doc&doc=c6&block=embedParabMax&job=read&cmd=new,10,0
+
+:H5/analysis/oefparabole.fr
+exo=parabcanon&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Parabole selon la forme canonique
+Déterminer et placer le sommet de la parabole d'après la forme canonique du trinôme puis placer un deuxième point.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=formuleanim&qnum=1&scoredelay=&seedrepeat=4&qcmlevel=1
+10
+1
+Trouver une formule associée à x^2 (animation)
+Trouver la formule d'une fonction associée à x^2, série de 4 questions.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=formule2&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Trouver une formule associée à x^2 avec translation
+Trouver l'équation de la parabole avec 2 translations parallèles aux axes.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=formule3&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Trouver une formule associée à x^2 avec translation et symétrie
+Trouver la formule de la fonction associée à x^2 ou -x^2 avec translation. Série de 4 questions.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=jet&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Jet d'eau
+Trouver la formule de la parabole du jet d'eau et déterminer exactement à quel endroit il atteint le sol.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=largeur&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+La discothèque
+Déterminer la largeur de la discothèque pour que l'espace réservé aux danseurs ait une aire donnée. Calcul guidé avec indications.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=identrem1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Identités remarquables sur dessin
+Retrouver les 3 identités remarquables à partir de calcul d'aires de figures géométriques.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=identrem2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Identités remarquables avec 2 lettres
+6 questions sur les identités remarquables avec 2 lettres variables de façon aléatoire.
+
+
+
+
+:H5/analysis/oefparabole.fr
+exo=identrem3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Identités remarquables simples
+6 questions pour utiliser les identités remarquables avec une lettre et un nombre

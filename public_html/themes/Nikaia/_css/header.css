@@ -1,0 +1,121 @@
+/* HEADER */
+
+/* Logo */
+.wimslogo{float: left;}
+
+.wimslogo a img {
+  height: 50px;
+  top: auto;
+  right: auto;
+}
+
+#classlogo {
+  padding: 5px .5em 0 5px;
+}
+
+#classlogo img{
+  max-height: 3.5em;
+}
+
+.institution_logo{
+  float:none;
+  position: absolute;
+  right: 0;
+}
+
+#wimstopbox .institution_logo img{
+  max-height: 3em;
+  margin-right:1em;
+}
+
+/* End of Logo */
+
+#wimstopbox {
+  color: #ffffff;
+  padding-top: 10px;
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, .5), transparent) ;
+  border-radius: 0 ;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+/*#wimstopbox .wimsmenu .topmenuitem a {
+   text-decoration: none;
+}
+#wimstopbox .wimsmenu .topmenuitem a:hover {
+   text-decoration:underline;
+}*/
+
+#wimstopbox #wims_title {
+  float: left;
+  margin-left: 1em;
+}
+
+#wimstopbox div#wims_title h1.wims_title {
+  float: left;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  /*padding-right: 45px;*/
+  font-size: 2em;
+}
+
+#wimstopbox div#wims_title h1.wims_title img{
+  width:40px;
+}
+
+#wimstopbox div#wims_title h1.wims_title, #wimstopbox div#wims_title a{
+  color: #f5f5f5;
+  text-decoration: none;
+}
+
+#wimstopbox div#wims_title a:hover{
+  text-decoration: underline;
+}
+
+#wimstopbox div#wims_title .wims_subtitle {
+  display: block;
+  text-align: left;
+  clear:both;
+  font-size: 14px;
+  margin-bottom:12px;
+}
+
+/* MenuGlobal (topbox) */
+
+.menuglobal {
+  background-color: #fff;
+  /*color: rgba(0, 0, 0, 0.5);
+  color:#000;*/
+  text-align: right;
+  position: relative;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .5)  ;
+  /*z-index: 100;*/
+  padding:0 .5em;
+}
+.top-bar {
+  display: flex;
+}
+
+/* align menuitem on left */
+.top-bar-left {
+  flex: 1 1 auto;
+}
+
+.with_doc_nav>.wimsmenu {
+  display: inline-block;
+}
+
+.menuglobal li {
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  display: inline-block;
+  /*margin-right: 1.5em;*/
+  /*margin-bottom: 5px;*/
+}
+
+.menuglobal, .menuglobal li>a {
+  color: #000;
+}

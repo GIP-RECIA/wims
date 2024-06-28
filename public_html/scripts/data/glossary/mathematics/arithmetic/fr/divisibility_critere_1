@@ -1,0 +1,14 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Critères de divisibilité en système décimal (exemple)
+
+!readproc data/glossary/mathematics/arithmetic/macro/divisibility_critere
+
+<ul>
+!for gl_m=2 to $[$gl_nbmess]
+  <li>
+  \($gl_nbaff\) est divisible par \($(gl_aff[$gl_m;1])\) et
+  \($gl_nbaff = $(gl_aff[$gl_m;1]) \times $(gl_aff[$gl_m;2]) \)
+  </li>
+!next $gl_m
+</ul>

@@ -1,0 +1,27 @@
+!if $error!=$empty
+  !exit
+!endif
+!if $condtest1<0
+  <p>
+   $name_answer1
+  </p>
+  !exit
+!endif
+!if $cutstop=yes
+  <p>
+  $name_answer2
+  </p>
+  !exit
+!endif
+!if nostatus notwordof $m_options
+  !read deduc/status.phtml
+!endif
+
+!item floor($score/2)+1 of $name_answerprompt
+$ ! $name_solve
+!if $ctstep>$m_minsteps
+  $name_shouldbe
+!endif
+$(name_scoreend[1]) $score/10.
+($[$ustep-$currstep] $(name_scoreend[2]),
+$penalty $(name_scoreend[3]).

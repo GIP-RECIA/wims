@@ -1,0 +1,14 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Insertion d'une vidéo
+slib_parms=3\
+,URL des fichiers vidéo (voir les commentaires et l'exemple)\
+$default_slib_option,option for the media insertion\
+,parametres optionels à ajouter à la balise video (par exemple : <span class="tt">poster="gifs/wims_logo.png"</span>)
+
+
+slib_out=Insertion d'une vidéo dans la page html
+slib_comment=Donner l'URL du fichier video, si possible en plusieurs formats pour être compatible\
+ avec différents navigateurs : \
+ <div><code>[ogg="http://url_fichier.ogv" mp4="http://url_fichier.mp4", webm="http://url_fichier.webm"]</code></div>\
+ Les formats <span class="tt">ogv</span> et <span class="tt">mp4</span> sont recommandés.

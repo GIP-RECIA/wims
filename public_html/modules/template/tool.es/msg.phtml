@@ -1,0 +1,11 @@
+!! Mensajes de error en este archivo. Es procesado
+!! siempre que la variable 'error' no está vacía.
+
+<span class="wims_warning">$wims_name_Error</span>.
+
+!if bad_data=$error
+  No pude evaluar los valores que envió. ¿Error de tipografía?
+  !exit
+!endif
+
+!msg $error

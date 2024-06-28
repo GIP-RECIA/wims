@@ -1,0 +1,19 @@
+!! +exec+ +score+ +subst+ +var+ +adm+
+tit:getscorepercent
+type:$type_both; $type_adm
+
+syntax:!getscorepercent ``[user=quser]'' ``[class=qclass]'' ``[sheet=qsheet]''
+mean: summary for work done for each exercise of a sheet. The output is four \
+  ``word score mean best level'':<ul>\
+<li>score : sum of cumulative_points of each exercises of the sheet (limited by required points of each) divided \
+  by sum of required_points of all exercises of the sheet (integer between 0 and 100)</li>\
+<li>mean : average of score for all score (between 0 and 10);</li>\
+<li>best : average of best score for each exercices of the sheet (integer between 0 and 100). \
+  see command ``getscorebest'' for meaning of best score of an exercise;</li>\
+<li>level : average of minimum score for each exercice of the sheet\
+  (integer between 0 and 100).\
+  See command ``getscorelevel'' for meaning of minimum score of an exercise.</li></ul>\
+  <ul><li>Default value for class is ``wims_class''.</li> \
+  <li>Default value for user is ``wims_user''.</li> \
+  <li>If no sheet id is specified, each line represents a sheet.</li>\
+  </ul>

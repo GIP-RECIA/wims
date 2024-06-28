@@ -1,0 +1,10 @@
+size 500,500
+xrange -10,10
+yrange -10,10
+drag xy
+centered
+fillcolor lightblue
+html 2,2,<h1 style='color:red'>DRAG ME</h1> 
+opacity 200,50
+drag xy
+fcircle 0,0,100,green

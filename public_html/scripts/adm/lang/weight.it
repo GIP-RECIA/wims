@@ -1,0 +1,10 @@
+Il punteggio attribuito a uno studente per il lavoro svolto nel corso è una
+media dei punteggi attribuiti ai vari test e esami, media pesata rispetto ai pesi
+assegnati.
+Scegliete come peso 0 se non volete che il voto ottenuto in questo test sia
+preso in considerazione per il calcolo del punteggio finale.
+
+<p>
+Nella pagina dei risultati sono mostrati solo i punteggi strettamente
+positivi relativi a test di autovalutazione o a esami non nascosti.
+</p>

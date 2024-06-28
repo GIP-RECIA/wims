@@ -1,0 +1,30 @@
+!set titb=Rappels
+!set keyw=
+!set datm=20210823
+!set prev=
+!set next=embedParabFormes
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<ul>
+ <li>
+!read primitives.phtml 1, fold, \embed{ParabVar}, <strong>Variations</strong> 
+</li>
+<li>
+!read primitives.phtml 2, fold, \embed{ParabX2}, <strong>Fonction carré</strong> 
+</li>
+<li>
+!read primitives.phtml 3, fold, \embed{ParabResX2}, <strong>Résolution de \(x^2=k) dans \(\,\RR)</strong> 
+</li>
+<li>
+!read primitives.phtml 4, fold, \embed{ParabIdRq}, <strong>Identités remarquables</strong> 
+</li>
+</ul>
+

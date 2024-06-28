@@ -1,0 +1,9 @@
+tit=Suites arithmétiques
+author=Rémi, Belloeil
+email=remi.belloeil@orange.fr
+copyright=gnu
+docopen=1
+doctoc=no
+dlang=all
+header=<link rel="stylesheet" href="html/themes/_css/l2w.css" />
+desc=Synthèse sur les suites arithmétiques

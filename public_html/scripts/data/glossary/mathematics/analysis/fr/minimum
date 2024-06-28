@@ -1,0 +1,20 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function,extremum
+!set gl_title=Minimum d'une fonction sur un intervalle
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>
+    Définition
+  </h4>
+  Soit \(f\) une fonction définie sur un intervalle \(\mathrm{I}\) et soit \(x_0\)
+  un réel de <span style="white-space:nowrap">\(\mathrm{I}\).</span><br>
+ La fonction \(f\) admet un <strong>minimum</strong> en \(x_0\) si et seulement
+ si,  pour tout <span style="white-space:nowrap">\(x\in \mathrm{I}\),</span>
+  <span style="white-space:nowrap"> \(f(x) \geqslant f(x_0)\).</span><br>
+  Ce minimum est \(f(x_0)\).
+</div>

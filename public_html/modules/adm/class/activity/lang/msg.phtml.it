@@ -1,0 +1,13 @@
+!goto $err_
+
+:nostat
+Le statistiche di accesso su questo server non sono disponibili.
+!exit
+
+:noactivity
+Non risultano attività registrate nel corso di questo anno scolastico.
+!exit 
+
+:notopen
+  il vostro docente non ha attivato questa funzione.
+!exit

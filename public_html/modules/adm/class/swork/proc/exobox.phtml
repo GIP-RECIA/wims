@@ -1,0 +1,58 @@
+!! display box for an exo
+
+!distribute item $wims_read_parm into sh_,exnum_,target_,status_
+  !set ex=!record $exnum_ of wimshome/log/classes/$wims_class/sheets/.sheet$sh_
+  !distribute lines $ex into di,pa,maxscore,bidon,ti,de,bidon,bidon,bidon,icon,indiv
+  !if $uservartechvalue=$empty or $uservartechvalue isitemof $indiv
+    !set wims_listexo=!append item $sh_.$exnum_ to $wims_listexo
+    !set wims_exoicon=$wims_exoicon$icon,
+    !set wims_exotitle=!append line $ti to $wims_exotitle
+    !if $exodescshow=1
+      !let de=!replace internal , by &#44; in $de
+      !let wims_exodesc=$wims_exodesc$de,
+    !endif
+!!    !read getparm $pa, seedrepeat exotrymax
+    <li class="wims_exo_item" id="ex$(sh_)_$exnum_">
+!!      !if $dep=$empty or $scorestat!=yes
+        !if $icon!=$empty
+          !set wims_ref_class=text_icon icon_$icon
+        !endif
+        !if $status_=1
+          !href module=$di&cmd=new&worksheet=$sh_&$pa $name_exotitle
+        !else
+          $name_exotitle
+        !endif
+        !set last=!char -1 of $de
+        !if $last notin >.!?
+          !set de=$(de).
+        !endif
+        <div class="wims_work_desc">$ti<br>$de</div>
+        <div class="wims_user_info">
+          <span class="wims_sheet_score small">
+            !default maxscore=10
+            !readproc proc/exoscore.proc $sh_,$exnum_,$user
+            $(name_score[1]): $score_out/$maxscore
+            $(name_score[2]): $[$target_/100]/$maxscore
+            !if $score_out>=$target_/100
+              &#x2705;
+            !else
+              !if $status_=0
+                 &#x274C;
+              !endif
+            !endif
+!!          !if $get_exotrymax>0
+!!            $(wims_name_thsheet[14]):
+!!            $[min($get_exotrymax,$alltry)]/$get_exotrymax
+!!          !endif
+          </span>
+        </div>
+!!      !else
+!!        $ti, $de
+!!        !if $require>0
+!!          <span class="small">($name_score2)</span>
+!!        !endif
+!!      !endif
+      !set seedscore=!getseedscores user=$wims_user sheet=$sh_ work=$exnum_
+      !read adm/class/seedscore.phtml $seedscore,$get_seedrepeat
+    </li>
+  !endif

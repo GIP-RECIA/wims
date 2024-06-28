@@ -1,0 +1,85 @@
+!set wims_module_log=error: $error
+
+!if badoldvaluesnb=$error
+  El nombre de valors presos per aquesta antiga variable tècnica és massa gran perquè es puga recuperar.
+  !exit
+!endif
+
+!if not_supervisor=$error
+  Ho sento, però només el professor pot utilitzar aquesta funcionalitat.
+  !exit
+!endif
+
+!if nameforbidden=$error
+  Ho sento, les variables tècniques no poden tenir noms del tipus examen, full, qüestionari, manual seguit d'un número.
+  !exit
+!endif
+
+!if bad_class=$error
+  No estàs connectat a una classe.
+  !exit
+!endif
+
+!if toomanytechvar=$error
+  Ja heu assolit el nombre màxim permès de variables tècniques.
+  !exit
+!endif
+
+!if badnamelen=$error
+  El nom de la variable tècnica proposada no té la longitud de caràcters correcta. (limitació  a $MAXcharname caràcters).
+  !exit
+!endif
+
+!if namealreadyuse=$error
+  El nom de la variable tècnica proposada ja està en ús. Trieu-ne un altre!
+  !exit
+!endif
+
+!if badvaluenb=$error
+  La llista de valors possibles no pot estar buida i no pot tenir més de $MAXnbvalue elements.
+  !exit
+!endif
+
+!if badtechvarnumber=$error
+  Hi ha un problema d'identificació de la variable tècnica. No feu servir la barra d'adreces del navegador !
+  !exit
+!endif
+
+!if valuedisappear=$error
+  Els valors de la variable tècnica que s'estan utilitzant a la classe no es poden suprimir.
+  !exit
+!endif
+
+!if nolocalvartech=$error
+  No hi ha una variable tècnica editable per a aquest alumne.
+  !exit
+!endif
+
+!if nooldvar=$error
+  No hi ha cap variable tècnica antiga detectada en aquesta estructura.
+  !exit
+!endif
+
+!if $error=oldvar_nouser
+  La variable tècnica antiga que vol crear no està definida per a cap alumne de la classe. Probablement aquesta variable pertany a una altra classe del grup. No s'ha realitzat la creació.
+  !exit
+!endif
+
+!if $error=oldvar_badvar
+  La variable antiga que vostè està tractant de transferir no correspon a cap variable antiga transferible. No feu servir la barra d'adreces del navegador!
+  !exit
+!endif
+
+!if $error=witholdvar
+  S'han detectat variables tècniques antigues. Podrieu intentar recuperar-les fent servir l'enllaç <i>$wims_name_oldvar</i>, abans de crear noves variables?
+  !exit
+!endif
+
+!if $error=activsheetindiv
+  La modificació d'una variable per a la qual la columna "Número(s) de full actiu afectat" no estigui buida comportarà la modificació del contingut
+  dels fulls actius els números dels quals s'indiquen.
+  Les notes de l'alumne en aquests fulls poden canviar.
+  !exit
+!endif
+
+!msg $error

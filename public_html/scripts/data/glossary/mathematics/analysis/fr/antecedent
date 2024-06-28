@@ -1,0 +1,20 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function,preimage
+!set gl_title=Antécédent d'un nombre réel par une fonction numérique
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(I\) un intervalle de \(\displaystyle{\RR}\), \(f\) une fonction de \(I\)
+dans \(\displaystyle{\RR}\) et \(m\) un nombre réel.<br>
+On appelle <strong>antécédent</strong> de \(m\) par \(f\) tout réel \(x\)
+appartenant à \(I\) tel que <span style="white-space:nowrap">\(f(x)=m\).</span>
+</div>
+<div class="wims_rem">
+<h4>Remarque</h4>
+Un réel \(m\) peut avoir 0, 1 ou plusieurs antécédents par une fonction
+numérique <span style="white-space:nowrap">\(f\).</span>
+</div>

@@ -1,0 +1,87 @@
+!set lang_exists=yes
+!if $wims_read_parm=$empty
+ !exit
+!endif
+
+!goto $wims_read_parm
+
+:file
+
+<div>
+  Available files in this document:
+  <ul class="inline">
+  !for f in $flist
+    <li>
+      !set wims_getfile_fname=$f
+      !set wims_ref_class=text_icon file
+      !getfile doc/$f $f
+    </li>
+  !next f
+  </ul>
+</div>
+
+!form reply
+<input type="hidden" name="job2" value="erase">
+<fieldset>
+  <legend>Erase a file:</legend>
+  !formselect job2 list $flist
+  <input type="submit" class="wims_warning" value="$wims_name_erase">
+  </fieldset>
+!formend
+
+<p>
+  Files in the document can be accessed using the variable <span class="tt wims_code_variable">\filedir</span>
+  in the document. For example,
+</p><p>
+  For example
+  <code class="wims_address">&lt;a href="\filedir/$f1" download="$f1"&gt;$f1&lt;/a&gt;</code>
+  gives a link to the file
+  <a href="$m_filedir/$f1" download="$f1">$f1</a>.
+</p><p>
+  Also, you can write
+  <code class="wims_address">&lt;img src="\filedir/myfile.jpg" alt="myfile"&gt;</code>
+</p><p>
+  to include an image file <span class="tt wims_fname">myfile.jpg</span> in the page.
+  Files deposited to this document are only accessible by people having
+  rights to read the document.
+</p>
+<div>
+  A new command <span class="tt wims_code_words">\href{}{}</span> is under testing.
+  To get a link to the file, it suffices to write
+  <p class="wimscenter">
+    <code class="wims_code_words">\href{$f1}</code> or <code class="wims_code_words">\href{$f1}{link}</code>.
+  </p>
+</div>
+!exit
+
+:readauth
+ If you are the author of the document, please remember that you need the
+ authorization of the
+ !mailurl $wims_site_manager webmaster\
+Ask to open WIMS document $doc
+ to put the document visible by the public.
+!exit
+
+:erase1
+For security reasons, only webmasters can erase public documents.
+<p>
+  Please
+  !mailurl $wims_site_manager ask the webmaster
+  to erase this document for you.
+</p>
+!exit
+
+:erase2
+<div class="wims_msg warning"><span class="wims_warning">ATTENTION</span>.
+An erased document cannot be recovered!</div>
+<p>
+Are you sure you want to erase the content of the document <span class="tt wims_fname">$tit</span>?
+</p>
+!exit
+
+:public
+<b>Remark</b>. You must ask the approval of the
+ !mailurl $wims_site_manager webmaster\
+Ask to open WIMS document $doc
+ to make the document accessible by le public.
+!exit

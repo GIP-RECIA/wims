@@ -1,0 +1,11 @@
+
+init:exo random qnum qcmlevel
+deny:wims_intro_parm
+deny:deffile status reply_cnt varcnt title objname question hint \
+  solution comment shufflelist givehint scorepower presentsol \
+  thisscore score_should score_got score storename storeval
+deny:asklist gotlist remlist promptlist
+# weight=0: useless. weight=1: useful. weight=2: required. weight=-1: forbidden.
+deny:parm[32] val[32] weight[32] parmcnt good[10] anscnt minask
+
+reply:ask ans[10]

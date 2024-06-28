@@ -1,0 +1,21 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Producteur
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Le <strong>producteur</strong> est un agent économique dont la
+<span class="wims_emph">fonction est d'offrir un bien ou service</span>
+en vue de satisfaire un besoin économique donné.</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+<p>Sur un marché donné, <span class="wims_emph">l'ensemble des producteurs </span>
+constitue <span class="wims_emph">l'offre</span> de ce marché.</p>
+Un producteur est donc une <span class="wims_emph"> entreprise</span> qui peut être soit
+une personne morale (de droit privé ou de droit public), soit une personne physique.
+<span class="wims_emph"></span>
+</div>

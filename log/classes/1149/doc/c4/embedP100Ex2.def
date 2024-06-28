@@ -1,0 +1,57 @@
+!set titb=Exemple 2 de l'inconnue du pourcentage
+!set keyw=
+!set datm=20210518
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randint 35, 60
+
+!set m_x=$[rint($(tmp0))]
+
+!set tmp0=!randint 11, 14,16..19
+
+!set m_p=$[rint($(tmp0))]
+
+!set m_n=$[rint($m_x*(100+$m_p))]
+
+!set m_y=$[0.01*$m_n]
+
+<div class="wims_question">
+<p>
+Un pantalon coûte $m_x &euro; HorsTaxe, la TVA est de $m_p % sur le prix Hors Taxe.<br>
+Quel est le prix Toute Taxe Comprise de ce pantalon ?
+</p>
+On peut bien sûr réaliser un tableau de proportionnalité et chercher les nombres qui manquent &#58;
+<table class="wimscenter wimsborder">
+<caption>Tableau de proportionnalité</caption>
+<tr><td></td><th>Valeur</th><th>Pourcentage</th></tr>
+<tr><th>Prix initial</th><td>$m_x</td><td>100</td></tr>
+<tr><th>Augmentation</th><td></td><td>$m_p</td></tr>
+<tr><th>Prix final</th><td>
+!insmath y
+</td><td></td></tr>
+</table>
+On peut remarquer que le prix final correspond à (100 + $m_p) % du prix initial.<br>
+Il suffit de résoudre l'équation 
+!insmath \frac{y}{\x}=\frac{100+\p}{100}
+
+ou plus simplement de multiplier le prix initial $m_x par 
+!insmath \frac{100+\p}{100}
+,
+c'est-à-dire par 1,$m_p.
+<p>
+Le prix T.T.C. de ce pantalon est 
+!insmath 1,\p \times \x = \y
+ &euro;.
+</p>
+</div>

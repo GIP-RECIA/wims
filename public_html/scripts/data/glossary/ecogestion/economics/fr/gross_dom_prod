@@ -1,0 +1,33 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Produit intérieur brut
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Le <strong>produit intérieur brut</strong> est un indicateur qui
+<span class="wims_emph">mesure la création de richesses réalisées sur le territoire
+d'un pays</span>. Communément appelé « PIB », il est très utilisé dans
+les études et statistiques économiques pour appréhender l'activité économique d'un pays.
+</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+<ul class="spacer">
+<li>D'un point de vue technique, le calcul du PIB d'un pays donné peut
+s'effectuer de différentes manières. Mais la méthode la plus courante consiste
+à faire la <span class="wims_emph">somme de valeurs ajoutées des unités productrices
+résidentes du pays considéré</span>. Ainsi le PIB ne prend pas en compte
+la création de valeur ajoutée des entreprises d'une nation donnée implantées
+à l'étranger et inversement, il prend en compte l'activité des entreprises
+étrangères implantées dans le pays considéré.</li>
+<li>Le PIB souffre de nombreuses critiques. Il est souvent avancé que le PIB
+est un <span class="wims_emph">indicateur uniquement quantitatif</span> qui
+ne prend pas en compte notamment les activités domestiques et bénévoles, le bien-être
+et la qualité de vie des individus. Pour ces raisons, certains proposent
+de se référer à <span class="wims_emph">l'indicateur de développement humain (IDH)</span>.
+</li>
+</ul>
+</div>

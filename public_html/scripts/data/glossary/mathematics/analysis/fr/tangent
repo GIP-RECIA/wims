@@ -1,0 +1,35 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=
+!set gl_keywords=real_function,derivative,tangent
+!set gl_title=Tangente
+!set gl_level=H5
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(f\) une fonction numérique définie sur un intervalle
+<span style="white-space:nowrap">\(\mathrm{I}\).</span><br>
+Soit \(a\) un réel de \(\mathrm{I}\) tel que \(f\) soit dérivable en
+<span style="white-space:nowrap">\(a\),</span> de nombre dérivé
+<span style="white-space:nowrap">\(\ell=f'(a)\).</span><br>
+On note \(\mathcal{C}\) la courbe représentative de \(f\) dans un repère
+orthogonal du plan.<br>
+La <strong>tangente</strong> à \(\mathcal{C}\) au point \(\mathrm{A}\)
+\((a;f(a))\) est la droite passant par \(\mathrm{A}\) de coefficient directeur
+<span style="white-space:nowrap">\(\displaystyle{\ell}\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(f\) une fonction numérique dérivable en un réel \(a\) de nombre dérivé
+<span style="white-space:nowrap">\(\ell=f'(a)\).</span><br>
+Soit \(\mathcal{C}\) sa courbe représentative dans le plan muni d'un repère
+orthogonal.
+<br>
+L'équation réduite de la tangente \(T\) à \(\mathcal{C}\) au point d'abscisse
+\(a\) est&nbsp;:
+<div class="wimscenter">
+\(y = f'(a) \times (x-a) + f(a)\).
+</div>
+</div>

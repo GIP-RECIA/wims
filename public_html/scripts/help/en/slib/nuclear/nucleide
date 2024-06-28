@@ -1,0 +1,10 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Data about nucleides, or LaTeX typesetting
+slib_parms=3\
+, A symbol or an atomic number to identify the nucleide's element\
+, When this parameter is set, it must contain the keyword 'tex', eventually followed by a mass number, to select an isotope: if no mass number is given and if the nucleide's element has stable isotopes, the most stable isotope is chosen.\
+, electric charge like +, 2+ or -, 3-.
+
+slib_out= <ul><li>When a single parameter is given, outputs a matrix, with atomic number and symbol in the first line, and eventually mass number and abundance of stable isotopes in the lines after.</li><li>When more parameters are there, the output is the source to typeset properly a nucleide in LaTeX syntax.</li></ul>
+slib_comment=Currently, the only supported keyword in the second parameter is 'tex'.

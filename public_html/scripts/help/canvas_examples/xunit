@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+xunit cm \u00B2
+grid 2,2,grey
+linewidth 2
+userdraw segments,blue
+display x,blue,18

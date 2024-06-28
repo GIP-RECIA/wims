@@ -1,0 +1,56 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=power,exponent
+!set gl_title=Puissance entière d'un nombre
+!set gl_level=H3 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(a\) un nombre et \(n\) un entier naturel.
+<ul>
+<li>
+On suppose \(a\) non nul.<br>
+La <strong>puissance</strong> d'exposant \(n\) de \(a\) est le nombre noté
+\(a^n\) (&#171; \(a\) puissance \(n\) &#187; ou &#171; \(a\) exposant \(n\)
+ &#187;) et défini par&nbsp;:
+   <ul>
+   <li>\(a^0=1\) ;</li>
+   <li>\(a^1=a\) ;</li>
+   <li>si \(n\geqslant 2\) alors \(a^n\) est le produit de \(n\) nombres tous
+   égaux à <span style="white-space:nowrap">\(a\).</span></li>
+  </ul>
+La <strong>puissance</strong> d'exposant \(-n\) de \(a\) est le nombre noté
+\(a^{-n}\) (&#171; \(a\) puissance \(-n\) &#187; ou &#171; \(a\) exposant
+\(-n\) &#187;) et défini par&nbsp;:
+<span style="white-space:nowrap">\(a^{-n}=\frac{1}{a^n}\).</span>
+</li>
+<li>Si \(n\) est un entier naturel supérieur ou égal à 1&nbsp;: \(0^n=0\).</li>
+</ul>
+</div>
+
+<div class="wims_thm"><h4>Conséquence</h4>
+Pour tout entier relatif \(n\) : \(1^n=1\).
+<h4>Remarque</h4>
+\(a^2) se lit &#171; \(a\) au carré &#187;&nbsp;; \(a^2) est le carré de \(a\).<br>
+\(a^3) se lit &#171; \(a\) au cube &#187;&nbsp;; \(a^3) est le cube de \(a\).
+</div>
+<div class="wims_thm">
+<h4>Cas particulier&nbsp;: puissances de 10</h4>
+Soit \(n\) un entier naturel supérieur ou égal à 2, alors \(10^n\) s'écrit avec
+ un 1 suivi de \(n\) zéros, \(10^{-n}\) est le nombre décimal de partie entière
+  0 et de partie décimale formée de \(n-1\) zéros suivis d'un 1.
+</div>
+
+<div class="wims_thm"><h4>Propriétés</h4>
+Soit \(a\) et \(b\) deux nombres non nuls, \(m\) et \(n\) deux entiers relatifs.
+<ul>
+<li>\(a^m \times a^n = a^{m+n}\)</li>
+<li>\(\frac{a^m}{a^n} = a^{m-n}\)</li>
+<li>\((a^m)^n=a^{n m}\)</li>
+<li>\((a\times b)^n=a^n b^n\)</li>
+<li>\(\left(\frac{a}{b}\right)^n=\frac{a^n}{b^n}\)</li>
+</ul>
+</div>
+:mathematics/algebra/fr/power_1

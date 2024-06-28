@@ -1,0 +1,18 @@
+size 800,800
+xrange -10,10
+yrange -10,10
+axis
+axisnumbering
+precision 1
+grid 2,2,grey,2,2,5,grey
+css color:blue;
+fontfamily Italic 42pt Arial
+precision 1
+opacity 200,50
+snaptogrid
+linewidth 3
+filled
+multistrokecolors red,green,blue,orange,yellow,purple,black,cyan,red,green,blue,orange,green,purple,black,cyan
+multifillcolors red,green,blue,orange,yellow,purple,black,cyan,red,green,blue,orange,brown,purple
+imagepalette gifs/ca.gif,gifs/en.gif,gifs/nl.gif,gifs/fr.gif,gifs/cn.gif,gifs/de.gif,gifs/kh.gif,gifs/it.gif
+multidraw closedpoly,segments,rect,parallelogram,triangles,poly5,points,lines,arrows,circles,text,curvedarrows,curvedarrows2,images

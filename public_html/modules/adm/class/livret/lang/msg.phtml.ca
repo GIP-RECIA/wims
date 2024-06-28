@@ -1,0 +1,16 @@
+!set wims_module_log=error: $error
+<b>$wims_name_Error</b>.
+!if $error iswordof toomanycomp closedlivret
+  !goto $error
+!else
+ !msg $error
+ !exit
+!endif
+
+:toomanycomp
+ No es poden afegir més competències, el límit és de $maxcomp !
+!exit
+
+:closedlivret
+ L'Informe de competències ha estat desactivat pel vostre professor.
+!exit

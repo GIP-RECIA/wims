@@ -1,0 +1,63 @@
+
+!if $realtest=yes
+  !changeto oef/help.phtml
+!endif
+
+<div class="wims_content">
+  !set helplist=oef,examples,format,parameters,oefparm,reply,embedans,\
+    feedback,math,draw,draw_example,canvasdraw,oefspecial,oefadv,symtext,\
+    oefscore,model,slib,if,css,
+  !set s_=!item 1 of $special_parm
+  !if $s_=all
+    !for sj in $helplist
+      <br class="spacer">
+      !read help/$sj.phtml
+    !next sj
+    !goto end
+  !endif
+
+  !if $s_!=$empty
+    !if $s_=symtext
+      !read help/symtext/symtext.phtml
+      !goto end
+    !endif
+    !if $s_ iswordof slib model
+      !read help/$s_.phtml $special_parm
+    !else
+      !if $s_ iswordof reply and $modtoolhelp=yes
+        !read help/$s_.phtml $(special_parm[2])
+      !else
+        !if $s_ iswordof canvas_examples
+          !set tmp=!replace internal _ by , in $(special_parm[2])
+          <h2 class="wimscenter">$wims_name_Example: $(tmp[1])</h2>
+          !read help/canvas_examples.phtml $(special_parm[2])
+          !set wims_menu_items=!append line back2,1,cmd=help&special_parm=canvasdraw#$(tmp[1])\
+        to $wims_menu_items
+          !reset tmp
+          !goto end
+        !else
+          !read help/$s_.phtml
+        !endif
+      !endif
+    !endif
+    !if $modtoolhelp!=yes
+      !set wims_menu_items=!append line back2,1,cmd=help\
+        to $wims_menu_items
+    !endif
+    !goto end
+  !endif
+
+  !! when $s_==$empty
+  !set record_cnt=!recordcnt help/$modu_lang/oefchapterhelp
+  <ul>
+    !for s_=2 to $record_cnt
+      <li>
+        !set ss_=!record $s_ of help/$modu_lang/oefchapterhelp
+        !href cmd=help&special_parm=$(ss_[1]) $(ss_[2])
+        $(ss_[3])
+      </li>
+    !next s_
+  </ul>
+
+:end
+</div> <!-- end wims_content -->

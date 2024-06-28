@@ -1,0 +1,38 @@
+
+!! Exemple de mentions RGPD à faire figurer sur votre site WIMS si le serveur
+!! est géré par un établissement d'enseignement public
+
+<h2 class="wims_subtitle">Politique locale de confidentialité</h2>
+
+<h3>Hébergeur</h3>
+Ce service est hébergé par NOM_DE_L_HEBERGEUR
+<div class="wims_msg" style="margin-left:30px">
+    NOM_DE_L_HEBERGEUR,<br>
+    ADRESSE_DE_L_HEBERGEUR
+</div>
+
+via le NOM_DU_SERVICE_GESTIONNAIRE,
+<div class="wims_msg" style="margin-left:30px">
+    ADRESSE_DU_SERVICE_GESTIONNAIRE
+</div>
+
+<p>
+Le gestionnaire du site est un membre de l'établissement.
+</p>
+
+<h3>Charte Informatique</h3>
+<p>
+    L'établissement via le NOM_DU_SERVICE_GESTIONNAIRE, se
+    réserve le droit d'intervenir sans préavis pour bloquer l'accès à un contenu qui
+    lui aurait été signalé comme frauduleux par les autorités compétentes.
+    Ceci reprend les points essentiels énoncés dans la Charte Informatique acceptée
+    par l'ensemble des personnels et des étudiants de l'établissement.
+</p>
+
+<h3>Légitimité</h3>
+<p>
+    Les informations recueillies sont enregistrées dans un fichier informatisé
+    par l'<strong>NOM_DE_L_ETABLISSEMENT</strong> pour des usages pédagogiques.
+    Ce traitement obligatoire est fondé sur l'exécution de missions de service
+    public de l'enseignement.
+</p>

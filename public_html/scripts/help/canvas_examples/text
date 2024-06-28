@@ -1,0 +1,14 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontsize 14
+onclick
+drag xy
+text green,-4,-4,small,Hello World
+drag xy
+text red,-4,-2,large,Hello World
+drag xy
+text blue,-4,0,huge,Hello World
+drag xy
+text green,-4,3,giant,Hello World
+drag xy

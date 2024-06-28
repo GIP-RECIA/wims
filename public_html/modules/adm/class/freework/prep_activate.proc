@@ -1,0 +1,92 @@
+!! activate freework
+
+!! --- testing if noempty
+nb=!record 1 of wimshome/log/classes/$wims_class/freeworks/.freework$freework
+nb=!nonempty line $nb
+!if $nb=$empty
+  error=emptyfreework
+  job=configfw
+  !changeto $job.proc
+!endif
+
+nb=!itemcnt $wimsexozone
+!if $nb>1
+  error=toomanywimsexo
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! --- checking date
+d1=!text select char 0123456789 in $(deadline)$(timedeadline)
+d2=!text select char 0123456789 in $(soldate)$(timesoldate)
+!if $d2<=$d1
+  error=badsoldate
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!if $type>=2
+  !! checking quota (if type>=2)
+  !readproc adm/class/quotafree.proc proc
+  nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+  space=$[0.25*$nbuser*$sizelimitfile]
+  !ifval $quota_free-$space<5
+    error=notenoughfreespace
+    job=configfw
+    !changeto $job.proc
+  !endif
+!endif
+
+!! ---------- make a column in .grades file for this scoring
+!if $scoring=0 and $type>=2
+  test=!fileexists wimshome/log/classes/$wims_class/.grades
+  !if $test=yes
+    data=!record 1 of wimshome/log/classes/$wims_class/.grades
+    !distribute line $data into l1,l2,l3
+    l2=!append item $wims_name_freework $freework to $l2
+    l3=!append item 1 to $l3
+    update_field=1
+    update_content=$l1\
+$l2\
+$l3
+    !read adm/uprecord wimshome/log/classes/$wims_class/.grades
+    !increase nbscore
+    scoring=$nbscore
+  !else
+    !writefile wimshome/log/classes/$wims_class/.grades :0\
+title,title,$wims_name_freework $freework\
+weight,weight,1
+    nbscore=1
+    scoring=1
+  !endif
+!endif
+
+!! change statut
+activetest=1
+update_content=1\
+$class_expiration\
+$title\
+$desc\
+$comment\
+$type\
+$deadline.$timedeadline\
+$soldate.$timesoldate\
+$sizelimitfile\
+$scoring\
+$seealltime\
+$studentclose
+
+update_field=$freework
+update_nbline=$fw_nbline
+!read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freeworks
+!sh mkdir -p $wims_home/log/classes/$wims_class/freeworksdata/$freework/work;\
+    mkdir -p $wims_home/log/classes/$wims_class/freeworksdata/$freework/co;
+
+success=goodstatut
+!if $back=1
+  !restart module=home
+!else
+  job=configfw
+  !reset back
+  !changeto $job.proc
+!endif

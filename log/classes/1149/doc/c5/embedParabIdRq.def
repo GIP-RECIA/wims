@@ -1,0 +1,39 @@
+!set titb=Identités remarquables
+!set keyw=
+!set datm=20210821
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<table>
+<tr><td align="right">développer</td><td>
+!insmath \rightarrow
+</td></tr>
+<tr><td align="right">
+!insmath (a+b)^2
+</td><td>=</td><td>
+!insmath a^2+2*a*b+b^2
+</td></tr>
+<tr><td align="right">
+!insmath (a-b)^2
+</td><td>=</td><td>
+!insmath a^2-2*a*b+b^2
+</td></tr>
+<tr><td align="right">
+!insmath (a+b)*(a-b)
+</td><td>=</td><td>
+!insmath a^2-b^2
+</td></tr>
+<tr><td></td><td>
+!insmath \leftarrow
+</td><td>factoriser</td></tr>
+</table>
+

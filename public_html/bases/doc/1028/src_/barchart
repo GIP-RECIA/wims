@@ -1,0 +1,10 @@
+Bar chart
+:
+precision 10
+axis
+axisnumbering
+xaxis 1:januari:2:februari:3:maart:4:april:5:mei:6:juni:7:juli:8:augustus:9:september:10:october:11:november:12:december
+yaxis 1:januari:2:februari:3:maart:4:april:5:mei:6:juni:7:juli:8:augustus:9:september:10:october:11:november:12:december
+grid 1,1,grey,1,2,6,blue
+barchart 1:10:red:2:9:blue:3:4:green:4:7:orange:5:13:cyan:6:3:lightgreen:7:2:purple
+:fine:fine

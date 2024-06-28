@@ -1,0 +1,14 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Graphe eulérien (exemple)
+!readproc data/glossary/mathematics/discrete_mathematics/macro/eulerian_graph
+<div class="float_right">$slib_out</div>
+!if $gl_c=1 or $gl_test=1
+  Le graphe représenté ci-contre est un graphe eulérien
+  et un cycle eulérien est
+!else
+  Le graphe représenté ci-contre est un graphe connexe qui n'est pas un graphe
+  eulérien, il a une chaîne eulérienne
+!endif
+<div class="wimscenter">$gl_ch</div>
+

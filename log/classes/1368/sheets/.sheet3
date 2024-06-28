@@ -1,0 +1,175 @@
+La scrittura dei numeri
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+numbering_system,operation,arithmetic
+Marina, Cazzola
+wims@unimib.it
+
+
+:H4/number/numeration.fr
+exo=compter&confparm1=2,3,5,12&confparm2=&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Contare in base b
+Eseguire normali conteggi, utilizzando la scrittura dei numeri in base b.
+
+
+module=adm/doc&doc=c1&block=notazione&cmd=new&job=read,10,0
+:H4/number/numeration.fr
+exo=predecesseur1&exo=predecesseur2&exo=successeur1&exo=successeur2&confparm1=2,3,5,12&confparm2=&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+40
+1
+Precedenti e successivi in base b
+Contare in base b: individuare il precedente e il successivo di un numero dato in base b
+
+
+module=adm/doc&doc=c1&block=notazione&cmd=new&job=read,10,0
+:H6/arithmetic/oefnumeration.fr
+exo=borne&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Numero più grande/più piccolo in una data base b
+Individuare il più grande/più piccolo numero scrivibile con n cifre in una certa base.
+
+
+module=adm/doc&doc=c1&block=notazione&cmd=new&job=read,10,0
+:H6/arithmetic/oefnumeration.fr
+exo=addition&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=2&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Tavole di adizione
+Costruire le tavole di addizione in base b.
+
+:H6/arithmetic/oefnumeration.fr
+exo=multiplication&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Tavole di moltiplicazione
+Costruire le tavole di moltiplicazione in base b.
+
+:U1/arithmetic/oefeuclide.fr
+exo=calcbase&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Somme in base b
+Valore posizionale delle cifre e somma in base b.
+
+:H6/arithmetic/oefnumeration.fr
+exo=add&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Somme in colonna in base b
+Algoritmo della somma in colonna in base b.
+
+
+module=adm/doc&doc=c1&block=colonna&cmd=new&job=read,10,0
+:H4/number/numeration.fr
+exo=convertir10&confparm1=2,3,5,12&confparm2=&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Convertire dalla base b alla base 10
+Dato un numero scritto in base b, scriverlo utilizzando la base 10.
+
+:H4/number/numeration.fr
+exo=convertirp&confparm1=2,3,5,12&confparm2=&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Convertire dalla base 10 alla base b #1
+Dato un numero scritto in base 10, scriverlo utilizzando una certa base b indicata.
+
+:H4/number/numeration.fr
+exo=convertirp2&confparm1=2,3,5,12&confparm2=&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Convertire dalla base 10 alla base b #2
+Dato un numero scritto in base 10, come combinazione di potenze di b, scriverlo utilizzando la base b.
+
+:H4/number/numeration.fr
+exo=convertirp3&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Convertire dalla base 10 alla base b #3
+Dato un numero scritto in base 10, come combinazione di potenze di b, scriverlo utilizzando la base b.
+
+:H6/arithmetic/oefnumeration.fr
+exo=changbin&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Convertire dalla base b alla base b^k
+Dato un numero scritto in base b, individuare la sua scrittura in base b^k
+
+
+module=adm/doc&doc=c1&block=ex3_7&cmd=new&job=read,10,0
+:H6/arithmetic/oefnumeration.fr
+exo=tablemult&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Trova la base #1
+Data una tavola di moltiplicazione, individuare la base utilizzata per scrivere i numeri.
+
+:H6/arithmetic/oefnumeration.fr
+exo=mult&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Trova la base #2
+Dato un prodotto, individuare la base utilizzata per scrivere i numeri e effettuare questo calcolo.
+
+:H6/arithmetic/oefnumeration.fr
+exo=numgeo1D&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+La retta dei numeri in base b #1
+Individuare sulla retta dei numeri il punto corrispondente a un dato numero scritto in notazione binaria.
+
+:H6/arithmetic/oefnumeration.fr
+exo=geonum1D&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+La retta dei numeri in base b #2
+Dare la scrittura binaria di un numero situato sulla linea dei numeri.
+
+:H4/number/numeration.fr
+exo=paquet1&exo=paquet2&confparm1=2,3,5,12&confparm2=&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+20
+1
+Numero di pacchetti
+Problemi risolvibili utilizzando la scrittura di un numero in base b.
+
+:H4/number/numeration.fr
+exo=paquet3&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Numero di pacchetti e resti
+Problemi risolvibili utilizzando la scrittura di un numero in base b.
+
+:H6/arithmetic/oefnumeration.fr
+exo=guess&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Indovina il numero
+Problemi risolvibili utilizzando la scrittura di un numero in base b.
+
+:H6/arithmetic/oefnumeration.fr
+exo=musique&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Notazione musicale
+Problemi risolvibili utilizzando la scrittura di un numero in base b.
+
+:H6/arithmetic/oefnumeration.fr
+exo=division&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Divisione in base b
+Effettuare la divisione euclidea in una certa base b.
+
+:H6/arithmetic/oefnumeration.fr
+exo=divisiontrou&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Completa il calcolo
+Individua la base e le cifre mancanti del calcolo mostrato.
+

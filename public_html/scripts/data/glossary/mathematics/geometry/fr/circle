@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=circle,measurement,perimeter
+!set gl_title=Cercle
+!set gl_level=E6 Cycle&nbsp;3
+:
+:mathematics/geometry/fr/disk
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+
+Soit \(\mathrm{O}\) un point du plan et soit \(\mathrm{R}\) un nombre strictement
+positif.<br>
+Le <strong>cercle</strong> de centre \(\mathrm{O}\) et de rayon \(\mathrm{R}\)
+est l'ensemble des points \(\mathrm{M}\) du plan tels que
+<span style="white-space:nowrap"> \(\mathrm{OM}=\mathrm{R}\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Le périmètre \(\mathrm{P}\) d'un cercle de rayon \(\mathrm{R}\) est donné par
+<span style="white-space:nowrap"> \(\mathrm{P}=2 \pi \mathrm{R}\).</span>
+</div>
+
+:mathematics/geometry/fr/circle_1

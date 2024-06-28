@@ -1,0 +1,10 @@
+size 500,500
+xrange -10,10
+yrange -10,10
+fontsize 42
+rotationcenter 0,0
+centered
+html 0,0,<img src="http://85.148.206.56/gifs/can1.gif">
+slider 0,pi,400,40,angle active degree, 
+centered
+html 0,0,<img src="http://85.148.206.56/gifs/can2.gif">

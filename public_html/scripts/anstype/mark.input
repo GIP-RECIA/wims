@@ -1,0 +1,87 @@
+!set anstype=yes
+!set anstyle=mc
+!set ans_require=
+!if $wims_read_parm=def
+  !exit
+!endif
+
+!set color$i=!getopt color in $(replyoption$i)
+!default color$i= rgba(255,100,100,.5)
+!set input_rg=!rows2lines $(replygood$i)
+!set input_rg=!line 2 to -1 of $input_rg
+!set input_icnt=!itemcnt $input_rg
+!if $input_icnt<2
+  !exit
+!endif
+!set input_rg2=!replace internal \( by \\( in $input_rg
+
+!if $wims_read_parm!=noprompt
+  <tr><td>$(replyname$i)</td><td>
+!endif
+
+!if $(mark_js_$i)!=yes
+  !set zeroarray=!makelist 0 for x=1 to $input_icnt
+  !set rg2=!replace internal \ by \\ in $input_rg
+  !set rg2=!replace internal " by \" in $rg2
+  !set rg2=!replace internal ' by \' in $rg2
+!!leave the $ at the beginning at the line
+  !set rg2=!translate internal $\
+$ to $ $ in $rg2
+  !set rg2 = !makelist x for x=1 to $input_icnt
+  !set rg2=!items2lines $rg2
+  !set rg2=!replace internal $\
+$ by ',' in '$rg2'
+  <input type="hidden" id="reply$i" name="reply$i" value="">
+  <script>
+  /*<![CDATA[*/
+  	replist$i=new Array($zeroarray);
+  	repval$i=new Array($rg2);
+
+  function mark_bg_$i(k,tag) {
+  	var st = document.getElementById(tag).classList;
+  	var vv='';
+  	var i;
+  	replist$i[k-1]^=1;
+  	if(replist$i[k-1] == 0) st.remove('mark_selected');
+  	else st.add('mark_selected');
+  	for(i=0;i<$input_icnt;i++) {
+  		if(replist$i[i]!=0) {
+  			if(vv=='') vv=repval$i[i]; else vv=vv+','+repval$i[i];
+  		}
+  	}
+  	document.forms['replyform'].reply$i.value=vv;
+  }
+  /*]]>*/
+  </script>
+  <style>
+  /*<![CDATA[*/
+  .mark_label{
+    padding:1px;
+    border:2px solid transparent;
+    line-height:1.7em;
+  }
+  .mark_selected{border-color:$(color$i)}
+   /*]]>*/
+  </style>
+
+  !set mark_js_$i=yes
+!endif
+
+!bound inputsize between integer 1 and 1000 default $
+!if $inputsize!=$empty and $inputsize<=$input_icnt
+  !set mark_start=$inputsize
+  !set mark_end=$inputsize
+!else
+  !set mark_start=1
+  !set mark_end=$input_icnt
+!endif
+!for k=$mark_start to $mark_end
+  !set id=mark_$(i)_$k
+  !default prompt_=!item $k of $input_rg
+  <a onclick="mark_bg_$i($k,'$id')" class="mark_label" id="$id">$prompt_</a>
+  !reset prompt_
+!next k
+!reset inputsize
+!if $wims_read_parm!=noprompt
+  </td></tr>
+!endif

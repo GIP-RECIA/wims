@@ -1,0 +1,661 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=
+slib_parms=2\
+,molecule coded as a graph: there is an automatic edge between the vertex [i] and [i+1]; in the ramified edges put the angle in degrees (see examples); dl and tl contain the list of the nodes of the double or triple bonds.\
+canvasdraw output=1 size=300 color=[black,black,black],output=(0 ou 1 ou 2 ou 3)  hide="" size="" html draw or canvasdraw color=[fleche,charge,doublet]
+
+
+!! ne pas parler pour l'instant de shiftx=""
+slib_title=Dessin en flydraw ou en canvasdraw de la molécule
+
+slib_out=If html is a word in the options, the canvasdraw code or the image\
+  inside the img tag inside brackets;\
+  if not, the code to send to canvasdraw (without the size) inside brackets.\
+  Then some coordinates inside brackets:\
+  coordinates of each vertex (with the input syntax),\
+
+slib_comment=If output=0, only heteroatom labels are shown.\
+If output=1, every label is shown except those in the option hide.\
+If output=2, no label is shown but their space is reserved.\
+If output=3, no label is shown.\
+By default, the canvasdraw javascript code is created.\
+Dans le mode draw, les doublets, lacunes, charges et flèches ne sont pas\
+pris en compte.\
+\
+Only one cycle is supported for the moment and it must be at the beginning.\
+<pre>Codage:\
+  [doublets et lacunes] db/lc=[atome:[directions],atome2:[n2,d2],...]\
+    directions: liste parmi N,S,E,O, atome=noeud du graphe\
+  [charge] ch=[atome:signe,atome2:s2,...] ou [atome:signe:E,...]\
+    signe= la charge + ou - autour de l'atome\
+  [fleches] fl=[[at1:at2:at3:at4,down/up], etc] signifie que la flèche part du milieu de la liaison\
+    at1 et at2 vers le milieu de la liaison at3 et at4\
+    raccourci [at1:at2:at3]=[at1:at2:at2:at3] ou [at1:at2]=[at1:at1:a2:at2]\
+  [cram] cr=[at1,-at2; at3,at4] triangles pleins \
+  (bold wedged bonds);triangles hachurés (dashed wedged bonds)\
+    le - permet d'inverser la direction\
+</pre>\
+Dans le cas non html\
+<pre>\
+[\
+  [taille du dessin\
+   code de la molécule],\
+  [code des doublets],\
+  [slib_lacunes],\
+  [slib_charges],\
+  [slib_FLcode],
+],\
+[MOL,slib_graphname],\
+[MOL,slib_graphcoord],\
+[MOL,slib_dblcch],\
+[MOL,slib_cram]\
+</pre>
+
+slib_example=[[5]=CH,[6]=O,dl=[[6]],[4]=CH,[4,90]=CH3,[3]=CH,[3,-90]=CH3,[2]=CH,[2,90]=CH3,[1]=CH3],html\
+[[5]=CH,[6]=O,dl=[[6]],[4]=CH,[4,90]=CH3,[3]=CH,[3,-90]=CH3,[2]=CH,[2,90]=CH3,[1]=CH3],html\
+[[1..6]=[CH,CH,CH,CH,CH,CH],dl=[[2],[4],[6]]],html output=0\
+[[1]=CH3,[2]=CH2,[3]=CH2,[4]=CH2,[5]=CH2,[6]=CH2,[7]=CH2,[8]=CH2,[9]=CH2,[10]=CH3],html \
+[[1..6]=[CH,CH,CH,CH,CH,CH],dl=[[2],[4],[6]]],html\
+[[1..5]=[A,2,3,4,5],[5,-180]=Y,[5,-180,-120]=Z,[5,-180,-120,180]=A],output=1 html canvasdraw\
+[[5]=CH,[6]=O,dl=[[6]],[4]=CH,[4,90]=CH3,[3]=CH,[3,-90]=CH3,[2]=CH,[2,90]=CH3,[1]=CH3],html\
+[fl=[[[1,0,0,0]:[1,0,0],up],[[1]:[1,0]:[1,0,0],down],[[1,0,0]:[1,0,0,-90],up]],db=[[1,0,0,0]:[N,S,E]],[1]=H3C,[1,0]=CH2,[1,0,0]=C,[1,0,0,90]=CH2,[1,0,0,-90]=CH3,[1,0,0,90,120]=H3C,[1,0,0,0]=Br],html\
+[[6]=NH2,[5]=CH2,[4]=CH,[4,90]=CH3,[3]=CH,[3,-90]=CH3,[2]=CH2,[1]=CH3], html output=0\
+[[1..6]=[CH,CH,CH,CH,CH,CH],dl=[[2],[4],[6]]],html draw\
+[[1..6]=[CH,CH,CH,CH,CH,CH],dl=[[2],[4],[6]]],html draw output=0\
+[fl=[[1,0,-90]:[1,0]:[1,0,0]],lc=[[1,0,0]:[S]],ch=[[1,0,0]:+],[1]=H3C,[1,0]=C,[1,0,0]=C,[1,0,0,90]=C6H5,[1,0,0,-90]=C2H5,[1,0,90]=CH3,[1,0,-90]=H],html color=[green,blue]\
+[fl=[[[1,0,0]:[1,0,0,0],down],[[1]:[1,0]:[1,0,0,90]:[1,0,0,90],up]],db=[[1,0,0,0]:[E,S,O]],[1]=H3C,[1,0]=CH2,[1,0,0]=C,[1,0,0,90]=CH2,[1,0,0,-90]=CH3,[1,0,0,90,120]=H3C,[1,0,0,0]=Br],html\
+[[1]=CH3,[2]=C,[2,90]=O,[3]=CH3,dl=[[2,90]]],html\
+[fl=[[[3]:[3,-90],up]],[1]=OH,[2]=CH2,[3]=CH,[3,-90]=CH3,[4]=CH2,[5]=C,[5,-90]=O,[6]=CH3,dl=[[5,-90]]], html output=0\
+[[6]=NH2,[5]=CH2,[4]=CH,[4,90]=CH3,[3]=CH,[3,-90]=CH3,[2]=CH2,[1]=CH3], html output=0\
+[lc=[[1,0,0,-90]:[S]],ch=[[1,0]:-],db=[[1,0,0,0]:[E,N,S]],[1]=H3C,[1,0]=CH2,[1,0,0]=C,[1,0,0,90]=CH2,[1,0,0,-90]=CH3,[1,0,0,90,120]=H3C,[1,0,0,0]=Br],html output=1\
+[[1]=CH3,[2]=CH2,[3]=CH2,[4]=C,[5]=CH,tl=[[5]]],html\
+[4-(1-méthyléthyl)-2,6-diméthylheptan-3-amine],html\
+[éthanoate de 1,1-diméthyléthyle],html\
+[[1]=H3C,[1,0]=CH2,cr=[[1,0]]],html\
+[db=[[1]:[O]],[1]=N,[1,45]=H,[1,-60]=H,[1,-30]=H,cr=[[1,-60];[1,-30]]],html\
+[[1]=CH3,[1,-60]=C,[1,-60,-120]=H,[1,-60,0]=C,[1,-60,0,60]=CH2,[1,-60,0,60,-20]=CH3,[1,-60,0,-60]=H,dl=[[1,-60,0]],cr=[[1,-60,-120],[1,-60,0,-60];-[1,-60],[1,-60,0,60]]],html
+
+[db=[[3,-90,-60]:[N,S,E,O],[4]:[E,O]], [1]=CH3,[2]=CH2,[3]=CH,[3,-90]=CH2,[3,-90,-60]=CH3,[4]=CH2,[5]=CH2,[6]=CH,[7]=CH,[8]=CH3,dl=[[7]]],html\
+[dl=[[1,90]],[1]=C,[1,90]=O,[1,-150]=H,[1,-30]=H],html output=3\
+[[1]=CH2,[2,90]=CH2,[2]=C,[2,90,120]=CH3,[2,90,120,60]=CH3,[2,90,120,60,90]=CH3,[3]=CH,[4]=CH,[5]=CH2,[6]=CH2,[7]=CH2,[8]=Cl],output=0 html canvasdraw\
+[[1]=CH3,[2]=CH2,[3]=CH,[3,-90]=CH2,[3,-90,-60]=CH3,[4]=CH2,[5]=CH2,[6]=CH,[7]=CH,[8]=CH3,dl=[[7]]],html\
+[[1..6]=[CH,CH,CH,CH,CH,CH],dl=[[2],[4],[6]]],html size=200\
+[ch=[[1,0]:-],db=[[1,0,0,0]:[E]],[1]=H3C,[1,0]=CH2,[1,0,0]=C,[1,0,0,90]=CH2,[1,0,0,-90]=CH3,[1,0,0,90,120]=H3C,[1,0,0,0]=Br],html output=1\
+[[1]=CH3,[2]=CH2,[3]=CH,[3,-90]=CH2,[3,-90,-60]=CH3,[4]=CH2,[5]=CH2,[6]=CH,[7]=CH,[8]=CH3,dl=[[7]]],html\
+[[1]=CH3,[2]=CH2,[3]=CH,[3,-90]=CH2,[3,-90,-60]=CH3,[4]=CH2,[5]=CH2,[6]=CH,[7]=CH,[8]=CH3,dl=[[7]]],html draw\
+[dl=[[1,90]],[1]=C,[1,90]=O,[1,-150]=H,[1,-30]=H],draw output=0\
+[dl=[[5]],tl=[[7]],[1]=CH2,[2,90]=CH2,[2]=C,[2,90,120]=CH3,[2,90,120,60]=CH3,[2,90,120,60,90]=CH3,[3]=CH,[4]=CH,[5]=CH2,[6]=C,[7]=CH2,[8]=CH3],output=0 html canvasdraw\
+[[1]=CH2,[2,90]=CH2,[2]=C,[2,90,120]=CH3,[2,90,120,60]=CH3,[2,90,120,60,90]=CH3,[3]=CH,[4]=CH,[5]=CH2,[6]=CH2,[7]=CH2,[8]=Cl],output=0 html canvasdraw\
+[[1]=CH2,[2,90]=CH2,[2]=C,[2,90,120]=CH3,[2,90,120,60]=CH3,[2,90,120,60,90]=CH3,[3]=CH,[4]=CH,[5]=CH2,[6]=CH2,[7]=CH2,[8]=Cl],output=1 html canvasdraw\
+[[1]=CH2,[2,90]=CH2,[2]=C,[2,90,120]=CH3,[2,90,120,60]=CH3,[2,90,120,60,90]=CH3,[3]=CH,[4]=CH,[5]=CH2,[6]=CH2,[7]=CH2,[8]=Cl],output=3 html canvasdraw\
+[[1..5]=[A,2,3,4,5],[5,-180]=Y,[5,-180,-120]=Z,[5,-180,-120,180]=A],output=1 html canvasdraw\
+[[1..5]=[A,2,3,4,5],[5,-180]=Y,[5,-180,-120]=Z,[5,-180,-120,180]=A],output=3 html canvasdraw\
+[[1..5]=[A,2,3,4,5],[5,-180]=Y,[5,-180,-120]=Z,[5,-180,-120,180]=A],output=0 html canvasdraw\
+[dl=[[6]],tl=[[4]],[1]=CH2,[2,90]=CH2,[2]=CH,[2,90,120]=CH3,[2,90,120,60]=CH3,[2,90,120,60,90]=CH3,[3]=C,[4]=C,[5]=CH,[6]=CH,[7]=CH2,[8]=CH3],output=1 html canvasdraw\
+[[1]=CH2,[2]=CH,[3]=CH,[3,-90]=NH2,[4]=CH3,dl=[[2]]],html draw output=0 size=150\
+[db=[[1]:[N,S,E,O]],ch=[[1]:-],[1]=Br],html output=1\
+[[1]=Mg,[1,90]=R,[1,-90]=X],html\
+[[5]=CH,[6]=O,dl=[[6]],[4]=CH,[4,90]=CH3,[3]=CH,[3,-90]=CH3,[2]=CH,[2,90]=CH3,[1]=CH3],html
+
+
+!exit
+
+:proc
+!reset slib_alloption
+!reset slib_out slib_out1 slib_cycl slib_dl slib_tl slib_coord slib_at slib_output \
+  slib_cr slib_cr1 slib_cr2 slib_cr11 slib_cr22 slib_hide
+!reset slib_H[10] slib_HH1 slib_double slib_triple slib_size slib_cram
+!reset slib_h[10] slib_si slib_doublet slib_doublets slib_charges slib_lacunes slib_FLcode
+!reset slib_moltop slib_dblcch slib_coordFl slib_graphname
+wims_multiexec=$wims_multiexec pari
+slib_pari=!exec pari default(realprecision,4)
+!distribute item $wims_read_parm into slib_moltop,slib_alloption
+slib_moltop=!declosing $slib_moltop
+!if [1] notin $slib_moltop and [1.. notin $slib_moltop
+  !set slib_molkeys=!lookup $slib_moltop in datamodule/chemistry/moldraw.fr/keys/index.keys
+  !if $slib_molkeys!=
+    slib_moltop=!lookup $slib_moltop in datamodule/chemistry/moldraw.fr/data/$slib_molkeys
+    slib_moltop=!line 3 of $slib_moltop
+  !else
+    !exit
+  !endif
+!endif
+slib_moltop=!nospace $slib_moltop
+slib_moltop=!items2lines $slib_moltop
+!set slib_retract=1 2
+!set slib_optiondraw=0
+!if draw iswordof $slib_alloption
+  slib_optiondraw=1
+!endif
+slib_output=!getopt output in $slib_alloption
+slib_hide=!getopt hide in $slib_alloption
+slib_hide=!declosing $slib_hide
+!if $slib_output=0
+  slib_hide=!append item CH3,CH2,CH4,CH,C to $slib_hide
+!endif
+slib_hide=!items2words $slib_hide
+!if $slib_output iswordof 2 3
+  slib_hide=all
+!endif
+!default slib_output=1
+slib_shiftx=!getopt shiftx in $slib_alloption
+!default slib_shiftx=0
+slib_size=!getopt size in $slib_alloption
+slib_size=!declosing $slib_size
+
+slib_color=!getopt color in $slib_alloption
+slib_color=!declosing $slib_color
+slib_colordblc=$(slib_color[3])
+slib_colorch=$(slib_color[2])
+slib_colorfl=$(slib_color[1])
+!default slib_colorfl=black
+!default slib_colorch=black
+!default slib_colordblc=black
+
+slib_n=!itemcnt $slib_moltop
+slib_segm=segments
+
+!! normale
+slib_prog=!exec pari (f(v,a=0.1,b=0)=w=[-(v[2]-v[4]),v[1]-v[3]];n=a*w/norml2(w)^(0.5);concat((1-b)*[v[1],v[2]]+b*[v[3],v[4]]+n, b*[v[1],v[2]]+(1-b)*[v[3],v[4]]+n ))
+slib_prog=!exec pari (sv(v,bary=0.2)=my(cnt=#v/2,w);w=vector(cnt-1,i, [bary*vecextract(v,[2*i-1,2*i])+(1-bary)*vecextract(v,[2*i+1,2*i+2]),(1-bary)*vecextract(v,[2*i-1,2*i])+bary*vecextract(v,[2*i+1,2*i+2])]);matconcat(matconcat(w)))
+slib_prog=!exec pari (baryv(v,w,decx,decy=decx)=[decx*v[1]+(1-(decx))*w[1],decy*v[2]+(1-(decy))*w[2]])
+slib_prog=!exec pari (triangle(v1,v2,a=0.5)=w=concat(baryv(v1,v2,0.1),baryv(v2,v1,0.1,0.1));w2=[-(w[2]-w[4]),w[1]-w[3]];n=a*w2/norml2(w2)^(0.5);concat([w[3],w[4]]+n,[w[3],w[4]]-n))
+
+###
+slib_width=1
+slib_noeud=!replace internal = by , in $slib_moltop
+
+!!slib_atom=$(slib_noeud[;2])
+slib_noeud=$(slib_noeud[;1])
+
+slib_noeud=!replace internal dl by in $slib_noeud
+slib_noeud=!replace internal tl by in $slib_noeud
+slib_noeud=!replace internal db by in $slib_noeud
+slib_noeud=!replace internal ch by in $slib_noeud
+slib_noeud=!replace internal lc by in $slib_noeud
+slib_noeud=!replace internal fl by in $slib_noeud
+slib_noeud=!replace internal cr by in $slib_noeud
+slib_noeud=!nonempty items $slib_noeud
+
+slib_cntnoeud=!itemcnt $slib_noeud
+slib_max=1
+!set slib_cr=!getopt cr in $slib_moltop
+!set slib_cr1=$(slib_cr[1;])
+!set slib_cr2=$(slib_cr[2;])
+
+!for ss in $slib_cr1
+  !if -[ isin $ss
+    ss_=!replace internal -[ by [ in $ss
+    slib_cr11=!append item $ss_ to  $slib_cr11
+    slib_cr1=!replace internal $ss by $ss_ in $slib_cr1
+  !endif
+!next
+!for ss in $slib_cr2
+  !if -[ isin $ss
+    ss_=!replace internal -[ by [ in $ss
+    slib_cr22=!append item $ss_ to $slib_cr22
+    slib_cr2=!replace internal $ss by $ss_ in $slib_cr2
+  !endif
+!next
+!set slib_dl=!getopt dl in $slib_moltop
+!set slib_tl=!getopt tl in $slib_moltop
+!set slib_db=!getopt db in $slib_moltop
+!set slib_lc=!getopt lc in $slib_moltop
+!set slib_ch=!getopt ch in $slib_moltop
+!set slib_db=!items2lines $slib_db
+!set slib_db=!replace internal : by , in $slib_db
+!set slib_ch=!items2lines $slib_ch
+!set slib_ch=!replace internal : by , in $slib_ch
+!set slib_lc=!items2lines $slib_lc
+!set slib_lc=!replace internal : by , in $slib_lc
+
+###on cherche et transforme les noeuds
+slib_tmpr=1
+slib_noeudtmp=
+!for slib_i=1 to $slib_cntnoeud
+  slib_tmp=!declosing $(slib_noeud[$slib_i])
+  slib_noeudtmp=!append line $slib_tmp to $slib_noeudtmp
+!next
+slib_noeudtmp=!sort numeric line $slib_noeudtmp
+slib_tmp0=!select $slib_noeudtmp where column 2 =$empty
+slib_tmp1_=!select $slib_noeudtmp where column 2 !=$empty
+slib_tmp1=
+slib_tmp=!itemcnt $(slib_tmp1_[;1])
+!for slib_t=1 to $slib_tmp
+  slib_tmp1=!append item [$(slib_tmp1_[$slib_t;])] to $slib_tmp1
+!next
+slib_h1=!itemcnt $(slib_tmp0[;1])
+slib_H1=!makelist [x] for x=1 to $slib_h1
+slib_noeud=!listuniq $slib_H1,$slib_tmp1
+slib_dict=$slib_noeud
+!for slib_r=1 to $slib_h1
+  !if $slib_r!=1
+    slib_tmpr=$slib_tmpr,$[(-1)^$slib_r*60]
+    !for slib_t in slib_moltop,slib_noeud,slib_dl,slib_tl,slib_cr1,slib_cr2,slib_cr11,slib_cr22
+      $(slib_t)=!replace internal [$slib_r] by [$slib_tmpr] in $($(slib_t))
+      $(slib_t)=!replace internal [$slib_r, by [$slib_tmpr, in $($(slib_t))
+    !next
+    !for slib_t in slib_db,slib_lc,slib_ch
+      slib_tmp=!replace internal [$slib_r by [$slib_tmpr in $($slib_t[;1])
+      !! O has another meaning in pari ...
+      slib_tmp=!replace internal O by VV in [$slib_tmp;$($slib_t[;2])]
+      slib_tmp=!replace internal E by MM in $slib_tmp
+      $(slib_t)=!exec pari mattranspose($slib_tmp)
+      $(slib_t)=!replace internal VV by O in $($(slib_t))
+      $(slib_t)=!replace internal MM by E in $($(slib_t))
+    !next
+  !endif
+!next
+slib_dict=$slib_dict;$slib_noeud
+slib_cntnoeud=!itemcnt $slib_noeud
+!set slib_dir=O,N,E,S
+
+!distribute items ,,,2,1.5,,,, into slib_ramif,slib_coordramif,slib_cycle,\
+  slib_l,slib_h,slib_texte,slib_graphcoord,slib_coordtext
+
+!reset slib_ring
+###on étudie le cycle mettre le cycle en premier et un seul cycle
+slib_H1=
+!for slib_ring=1 to 7
+  !if $slib_ring=1
+    slib_cycl=!getopt [1] in $slib_moltop
+  !else
+    slib_cycl=!getopt [1..$slib_ring] in $slib_moltop
+  !endif
+  slib_cycl=!declosing $slib_cycl
+  !if $slib_cycl notsametext
+    slib_prevcycle=!exec pari vector($slib_ring,j,if(j==1,$slib_ring,j-1))
+    slib_coordpol=!exec pari concat(vector($slib_ring,u,[$slib_shiftx+$slib_l*cos(pi/2-2*(u-1)*pi/$slib_ring),$slib_l*sin(pi/2-2*(u-1)*pi/$slib_ring)]))
+    slib_coordpolv=$slib_coordpol,$(slib_coordpol[1]),$(slib_coordpol[2])
+    !if $slib_output iswordof $slib_retract
+      slib_coordpolv=!exec pari sv([$slib_coordpolv])
+      slib_segcycle=segments
+    !else
+      slib_segcycle=polyline
+    !endif
+    !if $slib_ring!=1
+      slib_cycle=!append line $slib_segcycle black,$slib_coordpolv to $slib_cycle
+    !endif
+    !for slib_r=1 to $slib_ring
+      slib_cc=$(slib_coordpol[2*$slib_r-1]),$(slib_coordpol[2*$slib_r])
+      slib_graphcoord=!append line [$slib_r]=$slib_cc to $slib_graphcoord
+      slib_graphname=!append line MOL,[$slib_r]=$(slib_cycl[$slib_r]) to $slib_graphname
+      slib_coordtext=!append line $slib_cc to $slib_coordtext
+      slib_MOL=!append item $(slib_cycl[$slib_r]) to $slib_MOL
+      slib_H1=!append item [$slib_r] to $(slib_H1)
+      !if $(slib_cycl[$slib_r]) notsametext $empty
+        slib_MOLtech=!makelist [x] for x=1 to $slib_ring
+        !if $(slib_cycl[$slib_r]) notwordof $slib_hide \
+          and all notwordof $slib_hide and $slib_output<2
+          !if $slib_optiondraw=0
+            !readproc slib/chemistry/brut2html $(slib_cycl[$slib_r])
+            slib_texte=!append line centered\
+html $slib_cc,$slib_out to $slib_texte
+          !else
+            slib_font=large
+            slib_cct=!exec pari [$(slib_cc[1])-0.1,$(slib_cc[2])+0.2]
+            slib_texte=!append line text black,$slib_cct,$slib_font,$(slib_cycl[$slib_r]) to $slib_texte
+          !endif
+        !endif
+      !endif
+    !next
+    slib_H1=$slib_MOLtech
+  !endif
+!next 1 to 7
+!for i=1 to $slib_cntnoeud
+  slib_r=!declosing $(slib_noeud[$i])
+  slib_rn=!itemcnt $slib_r
+  !if .. notin $slib_r
+    slib_H$slib_rn=!append item [$slib_r] to $(slib_H$slib_rn)
+  !endif
+  slib_max=$[max($slib_max,$slib_rn)]
+!next
+!for slib_niv=1 to $slib_max
+  slib_h$slib_niv=!itemcnt $(slib_H$slib_niv)
+!next
+
+##############################
+!for slib_niv=1 to $slib_max
+  !for slib_j=1 to $(slib_h$slib_niv)
+    slib_nj=!nospace $(slib_H$slib_niv[$slib_j])
+    slib_at=!getopt $slib_nj in $slib_moltop
+    !if $slib_nj=[1]
+      slib_coordt=!getopt $slib_nj in $slib_graphcoord
+      !goto endniv
+    !endif
+    slib_nj_=!declosing $slib_nj
+    calcul du precedent
+    slib_prev=!nospace [$(slib_nj_[1..-2])]
+    !if $slib_prev=[]
+      slib_prev=[$[$slib_nj_-1]]
+    !endif
+    !if $slib_prev=[]
+      slib_prev=[$(slib_prevcycle[$slib_nj_])]
+    !endif
+    !if $slib_prev=$empty
+      !goto endniv
+    !endif
+    slib_atprev=!getopt $slib_prev in $slib_moltop
+    !if $slib_nj isitemof $slib_dl
+      slib_d=2
+    !else
+      slib_d=1
+    !endif
+    !if $slib_nj isitemof $slib_tl
+      slib_d=3
+    !endif
+    !if $slib_nj isitemof $slib_cr1
+      !if $slib_nj isitemof $slib_cr11
+        slib_d=40
+      !else
+        slib_d=4
+      !endif
+    !endif
+    !if $slib_nj isitemof $slib_cr2
+      !if $slib_nj isitemof $slib_cr22
+        slib_d=50
+      !else
+        slib_d=5
+      !endif
+    !endif
+    slib_coord=!getopt $slib_prev in $slib_graphcoord
+    !reset slib_prev
+    slib_coord1=!getopt $slib_nj in $slib_graphcoord
+    !if $slib_coord1=
+      slib_dejavu=0
+      slib_angle=$(slib_nj_[-1])
+      slib_coord1=!exec pari nj=$slib_angle;[$slib_coord]+$slib_l*[cos(pi*nj/180),sin(pi*nj/180)]
+      slib_graphcoord=!append line $slib_nj=$slib_coord1 to $slib_graphcoord
+      slib_corr=0
+      slib_coordt=!exec pari baryv([$slib_coord],[$slib_coord1],$slib_corr)
+      slib_coordtext=!append line $slib_coord1 to $slib_coordtext
+      slib_MOL=!append item $slib_at to $slib_MOL
+    !else
+      slib_dejavu=1
+    !endif
+    !if $slib_at iswordof $slib_hide or all iswordof $slib_hide
+      slib_at=
+    !endif
+    slib_coord_mod=$slib_coord,$slib_coord1
+    !if $slib_at!=$empty
+      !if $slib_output iswordof $slib_retract
+        slib_coord_mod=!exec pari v=[$slib_coord_mod]; sv(v)
+      !else
+        !if $slib_output=0
+          !if $slib_atprev=$empty or $slib_atprev iswordof $slib_hide
+            slib_coord_mod=!exec pari baryv([$slib_coord],[$slib_coord1],0.2)
+            slib_coord_mod=$slib_coord_mod,$slib_coord
+          !else
+            slib_coord_mod=!exec pari v=[$slib_coord_mod]; sv(v)
+          !endif
+        !endif
+      !endif
+      slib_segramif=segments
+    !else
+      !if $slib_atprev!=$empty and $slib_atprev notwordof $slib_hide
+        slib_segramif=segments
+        !if $slib_output=0
+          !if $slib_at=$empty or $slib_at iswordof $slib_hide
+            slib_coord_mod=!exec pari baryv([$slib_coord1],[$slib_coord],0.2)
+            slib_coord_mod=$slib_coord_mod,$slib_coord1
+          !else
+            slib_coord_mod=!exec pari v=[$slib_coord_mod]; sv(v)
+          !endif
+        !endif
+      !else
+        slib_segramif=polyline
+      !endif
+    !endif
+    !if $slib_d iswordof 2 3
+      slib_normalev=!exec pari v=[$slib_coord_mod];sv(f(v,0.1),0.2)
+      slib_double=!append line $slib_segm black, $slib_normalev to $slib_double
+      !if $slib_d=3
+        slib_normale2v=!exec pari v=[$slib_coord_mod];sv(f(v,-0.1),0.05)
+        slib_triple=!append line $slib_segm black, $slib_normale2v to $slib_triple
+      !endif
+    !endif
+    !if $slib_d iswordof 4 5 40 50
+      !if $slib_d iswordof 40 50
+        slib_coord_modcram=$(slib_coord_mod[3,4]),$(slib_coord_mod[1,2])
+      !else
+        slib_coord_modcram=$slib_coord_mod
+      !endif
+      slib_triangle=!exec pari v=[$slib_coord_modcram];triangle([v[1],v[2]],[v[3],v[4]],0.1)
+      !if $slib_d iswordof 4 40
+        slib_cram=!append line ftriangle $(slib_coord_modcram[3,4]),$slib_triangle, black\
+to $slib_cram
+        slib_CRAM=!append line MOL, $(slib_coord_modcram[3,4]),$slib_triangle to $slib_CRAM
+      !endif
+      !if $slib_d iswordof 5 50
+        slib_tmp=segments black
+        !for s=0 to 5
+          slib_tmp_=!exec pari baryv([$(slib_coord_modcram[3,4])],[$(slib_triangle[1,2])],$s/5)
+          slib_tmp=$slib_tmp, $slib_tmp_
+          slib_tmp_=!exec pari baryv([$(slib_coord_modcram[3,4])],[$(slib_triangle[3,4])],$s/5)
+          slib_tmp=$slib_tmp, $slib_tmp_
+        !next
+        slib_cram=!append line $slib_tmp to $slib_cram
+        slib_CRAM=!append line MOL,$(slib_tmp[2,3,4,5]),$(slib_tmp[-2,-1]) to $slib_CRAM
+      !endif
+    !endif
+    !if $slib_dejavu=0 and $slib_d<=3
+      slib_ramif=!append line $slib_segramif black, $slib_coord_mod to $slib_ramif
+    !endif
+    !if $slib_at!=$empty
+      slib_corry=0
+      slib_coordt=!exec pari [$(slib_coordt[1]),$(slib_coordt[2])+($slib_corry)]
+      !if $slib_output iswordof 0 1 2
+        !if $slib_optiondraw=0
+          !readproc slib/chemistry/brut2html $slib_at
+          slib_texte=!append line centered \
+html $slib_coordt,$slib_out to $slib_texte
+          !reset slib_out
+        !else
+          slib_font=large
+          slib_texte=!append line text black,$slib_coordt,$slib_font,$slib_at to $slib_texte
+        !endif
+      !endif
+    !endif
+    slib_coordramif=$slib_coordramif,$slib_coord1
+:endniv
+    slib_nc=!charcnt $slib_at
+    !if $slib_at!=$empty
+      !reset slib_dblc_ slib_plew slib_ndblc
+      //l'option doit être sur 0
+      !for slib_code in 2,-1
+        !if $slib_code=2
+          slib_dblc_=!select $slib_db where column 1=$slib_nj
+        !endif
+        !if $slib_code=-1
+          slib_dblc_=!select $slib_lc where column 1=$slib_nj
+        !endif
+        !if $slib_dblc_!=$empty
+          slib_dblc_=!declosing $(slib_dblc_[2])
+          slib_plew=!makelist x,$slib_code for x in $slib_dblc_
+          slib_ndblc=!itemcnt $slib_dblc_
+          !readproc slib/chemistry/lewisatom [$slib_plew],[$slib_coordt],$slib_at,0
+          !if $slib_code=2
+            slib_doublet=!rows2lines $slib_out
+            !!!il faudrait trouver pourquoi cela y passe deux fois
+            !if $slib_doublet notin $slib_doublets
+              slib_doublets=!append line linewidth 1.5 \
+strokecolor $slib_colordblc\
+$slib_doublet\
+strokecolor black to $slib_doublets
+              slib_dblcch=!append line MOL,$slib_coordt,$slib_ndblc to $slib_dblcch
+            !endif
+          !endif
+          !if $slib_code=-1
+            slib_lacune=!rows2lines $slib_out
+            !if $slib_lacune notin $slib_lacunes
+              slib_lacunes=!append line linewidth 1.5 \
+$slib_lacune\
+strokecolor $slib_colordblc to $slib_lacunes
+              slib_dblcch=!append line MOL,$slib_coordt,-$slib_ndblc to $slib_dblcch
+            !endif
+          !endif
+        !endif
+        !reset slib_dblc_ slib_code
+      !next
+      slib_ch_=!select $slib_ch where column 1=$slib_nj
+      !if $slib_ch_!=$empty
+        !if $(slib_ch_[2]) issametext +
+          slib_tmp=&oplus;
+        !else
+          slib_tmp=&ominus;
+        !endif
+        !if O isin $slib_plew
+          !set slib_phant=\phantom{xxx\; $slib_at}
+        !else
+          !set slib_phant=\phantom{x\; $slib_at}
+        !endif
+        slib_charge=centered\
+strokecolor $slib_colorch
+        !if O isin $(slib_ch_[3]) or ($(slib_ch_[3])=$empty and E isin $slib_plew)
+          slib_charge=$slib_charge\
+latex $slib_coordt,{\phantom{}}^{$slib_tmp}$slib_phant
+        !else
+          slib_charge=$slib_charge\
+latex $slib_coordt,{$slib_phant}^{$slib_tmp}
+        !endif
+        $slib_charge=$slib_charge\
+strokecolor black
+        !if $slib_charge notin $slib_charges
+          slib_charges=!append line $slib_charge to $slib_charges
+          slib_dblcch=!append line MOL,$slib_coordt,$(slib_ch_[2]) to $slib_dblcch
+        !endif
+      !endif
+    !endif
+  !next
+!next
+slib_coordramif=!nonempty items $slib_coordramif
+slib_coordtext_=!lines2items $slib_coordtext
+!set slib_tmp=!nonempty items $slib_coordramif,$slib_coordtext_
+!read slib/draw/range $slib_tmp
+slib_Range=$slib_out
+!reset slib_out
+slib_coordtext=!lines2rows $slib_coordtext
+slib_xrang=$[$(slib_Range[1])-1],$[$(slib_Range[2])+1]
+slib_yrang=$[$(slib_Range[3])-1],$[$(slib_Range[4])+1]
+
+!!Arrows
+slib_Fl=!getopt fl in $slib_moltop
+!if $slib_Fl notsametext
+  slib_nfl=!itemcnt $slib_Fl
+  slib_graphcoord_=!declosing $slib_graphcoord
+  !for slib_f=1 to $slib_nfl
+    slib_fl=!declosing $(slib_Fl[$slib_f])
+    slib_pos=$(slib_fl[2])
+    slib_fl=!replace internal : by , in $(slib_fl[1])
+    slib_flcnt=!itemcnt $slib_fl
+    !if $slib_flcnt=3
+      slib_fl=$(slib_fl[1]),$(slib_fl[2]),$(slib_fl[2]),$(slib_fl[3])
+    !endif
+    !if $slib_flcnt=2
+      slib_fl=$(slib_fl[1]),$(slib_fl[1]),$(slib_fl[2]),$(slib_fl[2])
+    !endif
+    slib_med=0,0
+    !if $(slib_fl[1]) issametext  $(slib_fl[2])
+      slib_med=!replace item number 1 by 1 in $slib_med
+    !endif
+    !if $(slib_fl[4]) issametext $(slib_fl[3])
+      slib_med=!replace item number 2 by 1 in $slib_med
+    !endif
+    !for slib_t=1 to 4
+      slib_a$slib_t=!getopt $(slib_fl[$slib_t]) in $slib_graphcoord_
+    !next
+    slib_cdep=!exec pari baryv([$slib_a1],[$slib_a2],0.5)
+    slib_carr=!exec pari baryv([$slib_a3],[$slib_a4],0.5)
+    slib_milieu=!exec pari baryv([$slib_a1],[$slib_a4],0.5)
+    slib_crep=$slib_cdep,$slib_carr
+    !if $slib_pos!=
+      !if $slib_pos issametext N
+        slib_pos=up
+      !endif
+    !else
+      !if $(slib_milieu[2])>$(slib_a2[2])
+        slib_pos=up
+      !else
+        slib_pos=down
+      !endif
+    !endif
+    !! Flèche liaison doublet (atome1, liaison1 de départ, atome2 doublet haut d'arrivée)
+    slib_crep=$slib_cdep,$slib_carr
+    !! code canvasdraw des curves, appel à slib/quadcurve
+    !reset slib_out
+    !readproc slib/chemistry/quadcurve [$slib_xrang,$slib_yrang],$slib_cdep,$slib_carr,$slib_pos, med=$slib_med
+    slib_ptcurve=$(slib_out[3,4,1,2,5,6])
+    slib_FLcode=!append line linewidth 1.5 \
+curvedarrow $slib_ptcurve,$slib_colorfl\
+strokecolor black to $slib_FLcode
+    slib_coordFl=!append line MOL,curvedarrows,$slib_cdep,$slib_carr,$slib_ptcurve to $slib_coordFl
+  !next
+!endif
+!for slib_n=1 to $slib_cntnoeud
+  slib_graphcoord=!replace internal $(slib_dict[2;$slib_n]) by $(slib_dict[1;$slib_n]) in $slib_graphcoord
+  slib_moltop=!replace internal $(slib_dict[2;$slib_n]) by $(slib_dict[1;$slib_n]) in $slib_moltop
+!next
+!set slib_graphcoord=!replace internal [ by MOL,[ in $slib_graphcoord
+slib_texte=!nonempty lines $slib_texte
+
+slib_out=xrange $slib_xrang\
+yrange $slib_yrang\
+fontfamily 12pt Ariel\
+linewidth $slib_width\
+strokecolor black\
+noreset\
+$slib_ramif\
+$slib_cycle\
+$slib_double\
+$slib_triple\
+$slib_cram\
+$slib_texte
+
+!default slib_size=$[ceil(35*($(slib_xrang[2])-($(slib_xrang[1]))))]
+slib_sizey=$[ceil($slib_size*($(slib_yrang[2])-($(slib_yrang[1])))/($(slib_xrang[2])-($(slib_xrang[1]))))]
+slib_size=$slib_size,$slib_sizey
+slib_out1=!nonempty lines $slib_out
+!if html iswordof $slib_alloption
+  !if $slib_optiondraw=1
+    !set insdraw_size=$slib_size
+    !insdraw $slib_out1
+    slib_out=<img src="$ins_url" alt="">
+  !else
+    slib_out=!exec canvasdraw\
+size $slib_size\
+$slib_out1\
+$slib_doublets\
+$slib_lacunes\
+$slib_charges\
+$slib_FLcode
+  !endif
+!else
+  !if $slib_doublets$slib_lacunes$slib_charges$slib_FLcode$slib_cram !=
+    slib_out=[[$slib_size\
+$slib_out1],[$slib_doublets],[$slib_lacunes],[$slib_charges],[$slib_FLcode],[$slib_cram]]
+  !else
+    slib_out=[$slib_size\
+  $slib_out1]
+  !endif
+  slib_cnt=!itemcnt $(slib_moltop[;1])
+  !for slib_t=1 to $slib_cnt
+    !if .. notin $(slib_moltop[$slib_t;1]) and dl notin $(slib_moltop[$slib_t;1])\
+        and tl notin $(slib_moltop[$slib_t;1]) and fl notin $(slib_moltop[$slib_t;1]) \
+        and lc notin $(slib_moltop[$slib_t;1]) and db notin $(slib_moltop[$slib_t;1])\
+        and ch notin $(slib_moltop[$slib_t;1]) and cr notin $(slib_moltop[$slib_t;1])\
+        and $(slib_moltop[$slib_t;]) notin $slib_graphname
+      slib_graphname=!append line MOL,$(slib_moltop[$slib_t;]) to $slib_graphname
+    !endif
+  !next
+  slib_dblcch=!append line $slib_coordFl to $slib_dblcch
+  !! a cause des cycles on remet une version de slib_moltop
+  slib_out=$slib_out,\
+[$slib_graphname],\
+[$slib_graphcoord],\
+[$slib_dblcch],\
+[$slib_CRAM]
+
+!endif

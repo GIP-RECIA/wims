@@ -1,0 +1,47 @@
+!set lang_exists=yes
+
+!set name_intro=L'eina <span class="wims_emph">$module_title</span>\
+ permet crear alguns fitxers relacionats amb molècules (fitxers de descripció d'estructures o imatges de molècules)\
+Això es pot aconseguir\
+gràcies a\
+<a target="wims_external" href="http://cactus.nci.nih.gov/"> <i>National Cancer Institute</i> online service</a>\
+ o \
+<a target="wims_external" href="http://openbabel.org">Openbabel</a>\
+ a partir de:<br>\
+- un fitxer de descripció d'estructura (formats usuals permesos: mol, pdb, xyz, sdf, ...)<br>\
+- un códi (SMILES, InChI o IUPAC)<br>\
+- un nom comú (en anglès).<br>\
+El resultat pot ser un fitxer d'estructura o una imatge (png o svg).\
+Aquests fitxers es poden desar directament en el directorio <span class="tt wims_fname">data</span>\
+d'un\
+ dels seus mòduls en desenvolupament.<br>\
+ Aquesta és una eina per facilitar el treball del desenvolupador que també pot treballar\
+ directament amb la base de dades o el programari si vol obtenir més opcions.
+
+!set name_warning_obabel= Tindries més possibilitats si Openbabel estigués instal·lat.\
+
+!set name_database=Ús de la base de dades <i>National Cancer Institute</i>.
+
+!distribute lines al mòdul (carpeta <span class="tt wims_fname">data</span>)\
+   Opcions\
+   entrar les dades\
+   Format de sortida\
+   Dimensió\
+   Nom genèric del fitxer\
+   Opcions del format de sortida svg\
+   Format d'entrada\
+   A partir d'un fitxer de descripció\
+   Conversió a partir de SMILES\
+   Opcions del format de sortida\
+   Opcions de sortida\
+   Altura del gràfic\
+   Especificar el nom IUPAC o el codi SMILES\
+ into name_savemodule, name_option,name_data,name_format,name_option_dim,\
+ name_file, name_option_svg,name_method,name_conversion1,\
+ name_conversion_smile,name_format_out,name_output,name_height,name_database_help
+
+!set name_savefile=!nosubst Els fitxers s'han desat correctament a la carpeta\
+  <span class="tt wims_fname">data</span> del mòdul <span class="tt wims_fname">$smod</span>.
+
+!set name_promptoptionsvg=tots els àtoms de carboni,cap terminal de carboni explícit,\
+   sense coloració atòmica de l'element específic,no mostreu el nom de la molècula

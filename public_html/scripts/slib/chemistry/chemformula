@@ -1,0 +1,20 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+slib_title=Chem formula
+slib_parms=1\
+,address of a mol file
+
+slib_out=Brut formula, [atom number,atom,nb of hydrogen; etc ]
+
+slib_comment=
+slib_author=Bernadette, Perrin-Riou
+
+!exit
+
+:proc
+
+slib_file=!replace internal datamodule by modules/data in $wims_read_parm
+
+slib_out=!exec chembrut.pl $slib_file
+

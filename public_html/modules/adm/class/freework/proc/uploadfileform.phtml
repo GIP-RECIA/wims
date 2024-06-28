@@ -1,0 +1,74 @@
+!! html form to download file for solution or subject and display exists files
+!! argument is
+!! first line : a list of keyword sublist of subject,solution,teacher1,teacher2,teacher3,student1,student2,student3
+!! second line : title
+!! third line : keyword form submit form (disabled or empty) default empty
+!!
+!! if one keyword no choice of zone affectation for file.
+
+!let listval_=!line 1 of $wims_read_parm
+!let title_=!line 2 of $wims_read_parm
+!let activated_=!line 3 of $wims_read_parm
+!bound activated_ within $empty,disabled default $empty
+!let listval_=!listintersection $listval_ and subject,solution,$zonelistlabel
+!if $listval_=$empty
+  !exit
+!endif
+!let nb_=!itemcnt $listval_
+
+!if $title_=1
+<div class="wims_widget_box">
+  <div class="title_box">
+    <h2 class="wims_title">$(name_filedeposit)</h2>
+  </div>
+!endif
+!if $wims_user!=supervisor
+  <div class="formHelp">$(name_copie_type2bis). $(name_usedstorage).</div>
+!endif
+!if $auth_upload=yes
+  !set wims_form_method=file
+  !form reply
+    <div class="box_content">
+      <input type="hidden" name="job" value="configfw" >
+      <input type="hidden" name="freework" value="$freework" >
+      !if $nb_=1
+        <input type="hidden" name="job2" value="deposit$listval_" >
+      !else
+        <label for="job2">$name_depositzone:</label>
+        !let listvall_=!makelist deposit X for X in $listval_
+        !let listvall_=!nospace $listvall_
+        !let listvalp_=$empty
+        !for l_ in $listval_
+          !if solution=$l_ or $subject=$l_
+            !let listvalp_=!append item $(name_$l_) to $listvalp_
+          !else
+            !let n_=!char -1 of $l_
+            !let t_=!char 1 to -2 of $l_
+            !if $(param$(t_)$[($n_-1)*5+1])!=$empty
+              !let tmp_=!replace internal , by &#44; in $(param$(t_)$[($n_-1)*5+1])
+              !let listvalp_=!append item $tmp_ to $listvalp_
+            !else
+              !let listvalp_=!append item $name_zone $n_ to $listvalp_
+            !endif
+          !endif
+        !next l_
+        !formselect job2 list $listvall_ prompt $listvalp_
+      !endif
+
+      <label for="deposit$listval_">$name_depos:</label>
+      <input type="file" size="35" name="wims_deposit" id="deposit$listval_" >
+      <input type="submit" value="$wims_name_submit" class="wims_button" $activated_ >
+    </div>
+  !formend
+!else
+  <div class="wims_msg alert">
+    !if $wims_user=supervisor
+      $name_warning_fullclass
+    !else
+      $name_warning_fullzone
+    !endif
+  </div>
+!endif
+!if $title_=1
+  </div>
+!endif

@@ -1,0 +1,40 @@
+single: To draw a bond or a cycle, select by a click the element in the horizontal bar of the menu,\
+ then put it at its correct place by a click.
+
+atom: To add an atom that is not a carbon, select its symbol by a click\
+ in the vertical bar of the menu, then put the element at its correct place by a click.\
+The <span style="font-weight:bold">X</span> icon can be used to enter an atom\
+ not found in the menu (Si for example).\
+To replace a heteroatom by a carbon, click on the symbol C, then on the heteroatom.\
+
+funct_gr: The <span class="tt">FG</span> icon proposes some functional groups (such as carboxyl).
+
+double: Click on a single bond to change it to a double bond.
+
+erasor: To delete a bond or an atom use the icon <span style="color:red">X.</span>\
+Careful!  The icon <img src='gifs/WIMSchem/jsme_clean.png' alt='clean'> effaces\
+ all the elements on the editor, even the pre-established structures.\
+To cancel your last action use the icon <img src='gifs/WIMSchem/jsme_undo.png' alt='undo'>
+
+template: Select by a click one of the models proposed, then click on the editor\
+ at the position this element will occupied.\
+Use the icon <span style="color:red">X</span> to delete atom(s) to be modified or\
+ linked to a second molecule.\
+To link another molecule to the first one, choose this second molecule and click\
+ on groups that participate to the bond in this second molecule, then in the first one.
+
+select_atom: Select atoms by a click.\
+The selected atoms will be shown in a different colour. In case of selecting functional groups,\
+all members of the group must be selected. A second click will cancel the selection.
+
+select_bond: Select bonds by a click.\
+The selected bonds will be drawn in a different colour. A second click will cancel the selection.
+
+charge: To switch between allowed charged states of an atom, use the icon\
+ <img src='gifs/WIMSchem/jsme_charge.png' alt='charge'>, then click on the atom.
+
+drag: A molecule may be moved by dragging free space in front of it.
+
+stereo: To add a stereo bond, add first a plain bond, then click on the\
+icon <img src='gifs/WIMSchem/jsme_stereo.png' alt='stereo'> and click on the bond\
+ to cycle through possible types (wedged bond, dashed bond or wavy bond).

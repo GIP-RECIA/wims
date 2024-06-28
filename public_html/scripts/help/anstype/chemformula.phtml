@@ -1,0 +1,44 @@
+<b>Raw formula for a molecule</b> (nom : <span class="tt wims_code_words">chemformula</span>)
+checks a raw formula. It is partially correct if the answer is not written in the
+order asked by the option <span class="tt wims_code_words">order</span>.
+
+The correct answer must be on the form C7H4Cl2O2.
+
+L'option <span class="tt wims_code_words">order</span> peut être
+<ul><li>
+  vide : l'ordre est celui donné dans la bonne réponse (dans ce cas, plusieurs bonnes réponses
+  peuvent être données, séparées par des <span class="tt wims_code_words">|</span>).
+</li><li>
+  <span class="tt wims_code_words">no</span> : l'ordre des atomes n'est pas pris en compte.
+</li><li>
+  une liste d'atomes (par exemple
+    <span class="tt wims_code_words">[C,N,H,O,Cu,Al]</span>) :
+    l'ordre des atomes doit être dans l'ordre donné (s'ils interviennent dans la formule),
+    puis par ordre alpahbétique pour les atomes qui ne se trouvent pas dans la liste.
+</li><li>
+  <span class="tt wims_code_words">hill</span>
+  (voir <a target="wims_external" href="https://en.wikipedia.org/wiki/Chemical_formula#Condensed_formula">wikipedia</a>)
+  <cite>
+  The Hill system (or Hill notation) is a system of writing empirical chemical formulas,
+  molecular chemical formulas and components of a condensed formula such that the number
+  of carbon atoms in a molecule is indicated first, the number of hydrogen atoms next,
+  and then the number of all other chemical elements subsequently, in alphabetical order
+  of the chemical symbols. When the formula contains no carbon, all the elements,
+  including hydrogen, are listed alphabetically.
+  </cite>
+</li>
+</ul>
+La variable <span class="tt wims_code_variable">reply</span>i contient sur
+la première ligne la réponse. Dans le cas où aucune bonne réponse n'est donnée,
+
+The variable <span class="tt wims_code_words">reply</span>i contains the answer on the first line.
+In the case where no correct answer is given, the other lines contain the formatted answer as
+<pre>C,7
+H,4
+Cl,2
+O,2
+</pre>
+in the order given by the answer.
+The variable <span class="tt wims_code_words">sc_reply</span>i is 0.5
+if the answer is correct up to the order if some order has been asked.
+

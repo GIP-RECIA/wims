@@ -1,0 +1,76 @@
+!set titb=Utiliser les transformations algébriques
+!set keyw=
+!set datm=20210827
+!set prev=embedParabIneq
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<div class="wims_columns">
+ <div class="medium_size text_col">
+Ce chapitre utilise astucieusement les transformations algébriques
+pour passer d'une des trois formes (développée, canonique ou factorisée) à une autre.
+<br>
+La mise sous forme canonique en complétant un carré puis la factorisation
+éventuelle en est un exemple classique.
+Cela représente une certaine virtuosité.
+<br>
+L'essentiel est d'être capable de passer d'une forme à une autre et de choisir
+la forme adaptée au problème.
+</div><div class="medium_size img_col">
+<img alt="Femme du nom de Chantal Gèbre" src="$m_filedir/algebre2.png"/>
+</div></div>
+<p><img alt="Schéma reliant les 3 formes" src="$m_filedir/schema.png"/></p>
+<table class="wimscenter wimsborder">
+<tr><td>Forme</td><td>Utile pour &#58;</td><td>Éléments caractéristiques</td></tr>
+<tr><td>Développée<br>Forme standard<br>
+!insmath a*x^2+b*x+c
+</td>
+<td>Addition des trinômes.<br>Égalité par identification des coefficients.<br>
+Image de 0, formules du trinômes &#58; calcul de 
+!insmath \Delta
+.</td>
+<td>
+!insmath a
+ &#58; coefficient du carré.<br>
+!insmath b
+ &#58; coefficient de la variable.<br>
+!insmath c
+ &#58; terme constant.</td></tr>
+<tr><td>Canonique<br><i>outil à tout faire</i><br>
+!insmath a*(x-x_S)^2+y_S
+</td>
+<td>Trouver les coordonnées du sommet.<br>Tracer rapidement la courbe.<br>
+Trouver et justifier les variations.<br>Résoudre.<br>Factoriser si c'est possible.</td>
+<td>
+!insmath a
+ &#58; coefficient du carré, sens et ouverture de la parabole.<br>
+
+!insmath x_S
+ &#58; abscisse du sommet.<br>
+!insmath y_S
+ &#58; ordonnée du sommet.</td></tr>
+<tr><td>Factorisée<br>Forme spéciale qui n'existe pas toujours.<br>
+!insmath a*(x-x_1)*(x-x_2)
+<br>ou 
+!insmath (a'*x+b)*(c*x+d)
+</td>
+<td>Résoudre. Intersection avec l'axe des abscisses.<br>Étudier le signe.<br>
+Trouver un facteur commun avec un autre trinôme ou polynôme.</td>
+<td>
+!insmath a
+ &#58; coefficient du carré, sens et ouverture de la parabole.<br>
+
+!insmath x_1
+ &#58; première racine.<br>
+!insmath x_2
+ &#58; deuxième racine.</td></tr>
+</table>
+

@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,events
+!set gl_title=Événement (collège)
+!set gl_level=H3 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définitions</h4>
+Tout ensemble d'issues d'une expérience aléatoire est appelé <strong>événement
+</strong>.<br>
+Un <strong>événement élémentaire</strong> contient une seule issue.<br>
+L'<strong>événement certain</strong> contient toutes les issues.<br>
+L'<strong>événement impossible</strong> ne contient aucune issue.
+</div>

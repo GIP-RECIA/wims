@@ -1,0 +1,182 @@
+!set titb=Observation
+!set keyw=
+!set datm=20210913
+!set prev=embedExpQAlg4
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set m_x1=$[sqrt(10)-1]
+
+!set m_x2=$[sqrt(20)-1]
+
+!set m_cadre=xrange -2.5,6.5	yrange -1.5,5.5		arrow -2.5,0,6.5,0,10,black	arrow 0,-2.5,0,5.5,10,black	text black,1,-0.1,small,a	text black,3,-0.1,small,x	text black,5,-0.1,small,b	
+
+!set m_gr1=$m_cadre	plot blue,0.1*(x+1)^2+1+0*sqrt(x)	dline 1,0,1,1.4,black	dline 3,0,3,2.6,black	dline 5,0,5,4.6,black	line -2.5,2,6.5,2,red	text red,-2.5,2.8,small,cible C	dline $m_x1,0,$m_x1,2,red	
+
+!set m_gr2=$m_cadre	plot blue,0.1*(x+1)^2+1+0*sqrt(x)	dline 1,0,1,1.4,black	dline 3,0,3,2.6,black	dline 5,0,5,4.6,black	line -2.5,3,6.5,3,red	text red,-2.5,3.8,small,cible C	dline $m_x2,0,$m_x2,3,red	
+
+!set m_gr3=$m_cadre	plot blue,-0.1*(x+1)^2+5+0*sqrt(x)	dline 1,0,1,4.6,black	dline 3,0,3,3.4,black	dline 5,0,5,1.4,black	line -2.5,4,6.5,4,red	text red,-2.5,4.8,small,cible C	dline $m_x1,0,$m_x1,4,red	
+
+!set m_gr4=$m_cadre	plot blue,-0.1*(x+1)^2+5+0*sqrt(x)	dline 1,0,1,4.6,black	dline 3,0,3,3.4,black	dline 5,0,5,1.4,black	line -2.5,3,6.5,3,red	text red,-2.5,3.8,small,cible C	dline $m_x2,0,$m_x2,3,red	
+
+<br>
+<p>Pour adapter l'algorithme de la fonction cube à toute fonction soit croissante, soit décroissante, observons la situation où
+ on connaît un intervalle &#91 
+!insmath a ; b
+ &#93 contenant la solution cherchée de l'équation 
+!insmath f(x) = C
+ et on cherche à réduire de moitié la longueur de cet intervalle.</p>
+<p>On calcule 
+!insmath x = \frac{a + b}{2}
+ puis l'image de 
+!insmath x
+ par 
+!insmath f
+.</p>
+<b>Si la fonction 
+!insmath f
+ est croissante sur &#91 
+!insmath a ; b
+ &#93 &#58; 
+!insmath f(a) \le f(b)
+</b>
+<ul class="inline wims_nopuce">
+  <li>
+  <table class="wimsnoborder wimscenter">
+    <tr>
+    <td>
+!read primitives.phtml 1, draw, 180,140, \gr1 
+</td><td>
+!insmath x = \frac{a + b}{2}
+<br>
+  
+!insmath f(b) - f(a) \ge 0
+ et 
+!insmath f(x) - C \ge 0
+<br>
+  Le produit <span class="math">
+!insmath (f(b) - f(a)) (f(x) - C)
+</span> est positif.</td>
+     </tr>
+    </table>
+  Si 
+!insmath f(x) \ge C
+, la solution est dans  &#91 
+!insmath a
+ ; 
+!insmath x
+ &#93.
+</li><li>
+  <table class="wimsnoborder wimscenter">
+     <tr>
+     <td>
+!read primitives.phtml 2, draw, 180,140, \gr2 
+</td>
+     <td>
+!insmath x = \frac{a + b}{2}
+<br>
+!insmath f(b) - f(a) \ge 0
+ et
+     
+!insmath f(x) - C \le 0
+<br>
+     Le produit <span class="math">
+!insmath (f(b) - f(a)) (f(x) - C)
+</span> est négatif.</td>
+     </tr>
+     </table>
+Si 
+!insmath f(x) \le C
+, la solution est dans  &#91 
+!insmath x
+ ; 
+!insmath b
+ &#93.</td>
+</li></ul>
+<b>Si la fonction 
+!insmath f
+ est décroissante sur &#91
+!insmath a ; b
+&#93 &#58; 
+!insmath f(a) \ge f(b)
+</b>
+<ul class="inline wims_nopuce">
+  <li>
+  <table class="wimsnoborder wimscenter">
+  <tr>
+     <td>
+!read primitives.phtml 3, draw, 180,140, \gr4 
+</td>
+     <td>
+!insmath x = \frac{a + b}{2}
+<br>
+     
+!insmath f(b) - f(a) \le 0
+ et 
+!insmath f(x) - C \ge 0
+
+     <br>Le produit
+     <span class="math">
+!insmath (f(b) - f(a)) (f(x) - C)
+</span> est négatif.</td>
+     </tr>
+   </table>
+  Si 
+!insmath f(x) \ge C
+, la solution est dans  &#91 
+!insmath x
+ ; 
+!insmath b
+ &#93.
+  </li><li>
+  <table class="wimsnoborder wimscenter">
+    <tr>
+      <td>
+!read primitives.phtml 4, draw, 180,140, \gr3 
+</td>
+      <td>
+!insmath x = \frac{a + b}{2}
+<br>
+      
+!insmath f(b) - f(a) \le 0
+ et 
+!insmath f(x) - C \le 0
+
+      <br>Le produit <span class="math">
+!insmath (f(b) - f(a)) (f(x) - C)
+</span> est positif.</td>
+      </tr>
+   </table>
+Si 
+!insmath f(x) \le C
+, la solution est dans  &#91 
+!insmath a
+ ; 
+!insmath x
+ &#93.
+  </li></ul>
+<p>
+La condition 
+!insmath f(x) \ge C
+ ne conduit pas au même intervalle selon que la fonction est croissante ou décroissante.<br>
+Par contre, le signe du produit 
+!insmath (f(b) - f(a)) (f(x) - C)
+ indique le bon intervalle.<br>
+Et si le produit 
+!insmath (f(b) - f(a)) (f(x) - C)
+ est nul, c'est que 
+!insmath a=b
+ ou 
+!insmath f(x)=C
+.
+</p>
+

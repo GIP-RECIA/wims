@@ -1,0 +1,89 @@
+Images
+:copy x,y,x1_px,y1_px,x2_px,y2_px,[filename]:flydraw file notation we do not want it works too much - so no implemented in canvasdraw for oef and doc
+copy -5,5,-1,-1,-1,-1,raw/clock/200a.gif
+:copy x,y,x1_px,y1_px,x2_px,y2_px,[filename_url]:we do not want it works too much for oef and doc - gifs are for administrative module
+copy -5,5,0,0,14,14,gifs/redball.gif
+:copy whole file:variable filedir
+copy 0,7,-1,-1,-1,-1,\filedir/testfig.gif
+:copy whole file:no use of variable \filedir-
+copy 0,7,-1,-1,-1,-1,testfig.gif
+:copy whole file:flydraw file notation no expected to work in canvasdraw.
+copy 0,7,-1,-1,-1,-1,redball.gif
+:multicopy
+settransform 1,1,0,0,1,5,-3
+setparallelogram 0,0,5,0,0,7
+multicopy \filedir/testfig.gif
+resettransform
+resetparallelogram
+:multicopy
+setmatrix 1,1,0,0,-1
+settransform 2,1,0,0,1,5,-3
+setparallelogram 0,0,5,0,0,7
+multicopy \filedir/testfig.gif
+resetmatrix
+resettransform
+resetparallelogram
+:multicopy
+setmatrix 1,1,0,0,-1
+settransform 2,1,0,0,1,5,-3
+setparallelogram 0,0,5,0,0,7
+multicopy 1,2,redball.gif
+resetmatrix
+resettransform
+resetparallelogram
+:copy whole file:canvasdraw file notation - Do we want it works like that ?
+copy 0,7,-1,-1,-1,-1,gifs/redball.gif
+:copyresized x1,y1,x2,y2,dx1,dy1,dx2,dy2,[filename] (dx1,dy1) is left top-corner and (dx2,dy2) is right bottom of the selection
+copyresized -1,-1,-1,-1,0,7,7,0,testfig.gif
+:copyresized x1,y1,x2,y2,dx1,dy1,dx2,dy2,[filename]
+copyresized 50,50,60,100,-5,5,5,-5,testfig.gif
+:setbrush [filename]:not working as expected in flydraw? blueball is in the filedir
+copy 6,6,-1,-1,-1,-1,blueball.gif
+setbrush blueball.gif
+segment -3,-3,3,3,blue
+killbrush
+:setbrush [filename]:not working as expected in flydraw?
+copy 6,6,-1,-1,-1,-1,gifs/redball.gif
+setbrush gifs/redball.gif
+segment -3,-3,3,3,blue
+killbrush
+:settile:not working as expected in flydraw?
+settile gifs/redball.gif
+frectangle -1,-1,-4,-4,green
+killtile
+:settile:not working as expected in flydraw? blueball is in the filedir
+settile blueball.gif
+frectangle -1,-1,-4,-4,green
+killtile
+:settile:not working as expected in flydraw? blueball is in the filedir
+copy 6,6,-1,-1,-1,-1,blueball.gif
+settile blueball.gif
+fpoly yellow,0,0,4,3,2,5
+killtile
+:settile:not working as expected in flydraw?
+copy 6,6,-1,-1,-1,-1,gifs/redball.gif
+settile gifs/redball.gif
+fpoly yellow,0,0,4,3,2,5
+killtile
+:imagefill dx,dy,1,image_url:
+filled
+imagefill 10,10,1,blueball.gif
+rectangle 1,1,7,7,green
+:imagefill dx,dy,0,image_url:
+filled
+imagefill 10,10,0,gifs/blueball.gif
+rectangle 1,1,7,7,green
+:imagefill dx,dy,0,image_url:
+imagefill 10,10,1,blueball.gif
+filled
+rectangle 1,1,7,7,green
+:imagefill dx,dy,0,image_url:
+filled
+imagefill 10,10,0,gifs/redball.gif
+rectangle 1,1,7,7,green
+:imagefill dx,dy,0,image_url:The next suitable filled object will be filled with "image_url" tiled, the next object should be the rectangle ?
+imagefill 5,5,0,blueball.gif
+rectangle 1,1,7,7,green
+:bgimage
+bgimage blueball.gif
+:fine:fine

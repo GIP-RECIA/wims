@@ -1,0 +1,215 @@
+Corrispondenze e funzioni
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+maps,surjectivity,injectivity,image,preimage
+Marina, Cazzola
+wims@unimib.it
+
+
+:U1/logic/oefmap.fr
+exo=corres1&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Corrispondenze: rappresentazione grafica #1
+Costruire la rappresentazione di una funzione tramite diagrammi.
+
+:U1/logic/oefmap.fr
+exo=corres2&confparm1=2&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=1&intro_check=2
+10
+1
+Corrispondenze: rappresentazione grafica #2
+Costruire la rappresentazione grafica di una corrispondenza tra insiemi e riconoscerne le proprietà.
+
+:U1/set/oeffinmap.en
+exo=tablebij&confparm1=2&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=2&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=1&intro_check=2
+10
+1
+Proprietà delle funzioni #1
+Riconoscere se è biunivoca o meno una funzione definita assegnando tramite una tabella le immagini degli elementi del dominio.
+
+:U1/set/oeffinmap.en
+exo=tablelem&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Proprietà delle funzioni #2
+Undividuare immagini e contrommagini di vari elementi mediante una funzione data in forma di tabella.
+
+:U1/set/oeffinmap.en
+exo=tableimg&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Immagine di una funzione #1
+Individuare l'immagine di una funzione (funzione data in forma di tabella). TODO: l'immagine di f è definita a p. 128.
+
+:U1/set/oeffinmap.en
+exo=tablerecip&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Controimmagine #1
+Individuare le controimmagini di un sottoinsieme del codominio tramite una funzione (data in forma di tabella).
+
+:U1/logic/oefmap.fr
+exo=free01&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Rappresentazione grafica di una funzione #0
+Definire una funzione tra insiemi finiti tramite la sua rappresentazione grafica.
+
+:U1/logic/oefmap.fr
+exo=diagram1&confparm1=2&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=1&intro_check=2
+10
+1
+Rappresentazione grafica di una funzione #1
+Costruire la rappresentazione grafica di una funzione data.
+
+:U1/logic/oefmap.fr
+exo=diagram2&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Rappresentazione grafica di una funzione #2
+Costruire la rappresentazione grafica di una funzione data.
+
+:U1/logic/oefmap.fr
+exo=diagram3&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Rappresentazione grafica di una funzione #3
+Costruire la rappresentazione grafica di una funzione data.
+
+:U1/algebra/corresjs.en
+difficulty=1&applname=2
+10
+1
+Riconoscere una funzione e le sue proprietà #1
+esercizio dinamico sulla definizione di applicazione.
+
+:U1/algebra/corresjs.en
+difficulty=2&applname=2
+10
+1
+Riconoscere una funzione e le sue proprietà #2
+esercizio dinamico sulla definizione di applicazione.
+
+
+:U1/set/oeffinmap.en
+exo=tablesqr&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni #1
+Determinare il <em>quadrato</em> di una funzione, individuando le immagini di tutti gli elementi del dominio.
+
+:U1/set/oeffinmap.en
+exo=tablecube&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni #2
+Determinare il <em>cubo</em> di una funzione, individuando le immagini di tutti gli elementi del dominio.
+
+:U1/set/oeffinmap.en
+exo=tableinv&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni #3
+Individuare la funzione inversa di una funzione data in forma di tabella.
+
+:U1/logic/oefmap.fr
+exo=free11&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #1
+Individuare le proprietà (iniettività/suriettività) di una funzione ottenuta come coposizione di due funzioni.
+
+:U1/logic/oefmap.fr
+exo=free21&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #2
+Costruire una funzione in modo che la sua composizione con una funzione data sia iniettiva.
+
+:U1/logic/oefmap.fr
+exo=free24&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #3
+Costruire una funzione in modo che la sua composizione con una funzione data sia iniettiva.
+
+:U1/logic/oefmap.fr
+exo=free22&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #4
+Costruire una funzione in modo che la sua composizione con una funzione data sia suriettiva.
+
+:U1/logic/oefmap.fr
+exo=free25&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #5
+Costruire una funzione in modo che la sua composizione con una funzione data sia suriettiva.
+
+:U1/logic/oefmap.fr
+exo=free23&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #6
+Costruire una funzione in modo che la sua composizione con una funzione data soddisfi la condizione richiesta.
+
+:U1/logic/oefmap.fr
+exo=free26&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #7
+Costruire una funzione in modo che la sua composizione con una funzione data soddisfi la condizione richiesta.
+
+:U1/logic/oefmap.fr
+exo=free31&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #8
+Costruire la composizione di alcune funzioni in modo che la funzione ottenuta sia iniettiva.
+
+:U1/logic/oefmap.fr
+exo=free32&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #9
+Costruire la composizione di alcune funzioni in modo che la funzione ottenuta sia suriettiva.
+
+:U1/logic/oefmap.fr
+exo=free33&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Composizione di funzioni: proprietà #10
+Costruire la composizione di alcune funzioni in modo che la funzione ottenuta soddisfi la condizione richiesta.
+
+:U1/set/oeffinmap.en
+exo=polylem&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Proprietà delle funzioni (aritmetica modulare)
+Individuare immagini e controimmagini (funzione data in forma di polinomio). Richiede di aver affrontato la congruenza modulo n (capitolo 6).
+
+:U1/set/oeffinmap.en
+exo=polyimg&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Immagine di una funzione (aritmetica modulare)
+Individuare l'immagine di una funzione (funzione data in forma di polinomio). Richiede di aver affrontato la congruenza modulo n (capitolo 6).
+
+:U1/set/oeffinmap.en
+exo=polyrecip&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Controimmagine (aritmetica modulare)
+Individuare le controimmagini degli elementi di un sottoinsieme del dominio tramite una funzione (data in forma di polinomio). Richiede di aver affrontato la congruenza modulo n (capitolo 6).
+
+:U1/set/oeffinmap.en
+exo=polytable&confparm1=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=2&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_good=0&intro_expert=yes
+10
+1
+Costruire una funzione (aritmetica modulare)
+Data una funzione, costruire la sua rappresentazione tramite una tabella. Richiede di aver affrontato la congruenza modulo n (capitolo 6).
+

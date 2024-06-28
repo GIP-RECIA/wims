@@ -1,0 +1,71 @@
+!set wims_backslash_insmath=yes
+<h2 class="wimscenter">Calcul du score d'un exercice</h2>
+<p>
+Le score d'un exercice est un nombre entre 0 et 10. Son calcul se fait seulement 
+au moment de l'analyse des réponses de l'exercice. Le calcul utilise à la fois les 
+poids associés à chaque instruction <span class="tt wims_code_words">\answer</span>
+ et <span class="tt wims_code_words">\condition</span> mais aussi du niveau de 
+sévérité choisi par l'enseignant au moment du paramétrage de l'exercice.
+</p>  
+<p>
+Considérons un exercice sans étape ayant plusieurs champs de réponse ou des réponses 
+analysées par des conditions mais n'utilisant pas les instructions 
+<span class="tt wims_code_words">\steps</span> et 
+<span class="tt wims_code_words">\conditions</span>
+</p>
+Désignons par
+<ul><li>
+\(I\) l'ensemble des numéros des réponses analysées automatiquement utilisées 
+dans l'énoncé
+</li><li>
+ \(C\)  l'ensemble des numéros des conditions utilisées (les numéros déclarés dans
+ l'instruction <span class="tt wims_code_words">\conditions</span>, par défaut les 
+numéros de toutes les conditions)
+</li><li> \(w_i\) le poids associé au champ de réponse \(i\) ou à la  condition 
+\(i\) fixé par l'option <span class="tt wims_code_words">weight</span> 
+(par défaut, \(w_i=1\) si l'option <span class="tt wims_code_words">weight</span> 
+n'est pas utilisée).
+</li><li>\(x_i\) le score obtenu en complétant le champ de réponse \(i\) 
+(0 si la réponse est fausse, 1 si elle est juste, entre 0 et 1  si elle est 
+partiellement juste).
+</li></ul>
+Le score sur l'exercice est calculé par la formule suivante 
+  \(10(\frac{\mbox{scoregot}}{scoreshould})^\mbox{puis}\) avec : 
+<ul><li>
+  \(\mbox{scoreshould} =\sum_{i\in I}w_i+\sum_{c\in C}w_c\) 
+</li><li>
+ \(\mbox{scoregot} =\sum_{i\in I}w_i x_i+\sum_{c\in C}w_c x_c\)
+</li><li>
+ \(\mbox{puis}\in\{1, 1.5,...,4.5, 5\}\) fixé par le niveau de sévérité choisi 
+(\(\mbox{puis} = 1\) si le niveau de sévérité est 1)
+</li></ul>
+Le nombre obtenu est ensuite arrondi pour ne garder qu'une décimale. 
+ 
+<h3>Cas d'une réponse analysée uniquement par des conditions</h3>  
+Si on choisit de ne pas mettre la bonne réponse dans l'instruction  
+<span class="tt wims_code_words">\answer</span> afin que l'analyse de la réponse
+ se fasse totalement avec des conditions, alors le poids de cette 
+instruction <span class="tt wims_code_words">\answer</span> est 0; seuls les poids
+ des conditions mises pour analyser la réponse de ce champ seront pris en compte.
+
+<h3>Cas des exercices utilisant la commande 
+<span class="tt wims_code_words">\steps</span> ou 
+<span class="tt wims_code_words">\nextstep</span></h3>  
+Le nombre d'instructions <span class="tt wims_code_words">\answer</span> définis
+ dans le source de l'exercice peut être plus grand que le nombre de champs de 
+réponse apparaissant dans l'énoncé.
+<ul><li>
+Dans un exercice utilisant la commande <span class="tt wims_code_words">\steps</span>,
+ l'ensemble  \(I\) contient alors les numéros  i pour lesquels  
+<span class="tt wims_code_words">replyi</span> est déclaré dans  
+<span class="tt wims_code_words">\steps.</span>
+</li><li>
+Dans un exercice à étapes utilisant la commande 
+<span class="tt wims_code_words">\nextstep</span>, 
+l'ensemble \(I\) ne contient que les numéros des champs de réponse effectivement
+ vus par l'élève avant que l'exercice ne s'arrête (c'est-à-dire les numéros  i 
+pour lesquels <span class="tt wims_code_words">replyi</span> est passé dans 
+l'instruction <span class="tt wims_code_words">\nexstep</span> avant que l'exercice
+ ne s'arrête.
+</li></ul> Il en est de même pour l'ensemble \(C\) définissant les conditions 
+qui seront prises en compte dans le calcul du score de l'exercice. 

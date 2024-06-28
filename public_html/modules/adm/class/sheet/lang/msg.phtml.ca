@@ -1,0 +1,288 @@
+!set wims_module_log=error: $error
+
+!if not_supervisor=$error
+  Ho sento, però l'operació de preparació/modificació d'un full d'exercicis està reservada als professors registrats d'una classe.
+  !exit
+!endif
+
+!if bad_series=$error
+  Estrany, però no trobo la sèrie d'exercicis a modificar!!
+  !exit
+!endif
+
+!if bad_source=$error
+  L'article número $bad_source del codi que acabeu d'enviar no és vàlid.
+  Ha de tenir un títol (línia 5), un pes que no sigui zero (línia 3) i un nombre de punts (múltiple de 10)
+  (Línia 4).
+  !href cmd=reply&job=prep_putsource $name_correctsource
+.
+  !exit
+!endif
+
+!if active_sheet=$error
+  Aquest full està actiu. El seu contingut no pot ser modificat.
+  !exit
+!endif
+
+!if bad_sheet=$error
+  El vostre número de full no és vàlid. Error de programari?
+  !exit
+!endif
+
+!if bad_maxsheet=$error
+  El número de fulls està limitat a $max_sheets. No pots crear-ne cap més.
+  !exit
+!endif
+
+!if no_title=$error
+  Heu intentat desar un full sense títol, cosa que no és aconsellable. Error de manipulació?
+  !exit
+!endif
+
+!if $error=not_secure
+  Aquesta operació es pot fer només des d'un lloc segur.
+  !if $sec=$empty
+    No heu definit cap lloc segur. Accés denegat. Podeu
+    demanar al gestor del lloc que ho faci per vosaltres.
+  !else
+    Accés prohibit.
+  !endif
+  !exit
+!endif
+
+!if $error=sharing_sheet
+  Els vostres fulls són compartits amb altres classes !
+  !if $wims_ismanager<2
+    Heu de demanar al gestor del lloc que desactivi el full per vosaltres.
+    !exit
+  !endif
+  Si desactiveu aquest full us arrisqueu a posar en un desordre total
+  les classes veïnes. Així que aquesta operació és <b>molt desaconsellable</b>.
+  <p>
+  Estàs segur que vols desactivar el full?
+  </p><p class="wimscenter">
+  !set wims_ref_class=wims_button
+  !href cmd=reply&job=deactivate&confirm=yes $wims_name_yes, $(wims_name_actionlist[3])
+$ $
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=resume $wims_name_no, $wims_name_giveup
+  </p><p>
+  <b>Abans de continuar, demana almenys als professors de les classes veïnes
+  salvaguardar les seves classes&nbsp;!</b> Si es produeixen els desordres, fins i tot
+  després de diversos mesos, haureu de tornar a l'estat ANTERIOR a
+  la desactivació, perdent tot el que ha succeït DESPRËS, i això per a totes les classes
+  que comparteixen el full! Espero que estiguis prou advertit.
+  </p>
+  !exit
+!endif
+
+!if sheet_in_exam iswordof $error
+  !set exa=!word 2 of $error
+  Impossible desactivar aquest full, perquè tens exàmens basats en el seu contingut
+  (exam $exa).
+  !exit
+!endif
+
+!if $error=non_empty_activities
+  <p class="wims_msg warning">Voleu desactivar el full $sheet, però els alumnes
+  ja han començat a treballar en ell !</p>
+  !if share iswordof $confirmed
+    <p>A més, el full es comparteix amb altres classes on poden haver-hi
+    treballat i també les seves notes. Així que està prohibit desactivar-lo.</p>
+    !exit
+  !endif
+  <p>Totes les notes obtingudes en aquest full seran esborrades si el
+  desactives. Estàs segurs de voler-ho fer?</p>
+  <p class="wimscenter">
+  !set wims_ref_class=wims_button
+  !href cmd=reply&job=deactivate&confirm=yes $wims_name_yes, $(wims_name_actionlist[3])
+  &nbsp;&nbsp;
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=resume $wims_name_no, $wims_name_giveup
+  </p>
+  Llista de comptes que ja han treballat en aquest full :
+
+ <p class="tt">$worktest</p>
+
+ <div class="wims_msg info"><b>Nota</b>. Aquesta acció s'ha de prendre només si és una classe de
+ prova. No ho feu si els alumnes són realment els vostres alumnes&nbsp;!</div>
+ !exit
+!endif
+
+!if prep_activate=$error
+ Heu demanat activar el full $sheet, és a dir, fer-lo accessible als alumnes de la classe. <br>
+ Tingueu en compte que un full actiu no pot ser modificat sense desactivar-lo prèviament, i la desactivació del full provoca
+ l'eliminació de totes les notes en el full, si això no està prohibit per la situació.
+ !if $test_expire!=$empty
+  <div class="wims_warning">
+   La data de caducitat del full és anterior a la data d'avui, es
+   posarà la data de caducitat de la classe.
+  </div>
+ !endif
+ <p>
+ Voleu continuar?
+ </p>
+ <p class="wimscenter">
+  !set wims_ref_class=wims_button
+  !href cmd=reply&save=$wims_name_tosave&job=activate $wims_name_yes, $(wims_name_actionlist[1])
+$ $
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=resume $wims_name_no, $wims_name_giveup
+ </p>
+ !exit
+!endif
+
+!if prep_erase=$error
+  Vols realment esborrar aquest full número $sheet ($title)?
+  <p class="wimscenter">
+  !set wims_ref_class=wims_button wims_warning
+  !href cmd=reply&job=erase $wims_name_yes, $wims_name_erase
+$ $
+  !set wims_ref_class=wims_button
+  !href cmd=resume $wims_name_no, $wims_name_giveup
+  </p>
+  !exit
+!endif
+
+!if prep_expire=$error
+  Aquest full número $sheet ($title) caduca normalment el $expday
+  !item $expmon de $months
+  $expyear. Voleu fer-lo caducar ara?
+  <p class="wimscenter">
+  !set wims_ref_class=wims_button wims_warning
+  !href cmd=reply&job=expire $wims_name_yes ; $(wims_name_actionlist[2])
+$ $
+  !set wims_ref_class=wims_button
+  !href cmd=resume $wims_name_no ; $wims_name_giveup
+  </p>
+  <p><b>Nota.</b> Els vostres alumnes no podran seguir treballant
+   en un full caducat. Però les seves notes anteriors es mantindran
+   (i es reflectiran en les estadístiques)
+   i vosaltres sempre les podreu consultar.</p>
+  !exit
+!endif
+
+!if prep_putsource=$error
+  <p>
+  Si teniu el codi d'un full prèviament guardat, podeu inserir-lo
+  en el full actual, copiant aquest codi a la finestra de sota,
+  a continuació, feu clic al botó <span class="wims_button disabled">$wims_name_send</span>.
+  </p><p>
+  També podeu utilitzar aquest formulari per a inserir el codi d'un full públic amb copiar i enganxar.
+  </p>
+  !set wims_menu_items=!append line sheetadmin,1,cmd=resume \
+to $wims_menu_items
+
+  !set wims_form_method=post
+  !form reply
+  <input type="hidden" name="job" value="putsource"><p class="wimscenter">
+  <textarea cols="55" rows="10" name="source">$ssource</textarea>
+  </p>
+  <p class="wimscenter"><input type="submit" value="$wims_name_send"></p>
+
+  !formend
+  <span class="wims_warning">$wims_name_warning</span>.
+  No inseriu un fitxer de codi modificat&nbsp;! Us arrisqueu
+  a fer el vostre full inservible.
+  !exit
+!endif
+
+!if prep_modify=$error
+  !set cnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+  !if $modif>$cnt or $modif<1
+    Heu enviat una sol·licitud invàlida. S'ignora.
+  !else
+    !set exo=!record $modif of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+    !read exomodify.phtml $exo
+  !endif
+  !exit
+!endif
+
+!if $error=toolate
+  !read adm/lang/date.phtml.$moduclass_lang $class_expiration
+  <p>$name_expiration1 ($l_date_out). $name_expiration2 </p>
+  !set wims_ref_class=wims_button
+  !href cmd=resume&save=$empty&job=$empty $wims_name_back2
+  ($wims_name_sheetmanagement)
+  !exit
+!endif
+
+!if $error=srcnoexo
+ Aquest full no conté cap exercici, de manera que el seu codi està buit.<br>
+ !href cmd=resume tornar a la pàgina de preparació
+ !exit
+!endif
+
+!if $error=depindiv
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+    No és possible definir dependències de la puntuació alhora que
+    l'activació de la individualització dels fulls d'exercicis amb una variable tècnica.
+    <br>
+    Heu de triar entre els dos abans de poder activar aquest full.
+    !reset error
+  </div>
+  <div class="wimscenter">
+   !set wims_ref_class=wims_button
+   !href cmd=resume Tornar
+  </div>
+  !exit
+!endif
+
+!if badtechvarname iswordof $error
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+    !let code=!word 2 to -1 of $error
+    !if $code=_
+      une des conditions <span class="wims_code_words">Condition pour cacher la feuille aux participants</span> n'a pas de nom de variable
+    !else
+      Un des noms de variable (
+        !let code=!listcomplement _ in $code
+        $code
+      ) n'est pas un nom correct de variable technique. Les noms incorrects de variable technique
+      ont été supprimés du champs <span class="wims_code_words">Condition pour cacher la feuille aux participants</span>.
+    !endif
+  </div>
+  <div class="wimscenter">
+   !set wims_ref_class=wims_button
+   !reset error
+   !href cmd=resume Retour
+  </div>
+  !exit
+!endif
+
+!if toomanyexo=$error
+  <div class="wims_msg alert">
+    Le nombre d'exercices dans une feuille est limité à $max_exos. Vous devez supprimer des exercices avant de pouvoir
+    l'activer.
+  </div>
+  !exit
+!endif
+
+!if $error=badallowshare
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+  La variable technique que vous souhaitez utiliser n'est pas disponible dans toutes les classes en partage de ressources avec votre
+  classe.
+  Vous ne pouvez donc pas propager ces réglages aux autres classes en partage.
+  </div>
+  <div class="wimscenter">
+   !set wims_ref_class=wims_button
+   !reset error
+   !href cmd=resume Retour
+  </div>
+  !exit
+!endif
+
+!if $error=hiddenbadtechvar
+  Attention, la <span class="wims_code_words">condition pour cacher la feuille aux participants</span> en utilisant une variable technique est incorrecte. Vous devez la corriger.
+  !exit
+!endif
+
+!if techvardiscord iswordof $error
+  !! TODO_lang techvardiscord
+  !changeto lang/msg.phtml.fr
+!endif
+
+
+!msg $error

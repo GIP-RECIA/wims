@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+opacity 255,255
+linewidth 2
+onclick
+crosshairs red,0,0,1,1,2,2,3,3
+onclick
+crosshairs blue,0,1,1,2,2,3,3,4

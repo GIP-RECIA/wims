@@ -1,0 +1,70 @@
+!! not allow for other than type=3
+!if $type!=3
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!if $putiworkco!=0 or $seealltime!=1
+  error=putworknotallow
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! -------- check for valid student (in class)
+!bound userv within $ulist default $empty
+!if $userv=$empty
+  error=putworkusernotexists
+  job=configfw
+  !changeto $job.proc
+!endif
+
+
+!! -------- test si la copie de l'etudiant existe (pas de depot de correction si pas de copie)
+
+!readproc proc/findfile3.proc $freework,$userv
+!if $output=$empty
+  error=studentwithoutfw
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! remarks
+remarkmax=1000
+!! -------- save remark
+!! before saving check consistency
+tmplength=!charcnt $remark
+!if $tmplength > $remarkmax
+  remark=!detag $remark
+  error=truncatedtext
+!endif
+remark=!char 1 to $remarkmax of $remark
+remark=!replace internal : by &#58; in $remark
+test=!nospace $remark
+!if $test=$empty
+  !sh rm -f $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/.$userv $remark
+!else
+  !if $remark!=$empty
+    !writefile wimshome/log/classes/$wims_class/freeworksdata/$freework/co/.$userv $remark
+  !endif
+!endif
+
+!! -------- save finalremark
+tmplength=!charcnt $finalremark
+!if $tmplength > $remarkmax
+  finalremark=!detag $finalremark
+  error=truncatedtext
+!endif
+finalremark=!char 1 to $remarkmax of $finalremark
+finalremark=!replace internal : by &#58; in $finalremark
+test=!nospace $finalremark
+!if $test=$empty
+  !sh rm -f $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$userv $finalremark;
+!else
+  !if $finalremark!=$empty
+    !writefile wimshome/log/classes/$wims_class/freeworksdata/$freework/co/$userv $finalremark
+  !endif
+!endif
+
+
+job=viewuser3
+!changeto $job.proc

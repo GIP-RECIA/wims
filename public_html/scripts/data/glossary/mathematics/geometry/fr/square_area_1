@@ -1,0 +1,186 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Aire d'un carré (exemple)
+!set gl_renew=1
+
+!set gl_polyg=BIEN,BIOS,BISE,BLEU,BLOC,BOIS,BOND,BORD,BOUC,BOUM,BOUT,BOXE,BREF,BRIN,BRIO,BROC,BRUN,BRUT,BUSE,CENT,CERF,CEUX,CHEF,CHER,CHEZ,CHOU,CHUT,CIEL,CIME,CINQ,CIRE,CLEF,CLES,CLOS,CLOU,CLUB,CODE,COEF,COIN,COTE,COUP,CRIN,DEFI,DEMI,DEMO,DENT,DEUX,DING,DIRE,DOCK,DONC,DOUX,DROP,DUEL,DUNE,ECHO,EMIR,EMOI,EPIS,ETUI,EURO,EXIL,EXPO,FEUX,FIER,FILE,FILM,FILS,FIXE,FLIP,FLOC,FLOP,FLOT,FLOU,FLUO,FLUX,FOIE,FOIN,FOIS,FOLK,FOND,FORT,FOUR,FRIC,FUEL,FUIR,GENS,GLUE,GOLF,GOND,GOUT,GREC,GRIS,GROS,GRUE,HUER,HUIT,IDEM,ILOT,INDE,INFO,INOX,IODE,ITEM,JEUX,JOIE,JOLI,JONC,JOUE,JOUG,JOUR,JUDO,JUGE,JUIN,JUPE,JURY,KEPI,LENT,LEUR,LIEN,LIER,LIEU,LIFT,LIME,LION,LOBE,LOFT,LOUP,LOVE,LUGE,LUNE,LUXE,LUTH,MELO,MENU,MIEL,MIRE,MISE,MODE,MOIS,MOLE,MONT,MUET,MULE,NERF,NEUF,NEWS,NOEL,NOIR,NOIX,NOTE,NOUS,NUIT,OCRE,OEUF,OGRE,ONDE,ONYX,ONZE,OPEN,OPUS,ORDI,ORGE,ORYX,OSER,OTER,OUPS,OVNI,PEUR,PLUS,PNEU,POIS,POLE,POLY,PONT,PORT,POUR,POUX,PRET,PRIX,PROF,PUCE,REIN,RHUM,RIDE,RIEN,ROCK,ROND,ROSE,ROTI,ROUE,ROUX,SCIE,SECU,SELF,SERF,SEUL,SNIF,SNOB,SOIE,SOIF,SORT,STOP,SUER,SUMO,SURF,TOFU,TOGE,TOLE,TOME,TOUR,TOUS,TOUX,TRIO,TROC,TROP,TROU,TRUC,TUBE,UNIR,URNE,USER,VELO,VENT,VERS,VERT,VETO,VIDE,VOEU,VOIE,VOIR,VOIX,VOTE,VOUS,YETI,YEUX,YOLE,ZEBU,ZERO,ZONE
+!set gl_nom=!randitem $gl_polyg
+!set gl_R=!char 1 of $gl_nom
+!set gl_S=!char 2 of $gl_nom
+!set gl_T=!char 3 of $gl_nom
+!set gl_U=!char 4 of $gl_nom
+!readproc data/glossary/mathematics/geometry/macro/randalphanum_gen
+!set gl_alea=$gl_rd
+
+!set gl_b1=brd_$gl_alea
+!set gl_id1=id_$gl_alea
+<style>
+/*<![CDATA[*/
+#appletA{order:2;}
+#appletB{order:1;}
+@media screen and (max-width: 40em) {
+#appletA_$gl_alea{order:2;}
+#appletB_$gl_alea{order:1;}
+}
+div.appletB{padding-left:1.5em;}
+.rem_$gl_alea{
+  font-size:0.8em;font-style:italic;text-align:center;
+}
+/*]]>*/
+</style>
+!set gl_dim=!randint 1,12
+!set gl_choix=!randint 1,8
+!set gl_ens_unitl=unité de longueur,mm,cm,dm,m,dam,hm,km
+!set gl_ens_unita=unité d'aire,mm<sup>2</sup>,cm<sup>2</sup>,dm<sup>2</sup>,m<sup>2</sup>,dam<sup>2</sup>,hm<sup>2</sup>,km<sup>2</sup>
+!set gl_unitl=$(gl_ens_unitl[$gl_choix])
+!set gl_unita=$(gl_ens_unita[$gl_choix])
+!set gl_script_$gl_alea =\
+JXG.Options.point.snapToGrid = true;\
+JXG.Options.point.snapSizeX = 1;\
+JXG.Options.elements.tabindex = -1;\
+const $gl_b1 = JXG.JSXGraph.initBoard('$gl_id1', {\
+  boundingbox:  [-2.5, 16.5, 15.5, -1.5],\
+  axis:false,\
+  grid:false,\
+  showCopyright : false,\
+  showNavigation:false,\
+  showZoom : false,\
+  keepaspectratio : true,\
+  zoom: {enabled: false,wheel:false,needShift: false,factorX: 0,factorY: 0,min:0.001,max:0.001,pinchHorizontal: false,pinchVertical: false,pinchSensitivity: 0},\
+  pan: {enabled: false,needTwoFingers: false,needShift:false}\
+  });\
+$gl_b1.renderer.displayCopyright('Figure réalisée avec JSXGraph v'+JXG.version,11);\
+out = function () {\
+  if (!this.visProp.fixed) {\
+    $gl_b1.containerObj.style.cursor = 'default';\
+  }\
+};\
+dir2 = function () {\
+  if (!this.visProp.fixed) {\
+    $gl_b1.containerObj.style.cursor = 'w-resize';\
+  }\
+};\
+var s_$gl_alea =$gl_dim;\
+let xR_$gl_alea=0;\
+let yR_$gl_alea=0;\
+let seg_$gl_alea=[];\
+for (let i=-1;i<14;i++){\
+  for (let j=-1;j<13;j++){\
+  seg_$gl_alea[i]=$gl_b1.create('segment',[[-1,j],[13,j]],{strokeColor:'#e3e3e3',strokeWidth:0.7,highlight: false,fixed:true});\
+ $gl_b1.create('segment',[[i,-1],[i,12]],{strokeColor:'#e3e3e3',strokeWidth:0.7,highlight: false,fixed:true});\
+ }\
+}\
+let p1_$gl_alea = $gl_b1.create('point', [xR_$gl_alea, yR_$gl_alea],{name:'$gl_R',size:0,color:'green',fixed:true,face:'plus',showInfobox:false,label:{autoPosition: true,offset:[-12,-3]}});\
+let l1_$gl_alea=$gl_b1.create('segment',[[1,0],[12,0]],{tabindex:-1,strokeColor: 'transparent',highlight: false,fixed:true});\
+let p2_$gl_alea=$gl_b1.create('glider', [s_$gl_alea, yR_$gl_alea,l1_$gl_alea],{name:'$gl_S',color:'green',showInfobox:false,tabindex:0,label:{autoPosition: true,offset:[8,-3]},layer: 15});\
+let p3_$gl_alea = $gl_b1.create('point',["X($gl_S)","X($gl_S)"],{name:'$gl_T',size:0,fixed:true,color:'green',face:'',showInfobox:false,label:{autoPosition: true,offset:[4,3]}});\
+let p4_$gl_alea = $gl_b1.create('point',["X($gl_R)","Y($gl_T)"],{name:'$gl_U',size:0,fixed:true,color:'green',face:'',showInfobox:false,label:{autoPosition: true,offset:[-10,8]}});\
+let pol_$gl_alea=$gl_b1.create('polygon',[p1_$gl_alea,p2_$gl_alea,p3_$gl_alea,p4_$gl_alea],{fillcolor:'green',borders:{tabindex:-1,strokeColor:'green',strokeWidth: 2,layer: 10,highlight: false},vertices:{face:'plus',strokeColor:'green',size:0,showInfobox:false,label:{fixed:false,offset:[-4,8]}},highlight: false});\
+let u1_$gl_alea = $gl_b1.create('point', [-1,14],{color:'green',withLabel:false,visible:false});\
+let u2_$gl_alea = $gl_b1.create('point', [0,14],{color:'green',withLabel:false,visible:false});\
+let polu_$gl_alea = $gl_b1.create('regularpolygon', [u1_$gl_alea, u2_$gl_alea, 4],{tabindex:-1,fixed:true,fillcolor:'green',borders:{strokeColor:'#e3e3e3',highlight: false,strokeWidth:1,fixed:true},vertices:{face:'',showInfobox:false,withLabel:false,visible:false,fixed:true},highlight: false});\
+let e1_$gl_alea=$gl_b1.create('segment',[[-1,13],[0,13]],{tabindex:-1,fixed:true,strokeColor: 'green',strokeWidth: 2,highlight: false});\
+let t1_$gl_alea = $gl_b1.create('text',[0.25,14.5,"1 $gl_unita"],{fixed:true});\
+let t4_$gl_alea = $gl_b1.create('text',[0.25,13,"1 $gl_unitl"],{fixed:true});\
+let p5_$gl_alea=$gl_b1.create('midpoint', [p1_$gl_alea, p2_$gl_alea],{name:'I',size:0,color:'green',fixed:true,face:'',showInfobox:false,withLabel:false});\
+let t2_$gl_alea = $gl_b1.create('text',[0, -0.5,function() { return p2_$gl_alea.X().toFixed(0)}], {anchor: p5_$gl_alea,anchorX: 'middle',fixed:true});\
+let p6_$gl_alea=$gl_b1.create('midpoint', [p1_$gl_alea, pol_$gl_alea.vertices[3]],{name:'J',size:0,color:'green',fixed:true,face:'',showInfobox:false,withLabel:false});\
+let t3_$gl_alea = $gl_b1.create('text',[-0.5, 0,function() { return p2_$gl_alea.X().toFixed(0)}], {anchor: p6_$gl_alea,anchorX: 'middle',fixed:true});\
+let quad_$gl_alea = $gl_b1.create('text',[6,14.5,"Le quadrillage ci-dessous est constitué de carrés."],{fixed:true});\
+document.getElementById("unite_$gl_alea").addEventListener("change", function(){\
+unitl_$gl_alea = document.getElementById("unite_$gl_alea").value;\
+$gl_b1.removeObject(t1_$gl_alea);\
+t1_$gl_alea = $gl_b1.create('text',[0.25,14.5,"1 "+unita_$gl_alea.get(unitl_$gl_alea)],{fixed:true});\
+$gl_b1.removeObject(t4_$gl_alea);\
+t4_$gl_alea = $gl_b1.create('text',[0.25,13,"1 "+unitl_$gl_alea],{fixed:true});\
+});\
+p2_$gl_alea.on('over',dir2);\
+p2_$gl_alea.on('out',out);\
+$gl_b1.fullUpdate();
+
+<div class="grid-container fluid">
+  <div>
+    <label for="unite_$gl_alea">Choix de l'unité de longueur&nbsp;:</label>
+    <select name="unites" id="unite_$gl_alea" onchange=" ChoixUnite_$gl_alea()">
+    !for gl_k=1 to 8
+      <option value="$(gl_ens_unitl[$gl_k])"
+      !if $gl_k=$gl_choix
+        selected
+      !endif
+      >$(gl_ens_unitl[$gl_k])</option>
+    !next gl_k
+    </select>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div id="appletA_$gl_alea" class="cell2 small-12 medium-6 large-6">
+      <div class="appletA spacer">
+        !readproc slib/geo2D/jsxgraph $gl_id1 $gl_b1,[250x250, center min=250px max=400px scroll],$(gl_script_$gl_alea)
+        $slib_out
+      </div>
+      <div class="rem_$gl_alea">La figure est modifiable en déplaçant le point <span class="nowrap">\(\mathrm{$gl_S}\).</span>
+      </div>
+    </div>
+    <div id="appletB_$gl_alea" class="cell2 small-12 medium-6 large-6">
+      <div class="appletB">
+        <div id="txt_$gl_alea"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let myText_$gl_alea;
+const unita_$gl_alea = new Map();
+  !for gl_kkk=1 to 8
+    unita_$gl_alea.set("$(gl_ens_unitl[$gl_kkk])","$(gl_ens_unita[$gl_kkk])");
+  !next gl_kkk
+
+let unitl_$gl_alea="$gl_unitl";
+let unitarea_$gl_alea="$gl_unita";
+let unitl_accord_$gl_alea="$gl_unitlaccord";
+let unita_accord_$gl_alea="$gl_unitaaccord";
+const debMML_$gl_alea='<span class="wims_mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mstyle  mathsize="110%">';
+const finMML_$gl_alea='</mstyle></math></span>';
+
+function ChoixUnite_$gl_alea() {
+  unitl_$gl_alea = document.getElementById("unite_$gl_alea").value;
+  unitarea_$gl_alea =unita_$gl_alea.get(unitl_$gl_alea);
+  Accord_$gl_alea(unitl_$gl_alea,unitarea_$gl_alea);
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+}
+function Accord_$gl_alea(l,a) {
+  unitl_$gl_alea =l;
+  unitarea_$gl_alea =a;
+  if(unitl_$gl_alea == 'unité de longueur' && p2_$gl_alea.X()>1){
+    unitl_accord_$gl_alea ='unités de longueur';
+    unita_accord_$gl_alea ="unités d\'aire";
+  } else {
+    unitl_accord_$gl_alea =unitl_$gl_alea;
+    unita_accord_$gl_alea =unitarea_$gl_alea;
+  };
+}
+function textDisplay_$gl_alea() {\
+  const ph1_$gl_alea=`Soit \(\mathrm{$gl_R$gl_S$gl_T$gl_U}\) un <strong>carré</strong> tel que `;
+  let ph2_$gl_alea= (x => debMML_$gl_alea+'<mi mathvariant="normal">$gl_R$gl_S</mi><mo>=</mo><mn>'+x+'</mn>'+finMML_$gl_alea)(p2_$gl_alea.X());
+  const ph3_$gl_alea=`Soit \(A\) son aire en `;
+  const ph4_$gl_alea=`\(A = \mathrm{$gl_R$gl_S} \times \mathrm{$gl_R$gl_S}\)`;
+  let ph5_$gl_alea= (x => debMML_$gl_alea+'<mi>A</mi><mo>=</mo><mn>'+x+'</mn><mo>&#xD7;</mo><mn>'+x+'</mn>'+finMML_$gl_alea)(p2_$gl_alea.X());
+  let ph6_$gl_alea=(x => debMML_$gl_alea+'<mi>A</mi><mo>=</mo><mn>'+x+'</mn>'+finMML_$gl_alea)(p2_$gl_alea.X()*p2_$gl_alea.X());
+  const ph7_$gl_alea=`L\'aire du carré \(\mathrm{$gl_R$gl_S$gl_T$gl_U}\) est égale à `;
+  let ph8_$gl_alea=(x => debMML_$gl_alea+'<mn>'+x+'</mn>'+finMML_$gl_alea)(p2_$gl_alea.X()*p2_$gl_alea.X());
+  myText_$gl_alea='<p>'+ph1_$gl_alea+ph2_$gl_alea+' '+unitl_accord_$gl_alea+'.</p><p class="spacer">'+ph3_$gl_alea+unitarea_$gl_alea+'.</p><p class="spacer">'+ph4_$gl_alea+'<br>'+ph5_$gl_alea+'<br>'+ph6_$gl_alea+'</p><p class="spacer">'+ph7_$gl_alea+ph8_$gl_alea+' '+unita_accord_$gl_alea+'.</p>';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+   Accord_$gl_alea(unitl_$gl_alea,unitarea_$gl_alea);
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+})
+
+p2_$gl_alea.coords.on('update', function(){
+  Accord_$gl_alea(unitl_$gl_alea,unitarea_$gl_alea);
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+})
+</script>

@@ -1,0 +1,111 @@
+!! specific traitement for type=3 in job=configfw
+!!
+
+!! peut être activeform peut être supprimée il faut vérifier dans les applets que le test est bien =1
+!if $activetest=0
+  activeform=1
+!else
+  activeform=0
+!endif
+
+!! ---- manage of solution download zone opening
+!if $putworkco=1
+  ltdownloadzone=solution
+!else
+  ltdownloadzone=$empty
+!endif
+
+!! ---- save structure of the freework and data of supervisor zone.
+!if $job2=savestructure and $activetest=0
+  !! -------- keep solution file
+  nb_=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freework$freework
+  !reset datafile t_
+  k=1
+  !while $k<=$nb_ and $t_!=solution
+    tmp_=!record $k of wimshome/log/classes/$wims_class/freeworks/.freework$freework
+    t_=!line 1 of $tmp_
+    !if $t_=solution
+      datafile=:$tmp_
+    !endif
+    !increase k
+  !endwhile
+  !! -------- save structure of the freework
+  !for tuser in teacher,student
+    !bound nbrezone$tuser between $(min_zone$tuser) and $max_zone
+    !for i=1 to $(nbrezone$tuser)
+      !bound ztype$(tuser)$i within $(listfilename_ztype_$tuser) default $(listfilename_ztype_$tuser[1])
+      !if $(wimsexozone)!=$empty and $(ztype$(tuser)$i)=wimsexo and $(tuser)$i!=$wimsexozone
+        error=toomanywimsexo
+        ztype$(tuser)$i=$(listfilename_ztype_$tuser[1])
+        !exit
+      !else
+        !readproc applet/$(ztype$(tuser)$i) parasave $tuser $i 1
+        datafile=$datafile\
+:$(ztype$(tuser)$i) $tuser\
+$output_data
+
+      !endif
+    !next i
+  !next tuser
+  !writefile wimshome/log/classes/$wims_class/freeworks/.freework$freework $datafile
+  !for zone=1 to $(nbrezoneteacher)
+    !readproc applet/$(ztypeteacher$zone) displaysave teacher $zone 1
+  !next zone
+  !reset job2
+!endif
+!! -- save file for zonetype=file
+l=!makelist deposit X,erase X for X in $zonelistlabelteacher
+l=!nospace $l
+!if $job2 isitemof $l and $activetest=0
+  nb=!char -1 of $job2
+  !if $(ztypeteacher$nb) isitemof $teacherfile_ztype
+    job2=!char 1 to -2 of $job2
+    !readproc applet/file displaysave teacher $nb 1
+  !endif
+  !reset job2
+!endif
+!! ---- end save structure
+
+
+!! ---- read structure of the freework
+!distribute item 0,0,$empty into nbrezoneteacher,nbrezonestudent,ltdownloadzone,ltgeogebrateacherzone,wimsexozone
+nb=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freework$freework
+solution_field=$[$nb+1]
+!for k=1 to $nb
+  dt=!record $k of wimshome/log/classes/$wims_class/freeworks/.freework$freework
+  l=!line 1 of $dt
+  !distribute word $l into t,u
+  !bound u within teacher,student default teacher
+  !if $activetest<1
+    !bound t within solution,$(listfilename_ztype_$u) default $(listfilename_ztype_$u[1])
+  !else
+    !bound t within solution,$(listfilename_ztype) default $(listfilename_ztype[1])
+  !endif
+  !if $t=solution
+    solution_field=$k
+    flistsolution=!line 2 to -1 of $dt
+    flistsolution=!nonempty line $flistsolution
+    flistsolution=!lines2items $flistsolution
+  !else
+    !increase nbrezone$u
+    ztype$(u)$(nbrezone$u)=$t
+    script_data=!line 2 to -1 of $dt
+    !readproc applet/$t pararead $u $(nbrezone$u)
+  !endif
+!next k
+!bound nbrezoneteacher between $min_zoneteacher and $max_zone
+!bound nbrezonestudent between $min_zonestudent and $max_zone
+!reset onclickactionlist
+!! ---- end read structure
+
+!! read parameter process for each teacher zone
+!for i=1 to $nbrezoneteacher
+  !readproc applet/$(ztypeteacher$i) displayread teacher $i $activeform
+!next i
+
+!! --- manage authorization to upload file in teacher zone
+ltdownloadzone=!listcomplement $zonelistlabelstudent in $ltdownloadzone
+!if $activetest>0
+  ltdownloadzone=!listcomplement $zonelistlabelteacher in $ltdownloadzone
+!endif
+ltdownloadzone=!listuniq $ltdownloadzone

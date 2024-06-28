@@ -1,0 +1,31 @@
+!read adm/css.phtml
+
+!header1
+
+!read adm/title.phtml 1\
+\
+$name_title
+
+!if $error!=$empty
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error</strong>:
+    !read msg.phtml
+    !reset error
+  </div>
+!endif
+
+!if $success!=$empty
+  <div class="wims_msg success">
+    !read msg.phtml $success
+  </div>
+!endif
+
+!if $forceexit=1
+  !exit
+!endif
+
+!read $job.phtml
+
+!reset job forceexit success
+
+!tail

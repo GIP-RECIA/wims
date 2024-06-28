@@ -1,0 +1,101 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=Georges, Khaznadar
+slib_license=GPL
+slib_title=Typesetting nuclear reactions from plain text formulas
+
+slib_example= Ne20\
+U235\
+Pu239\
+e+\
+e-\
+p+\
+H3^+ -> He3^2+ + e- + neutrino\
+U235 + n -> Kr93 + Ba140 + 3 n
+
+!exit
+
+:proc
+!! on isole les mots du paramètre
+les_items = !trim $wims_read_parm
+les_items = !replace -> by fleche in $les_items
+les_items = !singlespace $les_items
+les_items = !words2items $les_items
+
+resultat =
+!for mot in $les_items
+  !!test pour reconnaître les chiffres
+  n = !eval 1 * $mot
+  !if $n issametext $mot or + issametext $mot or -> issametext $mot
+    ## les nombres et "+" sont concaténés tels quels
+    resultat = $resultat $mot
+    !goto nextmot
+  !endif
+  !if n issametext $mot
+    !! c'est un neutron
+    !readproc slib/chemistry/leftind 1,0,n
+    resultat = $resultat $slib_out
+    !goto nextmot
+  !endif
+  !if e+ issametext $mot or e^+ issametext $mot or beta+ issametext $mot
+    !! c'est un positron
+    !readproc slib/chemistry/leftind 0,1,e,+
+    resultat = $resultat $slib_out
+    !goto nextmot
+  !endif
+  !if e- issametext $mot or e^- issametext $mot or beta issametext $mot
+    !! c'est un rayon beta
+    !readproc slib/chemistry/leftind 0,-1,e,-
+    resultat = $resultat $slib_out
+    !goto nextmot
+  !endif
+  !if p issametext $mot or p+ issametext $mot
+    !! c'est un proton
+    !readproc slib/chemistry/leftind 1,1,H,+
+    resultat = $resultat $slib_out
+    !goto nextmot
+  !endif
+  !if fleche isin $mot
+    !! c'est une flèche
+    resultat = $resultat \longrightarrow
+    !goto nextmot
+  !endif
+  !if energ isin $mot
+    !! c'est de l'énergie
+    resultat = $resultat \mathrm{h}\nu
+    !goto nextmot
+  !endif
+  !if neutri isin $mot
+    !! c'est un antineutrino électronique ?
+    resultat = $resultat \bar{\nu_{\mathrrm{e}}}
+    !goto nextmot
+  !endif
+  
+  !! à ce stade ce qui reste est peut-être un nucléide
+  !! éventuellement chargé, la charge est précédée de ^
+  nucleon_charge = !replace internal ^ by , in $mot
+  mot = !item 1 of $nucleon_charge
+  charge = !item 2 of $nucleon_charge
+  
+  chiffres = 0,1,2,3,4,5,6,7,8,9
+  lettres = a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z
+  Lettres = !upper $lettres
+  lettres = $lettres, $Lettres
+  A = !text remove $lettres in $mot
+  symbole = !text remove $chiffres in $mot
+
+  !if $symbole$A == $mot
+    !! on a bien reconnu un nucléide
+    !readproc slib/nuclear/nucleide $symbole, tex $A, $charge
+    resultat = $resultat $slib_out
+  !else
+    !! quelque chose est mal reconnu
+    resultat = $resultat ??
+  !endif
+  
+  :nextmot
+!next
+
+slib_out=$resultat

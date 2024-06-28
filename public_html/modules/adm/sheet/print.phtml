@@ -1,0 +1,108 @@
+!set wims_html_header=!append line $oefcss to $wims_html_header
+!header1
+<!-- adm/sheet/print.phtml START -->
+!read adm/title.phtml 2\
+$sheet_title
+
+<div class="wims_sheet_desc">$sheet_desc</div>
+
+$sheet_remark
+
+!if $error!=$empty
+  !changeto lang/msg.phtml.$modu_lang
+!endif
+
+!if ($wims_developer!= or $wims_user=supervisor) and $latex_exists=1
+  <div class="wimscenter">
+  !read oef/latex.proc print
+  </div>
+!endif
+!if $printlatex!=yes
+  <h2 class="wimscenter">$wims_name_Exercices</h2>
+  !for iii=1 to $N
+    <h3>
+    !!href target=wims_light module=$module&sheet=$sh&exo=$(e_$iii)&cmd=new
+    <span class="bold">$name_exo</span> $iii.
+    <span id="title_$iii">$(title_$iii)</span>
+    </h3>
+    !if $(question_$iii)=$empty
+      ($name_noprint)
+    !else
+      !if __EXECUTED_ isin $(question_$iii) and _EXERCISE__ isin $(question_$iii)
+        !set e_=$(e_$iii)
+        !set thisexo=$e_
+        !set m_=$(module_$iii)
+        !readproc imagedir.proc
+        !for k=1 to $(varcnt_$iii)+5
+          !set val$k=!line $k of $(var_$iii)
+        !next k
+        !set wims_prefix=
+        <div id="exo_$iii">
+        !read $(class_header)def/$(e_$iii).def question
+        </div>
+        !set wims_prefix=$wims_prefix2
+      !else
+        <div id="exo_$iii">
+        $(question_$iii)
+        </div>
+      !endif
+      !if $(chce_$iii)!=$empty
+        <div class="wims_answer">$(chce_$iii)</div>
+      !endif
+    !endif
+    <br class="clearall">
+    !if $i__>=$(cnt_$iii) and $prompt___!=$empty
+      <div class="spacer">$prompt___</div>
+    !endif
+  !next
+
+  !if $public!=P and $wims_user!=supervisor
+    !goto noans
+  !endif
+
+  <div class="wims_solution">
+  <h2 class="wimscenter">$name_answers</h2>
+  !for iii=1 to $N
+    !set t=!linecnt $(ans_$iii)
+    !if $t>0
+      <div id="answer_$iii">
+      <h3>$name_answer_i $iii.</h3>
+      !if $t>1
+        <ol style="list-style-type:square;">
+      !endif
+      !for k=1 to $t
+        !if $(Replytype$iii[$k]) iswordof coord clock jsxgraphcurve jsxgraph draw
+          !break
+        !endif
+        !set l__=!line $k of $(ans_$iii)
+        !if $l__ !=
+          !if $t>1
+            <li style="counter-reset:$k">
+          !endif
+            $l__
+          !if $t>1
+            </li>
+          !endif
+          !reset l__
+        !endif
+      !next k
+      !if $t>1
+        </ol>
+      !endif
+      </div>
+    !endif
+  !next iii
+  </div><!--end of wims_solution-->
+!endif
+:noans
+!reset latexuser
+!set wims_menu_items=!append line renew,1,cmd=reply&printlatex=no\
+to $wims_menu_items
+!if $latex_exists=1
+  !set wims_menu_items=!append line printlatex,1,cmd=reply&printlatex=yes\
+latexuser,1,cmd=reply&latexuser=yes&printlatex=yes\
+  to $wims_menu_items
+!endif
+!set wims_menu_items=!append line back2,1,cmd=reply&job=read\
+to $wims_menu_items
+!tail

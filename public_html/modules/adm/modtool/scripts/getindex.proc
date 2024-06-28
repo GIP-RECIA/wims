@@ -1,0 +1,14 @@
+!readdef wimshome/public_html/$devdir/$wims_read_parm/INDEX
+!set wims_version=!defof wims_version in wimshome/public_html/$devdir/$wims_read_parm/INDEX
+!set exkeywords=!record 0 of wimshome/public_html/$devdir/$wims_read_parm/Exkeywords
+!if $exkeywords!=$empty
+  !set exkeywords=!replace internal : by , in $exkeywords
+  !set exkeywords=$(exkeywords[;2..-1])
+  !set exkeywords=!lines2items $exkeywords
+  !set exkeywords=!listuniq $exkeywords
+  !set keywords=!defof keywords in wimshome/public_html/$devdir/$wims_read_parm/INDEX
+  !set keywords=!listuniq $keywords,$exkeywords
+!endif
+
+!!for the moment, no possibility to change it by the interface
+!set i_deprecated=!defof deprecated in wimshome/public_html/$devdir/$wims_read_parm/INDEX

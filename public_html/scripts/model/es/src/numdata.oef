@@ -1,0 +1,124 @@
+type=gapfill
+textarea="data"
+
+:Preguntas de respuesta numérica integradas en un texto aleatorio.
+
+Este ejercicio presenta textos "con agujeros", cada uno para ser llenado por un
+número.
+<p>
+Para construir un ejercicio con este modelo, solo ingrese los textos.
+Una sintaxis sencilla le permite especificar los agujeros y el número de agujeros
+que acepta.
+</p><p class="wims_credits">
+Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Preguntas numéricas}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:Datos principales
+Defina una pregunta por línea y líneas separadas
+por punto y coma (Entonces los textos en sí no pueden contener
+punto y coma). <p>
+Los datos numéricos que deben responderse deben estar entre un par de
+signos de interrogación doble "??"
+Puede hacer hasta 6 preguntas en una oración.
+$embraced_randitem
+\text{data=
+La licencia con puntos contiene ??6?? puntos para un nuevo conductor.;
+El carné de puntos tendrá 12?? puntos después de ??3?? años si el
+	al nuevo conductor no se le ha deducido ningún punto durante
+	este período y no siguió ningún aprendizaje anticipado;
+El carné de puntos tendrá 12?? puntos después de ??2?? años si el
+	al nuevo conductor no se le ha deducido ningún punto durante
+	este período y siguió un aprendizaje anticipado.;
+La licencia de puntos "completa" contiene ??12?? puntos.;
+Olvidar el cinturón de seguridad cuesta ??1?? punto(s) en la licencia.;
+Invadir la línea continua en medio de la carretera cuesta ??1?? punto(s) en el permiso de puntos;
+Si no me abrocho el cinturón me costará 1?? punto(s) en mi licencia.;
+Si me olvido de ponerme el casco cuando voy en moto, me costará ??1?? puntos
+	en mi licencia.;
+Si acelero mientras alguien me adelanta, me costará
+	??2?? punto(s) en mi licencia.;
+{Circular,Estacionarse} en la mediana de una autopista
+	cuesta ??2?? punto(s) en el permiso;
+Cruzar la línea continua en medio de la carretera cuesta
+	??3?? punto(s) en el permiso de puntos;
+Conducir con un nivel de alcohol en sangre entre 0,5 g/l y
+	menos de 0,8 g/l cuesta ??3?? punto(s) en el permiso de puntos;
+Conducir con un nivel de alcohol en sangre entre ??0.5?? glándula
+	menos de ??0.8?? g/l cuesta 3 puntos en el permiso de puntos;
+Los adelantamientos peligrosos cuestan ??3?? puntos en el permiso.;
+{Detenerse, Estacionarse} de forma peligrosa cuesta ??3?? punto(s) en el permiso;
+Si {conduzco, circulo} por el carril de emergencia de una carretera, me costará
+	??3?? puntos en mi licencia.;
+El incumplimiento de la distancia de seguridad cuesta ??3?? punto(s) en el permiso;
+Un exceso de velocidad de {5,8,10,15,20,25} km/h me costará ??3?? puntos
+	durante el período de prueba de 2 años.;
+No respetar un alto cuesta ??4?? punto(s) en el permiso;
+Si me paso un semáforo en rojo me costará ??4?? punto(s) en mi licencia.;
+Conducir con un nivel de alcohol en sangre de {0.8,0.9,1,1.2,1.3,1.5} g
+	por mil cuesta ??6?? punto(s) en el permiso de puntos;
+Conducir con un nivel de alcohol en sangre mayor o igual a
+	??0.8?? g por mil cuesta 6 punto(s) en el permiso de puntos;
+Conducir en sentido contrario cuesta ??4?? punto(s) en el permiso;
+El incumplimiento del derecho de paso cuesta ??4?? punto(s) en el permiso;
+{Dar reversa,Dar vuelta en U} en la autopista cuesta ??4?? punto(s) en el
+	permiso.;
+Darse a la fuga cuesta ??6?? punto(s) en el permiso;
+}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+
+\text{data=wims(singlespace \data)}
+\text{data=wims(nonempty rows \data)}
+\text{data=randomrow(\data)}
+\text{data=\accolade=1 ? wims(embraced randitem \data)}
+\text{data=slib(text/cutchoice2 \data)}
+\integer{qs=floor(rows(\data)/2)}
+\text{len=}
+\for{i=1 to \qs}{
+ \text{d=wims(trim \data[2*\i;])}
+ \integer{l=wims(charcnt \d) + 2}
+ \text{len=\len \l,}
+}
+
+\text{qlist=wims(makelist reply x for x=1 to \qs)}
+\steps{\qlist}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+::Vous n'avez pas besoin de modifier ceci en général.
+
+\statement{
+\data[1;]
+\for{k=1 to \qs}{
+\embed{r \k,\len[\k]
+autocomplete="off"} \data[2*\k+1;]
+}
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Champ 1}{\data[2;]}{type=number}
+\answer{Champ 2}{\data[4;]}{type=number}
+\answer{Champ 3}{\data[6;]}{type=number}
+\answer{Champ 4}{\data[8;]}{type=number}
+\answer{Champ 5}{\data[10;]}{type=number}
+\answer{Champ 6}{\data[12;]}{type=number}
+

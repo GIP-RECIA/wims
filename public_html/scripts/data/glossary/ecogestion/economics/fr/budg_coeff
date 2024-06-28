@@ -1,0 +1,29 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Coefficient budgétaire
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Un <strong>coefficient budgétaire</strong> représente la <span class="wims_emph">part
+allouée par un ménage ou l'ensemble des ménages d'un pays donné à
+la consommation d'un bien ou d'un service donné</span> .
+<p>Il se détermine en faisant le rapport entre le montant de la dépense du bien
+ou du service concerné et le montant total des dépenses effectuées :
+\(\frac{\mbox{Dépense du bien ou du service}}{\mbox{Dépense totale}}).</p>
+</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+<p>A titre d'exemple, les coefficients budgétaires des ménages français relatifs
+au logement et à l'alimentation étaient en 2016 respectivement d'environ 20% et 10%.
+(Source : <i>Tableau de l'économie française (2018)</i>, INSEE)</p>
+<p>L'étude de l'ensemble des coefficients budgétaires calculés à
+l'échelle nationale permet d'établir <span class="wims_emph">la structure de
+la consommation</span> des ménages d'un pays et les comparaisons
+de la structure de la consommation des ménages à différentes périodes
+effectuées permettent d'établir <span class="wims_emph">l'évolution
+de la structure de la consommation</span>.</p>
+</div>

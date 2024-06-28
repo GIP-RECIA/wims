@@ -1,0 +1,41 @@
+
+!form renew
+  <div class="blockcenter wimsform" style="max-width:600px;">
+    <label id="keywords_label" for="search">Veuillez taper un mot à rechercher</label>
+    <div class="input-group">
+      <input type="search"
+             size="40"
+             name="search"
+             id="search"
+             value="$search"
+             class="autocomplete input-group-field"
+             placeholder="$name_keywords_enter"
+             autosave="search_tool_popup"
+             results="5"
+             aria-labelledby="keywords_label">
+      <div class="input-group-button">
+        <button class="wims_button icon_button" type="submit">
+          <span class="Searching">$wims_name_search</span>
+        </button>
+      </div>
+    </div>
+    <div class="formHelp">(n'entrez pas vos formules mathématiques ici)</div>
+  </div>
+!formend
+
+!if $jquery_defined=yes
+<script>
+jQuery(function($$) {
+  $$.getJSON( "./modules/tool/popup.fr/dic/form.json", function(data) {
+    console.log( "success" );
+    set_autocomplete(data);
+  }).fail(function( jqxhr, textStatus, error ) {
+    var err = textStatus + ', ' + error;
+    console.log( "Request JSON Failed: " + err);
+    console.log( "Impossible de charger le fichier json " + fichier );
+  })
+  .always(function() { console.log( "complete" ); })
+  ;
+});
+</script>
+!endif

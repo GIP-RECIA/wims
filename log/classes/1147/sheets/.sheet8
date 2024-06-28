@@ -1,0 +1,81 @@
+Différents modes de représentation d'une fonction - Vocabulaire
+Image, antécédent, courbe
+??,2021
+1
+H4
+analysis
+functions,real_function
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fonctions" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=vocabfct1&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Vocabulaire
+Reconnaître <strong>images</strong> et <strong>antécédents</strong>; forme f(x)=..
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=calcimant1&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Détermination d'images
+Déterminer des <strong>images</strong> à partir d'un <strong>tableau</strong>.
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=calcimant2&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Détermination d'antécédents
+Déterminer des <strong>antécédents</strong> à partir d'un <strong>tableau</strong>.
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=lectgr2&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Lecture graphique d'image
+Déterminer graphiquement une <strong>image</strong>.
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=lectgr3&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Lecture graphique d'antécédent
+Déterminer graphiquement un <strong>antécédent</strong>.
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=lectgr5&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Lecture graphique d'antécédents
+Déterminer graphiquement des <strong>antécédents</strong>.
+
+:H3/analysis/oefproppour.fr
+exo=tabvaleur2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de valeurs 1
+Compléter un tableau de valeurs à partir d'une <strong>courbe</strong>. Fonction affine.
+
+:H3/analysis/oefproppour.fr
+exo=tabvaleur3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de valeurs 2
+Compléter un tableau de valeurs à partir d'une <strong>courbe</strong>. Fonction quelconque.
+
+:H1/algebra/relatif.fr
+cnt_date=4&dim=2&type=1&sign=1
+10
+1
+Coordonnées dans le plan
+Placer des points dans le plan à partir de leurs <strong>coordonnées</strong>.
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=fonctionde1
+10
+1
+Vocabulaire
+Reconnaître si une courbe est la <strong>représentation d'une fonction</strong>.
+

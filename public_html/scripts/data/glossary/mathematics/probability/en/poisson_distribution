@@ -1,0 +1,22 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Poisson distribution
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Let \(\lambda) be a positive real.
+The <strong>Poisson distribution</strong> \(\mathcal{P}(\lambda))
+is the probability \(q=\{q(k), k\in \NN\}) over \(\NN) defined by
+<div class="wimscenter">
+\(q(k) = e^{-\lambda} \frac{\lambda^k}{k!} ) for all \(k\in \NN).
+</div>
+</div>
+
+<table class="wimsborder wimscenter">
+<tr><th>Expectation</th><th>Variance</th><th>Characteristic function</th></tr>
+<td>\(\lambda)</td><td>\(\lambda)</td><td>\(\exp(\lambda(z - 1)))
+</td></tr></table>

@@ -1,0 +1,42 @@
+!set lang_exists=yes
+
+name_workinprogress=Questo modulo è un prototipo in corso di sviluppo.
+name_sworktitle=Esercizi suggeriti
+name_sworkdesc=Questa pagina ti suggerisce alcune attività in funzione dei tuoi punteggi e di quelli degli altri studenti del corso.
+name_sworkdate=!nosubst Questa selezione è stata creata il $slib_out.
+name_changesuggest=È posissibile richiedere una modifica della proposta.
+name_autochange=!nosubst Puoi richiedere una nuova modifica della proposta tra  $swork_refreshtiming ora/ore.,\
+La proposta sarà aggiornata automaticamente tra $swork_refreshtiming ore.
+name_noexo=Nessun esercizio disponbile. Questo può significare che non ci sono test di autovalutazione disponibili o che hai già il punteggio massimo in tutti gli esercizi su cui puoi lavorare.
+name_modtitle=Esercizi suggeriti
+name_exotitle=!nosubst Esercizio $exnum_ del test $sh_
+name_at=alle
+name_studentloc=!nosubst $user_firstname $user_lastname
+name_studentglo=!nosubst $wims_name_firstname $wims_name_lastname
+name_date=Data di creazione
+name_userlistdesc=Questa tabella mostra le date e le proposte di lavoro create per ognuno \
+  degli studenti del corso. Se la riga è vuota significa che lo studente non si è mai connesso \
+   a questo modulo (in questo caso non compare nessuna data) o che non è disponibile nessuna selezione per questo studente.
+name_config=Proporre agli studenti i suggerimenti di esercizi,\
+Intervallo minimo di tempo per ogni proposta,\
+Permetti agli studenti di richiedere una nuova proposta,\
+Numero di esercizi selezionati per ogni proposta,\
+Test esclusi,\
+Medie escluse
+name_desc_config=empty,\
+Si tratta di un intervallo minimo (in ore) prima che venga generata una nuova proposta,\
+Lo studente può richiedere una nuova proposta di lavoro,\
+Numero massimo di esercizi che costituiscono una proposta,\
+Gli esercizi dei test selezionati sono esclusi dalle proposte di lavoro per gli studenti.,\
+Gli esercizi per cui la media del corso è inferiore a questo valore non sono prioritari.
+name_score=Punteggio,Obiettivo
+name_forbiddenexo=Alcuni esercizi non sono più disponbili per gli studenti in seguito a una modifica dei parametri di accesso ai test successiva alla creazione di questa proposta.,\
+Puoi modificare la proposa per ottenere una nuova selezione di esercizi.,\
+Devi aspettare il termine del periodo di lavoro impostato perché sia disponbile automaticamente una nuova proposta di lavoro. Puoi eventualmente contattare il docente perché ti renda disponibile una nuova proposta.,\
+Devi aspettare il termine del periodo di lavoro impostato per poter richiedere una nuova proposta di lavoro. Puoi eventualmente contattare il docente perché di renda disponible una nuova proposta.
+name_legendtab=Obiettivo raggiunto,Esercizio non disponibile,Obettivo non raggiunto
+name_logwork=Nessuna attività.\
+Archivio degli esercizi suggeriti.\
+Attenzione: sono elencate solo le ultime 50 attività.
+wims_name_logwork=Archivio
+name_logworktab=Inizio,Fine,Esercizi,Miglioramento

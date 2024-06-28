@@ -1,0 +1,107 @@
+type=order first
+textarea="data explain"
+iEdit="explain"
+
+:Reordenar los objetos dados, arrastrando y soltando.
+
+Presentamos una lista de objetos, y debemos ordenarlos en el orden especificado
+tirando de ellos hacia las cajas con el mouse.
+<p>
+Para construir un ejercicio con este modelo, solo ingrese la lista
+de objetos a ordenar y cambiar el texto explicativo.
+</p><p>
+Con una pequeña modificación, una variante de este modelo puede aceptar
+imágenes como objetos.
+
+</p><p class="wims_credits">
+Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Reordenar}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Cantidad de objetos a ordenar por ejercicio. Hasta 20
+Si este número es más pequeño que los objetos disponibles, se mostrará una parte
+de los objetos al azar. <p>
+Si este número es mayor que los objetos disponibles, se reducirá al
+numero de objetos.
+\integer{tot=6}
+
+:El tamaño de los objetos para arrastrar, en píxeles, x por y.
+¡Piensa en las personas que aumentan el tamaño de letra de sus navegadores!
+No pongas las cajas demasiado pequeñas.
+\text{size=80x40}
+
+:La lista de objetos a reordenar
+Escribe los objetos en el orden correcto, separados por comas.
+Si desea ingresar varias listas, coloque una por línea
+que luego se escogerán al azar.
+\text{data=Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano, Neptuno}
+
+:Enunciado.
+\text{explain=
+Ponga los siguientes planetas en el sistema solar en el orden correcto,
+primero el más cercano al Sol.
+}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+\text{data=randomrow(\data)}
+\text{accolade=wims(word 1 of \accolade)}
+\text{data=\accolade=1 ? wims(embraced randitem \data)}
+\integer{datacnt=items(\data)}
+\integer{tot=min(20,min(\tot,\datacnt))}
+\if{\tot<\datacnt}{
+ \text{sh=shuffle(\datacnt)}
+ \text{sh=wims(sort numeric items \sh[1..\tot])}
+ \text{data=item(\sh,\data)}
+}
+
+\text{st=wims(makelist r x for x=1 to \tot)}
+\steps{\st}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+::Vous n'avez pas besoin de modifier ceci en général.
+
+\statement{
+  <div>\explain</div>
+  \for{k=1 to \tot}{<div class="inline">\embed{r\k,\size}</div>}
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{1}{\data[1]}{type=dragfill}
+\answer{2}{\data[2]}{type=dragfill}
+\answer{3}{\data[3]}{type=dragfill}
+\answer{4}{\data[4]}{type=dragfill}
+\answer{5}{\data[5]}{type=dragfill}
+\answer{6}{\data[6]}{type=dragfill}
+\answer{7}{\data[7]}{type=dragfill}
+\answer{8}{\data[8]}{type=dragfill}
+\answer{9}{\data[9]}{type=dragfill}
+\answer{10}{\data[10]}{type=dragfill}
+\answer{11}{\data[11]}{type=dragfill}
+\answer{12}{\data[12]}{type=dragfill}
+\answer{13}{\data[13]}{type=dragfill}
+\answer{14}{\data[14]}{type=dragfill}
+\answer{15}{\data[15]}{type=dragfill}
+\answer{16}{\data[16]}{type=dragfill}
+\answer{17}{\data[17]}{type=dragfill}
+\answer{18}{\data[18]}{type=dragfill}
+\answer{19}{\data[19]}{type=dragfill}
+\answer{20}{\data[20]}{type=dragfill}
+

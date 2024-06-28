@@ -1,0 +1,8 @@
+size 200,200
+xrange -10,10
+yrange -10,10
+fontfamily 16px Arial
+centered
+legend cars:motorcycles:bicycles:trikes
+opacity 255,60
+piechart 0,0,100,22:red:8:blue:63:green:7:purple

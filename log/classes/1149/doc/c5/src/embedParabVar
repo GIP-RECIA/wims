@@ -1,0 +1,6 @@
+<p>La fonction \(f) est strictement croissante sur l'intervalle <strong>I</strong> signifie que :<br>
+  pour tous les nombres réels \(x_1) et \(x_2) de <strong>I</strong>, 
+si <strong>\(x_1<x_2)</strong> alors <strong>\(f(x_1)<f(x_2))</strong>.</p>
+<p>La fonction \(f) est strictement décroissante sur l'intervalle <strong>I</strong> signifie que :<br>
+  pour tous les nombres réels \(x_1) et \(x_2) de <strong>I</strong>, 
+si <strong>\(x_1<x_2)</strong> alors <strong>\(f(x_1)>f(x_2))</strong>.</p>

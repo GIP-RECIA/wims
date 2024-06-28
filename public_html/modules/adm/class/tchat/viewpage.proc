@@ -1,0 +1,135 @@
+!! job=wiewpage
+!! supervisor can view page of participant connected to the tchat
+!!
+
+!! -------- user check
+!bound user within $ulist default $empty
+!if $user=$empty
+  error=nouser
+  !exit
+!endif
+
+po=!positionof item $user in $ulist
+username=$(nlist[$po])
+name_title=$username $name_page $numberses
+
+
+
+!! -------- check if authorized session
+basesession=!replace _ by , in $wims_session
+basesession=!item 1 of $basesession
+list_window=!defof $user in wimshome/sessions/$basesession/.indexusersession
+nbwindow=!itemcnt $list_window
+!if $numberses<1 or $numberses>$nbwindow
+  error=usernotintchat
+  !exit
+!endif
+userses=!item $numberses of $list_window
+!if tchat isin $userses
+  error=addressplay
+  !exit
+!endif
+
+!readproc script/mktitle.proc $userses
+
+!!reset logfile
+!!!if exam isin $userses
+!!  !! case of exercise in an exam
+!!  userbasesession=!replace _ by , in $userses
+!!  userbasesession=!item 1 of $userbasesession
+!!  tmp=!replace internal $(userbasesession)_examt by $empty in $userses
+!!  tmp=!replace t by . in $tmp
+!!  logfile=wimshome/log/classes/$wims_class/examlog/$user/$userbasesession/$tmp
+!!else
+!!  !! case of an exercise in a sheet
+!!  tmp=!defof w_wims_exo,w_wims_sheet,w_module in wimshome/sessions/$userses/var
+!!  !distribute item $tmp into userexo,usersheet,exomod
+!!  !if $usersheet!=$empty and $userexo!=$empty
+!!    logfile=wimshome/sessions/$userses/exolog.$usersheet.$userexo
+!!  !else
+!!    !! case of a exercise (not in a sheet for exemple in a document)
+!!    category=!defof category in wimshome/public_html/modules/$exomod/INDEX
+!!    !if exercise isin $category
+!!      logfile=wimshome/sessions/$userses/exolog
+!!    !endif
+!!  !endif
+!!!endif
+
+
+
+!if $logfile!=$empty
+  !! ----------- use adm/class/exolog module to display exo in a sheet or exam
+  test=!fileexists $logfile
+  !if $test!=yes
+    error=addressplay
+    !exit
+  !endif
+  !writefile wimshome/$wims_sesdir/var REMOTE_ADDR=$httpd_REMOTE_ADDR\
+HTTP_REFERER=$httpd_HTTP_REFERER\
+QUERY_STRING=\
+HTTP_USER_AGENT=$httpd_HTTP_USER_AGENT\
+HTTP_COOKIE=$httpd_HTTP_COOKIE\
+w_cmd=new\
+w_lang=$class_lang\
+w_special_parm=1\
+w_special_parm2=\
+w_useropts=$useropts\
+w_wims_session=$wims_session\
+w_wims_subsession=$wims_subsession\
+w_wims_window=$wims_window\
+w_wims_mode=$wims_mode\
+w_wims_module_start_time=\
+w_wims_protocol=$wims_protocol\
+w_wims_req_time=$wims_req_time\
+w_wims_session_serial=$wims_session_serial\
+w_wims_session_start_time=$wims_session_start_time
+
+    !setdef wims_checkfile=$logfile in wimshome/$wims_sesdir/var.stat
+    !setdef wims_checktitle=$output_title in wimshome/sessions/$basesession/var.stat
+    nbstep=!recordcnt $logfile
+    !restart module=adm/class/exolog&+cmd=new&+job=examcheck&+checkuser=$user&+checkexo=file&+checkstep=$nbstep
+!endif
+
+
+
+!! ------------- in case of other ressources use the last.html file in s2.
+
+
+!! ---------- make list of file of the user
+!! the file of list_forbiddent are ignored (to be completed if need)
+list_forbidden=last.html
+listfile=!sh cd $wims_home/s2/$userses;\
+ls *
+listfile=!lines2items $listfile
+listfile=!listcomplement $list_forbidden in $listfile
+listsed=$empty
+listlink=$empty
+!for f in $listfile
+  listsed=!append line s#$f#user$po-$f#g; to $listsed
+  listlink=!append line ln -s $wims_home/s2/$userses/$f $wims_home/s2/$wims_session/user$po-$f; to $listlink
+!next f
+!! ---------- build copy of user page
+!read oef/fr/names
+
+page_content=!sh sed '1,3d' $wims_home/s2/$userses/last.html | sed 's#$(userses)#$wims_session#gi;\
+s#<a href="[^"]*"#<a href=""#gi;\
+s# target="[^"]*"# #gi;\
+s#<input type="submit"#<input type="submit" disabled #gi;\
+s#<input type="image"#<img #gi;\
+s#<button #<button disabled #gi;\
+s#onclick="wims_[a-zA-Z0-9^=]*=window.open([^)]*)"# #gi;\
+$listsed'
+
+!! make link to file of the user_session in supervisor_session (del old link before)
+list=!sh cd $wims_home/s2/$wims_session;\
+lt=`find user$(po)* -type l 2>/dev/null`;\
+for f in $$lt; do rm $$f; done;\
+$listlink
+
+warning=workinprogress
+
+!! --- suppress auto refresh (need to put a button to refresh)
+!let rd=!randint 111111,999999
+!set wims_menu_items=!append line refresh,1,module=$module&cmd=reply&+module=adm/class/tchat&+job=viewpage&+numberses=$numberses&+user=$user&+serial=$rd to $wims_menu_items
+
+

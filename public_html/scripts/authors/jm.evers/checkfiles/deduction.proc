@@ -1,0 +1,451 @@
+# alle '$arglist' (zoals y,dy/dx,f'(x),g(x)... ) worden verwijderd, zodat maxima er niet over struikeld
+# var4=1: we verwachten pijlen CA=CB -> CA-CB=0 -> C(A-B)=0 -> C=0 or A=B (laatste stap is de conclusie, answer$n) 
+# answer$n=4,65,3 --> laatste student reply: x=4 of x=3 of x=65
+# var4!= 1: geen pijlen verplicht...laat de checkfile bepalen hoe na te kijken. 
+# var3=1: eindantwoord moet(!!) EXACT gelijk zijn aan $(answer$n): dus (x+3)(x-2) != x^2+x-6 
+# var2=maximum amount of intermediate steps defaults to 10
+# var1=minimum amount of intermediate steps defaults to 2
+#
+# found_arrow=0:elke stap moet gelijk zijn aan de volgende...laatste stap wordt vergeleken met answer$n
+# found_arrow=1:elke stap in de afleiding/redenering moet wiskundig gelijk zijn met answer$n...
+# found_arrow=1:als var3=1 ... laatste stap moet EXACT gelijk zijn aan answer$n
+# found_arrow=1:als var3!=1... laatste stap wiskundig gelijk aan answer$n
+
+# bijvoorbeeld 'found_arrow=1' of 'var4=1':
+# reply: (x-2)(x+3)= 0 -> x^2 +x - 6 = 0 ->  (x-2)(x+3)= 0 -> x=2 or x=-3
+# AAA  : (x-2)(x+3)= 0 , x^2 +x - 6 = 0 , (x-2)(x+3)= 0 , x=2 or x=-3
+# answer: 2,-3
+
+# voorbeeld 'found_arrow=0' of 'var4!=1'  (in geval: herschrijf de volgende bewering...)
+# reply: (x-2)(x+3) - 4 = x^2 +x - 6 - 4 = x^2 +x - 10
+# AAA  : (x-2)(x+3) - 4 , x^2 +x - 6 - 4 , x^2 +x - 10
+# answer: x^2+x-10
+
+goback=0
+errortext=$empty
+extra=$empty
+!if $var2=$empty
+ var2=10
+!endif
+!if $var1=$empty
+ var1=2
+!endif
+
+!set n=$counter
+!set wims_compare_precision=10000
+
+
+leeg=!wordcnt $(reply$n)
+!if $leeg = 0
+ maxscore=$[$P1*$maxscore]
+ errortext=!record 37 of $remarkdir/commonremarks.$taal
+ goback=1
+ !exit
+!endif
+
+!if $leeg > 250
+ maxscore=$[$P1*$maxscore]
+ errortext=!record 48 of $remarkdir/commonremarks.$taal
+ goback=1
+ !exit
+!endif
+
+!if ? isin $(reply$n)
+ remark$n=$NOK
+ maxscore=0
+ goback=0
+ !exit
+!endif
+
+AAA=!lower $(reply$n)
+wims_rawmath_variables=$varlist
+AAA=!nospace $AAA
+#for now: ignore meaning of arrow...consider all equal
+arrows=<->,<-->,->,-->,<=>,<==>,=>,==>
+found_arrow=0
+!for p in $arrows
+ !if $p isin $AAA
+  found_arrow=1
+  AAA=!replace internal $p by , in $AAA
+ !endif
+!next p
+!if $found_arrow=0
+ !if $var4=1
+  errortext=Gebruik pijlen in je afleiding...<br />zie help pagina
+  goback=1
+  maxscore=$[$P1*$maxscore]
+  !exit
+ !endif
+ AAA=!replace internal = by , in $AAA
+ AAA=!lines2items $AAA
+!endif
+# remove multiple ,,
+!for p=1 to 3
+ AAA=!replace internal ,, by , in $AAA
+!next p
+# remove first , in AAA
+comma=!positionof char , in $AAA
+!if $(comma[1])=1
+ AAA=!char 2 to -1 of $AAA
+!endif
+
+chk=!itemcnt $AAA
+ 
+!if $chk=1
+ errortext=Je moest de vraag nog maar eens goed doorlezen,<br/>want van <em>$(reply$n)</em> kan ik geen soep koken...
+ maxscore=$[$P1*$maxscore]
+ goback=1
+ !exit
+!endif
+
+!if $chk < $var1
+ errortext=Gebruik minimaal $var1 tussenstappen...
+ maxscore=$[$P1*$maxscore]
+ goback=1
+ !exit
+!endif
+
+!if $chk > $var2
+ errortext=Gebruik maximaal $var2 tussenstappen...anders wordt het me teveel om na te kijken<br/>en let op: ik controleer <b>elke</b> tussenstap !!
+ maxscore=$[$P1*$maxscore]
+ goback=1
+ !exit
+!endif
+
+# algemeen spul
+cnt=!itemcnt $(answer$n)
+maxima_vraag1=$empty
+maxima_vraag2=$empty
+pari_vraag=$empty
+num_lines1=0
+num_lines2=0
+score=0
+sub_score=0
+your_answer=<ol>
+duplicates=$empty
+found_error=$empty
+info=$empty
+
+!if $found_arrow=0
+# simpele type afleiding ,enkel gescheiden door "=" tekens
+# elke stap moet gelijk zijn aan het correcte antwoord
+# de laatste stap mnoet ,als var3=1, exact gelijk zijn aan het correcte antwoord 
+# f(x)=(x-2)(x+2)  =x^2 +2x -2x - 4 =x^2 - 4 
+
+ !if $arglist != $empty
+  s=!itemcnt $arglist
+  !for p=1 to $s 
+   AAA=!replace internal $(arglist[$p]) by $empty in $AAA
+    # f(x)=(x-2)(x+2)=x^2+2x-2x-4=x^2-4
+    # f(x),(x-2)(x+2),x^2+2x-2x-4,x^2-4
+    # ,(x-2)(x+2),x^2+2x-2x-4,x^2-4
+  !next p
+ !endif
+ chk=!itemcnt $AAA
+ # elke stap moet gelijkwaardig zijn aan het eindresultaat en er is maar 1 eindresultaat !
+ !for p=1 to $chk
+  A=!item $p of $AAA
+  !if $A != $empty
+   !increase num_lines1
+   A=!rawmath $A
+   !if $p < $chk
+    B=!item $[$p+1] of $AAA
+    # we checken ook of de stappen onderling wel gelijk zijn aan elkaar.... A1=?= A2 =?= A3 =?= answer$n
+    !if $B != $empty
+     B=!rawmath $B
+     ascii=!exec toascii $A,$B
+     !if $A issametext $B or $(ascii[1])=$(ascii[2])
+      duplicates=!append item $[$p+1] to $duplicates
+     !endif
+     !increase num_lines2
+     maxima_vraag2=!append line radexpand:true;simp:true;if rationalize(expand(float($A))) = rationalize(expand(float($B))) then YES else NO;if ratsimp($A) = ratsimp($B) then YES else NO;if trigrat((trigreduce($A))) = trigrat((trigreduce($B))) then YES else NO; to $maxima_vraag2
+    !endif
+    maxima_vraag1=!append line radexpand:true;simp:true;if rationalize(expand(float($A))) = rationalize(expand(float($(answer$n)))) then YES else NO;if ratsimp($A) = ratsimp($(answer$n)) then YES else NO;if trigrat((trigreduce($A))) = trigrat((trigreduce($(answer$n)))) then YES else NO; to $maxima_vraag1
+   !else
+    !if $var3=1
+    # laatste check :antwoord moet gelijk zijn 
+    # if 1/2 = 2/4 then YES else NO; --> NO
+     maxima_vraag1=!append line radexpand:false;simp:false;if $A = $(answer$n) then YES else NO; to $maxima_vraag1
+    !else
+    # laatste check : antwoord moet wiskundig gelijk zijn
+    # if 1/2 = 2/4 then YES else NO; --> YES
+     maxima_vraag1=!append line if ratsimp($A) = ratsimp($(answer$n)) then YES else NO; to $maxima_vraag1
+    !endif
+   !endif
+  !endif
+ !next p
+ tot1=!exec maxima $maxima_vraag1
+ tot1=!tolower $tot1
+ !if $found_error!=0
+  tot2=!exec maxima $maxima_vraag2
+  tot2=!tolower $tot2
+ !endif
+ !if $wims_exec_error != $empty or error isin $tot1
+  errortext=Je antwoord <em>$(reply$n)</em> is niet volgens de bedoeling van deze som...en ga ik dus niet nakijken...<br/>probeer het nog eens.
+  maxscore=$[$P1*$maxscore]
+  goback=1
+  !exit
+ !endif
+ !for p=1 to $num_lines1
+  L=!line $p of $tot1
+  info=$empty
+  !if yes isin $L
+   !if $p isitemof $duplicates
+    k=orange
+    info=dit antwoord is een kopie van de vorige...
+   !else
+    !increase score
+    k=green
+   !endif
+  !else
+   found_error=!append item $p to $found_error
+   k=red
+  !endif
+  your_answer=!append word $ <li style="color:$k">$(AAA[$p]) $info</li> $ to $your_answer
+ !next p
+ !if $found_error=$empty
+  # we hoeven de stappen onderling niet meer te checken !
+  your_answer=!append word $ </ol> $ to $your_answer
+  score=$[$score/$num_lines1]
+ !else
+  !if $num_lines2 > 1
+   your_answer=!append word $ </ol>Zijn je stappen onderling wel correct ?<ul> $  to $your_answer
+   !for p=1 to $num_lines2
+    L1=!line $p of $tot2
+    !if yes isin $L1
+     !increase sub_score
+     k=green
+     symbol=&nbsp;<b>=</b>&nbsp;
+    !else
+     k=red
+     symbol=&nbsp;<b>&ne;</b>&nbsp;
+    !endif
+    !if $(AAA[$p])!=$empty and $(AAA[$p+1])!= $empty 
+     your_answer=!append word $ <li style="color:$k">$(AAA[$p]) $symbol $(AAA[$p+1])</li> $ to $your_answer
+    !endif
+   !next p
+   your_answer=!append word $ </ul> $ to $your_answer
+   score= 0.25*( (3*$score/$num_lines1) + ($sub_score/$num_lines2) )
+  !else
+   your_answer=!append word $ </ol> $ to $your_answer
+   score=$[$score/$num_lines1]
+  !endif
+ !endif
+# question$n=tot=$tot <hr/>$maxima_vraag1<hr/>$maxima_vraag2<hr/> num_1=$num_lines1 num_2=$num_lines2 score=$score sub_Score=$sub_score found_error=$found_error<hr/>$your_answer
+# goback=1
+# !exit
+!goto KLAAR
+!endif
+
+!if $found_arrow=1
+# afleiding met elke stap een vergelijking A=C -> A-C=0 gescheiden door pijlen, laatste stap is het antwoord
+# in de vorm x=1.233 of x=2.333 (varlist) 
+# 
+ chk=!itemcnt $AAA
+# laatste antwoord...x=123 of x=321
+ final=!item $chk of $AAA
+ final=!nospace $final
+ !for m in en,of,and,or,$arglist
+  final=!replace internal $m by , in $final
+ !next m
+ !for m in atan,acos,asin,log,ln,sqrt,sin,cos,tan,abs,pi,e
+  M=!toupper $m
+  final=!replace internal $m by $M in $final
+ !next m
+ final=!replace [$varlist][_0-9]*= by $empty in $final
+ !for p=1 to 5
+  final=!replace internal ,, by , in $final
+ !next p
+ final=!tolower $final
+ #final: x1=sqrt(pi) or x2=sqrt(5) -> x1=SQRT(PI)orx2=SQRT(5) --> ,sqrt(pi),sqrt(5)
+ at=!itemcnt $final
+ gt=!itemcnt $(answer$n)
+ end_sum=0
+ real_ans=0
+ wrong=$empty
+ !for s=1 to $at
+  A=!item $s of $final
+  !if $A != $empty
+   k=red
+   !increase real_ans
+   A=!rawmath $A
+   !for p=1 to $gt
+    G=!item $p of $(answer$n)
+    tot=!exec pari if(1.0*($A) == 1.0*($G),1,0)
+    !if $wims_exec_error != $empty or *** isin $tot
+     errortext=Je antwoord <em>$(reply$n)</em> kan ik niet nakijken...<br/>probeer het nog eens.
+     maxscore=$[$P1*$maxscore]
+     goback=1
+     my_arrows=4
+     !exit
+    !endif
+    !if $tot=1
+     k=green
+     !increase end_sum
+     p=$gt
+    !endif
+   !next p
+   !if $k=red
+    wrong=!append item $A to $wrong
+   !endif
+   !if $showanswer != 0
+    #Atex=!texmath $A
+    A=!mathmlmath $varlist=$A
+   !endif
+   your_answer=!append word <li style="color:$k">$A</li> to $your_answer
+  !endif
+ !next s
+ end_sum=$[$end_sum/$real_ans]
+ final_cnt=!itemcnt $final
+ wrong_cnt=!itemcnt $wrong
+ voorlaatste=$[$chk-2]
+ !if $arglist != $empty
+  argcnt=!itemcnt $arglist
+ !else
+  argcnt=0
+ !endif
+ intermediate_error=$empty
+ # voorlaatste is 2-na laatste: laatste is final
+ Aprev=$empty
+ Bprev=$empty
+ !for p=1 to $voorlaatste
+  A=!item $p of $AAA
+  B=!item $[$p+1] of $AAA
+  A=!rawmath $A
+  B=!rawmath $B
+  !if $A isin $Aprev$Bprev 
+   duplicates=!append item $[$p+1] to $duplicates
+  !endif
+  Aprev=$A
+  Bprev=$B
+  !if $argcnt!=0
+   !for s=1 to $argcnt
+    arg=!item $s of $arglist
+    # f(x)= (x-2)(x+2) -> f(x)=x^2 - 4  :
+    # f(x)=(x-2)(x+2) , f(x)=x^2 - 4  :
+    # 0= (x-2)(x+2) , 0=x^2 - 4  : 
+    # 0,(x-2)(x+2) , 0,x^2 - 4  : 
+    A=!replace internal $arg by 0 in $A
+    B=!replace internal $arg by 0 in $B
+   !next s
+  !endif
+  A=!replace internal = by , in $A
+  B=!replace internal = by , in $B
+  # 0,(x-2)(x+2) , 0,x^2 - 4  : 
+  A1=!item 1 of $A
+  # A1=0
+  A2=!item 2 of $A
+  # A2=(x-2)(x+2)
+  B1=!item 1 of $B
+  # B1=0
+  B2=!item 2 of $B
+  # B2=x^2-4
+  A=!rawmath $A1 - ($A2)
+  # 0 - ((x-2)(x+2))
+  B=!rawmath $B1 - ($B2)
+  # 0 - (x^2 - 4)
+  intermediate_error=$empty
+  # check of een fout eind-antwoord toch een correcte tussenstap oplevert
+  !for a=1 to $wrong_cnt
+   aa=!item $a of $wrong
+   Ac=!evalsubst $varlist=$aa in $A
+   !ifval $Ac=0
+    intermediate_error=!append item $(AAA[$p]) is correct bij x=$aa<br /> to $intermediate_error
+   !endif
+  !next a
+  !if $intermediate_error != $empty
+    extra=!append word $ <span style="color:green">$intermediate_error</span><br/> $ to $extra
+  !endif
+  maxima_vraag=!append line radexpand:true;simp:true;if rationalize(expand(float($A))) = rationalize(expand(float($B))) then YES else NO;if ratsimp($A) = ratsimp($B) then YES else NO;if trigrat((trigreduce($A))) = trigrat((trigreduce($B))) then YES else NO; to $maxima_vraag
+  Aprev=$A
+  Bprev=$B
+ !next p
+ 
+ tot=!exec maxima $maxima_vraag
+ tot=!tolower $tot
+ !if $wims_exec_error != $empty
+  errortext=Je antwoord <em>$(reply$n)</em> kan ik niet nakijken...<br/>probeer het nog eens.
+  maxscore=$[$P1*$maxscore]
+  goback=1
+  my_arrows=4
+  !exit
+ !endif
+ !for p=1 to $voorlaatste
+  L=!line $p of $tot
+  info=$empty
+  !if yes isin $L
+   !if $p isitemof $duplicates
+    k=orange
+    info=dit antwoord is een kopie van de vorige...
+   !else
+    !increase score
+    k=green
+   !endif
+  !else
+   k=red
+  !endif
+  !if $showanswer!=0
+   #Atex=!texmath $(AAA[$p])
+   A=!item $p of $AAA
+   B=!item $[$p+1] of $AAA
+   Amml=!mathmlmath $A \rightarrow $B
+  !endif
+  your_answer=!append word <li style="color:$k">$Amml $info</li> to $your_answer
+ !next p
+ score=$[$score/$voorlaatste]
+ rem=&nbsp;
+ !if $end_sum > 0.8
+  !if $score<0.5
+   ff=1
+   dd=2
+   rem=hmmm,vreemd...je eindantwoord is beter dan de afleiding
+  !else
+   ff=2
+   dd=3
+  !endif
+ !else
+  !if $score>0.8
+   rem=jammer, d'r zit een tiepfoutje in je afleiding
+   extra=!append word $rem to $extra
+   ff=3
+   dd=4
+  !else
+   ff=2
+   dd=3 
+  !endif
+ !endif
+ score=$[($score+$ff*$end_sum)/$dd]
+ your_answer=!append word </ol> to $your_answer
+!endif
+
+:KLAAR
+
+!if $duplicates!=$empty
+ telwoorden=!record 59 of $remarkdir/commonremarks.$taal
+ dups=!itemcnt $duplicates
+ !if $dups>9
+  straf=0.1
+ !else
+  straf=$(P$dups)
+ !endif
+ dup=!item $dups of $telwoorden
+ rem=Je hebt $dup keer dezelfde antwoorden ingetiept...<br />daarvoor krijg je wel puntenaftrek
+ maxscore=$[$maxscore*$straf]
+ extra=!append word $rem to $extra
+!endif
+
+maxscore=$[$maxscore*$score]
+modulescore=$[$modulescore+$maxscore]
+math=0
+reply$n=$(reply$n)<br />$your_answer<br />$extra
+!if $maxscore>0.9
+ remark$n=$OK
+!else
+ !if $maxscore>0.4
+  remark$n=$BOK
+ !else
+  remark$n=$NOK
+ !endif
+!endif
+!exit
+

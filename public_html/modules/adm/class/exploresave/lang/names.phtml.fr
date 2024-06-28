@@ -1,0 +1,39 @@
+!set lang_exists=yes
+!set name_title_restore=Restauration de ressources à partir d'une sauvegarde
+!set name_introsave=Sélectionnez le fichier de sauvegarde à restaurer
+!set name_view=Voir
+!set name_comp_view=le contenu de l'archive pour éventuellement charger des ressources.
+!set name_comp_view2=à nouveau le contenu de l'archive pour éventuellement charger une autres ressources.
+!set name_gotoressources=Ressource(s) importée(s)
+!set name_comp_delete=l'archive et éventuellement charger un autre fichier de sauvegarde.
+!set name_classnumber=!nosubst Ci-dessous les ressources de l'archive de la classe numéro $classnumber.
+!set name_number=Numéro
+!set name_Exercices=Exercices
+!set name_msgsheet=!nosubst Votre classe contient $classsheetcnt feuille(s) de travail pour un maximum de $max_sheets.
+!set name_touchlimit=Limite de classe atteinte : impossible de rajouter des ressources de ce type.
+!set name_touchlimitdoc=Limite de classe atteinte pour certaines ressources : impossible de les rajouter.
+!set name_msgexam=Les examens ne sont pas encore importables par cette méthode.
+!set name_msgvote=Les votes ne sont pas encore importables par cette méthode.
+!set name_msgdoc=!nosubst Votre classe contient $classdoccnt document(s) interne(s) (maximum $max_doc) et $classdocpubliccnt lien(s) vers des documents publics (maximum $max_linkdoc) .
+!set name_msgtool=!nosubst Votre classe contient $classtoolcnt outil(s) sur un maximum de $max_tool.
+!set name_msgglossary=!nosubst Votre classe contient $classglossarycnt glossaire(s) pour un maximum de $max_glossary.
+!set name_msgfreework=!nosubst Votre classe contient $classfreeworkcnt devoir(s) libre pour un maximum de $max_freeworks.
+!set name_importselected=Importer la sélection
+
+!! Attention chaque ligne est un message différent
+!set name_sheeterrormsg=Non importable : utilise un exercice non public.\
+Non importable : module d'exercices non installé.\
+Non importable : feuille individualisée avec une variable technique.
+!! ---
+
+!set name_alreadyinclass=Déjà dans la classe
+!set name_prive=Privé
+!set name_public=Lien vers doc public
+!set name_type=Type
+!set name_doclinksheet=Attention : liaison feuille non importable
+!set name_docpublicnomodule=Non importable : document non installé.
+!set name_description=L'importation d'une ressource ne modifie pas celles existantes dans la classe. Certaines importations ne sont cependant pas possible. 
+!set name_replace=Remplacer
+!set name_sheet=Feuille
+!set name_limittouch=Limite atteinte
+

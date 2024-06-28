@@ -1,0 +1,98 @@
+20230303 [r17593]  add option studentclose for type=3 (if studentclose=1 student can "consign" before the actual dead line: a button "Consign" will be shown and if the student click and confirm he would not be able to work on the freework any longer).  
+20230227 [r17589] for type=3, add a new applet that allows the teacher to upload multiple files. For each student one (and only one) of these files will be randomly picked and shown.
+20221115 [r17312] use native html5 form date  
+------------- version 1.02 
+20220613 [r16792] use linkmodule.freework.proc to allow access to module
+20220601 [r16738] not allow more than one wimsexo zone
+20220601 [r16733] disconnect option scoring in a portal (not compatible with manual score file saved in different course)
+20220524 [r16711] add option autoreg to type wimsexo
+20220504 [r16653] display log file for exowims activity
+20220502 [r16647] activity on a exowims log
+20220502 [r16647] checking valid exowims when registered made by c
+20220408 [r16568] seealltime=1 : separate remarks before codownload=1 and after
+20220408 [r16558] solution/feedback of oef exercise can be display to  user when codownload=1 (supervisor choice)
+20220407 [r16554] tracing of connexion of user after codownload=1 / supervisor can see 
+20220406 [r16542] in case of seealltime=1, supervisor can write remarks before endtimework and participant can see them
+20220402 [r16513] add parameter minscore to exowims type ; fix score for save work
+20220317 [r16467] error message in case of inserting a print version of an exercise in a freework
+ ------------ version 1.01 
+20220217 [r15345] zonetype texte : supervisor can choose maximal number of charactere in student area
+20220217 [r16338] display error message when send a bad score
+20220213 [r16324] type=3 supervisor can upload personnal files to student freework when zonetype file is in use in the student part
+20220202 [r16311] type=3 supervisor can put a  maximal number of file in zonetype file for student
+20220202 [r16309] type=3 accept freework without student zone (don't use interface to send work)
+20220202 [r16307] freework type=4 become a zonetype of freework type=3
+20220119 [r16278] type=3 applet=geogebra add showMenuBar=true in default applet option
+20220113 [r16257] now use adm/class/exolog module instead of a internal job to view exo of a freework 
+-------------------------- version 1.1
+20211013 [r16087] add freework of type 4 (wims exo)
+20210928 [r16068] can use tex in description zone in type=3
+20210928 [r16067] bad help link when create a zone in type=3 
+20210928 [r16066] bugfix when save score for a student without manual score in the class
+20210729 [r16016] previsualisation of texte zone for student 
+20200903 [r15346] in type=3 desactivation of file use by manager site is now only for student zone
+20200617 [r15161] use class_limit instead of nbuser to reserve space disk
+-------------------------- version 1.0
+20200519 [r15016] add capacity : manager of the server can forbidden use of file (type=2 and zone=file in type=3)
+20200519 [r15015] job=archivate manage of internal wims_error file_too_long
+20200518 [r15004] bugfix desactivated forbidden when supervisor or user just look at freework
+20200512 [r14960] bugfix bad displaying message after modification of global variable of freework with job=configfw
+20200507 [r14947] add view participant page
+20200505 [r14943] no more checking for parentheses in texte zone answer in type=3
+20200428 [r14907] use accordions in freework type = 3 (OB)
+20200427 [r14902] bugfix in job=archive (not generate archive)
+20200424 [r14901] bugfix error in popup window to download file when name of file too long
+20200423 [r14889] auto generate column in .grades file for score
+20200423 [r14888] no limitation of score with max_userforgrades
+20200417 [r14866+r14867] add help + improve ergonomy of type=3
+20200404 [r14832] add job=archivate for type>=2 to archive freework and make free space in class
+20200404 [r14831] use adm/freeworkaction.phtml instead of adm/sheet/sheetaction.phtml
+20200404 [r14830] job=hide to hide freework
+20200404 [r14823] type=3 protect student geogebra zone to predownload with a non geogebra teacher zone
+20200403 [r14821] use title instead of keyword in upload file menu zone
+20200402 [r14819] manage of desactivate freework for type=2 or type=3
+20200331 [r14797] can upload global correction all time
+20200331 [r14796] hide solution zone if no solution file in the freework
+20200331 [r14796] new method for deleting file (no more menu / direct click icon for file to be deleted)
+20200331 [r14796] restructuration of type=3
+--------------------------- version 0.4 (breaking compatibility with 0.3 version for type=3)
+20200326 [r14788] bugfix : badmessage displayed in user page when freework desactivated
+20200326 [r14788] add typzzone=file in type=3
+20200319 [r14774] display math in zone of type=text
+20200315 [r14767] bugfix : bad file date ; use stat instead of date
+20200316 [r14766] job=uploadco* : bugfix  when scoring=0 and no manual score in class
+20200315 [r14758] job=viewuser3 : textarea use of iedit + readonly option
+20200315 [r14758] applet=text use of iedit js script
+20200315 [r14758] applet=text textarea are readonly when modification are not allowed
+20200314 [r14755] compatibility of cmd dir for macos
+20200314 [r14747] bugfix : with manual score in freework type=2 or type=3 (corruption of file .freeworks when deactivate/hide job)
+20200120 [r14616] use !detag and partialdetag
+---------------------------- version 0.3 (breaking compatibility with 0.2 version)
+20191219 [r14537] add option seealltime to freework type>=2 (supervisor can see student work before soldate pass)
+20191217 [r14537] change format of file .freework$k for type=1 and type=2 loose compatiblity with version 0.2
+20191217 [r14537] add type=3 : applet mode (only 2 applet now : geogebra, texte)
+20191217 [r14537] centralisation of download/delete solution and subject file for all type
+20191121 [r14439] clarification of some displayed message
+20191016 [r14341] keep deleted user score when update other score
+20191015 manage manual score for type>=2
+20191006 define systeme MAX_FREEWORKS variable
+20191006 bugfix job=configfw : bad list of file when deposit a file with same name of file already exists
+20190920 change name of variable soldateXXX deadlineXXX according to script datepickerform.phtml
+---------------------------- version 0.2
+20190920 install lang file
+20190920 compatibility with jquery_defined=no
+20190919 this module can be desactivate by serveur administrator (wims.conf)
+20190919 job=reactivate : check for enough capacity in case of mode=2
+20190917 add job=upload : supervisor can upload corrected individual work for each participant
+20190912 job=student1 : manage mode 2 display
+20190910 add job=reactivate : statut from perimed to activate
+20190905 add job=deactivate only for type=1
+20190905 add job=prep_erase : erase freework
+20190905 bugfix : date lost when create freework
+---------------------------- version 0.1
+20190829 more selective name for file
+20190829 Add job=student1 : display freework for student
+20190829 Add job=expire,prep_activate : change statut
+20190828 job=configtw : manage file deposit
+20190827 Add job=configtw : make and modify a freework
+20190827 structural build

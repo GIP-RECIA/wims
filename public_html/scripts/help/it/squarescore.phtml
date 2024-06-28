@@ -1,0 +1,21 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!else
+  !exit
+!endif
+
+:square
+<h2>Cosa rappresentano i quadratini?</h2>
+  Il lavoro effettuato su un esercizio quanto la registrazione dei voti
+    è attiva è presentato schematicamente da una serie di quadratini colorati:
+  un quadratino per ogni svolgimento dell'esercizio di colore
+corrispondente al punteggio ottenuto secondo la scala qui sotto
+(il primo colore è utilizzato per uno svolgimento non terminato).
+!exit
+
+:seed
+<div>Se appaiono più quadratini su una stessa colonna, significa che quell'esercizio
+  è stato ripetuto con lo stesso enunciato.</div><div>Se il vostro docente ha scelto di limitare
+ il numero di volte che un esercizio viene conteggiato, le ripetizioni dell'esercizio oltre tale numero
+non sono rappresentate.
+</div> 

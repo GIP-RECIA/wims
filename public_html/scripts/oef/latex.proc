@@ -1,0 +1,166 @@
+!set name_Solution=Solution
+!if $wims_developer= and $wims_supervisor= and $wims_user!=supervisor
+  !exit
+!endif
+!set filename=sheet
+!if $wims_read_parm!=
+  !goto $wims_read_parm
+!else
+  !exit
+!endif
+
+:begin
+latex_lang=!lookup $lang in latexlanguage
+!reset cnt_tmp
+!readproc oef/togetfile.proc $filename.tex new\
+\documentclass[12pt]{article}\
+\usepackage{amsmath,amssymb,amsfonts,amsthm}\
+\usepackage[$latex_lang]{babel}\
+%%put 0 to hide solutions\
+\def\hassolution{1}\
+\usepackage[latin1]{inputenc}\
+\usepackage[T1]{fontenc}\
+%\usepackage{xlop}\
+\usepackage{xkeyval,array,multirow}\
+\usepackage{tikz}\
+\usepackage{fancyhdr}\
+\pagestyle{fancy}\
+\usepackage[np,autolanguage]{numprint}\
+\theoremstyle{definition}\
+\usepackage{comment}\
+\newtheorem{statement}{$name_exo}\
+\newtheorem*{answer}{$name_answers}\
+\newtheorem*{solution}{$name_Solution}\
+\newenvironment{checkbox}{%\
+\let\olditem\item%\
+\renewcommand\item[1][\(\square\)]{\olditem[##1]}%\
+\begin{itemize}}{\end{itemize}%\
+}\
+\newenvironment{radio}{%\
+\let\olditem\item%\
+\renewcommand\item[1][]{\olditem[\textcircled{##1}]}%\
+\begin{itemize}}{\end{itemize}%\
+}\
+\newcommand\listchoice[1]{\texttt{#1}}\
+\newcommand\goodchoice[1]{\textbf{#1}}\
+\def\mytitle#1{\centering{#1}}\
+\def\RR{\mathbb{R}}\
+\def\QQ{\mathbb{Q}}\
+\def\CC{\mathbb{C}}\
+\def\ZZ{\mathbb{Z}}\
+\def\NN{\mathbb{N}}\
+\def\yes{1}\
+\if\hassolution\yes\
+ \
+\else\
+ \excludecomment{answer}\
+ \excludecomment{solution}\
+\fi\
+\begin{document}\
+\setcounter{page}{1}\
+\onecolumn\
+
+!exit
+:header
+!default latex_title=$latex_title_
+!default latex_title=$module_title
+!readproc oef/togetfile.proc $filename.tex append\
+\fancyhead{$latex_title_user\hfill}\
+\mytitle{$latex_title}
+!exit
+:sheet
+!readproc oef/togetfile.proc $filename.tex append\
+\newpage\
+\setcounter{statement}{0}\setcounter{page}{1}\
+\setcounter{solution}{0}\
+\setcounter{answer}{0}\
+\fancyhead{$latex_title_user}\
+\mytitle{$latex_title}
+!exit
+
+:exo
+!default deffile=$(e_).def
+!readproc $deffile latex
+!if $latex!=
+  !increase cnt_tmp
+!else
+  !exit
+!endif
+!!!if $cnt_tmp>20
+!!  !exit
+!!!endif
+!set wims_backslash_insmath1=$wims_backslash_insmath
+!set wims_backslash_insmath=no
+!set latex_src=$latex
+!! here the return line has been removed
+!set latex_src=!replace internal $	$ by $\
+$ in $latex_src
+!set latex_src=!replace internal \begin{statement} by $\
+\begin{statement}$ in $latex_src
+!set latex_src=!replace internal \end{statement} by $\
+\end{statement}$ in $latex_src
+!set latex_src=!replace internal \par by $\
+\par$ in $latex_src
+!set latex_src=!replace internal \item by $\
+\item$ in $latex_src
+!set latex_src=!replace internal &#36; by $ $$$$$$$$$$$$$$$$ $  in $latex_src
+
+!if $latex_src!=
+  !set latex_exists=1
+  !!noindentation inside latex_src
+  !set t=!linecnt $(ans_$iii)
+  !if $t>0
+    !set latex_src=$latex_src \
+\begin{answer}\
+\begin{itemize}
+    !for k=1 to $t
+      !set l__=!line $k of $(ans_$iii)
+      !if $l__ !=
+        !set latex_src=$latex_src\
+  \item
+        !set latex_tmp=!line $k of $(anslatex_$iii)
+        !set latex_src=$latex_src $latex_tmp
+        !reset l__
+      !endif
+    !next k
+    !set latex_src=$latex_src\
+\end{itemize}
+    !reset latex_tmp
+    !set latex_src=$latex_src\
+\end{answer}
+  !endif t>0
+!endif
+!set latex_src=!replace internal <br> by \newline $  in $latex_src
+!set latex_src=!replace internal </p> by \newline $ in $latex_src
+!set latex_src=!replace internal </div> by \newline $ in $latex_src
+!set latex_src=!detag $latex_src
+!set latex_src=!html2iso $latex_src
+!readproc oef/togetfile.proc $filename.tex append\
+\
+\
+$latex_src
+!reset latex latex_src
+
+!set wims_backslash_insmath=$wims_backslash_insmath1
+!exit
+:end
+
+!readproc oef/togetfile.proc $filename.tex append\
+\
+\
+\end{document}
+
+!exit
+:print
+!if $name_latexprint=
+  !read oef/$lang/names.proc
+!endif
+!if $printlatex=yes
+  $wims_name_download
+  <a href="wims.tex?session=$session&+cmd=getfile&+special_parm=$filename.tex">
+  $name_latexprint
+  </a>
+  !if $name_warninglatex!=$empty
+    <div class="wims_msg alert">$name_warninglatex</div>
+  !endif
+!endif

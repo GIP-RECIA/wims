@@ -1,0 +1,35 @@
+!! find participant personnal work for the freework wims_read_parm
+!!
+!! entry wims_read_parm :
+!! item 1 freework to search
+!! item 2 participant login
+!! output=date,time
+!! userfileexists=1/0 1 if user as upload a file in one of the student zone
+!! flistusersol= list of corrected file upload by supervisor
+
+!! cfr. adm/class/freework/proc/findfile3.proc
+!!
+!! This file lists user deposits both for type=2 and for type=3
+
+fw_=!item 1 of $wims_read_parm
+user_=!item 2 of $wims_read_parm
+
+listing_=!sh cd $wims_home/log/classes/$wims_class/freeworksdata/$fw_/work;\
+list=`ls -d $(user_)-* $(user_).* 2>/dev/null`;\
+if [ -n "$$list" ]; then for k in $$list; do stat --format="%y" $$k | awk -F"[ :]" '{b=$$1; gsub(/\-/,"",b); print b","$$2":"$$3}' ; done; fi;
+listing_=!sh echo "$listing_" | sort;
+!if $listing_!=$empty
+  output=$(listing_[-1;])
+!else
+  output=0
+!endif
+userfile=!sh cd $wims_home/log/classes/$wims_class/freeworksdata/$fw_/work;\
+ls -al $(user_)-file*/* 2>/dev/null;
+!if $userfile!=$empty
+  userfileexists=1
+  flistusersol=!listfile $wims_home/log/classes/$wims_class/freeworksdata/$fw_/co/$(user_)-file
+  flistusersol=!words2items $flistusersol
+!else
+  userfileexists=0
+  flistusersol=$empty
+!endif

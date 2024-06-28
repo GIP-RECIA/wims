@@ -1,0 +1,60 @@
+!if $wims_read_parm!=$empty
+  !set parms=$wims_read_parm
+!else
+  !if $parms=$empty
+    !exit
+  !endif
+!endif
+!set option=!item 2 of $parms
+!set tooltip=!getopt tooltip in $option
+!if $tooltip!=$empty
+  !set tooltip=!declosing $tooltip
+  !set width=$(tooltip[2])
+  !set text=$(tooltip[1])
+  !if $text!=$empty
+    !set tooltip=yes
+  !endif
+!endif
+!set optrecord=!getopt content in $option
+
+!set optrecord=!declosing $optrecord
+!set parms=!item 1 of $parms
+!set data_dir=data/glossary
+!set data=$data_dir/$parms
+
+!if $optrecord=abstract
+  !set optrecord=1
+!else
+  !if $optrecord=$empty
+    !set recordcnt=!recordcnt $data
+    !set optrecord=!values 2*x for x=2 to $[$recordcnt/2]
+  !else
+    !set optrecord=!values 2*(x-1)+4 for x in $optrecord
+  !endif
+!endif
+!set gl_title=!getdef gl_title in $data
+!set gl_keywords=!getdef gl_keywords in $data
+!set gl_author=!getdef gl_author in $data
+!set gl_type=!getdef gl_type in $data
+!set tmp=!replace internal / by , in $data
+!default gl_title=!lookup $(tmp[-1]) in bases/sys/domain/domain.$(tmp[-2])
+!if $tooltip=yes
+  !default width=400px
+  <div class="wims_tooltip">$text
+    <div class="wims_tooltiptext" style="width:$width">
+!endif
+<div class="wims_glossary">
+!if $gl_type!=dynamic
+  !for j in $optrecord
+    !if $j>=4 and $[$j%2]=0
+      !record $j of $data
+    !endif
+  !next
+!else
+  !read $data
+!endif
+</div>
+!if $tooltip=yes
+  </div></div>
+!endif
+!reset parms text option tooltip

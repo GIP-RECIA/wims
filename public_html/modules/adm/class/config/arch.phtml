@@ -1,0 +1,59 @@
+!if $noarch=yes
+  $name_restore5
+  !exit
+!endif
+
+!if $job2!=first
+  !changeto arch/$job2.phtml
+!endif
+
+
+<fieldset class="property_fields blockcenter">
+  <legend>$name_title_save</legend>
+  <div class="field box">
+    !set wims_ref_class=wims_button_help float_right
+    !href cmd=help&special_parm=download $wims_name_help
+
+    !if $name_cnil_warning!=$empty
+      <div class="wims_msg warning">
+        $name_cnil_warning
+      </div>
+    !endif
+    $name_intro
+
+    !set wims_ref_class=wims_label
+    !href cmd=reply&job=arch&job2=download&selection=all&format=zip zip
+    ,
+    !set wims_ref_class=wims_label
+    !href cmd=reply&job=arch&job2=download&selection=all&format=tgz tgz
+     $wims_name_or
+    !set wims_ref_class=wims_label
+    !href cmd=reply&job=arch&job2=download&selection=all&format=tar.gz tar.gz
+    .
+  </div>
+</fieldset>
+
+!set wims_form_method=file
+!form reply
+<fieldset class="property_fields blockcenter">
+  <legend>$name_title_restore</legend>
+  <input type="hidden" name="job" value="arch">
+  <input type="hidden" name="job2" value="upload">
+  !if $test_sharing!=$empty
+    <div class="wims_msg info">
+      $(name_forbiddenrestore).
+    </div>
+  !else
+    <div class="field box fullwidth">
+      !set wims_ref_class=wims_button_help float_right
+      !href cmd=help&special_parm=upload $wims_name_help
+      <label for="wims_deposit">$name_intro1</label>
+      <input type="file" name="wims_deposit" id="wims_deposit" size="40">
+      <div class="formHelp">$name_help</div>
+    </div>
+    <div class="wimscenter">
+      <input type="submit" value="$wims_name_send">
+    </div>
+  !endif
+</fieldset>
+!formend

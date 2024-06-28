@@ -1,0 +1,18 @@
+!mailto $email\
+\
+WIMS code for the creation of message board\
+\
+Here is the code for the message board $title:\
+\
+<pre>$code</pre>\
+\
+<p>Please copy this code into your web page of the creation of message board.</p>\
+\
+<p>PLEASE be aware that this code is only used ONCE, for the creation of\
+message board. In order to connect to the message board, you must give the password\
+  which YOU have defined.</p>\
+\
+<p>If you do not know what it is: then this is because somebody else\
+have given your email address (wrongly) to an automatic software.\
+  In this case you can ignore this message.</p>\
+

@@ -1,0 +1,198 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=Bernadette, Perrin-Riou
+
+slib_example=[Kg2,Qe3,Ra1,Rd1,Ba3,Ne5,c4,f3,g4,h3;Ke8,Qg8,Rb8,h8,d7,f7,a6,c6,g6],,id=1\
+all,blue grey,style=1\
+\
+[Rc1,Kg1,f2,g2,h3,Rg3,Bb3,Qb4,d4,Ne5,Ne6,f6;Qc8,Kg8,Rh8,Ra7,b7,Ne7,Bh7,a6,c6,g6,h6],blue,style=3\
+[Kg2,Qe3,Ra1,Rd1,Ba3,Ne5,c4,f3,g4,h3;Ke8,Qg8,Rb8,h8,d7,f7,a6,c6,g6;Kg2,Qe3],[,,red],style=4\
+[Kg2,Qe3,Ra1,Rd1,Ba3,Ne5,c4,f3,g4,h3;Ke8,Qg8,Rb8,h8,d7,f7,a6,c6,g6;Kg2,Qe3],[,,red],caption="chessboard"
+!exit
+
+:proc
+!reset slib_out slib_Piece slib_piece slib_style
+
+!!slib_fr=R,D,T,F,C
+!!slib_en=K,Q,R,B,N
+!!slib_it=R,D,T,A,C
+!!slib_es=R,D,T,A,C
+!!slib_de=K,D,T,L,S
+!!slib_ru=R,D,,T,F,C
+slib_placement=$(wims_read_parm[1])
+slib_placement=!declosing $slib_placement
+slib_placement=!declosing $slib_placement
+slib_placement=!lines2rows $slib_placement
+slib_piece=$(slib_placement[3;])
+slib_piece=!lowercase $slib_piece
+slib_piececnt=!itemcnt $slib_piece
+slib_color=$(wims_read_parm[2])
+slib_color=!declosing $slib_color
+slib_color=!words2items $slib_color
+slib_color2=!item 2 of $(slib_color)
+slib_color3=!item 3 of $(slib_color)
+slib_color=!item 1 of $(slib_color)
+slib_style=!getopt style in $(wims_read_parm[3])
+slib_id=!getopt id in $(wims_read_parm[3])
+slib_caption=!getopt caption in $(wims_read_parm[3])
+slib_option=$(wims_read_parm[4])
+
+!default slib_color=#CA906E
+!default slib_color2=#F0EAB9
+!default slib_color3=black
+!default slib_placement=all
+!default slib_id=0
+
+slib_style=!replace internal " by $ in $slib_style
+slib_id=!replace internal " by $ in $slib_id
+
+!! hex values of unicode chess pieces - replace XX by value in (&#98XX;)
+!! Black pieces
+!distribute items 18,19,20,21,22,23\
+  into bk,bq,br,bb,bn,bp
+!! White pieces
+!distribute items 12,13,14,15,16,17\
+  into wk,wq,wr,wb,wn,wp
+
+!if $slib_chessboard_css=$empty
+  !! when this is the first chessboard on the page, load general css
+  !set slib_chessboard_css=\
+  .chess_cell{font-size:40px;text-align:center;\
+  min-width:30px;line-height:30px;\
+  border:thin solid;font-weight:normal;}\
+  .chess_cell.dark{text-shadow: 0 0 4px #FFF;}
+!else
+  !! don't load general css twice
+  !reset slib_chessboard_css
+!endif
+
+!if $(slib_chess_style$slib_style)=$empty
+  !set slib_chess_style$slib_style=<style>$slib_chessboard_css\
+  .chess_style$slib_style.dark{background-color:$slib_color}\
+  .chess_style$slib_style.light{background-color:$slib_color2}\
+  .chess_style$slib_style.marked{border-width:2px;border-color:$slib_color3}</style>
+slib_chess_style$slib_style=!replace internal $\
+$ by $ in $(slib_chess_style$slib_style)
+!endif
+
+!if $slib_placement issametext all
+  slib_placement=Ra1,Nb1,Bc1,Qd1,Ke1,Bf1,Ng1,Rh1,a2,b2,c2,d2,e2,f2,g2,h2;Ra8,Nb8,Bc8,Qd8,Ke8,Bf8,Ng8,Rh8,a7,b7,c7,d7,e7,f7,g7,h7
+!endif
+slib_placement=!lowercase $slib_placement
+
+slib_lettre=a,b,c,d,e,f,g,h
+slib_ccc=!makelist $slib_color,$slib_color2 for x=1 to 4
+slib_cc=
+!for slib_i=1 to 8
+  !if $[$slib_i %2]=0
+    slib_cc=!append line $slib_color2,$slib_ccc to $slib_cc
+  !else
+    slib_cc=!append line $slib_ccc to $slib_cc
+  !endif
+!next
+slib_cc=!lines2rows $slib_cc
+
+slib_fig=!makelist nbsp for x=1 to 8
+slib_fig=!makelist $slib_fig; for x=1 to 8
+slib_fig=!replace internal ;, by ; in $slib_fig
+slib_fig=!rows2lines $slib_fig
+
+slib_c=w,b
+!for slib_j_=1 to $slib_piececnt
+  slib_j=$(slib_piece[$slib_j_])
+  slib_f=!char 1 of $slib_j
+  slib_f_cnt=!charcnt $slib_j
+    !if $slib_f_cnt=2
+      slib_f=p
+      slib_j=p$slib_j
+    !endif
+    slib_position1=!char 2 of $slib_j
+    slib_position1=!positionof item $slib_position1 in $slib_lettre
+    slib_position2=!char 3 of $slib_j
+    slib_Piece=!append item $(slib_position1)_$(slib_position2) to $slib_Piece
+!next
+slib_tmp=
+!for slib_t=1 to 2
+  !for slib_j in $(slib_placement[$slib_t;])
+    slib_f=!char 1 of $slib_j
+    slib_f_cnt=!charcnt $slib_j
+    !if $slib_f_cnt=2
+      slib_f=p
+      slib_j=p$slib_j
+    !endif
+    slib_position1=!char 2 of $slib_j
+    slib_position1=!positionof item $slib_position1 in $slib_lettre
+    slib_position2=!char 3 of $slib_j
+    slib_fff=!line $slib_position1 of $slib_fig
+    slib_fff=!replace item number $slib_position2 by #98$($(slib_c[$slib_t])$slib_f) in $slib_fff
+    slib_fig=!replace line number $slib_position1 by $slib_fff in $slib_fig
+  !next
+!next
+slib_fig=!lines2rows $slib_fig
+
+!if raw iswordof $slib_option
+  slib_out=
+  !for slib_j=8 to 1 step -1
+    !for slib_i=1 to 8
+      slib_out=!append item &$(slib_fig[$slib_i;$slib_j]); to $slib_out
+    !next
+  !next
+  !exit
+!endif
+
+!if rawhtml iswordof $slib_option
+  slib_out=
+  !for slib_j=8 to 1 step -1
+    !for slib_i=1 to 8
+      slib_chess_class=chess_cell chess_style$slib_style
+      !if $(slib_i)_$slib_j isitemof $slib_Piece
+        slib_chess_class=$slib_chess_class marked
+      !endif
+      !if $[($slib_i+$slib_j) %2]=0
+        slib_chess_class=$slib_chess_class dark
+      !else
+        slib_chess_class=$slib_chess_class light
+      !endif
+      slib_out=!append item <span class="$slib_chess_class">\
+        &$(slib_fig[$slib_i;$slib_j]);</span> to $slib_out
+    !next
+  !next
+  slib_out=!replace internal $\
+$ by $ in $slib_out
+  slib_out=!append line $(slib_chess_style$slib_style) to $slib_out
+  !exit
+!endif
+
+!reset slib_th
+slib_out=$(slib_chess_style$slib_style)\
+<table class="chessboard" id="chessboard_$slib_id">\
+  <caption>$slib_caption</caption><tbody>
+!for slib_j=8 to 1 step -1
+  slib_out=$slib_out\
+  <tr><th scope="row">$slib_j</th>
+  !for slib_i=1 to 8
+    slib_chess_class=chess_cell chess_style$slib_style
+    !if $(slib_i)_$slib_j isitemof $slib_Piece
+      slib_chess_class=$slib_chess_class marked
+    !endif
+    slib_out=$slib_out\
+      <td id="cell_$(slib_id)_$(slib_lettre[$slib_i])$slib_j"
+    !if $[($slib_i+$slib_j) %2]=0
+      slib_out=$slib_out class="$slib_chess_class dark"
+    !else
+      slib_out=$slib_out class="$slib_chess_class light"
+    !endif
+    slib_out=$slib_out>&$(slib_fig[$slib_i;$slib_j]);</td>
+  !next
+  slib_out=$slib_out\
+  </tr>
+!next
+
+!for slib_j in $slib_lettre
+  slib_th=!append word <th scope="col">$slib_j</th> to $slib_th
+!next
+slib_out=$slib_out\
+  </tbody><tfoot><tr><th></th>$slib_th</tr></tfoot>\
+</table>

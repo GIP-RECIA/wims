@@ -1,0 +1,33 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,events,independent_events
+!set gl_title=Événements indépendants
+!set gl_level=H5 Générale, H6 Technologique
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \( \mathrm{A} \) et \( \mathrm{B} \) deux événements d'un même univers &#937;.
+<br>
+On dit que \( \mathrm{A} \) et \( \mathrm{B} \) sont deux <strong>événements
+indépendants</strong> si et seulement si
+<span style="white-space:nowrap">\(\mathbf{P}(\mathrm{A}\cap \mathrm{B}) =
+\mathbf{P}(\mathrm{A}) \times \mathbf{P}(\mathrm{B})\).</span>
+</div>
+
+
+<div class="wims_rem">
+<h4>Remarque</h4>
+<p>Si on suppose \( \mathrm{A} \) de probabilité non nulle, \( \mathrm{A} \) et
+\( \mathrm{B} \) sont indépendants si et seulement si
+<span style="white-space:nowrap">\(\mathbf{P}_\mathrm{A}(\mathrm{B}) =
+\mathbf{P}(\mathrm{B})\).</span>
+</p><p>
+De même, si \(\mathrm{B}\) est de probabilité non nulle, \( \mathrm{A} \) et
+\( \mathrm{B} \) sont indépendants si et seulement si
+<span style="white-space:nowrap">\(\mathbf{P}_\mathrm{B}(\mathrm{A}) =
+\mathbf{P}(\mathrm{A})\).</span>
+</p>
+</div>

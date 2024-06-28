@@ -1,0 +1,6 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+filled
+fillcolor orange
+angle 0,0,4,10,135,blue

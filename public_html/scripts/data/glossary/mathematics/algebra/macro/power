@@ -1,0 +1,13 @@
+!set gl_n=!randint 2,10
+!set gl_nn=!randint $[$gl_n+1],12
+!set gl_p=$[$gl_n*$gl_nn]
+!set gl_m1=!randint 3,5
+!set gl_m2=!randint 2,$gl_m1
+!set gl_m3=$[$gl_m1+$gl_m2]
+!set gl_m4=$[$gl_m1-$gl_m2]
+!set gl_m5=$[$gl_m1*$gl_m2]
+
+!set gl_N1=$gl_n
+!for gl_j=1 to $gl_m1-1
+  !set gl_N1=$gl_N1 \times $gl_n
+!next

@@ -1,0 +1,40 @@
+\title{Exemple de jsxgraph}
+\precision{100}
+\text{a=2, 3}
+\text{script= var brd = JXG.JSXGraph.initBoard('jxgbox', {
+ axis:true,boundingbox: [-6, 6, 6, -6], grid:true});
+jxgbox_rep1 = brd.create('point',jxgbox_var1 );}
+
+\statement{
+Code du script
+<div class="spacer">
+\special{editarea
+\text{script= var brd = JXG.JSXGraph.initBoard('jxgbox', {
+ axis:true,boundingbox: [-6, 6, 6, -6], grid:true});
+jxgbox_rep1 = brd.create('point',jxgbox_var1 );}
+}
+</div>
+Code pour embed
+<div class="spacer">
+\special{editarea
+\embed{r1,400x400
+jxgbox brd
+\script
+jxgbox_var1=[0,0];}
+}
+</div>
+Code réponse:
+<div class="spacer">
+\special{editarea
+\answer{}{\a}{type=jsxgraph}{option=precision=10}
+}
+</div>
+Mettre le point A en (\a).
+
+\embed{r1,400x400
+jxgbox brd
+\script
+jxgbox_var1=[0,0];}
+}
+
+\answer{}{\a}{type=jsxgraph}{option=precision=10}

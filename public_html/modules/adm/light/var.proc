@@ -1,0 +1,38 @@
+
+wims_prefix=class user tmp n sharing sharable
+phtml=!trim $phtml
+talign=$wims_texalign
+point=!char -3 of $phtml
+ltest=!char -2,-1 of $phtml
+!if $point=. and $ltest iswordof $wims_site_languages
+  module_language=$ltest
+!else
+  module_language=$lang
+!endif
+
+!read wimshome/modules/home/languages
+!read tabletheme
+
+!set page_id = !replace internal . by , in $phtml
+!set page_id=!item 1 of $page_id
+!if $page_id isitemof download,mirror,cgu,useropts
+  !! shows some Site relative menu items when not in a class and not in a popup window
+  !if $wims_class==$empty and _ notin $wims_session
+    !read adm/language wimshome/public_html/html/name.phtml
+    !read wimshome/public_html/html/name.phtml.fr
+    !read themes/_procs/site.proc
+    !set wims_menu_items = $wims_menu_items\
+    itemsep,0,$$wims_name_Site\
+    $wims_rm_0
+  !endif
+  !if $page_id=useropts
+    !set page_id=pref
+  !endif
+  !set wims_ariane_self=no
+  !set wims_ariane=!append line $page_id,8 to $wims_ariane
+!endif
+
+
+!if $phtml!=$empty
+  wims_module_log=call $phtml
+!endif

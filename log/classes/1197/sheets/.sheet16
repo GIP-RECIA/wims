@@ -1,0 +1,46 @@
+Tiding up
+jeux en géométrie
+??, 2019
+1
+E3
+elementary_mathematics
+levelE3,elementary_geometry,spatial_skill
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:E3/geometry/oefgeo2D.fr
+exo=circle1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collectionner des points dans un cercle #1
+On va vous montrer beaucoup de points. Vous devez trouver un moyen de les mettre à l'intérieur d'un cercle, suivant l'instruction.
+
+:E3/geometry/oefgeo2D.fr
+exo=circle2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collectionner des points dans un cercle #2
+On va vous montrer beaucoup de points. Vous devez trouver un moyen de les mettre à l'intérieur d'un cercle, suivant l'instruction. Mais là vous devrez faire prenve d'initiative.
+
+:E3/geometry/oefgeo2D.fr
+exo=line3&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collectionner des points #1
+On va vous montrer beaucoup de points. Vous devez tracer une droite pour en distinguer certains suivant l'instruction. Compter les points de chaque côté de la droite
+
+:E3/geometry/oefgeo2D.fr
+exo=line4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collectionner des points #2
+On va vous montrer beaucoup de points. Vous devez tracer une droite pour en distinguer certains suivant l'instruction. Vous devez avoir le nombre exact de points comme demandé.
+
+:E3/geometry/oefgeo2D.fr
+exo=line5&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Collectionner des points #3
+On va vous montrer beaucoup de points. Vous devez tracer une droite pour en distinguer certains suivant l'instruction. Vous devez avoir le nombre exact de points comme demandé. Mais là vous devrez faire prenve d'initiative.
+

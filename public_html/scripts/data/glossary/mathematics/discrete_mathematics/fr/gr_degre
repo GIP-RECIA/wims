@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph
+!set gl_title=Degré du sommet d'un graphe
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(s\) un sommet d'un graphe \(G\).
+  Le <strong>degré</strong> du sommet \(s\) est le nombre d'arêtes ou de boucles
+  dont une extrémité est <span style="white-space:nowrap">\(s\).</span>
+</div>
+
+<div class="wims_thm">
+  <h4>Propriété</h4>
+  Soit \(G\) un graphe simple non orienté.
+  <br>
+  La somme des degrés de tous les sommets de \(G\) est égale à deux fois le
+  nombre d'arêtes de <span style="white-space:nowrap">\(G\).</span>
+</div>
+
+:mathematics/discrete_mathematics/fr/gr_degre_1

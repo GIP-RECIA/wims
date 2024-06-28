@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Fonction polynôme du second degré
+!set gl_keywords=polynomials,trinomial,functions,reference_function
+!set gl_level=H5 Générale
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+    Une fonction numérique \(f\) est appelée <strong>fonction polynôme du second
+    degré</strong> lorsqu'il existe un réel \(a\) non nul et deux réels \(b\)
+    et \(c\) tels que, pour tout réel
+    <span style="white-space:nowrap">\(x\),</span> on puisse écrire
+    <span style="white-space:nowrap">\(f(x)=a x^2 + b x + c\).</span>
+</div>
+:mathematics/algebra/fr/trinomial_1

@@ -1,0 +1,53 @@
+!set titb=Exemple 1 de l'inconnue du pourcentage
+!set keyw=
+!set datm=20210518
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randint 12, 20
+
+!set m_k=$[rint(2*$(tmp0))]
+
+!set tmp0=!randint 22, 28
+
+!set m_p=$[rint(2*$(tmp0))]
+
+!set m_n=$[rint(25*$m_k)]
+
+!set m_g=$[rint($m_p*$m_n/100)]
+
+<div class="wims_question"><p>
+Dans un lycée, il y a $m_n élèves dont $m_g garçons. Quel est le pourcentage des garçons parmi les élèves ?
+</p>
+On peut bien sûr réaliser un tableau de proportionnalité et chercher le nombre qui manque &#58;
+<table class="wimscenter wimsborder">
+<caption>Tableau de proportionnalité</caption>
+<tr><td></td><th>Effectif</th><th>Pourcentage</th></tr>
+<tr><th>Garçons</th><td>$m_g</td><td></td></tr>
+<tr><th>Total</th><td>$m_n</td><td>100</td></tr>
+</table>
+<p>
+Il revient au même de résoudre l'équation 
+!insmath \frac{p}{100}=\frac{\g}{\n}
+.
+La proportion est 
+!insmath \frac{\g}{\n} = 0,\p = \frac{\p}{100}
+.
+</p><p>
+On voit que le calcul du rapport donne le pourcentage demandé à condition d'interpréter 0,$m_p comme $m_p %, c'est
+pourquoi on note 0,$m_p = $m_p %.<br>
+En statistique 0,$m_p est la fréquence des garçons parmi les élèves du lycée.<br>
+On peut aussi dire que sur 100 élèves de ce lycée, il y a $m_p garçons.
+</p>
+</div>
+

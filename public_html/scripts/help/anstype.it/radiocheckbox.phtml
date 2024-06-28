@@ -1,0 +1,36 @@
+<b>Selezionare uno o più casi</b> (nomi: <span class="tt wims_code_words">radio</span>
+e <span class="tt wims_code_words">checkbox</span>)
+
+<br>
+Il tipo <span class="tt wims_code_words">radio</span> (risp.
+<span class="tt wims_code_words">checkbox</span>) analizza le scelte
+selezionate dallo studente e le confronta con la risposta corretta.
+Di default, viene assegnato un voto 0 ogni volta che la risposta non
+coincide esattamente con la risposta corretta nel caso
+<span class="tt wims_code_words">radio</span> e se la risposta
+non è una delle risposte corrette nel caso
+<span class="tt wims_code_words">checkbox</span>
+(a meno che non venga data l'opzione
+<span class="tt wims_code_words">split</span>).
+<br>
+La sintassi generale è:
+<pre>
+\answer{Commento}{1,4;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3}{type=radio}
+\answer{domanda 2}{1,4;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3}{type=radio}{option=shuffle}
+\answer{domanda 1}{1,4;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3}{type=checkbox}
+\answer{domanda 3}{1,4,7;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3,corretta3}{type=checkbox}{option=sort split}
+\answer{domanda 4}{1,4,7;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3,corretta3}{type=checkbox}{option=sort eqweight}
+</pre>
+<ul><li><span class="tt wims_code_words">radio</span>:
+Lo studente può selezionare solo una risposta e le opzioni possibili sono
+<span class="tt wims_code_words">shuffle</span> (mischiate) o <span class="tt wims_code_words">sort</span> (in ordine).
+</li><li><span class="tt wims_code_words">checkbox</span>:
+Lo studente può selezionare una o più riposte. Le opzioni possibili sono:
+<ul><li> <span class="tt wims_code_words">shuffle</span>:
+Ordine delle risposte casuale
+</li><li><span class="tt wims_code_words">sort</span>:
+Risposte in ordine alfabetico
+</li>
+ !read help/anstype.it/spliteqweight.phtml
+ </ul>
+</li></ul>

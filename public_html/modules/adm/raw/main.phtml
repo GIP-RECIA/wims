@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <style>
+  body{
+    font-family:verdana,helvetica,arial,sans-serif;
+  }
+  table{
+    border-collapse:collapse;
+  }
+  td,th{
+    border:1px solid grey;
+    padding:4px;
+  }
+  th{
+    background-color:#DFDFDF;
+  }
+  a, code{word-wrap: break-word;}
+  </style>
+  <title>Protocol for WIMS direct connection with other web servers</title>
+</head>
+<body>
+  <div id="content"></div>
+  <pre id="md_source">
+!read protocol.md
+  </pre>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    var source = document.getElementById('md_source');
+    document.getElementById('content').innerHTML =
+      marked(source.innerHTML, {tables: true});
+    source.style.display="none";
+  </script>
+</body>
+</html>
+

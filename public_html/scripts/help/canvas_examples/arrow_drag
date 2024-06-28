@@ -1,0 +1,13 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+cursor move
+linewidth 2
+drag xy
+arrow 0,0,4,3,8,blue
+drag xy
+arrow 0,0,-4,3,8,green
+drag xy
+arrow 0,0,4,-3,8,orange
+drag xy
+arrow 0,0,-4,-3,8,cyan

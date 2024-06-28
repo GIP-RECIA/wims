@@ -1,0 +1,33 @@
+!! job to launch an exercise of freework in type=3 in case of wims exercise
+
+!if $type!=3 and $activetest=1
+  job=student$(lpara_type[$type])
+  !changeto $job.proc
+!endif
+
+!! ----- check of authorisation for student to modify his work (studentmode=0 no studentmode=1 yes)
+d1=!text select char 0123456789 in $(deadline)$(timedeadline)
+d2=!text select char 0123456789 in $wims_now
+d2=!char 1 to 12 of $d2
+!reset toolate
+!if $d2>$d1
+  job=student$(lpara_type[$type])
+  !changeto $job.proc
+!endif
+
+nb=!recordcnt wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+!bound exonum between 1 and $nb default $empty
+!if $exonum=$empty
+  job=student$(lpara_type[$type])
+  !changeto $job.proc
+!endif
+
+data=!record $exonum of wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+!distribute line $data into mod,cl,ti,desc 
+test=!fileexists wimshome/log/classes/$wims_class/freeworksdata/$freework/work/$(wims_user)-wimsexo/$exonum
+!if $test!=yes or $wims_user=supervisor
+  !restart module=$(mod)&cmd=new&$cl&worksheet=F$freework $ti
+!else
+  job=student$(lpara_type[$type])
+  !changeto $job.proc
+!endif

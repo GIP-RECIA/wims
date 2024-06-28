@@ -1,0 +1,8 @@
+size 800,400
+xrange -10,10
+yrange -10,10
+strokecolor blue
+opacity 200,50
+filled
+fillcolor lightgrey
+ruler 0,0,10,2,45

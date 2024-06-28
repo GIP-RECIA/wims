@@ -1,0 +1,680 @@
+!read adm/class/classlang names.phtml
+wims_prefix=class user tmp techvar
+!default activeexo=10
+optionlist=autogen
+!if $wims_class=$empty
+  !reset job name_title
+  error=noclass
+  !exit
+!endif
+!read tabletheme
+sh=!itemcnt $asheets
+!if $sh<1
+  error=no_sheet
+  !exit
+!endif
+
+scnt=!recordcnt wimshome/log/classes/$wims_class/exams/.exams
+!if $scnt=0
+  !sh mkdir -p $wims_home/log/classes/$wims_class/exams
+!endif
+!if $exam>$scnt
+  wims_infoshow=yes
+  !setdef wims_infoshow=$wims_infoshow in wimshome/sessions/$wims_session/var.stat
+!endif
+!if $cmd=resume
+  !bound infoshow within yes,no default $wims_infoshow
+  wims_infoshow=$infoshow
+  !setdef wims_infoshow=$wims_infoshow in wimshome/sessions/$wims_session/var.stat
+!endif
+
+tmp=!defof MAX_EXAMS\
+MIN_WEIGHT\
+MAX_WEIGHT\
+DF_SEVERITY in wimshome/public_html/bases/sys/define.conf
+!distribute line $tmp into max_exams,min_weight,max_weight,df_severity
+df_weight=!word 1 of $df_severity
+title_limit=80
+desc_limit=4000
+etitle_limit=100
+edesc_limit=400
+
+duration_min=2
+duration_max=600
+duration_default=90
+
+tries_min=1
+tries_max=100
+tries_default=3
+
+minscore_min=0
+minscore_max=100
+minscore_default=100
+!default duration=$duration_default
+wims_helper=chapter=3
+
+!if $wims_user!=supervisor
+  !bound job within student, score, scorereg default student
+!endif
+
+!!if $job iswordof student score or $cmd=resume
+  wims_ariane_self=no
+!!endif
+!if $seq>0
+  wims_sequence=$seq
+!endif
+
+!if $job isitemof duplicate,coursewatch
+  !changeto $job.proc
+!endif
+
+today=!char 1 to 8 of $wims_now
+thisyear=!char 1 to 4 of $today
+
+!if $class_expiration=$empty or $class_creation=$empty
+  !defread wimshome/log/classes/$wims_class/.def
+  !if $wims_superclass!=$empty
+    class_expiration=!defof class_expiration in wimshome/log/classes/$wims_superclass/.def
+  !endif
+!endif
+
+!if $class_expiration=$empty
+  error=bad_class
+  !exit
+!endif
+
+sharers=
+sharing1=!defof sharable_sheet in wimshome/log/classes/$wims_class/neighbors
+!for c in $sharing1
+  d=!defof sharing_sheet in wimshome/log/classes/$c/neighbors
+  !if $d issametext $wims_class
+    sharers=!append item $c to $sharers
+  !endif
+!next c
+jquery_defined=!defof jquery_defined in themes/$wims_theme/header.phtml
+default_expdate=!record $exam of wimshome/log/classes/$wims_class/exams/.exams
+default_expdate=!line 2 of $default_expdate
+expdate=!text select char 0123456789 in $expdate
+!default expdate=$default_expdate
+expmon=!char 5 to 6 of $expdate
+expday=!char 7 to 8 of $expdate
+expyear=!char 1 to 4 of $expdate
+expmon=!char 2,3 of $[abs(floor($expmon))+100]
+expday=!char 2,3 of $[abs(floor($expday))+100]
+expyear=!char -4 to -1 of $[abs(floor($expyear))+100000]
+!if $expday>=1 and $expday<=31 and $expmon>=1 and $expmon<=12 \
+   and $expyear>=$thisyear and $expyear<=$thisyear+1 \
+   and $expyear$expmon$expday>$today \
+   and $expyear$expmon$expday<=$class_expiration \
+   and N notin $expmon$expday$expyear
+  expiration=$expyear$expmon$expday
+!else
+  expiration=$class_expiration
+!endif
+expdate=$expiration
+
+!if $exam<1 or $exam>$max_exams
+  error=bad_exam
+  !exit
+!endif
+
+# menu preparation
+!if $job!=$empty and $job iswordof \
+    prep_activate prep_erase prep_expire
+  title=!record $exam of wimshome/log/classes/$wims_class/exams/.exams
+  title=!line 4 of $title
+  error=$job
+  !exit
+!endif
+
+!if $job=erase and $exam>=1 and $exam<=$scnt
+  test=
+  !for s=$exam+1 to $scnt
+    l=!record $s of wimshome/log/classes/$wims_class/exams/.exams
+    l=!line 1 of $l
+    !if $l>0
+      test=notclean
+    !endif
+  !next s
+  !if $test=$empty
+    update_field=0
+    !read update.exam
+  !endif
+  !readproc adm/updatesequence.proc exam,$exam
+  !restart module=home
+!endif
+
+!if $job=expire
+  !distribute item 1,2 into update_field,update_content
+  !read update.exam
+  job=
+!endif
+
+!if $job=hide
+  !distribute item 1,3 into update_field,update_content
+  !read update.exam
+  job=
+!endif
+
+!if $job=reactivate
+  !distribute item 1,1 into update_field,update_content
+  !read update.exam
+  job=
+!endif
+
+activetest=!record $exam of wimshome/log/classes/$wims_class/exams/.exams
+a_=!line 1 of $activetest
+a_=!trim $a_
+expp=!line 2 of $activetest
+!default expiration=$expp
+!if $expiration>$class_expiration
+  expiration=$class_expiration
+!endif
+ecnt=!recordcnt wimshome/log/classes/$wims_class/exams/.exam$exam
+activetest=!replace line 4 by $ecnt in $activetest
+
+!if $job=putsource and $a_=0
+  source=!trim $source
+  !writefile $srcname $source
+  putcnt=!recordcnt $srcname
+  !for i=1 to $putcnt
+    s_=!record $i of $srcname
+    n_=!linecnt $s_
+    bad_source=$i
+    !if $n_>=5 and $n_<10
+      !distribute lines $s_ into di,pa,re,we,ti,de
+      !for k in re,we,di,pa,ti,de
+        $k=!trim $($k)
+        w$k=!wordcnt $($k)
+      !next k
+      !if NaN isin $[$re]$[$we] or $[$wre*$wwe*$wdi]!=1 or $wpa>1 or $ti=$empty \
+          or isin $di or $re<0 or $we<0 or ($re>0 and $we=0)
+        error=bad_source
+        !exit
+      !endif
+      ti=!char 1 to $etitle_limit of $ti
+      de=!char 1 to $edesc_limit of $de
+      source_$i=$s_
+      last=$i
+    !else
+      # last record may be empty
+      !if $i!=$putcnt
+        error=bad_source
+        !exit
+      !endif
+    !endif
+  !next i
+  !for i=1 to $last
+    !appendfile wimshome/log/classes/$wims_class/exams/.exam$exam :$(source_$i)
+  !next i
+!endif
+
+!readproc adm/vfilter/listvarfilter.proc
+
+!if $activetest!=$empty
+  exam_exist=yes
+  !default expiration=!line 2 of $activetest
+  exam_hidetechvar=!line 8 of $activetest
+  exam_mode=!line 9 of $activetest
+  !if $mode!=
+    exam_mode=$mode
+  !endif
+  !default exam_mode=0
+  activetest=!line 1 of $activetest
+  exocnt=!recordcnt wimshome/log/classes/$wims_class/exams/.exam$exam
+  !if $job=student
+    !!relecture du fichier lang pour utiliser mode_exam
+    !read lang/names.phtml.$moduclass_lang
+    !if $wims_exrandomlist=$empty or $(wims_exrandomlist[2;])!=$exam
+      !if exrandomlist iswordof $class_option and $exam_mode!=1
+        wims_exrandomlist=!shuffle $exocnt
+      !else
+        wims_exrandomlist=!makelist x for x = 1 to $exocnt
+      !endif
+      wims_exrandomlist=$wims_exrandomlist;$exam;$exam_mode
+      !setdef wims_exrandomlist=$wims_exrandomlist in wimshome/sessions/$wims_session/var.stat
+    !endif
+    !if $exam_hidetechvar!=$empty
+      !readproc adm/vfilter/ishiddensheet.proc $exam_hidetechvar
+      !if $hidden_sheet=1
+        activetest=-1
+        exocnt=0
+        error=exam_hidden
+        !default expiration=$class_expiration
+        exam_exist=no
+        !exit
+      !endif
+    !endif
+  !endif
+!else
+  exam_exist=no
+  activetest=-1
+  exocnt=0
+  !default expiration=$class_expiration
+!endif
+
+!!----desactivation d'examen soumis à condition :
+  !!pas de partage, pas de score élève,
+  !!  certains types de classe (FG).
+!!----desactivation possible dans un programme sans cours
+!! tests faits differemment dans adm/class/sheet ...
+testsharing=!defof sharable_exam\
+sharing_exam in wimshome/log/classes/$wims_class/neighbors
+testsharing=!lines2items $testsharing
+testsharing=!nonempty items $testsharing
+!! test for main class or program in a class group or a portal
+testrecshare=!defof class_recshare in wimshome/log/classes/$wims_class/.def
+deactivate=yes
+!if $testsharing!=$empty or main isin $testrecshare or $activetest<1
+  deactivate=sharing
+!else
+  !if $class_type!=0 and ($class_type!=1 or $wims_superclass!=$class_parent) \
+    and /0// notin $wims_class//
+    !if $class_typename=program
+      test1=!record 0 of wimshome/log/classes/$wims_class/courses
+      test2=!record 0 of wimshome/log/classes/$wims_class/icourses
+      !if $test1$test2!=$empty
+        deactivate=badstructure
+      !endif
+    !else
+      deactivate=badstructure
+    !endif
+  !else
+    test=!sh cd $wims_home/log/classes/$wims_class/;\
+list=`ls noscore | grep -v supervisor`;\
+cd noscore;\
+awk 'length($$1)==18{if($$3==$exam){print "no";exit};}' $$list;
+    !if no isin $test
+      deactivate=score
+    !endif
+  !endif
+!endif
+!if $job=deactivate
+  !if yes isin $deactivate
+    !distribute item 1,0 into update_field,update_content
+    !read update.exam
+    job=
+    !read var.proc
+  !else
+    error=nodeactivate
+  !endif
+!endif
+!! ---------------------------
+
+
+!readproc adm/scorerestriction get
+!if $allow=yes and $wims_user=supervisor
+  !if $tv_listname=$empty
+    !bound allowtype within all,simulation,none,select default all
+  !else
+    !bound allowtype within all,simulation,none,select,techvar default all
+  !endif
+  !if $sharers!=$empty and $allowshare=1
+    !if $allowtype=techvar
+      !readproc adm/vfilter/validtechvar.proc $allowtechvar\
+$sharers
+      !if $output=1
+        setclass=$wims_class,$sharers
+      !else
+        error=badallowshare
+        allowshare=0
+        setclass=$wims_class
+      !endif
+    !else
+      setclass=$wims_class,$sharers
+    !endif
+  !else
+    setclass=$wims_class
+  !endif
+  !if $allowtype=simulation
+    !for c in $setclass
+      !writefile wimshome/log/classes/$c/.E$exam #
+    !next c
+  !else
+    IPlist=!translate ,;\
+* to $    $ in $_output
+    IPlist=!trim $IPlist
+    !if $allowtype=select and $IPlist=$empty and $save!=$empty
+      allowtype=all
+    !endif
+    !if $allowtype=all
+      allow_parm=
+    !endif
+    !if $allowtype=none
+      allow_parm=none
+    !endif
+    !if $allowtype=select
+      allow_parm=$IPlist
+    !endif
+    !if $allowtype=techvar
+      !readproc adm/vfilter/shexselect.proc E$exam
+    !endif
+    !! --- save modification of allow parameters
+    !if $save!=$empty
+      !if $allow_parm=$empty
+        setclass=!items2words $setclass
+        !sh for c in $setclass; do rm -f $wims_home/log/classes/$$c/.E$exam; done
+      !else
+        !for c in $setclass
+          !writefile wimshome/log/classes/$c/.E$exam $allow_parm
+        !next c
+      !endif
+      wims_class_log=exam $exam allow $allowtype $allowshare by $wims_realuser
+    !endif
+    !! --- end of saving
+
+    !if $cutt notsametext $cutt_save
+      cutt=!text select char 0123456789,.:;  in $cutt
+      cutt=!translate ,; to $  $ in $cutt
+      cutt=!singlespace $cutt
+    !! --------------- format verification of cuttime
+      nbcutt=!wordcnt $cutt
+      fcutt=
+      !for k=1 to $nbcutt
+        tmp=!word $k of $cutt
+        tmp=!replace internal . by , in $tmp
+        n=!charcnt $(tmp[1])
+        !if $n!=8
+          !reset tmp
+        !else
+          ti=!replace internal : by , in $(tmp[2])
+          !distribute item $ti into h,m
+          h=$[$h*1]
+          m=$[$m*1]
+          !if $h<0 or $h>23 or $m<0 or $m>59 or NaN isin $h$m
+            !reset tmp
+          !else
+            h=!char 2 to 3 of $[100+$h]
+            m=!char 2 to 3 of $[100+$m]
+            fcutt=!append word $(tmp[1]).$h:$m to $fcutt
+          !endif
+        !endif
+      !next k
+      cutt=$fcutt
+      cutt=!sort words $cutt
+      !! --------------- end of format verification
+      !distribute lines 6\
+$cutt into update_field,update_content
+      !read update.exam
+      cutt_save=$cutt
+    !endif
+  !endif
+!endif
+
+!! --------------- get/save weight parameter
+rec=!record 0 of wimshome/log/classes/$wims_class/exams/.eseverity
+!if $save!=$empty
+  !bound weight between $min_weight and $max_weight default $df_weight
+  nb=!linecnt $rec
+  !if $exam>$nb
+    !for k=$nb+1 to $exam
+      rec=!append line $df_weight to $rec
+    !next k
+  !endif
+  rec=!replace line number $exam by $weight in $rec
+  !writefile wimshome/log/classes/$wims_class/exams/.eseverity $rec
+!endif
+s_weight=!line $exam of $rec
+!default weight=$s_weight
+
+!if $allow=$empty or $save!=$empty
+  !! --- read saving configuration for allow parameters initial time and after saving
+  !readproc adm/vfilter/shexread.proc E$exam
+  !read adm/scorerestriction put\
+$IPlist
+!endif
+old_allowtype=$allowtype
+old_allowtechvar=$allowtechvar
+!reset allow,save
+
+!if $job iswordof student score
+  !if $wims_user=supervisor
+    allowtype=simulation
+  !else
+    simutest=!record 0 of wimshome/$wims_sesdir/examsimu.$exam
+    !if $allowtype!=simulation and yes iswordof $simutest
+      error=simuchange
+      !exit
+    !endif
+  !endif
+!endif
+
+!if $job!=text
+  !if $title_save$desc_save=$empty
+    rec=!record $exam of wimshome/log/classes/$wims_class/exams/.exams
+    !distribute lines $rec into bidon,bidon,setup_save,title_save,desc_save,cutt_save,comment_save,formal_hidden_condition_save,mode_save
+  !endif
+  setup=$setup_save
+  title=$title_save
+  desc=$desc_save
+  cutt=$cutt_save
+  comment=$comment_save
+  !readproc adm/vfilter/convertformat.proc human\
+$formal_hidden_condition_save
+  !if $output_error!=$empty
+    error=hiddenbadtechvar
+    display=1
+  !endif
+  hidden_condition=$output_convertformat
+  mode=$mode_save
+!else
+  !if $title=$empty
+    error=no_title
+    !exit
+  !endif
+  !if $hidden_condition!=$empty
+    !readproc adm/vfilter/convertformat.proc formal\
+$hidden_condition
+    formal_hidden_condition=$output_convertformat
+    !readproc adm/vfilter/convertformat.proc human\
+$formal_hidden_condition
+    hidden_condition=$output_convertformat
+    !if $output_error!=$empty
+      error=badtechvarname $output_error
+    !endif
+  !else
+    formal_hidden_condition=$empty
+  !endif
+  !ifval $activetest<=0
+    !bound duration between integer $duration_min and $duration_max default $duration_default
+    !bound tries between integer $tries_min and $tries_max default $tries_default
+    !bound minscore between integer $minscore_min and $minscore_max default $minscore_default
+    !if $mode=0
+      setup=$duration $tries
+    !else
+      setup=$duration $tries $minscore
+    !endif
+  !else
+    rec=!record $exam of wimshome/log/classes/$wims_class/exams/.exams
+    !distribute lines $rec into bidon,bidon,setup_save
+    setup=$setup_save
+  !endif
+  desc=!replace $\
+$ by &#13; in $desc
+  title=!singlespace $title
+  desc=!singlespace $desc
+  title=!char 1 to $title_limit of $title
+  desc=!char 1 to $desc_limit of $desc
+  !if $activetest=0
+    !bound mode between 0 and 1 default $mode_save
+  !else
+    mode=$mode_save
+  !endif
+  !if $exam_exist=yes
+    !distribute lines 2\
+$expiration into update_field,update_content
+    !read update.exam
+    !distribute lines 3\
+$setup into update_field,update_content
+    !read update.exam
+    !distribute lines 4\
+$title into update_field,update_content
+    !read update.exam
+    !distribute lines 5\
+$desc into update_field,update_content
+    !read update.exam
+    !distribute lines 6\
+$cutt into update_field,update_content
+    !read update.exam
+    !distribute lines 7\
+$comment into update_field,update_content
+    !read update.exam
+    !distribute lines 8\
+$formal_hidden_condition into update_field,update_content
+    !read update.exam
+    !if $activetest=0
+      !distribute lines 9\
+$mode into update_field,update_content
+      !read update.exam
+    !endif
+  !else
+    !appendfile wimshome/log/classes/$wims_class/exams/.exams :0\
+$expiration\
+$setup\
+$title\
+$desc\
+$cutt\
+$comment\
+$formal_hidden_condition\
+$mode
+    exam_exist=yes
+    activetest=0
+    exam=!recordcnt wimshome/log/classes/$wims_class/exams/.exams
+    !writefile wimshome/log/classes/$wims_class/exams/.exam$exam
+  !endif
+  title_save=$title
+  desc_save=$desc
+  setup_save=$setup
+  cutt_save=$cutt
+  comment_save=$comment
+  formal_hidden_condition_save=$formal_hidden_condition
+  mode_save=$mode
+!endif
+!if $mode=1
+  !distribute words $setup into sdure,stries,sminscore
+!else
+  !distribute words $setup into sdure,stries,sprime
+!endif
+!default sprime=0
+!default sminscore=100
+duration=$sdure
+minscore=$sminscore
+!if $activetest>0 or $wims_user=supervisor
+  !! FIXME unuseless if one wants to create an exam ??
+  !read score.proc
+!endif
+
+!if $job=activate and $[$activetest]=0 or ($exam_mode=1 and $job=text and $[$activetest]=0)
+  !if $job=activate and $[$activetest]=0
+    !distribute item 1,1 into update_field,update_content
+    !read update.exam
+  !endif
+  !if $exam_mode=1
+    !! fix exercise dependancy in case of course mode to lock exercice order
+    !! and protect for adress hack
+    dataexam=$empty
+    dataexam=!record 1 of wimshome/log/classes/$wims_class/exams/.exam$exam
+    dataexam=:$dataexam
+    !for k=2 to $exocnt
+      dt=!record $k of wimshome/log/classes/$wims_class/exams/.exam$exam
+      dt=$dt\
+\
+
+      dt=!replace line number 4 by $[$k-1]:$minscore in $dt
+      dataexam=!append line :$dt to $dataexam
+    !next k
+    !writefile wimshome/log/classes/$wims_class/exams/.exam$exam $dataexam
+  !endif
+  !if $job=activate
+    activetest=1
+  !endif
+!endif
+
+!if $activetest=0
+  !readproc vfilter/listvarfilter.proc
+  # delete an item
+  !if $job=delete and $delete>0 and $delete<=$exocnt
+    !read adm/sheet/sheetexam.shift exam,$exam,,$delete
+    delete=
+    exocnt=!recordcnt wimshome/log/classes/$wims_class/exams/.exam$exam
+  !endif
+
+  # move to specific position
+  !if $job=moveto and $movetarget>=1 and $movetarget<=$[$exocnt+1] \
+      and $movesource!=$movetarget and $movesource>=1 and $movesource<=$exocnt
+    !read adm/sheet/sheetexam.shift exam,$exam,$movetarget,$movesource
+  !endif
+!endif
+
+# modify an exercise
+!if $job=exo
+  !if $activetest>0
+    error=active_exam
+    job=$empty
+    !exit
+  !endif
+  !bound $exo between integer 1 and $exocnt+1 default $exocnt+1
+
+  ee=!record $exo of wimshome/log/classes/$wims_class/exams/.exam$exam
+  !distribute lines $ee into w_,c_,n_,d_,o_,co_
+!! !if $echoose$ename$eweight!=$empty
+  !if $save2!=$empty
+    !if $echoose=$empty
+      !if $c_!=$empty
+        echoose=$c_
+      !else
+        error=prep_noexercise
+        !reset save2
+        !exit
+      !endif
+    !endif
+    !bound eweight between 0,10 default 1
+    ename=!singlespace $ename
+    ename=!char 1 to $etitle_limit of $ename
+    !default ename=Ex
+    edep=!char 1 to 100 of $edep
+    eopt=!listintersect $eopt and $optionlist
+    update_content=$eweight\
+$echoose\
+$ename\
+$edep\
+$eopt\
+$ecomment
+    update_field=0
+    !reset save2
+    !read update.exo
+    !reset job,sasheets
+    !if $error=$empty
+      msg_info=addexook
+    !endif
+    !changeto var.proc
+  !else
+    eweight=$w_
+    echoose=$c_
+    ename=$n_
+    edep=$d_
+    eopt=$o_
+    ecomment=$co_
+ !endif
+!endif
+
+erasable=no
+!if $[$activetest]=0
+  erasable=yes
+  scnt=!recordcnt wimshome/log/classes/$wims_class/exams/.exams
+  !for s=$exam+1 to $scnt
+    l=!record $s of wimshome/log/classes/$wims_class/exams/.exams
+    l=!line 1 of $l
+    !if $l>0
+      erasable=no
+    !endif
+  !next s
+!endif
+
+!if $back=1 and $error=$empty
+  !restart module=home
+!endif
+
+!if $job iswordof scorereg renew cpsheet cpexam
+  !read $job.proc
+!endif

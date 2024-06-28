@@ -1,0 +1,32 @@
+!set email=!trim $email
+!set author=!trim $author
+
+!if $author!=$empty
+  Author of this exercise:
+  !if $email!=$empty
+    !mailurl $email $author
+.
+  !else
+    $author.
+  !endif
+!endif
+!if $solution!=$empty and $hint!=$empty
+  $name_expl1
+!endif
+!if $solution!=$empty and $hint=$empty
+  $name_expl2,
+!endif
+!if $solution=$empty and $hint!=$empty
+  $name_explhint
+!endif
+!if $solution$hint=$empty
+  $name_nohint
+!endif
+<p>
+$name_information
+</p>
+$module_about
+<p>
+$name_copyright
+</p>
+!tail

@@ -1,0 +1,55 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+slib_title=Patron d'un polyèdre en 3D
+slib_author=Bernadette, Perrin-Riou
+slib_parms=3\
+,nom d'un polyèdre (en anglais comme dans la base dans wims)\
+,arbre couvrant le définissant\
+size=200,option as words: size=(vertical size) html show=[] id= html\
+,liste de paramètres pour le déploiement en 3D entre 0 et 1
+
+slib_out=description comme des objets off en 3D, puis envoi à slib/geo3D/3Dviewer.\
+  L'arbre couvrant peut être trouvé par la slib geo2D/polynet puis geo2D/polyspantree
+slib_comment=Preliminary version (syntaxe can change),
+
+slib_example=cube,[3,1,6,6,1,6],size=500 html show=[,AA,FF],[0,1/5,2/5,3/5,4/5,1]\
+tetrahedron,[4,1,1,4],size=500 html show=[,AA,FF],[0,1/5,2/5,3/5,4/5,1]\
+dodecahedron,[8,6,7,1,10,9,2,9,11,11,12,12],bondcolor=red id=1 show=[,AA,FF],[0,1/5,2/5,3/5,4/5,1]
+
+!exit
+
+:proc
+!reset slib_id slib_parmt slib_out slib_pouroff
+!set wims_multiexec=$wims_multiexec pari
+!distribute items $wims_read_parm into slib_polname,slib_spantree,slib_optionX,slib_parmt
+!set slib_parmt=!declosing $slib_parmt
+
+!set slib_parmtcnt=!itemcnt $slib_parmt
+!set slib_spantree=!declosing $slib_spantree
+!set slib_pol=!record 0 of data/polyedre_off/$(slib_polname).off
+!if $slib_header_deploiement=
+  !readproc gp/deploiement.gp
+  !set slib_deploiment=!exec pari $slib_header_deploiement
+!endif
+!reset slib_outfin
+
+!readproc slib/geo2D/polyoff
+!if $slib_header_patron=
+  !readproc gp/spanning_tree.gp
+  slib_pr=!exec pari $slib_header_patron
+!endif
+!set slib_patron=!exec pari m=adjacence(ff); f2=depl_standard(ff,xyz);couv=[$slib_spantree]; W=etale(couv,ff,f2[1],matsize(xyz)[1])
+
+!set slib_W1=!exec pari W[1]
+!set slib_W2=!exec pari W[2]
+
+!set slib_pouroff=!exec pari matconcat(W[2]~)
+!reset slib_tmpcoord
+!for slib_jj=1 to $slib_parmtcnt
+  !set slib_tmp=!exec pari W3=etale3D(couv,ff,W[3],#xyz~,f2[2],$[($(slib_parmt[$slib_jj]))^(1/2)]); M=round(100*matconcat(vector(#W3,i,W3[i]~))~)/100.
+  !set slib_taille=!exec pari [#M~,#W[2]]
+  !set slib_tmpcoord=!append item [$slib_taille;$slib_tmp] to $slib_tmpcoord
+!next
+!readproc slib/geo3D/3Dviewer [$slib_tmpcoord;$slib_pouroff],$slib_optionX animstep=$slib_parmtcnt
+$slib_out

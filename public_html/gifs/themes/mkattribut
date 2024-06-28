@@ -1,0 +1,19 @@
+#! /bin/sh
+###############################################################################
+# gifs/themes/mkattribut
+#
+# Create an automatic file for all attribut icones in public_html/themes/
+
+###############################################################################
+
+cd `dirname $0`
+
+## creation of the icon list
+dir_iconlist="../../themes";
+if [ -f $dir_iconlist/icon ]; then mv $dir_iconlist/icon $dir_iconlist/icon.tmp; fi
+for dir in `ls -d ../domains/*`; do
+  if [ -d $dir ] ; then
+    head -1 $dir/icons.css | sed -e 's,/\*,,g' -e 's,\*/,,g' >> $dir_iconlist/icon;
+  fi;
+done;
+rm -f $dir_iconlist/icon.tmp;

@@ -1,0 +1,18 @@
+
+size 300,300
+xrange -5,5
+yrange -5,5
+grid 1,1,grey
+linewidth 3
+fillcolor orange
+strokecolor blue
+slider 0,2*pi,300,30,angle active degrees,Rotate arrow
+arrow 0,0,4.5,0,8,red
+killslider
+opacity 200,100
+slider -2,2,300,30,x active,move blue rectangle
+frect -4,4,1,-1,blue
+killslider
+linewidth 2
+slider -2,2,300,30,y,move green rectangle
+frect -4,4,1,-1,green

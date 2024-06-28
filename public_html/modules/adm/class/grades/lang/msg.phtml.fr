@@ -1,0 +1,9 @@
+!set wims_module_log=error: $error
+
+!if too_many_users=$error
+  Votre classe a une limite maximale de participants trop élevées ($limit).
+  L'enregistrement de notes manuelles n'est possible que pour les classes ayant au plus un nombre limite de participants de $maxuser. Désolé.
+  !exit
+!endif
+
+!msg $error

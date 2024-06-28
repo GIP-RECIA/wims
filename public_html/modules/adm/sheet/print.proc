@@ -1,0 +1,55 @@
+!!! Rg$iii contains the data for questions embeddings of
+!!! exercise $iii (one line for each question)
+!!! ans_$iii contains the data for the answer
+!set prompt_empty=........
+
+!advance prcnt
+!if $prcnt>6 and $wims_user!=supervisor
+  error=too_many_print
+  printing=yes
+  !exit
+!endif
+
+printmax=40
+!reset savedrawcnt print
+printing=yes
+
+!if $n<1
+  !exit
+!endif
+
+wims_backslash_insmath=yes
+wims_multiexec=pari maxima yacas octave gap
+M=0
+m_step=1
+test_print=0
+!if $wims_developer= and $wims_user!=supervisor
+  latex_exists=-1
+!else
+  latex_exists=0
+  !set description=!getdef class_description in wimshome/log/classes/$wims_class/.def
+  !if $latexuser=yes
+    !set userlistcnt=!recordcnt wimshome/log/classes/$wims_class/.userlist
+  !else
+    !set userlistcnt=0
+  !endif
+  !readproc oef/latex.proc begin
+  !set latex_title=$sheet_title
+  !if $userlistcnt>0
+    !for uu=1 to $userlistcnt
+      !set tmp=!record $uu of wimshome/log/classes/$wims_class/.userlist
+      latex_title_user=\textsc{$name_class : } $description \hfill\textsc{$name_lastname : }$(tmp[1]),\
+        \textsc{$name_firstname : }$(tmp[2])
+      !readproc oef/latex.proc sheet
+      !readproc print1.proc
+    !next
+  !else
+    latex_title_user=\textsc{$name_class : } $description
+    !readproc oef/latex.proc header
+    !readproc print1.proc
+  !endif
+!endif
+!set N=$[$iii-1]
+!if $latex_exists>=1
+  !readproc oef/latex.proc end
+!endif

@@ -1,0 +1,218 @@
+!!!! Génération des 2 nombres !!!!
+!set gl_nb1=!randint 2,2000
+!set gl_nb2=!randint 2,2000
+!while $gl_nb1=$gl_nb2
+  !set gl_nb2=!randint 2,2000
+!endwhile
+
+!!!! PGCD des deux nombres  !!!!!
+!set gl_pgcd=!exec pari gcd($gl_nb1,$gl_nb2)
+!readproc slib/numeration/ecriturenombre $gl_pgcd,tex
+!set gl_pgcdaff=$slib_out
+
+!!!!Décomposition du premier nombre entier !!!!
+!set gl_estpremier1=!exec pari isprime($gl_nb1)
+!set gl_nbprimes1=!exec pari omega($gl_nb1)
+!set gl_fact1=!exec pari factor($gl_nb1)
+
+!readproc slib/numeration/ecriturenombre $gl_nb1,tex
+!set gl_nbaff1=$slib_out
+
+!set gl_matsize1=!exec pari A1=[$gl_fact1];matsize(A1)
+
+gl_decomp1=
+!for gl_li=1 to $(gl_matsize1[1])
+gl_ligne=
+!for gl_col=1 to 2
+  !if $(gl_fact1[$gl_li;$gl_col])>=1000
+    !readproc slib/numeration/ecriturenombre $(gl_fact1[$gl_li;$gl_col]),tex
+    !set gl_elem=$slib_out
+  !else
+    !set gl_elem=$(gl_fact1[$gl_li;$gl_col])
+  !endif
+  !set gl_ligne=!append item $gl_elem to $gl_ligne
+!next $gl_col
+gl_decomp1=$gl_decomp1 $\
+$gl_ligne
+!next $gl_li
+
+gl_decomp1= !translate $\
+$ to ; in $gl_decomp1
+gl_decomp1=$(gl_decomp1[2..-1;])
+
+!set gl_decomp1=!replace internal ; by \times in $gl_decomp1
+!set gl_decomp1=!replace internal , by ^ in $gl_decomp1
+
+!!!!Décomposition du deuxième nombre entier!!!!
+!set gl_estpremier2=!exec pari isprime($gl_nb2)
+!set gl_nbprimes2=!exec pari omega($gl_nb2)
+!set gl_fact2=!exec pari factor($gl_nb2)
+
+!readproc slib/numeration/ecriturenombre $gl_nb2,tex
+!set gl_nbaff2=$slib_out
+
+!set gl_matsize2=!exec pari A2=[$gl_fact2];matsize(A2)
+
+gl_decomp2=
+!for gl_li=1 to $(gl_matsize2[1])
+gl_ligne=
+!for gl_col=1 to 2
+  !if $(gl_fact2[$gl_li;$gl_col])>=1000
+    !readproc slib/numeration/ecriturenombre $(gl_fact2[$gl_li;$gl_col]),tex
+    !set gl_elem=$slib_out
+  !else
+    !set gl_elem=$(gl_fact2[$gl_li;$gl_col])
+  !endif
+  !set gl_ligne=!append item $gl_elem to $gl_ligne
+!next $gl_col
+gl_decomp2=$gl_decomp2 $\
+$gl_ligne
+!next $gl_li
+
+gl_decomp2= !translate internal $\
+$ to ; in $gl_decomp2
+gl_decomp2=$(gl_decomp2[2..-1;])
+
+!set gl_decomp2=!replace internal ; by \times in $gl_decomp2
+!set gl_decomp2=!replace internal , by ^ in $gl_decomp2
+
+!!!!!!! Ensemble des diviseurs du premier nombre    !!!!!!!!!!!!
+!set gl_divnb1=!exec pari divisors($gl_nb1)
+!set gl_nbdivnb1=!itemcnt $gl_divnb1
+!set gl_position_gcd1=!positionof item $gl_pgcd in $gl_divnb1
+
+!set gl_divaff1=
+!for gl_k=1 to $gl_nbdivnb1
+  !if $(gl_divnb1[$gl_k])>=1000
+    !readproc slib/numeration/ecriturenombre $(gl_divnb1[$gl_k]),tex
+    !set gl_item=$slib_out
+  !else
+    !set gl_item=$(gl_divnb1[$gl_k])
+  !endif
+  !if $gl_k=$gl_position_gcd1
+    !set gl_divaff1=!append item \bf{{\color{red} $gl_item }} to $gl_divaff1
+  !else
+    !set gl_divaff1=!append item $gl_item to $gl_divaff1
+  !endif
+!next $gl_k
+
+!!!!!!! Ensemble des diviseurs du deuxième nombre    !!!!!!!!!!!!
+!set gl_divnb2=!exec pari divisors($gl_nb2)
+!set gl_nbdivnb2=!itemcnt $gl_divnb2
+!set gl_position_gcd2=!positionof item $gl_pgcd in $gl_divnb2
+
+!set gl_divaff2=
+!for gl_k=1 to $gl_nbdivnb2
+  !if $(gl_divnb2[$gl_k])>=1000
+    !readproc slib/numeration/ecriturenombre $(gl_divnb2[$gl_k]),tex
+    !set gl_item=$slib_out
+  !else
+    !set gl_item=$(gl_divnb2[$gl_k])
+  !endif
+  !if $gl_k=$gl_position_gcd2
+    !set gl_divaff2=!append item \bf{{\color{red} $gl_item }} to $gl_divaff2
+  !else
+    !set gl_divaff2=!append item $gl_item to $gl_divaff2
+  !endif
+!next $gl_k
+
+!!!! Décomposition du PGCD  !!!!
+!set gl_fact3=!exec pari factor($gl_pgcd)
+!set gl_estpremier3=!exec pari isprime($gl_pgcd)
+
+!set gl_matsize3=!exec pari A3=[$gl_fact3];matsize(A3)
+
+!if $gl_pgcd !=1
+  gl_decomp3=
+  !for gl_li=1 to $(gl_matsize3[1])
+    gl_ligne=
+    !for gl_col=1 to 2
+      !if $(gl_fact3[$gl_li;$gl_col])>=1000
+        !readproc slib/numeration/ecriturenombre $(gl_fact3[$gl_li;$gl_col]),tex
+        !set gl_elem=$slib_out
+      !else
+        !set gl_elem=$(gl_fact3[$gl_li;$gl_col])
+      !endif
+      !set gl_ligne=!append item $gl_elem to $gl_ligne
+    !next $gl_col
+    gl_decomp3=$gl_decomp3 $\
+    $gl_ligne
+  !next $gl_li
+!endif
+
+gl_decomp3= !translate internal $\
+$ to ; in $gl_decomp3
+gl_decomp3=$(gl_decomp3[2..-1;])
+
+!set gl_decomp3=!replace internal ; by \times in $gl_decomp3
+!set gl_decomp3=!replace internal , by ^ in $gl_decomp3
+
+
+!!!! PPCM des deux nombres  !!!!!
+!set gl_ppcm=!exec pari lcm($gl_nb1,$gl_nb2)
+!readproc slib/numeration/ecriturenombre $gl_ppcm,tex
+!set gl_ppcmaff=$slib_out
+
+!!!! Décomposition du PPCM  !!!!
+!set gl_fact4=!exec pari factor($gl_ppcm)
+!set gl_estpremier4=!exec pari isprime($gl_ppcm)
+
+!set gl_matsize4=!exec pari A4=[$gl_fact4];matsize(A4)
+
+!if $gl_ppcm !=1
+  gl_decomp4=
+  !for gl_li=1 to $(gl_matsize4[1])
+    gl_ligne=
+    !for gl_col=1 to 2
+      !if $(gl_fact4[$gl_li;$gl_col])>=1000
+        !readproc slib/numeration/ecriturenombre $(gl_fact4[$gl_li;$gl_col]),tex
+        !set gl_elem=$slib_out
+      !else
+        !set gl_elem=$(gl_fact4[$gl_li;$gl_col])
+      !endif
+      !set gl_ligne=!append item $gl_elem to $gl_ligne
+    !next $gl_col
+    gl_decomp4=$gl_decomp4 $\
+    $gl_ligne
+  !next $gl_li
+!endif
+
+gl_decomp4= !translate internal $\
+$ to ; in $gl_decomp4
+gl_decomp4=$(gl_decomp4[2..-1;])
+
+!set gl_decomp4=!replace internal ; by \times in $gl_decomp4
+!set gl_decomp4=!replace internal , by ^ in $gl_decomp4
+
+
+!!!!!!!!!!!!!!! ALGORITHME EUCLIDE !!!!!!!!!!!!!
+
+!set gl_min=!exec pari min($gl_nb1,$gl_nb2)
+!set gl_max=!exec pari max($gl_nb1,$gl_nb2)
+
+!readproc slib/numeration/ecriturenombre $(gl_min),tex
+!set gl_minaff=$slib_out
+
+!readproc slib/numeration/ecriturenombre $(gl_max),tex
+!set gl_maxaff=$slib_out
+
+!set gl_dividende=$gl_max
+!set gl_diviseur=$gl_min
+!set gl_quotient=!exec pari divrem($gl_dividende,$gl_diviseur)[1]
+!set gl_reste=!exec pari divrem($gl_dividende,$gl_diviseur)[2]
+
+!while $(gl_reste[-1])>0
+  gl_dividende=!append item $(gl_diviseur[-1]) to $gl_dividende
+  gl_diviseur=!append item $(gl_reste[-1]) to $gl_diviseur
+  gl_temp1=!exec pari divrem($(gl_dividende[-1]),$(gl_diviseur[-1]))[1]
+  gl_temp2=!exec pari divrem($(gl_dividende[-1]),$(gl_diviseur[-1]))[2]
+  gl_quotient=!append item $gl_temp1 to $gl_quotient
+  gl_reste=!append item $gl_temp2 to $gl_reste
+!endwhile
+
+!set gl_nbligne_euclide=!itemcnt $gl_dividende
+
+!set gl_eucmat=!exec pari Z=[$gl_dividende;$gl_diviseur;$gl_quotient;$gl_reste];mattranspose(Z)
+!set gl_dim=!exec pari matsize([$gl_eucmat])
+
+!set gl_operation= =,\times,\plus

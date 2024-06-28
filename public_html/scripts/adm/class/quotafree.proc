@@ -1,0 +1,134 @@
+!! define variables :
+!! quota_total : deprecated use wims_class_quota instead ?
+!! quota_free : actual free space of the class
+!! quota_used : actual used space
+!! quota_reserved : actual reserved space for some activity (active freework ...)
+!! auth_upload : yes if class capacity is ok (else no)
+!! wims_read_parm is proc or html (proc make calcul and html show result on page)
+
+!if $wims_read_parm isitemof proc,html,canvas
+  !goto $wims_read_parm
+!endif
+
+:proc
+!! ---- calcul
+!if $class_limit=$empty
+  class_limit=!defof class_limit in wimshome/log/classes/$wims_class/.def
+!endif
+!read adm/du $wims_home/log/classes/$wims_class
+!if $class_type=$empty
+  class_type=!defof class_type in wimshome/log/classes/$wims_class/.def
+!endif
+!if $class_type iswordof 2 4 and $wims_superclass_quota!=$empty
+  quota_total=$wims_superclass_quota
+!else
+  quota_total=$wims_class_quota
+!endif
+quota_used=$du
+!! -------------------- calculate space reserved
+quota_reserved=0
+!! ------- space reserved for active freework of type>=2
+nb_=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+!for k_=1 to $nb_
+  dt_=!record $k_ of wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !distribute line $dt_ into s_,bl,bl,bl,bl,t_,bl,bl,c_
+  !default c_=0
+  !if $s_=1 and $t_>=2
+    !read adm/du $wims_home/log/classes/$wims_class/freeworksdata/$k_/work
+    quota_reserved=$[$quota_reserved+$class_limit*$c_*0.25-$du]
+  !endif
+!next k_
+
+quota_reserved=$[min($quota_reserved,$wims_class_quota-$quota_used)]
+
+!! -------------------- end reserved calculation
+quota_free=$[$quota_total-$quota_used-$quota_reserved]
+
+!if $quota_free<5
+  auth_upload=no
+!else
+  auth_upload=yes
+!endif
+
+!exit
+
+:html
+!readproc adm/class/classlang lang/scriptadmclass.phtml adm_class_quotafree
+!set x1=$[floor($quota_used/$wims_class_quota*10000)/100]
+!set x1_int=$[floor($x1)]
+!set x2=$[floor($quota_reserved/$wims_class_quota*10000)/100]
+!set x2_int=$[floor($x2)]
+!set x3=$[floor($quota_free/$wims_class_quota*10000)/100]
+
+<div class="wims_quotafree">
+  <style>@import "html/themes/_css/quota_bar.css";</style>
+  <div class="wimscenter">
+    $(name_availablespace[1]) ($wims_class_quota $name_mega)
+  </div>
+  <div class="quota-bar" role="progressbar" tabindex="0"
+       aria-valuenow="$x1" aria-valuemin="0" aria-valuemax="100"
+       aria-valuetext="$(name_availablespace[2]): $x1% of $wims_class_quota$name_mega">
+    !! used
+    <div class="quota-index alert" title="$x1% $(name_availablespace[2])" style="width:$x1%">$x1_int%</div>
+    !! reserved
+    !if $x2>0
+      <div class="quota-index warning" title="$x2% $(name_availablespace[4])" style="width:$x2%">$x2_int%</div>
+    !endif
+    !!free
+    <div class="quota-index blank" title="$x3% $(name_availablespace[3])">&nbsp;</div>
+  </div>
+  <p class="formHelp wimscenter">
+    <span class="quota-legend alert">$(name_availablespace[2]): $quota_used$name_mega</span>;
+    !if $quota_reserved>0
+      <span class="quota-legend warning">$(name_availablespace[4]): $quota_reserved$name_mega</span>;
+    !endif
+    <span class="quota-legend">$(name_availablespace[3]): $quota_free$name_mega</span>.
+  </p>
+</div>
+
+!exit
+:canvas
+  !readproc adm/class/classlang lang/scriptadmclass.phtml adm_class_quotafree
+  <div class="wimscenter">
+    <label for="freespace">$(name_availablespace[1]) ($wims_class_quota $name_mega)</label>
+    <canvas id="freespace" width="700" height="50">
+      $(name_availablespace[1]) : $wims_class_quota  $name_mega ($(name_availablespace[2]): $quota_used $name_mega ; $(name_availablespace[4]): $quota_reserved $name_mega ; $(name_availablespace[3]): $quota_free $name_mega ).
+    </canvas>
+    !set x1=$[floor(($quota_used)/$wims_class_quota*700)]
+    !set x2=$[floor(($quota_reserved)/$wims_class_quota*700)]
+    <script>
+    function draw() {
+      var canvas = document.getElementById("freespace");
+      if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+          ctx.fillStyle = 'red';
+          ctx.fillRect(1,1,$x1,24);
+          ctx.fillRect(100,30,10,10);
+
+          !if $quota_reserved>0
+            ctx.fillStyle = 'yellow';
+            ctx.fillRect($x1,1,$x2,24);
+            ctx.fillRect(250,30,10,10);
+          !endif
+
+          ctx.fillStyle = 'green';
+          ctx.fillRect($[1+$x1+$x2],1,$[700-$x1-$X2],24);
+          ctx.fillRect(400,30,10,10);
+
+          ctx.fillStyle = 'black';
+          ctx.strokeRect(0, 0, 700, 24);
+          ctx.fillText('$(name_availablespace[2])',120,40);
+          ctx.fillText('$quota_used',$[floor($x1/2)],15);
+          ctx.fillText('$(name_availablespace[3])',420,40);
+          ctx.fillText('$quota_free',$[floor((700+$x1+$x2)/2)],15);
+          !if $quota_reserved>0
+            ctx.fillText('$(name_availablespace[4])',270,40);
+            ctx.fillText('$quota_reserved',$[floor($x1+($x2)/2)],15);
+          !endif
+        }
+      }
+      draw();
+    </script>
+  </div>
+!exit

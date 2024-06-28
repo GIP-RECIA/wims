@@ -1,0 +1,30 @@
+title=Tchat
+description=Tchat between teacher and student
+author=Fabrice, Guerimand
+address=fwguerima@free.fr
+copyright=&copy; 2020
+version=1.00
+# minimal version of wims server under which the module may run
+wims_version=4.19b
+language=$lang
+maintainer=Fabrice, Guerimand
+maintainer_address=fwguerima@free.fr
+
+# Possible categories: exercise, tool, dictionary, course, recreation.
+category=adm
+
+# Anything you like.
+keywords=
+help=popup
+
+title_fr=Tchat
+description_fr=Méssagerie instantanée
+
+title_it=Tchat
+description_it=Tchat
+
+title_es=Chat
+description_es=Mensajería instantánea
+
+title_ca=Xat
+description_ca=Missatgeria instantània

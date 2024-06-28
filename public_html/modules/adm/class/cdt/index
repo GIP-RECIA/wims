@@ -1,0 +1,40 @@
+title=Agenda
+description=Agenda of the class.
+author=Fabrice, Guerimand
+address=fwguerima@free.fr
+copyright=&copy; 2006 (<a href="COPYING">GNU GPL</a>) 2009 2011 2013
+version=2.06
+# minimal version of wims server under which the module may run
+wims_version=4.25b
+language=$lang
+
+# Possible categories: exercise, tool, dictionary, course, recreation.
+category=adm
+
+# En: elementary. Hn: high school. Un: under. G: graduate. R: research.
+# E1,...,E6; H1...,H6; U1,...,U4; G; R
+level=E1 E2 E3 E4 E5 E6 H1 H2 H3 H4 H5 H6 U1 U2 U3 U4 G R
+
+# e.g. algebra, analysis, geometry, etc.
+domain=
+
+# Anything you like.
+keywords=
+
+title_cn=¼ÇÊÂ±¾
+description_cn=°à¼¶µÄ¼ÇÊÂ±¾.
+translator_cn=³ÂÖ¾½Ü
+translator_address_cn=zjchen@math.ecnu.edu.cn
+
+title_fr=Cahier de texte
+description_fr=préparation / modification du cahier de texte de la classe.
+
+title_it=Agenda
+description_it=Scadenze del corso
+translator_it=Marina, Cazzola
+translator_address_it=marina.cazzola@unimib.it
+
+title_ca=Agenda
+description_ca=preparació/modificació de l'agenda de la classe.
+translator_ca=Manel, Querol
+translator_address_ca=mquerol@xtec.cat

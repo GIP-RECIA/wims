@@ -1,0 +1,11 @@
+!set gl_date1=!char 1 to 4 of $wims_now
+!set gl_dec=!randint 1,3
+!set gl_date1=$[$gl_date1-$gl_dec]
+!set gl_date2=$[$gl_date1+1]
+!set gl_pib1=!randint 190,230
+!set gl_pib1=$[$gl_pib1*10]
+!set gl_pib2=!randint $gl_pib1+20,$gl_pib1+200
+!set gl_pib2=$[floor($gl_pib2/10)*10]
+!set gl_growth=$[($gl_pib2-$gl_pib1)/$gl_pib1]
+!set gl_percent1=$[floor($gl_growth*100000)/100000]
+!set gl_percent2=$[floor($gl_percent1*1000)/10]

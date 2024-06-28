@@ -1,0 +1,34 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+!distribute lines Mode de prova. Només escriurà al directori de proves. \
+   L’actualització del sistema WIMS està en curs. Aquí teniu el resum de sortida de l'script actual. \
+   És la versió pública més recent del programari. No cal que actualitzeu. \
+   La versió pública més recent és \
+   Sou més recents que la versió pública. Res per actualitzar. \
+   Sortida de l'última actualització \
+   resum \
+   Feu clic aquí \
+into name_test,name_warning, name_mostrecent,name_mostrecent2,name_morerecent,\
+  name_output,name_summary,name_click
+
+!set name_sorry=!nosubst Ho sentim, no hem pogut descarregar la nova versió de WIMS de <span class="tt">$download</span>. Siusplau, intenta-ho més tard.
+!set name_summary=!nosubst Resum de la darrera actualització: (En cas d’error, envieu-lo a $wims_maintainer).
+!set name_detailed=!nosubst Sortida detallada de l'última actualització: (Si us plau, envieu-la a $wims_maintainer en cas d'error.)
+!set name_sorry2=!nosubst Ho sentim, no es pot accedir al lloc de descàrrega de WIMS <span class="tt">$download</span>.
+!set name_version=!nosubst Aquest lloc WIMS es troba actualment sota la versió $wims_version.
+
+!exit
+:update
+per descarregar WIMS $pubversion des de <span class="tt">$download</span> i actualitzar el 
+servidor. <span class="wims_warning">$wims_name_warning</span>. Això crearà
+indisponibilitat momentània del servidor.
+<em>No actualitzeu quan el servidor està ocupat.</em>
+<p>
+<b>Nota</b>. L’actualització del servidor no alterarà el vostre material didàctic local
+(classes, exercicis, documents, mòduls en desenvolupament).
+</p><p>
+<span class="wims_warning">IMPORTANT</span>. YHeu de verificar els permisos 
+dels fitxers després de l’actualització del programari.
+</p>

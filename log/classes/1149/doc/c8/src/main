@@ -1,0 +1,5 @@
+<ol>
+ <li>\fold{\embed{ExpQN}}{<strong>Puissances entières</strong>}</li>
+ <li>\fold{\embed{ExpQFrac}}{<strong>Puissances rationnelles</strong>}</li>
+ <li>\fold{\embed{ExpQR}}{<strong>Puissances réelles</strong>}</li>
+</ol>

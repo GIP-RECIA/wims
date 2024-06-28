@@ -1,0 +1,17 @@
+!! ------------ add link to tchat for user
+!set fileexists=!fileexists themes/$wims_theme/_procs/usertchat.proc
+!if $fileexists=yes
+  !changeto themes/$wims_theme/_procs/usertchat.proc
+!endif
+!readproc linkmodule/tchat.proc
+!if $wims_allowlink_tchat=yes
+  !set test=!defof wims_opentchat in wimshome/sessions/$wims_session/var.stat
+  !set rd=!randint 1,99999
+  !set wims_rm_0=$wims_rm_0\
+    tchat,4,module=adm/class/tchat&cmd=new&+randomize=$rd,tchat
+  !if $test!=$empty
+    !set wims_rm_0=$wims_rm_0\
+      tchatclose,4,module=adm/class/tchat&cmd=new&job=close&autoclose=0&+randomizer=$rd,tchat
+  !endif
+!endif
+!reset test

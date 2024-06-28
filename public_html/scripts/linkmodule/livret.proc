@@ -1,0 +1,10 @@
+!!
+!! test if livret administrative module is allowed or not
+!!
+!!
+!if $wims_class!=$empty and ($wims_supertype=0 or ($wims_supertype=2 and $wims_typename=class) or\
+  ($wims_supertype=4 and ($wims_typename iswordof course program or /0// isin $wims_class//)))
+  !let wims_allowlink_livret=yes
+!else
+  !let wims_allowlink_livret=no
+!endif

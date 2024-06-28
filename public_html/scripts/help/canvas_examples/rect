@@ -1,0 +1,5 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+rect 0,0,4,-4,green
+rect 0,5,4,1,red

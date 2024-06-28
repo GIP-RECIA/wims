@@ -1,0 +1,88 @@
+type=game
+textarea="data instruction1 instruction2"
+iEdit="instruction1 instruction2"
+
+:Viene mostrato un testo o un'immagine per un tempo limitato, dopo di che viene posta una domanda
+
+<div class="small">
+Questo esercizio può facilmente essere trasformato per essere incluso in un modolo OEF in Modtool
+se si desidera mettere i dati in un file ausiliario. Per far ciò,
+è sufficiente compilare il campo \text{file=} inserendo il nome del file
+(una volta che l'esercizio è inserito in un modulo in Modtool).
+Un esercizio dello stesso tipo e più completo è disponibile in Quicktool.
+</div>
+
+<p class="wims_credits">Autore del modello : <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENZIONE      %%%%%%%%%%%%%%%%%%%%
+
+Se si rimuovono le indicazioni del modulo modelli (le righe che
+cominciano con ':') è necessario rimuovere tutta questa parte
+introduttiva del file. Altrimenti Createxo potrebbe non accettare il
+codice dell'esercizio.
+
+:%%%%%%%% Parametri che possono essere ridefiniti %%%%%%%%%%%%%%%%%
+
+:\title{Gioco di memoria}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Consegna per il primo passo
+\text{instruction1=Memorizza il testo seguente. Quindi clicca sul bottone Inizia.}
+
+:Tempo minimo, massimo, tolleranza in millisecondi
+\text{time=100,100000}
+
+:Consegna per il secondo passo
+\text{instruction2=Scrivere in lettere il numero che hai letto.}
+
+:Tipo di risposta per il secondo passo
+\text{atype=item(1,symtext,
+	numeric,function)}
+:Dati
+Scrivere una domanda per riga.
+Il primo elemento è mostrato nel primo passo dell'esercizio.
+Il secondo elemento è la risposta che deve essere data. È possibile
+non inserire questo secondo elemento, in questo caso la risposta attesa
+è di nuovo il primo elemento.
+
+\text{data=2,due
+4,quattro
+1,uno}
+:Opzioni nel caso symtext
+Le opzioni possono essere uno o più di "nopunct", "nocase", "case"
+
+\text{option=}
+
+:%%%%%%%%%%%%%% Nulla da modificare fino all'enunciato %%%%%%%%%%%%%%%%
+\css{<style>
+.texte {border:solid black 1pt; padding:2em; margin:3em}
+</style>}
+
+\text{data=randrow(\data)}
+
+\text{STEP=r1
+r2}
+\steps{\STEP}
+\text{cnt=items(\data)}
+\if{\cnt>1}{
+  \text{question1=\data[1..-2]}
+  \text{question2=\data[-1]}
+}{
+  \text{question1=\data}
+  \text{question2=\data}
+}
+\statement{
+ \if{\step=1}{
+  <div class="instruction">\instruction1</div>
+  <div class="texte">\question1</div>
+\embed{r1}
+ }
+ \if{\step >= 2}{
+   <div class="instruction">\instruction2</div>
+   <div class="wimscenter">\embed{r2,50}</div>
+ }
+}
+\answer{}{\time}{type=time}{option=nonstop noanalyzeprint}{weight=0}
+\answer{}{\question2}{type=\type}{option=\option}{weight=100}

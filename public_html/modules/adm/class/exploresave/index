@@ -1,0 +1,30 @@
+title=Importation sélective de contenu
+description=Restore data from save file
+author=Fabrice, Guerimand
+address=fwguerima@free.fr
+copyright=&copy; 2020
+version=1.01
+# minimal version of wims server under which the module may run
+wims_version=4.25b
+language=$lang
+maintainer=Fabrice, Guerimand
+maintainer_address=fwguerima@free.fr
+
+# Possible categories: exercise, tool, dictionary, course, recreation.
+category=adm
+
+# Anything you like.
+keywords=
+help=popup
+
+title_fr=Importation sélective de contenu
+description_fr=Importation sélectives des données d'une sauvegarde
+
+title_it=Ripristino parziale di risorse
+description_it=Ripristino di risorse a partire da un file di backup
+
+title_es=
+description_es=
+
+title_ca=
+description_ca=

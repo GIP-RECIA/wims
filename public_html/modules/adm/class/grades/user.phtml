@@ -1,0 +1,23 @@
+<hr>
+!form reply
+
+$table_header
+  <head>
+  <caption>$name_enterof: <em>$username</em> (/ $maxscore): </caption>
+  </head>
+  <body>
+  !for g=1 to $gcnt
+    !set t_=!item $g of $titles
+    !set g_=!item $g of $grades
+    <tr>
+      <td style="text-align:right">$t_</td>
+      <td><input size="6" name="c$g" value="$g_"></td>
+      !reset c$g
+    </tr>
+  !next g
+  </body>
+$table_end
+<div class="formHelp">$name_todeletescore</div>
+<div class="wimscenter wimsform"><input type="submit" name="reg" value="$wims_name_tosave"></div>
+
+!formend

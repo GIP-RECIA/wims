@@ -1,0 +1,38 @@
+!set lang_exists=yes
+
+name_title1=Invia email
+name_title2=Messaggio
+name_noemail2=I seguenti iscritti non hanno un indirizzo email
+
+name_participant1=Il messaggio è stato inviato a
+name_participant2=Non è stato possibile inviare il messaggio ai seguenti iscritti
+name_intro=Questo strumento permette di spedire un messagio email a tutti o a alcuni degli iscritti
+
+name_expert0=È possibile selezionare gli iscritti attraverso più metodi. Selezionate il metodo che preferite.
+
+name_expert1=Utilizzando i bottoni con le frecce, spostate nel riquadro di destra gli iscritti a cui desiderate inviare il messaggio.
+
+name_expert2=Scrivete direttamente l'elenco dei login, separati da virgole.
+
+name_expert3=Attraverso la defizione di varibili tecniche assegnate agli iscritti è possibile costruire filtri per selezionare gli iscritti a cui inviare la mail.
+
+name_warning=State inviato il messaggio seguente alla seguente lista di iscritti.
+
+!distribute items Destinatari,Mittente,Docenti in copia,Elenco di <em>login</em>,Messaggio,Oggetto,Selezione da un elenco,\
+ Tutti gli iscritti (con posta elettronica)\
+into name_recipients,name_sender,name_recip_teacher,name_loginlist,name_message,name_subject,name_select,name_allparticipants
+
+name_user=docente,docenti,iscritto,iscritti
+name_without=non ha indicato un indirizzo di posta elettronica,non hanno indicato indirizzi di posta elettronica
+name_noemail_login=I seguenti login corrispondono ai criteri di selezione ma non è disponibile un indirizzo di posta elettronica valido
+name_noemail_filter=I seguenti studenti corrispondono ai criteri di selezione ma non hanno fornito un indirizzo di posta elettronica valido
+name_and=e
+name_sendotherteacher=Invia una copia del messaggio agli altri docenti del corso
+name_selfsend=inviami una copia
+name_recipient=Destinatari
+name_success=Messaggio correttamente inviato
+name_nosendermail=Non hai registrato un indirizzo di posta elettronica: il docente non sarà in grado di risponderti.
+name_sendto=Inviato a (studente),Inviato a (docente)
+name_noreply=!nosubst Questo è un messaggio automatico. Per rispondere dovete <a href="$httpd_REMOTE_ADDR/wims/wims.cgi?module=adm/class/classes&+type=$localtype&+class=$localclass">effettuare l'accesso al corso</a>.
+name_sendby=!nosubst Inviato da $supervisorname
+name_suptype=Docente coordinatore,Docente del corso,Responsabile del server,Docente

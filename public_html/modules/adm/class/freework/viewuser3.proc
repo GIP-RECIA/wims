@@ -1,0 +1,79 @@
+!! process control page for view student work in type=3
+
+!if $loadwork!=1
+  error=badallows
+  emptypage=yes
+  !exit
+!endif
+
+!if $userv notitemof $ulist
+  error=exolog-nouser
+  job=configfw
+  !changeto $job.proc
+  !exit
+!endif
+
+!! ------- preparing date format
+d1=!text select char 0123456789 in $(deadline)$(timedeadline)
+d2=!text select char 0123456789 in $(soldate)$(timesoldate)
+now=!text select char 0123456789 in $wims_now
+now=!char 1 to 12 of $now
+!reset toolate
+!if $now>$d1
+  toolate=yes
+!endif
+!readproc adm/date.phtml $(deadline)
+tmp=!replace internal : by H in $timedeadline
+!let date1=$l_date_out $wims_name_at $tmp
+!readproc adm/date.phtml $(soldate)
+tmp=!replace internal : by H in $timesoldate
+!let date2=$l_date_out $wims_name_at $tmp
+
+
+!! ---- read structure of the freework
+!distribute item 0,0,$empty into nbrezoneteacher,nbrezonestudent,ltdownloadzone
+nb=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freework$freework
+!for k=1 to $nb
+  dt=!record $k of wimshome/log/classes/$wims_class/freeworks/.freework$freework
+  l=!line 1 of $dt
+  !distribute word $l into t,u
+  !bound u within teacher,student default teacher
+  !bound t within solution,$listfilename_ztype default $(listfilename_ztype[1])
+  !if $t!=solution
+    !increase nbrezone$u
+    ztype$(u)$(nbrezone$u)=$t
+    script_data=!line 2 to -1 of $dt
+    !readproc applet/$t pararead $u $(nbrezone$u)
+    !! -- read display parameters for each zone
+    !readproc applet/$t displayread $u $(nbrezone$u) 0 $userv
+  !endif
+!next k
+ltdownloadzone=!listintersection $ltdownloadzone and $zonelistlabelstudent
+
+!!if $putiworkco=1
+!!  iedit_activated=1
+!!endif
+
+!if $showstudlist!=yes
+  error=noinlineanswer
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!set appletnum=0
+
+!readproc adm/class/userdef ,$wims_class,$userv
+tmp=!defof user_firstname,user_lastname in $userdef
+!distribute item $tmp into lastname,firstname
+remark=!record 0 of wimshome/log/classes/$wims_class/freeworksdata/$freework/co/.$userv
+remark=!replace internal &#58; by : in $remark
+finalremark=!record 0 of wimshome/log/classes/$wims_class/freeworksdata/$freework/co/$userv
+finalremark=!replace internal &#58; by : in $finalremark
+!! !set wims_menu_items=!append line $name_managefreework,1,module=$module&cmd=new&job=configfw&freework=$freework to $wims_menu_items
+
+!! ------ delete file 
+!if $job2=eraseusersol
+ namefile=!text select 1234567890azertyuiopqsdfghjklmwxcvbnAZERTYUIOPMLKJHGFDSQWXCVBN. in $namefile
+ !sh rm -f $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$(userv)-file/$namefile 2>\dev\null;
+!endif
+!readproc proc/findfile3.proc $freework,$userv

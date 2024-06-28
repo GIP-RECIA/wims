@@ -1,0 +1,68 @@
+<h2 class="wimscenter">Access restriction definition</h2>
+
+<p>
+This is multi-line data, executed line by line in their list orders. The
+restrictions only affect resource modules, but not administration modules.
+Lines starting with a `<span class="tt wims_code_words">#</span>' are comments.
+</p><p>
+Each line is of the format <span class="tt wims_code_words">access conditions:host/time conditions</span>.
+</p><p>
+The access conditions is a list of words, which will be ANDed. The available
+words are listed in the following table. Each word can be prefixed with
+<span class="tt wims_code_words">non</span> to reverse its logical meaning.
+</p>
+$table_header
+$table_tr<th>word</th><th>meaning</th></tr>
+$table_tr<td class="tt wims_code_words">class</td><td>The connection is within a virtual class.</td></tr>
+$table_tr<td class="tt wims_code_words">com</td><td>The requested module is under the com/ subtree.</td></tr>
+$table_tr<td class="tt wims_code_words">document</td><td>The requested module is a document.</td></tr>
+$table_tr<td class="tt wims_code_words">exercise</td><td>The requested module is an exercise.</td></tr>
+$table_tr<td class="tt wims_code_words">hint</td><td>The request is for hint.</td></tr>
+$table_tr<td class="tt wims_code_words">local</td><td>The requested module is under the local/ subtree.</td></tr>
+$table_tr<td class="tt wims_code_words">recreation</td><td>The requested module is a recreation.</td></tr>
+$table_tr<td class="tt wims_code_words">tool</td><td>The requested module is a tool.</td></tr>
+$table_end
+
+!set date=!char 1 to 8 of $wims_now
+!set year=!char 1 to 4 of $wims_now
+<div>
+The host/time conditions can be any host or time definition as for any worksheet.
+According to the first line with host/time meeting the host/time conditions:
+  <ul><li> If the first character of the host/time conditions is
+    <span class="tt wims_code_words">!</span>, the resources meeting the access conditions
+    will be refused access.
+  </li><li>
+    Otherwise they will be granted access.
+  </li></ul>
+  Subsequent lines in the restriction definition will be then ignored.
+</div>
+<hr>
+
+!read help/hosts.phtml
+
+<hr>
+
+Some starting examples.
+<div>
+# Disallow the use of tools from 134.59.102.*
+<pre>
+<span class="tt wims_code_words">tool:! 134.59.102.</span>
+</pre></div><div>
+# Disallow calls for hint from localhost.
+<pre>
+<span class="tt wims_code_words">hint:! 127.0.0.1</span>
+</pre></div><div>
+# People from wanadoo.fr cannot have anonymous accesses for recreations.
+<pre>
+<span class="tt wims_code_words">nonclass recreation:! .wanadoo.fr</span>
+</pre></div><div>
+# Work in the virtual class prohibited from localhost on New Year's Day of 2004.
+<pre>
+<span class="tt wims_code_words">class:! 127.0.0.1 &gt;$(year)0101.00:00 &lt;$(year)0101.23:59</span>
+</pre></div><div>
+# Work in the virtual class prohibited from 10pm to 6am on the days of October.
+<pre>
+<span class="tt wims_code_words">class:! &gt;****10**.22:00 &lt;****10**.23:59</span>
+<span class="tt wims_code_words">class:! &gt;****10**.00:00 &lt;****10**.06:00</span>
+</pre>
+</div>

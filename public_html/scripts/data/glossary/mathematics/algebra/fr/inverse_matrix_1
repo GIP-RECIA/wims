@@ -1,0 +1,17 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Matrice inverse (exemple)
+
+!readproc data/glossary/mathematics/algebra/macro/inverse_matrix
+
+La matrice identité de taille \($gl_n\) est
+\([$gl_id]\).
+
+<div>
+Soit \(A\) la matrice carrée définie par \(A = [$gl_A]\).
+<br>La matrice \(A\) est inversible et admet pour matrice inverse  \(A^{-1} =\) \([$gl_B]\).
+</div>
+
+<div>
+La matrice \([$gl_C]\) n'est pas inversible.
+</div>

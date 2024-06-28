@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=descriptive_statistics,standard_deviation
+!set gl_title=Écart type
+!set gl_level=H4
+
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit une série statistique de variance \(\mathbf{\mathrm{V}}\).<br>
+L'<strong>écart type</strong> de cette série est le nombre réel positif
+\(\mathbf{s}\) défini par
+ <div class="wimscenter">
+ \( \mathbf{s} = \sqrt{\mathbf{\mathrm{V}}}\).
+ </div>
+</div>

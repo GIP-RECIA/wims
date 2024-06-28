@@ -1,0 +1,152 @@
+!if $(module_title_$moduclass_lang)!=$empty
+  !set module_title=$(module_title_$moduclass_lang)
+!endif
+!read adm/class/class.lang names.phtml
+
+!read adm/css.phtml
+!header1
+
+!read adm/class/classname.phtml $wims_classname\
+$wims_institutionname
+
+!read adm/title.phtml 1\
+$classname\
+$module_title
+
+!set password_pattern=pattern="[a-zA-Z0-9]{4,16}"
+!if $wims_user=supervisor
+  !set wims_menu_items=!append line SE_config,1,module=adm/class/config to $wims_menu_items
+!endif
+!if $error!=$empty
+  <div class="wims_msg
+    !if success iswordof $error
+      success
+    !else
+      alert
+    !endif
+    ">
+    !read lang/msg.phtml.$moduclass_lang
+  </div>
+  !set wims_ref_class=wims_button
+  <p class="wimscenter">
+    !href module=home $wims_name_back2
+  </p>
+  !goto end
+!endif
+
+!form reply
+
+!if $class_type=4 or $class_type=2 or ($class_type=3 and $class_typename!=class) or  /0// isin $wims_class//
+  !! in a group or portal or program or level or test zone$
+  !! for groups and portal, the class password is used for teachers registration
+  !set name_classpasswd = $name_classpasswdt
+  !set name_classpasswd_hlp = $name_classpasswdt_hlp
+!endif
+
+!if $cmd=new and $job=user and $wims_user!=supervisor
+  !readproc adm/class/userdef classes,$wims_class,$wims_user
+  !defread $userdef
+  !if $user_forcechpwd=yes
+    <div class="wims_msg alert">
+     !if $user_supervisable=yes
+       $name_desc_forcechpwd2
+     !else
+       $name_desc_forcechpwd
+     !endif
+    </div>
+  !endif
+!endif
+
+<fieldset class="property_fields halfwidth blockcenter">
+  !if $wims_user=supervisor
+    !default job=user
+    !if $job=none
+      !set ch_$job=checked
+      <legend>$wims_name_Password</legend>
+      <div class="field box">
+        $name_passwdtype
+        <div>
+          <input type="radio" name="job" $ch_user value="user" id="job1">
+          <label for="job1">$name_userpasswd</label>
+          <div class="formHelp">$name_userpasswd_hlp</div>
+        </div>
+        <div>
+          <input type="radio" name="job" $ch_class value="class" id="job2">
+          <label for="job2">$name_classpasswd</label>
+          <div class="formHelp">$name_classpasswd_hlp</div>
+        </div>
+      </div>
+    !else
+      <legend>
+        $(name_$(job)passwd)
+        !if $job=part
+          <span class="tt">$part</span>
+        !endif
+      </legend>
+      <p class="formHelp">$(name_$(job)passwd_hlp)</p>
+      <input type="hidden" name="job" value="$job">
+    !endif
+  !else
+    !if $job=user or $job=none
+      <legend>$wims_name_Password</legend>
+    !endif
+    <input type="hidden" name="job" value="user">
+  !endif
+
+  !if $job=user or $job=none
+    <div class="field box">
+      <label for="old">$name_actualpasswd</label>
+      <input type="password" size="16" name="old" id="old"
+      !if $job=user
+        required="required" $password_pattern
+      !endif
+      >
+      !if $job=none and $wims_user=supervisor
+        <div class="formHelp">$name_actualpasswd_hlp.</div>
+      !endif
+    </div>
+  !endif
+
+  <div class="field box">
+    <label for="pw1">$name_newpasswd</label>
+    <input type="password" size="16" name="pw1" id="pw1"
+    !if $job=user
+      required="required" $password_pattern
+    !endif
+    >
+    <div class="formHelp">
+      $name_alphanumer
+      !if $job isitemof none,class and $wims_user=supervisor
+        <br>($name_emptypasswd).
+      !endif
+    </div>
+  </div>
+  <div class="field box">
+    <label for="pw2">$name_newpasswd2</label>
+    <input type="password" size="16" name="pw2" id="pw2"
+    !if $job=user
+      required="required" $password_pattern
+    !endif
+    >
+  </div>
+  <div class="wimscenter wimsform">
+    <input type="submit" value="$wims_name_tosave">
+    !set wims_ref_class=wims_button wims_secondary_button
+    !href module=home $wims_name_giveup
+  </div>
+</fieldset>
+
+!if $job notwordof class
+  <p class="small wimscenter">
+    $name_jetable
+    !set wims_ref_class=wims_button_help
+    !href target=wims_mhelp cmd=help $wims_name_help
+  </p>
+!endif
+
+!formend
+
+:end
+!tail
+
+!distribute item $ into job,pw1,pw2,old

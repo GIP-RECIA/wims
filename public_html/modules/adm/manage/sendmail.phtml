@@ -1,0 +1,70 @@
+!if $error!=$empty
+  <div class="wims_msg alert">
+  !read lang/msg.phtml.$modu_lang
+  </div>
+!endif
+
+!if $step=$empty
+  !form reply
+  <fieldset class="property_fields blockcenter">
+  <legend>$name_message</legend>
+   <div class="field box">
+    <label for="sendmail_subject">$name_subject</label>
+    <input type="text" name="sendmail_subject" id="sendmail_subject" size="45" value="$sendmail_subject">
+   </div>
+   <div class="field box">
+    <label for="sendmail_msg">$name_message</label>
+    <textarea name="sendmail_msg" id="sendmail_msg" cols="80" rows="10">$sendmail_msg</textarea>
+   </div>
+   </fieldset>
+   <fieldset class="property_fields blockcenter">
+    <legend>$(name_dest[1])</legend>
+     <ul>
+     !for k=1 to $nbcheck_list
+     <li>
+      <input type="checkbox" name="sendmail_dest" value="$k" id="sendmail_dest$k">
+      <label for="sendmail_dest$k">$(check_list[$k])</label> ($(cnt_list[$k]))
+     </li>
+     !next k
+     </ul>
+   </fieldset>
+   <div class="wimscenter wimsform">
+     <input type="hidden" name="step" value="1">
+     <input type="submit" name="sendmail_reg" value="$wims_name_send">
+     !set wims_ref_class=wims_button wims_secondary_button
+     !href cmd=renew $wims_name_giveup
+   </div>
+!formend
+!else
+  $table_header
+   $table_tr
+    <th>$name_subject</th>
+    <td>$save_subject</td>
+   </tr>
+   $table_tr
+    <th>$name_message</th>
+    <td style="text-align:left"><pre>$save_msg</pre></td>
+   </tr>
+   $table_tr
+    <th>$(name_dest[1])</th>
+    <td style="text-align:left">
+     !replace internal , by <br> in $save_list
+    </td>
+   </tr>
+ $table_end
+    !if $step=1
+     !form reply
+      <input type="hidden" name="step" value="2">
+      <div class="wimscenter actions">
+        <input type="submit" name="sendmail_reg" value="$wims_name_send"> &nbsp;
+        !set wims_ref_class=wims_button wims_secondary_button
+        !href cmd=renew $wims_name_giveup
+      </div>
+     !formend
+    !else
+      <div class="wims_msg success">$name_sending.</div>
+      !reset step
+    !endif
+
+!endif
+!reset sendmail_subject,sendmail_dest,sendmail_reg,sendmail_msg

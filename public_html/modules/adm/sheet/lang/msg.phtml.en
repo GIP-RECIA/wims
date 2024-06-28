@@ -1,0 +1,26 @@
+
+!set wims_module_error=error: $error
+
+<span class="wims_warning">$wims_name_Error</span>.
+
+!if bad_sheet iswordof $error
+  Invalid worksheet name.
+  !exit
+!endif
+
+!if too_many_print iswordof $error
+  Your requests for printed versions are excessive.
+  !href cmd=reply&job=read $wims_name_back2
+  !exit
+!endif
+
+!if sheet_hidden iswordof $error
+  Cette feuille de travail n'est pas accessible pour vous. Ne jouez pas avec la barre d'adresse !!
+  !href cmd=reply&job=read $wims_name_back2
+  !exit
+!endif
+
+!if bad_maxsheet=$error
+  The number of worksheets is limited to $max_sheets. You may not create another worksheet.
+  !exit
+!endif

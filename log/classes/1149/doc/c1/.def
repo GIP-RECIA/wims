@@ -1,0 +1,9 @@
+tit=Fonction affine
+author=Rémi, Belloeil
+email=remi.belloeil@orange.fr
+copyright=gnu
+docopen=1
+doctoc=no
+dlang=all
+header=<link rel="stylesheet" href="html/themes/_css/l2w.css" /> <style>.myemph	{background-color:pink;} .myemph2	{background-color:yellow;}</style>
+desc=Synthèse de cours sur les fonctions affines

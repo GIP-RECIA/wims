@@ -1,0 +1,38 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=isometries,vectors
+!set gl_title=Translation
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(\overrightarrow{u}\) un vecteur du plan ou de l'espace.
+ <br>La <strong>translation</strong> de vecteur \(\overrightarrow{u}\)
+ est la transformation du plan ou de l'espace par laquelle tout point M a pour
+ image le point M' tel que <span style="white-space:nowrap">
+ \(\overrightarrow{\mathrm{MM}'} = \overrightarrow{u}\).</span>
+ </div>
+:mathematics/geometry/fr/translation_1
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Si \(t\) est une translation et si A, B, A', B' sont quatre points tels que
+  \(t(\mathrm{A})=\mathrm{A}'\) et <span style="white-space:nowrap">
+  \(t(\mathrm{B})=\mathrm{B}'\),</span> alors <span style="white-space:nowrap">
+  \(\overrightarrow{\mathrm{A}'\mathrm{B}'} = \overrightarrow{\mathrm{AB}}\).
+  </span></div>
+<div class="wims_thm">
+<h4>Corollaire</h4>
+Une translation conserve les distances : si \(t\) est une translation et si
+A, B, A', B' sont quatre points tels que \(t(\mathrm{A})=\mathrm{A}'\) et
+<span style="white-space:nowrap"> \(t(\mathrm{B})=\mathrm{B}'\),</span> alors
+<span style="white-space:nowrap">\(\mathrm{A}'\mathrm{B}'=\mathrm{AB}\).</span>
+</div>
+:mathematics/geometry/fr/translation_2
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Le quadrilatère ABCD est un parallélogramme si et seulement si la translation
+qui transforme A en B, transforme D en C.
+</div>
+:mathematics/geometry/fr/translation_3

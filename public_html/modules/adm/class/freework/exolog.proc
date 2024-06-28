@@ -1,0 +1,51 @@
+sdir=$wims_home/$wims_sesdir
+cdir=$wims_home/log/classes/$wims_class
+
+nbexo=!recordcnt wimshome/log/classes/$wims_class/freeworks/.Wfreework$freework
+!bound exolog between 1 and $nbexo default $empty
+!if $exolog=$empty
+  error=exolog-noexo
+  job=student
+  !changeto var.proc
+!endif
+!! --------- checking work is valid exolog and freework
+test=!defof w_wims_fwexo,w_wims_fwnumber in wimshome/sessions/$wims_session/var
+!distribute item $test into fwexo,fwnumber
+!if $fwexo!=$exolog or $fwnumber!=$freework
+  error=exolog-badparameter
+  job=student
+  !changeto var.proc
+!endif
+
+!! ------ no register if exercise already exists
+test=!fileexists wimshome/log/classes/$wims_class/freeworksdata/$freework/work/$(wims_user)-wimsexo/$exolog
+!if $test=yes
+  error=exolog-exoexists
+  job=student
+  !changeto var.proc
+!endif
+
+!!  ------ testing if score is enough for exo to be registered
+score=!defof w_module_score in wimshome/$wims_sesdir/exolog
+!if $score<$wims_fwminscore
+  error=exolog-badscore
+  job=student
+  !changeto var.proc
+!endif
+
+
+!sh mkdir -p $cdir/freeworksdata/$freework/work/$(wims_user)-wimsexo;\
+    mv $sdir/exolog $cdir/freeworksdata/$freework/work/$(wims_user)-wimsexo/$exolog;
+!! replace the name of images by rename by the true name when saving
+rename_list =!record 0 of wimshome/$wims_sesdir/.rename
+rename_list_cnt=!linecnt $rename_list
+!for l=1 to $rename_list_cnt
+  rename_l=!line $l of $rename_list
+  rename_l=!replace internal : by , in $rename_l
+  rename_l=!replace internal ? by \? in $rename_l
+  !sh perl -np -i -e 's:$(rename_l[2]):$(rename_l[1]):g' $cdir/freeworksdata/$freework/work/$(wims_user)-wimsexo/$exolog
+!next l
+wims_fwlistexo=!listcomplement $exolog in $wims_fwlistexo
+!setdef wims_fwlistexo=$wims_fwlistexo in wimshome/sessions/$wims_session/var.stat
+job=student
+!changeto var.proc

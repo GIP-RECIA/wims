@@ -1,0 +1,87 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:general
+Le tchat permet de saisir des messages alpha-numériques entre l'enseignant
+  et un élève particulier ou un groupe d'élèves particulier. Il est possible
+  de saisir des formules mathématiques
+dans <code>&#8726;(...&#8726;)</code>. Les tags html et liens hypertextes ne sont pas autorisés.
+!if $wims_user=supervisor
+  <ul>
+   <li>Le Tchat peut être désactivé dans la classe en utilisant le lien configurer
+    du menu (il est désactivé par défaut à la création de la classe).</li>
+   <li>Il est possible de créer des salons regroupant certains élèves de la classe
+    en utilisant le lien surveillance des salons.</li>
+   <li>Le salon "classe" contenant tous les élèves de la classe est présent d'origine
+    et ne peut pas être effacé mais il peut être désactivé.</li>
+   <li>Chaque élève dispose d'un salon individuel où il est le seul (avec l'enseignant)
+    à pouvoir lire et écrire.
+       Ce salon ne peut pas être effacé ni désactivé.</li>
+   <li>Lorsqu'un élève ouvre son tchat, l'enseignant peut voir les pages d'exercices
+       qu'il consulte afin de l'aider sur des notions précises. Il apparaît alors dans
+       le tchat individuel une liste de boutons permettant d'ouvrir une page contenant
+       une capture de la page de l'élève au moment du click.
+   </li>
+  </ul>
+!else
+  <ul><li>
+  Le Tchat peut contenir plusieurs salons. Si c'est le cas, lorsque la fenêtre s'ouvre,
+   vous disposez de lien dans le menu latéral pour passer d'un salon à l'autre.</li>
+   <li>Dans chacun des salons, vous pouvez voir la liste des élèves de la classe
+   qui sont inscrits dans le salon. Cependant cette liste peut évoluer à tout moment
+   puisque votre enseignant peut changer les inscriptions.</li>
+   <li>Lorsque la fenêtre de Tchat est ouverte, vous pouvez continuer à naviguer
+   en utilisant la fenêtre principale.</li>
+   <li>Il est possible d'activer le partage d'écran. Si vous l'activez, l'enseignant peut voir des captures d'écran
+   de l'exercice que vous êtes en train de réaliser.
+   Il peut alors plus facilement vous aider.</li>
+   <li>Le rechargement automatique active ou désactive la fonction de rafaîchissement de la page. Cette fonctionnalité peut créer
+      des disfonctionnements avec la page principale. Il est donc conseillé de ne pas la laisser active lorsque vous n'êtes
+       pas en attente d'un message.</li>
+   <li>Pour fermer le tchat, il est indispensable de fermer la fenêtre du Tchat en
+      utilisant le lien <span class="tt wims_code_words">fermer la fenêtre</span> de wims
+      et non les boutons du navigateur (sinon votre tchat reste ouvert).
+   </li>
+   !if $tchat_configfilesize>0
+    <li>Vous pouvez déposer un fichier temporaire pour que votre enseignant le consulte. Ce fichier ne sera pas conservé après la fermeture de
+      votre session de travail.
+    </li>
+  !endif
+!endif
+!exit
+
+:config
+Les options sont les suivantes :
+<ul>
+ <li><b>$name_opentchat </b> Permet d'ouvrir ou fermer le tchat.
+  Si le Tchat est fermé, les participants n'y ont pas accès mais
+  l'enseignant continue de pouvoir consulter les messages qui ont déjà été
+  enregistrés.</li>
+ <li><b>$name_timing</b> Il s'agit du délai en seconde après lequel les pages du tchat
+  (enseignant comme participant) seront rechargées et donc
+  les nouveaux messages apparaîtront.</li>
+ <li><b>$name_onlynonempty</b> Si cette option est à $wims_name_yes, alors seulement
+  les salons contenant au moins un élève connecté (et ayant son tchat ouvert)
+  ou dont le dernier message n'est pas celui de l'enseignant seront listés
+  dans le tableau de surveillance.
+  Cette option est pratique pour attendre l'apparition de nouveaux messages
+  lorsque plusieurs salons sont ouvert simultanément.</li>
+ <li><b>$name_configfilesize</b> cette option permet d'autoriser les participants
+  à poster un fichier temporaire lorsqu'ils sont connectés à leur salon personnel.
+  La taille du fichier est limitée par l'enseignant de la classe (cette option peut
+  également être désactivée par l'enseignant). La publication d'un nouveau fichier par l'élève
+  efface le précédent. Le fichier n'est pas conservé après la fermeture de la session de l'élève.
+!if $conf_nofile=yes
+  <i>Cette option a été désactivée par l'administrateur du serveur.</i>
+!endif
+ </li>
+</ul>
+!exit
+
+:listliving
+  Ce panneau de configuration regroupe les informations sur les différents salons.<br>
+  Il permet de lister les participants à chacun d'entre eux
+  et gérer leur ouverture et leur fermeture ainsi que la modification de la liste des participants.<br>
+  Les salons individuels ne sont pas listés.
+!exit

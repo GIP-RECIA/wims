@@ -1,0 +1,21 @@
+
+!read help/canvasdraw.phtml
+
+!set s_=!item 1 of $special_parm
+!if $s_ iswordof canvas_examples
+  !set tmp=!replace internal _ by , in $(special_parm[2])
+  <h2 class="wimscenter">$wims_name_Example: $(tmp[1])</h2>
+  !read help/canvas_examples.phtml $(special_parm[2])
+  !reset tmp
+  !exit
+!endif
+!if $s_ iswordof canvas
+  !read help/canvasdraw.phtml
+  !exit
+!endif
+!if $s_ iswordof reply
+  !set tmp=!replace internal _ by , in $(special_parm[2])
+  !read help/reply.phtml $tmp
+  !reset tmp
+  !exit
+!endif

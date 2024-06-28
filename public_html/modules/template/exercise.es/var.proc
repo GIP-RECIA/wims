@@ -1,0 +1,27 @@
+# El cálculo de variables se llevaría a cabo en este archivo.
+# WIMS lo lee e interpreta para cada llamada válida a este módulo.
+
+!read language lang/names
+!if $cmd=reply and $status!=waiting
+ error=double_reply
+ !exit
+!endif
+
+!if $cmd=reply and $status=waiting
+  # Analysis of the reply should be placed here.
+  # The following lines are just a template.
+
+  !if $x>$y
+    diagnostics=good
+  !else
+    diagnostics=bad
+  !endif
+
+  status=done
+  !if $diagnostics=good
+    module_score=10
+  !else
+    module_score=0
+  !endif
+  wims_module_log=score $module_score/10
+!endif

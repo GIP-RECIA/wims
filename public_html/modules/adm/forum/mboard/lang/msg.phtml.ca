@@ -1,0 +1,112 @@
+!! This file contains error messages. It will be processed
+!! whenever the variable `error' is not empty.
+
+!set errorhead=<b>$wims_name_Error</b>.
+
+!if prohibited = $error
+  $errorhead El teu missatge conté paraules no permeses. Per exemple,
+   no es pot posar javascript en el missatge. Recorda que aquest error
+   s'emmagatzema en el servidor.
+  !exit
+!endif
+
+!if forum_not_exist = $error
+ $errorhead Has sol·licitat un fòrum que no existeix. Ho sento.
+ !set fatal=yes
+ !exit
+!endif
+
+!if no_read_right = $error
+ $errorhead No tens dret a accedir a aquest fòrum. Ho sento.
+ !set fatal=yes
+ !exit
+!endif
+
+!if no_subject = $error
+ $errorhead Si us plau, afegir un assumpte al missatge.
+ !exit
+!endif
+
+!if translation_fail = $error
+ $errorhead El programari ha trobat un error intern i no ha pogut
+  interpretar el teu missatge. Ho sento.
+ !if $wims_exec_error!=$empty
+  <p>
+  Tipus d'error&nbsp;: <span class="tt">$wims_exec_error</span>
+ !endif
+ !exit
+!endif
+
+!if open_tag = $error
+ <b>$wims_name_warning</b>.
+ El teu missatge sembla acabar dins d'una etiqueta HTML oberta.
+ Si us plau, comprova el missatge amb cura. <p>
+ El missatge serà llegir com un fitxer en format html. Així que si vols
+  escriure desigualtats, has d'afegir un espai després del signe
+ `&lt;' o bloquejar les desigualtats com a fórmules matemàtiques
+ (per parelles \( i \) ).
+ !exit
+!endif
+
+!if bad_message = $error
+ $errorhead El missatge que vols llegir no existeix en aquest fòrum.
+  Si us plau, comprova la teva sol·licitud.
+ !exit
+!endif
+
+!if erased_message = $error
+ $errorhead El missatge que vols llegir s'ha esborrat.
+ !exit
+!endif
+
+!if $error=no_send_right
+ $errorhead No tens el dret d'enviar missatges a aquest fòrum.
+ Ho sento.
+ <p>
+ !href cmd=reply&job=list&mlist=.newlist Llista de missatges.
+ !exit
+!endif
+
+!if $error=email_required
+ $errorhead Si us plau, proporciona la teva adreça de correu electrònic si vols
+  publicar missatges en aquest fòrum.
+ <br>
+ <b>$wims_name_warning</b>. El servidor comprovarà aquesta adreça&nbsp;! així que si us plau
+  no donis una adreça falsa.
+ !set job=compose
+ !exit
+!endif
+
+!if $error=bad_email
+ $errorhead No has proporcionat una adreça de correu electrònic vàlida. si us plau
+  corregeix-la.
+ !set job=compose
+ !exit
+!endif
+
+!if $error=bad_sendcode
+ $errorhead El teu missatge no s'ha acceptat perquè el codi secret que
+  has escrit no és bo.
+ <p>
+ Si us plau, comprova l'adreça de correu electrònic proporcionada a continuació,
+  torna a clicar al botó `enviar 'i espera que un NOU
+  codi secret t'arribi per correu electrònic.
+ !set job=compose
+ !exit
+!endif
+
+!if $error=not_owner
+ $errorhead Només l'administrador del fòrum té el dret a configurar-lo.
+ <p>
+ !set job=list
+ !exit
+!endif
+
+!if auth_failure = $error
+ $errorhead Ha fallat l'autenticació. <p>
+ !set fatal=yes
+ !exit
+!endif
+
+!msg $error
+

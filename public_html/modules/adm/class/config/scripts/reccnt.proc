@@ -1,0 +1,54 @@
+
+!distribute words $wims_read_parm into cl,cls
+
+$(cl)_usercnt=!recordcnt wimshome/$cls/.userlist
+$(cl)_sheetcnt=!recordcnt wimshome/$cls/sheets/.sheets
+$(cl)_examcnt=!recordcnt wimshome/$cls/exams/.exams
+$(cl)_doccnt=!recordcnt wimshome/$cls/doc/.index
+$(cl)_votecnt=!recordcnt wimshome/$cls/vote/.votes
+$(cl)_forumcnt=!recordcnt wimshome/$cls/forum/.msglist
+$(cl)_docpubliccnt=!recordcnt wimshome/$cls/doc/.docindex
+$(cl)_freeworkcnt=!recordcnt wimshome/$cls/freeworks/.freeworks
+t=!filelist $wims_home/$cls/src/*.oef
+$(cl)_exocnt=!wordcnt $t
+!if log/classes isin $cls
+  cls_ph=!replace / by , in $cls
+  cls_ph=log/classes/$(cls_ph[3])
+!else
+  cls_ph=$cls
+!endif
+t=!filelist $wims_home/$cls_ph/photoboard/
+$(cl)_userphotocnt=!wordcnt $t
+$(cl)_cdtcnt=!defof cdt_nbdate in wimshome/$cls/cdt/.def
+$(cl)_seqcnt=!record 0 of wimshome/$cls/seq/.sequences
+$(cl)_seqcnt=!word 1 of $($(cl)_seqcnt)
+$(cl)_livretcnt=!recordcnt wimshome/$cls/livret/.comps
+t=!filelist $wims_home/$cls/cdt/src/*
+$(cl)_cdtcnt=!wordcnt $t
+scorecnt=!mexec scripts/scorefcnt.sh $cls
+!distribute words $scorecnt into $(cl)_scorecnt1,$(cl)_scorecnt2
+$(cl)_scorecnt=$[$($(cl)_scorecnt1)+$($(cl)_scorecnt2)]
+t=!record 1 of wimshome/$cls/.grades
+t=!line 2 of $t
+t=!itemcnt $t
+$(cl)_manualcnt=$[max(0,$t-2)]
+$(cl)_testcnt=$[$($(cl)_scorecnt1)+$($(cl)_manualcnt)]
+$(cl)_reccnt=$[$($(cl)_usercnt)+$($(cl)_sheetcnt)+$($(cl)_examcnt)\
+	+$($(cl)_doccnt)+$($(cl)_docpubliccnt)+$($(cl)_forumcnt)+$($(cl)_votecnt)\
+	+$($(cl)_exocnt)+$($(cl)_scorecnt)+$($(cl)_manualcnt)]
+$(cl)_motdcnt=!filelist $wims_home/$cls/.motd
+!if $($(cl)_motdcnt)!=$empty
+  $(cl)_motdcnt=1
+!else
+  $(cl)_motdcnt=0
+!endif
+$(cl)_glossarycnt=!recordcnt wimshome/$cls/tool/.glossaryindex
+tmp=!recordcnt wimshome/$cls/tool/.toolindex
+$(cl)_toolcnt=$[$($(cl)_glossarycnt)+$tmp2]
+
+t=!defof user_exists in wimshome/$cls/supervisor
+!if $t=yes
+  $(cl)_supcnt=1
+!else
+  $(cl)_supcnt=0
+!endif

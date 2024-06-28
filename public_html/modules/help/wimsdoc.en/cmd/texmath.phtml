@@ -1,0 +1,50 @@
+!! +exec+ +var+ +string+
+!goto end
+tit:texmath
+type:$type_both
+alias:TeXmath, math2tex
+syntax:!texmath ``expr''
+mean:Translate the mathematical expression ``expr'' into a TeX source. If the expression \
+  is not a "machine-understandable mathematical expression", like products without *,\
+  there is no garanty on the result \
+  (at the moment and in the future !). See examples below.\
+  Il might be useful to use ``!rawmath'' before applying ``!texmath''.<br>\
+  The following transformations are performed:\
+  <ul><li>\
+   Transform computer matrix as [ 4,5;6,7] in latex matrix.\
+   </li><li>\
+   Transform A/B in {1 over B} A or { A over B} according to the priority of\
+     the presume type of A and B (integer, numeric, variable, poly, transcend).\
+   </li><li> transforms &lt;=, &lt;=&gt; =&gt;, -&gt; in tex/latex codes.\
+   </li><li>\
+   Transform a relation without a second member by adding 1.\
+   </li><li>\
+   Replace scientific notation 35E-05 by 10 power and add multiplication sign. Remove the + or 0 useless.\
+  </li><li>\
+   Remove the stars *.\
+   </li><li>\
+   Replace some names as greek letters by their equivalents.\
+   </li><li>\
+   interpret sum(), integrate, prod () (coming from maxima ) in tex/latex codes.\
+</li></ul>
+
+sample:see below
+:end
+<tr>
+  <td><code>!texmath 1*x+3*y = 35E-05</code></td>
+  <td>
+    !texmath 1*x+3*y = 35E-05
+  </td>
+</tr>
+<tr>
+  <td><code>!texmath 2x, 2*x</code></td>
+  <td>
+    !texmath 2x, 2*x
+  </td>
+</tr>
+<tr>
+  <td><code>!texmath x2, x_2, x^2</code></td>
+  <td>
+    !texmath x2, x_2, x^2
+  </td>
+</tr>

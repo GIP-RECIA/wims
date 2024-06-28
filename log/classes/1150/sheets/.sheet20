@@ -1,0 +1,20 @@
+:H4/math/quizzautomat.fr
+exo=pcent1&qnum=3&scoredelay=60,120&seedrepeat=0&qcmlevel=1
+10
+1
+Pourcentages : calcul simple
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+:E6/number/fractions.fr
+exo=frac2prct&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Fraction->Pourcentage
+
+Conseillé sans calculatrice
+:E6/number/fractions.fr
+exo=calcprct&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calculer un pourcentage d'une quantité

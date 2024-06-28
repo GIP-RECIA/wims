@@ -1,0 +1,26 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=circle,triangles,perpendicular_bisector
+!set gl_title=Cercle circonscrit à un triangle
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_thm"><h4>Théorème 1</h4>
+
+Les médiatrices des trois côtés d'un triangle sont concourantes.
+</div>
+<div class="wims_thm"><h4>Théorème 2</h4>
+Soit \(\mathrm{ABC}\) un triangle et \(\mathrm{O}\) le point de concours des
+médiatrices des trois côtés du triangle <span style="white-space:nowrap">
+\(\mathrm{ABC}\).</span><br>
+Le cercle de centre \(\mathrm{O}\) passant par \(\mathrm{A}\) passe également
+par \(\mathrm{B}\) et <span style="white-space:nowrap">\(\mathrm{C}\).</span>
+</div>
+<div class="wims_defn"><h4>Définition</h4>Soit \(\mathrm{ABC}\) un triangle et
+\(\mathrm{O}\) le point de concours des médiatrices de ses côtés.<br>
+Le cercle de centre \(\mathrm{O}\) passant par \(\mathrm{A}\), \(\mathrm{B}\) et
+\(\mathrm{C}\) est appelé <strong>cercle circonscrit</strong> au triangle
+<span style="white-space:nowrap">\(\mathrm{ABC}\).</span></div>
+:mathematics/geometry/fr/excircle_1

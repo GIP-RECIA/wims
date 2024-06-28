@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Micro-économie
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+La <strong>micro-économie</strong> est une branche de la science économique
+qui a pour objet d'étude <span class="wims_emph">le comportement des différents agents
+économiques</span>.
+<p>La micro-économie a notamment donné naissance aux théories du producteur et du
+consommateur en situation de concurrence pure et parfaite, de monopole, d'oligopole, de
+monopsone ou d'oligopsone.</p>
+</div>
+

@@ -1,0 +1,68 @@
+
+!bound living between 0 and $[$nbliving+1] default $[$nbliving+1]
+!if $living>$msg_maxliving
+  error=toomuchliving
+  job=listuser
+  !changeto $job.proc
+!endif
+
+!if $save!=$empty or $job2!=$empty
+  !! save data for the living
+  !if $living>$nbliving
+    statut=0
+  !else
+    !if $job2!=$empty
+      statut=$job2
+      data=!record $living of wimshome/log/classes/$wims_class/tchat/.livings
+      !distribute line $data into bl,title,ltreguser
+    !endif
+    !bound statut within 0,1 default 0
+  !endif
+  livingst_$living=$statut
+  title=!detag $title
+  title=!char 1 to $title_limit of $title
+  t=!charcnt $title
+  !if $t=1
+    title=!nospace $title
+  !endif
+  livingname_$living=$title
+  !if $living>0
+    livingusers_$living=!listintersection $ltreguser and $ulist
+  !else
+    livingusers_0=all
+  !endif
+  update_content=$(livingst_$living)\
+$(livingname_$living)\
+$(livingusers_$living)
+  update_field=$living
+  update_nbline=3
+  !read adm/uprecord wimshome/log/classes/$wims_class/tchat/.livings
+  !reset save
+  success=goodsave
+  nbliving=!recordcnt wimshome/log/classes/$wims_class/tchat/.livings
+  !if $living=0
+    !default livingname_$living=!nosubst $wims_name_class
+  !else
+    !default livingname_$living=$name_living $living
+  !endif
+  !if $back=listliving
+    job=listliving
+    !changeto $job.proc
+  !endif
+!else
+!! ------ initialize html form variable (in case of new living)
+  !if $living>$nbliving
+    !distribute item 0,$empty,$empty into living_st_$living,livingname_$living,livingusers_$living
+  !else
+    dt=!record $living of wimshome/log/classes/$wims_class/tchat/.livings
+    title=!line 2 of $dt
+  !endif
+!endif
+!if $living>$nbliving
+  name_title=$wims_name_addliving
+!else
+  name_title=$name_confliving
+!endif
+!reset save,job2
+
+

@@ -1,0 +1,37 @@
+
+/* News Bloc */
+
+.actu_date {
+  font-size:11px;
+  color:#757575;
+  font-weight: normal;
+  padding-left:1em;
+}
+.actu_title{
+  margin:0 .2em;
+}
+.actu_content>p{
+  margin:0 .5em;
+}
+
+/* Samples Bloc */
+
+.carousel_info{
+  text-align: right;
+  margin-top: 0;
+  margin-bottom: 0;
+  color:#999;
+  font-size:12px;
+}
+.carousel_titre {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.carousel_desc>p{
+  margin: 0;
+}
+.carousel_desc>h4{
+  margin-top: .5em;
+  margin-bottom: 4px;
+}

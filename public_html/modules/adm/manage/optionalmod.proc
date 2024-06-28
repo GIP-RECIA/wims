@@ -1,0 +1,23 @@
+!! process to activate or desactivate optional module.
+!!
+
+optionalmod_list=class/freework,class/tchat
+optionalmod_parameter=freework_nofile,tchat_nofile
+!reset optionalmod_parameter_prompt
+!for k in $optionalmod_parameter
+  t_=!replace internal , by &#44; in $(name_optionalmod_param_$(k))
+  optionalmod_parameter_prompt=!append item $t_ to $optionalmod_parameter_prompt
+!next k
+!if $save!=$empty
+  up_optionalmod=!listintersect $optionalmod_list and $up_optionalmod
+  up_optionalmod_parameter=!listintersect $optionalmod_parameter and $up_optionalmod_parameter
+  !setdef allowed_optional_module=$up_optionalmod\
+optionalmod_parameter=$up_optionalmod_parameter in wimshome/log/wims.conf
+  job=list
+  !reset save
+  !restart module=adm/manage&job=list
+!else
+  tmp=!defof allowed_optional_module\
+optionalmod_parameter in wimshome/log/wims.conf
+  !distribute line $tmp into up_optionalmod,up_optionalmod_parameter
+!endif

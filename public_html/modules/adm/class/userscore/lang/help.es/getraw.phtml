@@ -1,0 +1,84 @@
+!if $wims_user!=supervisor
+<p>
+La tabla muestra el conjunto de datos registrados por el servidor de
+su trabajo en un ejercicio de una hoja de ejercicios o de un examen
+(una consulta de un documento wims o del libro de texto no es registrada
+por el servidor).
+</p><p>
+Cuando se conecta a la clase, se le asigna un número de sesión.
+Cada vez que hace clic para obtener el enunciado de una serie de ejercicios
+o recibe una nota de una serie de ejercicios, una línea que contiene los datos
+asociados a esta solicitud se registra:
+fecha de la solicitud, número de la sesión, número de la hoja y ejercicio correspondiente,
+tipo de solicitud y número de IP de su conexión.
+</p><p>
+El mensaje <span class="wims_code_words">noscore</span> aparece cuando la puntuación obtenida en un ejercicio no es
+contabilizada en el cálculo de la nota final de una hoja de ejercicios
+(puede ser que el registro de notas estaba cerrado al momento en que usted trabajó en él,
+o que usted mismo suspendió el registro de notas).
+</p><p>
+Cuidado, la numeración de las hojas que aparece en la columna <span class="wims_code_words">sheet</span>
+corresponde al orden en que las hojas fueron creadas por el profesor ;
+este orden puede ser diferente al que el profesor ha escogido
+presentarle a usted.
+</p><p>
+Debe saber que cuando comienza a trabajar en un ejercicio
+de la clase, debe ingresar las respuestas a este ejercicio antes de comenzar otro
+(al trabajar en el mismo ejercicio u otros mientras está 
+conectado a la clase wims desde otra ventana del navegador
+corre el riesgo de alterar el enunciado del primer ejercicio o
+que no se registre el trabajo realizado en el primer ejercicio).
+</p>
+!goto common
+!else
+<p>
+La tabla muestra el conjunto de datos registrados por el servidor
+sobre el trabajo realizado en un ejercicio de una hoja de ejercicios o de un examen
+(una consulta de un documento wims o del libro de texto no es registrada por el servidor).
+</p><p>
+Cuando un participante se conecta a la clase, se le asigna un número de sesión.
+Cada vez que hace clic para obtener el enunciado de una serie de ejercicios o que obtiene
+una puntuación de una serie de ejercicios, una línea que contiene los datos asociados a esta solicitud
+se registra: fecha de la solicitud, número de la sesión, número de la hoja y ejercicio correspondiente, 
+tipo de solicitud y número de IP de su conexión.
+</p><p>
+El mensaje <span class="wims_code_words">noscore</span> aparece cuando la puntuación obtenida en un ejercicio no es
+contabilizada en el cálculo de la nota final de una hoja de ejercicios
+(puede ser que el registro de notas estaba cerrado al momento en que él trabajó en el ejercicio,
+o que él mismo suspendió el registro de notas).
+</p><p>
+La numeración de las hojas que aparece en la columna <span class="wims_code_words">sheet</span>
+corresponde al orden en el que las hojas fueron creadas en la clase.
+</p><p>
+Debe saber que si un participante comienza un ejercicio, lo debe terminar
+antes de comenzar otro ; si trabaja en el mismo ejercicio o
+en otros ejercicios mientras está conectado a la clase
+desde otra ventana del navegador, la nota obtenida en el primer ejercicio
+podría no ser registrada o bien el enunciado de su primer ejercicio
+podría alterarse al momento de ingresar las respuestas.
+</p>
+!endif
+:common
+<p>
+Los diferentes tipos de solicitud son:
+</p>
+<ul><li>
+<span class="wims_code_words">new</span> : solicitud de enunciado
+</li><li>
+<span class="wims_code_words">renew</span> o <span class="wims_code_words">resume</span> :
+  solicitud de un enunciado nuevo del mismo ejercicio de la hoja.
+</li><li><span class="wims_code_words">rafale</span> : solicitudes repetitivas y en poco tiempo de enunciados de ejercicios.
+El servidor aplica automáticamente una penalización en las notas
+para evitar esta práctica.
+</li></ul>
+<p>
+La información registrada de los exámenes aparecen al final de la tabla
+(las líneas comienzan por <span class="wims_code_words">E</span>).
+Para un examen, la columna <span class="wims_code_words">sheet</span> corresponde al número del examen.
+</p>
+!if $wims_user=supervisor
+<p>
+El origen de los ejercicios que constituyen un examen se indica en la columna
+al extremo derecho en la forma <span class="wims_code_words">(número de la hoja).(número del ejercicio)</span>.
+</p>
+!endif

@@ -1,0 +1,11 @@
+!set class_actcolor_css=li.wims_sheet_item, li.wims_exam_item, \
+li.wims_doc_item, li.wims_vote_item, li.wims_exo_item li.wims_tool_item,\
+li.wims_glossary_item li.wims_freework_item {color:$(class_actcolor[1])}\
+li.wims_sheet_item {border-left-color:$(class_actcolor[2])}\
+li.wims_exam_item  {border-left-color:$(class_actcolor[3])}\
+li.wims_doc_item   {border-left-color:$(class_actcolor[4])}\
+li.wims_vote_item  {border-left-color:$(class_actcolor[5])}\
+li.wims_exo_item   {border-left-color:$(class_actcolor[6])}\
+li.wims_tool_item  {border-left-color:$(class_actcolor[7])}\
+li.wims_glossary_item {border-left-color:$(class_actcolor[8])}\
+li.wims_freework_item {border-left-color:$(class_actcolor[9])}

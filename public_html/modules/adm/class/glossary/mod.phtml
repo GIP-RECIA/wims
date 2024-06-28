@@ -1,0 +1,52 @@
+!if $cmd=new or $cmd=resume
+  !form reply
+  <fieldset class="property_fields halfwidth blockcenter">
+    <legend>$wims_name_properties</legend>
+    <div class="field box">
+      <label for="title">$wims_name_title</label>
+      <input size="50" name="title" value="$ti" id="title" required="required" class="noicon">
+    </div>
+    <div class="field box">
+      <label for="desc">$wims_name_Description</label>
+      <input size="50" name="desc" value="$di" id="desc">
+    </div>
+    <div class="field box">
+  !set n_=!recordcnt wimshome/log/classes/$wims_class/tool/.glossary$gl
+  !set table_id=gloss_list
+  !set table_class=sortable
+  $table_header
+    <thead>
+      $table_hdtr
+        <th>$wims_name_title</th><th>$wims_name_action</th><th>file</th>
+      </tr>
+    </thead>
+    <tbody>
+  !for j=1 to $n_
+    !set c_=!record $j of wimshome/log/classes/$wims_class/tool/.glossary$gl
+    !distribute line $c_ into di_,ti_,
+    $table_tr
+      <td><input size="20" name="title$j" value="$ti_" id="title$j" required="required" class="noicon"></td>
+      <td>
+    !formcheckbox delete$j list 1 prompt $wims_name_erase
+      </td>
+      <td><label for="title$j">$di_</label></td>
+    </tr>
+  !next
+    </tbody>
+  $table_end
+  !read tablesort.phtml
+  <div class="wimscenter wimsform"><input type="submit" value="$wims_name_send"></div>
+    </div>
+    <input type="hidden" name="job" value="mod">
+  </fieldset>
+  <div class="wims_msg help">
+    $name_helpglo
+  </div>
+  !formend
+!endif
+
+!if $cmd=reply
+  $name_endmod.
+  !set wims_menu_items=!append line glossarycheck,1,module=adm/tool/glossary&gl=$gl\
+to $wims_menu_items
+!endif

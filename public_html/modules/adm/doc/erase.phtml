@@ -1,0 +1,19 @@
+
+<div class="wims_content">
+  !if class != $doctype and $wims_ismanager<2 and $doc iswordof $openlist
+    <div>
+      !read lang/names.phtml.$modu_lang erase1
+    </div>
+    !exit
+  !endif
+
+  !read lang/names.phtml.$modu_lang erase2
+
+  <div class="wimscenter">
+    !set wims_ref_class=wims_button wims_warning
+    !href cmd=reply&rEg=yes $wims_name_yes
+    &nbsp; &nbsp;
+    !set wims_ref_class=wims_button wims_secondary_button
+    !href cmd=new&job=home $wims_name_no
+  </div>
+</div>

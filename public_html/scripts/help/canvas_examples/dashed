@@ -1,0 +1,13 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+line -5,-5,-5,5,red
+dashtype 1,1
+dline -4,-5,-4,5,green
+dashtype 2,2
+dline -3,-5,-3,5,blue
+dashtype 3,3
+dline 0,-5,0,5,orange
+dashtype 4,4
+dline 3,-5,3,5,brown

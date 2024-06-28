@@ -1,0 +1,80 @@
+Suites arithmétiques
+Sélection d'exercices correspondant à une partie du paragraphe "Suites numériques" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+analysis
+sequence,arithmetic_sequence
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Suites numériques" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+
+:H6/algebra/oefsuites.fr
+exo=suite_arith_entier&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Suite arithmétique 1
+Déterminer la <strong>raison</strong> et <strong>U<sub>4</sub></strong> connaissant U<sub>0</sub> U<sub>1</sub> U<sub>2</sub> U<sub>3</sub> (nombres entiers).
+
+
+
+
+
+:H6/algebra/oefsuites.fr
+exo=suite_arith&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Suite arithmétique 2
+Déterminer la <strong>raison</strong> et <strong>U<sub>4</sub></strong> connaissant U<sub>0</sub> U<sub>1</sub> U<sub>2</sub> U<sub>3</sub> (nombres décimaux).
+
+
+
+
+
+:H5/analysis/suites.fr
+exo=Suitesarithmti&confparm1=3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Suite arithmétique 3
+Calculer un <strong>terme de rang donné</strong> connaissant U<sub>0</sub> et la raison.
+
+
+
+
+
+:H4/algebra/oefsuites1S.fr
+exo=raisonarit&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Raison d'une suite arithmétique
+Calculer <strong>U<sub>0</sub></strong> et la <strong>raison</strong> connaissant 2 termes non consécutifs.
+
+
+
+
+
+:H4/algebra/oefsuites1S.fr
+exo=aritm1&exo=aritm2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Suite arithmétique ?
+Déterminer si un tableau correspond à une suite arithmétique.
+
+
+:H5/analysis/oefseq.fr
+exo=sommearith&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Somme
+Calculer la <strong>somme</strong> des premiers termes d'une suite arithmétique.
+
+
+:H6/algebra/oefsuitesExosSyn.fr
+exo=tourbabel&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tour de Babel : quel coût total ?
+Exercice à 3 étapes: Calculer des <strong>termes</strong> et des <strong>sommes</strong> de termes.
+
+

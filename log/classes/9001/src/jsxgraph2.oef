@@ -1,0 +1,36 @@
+\title{Exemple de jsxgraphcurve (droite)}
+
+\precision{100}
+\css{<style>
+.jxgbox {margin-left:auto;margin-right:auto;}
+.jsxgraph_button {text-align:center;}
+</style>}
+
+\text{dessin1=draw(200,200
+hline 100,100,black
+vline 100,100,black
+hline 100,50,black
+vline 150,100,black
+text black,100,100,large,O
+text black,150,50,large,A)
+}
+
+\statement{
+<div class="spacer">
+\special{editarea
+\text{dessin=draw(200,200
+hline 100,100,black
+vline 100,100,black
+hline 100,50,black
+vline 150,100,black
+text black,100,100,large,O
+text black,150,50,large,A)
+}}
+
+\special{editarea
+\answer{}{\dessin;line,100,100,150,50}{type=jsxgraphcurve}
+}
+</div>Tracer la droite passant par O et par A.
+ \embed{r1,200x200}
+}
+\answer{}{\dessin1;line,100,100,150,50}{type=jsxgraphcurve}

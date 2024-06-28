@@ -1,0 +1,9 @@
+/**
+ * style for mobile robots indexing
+ */
+
+a{line-height:1.5em;}
+img,iframe{height:auto;max-width:100%;}
+.wims_mathml{display:inline-block;vertical-align: middle;overflow:auto;max-width: 100%;}
+pre{overflow: auto;padding-bottom: 1em;}
+p{word-break: break-word;}

@@ -1,0 +1,7 @@
+size 400,400
+xrange 10,50000
+yrange -5,5
+xlabel x-axis
+ylabel y-axis
+xlogscale 10,1,black,grey
+display x,red,22

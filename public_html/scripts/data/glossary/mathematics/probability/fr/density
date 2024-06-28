@@ -1,0 +1,30 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Densité
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<ul><li>
+Pour une loi de probabilité \(q) sur les entiers, la valeur de la
+<strong>densité</strong> en
+l'entier \(k) est par définition \(q(k)) (si \(X\) est une variable
+aléatoire de loi \(q\) alors la valeur de la densité de \(X\) en \(k\)
+est la probabilité que \(X\) prenne la valeur \(k\)).
+</li><li>
+Pour une loi continue \(\mu) sur \(\RR), une fonction \(f) définie sur \(\RR)
+à valeurs positives ou nulles est une
+<span class="wims_emph">densité</span> pour \(mu) si pour tout réel \(t),
+<div class="wimscenter">
+\(\mu(\rbrack-\infty,t\rbrack)=\int_{-\infty}^t f(u)du).
+</div>
+<div>(si \(X\) est une variable aléatoire de loi \(\mu\), \(\mu( \rbrack -\infty, t \rbrack ))
+est
+la probabilité que \(X) prenne une valeur inférieure ou égale à \(t))
+</div></li></ul>
+</div>
+
+:mathematics/probability/fr/cdf_1

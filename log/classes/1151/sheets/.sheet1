@@ -1,0 +1,21 @@
+
+:U1/stat/oefstat.fr
+exo=hotel0&qnum=1&qcmlevel=3&scoredelay=
+10
+1
+Étude du nombre de clients d'un hôtel
+<p><strong>R</strong> : coefficient de corrélation ; <strong>R²</strong> : coefficient de détermination.</p><p>Les 2 sont donnés par la calculatrice<em> (qui utilise la méthode des moindres carrés)</em>.</p>
+
+
+
+
+:U1/stat/oefstat.fr
+exo=pareto&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=3
+10
+1
+Ajustement puissance
+Ajustement de Pareto=ajustement puissance. <em>Noté <strong>pwr</strong> sur la calculatrice.</em> Attention à l'ordre des coefficients. Arrondir au millième.
+
+
+
+

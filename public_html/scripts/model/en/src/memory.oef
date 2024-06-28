@@ -1,0 +1,87 @@
+type=game
+textarea="data instruction1 instruction2"
+iEdit="instruction1 instruction2"
+
+:We show a text or an image for a limited time but at the student's choice then we ask a question
+
+<div class="small">
+  This exercise can easily be transformed to be included in an OEF module
+   if you want to put the data into an auxiliary file.
+  To do this, simply fill in the \text{file=} field by putting the name of the file
+   (once the exercise has been transferred to an OEF module of a Modtool account).
+  A more complete exercise of the same type exists in Quicktool.
+</div>
+<p class="wims_credits">
+Author of the model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Memorize a text}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Instructions at the first step
+\text{instruction1=Memorize the following text, and then click the start button.}
+
+:Minimum, maximum tolerated time (in milliseconds)
+\text{time=100,100000}
+
+:Instructions at the second step
+\text{instruction2=Write the number you read.}
+
+:Type of answer at the second step
+\text{atype=item(2,symtext,
+	numeric,function)}
+
+:Data
+Define one question per line.
+The first item is shown in the first step.
+The answer to the second question is to be put in the second item.
+If there is none, the first text would be requested.
+
+\text{data=two,2
+foor,4
+one,1}
+
+:Options in the case of symtext
+Option words can be taken from "nopunct", "nocase", "case"
+
+\text{option=}
+
+:%%%%%%%%%%%%%% Nothing to modify until statement %%%%%%%%%%%%%%%%
+\css{<style>
+.texte {border:solid black 1pt; padding:2em; margin:3em;text-align:center;}
+</style>}
+
+\text{data=randrow(\data)}
+
+\text{STEP=r1
+r2}
+\steps{\STEP}
+\text{cnt=items(\data)}
+\if{\cnt>1}{
+  \text{question1=\data[1..-2]}
+  \text{question2=\data[-1]}
+}{
+  \text{question1=\data}
+  \text{question2=\data}
+}
+\statement{
+ \if{\step=1}{
+  <div class="instruction">\instruction1</div>
+  <div class="texte">\question1</div>
+\embed{r1}
+ }
+ \if{\step >= 2}{
+   <div class="instruction">\instruction2</div>
+   <div class="wimscenter">\embed{r2,50}</div>
+ }
+}
+\answer{}{\time}{type=time}{option=nonstop noanalyzeprint}{weight=0}
+\answer{}{\question2}{type=\type}{option=\option}{weight=100}

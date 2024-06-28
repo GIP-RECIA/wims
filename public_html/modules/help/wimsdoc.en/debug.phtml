@@ -1,0 +1,28 @@
+We list here some debugging methods of an administrative module.
+
+<ul><li>You can add anywhere in a module file writen in wims language
+(this excludes for instance shell files) a line starting with the
+command $emph !debug$emphend , followed by a string that may contain
+variable names (preceeded by a $$ sign) to get their values. For
+instance :<br> $emph !debug The score of $$user is $$score $emphend
+<br> If the program execution tries to execute such a line, it will
+stop there, displaying an error message containing your string with
+the variable names replaced by their values. In the above example, the
+program displays for instance a debugging message containing <br>
+$emph The score of Ted Watson is 7$emphend
+</li><li>
+All files and line numbers processed when we issue a wims command
+can be stored for debugging purposes in a special file named trace.txt
+in the tmp/sessions/XXXX directory where XXXX is the session
+number. This debugging trace is in action each time the wims command
+is executed from a server administrator IP and the debug mode is
+enabled (it is then written $emph tmp_debug=yes$emphend in log/wims.conf).
+You can add a $emph tmp_debug_var$emphend variable to the log/wims.conf file
+and assign to it the list of variable names whose evolution you want
+to know when running the program. You can also add a $emph tmp_debug_use_var$emphend
+variable to the log/wims.conf file and assign to it a list of variable names:
+each time one of these variables is used, its value is put in the debugging trace.
+</li><li>
+When the server is configured to be in debug mode, peripheral
+software error messages are displayed at the bottom of the html page.
+</li> </ul>

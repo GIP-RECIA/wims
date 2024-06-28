@@ -1,0 +1,58 @@
+!set contextcnt=!linecnt $m_context
+!set goalcnt=!linecnt $m_goal
+!set equivcnt=!linecnt $m_equivalence
+!set casecnt=!linecnt $allcases
+
+<h4>$name_titlestate</h4>
+
+!if $tolerance<=0
+  $name_statushelp_1
+!else
+  $name_statushelp_2
+!endif
+!if $status=waiting
+  $name_statushelp_3 $currstep.
+!else
+  $name_statushelp_4
+!endif
+
+!if $casecnt>1
+  <div>
+  !if $casecnt>2
+    $name_statushelp_5:
+    <p>\($caseid).</p>
+  !else
+    $name_statushelp_6: \($caseid).
+  !endif
+  </div>
+!endif
+
+!if $goalcnt>0
+  $name_remaintoprove:
+  <ol>
+  !for i=1 to $goalcnt
+   !set l=!line $i of $m_goal
+   <li>\($l).</li>
+  !next i
+  </ol>
+!else
+  !if $equivcnt>0
+    $name_totransform:
+    <ol>
+    !for i=1 to $equivcnt
+      !set l=!line $i of $m_equivalence
+      <li>\($l).</li>
+    !next i
+    </ol>
+  !endif
+!endif
+
+!if $contextcnt>0
+  $name_hypusable:
+  <ol>
+  !for i=1 to $contextcnt
+    !set l=!line $i of $m_context
+    <li>\($l).</li>
+  !next i
+  </ol>
+!endif

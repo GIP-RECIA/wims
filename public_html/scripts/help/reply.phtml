@@ -1,0 +1,10 @@
+!if $wims_read_parm=
+  !set max_promptlen=!defof MAX_PROMPTLEN in wimshome/public_html/bases/sys/define.conf
+  !read help/$lang/reply.phtml
+!else
+  !if $lang!=en
+    !read help/anstype.$lang/$wims_read_parm.phtml
+  !else
+    !read help/anstype/$wims_read_parm.phtml
+  !endif
+!endif

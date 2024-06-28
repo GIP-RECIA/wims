@@ -1,0 +1,108 @@
+!! this file is an annexe for anstype litexp (or other)
+!! it look if wims_read_parm is a factorised polynome of Z[X]
+!! each factor as to be simplified as describe in file expandpolynome of this directory
+!! 
+!! error checked (for factor):
+!! - notcomplete : a factor is not completely factorised
+!! - multifactor : a factor is repeated instead of using power
+!! - twofactorcst : the constant factor is not calculated (in case of non use of optionword factorcontent)
+!! - factorcontent : content of the polynome is not factorised (in case of use of optionword factorcontent)
+!! - notfactorised : expression is not a product
+!! - usedivide : use of symbol /
+
+pg=!char 1 of ()
+pd=!char 2 of ()
+nb=!charcnt $wims_read_parm
+!distribute item 0,1,0 into par,flag,par2
+!reset factor lfactors notfactor exp content
+k=1
+!while ($k<=$nb and $wrong=$empty) or $factor!=$empty 
+  c=!char $k of $wims_read_parm
+  !if ($c=* and $par=0) or $k>$nb
+    !if $factor!=$empty
+      !if $mpar2>0
+        wrong=badform fparenthesis $factor
+        !break
+      !else
+        !if $[$factor*1]=NaN
+          tmp=!exec pari factor($factor)\
+                  content($factor)
+          !distribute line $tmp into t1,t2
+          t1=!replace internal -1,1; by $empty in $t1
+          tt1=!rowcnt $t1
+          !if $tt1!=1 or $t2!=1
+            wrong=badform notcomplete $factor
+          !endif
+          !if $wrong=$empty
+            !read oef/analyse/expandpolynome $factor
+          !endif
+          tmp1=!item 1 of $t1
+          !if $tmp1 isitemof $lfactors
+            wrong=badform multifactor $tmp1
+          !else
+            lfactors=!append item $tmp1 to $lfactors
+          !endif
+        !else
+          !if factorcontent notwordof $(replyoption$i)
+            !if $content!=$empty
+              wrong=badform twofactorcst $content $factor
+            !endif
+            content=$factor
+          !else
+            tmp=!exec pari factor($factor)
+            tmp=!replace internal -1,1; by $empty in $tmp
+            tt1=!rowcnt $tmp
+            !if $tt1!=1
+              wrong=badform factorcontent $factor
+            !endif
+          !endif
+        !endif
+        !reset factor exp
+        mpar2=0
+      !endif
+    !endif
+    flag=1
+  !else
+    !if $c isin +- and $par=0 and $factor!=$empty
+      wrong=badform notfactorised $k
+    !else
+      !if $c=/
+        wrong=badform usedivide
+      !else
+        !if $c notin ()
+          !if $c=^
+            exp=0
+          !else
+            !if $exp=$empty
+              factor=$factor$c
+            !else
+              exp=$exp$c
+            !endif
+          !endif
+        !else
+          !if $c=$pg
+            !if $flag=0 or $par>0
+              !increase par2
+              mpar2=$par2
+            !endif
+            !if ($par>0 or $par2>0) and $exp=$empty
+              factor=$factor$c
+            !endif
+            !increase par
+            flag=1
+          !else
+            par=$[$par-1]
+            !if ($par>0 or $par2>0) and $exp=$empty
+              factor=$factor$c
+            !endif
+            !if $par2>0
+              par2=$[$par2-1]
+            !endif
+            flag=0
+          !endif
+        !endif
+      !endif
+    !endif
+  !endif
+  !increase k
+!endwhile

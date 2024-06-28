@@ -1,0 +1,33 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_number,inequalities,order
+!set gl_title=Encadrement (collège)
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(x\) un nombre.<br>
+Donner un <strong>encadrement</strong> de \(x\) revient à donner deux nombres
+\(a\) et \(b\) tels que&nbsp;:
+<div class="wimscenter">
+\(a \leqslant x \leqslant b\).
+</div>
+Le nombre positif \(b-a\) est <strong>l'amplitude</strong> de cet encadrement.<br>
+Donner un encadrement de \(x\) d'amplitude 1 revient à donner deux nombres \(a\)
+et \(b\) tels que&nbsp;:
+<div class="wimscenter">
+\(a \leqslant x \leqslant b\) et \(b-a = 1\).
+</div>
+Donner un encadrement de \(x\) d'amplitude 0,1 revient à donner deux nombres
+\(a\) et \(b\) tels que&nbsp;:
+<div class="wimscenter">
+\(a \leqslant x \leqslant b\) et \(b-a = 0,1\).
+</div>
+Donner un encadrement de \(x\) d'amplitude 0,01 revient à donner deux nombres
+\(a\) et \(b\) tels que&nbsp;:
+<div class="wimscenter">
+\(a \leqslant x \leqslant b\) et \(b-a = 0,01\).
+</div>
+</div>

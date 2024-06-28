@@ -1,0 +1,147 @@
+!set gl_title=Code génétique
+!set gl_author=Florence, Mougel-Imbert
+!set gl_keywords=genetics
+:
+:
+:
+:
+<div class="wims_defn">
+  Tableau montrant la relation entre les triplets de nucléotides et
+  les acides aminés codés.
+</div>
+
+<style>
+/*<![CDATA[*/
+ .wims_work_legend li{border:1px solid #999}
+ .apolaire{background-color:#EFEFCE}
+ .polaire{background-color:#CEEFCE}
+ .basique{background-color:#CECEEF}
+ .terminaison{background-color:#EFEFEF}
+ .acide{background-color:#EFCECE}
+/*]]>*/
+</style>
+
+<table class="wimscenter wimsborder">
+  <caption>Tableau des codons ARN</caption>
+  <thead>
+    <tr>
+      <th rowspan="2">nucléotide 1</th>
+      <th colspan="4">nucléotide 2</th>
+      <th rowspan="2">nucléotide 3</th>
+    </tr><tr>
+      <th>U</th><th>C</th><th>A</th><th>G</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+     <th rowspan="4">U</th>
+     <td class="apolaire">Phe</td>
+     <td class="polaire">Ser</td>
+     <td class="polaire">Tyr</td>
+     <td class="polaire">Cys</td>
+     <th>U</th>
+    </tr><tr>
+      <td class="apolaire">Phe</td>
+      <td class="polaire">Ser</td>
+      <td class="polaire">Tyr</td>
+      <td class="polaire">Cys</td>
+      <th>C</th>
+    </tr><tr>
+      <td class="apolaire">Leu</td>
+      <td class="polaire">Ser</td>
+      <td class="terminaison">STOP</td>
+      <td class="terminaison">STOP</td>
+      <th>A</th>
+    </tr><tr>
+      <td class="apolaire">Leu</td>
+      <td class="polaire">Ser</td>
+      <td class="terminaison">STOP</td>
+      <td class="apolaire">Trp</td>
+      <th>G</th>
+    </tr><tr>
+      <th rowspan="4">C</th>
+      <td class="apolaire">Leu</td>
+      <td class="apolaire">Pro</td>
+      <td class="basique">His</td>
+      <td class="basique">Arg</td>
+      <th>U</th>
+    </tr><tr>
+      <td class="apolaire">Leu</td>
+      <td class="apolaire">Pro</td>
+      <td class="basique">His</td>
+      <td class="basique">Arg</td>
+      <th>C</th>
+    </tr><tr>
+      <td class="apolaire">Leu</td>
+      <td class="apolaire">Prp</td>
+      <td class="polaire">Gln</td>
+      <td class="basique">Arg</td>
+      <th>A</th>
+    </tr><tr>
+      <td class="apolaire">Leu</td>
+      <td class="apolaire">Pro</td>
+      <td class="polaire">Gln</td>
+      <td class="basique">Arg</td>
+      <th>G</th>
+    </tr><tr>
+      <th rowspan="4">A</th>
+      <td class="apolaire">Ile</td>
+      <td class="polaire">Thr</td>
+      <td class="polaire">Asn</td>
+      <td class="polaire">Ser</td>
+      <th>U</th>
+    </tr><tr>
+      <td class="apolaire">Ile</td>
+      <td class="polaire">Thr</td>
+      <td class="polaire">Asn</td>
+      <td class="polaire">Ser</td>
+      <th>C</th>
+    </tr><tr>
+      <td class="apolaire">Ile</td>
+      <td class="polaire">Thr</td>
+      <td class="basique">Lys</td>
+      <td class="basique">Arg</td>
+      <th>A</th>
+    </tr><tr>
+      <td class="apolaire">Met</td>
+      <td class="polaire">Thr</td>
+      <td class="basique">Lys</td>
+      <td class="basique">Arg</td><th>G</th>
+    </tr><tr>
+      <th rowspan="4">G</th>
+      <td class="apolaire">Val</td>
+      <td class="apolaire">Ala</td>
+      <td class="acide">Asp</td>
+      <td class="apolaire">Gly</td>
+      <th>U</th>
+    </tr><tr>
+      <td class="apolaire">Val</td>
+      <td class="apolaire">Ala</td>
+      <td class="acide">Asp</td>
+      <td class="apolaire">Gly</td>
+      <th>C</th>
+    </tr><tr>
+      <td class="apolaire">Val</td>
+      <td class="apolaire">Ala</td>
+      <td class="acide">Glu</td>
+      <td class="apolaire">Gly</td>
+      <th>A</th>
+    </tr><tr>
+      <td class="apolaire">Val</td>
+      <td class="apolaire">Ala</td>
+      <td class="acide">Glu</td>
+      <td class="apolaire">Gly</td>
+      <th>G</th>
+    </tr>
+  </tbody>
+</table>
+  <p class="inline">Légende des couleurs</p>
+  <ul class="inline">
+    <li class="apolaire">Acide aminé apolaire</li>
+    <li class="polaire">Acide aminé polaire</li>
+    <li class="basique">Acide aminé basique</li>
+    <li class="acide">Acide aminé acide</li>
+    <li class="terminaison">Terminaison</li>
+  </ul>
+<br class="clearall">
+

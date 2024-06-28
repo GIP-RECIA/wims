@@ -1,0 +1,13 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Insertion of words (audio) from the swac packs
+slib_parms=4\
+,word or words\
+,language code or list of shtooka packages where to search the words\
+$default_slib_tag,tag= (only one) can be alphaidx, text or for some packages baseform,coll_section <br/>(check it if you take something else than alphaidx or text)\
+,html options (sample: <span class="tt">style="width:300px;height:25px"</span>)
+
+slib_out= Look for the word in the imagedir, then in the swac-shtooka data\
+and give the audio code for insertion. In this case, return also \
+the swac tags of recording ; return nothing if not found.
+slib_comment=In case of group of words, quote the sentence and do not put any comma.

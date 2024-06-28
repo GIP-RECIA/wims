@@ -1,0 +1,24 @@
+!set gl_n=!randint 4,8
+!readproc slib/matrix/random $gl_n,$gl_n,1
+!set gl_list=A,B,C,D,E,F,G,H,I,J,K
+!set gl_list=$(gl_list[1..$gl_n])
+!set gl_A=!exec pari B=[$slib_out]; B=B+mattranspose(B);matrix($gl_n,$gl_n,i,j,i!=j && B[i,j]!=0)
+!readproc slib/graph/draw [$gl_A],blue,blue,[$gl_list],,html
+!set gl_out1=$slib_out
+
+!set gl_adj=!exec pari B=[$gl_A]; C=matrix($gl_n,$gl_n,i,j,B[i,j]*j); C
+!!!set gl_Col=!exec pari T=vector($gl_n,i,sum(j=1,$gl_n, C[i,j])); vecmax(T)
+!set gl_tab=
+!set gl_degsum=0
+!for gl_j=1 to $gl_n
+  !set gl_adj0=!exec pari C1=select(x->x, C[$gl_j,])
+  !set gl_col=!itemcnt $gl_adj0
+  !set gl_degsum=$gl_degsum+$gl_col
+  !set gl_tab=$gl_tab\
+  <tr><td>$(gl_list[$gl_j])</td><td>$(gl_list[$gl_adj0])</td><td>$gl_col</td></tr>
+!next
+
+!set gl_out2=<table class="wimscenter wimsborder">\
+  <tr><th>$(gl_header[1])</th><th>$(gl_header[2])</th><th>$(gl_header[3])</th></tr>\
+  $gl_tab\
+  </table>

@@ -1,0 +1,92 @@
+
+!if $wims_class=$empty
+  error=noclass
+  !exit
+!endif
+
+!if $wims_user=supervisor
+  !! ---- build list of user/teacher of the class with mail defined
+  !sh rm -f $wims_home/sessions/$wims_session/.userlist_mail $wims_home/sessions/$wims_session/.userlist_nomail $wims_home/sessions/$wims_session/.userteacher_nomail $wims_home/sessions/$wims_session/.teacherlist_mail;
+  !read adm/class/userdef ,$wims_class,
+  !distribute item 0,0,0,0 into nb_user,nb_teacher,nbw_user,nbw_teacher
+  !! ----- not same process because of different format for file .userlist and .teacherlist
+  !! -----  check of userlist
+    type=user
+    nbt_$type=!recordcnt wimshome/log/classes/$wims_class/.$(type)list
+    !for k=1 to $(nbt_$type)
+      data=!record $k of wimshome/log/classes/$wims_class/.$(type)list
+      login=!item 3 of $data
+      data=!defof user_firstname,user_lastname,user_email in $userfolder/$login
+      !distribute item $data into f,l,m
+      !if $m!=$empty
+        !appendfile wimshome/sessions/$wims_session/.$(type)list_mail :$l,$f,$login,$m
+        !increase nb_$type
+      !else
+        !appendfile wimshome/sessions/$wims_session/.$(type)list_nomail :$l,$f,$login
+        !increase nbw_$type
+      !endif
+    !next k
+  !! ---- check of teacherlist
+    type=teacher
+    globaldata=!record 0 of wimshome/log/classes/$wims_class/.$(type)list
+    nbt_$type=!linecnt $globaldata
+    !for k=1 to $(nbt_$type)
+      data=!line $k of $globaldata
+      login=!item 3 of $data
+      data=!defof user_firstname,user_lastname,user_email in $userfolder/$login
+      !distribute item $data into f,l,m
+      !if $m!=$empty
+        !appendfile wimshome/sessions/$wims_session/.$(type)list_mail :$l,$f,$login,$m
+        !increase nb_$type
+      !else
+        !appendfile wimshome/sessions/$wims_session/.$(type)list_nomail :$l,$f,$login
+        !increase nbw_$type
+      !endif
+    !next k
+!endif
+
+!read adm/class/classlang names.phtml
+suplog=!defof class_Supervisor in wimshome/log/classes/$wims_class/.def
+!if $suplog=$empty
+  add=$wims_class/supervisor
+!else
+  !if $suplog=supervisor
+    add=$wims_superclass/supervisor
+  !else
+    add=$wims_superclass/.users/$suplog
+  !endif
+!endif
+
+tmp=!defof user_email,user_firstname,user_lastname in wimshome/log/classes/$add
+supervisorname=$(tmp[2]) $(tmp[3])
+supervisormail=$(tmp[1])
+
+!if $supervisormail=$empty
+  !if $wims_user!=supervisor
+    error=sendmailteacherclose
+  !else
+    error=nosupervisoremail
+  !endif
+  !exit
+!endif
+
+!! ----- change supervisoremail/name in case of wims_user=supervisor and wims_real_user is not class creator
+!if $wims_user=supervisor
+  !if $wims_realuser!=$suplog
+    !if $wims_realuser=supervisor and $wims_superclass!=$empty
+      tmp=!defof user_email,user_firstname,user_lastname in wimshome/log/classes/$wims_superclass/supervisor
+      supervisorname=$(tmp[2]) $(tmp[3])
+      supervisormail=$(tmp[1])
+      supervisortype=3
+    !else
+      supervisorname=$wims_firstname $wims_lastname
+      supervisormail=$wims_email
+      supervisortype=2
+    !endif
+  !else
+    supervisortype=1
+  !endif
+  !if $wims_superclass=$empty
+    supervisortype=4
+  !endif
+!endif

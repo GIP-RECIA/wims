@@ -1,0 +1,39 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=area,measurement,triangles
+!set gl_title=Aire d'un triangle
+!set gl_level=xx Cycle&nbsp;3 
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème :  Aire d'un triangle rectangle </h4>
+<em>Une unité de longueur étant donnée dans le plan, on considère l'unité d'aire associée.</em>
+<br class="spacer">
+L'aire d'un triangle rectangle est égale à la moitié du produit des longueurs des côtés de l'angle droit. 
+<br class="spacer">
+Autrement dit : <br>
+Si  \(a\) et \(b\) désignent les longueurs des côtés de l'angle droit d'un triangle rectangle et \(A\)  l'aire de ce triangle rectangle, alors&nbsp;:<br>
+<div class="wimscenter">
+ \(A = \dfrac{a \times b}{2}\).
+</div>
+</div>
+
+:mathematics/geometry/fr/triangle_area_1
+
+:
+<div class="wims_thm">
+
+<h4>Théorème : Aire d'un triangle  (6<sup>e</sup>) </h4>
+<em>Une unité de longueur étant donnée dans le plan, on considère l'unité d'aire associée.</em><br class="spacer">
+L'aire d'un triangle est égale à la moitié du produit de la longueur d'un de ses côtés par la longueur de sa hauteur relative.
+<br class="spacer">
+Autrement dit : <br>
+Si \(c\) désigne la longueur d'un côté du triangle, \(h\) la longueur de la hauteur relative à ce côté et \(A\) l'aire de ce triangle, alors&nbsp;:<br>
+<div class="wimscenter">
+<span class="nowrap">\(A = \dfrac{c \times h}{2}\).</span>
+</div>
+</div>
+
+:mathematics/geometry/fr/triangle_area_2

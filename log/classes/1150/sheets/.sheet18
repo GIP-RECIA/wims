@@ -1,0 +1,42 @@
+:H2/analysis/OEFevalwimsprop.fr
+exo=calcechelle1&exo=calcechelle2&exo=calcechelle3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calculer un rapport d'échelle 1-3
+Difficulté 1 à 3 aléatoirement
+
+
+:H2/analysis/OEFevalwimsprop.fr
+exo=calcechelle4&exo=calcechelle5&exo=calcechelle3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calculer un rapport d'échelle 3-5
+Difficulté 1 à 3 aléatoirement
+
+
+
+:H2/analysis/OEFevalwimsprop.fr
+exo=utilechelle1&exo=utilechelle2&exo=utilechelle3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Utiliser un rapport d'échelle 1-3
+Difficulté 1 à 3 aléatoirement
+
+
+
+
+:H2/analysis/OEFevalwimsprop.fr
+exo=utilechelle3&exo=utilechelle4&exo=utilechelle5&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Utiliser un rapport d'échelle 3-5
+Difficulté 3 à 5 aléatoirement
+
+
+
+
+:H1/algebra/oefprop.fr
+exo=chelle&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Utiliser une échelle

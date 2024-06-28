@@ -1,0 +1,288 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+$wims_read_parm
+:type
+<h2>Tipi possibili di compiti a risposta aperta</h2>
+Sono possibili tre tipi diversi di compiti a risposta aperta:
+<ul>
+  <li><b>$(name_type_list[1])</b>
+    Permette semplicemente di pubblicare la consegna di un compito a risposta aperta (sotto forma di file) e di distribuire al momento indicato una risoluzione di tale compito.
+  </li>
+  <li><b>$(name_type_list[2])</b>:
+!if $conf_nofile=yes
+  <span style="color:grey">(disattivato su questo server)</span>
+!endif
+    Permette di pubblicare la consegna di un compito a risposta aperta (sotto forma di file) e di distribuire al momento indicato una risoluzione. Inoltre ogni partecipante può caricare sul server la sua risposta e il docente può
+    <ul><li>
+    correggere e restituire a ciascuno studente una correzione individuale;
+    </li><li>
+    pubblicare una risoluzione generale del compito;
+    </li><li>
+    assegnare manualmente un voto a questo compito.
+    </li></ul>
+    Questa configurazione può utilizzare gran parte dello spazio disco disponibile per il corso e può essere limitata dal responsabile del server.
+  </li>
+  <li><b>$(name_type_list[3])</b>
+    Permette di strutturare il compito in diversi parti per le quali è
+    possibile scegliere un editor di testo e alcune applet interattive.
+    Al momento le applet disponibili sono:
+    <ul>
+      <li>Area di testo.</li>
+      <li>Caricamento di file.
+        !if $conf_nofile=yes
+          <span style="color:grey">(Disattivato su questo server.)</span>
+        !endif
+      </li>
+      <li>costruzione GeoGebra.</li>
+      <li>selezione di esercizi WIMS.</li>
+    </ul>
+    Ogni studente completa le diverse parti. Il docente può
+    <ul><li>
+    visualizzare le consegne di ogni studente;
+    </li><li>
+    pubblicare una soluzione generale
+    </li><li>
+    attribuire un voto alla risoluzione di ciascuno studente.
+    </li></ul>
+  </li>
+</ul>
+!exit
+
+:sizelimitfile
+<h2>Limitazione della dimensione dei file</h2>
+Questo parametro permette di indicare la dimensione massima (in Mega) dei file che gli studenti possono caricare sul server. Questa dimensione moltiplicata per il numero di studenti deve essere inferiore allo spazio disco disponibile per il corso (visibile nella pagina di configurazione).
+<div class="wims_msg warning">
+Si noti, tuttavia, che una volta che la capacità complessiva della classe viene raggiunta gli studenti non saranno in grado di caricare file anche se di dimensione minore di questo limite.
+</div>
+Per esempio: se il corso ha a disposizione uno spazio di 30 Mega e gli studenti sono 35 conviene che voi fissiate questa dimensione massima a 0.75 Mega per attivare il compito
+(perché in questo modo teoricamente vengono impiegati 26,25 Mega). Tuttavia, se nel frattempo si caricano altri file o se gli studenti svolgono altre attività che vengono registrate (esercizi o esami),
+lo spazio disponibile potrebbe diminuire e quindi alcuni studenti potrebbero non essere in grado di caricare i loro compiti.<br>
+Nel caso di compito a consegna aperta di tipo 3, la dimensione si applica all'insieme delle zone di tipo consegna file.
+!exit
+
+:datedeadline
+<h2>Data entro la quale lo studente deve aver consegnato il compito.</h2>
+<ul>
+<li>Nel caso il compito sia di tipo <span class="wims_code_words">$(name_type_list[2])
+</span> o <span class="wims_code_words">$(name_type_list[3])</span>, l'interfaccia di caricamento delle risposte viene attivata fino a questa data e fino a che lo stato del compito è
+<span class="wims_code_words">Attivo</span>.</li>
+<li>Una volta che questa data è passata, il docente può visionare le copie consegnate dagli studenti e caricare i file con le correzioni individuali per ciascuno studente.</li>
+<li>Gli studenti non possono accedere alle loro copie corrette fino a che tutte le correzioni non sono state caricare e solo dopo la data di pubblicazione della soluzione.</li>
+</ul>
+!exit
+
+:datetimesoldate
+<h2>La data a partire da quando la soluzione sarà disponibile per gli studenti.</h2>
+<ul>
+<li>I file delle risoluzioni generali possono essere caricati/modificati/cancellati in ogni momento.</li>
+<li>Gli studenti, dopo tale data, possono consultare la correzione al proprio compito una volta che tutte le correzioni individuali sono state caricate sul server e fino a che lo stato del compito resta "Attivo".</li>
+<li>Se lo stato del compito è "Terminato", gli studenti non possono più scaricare le correzioni individuali, ma possono scaricare solo i file con la consegna e la risoluzione generale (indipendentemente dalla data di pubblicazione della soluzione).</li>
+<li>Gli studenti possono accedere al file della risoluzione generale non appena è trascorsa la data di pubblicazione delle soluzioni (anche se non sono state caricate le soluzioni individuali per i tipi <span class="wims_code_words">$(name_type_list[2])</span> o <span class="wims_code_words">$(name_type_list[3])</span>).</li>
+</ul>
+!exit
+
+:scoring
+<h2>Voti</h2>
+È possibile assegnare manualmente un voto per ogni studente del corso.
+<br>
+L'interfaccia permette di inserire direttamente il voto di ciascuno studente nel momento stesso in cui si inseriscono le correzioni individuali.<br>
+Qualora questa opzione venga selezionata, al momento dell'attivazione del compito a risposta aperta una colonna (con un titolo generico e peso 1) viene automaticamente aggiunta alla tabella dei voti assegnati manualmente. 
+<br>
+Cette option n'est pas disponible dans un portail.
+!exit
+
+:typezone
+<h2>Tipi di zone</h2>
+Un compito a risposta aperta è composto di due parti:
+<ul>
+<li>la parte del testo del compito (che contiene le istruzioni che saranno mostrate agli studenti);</li>
+<li>la parte delle risposte degli studenti (cioè la parte in cui gli studenti potranno inserire le loro risposte).</li>
+</ul>
+Ogni parte è costituita da un certo numero di zone. Ci sono quattro tipi di zone (sia per la parte del testo del compito che per la parte delle risposte):
+<ul>
+<li><b>GeoGebra</b> Permette di mostrare una costruzione interattiva GeoGebra.</li>
+<li><b>Testo</b> una zona di immissione di testo. Sono accettati tag html. È anche possibile scrivere formule matematiche LaTeX inserendole tra \( e ).<br>
+Per esempio, \(\sqrt{2}) inserirà
+!insmath \sqrt{2}
+.
+</li>
+<li><b>File</b>
+!if $conf_nofile=yes
+  <span style="color:grey">(disattivato su questo server)</span>
+!endif
+una zona che permette di caricare file. È possibile caricare più di un file in una zona File.</li>
+<li><b>RandFile</b> (solo nella parte testo del compito)
+!if $conf_nofile=yes
+  <span style="color:grey">(disattivato su questo server)</span>
+!endif
+una zona che permette di caricare file. È possibile caricare più di un file in una zona RandFile, a ogni studente verrà mostrato uno di solo di questi file, scelto casualmente.</li>
+<li><b>esercizi WIMS</b> (solo nella parte testo del compito)
+Una lista di esercizi WIMS da risolvere. Lo studente deve risolere correttamente
+gli esercizi proposti prima di poter procedere alla consegna di una soluzione
+dettagliata. Questa risoluzione viene consegnata compilando le zone
+predisposte dal docente nella parte delle risposte degli studenti. Se non
+vengono predisposte aree di risposta, la consegna deve essere effettuata
+carta e penna.
+</li>
+</ul>
+Eccetto che per la tipologia Esercizio WIMS, si possono avere più zone delle stesso tipo nella parte del testo del compito come pure nella parte delle risposte degli studenti. Il numero di zone utilizzabili nella parte risposte e il relativo tipo sono indipendenti da numero e tipi di zone utilizzate nella parte del testo del compito.<br>
+Se la parte risposte degli studenti non contiene nessuna zona, allora la
+risposta deve essere fornita Carta e penna.
+!exit
+
+:zonegeogebra
+Descrizione dei campi da compilare per questo tipo di zona:
+<ul>
+<li><b>Titolo della zona:</b> il titolo della zona. Se si lascia il campo vuoto, sarà generato automaticamente un titolo.</li>
+<li><b>Descrizione:</b> una descrizione della zona che può contenere istruzioni specifiche per il compito (sarà mostrato con lo stile css <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Opzioni di configurazione per l'applet:</b> questa zona permette di definire la configurazione dell'applet GeoGebra inserita nel compito (si veda la documentazione di GeoGebra). È necessario scrivere una opzione per riga. Per esempio:
+<pre>
+showToolBar=true
+customToolBar="0|40|||1|2|5@10"
+width=800
+height=500
+number=1
+</pre></li>
+<li><b>Mostrare questa zona agli studenti</b> (opzione disponibile solo nella parte testo del compito): questa opzione permette di far apparire o meno questa zona nella pagina del testo del compito visibile per lo studente (combinata con l'opzione successiva, permette di mettere a disposizione degli studenti una zona con una costruzione GeoGebra). Se questa zona è visibile per gli studenti, non può comunque essere modificata da questi ultimi.</li>
+<li><b>Copia il contenuto della zona testo del compito numero</b> (opzione disponibili solo nella parte risposte degli studenti): questa opzione permette di caricare in questa zona l'applet GeoGebra di una delle zone testo del compito (per esempio per presentare una figura di partenza su cui lavorare).</li>
+<li><b>Contenuto della zona</b> (solo nella parte testo del compito) una finestra interattiva in cui è possibile impostare l'applet con la costruzione di partenza da proporre agli studenti.</li>
+</ul>
+!exit
+
+:zonetexte
+Descrizione dei campi da compilare per questo tipo di zona:
+<ul>
+<li><b>Titolo della zona:</b> il titolo della zona. Se si lascia il campo vuoto, sarà generato automaticamente un titolo.</li>
+<li><b>Descrizione:</b> una descrizione della zona che può contenere istruzioni specifiche per il compito (sarà mostrato con lo stile css <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Contenuto della zona</b> (solamente nella parte testo del compito) in questo spazio è possibile inserire istruzioni relative a questa zona del compito.</li>
+</ul>
+!exit
+
+:zonefile
+Descrizione dei campi da compilare per questo tipo di zona:
+<ul>
+<li><b>Titolo della zona:</b> il titolo della zona. Se si lascia il campo vuoto, sarà generato automaticamente un titolo.</li>
+<li><b>Descrizione:</b> una descrizione della zona che può contenere istruzioni specifiche per il compito (sarà mostrato con lo stile css <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Numero massimo di file </b>(solo per la parte delle risposte):
+ permette di limitare il numero di file caricabili da ciascuno studente.</li>
+<li><b>Contenuto della zona</b> (solamente nella parte testo del compito) permette di caricare file che verranno mostrati agli studenti (l'interfaccia per il caricamento dei file si trova in fondo alla pagina).</li>
+</ul>
+!exit
+
+:zonerandfile
+Descrizione dei campi da compilare per questo tipo di zona:
+<ul>
+<li><b>Titolo della zona:</b> il titolo della zona. Se si lascia il campo vuoto, sarà generato automaticamente un titolo.</li>
+<li><b>Descrizione:</b> una descrizione della zona che può contenere istruzioni specifiche per il compito (sarà mostrato con lo stile css <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Contenuto della zona</b> (solamente nella parte testo del compito) permette di caricare i file (l'interfaccia per il caricamento dei file si trova in fondo alla pagina). Agli studenti sarà mostrato uno solo di questi file, scelto a caso.</li>
+</ul>
+!exit
+
+:zonewimsexo
+Descrizione dei campi da compilare per questo tipo di zona:
+<ul>
+<li><b>Titolo della zona:</b> il titolo della zona. Se si lascia il campo vuoto, sarà generato automaticamente un titolo.</li>
+<li><b>Descrizione:</b> una descrizione della zona che può contenere istruzioni specifiche per il compito (sarà mostrato con lo stile css <span class="wims_code_words">freeworkdesczone</span>).</li>
+<li><b>Contenuto della zona</b> una tabella che presenta la lista degli esercizi da analizzare. Gli esercizi possono essere inseriti con il medesimo metodo utilizzato per i test di autovalutazione (cioè utilizzando il motore di ricerca). <strong>Attenzione</strong>: per gli esercizi di tipo OEF, la configurazione della visualizzazione della soluzione e dei feedback non sarà salvata. Questa configurazione deva essere impostata al momento dell'inserimento degli esercizi nel compito a risposta aperta.
+</li>
+  <li><b>Punteggio minimo:</b> il punteggio minimo che lo studente deve ottenere per poter salvare l'esercizio e passare alla fase di risposta. Questo salvataggio può essere:
+    	<ul>
+    	   <li>Manuale: sta allo studente salvare l'esercizio oppure farlo di nuovo. Se lo studente decide di non salvare, il punteggio è azzerato e lo studente deve di nuovo ottenere il minimo richiesto.</li>
+    	  <li>Automatico: il salvataggio è automatico non appena lo studente ottiene il punteggio richiesto. Lo studente non può scegliere di rifare l'esercizio.
+    	  </li>
+        </ul>
+  </li>
+</ul>
+Si noti infine che tutte le attività degli studenti sono registrate. Il docente può quindi sapere esattamente il numero di tentativi compiuti dallo studente su ogni esercizio proposto (e i relativi punteggi).
+!exit
+
+:allowtype
+!! this part is a copy of file adm/class/sheet/lang/help.phtml.fr with some litle terminologie change.
+È possibile inserire un controllo per limitare la visualizzazione dei compiti
+a risposta aperta a determinati periodi e/o a determinate postazioni.
+L'impostazione di visibilità del compito ha la precedenza rispetto a questa configurazione.
+<div class="wims_msg warning">Il controllo sull'IP non è ancora funzionante.</div>
+<br>
+Le opzioni disponibili sono
+<ul>
+ <li><span class="tt wims_code_words">$(name_allowtype[1])</span>:
+ il compito è visibile per tutti.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[2])</span>:
+ il compito non è visbile per nessuno.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[3])</span>:
+ nel campo <span class="tt wims_code_words">$(name_shinfo[6])</span>,
+ sarà possibile inserire un intervallo di tempo e gli IP delle postazioni abilitate alla visualizzazione del compito. Questa restrizione può essere scritta mediante tre stringhe (che possono essere presenti solo in parte): <br>
+ <ul>
+  <li>Una data e un orario di inizio;</li>
+  <li>Una data e un orario di termine;</li>
+  <li>Un elenco di IP (separati da spazi);</li>
+ </ul>
+ (più avanti in questa pagina maggiori dettagli sui formati di queste
+ stringhe);
+</li>
+<li><span class="tt wims_code_words">$(name_allowtype[4])</span>:
+questa opzione può essere utilizzata per indicare filtri di accesso a seconda dell'appartenenza dello studente a un gruppo individuato mediante una <span class="tt wims_code_words">variabile tecnica</span> (questa variabile tecnica deve essere definita per ciascun iscritto, può essere definita manualmente dal docente attraverso la pagina di gestione delle variabile o la scelta può essere lasciata agli studenti attraverso l'utilizzo di un <span class="tt wims_code_words">$wims_name_Vote</span>). Se si sceglie questa opzione e si seleziona una variabile per ogni gruppo definito da tale variabile sarà possibile inserire (e successivamente modificare) un filtro (secondo le regole definite sopra).
+Se non si precisa alcun valore come filtro per un certo valore della variabile, allora la visualizzazione del compito è disattivata per gli studenti che hanno questo valore.
+<p>
+Si segnala che si può impotare un <span class="tt wims_code_words">$wims_name_Vote</span> utilizzando il modello <span class="tt wims_code_words">Accessi individualizzati</span> specifico per la gestione di questi filtri orari tramite variabili tecniche. Se si utilizza una variabile tecnica creata attraverso tale questionario i campi corrispondenti a ogni gruppo vengono automaticamente riempiti con i valori definiti attraverso il questionario. Questi valori possono essere comunque modificati dal docente, direttamente in questa pagina, per esempio variando date e orari (le modifiche effettuate in questa pagina non modificano i dati contenuti nel questionario).
+</p>
+<p>Esempio: Se abbiamo una variabile tecnica <span class="tt wims_code_variable">gruppo</span> che può assumere i valori 1, 2 e 3,  possiamo, ad esempio, costruire i filtri per questa variabile come nella tabella che segue:
+!readproc slib/text/matrixhtml [$name_value,$name_filtre\
+$name_EMPTY, 129.50.10. &#62;20160915.12&#58;00\
+1,&#62;20160915.15&#58;00 &#60;20160925.12&#58;00\
+2,\
+3,127.0.],wimscenter wimsborder wimstable,TH=[1;]
+$slib_out
+</p>
+Quindi
+<ul><li>
+per gli studenti per cui la variabile
+<span class="tt wims_code_variable">gruppo</span> non è stata definita,
+il compito è visibile dal giorno
+15/09/2016 alle ore 12 e unicamente per gli IP della sottorete
+129.50.10. (attenzione al punto finale!)
+</li><li>
+per gli studenti per cui la variabile <span class="tt wims_code_variable">gruppo=1</span>,
+il compito è visibile a partire dal giorno 15/09/2016 alle ore 15 e fino al giorno 25/09/2016 alle ore 12.
+</li><li>
+per gli studenti per cui la variabile <span class="tt wims_code_variable">gruppo=2</span>, il compito non è visibile.
+</li><li>
+per gli studenti per cui la variabile
+<span class="tt wims_code_variable">gruppo=3</span>,
+il compito è visibile unicamente dalle postazioni con IP nella classe 127.0. (attenzione al punto finale!)
+</li></ul>
+</li>
+</ul>
+!if $tv_listtechvar!=$empty
+ Le variabili tecniche attualmente disponibili nel corso sono:
+ !read adm/vfilter/listvar.phtml
+!else
+ Non ci sono attualmente variabili tecniche definite nel corso. Se volete utilizzare questa opzione, dovete definire una variabile tecnica.
+!endif
+
+<h3>Formati utilizzabili per i filtri</h3>
+<p>
+Per le date:
+</p><p>
+<span class="tt wims_code_words">
+&gt;yyyymmdd.hh:mm</span>
+(data e ora di inizio) e/o
+<span class="tt wims_code_words">
+&lt;yyyymmdd.hh:mm</span>
+(data e ora di fine). Queste date devono essere espresse nel fuso orario
+del SERVER, e devono essere separate tramite spazi l'una dall'altra (o da
+eventuali altre istruzioni simili).
+</p><p>
+Per le postazioni:
+</p>
+!read help/hosts.phtml
+<p>
+Esempio:
+<span class="tt wims_code_words">&lt;20131007.10:30 &gt;20131001.10:00 127.0.</span>
+permette la registrazione dei voti tra le due date indicate e solamente per
+connessioni provenienti IP che cominciano con
+<span class="tt wims_code_words">127.0</span>.
+</p>
+
+!exit

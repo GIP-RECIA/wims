@@ -1,0 +1,28 @@
+!set lang_exists=yes
+
+!set wims_name_glosscheck=Comprovar el glossari
+
+!set name_choose=Trieu el glossari&nbsp;
+!set name_title=Inserció en un glossari
+
+!set wims_name_addglossary=Inserir en un glossari
+!set name_insert=Voleu inserir la glossa
+!set name_parm=amb els paràmetres d'inicialització
+
+!set name_endadd=!nosubst El recurs <span class="wims_mod_title">$title</span> \
+  ha estat inserit correctament en el glossari
+!set name_endmod=!nosubst Modificació del glossari $gl\
+  (<span class="wims_mod_title">$title</span>) fet
+
+!set name_endmod2=!nosubst El recurs <span class="wims_mod_title">$title</span>\
+  no s'ha pogut inserir perquè ja existia.
+
+!set name_orderchange=Canviar l'ordre de les glosses
+
+!set name_newglostitle=Títol del nou glossari
+!set name_newglos=Nou glossari
+!set name_titleglose=Títol de la glossa
+
+!set name_helpglo=!nosubst Per afegir una altra glossa, torneu al glossari\
+   general pel fil d'ariane, feu clic a la glossa que voleu afegir\
+   a continuació a l'enllaç <span class="wims_button disabled">$wims_name_addglossary</span>.

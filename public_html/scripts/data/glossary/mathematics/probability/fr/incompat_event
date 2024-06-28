@@ -1,0 +1,22 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,events
+!set gl_title=Événements incompatibles
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \( \mathrm{A} \) et \( \mathrm{B} \) deux événements d'un même univers
+&#937;.<br>
+Les événements \(\mathrm{A}\) et \(\mathrm{B}\) sont deux <strong>événements
+incompatibles</strong> si et seulement si leur intersection
+\(\mathrm{A} \cap \mathrm{B}) est vide.
+</div>
+<div class="wims_rem">
+<h4>Remarque</h4>
+Cela équivaut à dire qu'aucune issue ne peut réaliser à la fois \( \mathrm{A} \)
+et <span style="white-space:nowrap">\(\mathrm{B}\),</span> que la réalisation de
+l'un des deux événements \(\mathrm{A}\) et \(\mathrm{B}\) exclut celle de l'autre.
+</div>

@@ -1,0 +1,109 @@
+!set titb=Utiliser des fonctions pour Maud Elisée au pays des paraboles
+!set keyw=
+!set datm=20210827
+!set prev=embedParabTab
+!set next=embedParabCan
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randint 2, 3
+
+!set m_aa=$[rint($(tmp0))]
+
+!set m_a=$[rint(-$m_aa)]
+
+!set tmp0=!randint 4, 6
+
+!set m_x=$[rint($(tmp0))]
+
+!set tmp0=!randitem 1,7,8,9
+
+!set m_y=$[rint($(tmp0))]
+
+<div class="wims_columns">
+ <div class="medium_size text_col">
+Pour modéliser un phénomène d'après sa courbe, il est utile de repérer
+ la fonction de référence qui a une courbe de même forme.<br>
+ Une parabole d'axe verticale fait référence à la fonction carré,
+ cependant "l'ouverture" de la parabole pourra être différente.<br>
+ Pour obtenir la même courbe par translation que la courbe de
+
+!insmath x \mapsto a x^2 + b x + c
+ ou 
+!insmath x \mapsto a (x - x_S)^2 + y_S
+ avec 
+!insmath a \ne 0
+,<br>
+il faudra prendre pour référence 
+!insmath x \mapsto a x^2
+.
+</div><div class="medium_size img_col">
+<img alt="Femme nommée Phonk Siona" src="$m_filedir/phonk3.png" />
+</div></div>
+<p class="decal">
+D'une façon générale, une composition de fonction correspond à une transformation de la courbe.
+</p>
+<h3 class="l2w_content exemple">Exemple</h3>
+  <div class="l2w_content exemple">
+ 
+!insmath f(x)=\a*(x-\x)^2+\y
+ et 
+!insmath r(t)=\a*t^2
+.</p>
+<table class="wimscenter wimsnoborder">
+<tr>
+ <td align="right">
+!insmath x \mapsto x - \x =
+</td>
+ <td align="left">
+!insmath t
+</td><td align="center">
+!insmath \longrightarrow
+</td>
+ <td align="right"> 
+!insmath \a*t^2=
+</td>
+ <td>
+!insmath m \mapsto m + \y = - \aa t^2 + \y = \a (x-\x)^2+\y
+</td>
+<tr><td align="right">
+!insmath x \mapsto x - \x =
+</td>
+ <td>
+!insmath t \mapsto t^2 = 
+</td>
+ <td>
+!insmath k \mapsto -k = - t^2 =
+</td>
+ <td>
+!insmath u \mapsto \aa u = \a t^2 =
+</td>
+ <td>
+!insmath m \mapsto m + \y = - \aa t^2 + \y = \a (x-\x)^2+\y
+</td></tr>
+<tr>
+<td>Changement de variable<br>Translation horizontale<br>de $m_x unités vers la droite.</td>
+<td>Fonction <br>carré </td>
+<td>Opposé<br>Symétrie /(Ox)</td>
+<td>Fonction linéaire<br>Dilatation verticale<br>ordonnées $m_times $m_aa</td>
+<td>Ajout d'une constante<br>Translation verticale<br>de $m_y unités vers le haut</td>
+</tr>
+</table>
+<p class="decal">
+Dans le tableau ci-dessus, on a décomposé 
+!insmath f
+ en utilisant 
+!insmath r
+, puis on a décomposé 
+!insmath r
+.
+</div>
+

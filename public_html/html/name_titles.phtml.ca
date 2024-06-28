@@ -1,0 +1,89 @@
+!set wims_name_title_whelp=Guia d'ús de les primeres versions de WIMS
+
+!! variable for title in link (by default it is the name of the link)
+!! do not leave a space at the beginning of the line
+!! Home page of wims
+!distribute line Per accedir a les classes organitzades pels professors\
+Per crear o administrar una classe\
+Classes d'accés obert per a treballar de forma autònoma\
+Preguntes més freqüents\
+Documentació sobre el llenguatge WIMS\
+Diferents rànquings de recursos pedagògics\
+Llista de recursos pedagògics creats o modificats recentment\
+Per descarregar les  fonts del servidor WIMS\
+Llista dels altres servidors WIMS públics\
+Condicions generals d'ús del servidor WIMS\
+Per ajustar alguns paràmetres de configuració\
+Pàgina d'inici del servidor\
+Per accedir a una altra classe\
+Per obtenir informació sobre la versió de WIMS instal·lada, l'administrador del lloc ...\
+Per obtenir informació sobre el mòdul $$module, el seu autor, la versió ... \
+  into wims_name_title_n_participant,wims_name_title_n_supervisor,wims_name_title_n_example,\
+  wims_name_title_faq,wims_name_title_doctec,\
+  wims_name_title_browse,wims_name_title_mod_new,\
+  wims_name_title_download,wims_name_title_mirror,wims_name_title_cgu,\
+  wims_name_title_pref,wims_name_title_home,wims_name_title_U_oclass,\
+  wims_name_title_aboutw,wims_name_title_about
+
+!!! tools
+!distribute line Eines per crear exercicis\
+Espai per a la creació de mòduls d'exercicis, de documents, ... \
+Eina que facilita la creació d'alguns tipus d'exercicis sense programació\
+Eina per transformar un document latex en un document WIMS\
+Eina per fer exercicis demanant subtitular imatges\
+Eina per a la preparació d'exercicis de química\
+Eina per provar el programari de càlcul o de disseny utilitzat en els exercicis\
+  into wims_name_title_createxo,wims_name_title_modtool,wims_name_title_quicktool,\
+  wims_name_title_latex2wims,wims_name_title_coordclick, wims_name_title_chemtool,\
+  wims_name_title_scripttest
+
+!!! links in a class
+!distribute line per veure les dades emmagatzemades pel servidor sobre el seu treball a la classe\
+Per veure els detalls de les notes obtingudes per a cada exercici i el barem\
+Per treballar en el full d'exercicis sense que els resultats es tinguin en compte en el càlcul de les notes\
+Perquè el treball que es faci en el full d'exercicis es tingui en compte en el càlcul de les notes\
+Per poder revisar l'enunciat i les respostes donades\
+Eines que es poden utilitzar per fer l'exercici\
+Ajuda sobre l'exercici proposat pel vostre professor\
+Suplement sobre l'exercici proposat pel vostre professor\
+  into wims_name_title_rawdata, wims_name_title_myscore, wims_name_title_scoreclose2, wims_name_title_scorereopen,\
+  wims_name_title_exolog, wims_name_title_tools, wims_name_title_feedbackexo,\
+  wims_name_title_feedbackplus
+
+!!documents
+!distribute lines Per veure una versió del document en una sola pàgina web\
+Per tornar a la versió interactiva del document\
+Per tornar a carregar la pàgina web\
+into wims_name_title_doch_printable, wims_name_title_doch_interactive, wims_name_title_doch_reload
+
+!!! links for a teacher in a class
+!distribute lines Per canviar el contingut o les propietats del full d'exercicis\
+Per importar el codi de l'exercici a Createxo per tal de poder-lo modificar\
+Per afegir l'exercici a un full d'exercicis en preparació de la classe\
+Per afegir el document a la llista de documents de la classe\
+Per configurar la presentació dels fulls, documents ... a la pàgina principal d'un alumne\
+Vista de la classe similar a la d'un alumne\
+Exercicis creats o importats a la classe\
+Per mostrar com a ajuda per a l'exercici d'un full quan no hagi tingut èxit\
+  into wims_name_title_sheetmanagement, wims_name_title_import,\
+  wims_name_title_add, wims_name_title_adddoc, wims_name_title_reorder,\
+  wims_name_title_participantview, wims_name_title_classexo,\
+  wims_name_title_addh
+!if adm/sheet isin $module
+  !set wims_name_title_import=Per fer un full d'exercicis nou a la classe
+!endif
+
+!!
+!distribute lines per crear diverses classes per cada fitxer de full de càlcul\
+into wims_name_title_addcsvclass
+
+!!set wims_name_title_moduback=Per anar a la pàgina d'introducció del mòdul que conté aquest exercici
+
+!distribute lines per fer exercicis sense programació\
+into wims_name_title_model
+
+!! links for modtool
+!distribute lines fitxers del mòdul no modificables en línia (imatges, ...)\
+fitxers del mòdul modificables en línia\
+into wims_name_title_binfile,wims_name_title_otherfiles
+

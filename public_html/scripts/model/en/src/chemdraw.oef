@@ -1,0 +1,65 @@
+type=chemistry
+textarea="data file pre post"
+iEdit="pre post"
+
+:Draw a molecule in 2D
+
+The learner is asked to draw a molecule.
+<p>To build an exercise with this model, just give the MDMol file of the molecule.</p>
+
+<p class="wims_credits">Model author : <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Draw a molecule}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:MDMol File
+\text{file=xxx
+JME 2006.05 Mon Jul 07 08:51:48 CEST 2008
+
+  5  4  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6373    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4249    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2124    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4248    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  4  1  0  0  0  0
+  2  5  1  0  0  0  0
+  3  5  1  0  0  0  0
+  4  5  1  0  0  0  0
+M  END
+}
+
+:Applet size, in pixels, width x height.
+\text{size1=300x300}
+
+:Text before the applet
+\text{pre=Draw the <strong>methylbutane</strong> molecule}
+
+:Options
+\text{option=show_hydrogen=no show_carbon=yes}
+
+:Text after the applet
+\text{post=<i>Check that your browser's zoom is on the normal size.</i>}
+
+:%%%%%%%%%%%%%% Nothing to modify until statement %%%%%%%%%%%%%%%%
+
+\statement{<div class="pre">\pre</div>
+<div class="wimscenter">
+\embed{reply 1, \size1
+atoms="\atoms" \option}
+</div>
+<div class="post">\post</div>
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%5
+
+\answer{}{\file}{type=chemdraw}

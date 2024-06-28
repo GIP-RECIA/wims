@@ -1,0 +1,7 @@
+La puntuació atribuïda a un participant pel seu treball en una classe
+és la mitjana de les puntuacions obtingudes en cada full i examen, ponderats segons el seu pes.
+Esculli el pes 0 si vostè no desitja que les puntuacions obtingudes en aquest full siguin comptabilitzades.
+
+<p>
+A la pàgina de resultats, només es mostren els resultats d'un full o examen no ocultats, o de pes estrictament positiu.
+</p>

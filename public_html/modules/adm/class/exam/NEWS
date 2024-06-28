@@ -1,0 +1,85 @@
+20230204 [17542] condition in case of course score dependancy is now in percentage as all the score
+  dependancy; use the command !examdep; change the order of the 'instruction'
+  (separate general remarks and specific remarks) (bpr)
+20221129 [r17430] in mode course use score dependancy to prevent hack from adress bar (FG - idea of MC)
+20221128 [r17429] add job=coursewatch: supervisor can see each user course (FG)
+20221121 [r17410] add a progression bar in mode course (FG)
+20221121 [r17382] add a display mode for exam. actually standard historical mode and course mode (FG)
+20221114 [r17310] use html5 form date (FG)
+------------- version 3.06
+20220928 [r17116] forbidden access with wims_class empty (FG)
+20220628 [r16878] replace exolist by wims_exrandomlist to use it in oef title (FG)
+20220628 [r16878] exrandomlist not chance each time participant go out exam module (FG)
+20220323 [r16480] delete job=moveup no more in use (FG)
+ ------------ version 3.05
+20220302 [r16388] use dropdownbutton for move exercise in exam (FG)
+20220227 [r16378] display correct score in cas of class_scorewithoutip=no (FG)
+20210719 [r16006] can hide exam with a technical variable (FG)
+20191023 [r14366] internalise jquery!=yes in script datepickerform.phtml (FG)
+20180616 [r14109] score dependancy keeped when change order of exercises in exam (FG)
+20181013 [r14079] can desactivate an exam in a program/class group if no courses are
+  attached to it and if it is not "main" (variable class_recshare) (bpr)
+20181013 [r13370] bugfix no default values for duration,tries and weight when create new exam (FG)
+20181013 [r13369] bugfix saved date expiration are not correctly loaded (FG)
+20181011 [r13365 and r13368] bugfix saved score restriction not correctly loaded (FG)
+20180619 [] change checkbox by jquery adaptative menu (OB)
+20180611 [r12927] add checkbox to close score for some techvar value (FG)
+20171031 [r12091] expiration date cannot be after class_expiration (FG)
+20170928 [r11970] can modify weight of exam in infoexam panel (FG)
+20170921 [r11916] verification and correction of cut time format (FG)
+20170920 [r11912] change non existing label expday in expdate to IP/date interface (bpr)
+20170920 [r11910] adapt help of cut hour to IP/date interface (FG)
+20170822 [r11846] use interface IP/date score restriction when use techvar (FG)
+20170820 [r11841] use of script adm/scorerestriction to select score restriction (FG)
+20170803 [r11807] use of datepicker (FG)
+20170314 [r11434] timeleft ajusting with examsheet restriction (FG)
+20151125 [r9686] can duplicate an exam (not empty) in one click (FG)
+20151025 [r9656] can hide information of an examen (FG)
+20151025 [r9654] update seq directory when delete an exam (FG)
+20151025 [r9653] (bugfix) display title of exam when prepare deleting (FG)
+20150127: fix bug in desactivate part.
+
+----------------------------   version 3.05
+20110327: regroupe phrases de langage avec les modules
+  sheet et class.sheet dans scripts/adm/lang
+
+----------------------------   version 3.04
+20101208 protect keyword option in help.phtml (FG)
+----------------------------   version 3.03
+20100529 statutaction in names.phtml.$lang deleted and replace by wims_name_actionlist (FG)
+20100529 can restart to module=home when variable back=1 : allow link to change statut sheet in gestion page (FG)
+20100529 use of script adm/sheet/sheetadmin.phtml to generate link for changing statut (FG)
+----------------------------   version 3.02
+20100308 add : graphic improvment when make list of series in an exo of an exam (FG)
+----------------------------   version 3.01
+20100303 bugfix : generic title did not work
+20100303 bugfix : it is no more possible to add an empty exercise (BPR)
+20100303 bugfix : correcting score calculation when an exam in preparation is before the exam (F. Guerimand).
+20100303 after adding an exo wims show directly list of exercices of the exam (F. Guerimand).
+20100303 bugfix, job=exo : delete selected series when you show only series of one sheet number in
+  the content of an exercice of an exam (F. Guerimand)
+2010-02 : Version 3.00
+  This module replaces several previously existing language dependent modules adm/class/exam.xx
+  of Gang Xiao. It has been constructed by localization of these modules, keeping a single
+  computation core and adding dictionaries.
+
+20100111 can click on series exercices in exo main page (FG)
+20100111 show sheet series choice for each exo in general exam config page with link to exercices series (FG)
+20100111 add commentaire for each exo of an exam (FG)
+20100111 add commentaire for exam description (FG)
+20100111 récupération svn 2120 pour transformation multi-langues (FG)
+-----------------------------  version 2.05
+20090210 fix bug when modifying the text after activating an exam, the duration and tries number
+  were changed in default. (BPR)
+-----------------------------  version 2.04
+20090210 Add job=deactivate : deactivate exam when no sharing, no score for class, and class
+  in groupement only (F. Guerimand).
+-----------------------------  version 2.03
+20081010 job=cpsheet : definition d'un mot clé générique pour les titres des exercices (F. Guerimand)
+-----------------------------  version 2.02
+20080620 job=erase : affiche homepage apres effacement (F. Guerimand)
+20080607 le nombre de colonne est fixé à  5 au maximum au lieu de 3 (F. Guerimand)
+-----------------------------  version 2.01
+20080530 changement de la presentation des examens pour une écriture sur plusieurs colonnes (FG).
+20070716 Page d'ajout d'exercices permet d'afficher seulement les exercices d'une feuille particulière (FG).
+20070716 job=cpsheet : permet d'ajouter tous les exercices d'une feuille à un examen en un seul click (FG).

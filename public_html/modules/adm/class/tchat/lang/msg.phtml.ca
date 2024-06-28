@@ -1,0 +1,49 @@
+!goto $err_
+
+:notallowedmodule
+  Aquest mòdul no està activat en aquest servidor. Poseu-vos en contacte amb l'administrador.
+!exit
+
+:nouser
+  El participant que heu indicat no existeix.
+!exit
+
+:usernotintchat
+  Aquest participant no està connectat al xat o no es troba en una pàgina d'exercicis. Per tant, no hi ha cap pàgina per veure.
+!exit
+
+:adressplay
+  Les dades que heu enviat al servidor semblen incorrectes. No jugueu amb la barra d'adreces del navegador!
+!exit
+
+:workinprogress
+  La funció de visualització de les pàgines de l'alumnat està en fase de prova. És possible que encara no funcioni correctament.
+!exit
+
+:badright
+  No hauries d'haver arribat a aquesta pàgina. No jugueu amb la barra d'adreces del navegador!
+!exit
+
+:disconnected
+  Heu desconnectat correctament del xat
+!exit
+
+:toomuchliving
+  El nombre de salons està limitat a $msg_maxliving. No en podeu crear més.
+!exit
+
+:goodsave
+S'ha acabat l'enregistrament.
+!exit
+
+:notopen
+El professorat ha tancat el xat.
+!exit
+
+:toobigfile
+El fitxer que voleu penjar és massa gran. Si us plau, reduïu-ne la mida abans de començar de nou.
+!exit
+
+:badfilename
+El nom del vostre fitxer no és compatible. Canvieu el nom abans d'intentar carregar-lo de nou. (format nom.extensió on el nom i l'extensió només han de contenir caràcters alfanumèrics sense accents ni espais).
+!exit

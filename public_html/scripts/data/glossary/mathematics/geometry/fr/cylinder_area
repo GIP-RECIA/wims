@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=area,measurement,cylinder,solid_geometry,3_shape
+!set gl_title=Aire latérale d'un cylindre
+!set gl_level=H1 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit un cylindre de hauteur \(h\) dont la base est un disque de périmètre \(P\)
+et de rayon <span style="white-space:nowrap">\(r\).</span><br>
+L'aire latérale \(A\) de ce cylindre est égale au produit du périmètre de sa
+base par sa hauteur, soit \(A=P \times h\) soit encore
+<span style="white-space:nowrap">\(A=2 \pi r h\).</span>
+</div>
+:mathematics/geometry/fr/cylinder_area_1

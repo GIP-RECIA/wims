@@ -1,0 +1,110 @@
+!! liste des sujets
+
+!if $nbuser<=0
+  $name_noparticipant
+  !exit
+!endif
+
+!if $tchat_onlynonempty=yes
+  <div>$name_onlynonemptyliving</div>
+!endif
+
+!if $tchat_onlynonempty!=yes or $nonempty_ind=1
+!! ----- displaying table of participant
+!set table_id=TABLE_userlist
+!set table_class=sortable
+$table_header
+  <thead>
+    $table_hdtr
+      <th scope="col">$wims_name_lastname - $wims_name_firstname</th>
+      <th scope="col">$name_tchatopen</th>
+      <th scope="col">$wims_name_newmsg</th>
+    </tr>
+  </thead>
+  <tbody>
+    !for i=1 to $nbuser
+      !readproc script/lastmsg.proc $(ulist[$i])
+      !if $tchat_onlynonempty!=yes or $(tchatisopen_$(ulist[$i]))!=$empty or $lastmsg!=$empty
+      $table_tr
+        !reset css_connected tchatisopen
+        !if $(ulist[$i]) isitemof $wims_connectedlogin
+          !set css_connected=class="wims_connected"
+          !set wims_ref_title=connected
+        !endif
+        <td $css_connected>
+          !href cmd=reply&+user=$(ulist[$i])&job=edit $(nlist[$i])
+        </td>
+        <td>
+         !if $(tchatisopen_$(ulist[$i]))!=$empty
+           &#x2714;
+         !endif
+        </td>
+        <td>
+         !if $lastmsg!=$empty
+           <span class="tchat-date2">
+                !let dt1=!char 1 to 8 of $lastdate
+                !let dt2=!char 10 to 14 of $lastdate
+                !readproc adm/date.phtml $dt1
+                $l_date_out $wims_name_at
+                !replace internal : by H in $dt2
+           </span>
+           <div class="lastmsg">
+             $lastmsg ...
+             !href module=$module&job=edit&job2=newmsg&user=$(ulist[$i]) $name_answer
+           </div>
+         !endif
+        </td>
+      </tr>
+      !endif
+    !next i
+  </tbody>
+$table_end
+!read tablesort.phtml
+!endif
+
+!if $livinglist!=$empty and ($nonempty_liv=1 or $tchat_onlynonempty!=yes)
+  !! ----- displaying table of living
+  !set table_id=TABLE_livinglist
+  !set table_class=sortable
+  $table_header
+  <thead>
+    $table_hdtr
+      <th scope="col">$name_living</th>
+      <th scope="col">$name_tchatopen</th>
+      <th scope="col">$wims_name_newmsg</th>
+    </tr>
+  </thead>
+  <tbody>
+    !for i in $livinglist
+      !readproc script/lastmsg.proc .living$i
+      !if $(living_connected_$i)!=$empty or $tchat_onlynonempty!=yes or $lastmsg!=$empty
+      $table_tr
+        <td>
+          !href cmd=reply&+user=.living$i&job=edit $(livingname_$i)
+        </td>
+        <td>
+          !let n=!itemcnt $(living_connected_$i)
+          $n / $(livingnb_$i)
+        </td>
+        <td>
+         !if $lastmsg!=$empty
+           <span class="tchat-date2">
+                !let dt1=!char 1 to 8 of $lastdate
+                !let dt2=!char 10 to 14 of $lastdate
+                !readproc adm/date.phtml $dt1
+                $l_date_out $wims_name_at
+                !replace internal : by H in $dt2
+           </span>
+           <div class="lastmsg">
+             $lastmsg ...
+             !href module=$module&job=edit&job2=newmsg&user=.living$i $name_answer
+           </div>
+         !endif
+        </td>
+      </tr>
+      !endif
+    !next i
+  </tbody>
+  $table_end
+  !read tablesort.phtml
+!endif

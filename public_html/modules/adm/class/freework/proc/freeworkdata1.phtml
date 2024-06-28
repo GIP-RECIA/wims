@@ -1,0 +1,47 @@
+!! template to edit freework data for type=1 or 2
+!!
+!!
+
+!if $quota_free<1
+  $name_nodeposit
+!endif
+!!let teststatut_subject=0
+!!let teststatut_solution=1
+
+!if $jquery_defined!=yes
+  <fieldset class="property_fields blockcenter">
+    <legend>$name_content
+      [
+        !href cmd=resume&infoshow2=no $wims_name_hide
+      ]
+    </legend>
+!endif
+!let opentest_solution=$putworkco
+!if $activetest<1
+  !let opentest_subject=1
+!else
+  !let opentest_subject=0
+!endif
+<div class="flex_box">
+!for val in subject,solution
+  <div class="wims_widget_box medium_size">
+    <div class="title_box">
+      <h2 class="wims_title">$(name_data$val)</h2>
+    </div>
+    <div class="box_content">
+      <div class="field box">
+        !read proc/listfile.phtml $val $(opentest_$val)
+      </div>
+      !if $(opentest_$val)=1
+        <div class="field box">
+          !read proc/uploadfileform.phtml $val
+        </div>
+      !endif
+    </div>
+  </div>
+!next val
+</div>
+
+!if $jquery_defined!=yes
+  </fieldset>
+!endif

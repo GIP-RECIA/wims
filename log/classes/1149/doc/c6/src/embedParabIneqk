@@ -1,0 +1,30 @@
+\def{integer k=randint (10..99)}
+\def{integer d=randint (1..9)}
+<table class="wimscenter wimsborder">
+<tr>
+ <td>\((x - \d)^2 \ge \k)<br>
+équivaut à<br>
+\(x - \d \le - \sqrt{\k}) ou \(x - \d \ge \sqrt{\k})<br>
+\(x \le \d - \sqrt{\k}) ou \(x \ge \d + \sqrt{\k})<br>
+ </td>
+ <td>\((x - \d)^2 \le \k)<br>
+équivaut à<br>
+\(- \sqrt{\k} \le x - \d \le \sqrt{\k})<br>
+\(\d - \sqrt{\k} \le x \le \d + \sqrt{\k})<br>
+ </td>
+</tr><tr>
+ <td>\((x - \d)^2 \ge 0)<br>
+est vraie pour tous les nombres réels.<br>
+ </td>
+ <td>\((x - \d)^2 \le 0)<br>
+n'est vraie que pour 0.<br>
+ </td>
+</tr><tr>
+ <td>\((x - \d)^2 \ge -\k)<br>
+est vraie pour tous les nombres réels.<br>
+ </td>
+ <td>\((x - \d)^2 \le -\k)<br>
+n'a pas de solution dans \(\,\RR).<br>
+ </td>
+</tr>
+</table>

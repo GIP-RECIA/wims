@@ -1,0 +1,139 @@
+!!set backup_delete=$(wims_read_parm[2])
+!!set sitemanager=$(wims_read_parm[1])
+!!set day=$(wims_read_parm[4])
+!!set size=$(wims_read_parm[4])
+!!set protocol=$(wims_read_parm[5])
+!! cookies = $(wims_read_parm[6])
+<h2 class="wims_subtitle">Informativa privacy e cookie</h2>
+
+!!!<h3>Responsable des données</h3>
+!!!
+!!!Ici afficher l'administrateur du site / de la classe / du portail le cas échéant
+!!!<strong>$(wims_read_parm[1])</strong>
+!!!
+!!!préciser responsable légal (directeur/président dans le cas d'un serveur d'établissement)
+
+
+<h3>Finalità del sito</h3>
+<p class="wimscenter">
+  <strong>Attività didattiche erogate per mezzo di applicazioni interattive.</strong>
+</p>
+<p>
+  WIMS (Web Interactive Multipurpose Server) è una piattaforma didattica on
+  line che mette a disposizione pubblica risorse pedagogiche
+  (esercizi interattivi, documenti interattivi, strumenti di calcolo) e che
+  permette ai docenti di predisporre uno spazio riservato in cui
+  organizzare le risorse pedagogiche in sessioni di lavoro, per stimolare
+  e monitorare l'attività dei propri studenti.
+</p>
+
+<h3>Dati raccolti e finalità</h3>
+<ul>
+  <li>In caso di utenti non registrati, i soli dati raccolti sono data, ora e IP
+    di connessione, dati che vengono conservati temporaneamente nei log di
+    sistema al solo fine del monitoraggio del corretto funzionamento del
+    server.
+  </li><li>In caso di utenti che creano uno spazio di lavoro (un <em>corso virtuale</em>).<br>
+    I dati raccolti sono:
+    <ul>
+      <li>nome, cognome e indirizzo di posta elettronica inseriti all'atto
+        di creazione del corso;</li>
+      <li>il numero di IP di connessione, visibile solo dai diretti interessati
+        e dal responsabile del server.</li>
+    </ul>
+  </li><li>In caso di utenti registrati come studenti in un corso virtuale.<br>
+    L'utilizzo dei materiali organizzati in un corso virtuale di un server WIMS
+    implica la registrazione di alcuni dati di connessione al fine di poter
+    calcolare punteggi e voti.
+    Le seguenti informazioni personali dello studente sono visibili al docente
+    responsabile del corso, sia in forma dettagliata che in forma aggregata:
+    <ul>
+      <li>nome e cognome;</li>
+      <li>indirizzo di posta elettronica e foto (facoltativi);</li>
+      <li>gli esercizi visualizzati e/o risolti;</li>
+      <li>i punteggi ottenuti;</li>
+      <li>orari, giorni e IP di connessione, ogni volta che viene svolto
+        del lavoro (test di autovalutazione) nel corso (dati dettagliati).</li>
+    </ul>
+  </li>
+</ul>
+!if $(wims_read_parm[6])=yes
+  Per mantenere le preferenze di visualizzazione di utenti non
+  registrati sono utilizzati dei cookie.
+!endif
+
+
+<h3>Conservazione dei dati</h3>
+<p>
+  I log di sistema (esterni ai corsi) vengono cancellati regolarmente:
+</p>
+<ul><li>
+   no data more than $(wims_read_parm[3]) days older is kept;
+   </li><li>
+   vengono conservati solo i $(wims_read_parm[4]) byte più recenti
+   </li></ul>
+<p>
+  I docenti possono creare corsi che in fase di prima creazione hanno
+  la durata massima di 15 mesi.
+  I docenti hanno poi la possibilità di salvare sul proprio pc una copia
+  di backup dei dati degli studenti, di prolungare la durata del corso
+  e di cancellare i dati degli studenti iscritti al loro corso.
+</p><p>
+  I dati degli utenti registrati a un corso sono conservati sul server al
+  più $(wims_read_parm[2]) giorni dopo la data di termine del corso.
+</p>
+
+!!<h3>Légitimité</h3>
+!!Dans le cas d'un enseignement public, il s'agira  à priori de
+!!« l'exécution d'une mission d'intérêt public",
+!!mais une classe WIMS pourrait également servir à titre d'"Exécution d'un contrat »,
+!!ou à titre privé avec le consentement des participants (acceptation des CGU).
+!!La liste des légitimités possibles pourrait etre proposée lors de la création de la classe
+!!par exemple (voir liste plus bas)
+!!
+
+<h3>Accesso ai dati</h3>
+<ul>
+  <li>Il responsabile del server può avere accesso a tutti i dati registrati sul server.
+!!  (sans intérêt pour lui).
+  </li>
+  <li>I docenti responsabili dei corsi hanno accesso esclusivamente alle informazioni relative ai propri corsi.</li>
+</ul>
+<p>I nominativi e i dati degli utenti registrati (cioè i partecipanti) in un
+   corso non sono visibili agli altri partecipanti. Solo il docente del corso
+   ha accesso alla lista dei partecipanti e ai loro dati.</p>
+
+<h3>Misure di sicurezza</h3>
+!if $(wims_read_parm[5])=https
+  <p>Il sito web utilizza il protocollo sicuro $(wims_read_parm[5]).</p>
+!endif
+
+<p>
+L'amministratore del sito può accedere ai dati del server solo tramite
+inserimento di una password.
+</p><p>
+I docenti possono accedere alle funzioni di gestione del corso tramite
+autenticazione con password.
+Viene tenuto un log degli accessi al server effettuati.
+</p>
+
+<h3>Modalità di esercizio dei diritti</h3>
+!! <p>Conformément à l'article 34 de la loi du 6 janvier 1978 relative à l'informatique,
+!!   aux fichiers et aux libertés, vous disposez d'un droit d'accès et de
+!!   modification des données à caractère personnel vous concernant.
+!!   Vous pouvez exercer ce droit en contactant $(wims_read_parm[1]).</p>
+!! <p>
+!!   Vous pouvez également, pour des motifs légitimes, vous opposer
+!!   au traitement des données vous concernant.
+!! </p><p>
+!!   Vous avez également la possibilité, en application
+!!   de l'article 40-1 de la loi n° 78-17 du 6 janvier 1978
+!!   relative à l'informatique, aux fichiers et aux libertés de définir
+!!   des directives relatives au sort de vos données à caractère personnel
+!!   après votre décès.
+!! </p>
+
+<p>L'informativa estesa descrive dettagliatamente come esercitare i propri diritti.</p>
+
+<p>È anche possibile contattare l'amministratore del server mediante
+  l'indirizzo di posta elettronica $(wims_read_parm[1]).</p>

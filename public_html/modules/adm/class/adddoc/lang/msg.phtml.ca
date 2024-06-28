@@ -1,0 +1,40 @@
+!set wims_module_log=error: $error
+
+!if $error iswordof already_exist baddocnumber not_supervisor insert_fail maxdoc toomuchsheet noexo
+  !goto $error
+!else
+  !msg $error
+  !exit
+!endif
+
+:already_exist
+ El recurs que voleu inserir ja hi és a la classe amb el títol 
+<span class="tt wims_fname"> $title</span>.
+!exit
+
+:baddocnumber
+ La informació que has introduït no correspon a un document
+ guardat de la classe.
+!exit
+
+:not_supervisor
+Només l'administrador de la classe pot dur a terme aquesta acció.
+!exit
+
+:insert_fail
+Intentes inserir un mòdul no autoritzat.
+!exit
+
+:maxdoc
+El nombre de documents està limitat a $max_doc.
+!exit
+:maxtool
+El nombre d'eines està limitat a $max_doc.
+!exit
+:toomuchsheet
+El nombre de fulls està limitat a $max_sheets. No pots crear cap altre full d'exercicis.
+ !exit
+
+:noexo
+Aquest document no conté cap exercici.
+!exit

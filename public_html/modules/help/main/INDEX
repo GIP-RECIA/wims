@@ -1,0 +1,59 @@
+# Module title
+title   =Aides pour WIMS
+title_ca=WIMS Ajuda
+title_cn=WIMS°ïÖú
+title_en=WIMS help
+title_es=Ayuda de WIMS
+title_it=WIMS help
+title_nl=WIMS help
+
+# Module description
+description   =les pages d'aide principales de WIMS.
+description_ca=principal pàgina d'ajuda de WIMS.
+description_cn=WIMS°ïÖúÖ÷Ò³.
+description_en=main help page of WIMS.
+description_es=página principal de ayuda de WIMS.
+description_it=pagina principale dell'help on line di WIMS.
+description_nl=Help pagina's van WIMS.
+
+
+# Author
+author=XIAO Gang
+address=xiao@unice.fr
+copyright=&copy; 2000- (<a href="COPYING">GNU GPL</a>)
+version=2.15
+
+
+# Translators
+translator_ca=Manel Querol
+translator_address_ca=mquerol@xtec.cat
+
+translator_cn=³ÂÖ¾½Ü
+translator_address_cn=zjchen@math.ecnu.edu.cn
+
+translator_es=Juan Rafael Fernández García
+translator_address_es=juanrafael.fernandez@hispalinux.es
+
+translator_it=Marina Cazzola
+translator_address_it=marina.cazzola@unimib.it
+
+
+# minimal version of wims server under which the module may run
+wims_version=4.17
+
+# original language
+language=fr
+
+# Possible categories: exercise, tool, dictionary, course, recreation, doc
+category=help
+
+# En: elementary. Hn: high school. Un: under. G: graduate. R: research.
+# E1,...,E6; H1...,H6; U1,...,U4; G; R
+level=
+
+# e.g. algebra, analysis, geometry, etc.
+domain=
+
+# Anything you like.
+keywords=wims
+

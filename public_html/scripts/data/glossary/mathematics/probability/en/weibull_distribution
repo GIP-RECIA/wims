@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Weibull distribution
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Let \(a) and \(lambda) be two positive numbers. The <strong>
+Weibull distribution</strong> with parameters \(a) and \(lambda)
+(denoted by \(\mathcal{W}(a,\lambda))) is the distribution of the random variable
+\(X^a) where \(X) is exponentially distributed with parameter \(\lambda).
+It is a continuous distribution over \(\RR_+) with density function
+
+<div class="wimscenter">
+\(x\mapsto a\lambda x^{a-1} e^{-\lambda x^a} 1_{x>0})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Expectation</th><th>Variance</th><th>Characteristic function</th></tr>
+<td>\(\lambda^{-\frac{1}{a}}\Gamma(\frac{1}{a}+1))</td><td>\(\lambda^{-\frac{2}{a}}\left ( \Gamma(\frac{2}{a}+1)-\Gamma(\frac{1}{a}+1)^2\right ))</td><td></td>
+</tr></table>

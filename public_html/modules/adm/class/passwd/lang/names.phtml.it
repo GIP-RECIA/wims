@@ -1,0 +1,26 @@
+!set lang_exists=yes
+
+!!set module_title=Modifica password
+
+!distribute line Selezionare il tipo di password\
+  Password di amministrazione\
+  per modificare i contenuti delle pagine del corso interattivo\
+  Password dell'utente\
+  Password `pubblica' del corso\
+  Da comunicare agli studenti per permettere l'iscrizione al corso\
+  Password del coordinamento di corsi\
+  Da comunicare agli altri docenti per permettere loro la registrazione\
+  Inserire la password attuale (vecchia password)\
+  Necessaria solo quando si modifica la password di amministrazione\
+  Inserire la nuova password\
+  Inserire nuovamente la nuova password\
+  Per password "personali": se si mette un segno `+' davanti alla password si crea una password valida una sola volta.\
+  La password deve essere composta da minimo 4 e massimo 16 caratteri alfanumerici (escluse le lettere accentate).\
+  Su alcuni server è possibile creare un corso senza password, verificare con il responsabile del server se questa funzione è abilitata\
+into name_passwdtype, name_userpasswd, name_userpasswd_hlp, name_partpasswd, name_classpasswd, name_classpasswd_hlp, name_classpasswdt, name_classpasswdt_hlp,\
+name_actualpasswd, name_actualpasswd_hlp, name_newpasswd,  name_newpasswd2, name_jetable, name_alphanumer, name_emptypasswd
+
+name_desc_forcechpwd=La tua password è stata reimpostata (dal docente, oppure \
+ da una procedura automatica). Devi quindi scegliere una nuova password per garantire la sicurazza del tuo account.
+name_desc_forcechpwd2=La tua password attuale è stata impostata da una procedura automatica e ti è stata quindi inviata per email oppure \
+ è stata modificata dal docente coordinatore. Devi quindi scegliere una nuova password per garantire la sicurezza del tuo account.

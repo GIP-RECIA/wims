@@ -1,0 +1,51 @@
+!read adm/levelname.phtml
+!read adm/css.phtml
+!read tabletheme
+!header1
+
+<!-- Begin regclass/main.phtml -->
+
+<div class="title_box">
+	<h1 class="wims_title">$title</h1>
+</div>
+
+!if $toomany=yes
+  !read adm/language lang/toomany.phtml
+  !goto end
+!endif
+
+!if $error!=$empty
+  !if getpass notwordof $error
+    <div class="wims_msg alert">
+  !else
+    <div class="wims_msg info">
+  !endif
+  !if $sendmail!=$empty
+    !set wims_module_log=error: $error $sendmail
+  !else
+    !set wims_module_log=error: $error
+  !endif
+  !read adm/language lang/msg.phtml
+  </div>
+  !if $restart!=no and $job=emptyclass
+    <p class="wimscenter">
+    !set wims_ref_class = wims_button
+    !href module=$module&cmd=reply&step=0 $name_again
+    </p>
+  !endif
+  !goto end
+!endif
+
+!read $job.phtml
+
+:end
+!if $step>=0 and $cmd=reply and $job=emptyclass
+  !if $wims_theme=default
+    !!ARIANE
+    !set wims_menu_items=!append line back2,1,module=$module\
+to $wims_menu_items
+  !endif
+!endif
+
+!tail
+!reset job step

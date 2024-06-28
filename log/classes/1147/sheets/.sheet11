@@ -1,0 +1,110 @@
+Fonction affine - Système
+Equation de droite et fonction affine, coefficient directeur, ordonnée à l'origine
+??,2021
+1
+H4
+analysis
+functions,real_function,affine_function,equations,equation_systems,line_equation
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fonctions" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+
+:H4/analysis/OEFewalwimseqdrt.fr
+exo=vocab5
+10
+1
+Équation de droite 1
+Déterminer le <strong>coefficient directeur</strong> et l'<strong>ordonnée à l'origine</strong> d'une droite d'après son équation.
+
+:H4/algebra/h4droites.fr
+exo=coeffDirTrace&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Coefficient directeur
+Déterminer graphiquement le <strong>coefficient directeur</strong> d'une droite.
+
+:H4/math/quizzautomat.fr
+exo=fct4
+10
+1
+Tracé d'une droite
+Placer un <strong>second point</strong> connaissant le coefficient directeur de la droite.
+
+:H4/geometry/oefline.fr
+exo=equ_dr2
+10
+1
+Equation de droite 2
+Lire graphiquement le <strong>coefficient directeur</strong> et l'<strong>ordonnée à l'origine</strong> d'une droite, et en déduire l'<strong>équation réduite</strong>.
+
+:H3/analysis/oefaffif.fr
+exo=qcmequa&qnum=1&qcmlevel=1&scoredelay=
+10
+1
+Equation de droite 3
+Lire l'<strong>équation d'une droite</strong> . Réponse par QCM.
+
+:H3/analysis/oefaffif.fr
+exo=CORequa4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Correspondance équation-droite
+Associer <strong>équations</strong> et <strong>représentations</strong> <strong>graphiques</strong> de droites.
+
+:H3/analysis/oefaffif.fr
+exo=fnctaff4
+10
+1
+Equation réduite d'une droite 1
+Déterminer l'<strong>équation réduite</strong> d'une droite connaissant deux points. Exercice guidé.
+
+:H4/geometry/oefline.fr
+exo=equ_dr4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Equation réduite d'une droite 2
+Déterminer l'<strong>équation réduite</strong> d'une droite connaissant deux points.
+
+:H4/analysis/OEFewalwimseqdrt.fr
+exo=syslingeo2
+10
+1
+Nombre de solutions d'un système d'équations
+Déterminer graphiquement le nombre de <strong>solutions d'un système</strong>.
+
+:H3/algebra/oefspeed.fr
+exo=trajet&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Trajet en voiture
+Lire graphiquement une <strong>fonction affine par morceaux</strong>. Activité concrète.
+
+:H4/number/oeffonctions.fr
+exo=oefprob1euro&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Problème concret 1
+Traduire un problème concret en <strong>fonctions affines ou linéaires</strong>.
+
+:H4/number/oeffonctions.fr
+exo=oefgraph1euro&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Problème concret 1 (suite)
+Utiliser les fonctions déterminées précédemment pour <strong>résoudre un problème</strong>.
+
+:H4/number/oeffonctions.fr
+exo=oefgraph2
+10
+1
+Problème concret 2
+Résoudre graphiquement un système pour résoudre un <strong>problème concret</strong>.
+
+:H3/analysis/oefaffif.fr
+exo=classer1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Classer des fonctions
+Reconnaître le type de fonction (lineaire - affine - autre) d'après leur <strong>formule</strong>.
+

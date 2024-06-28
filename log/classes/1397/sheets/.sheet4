@@ -1,0 +1,32 @@
+Percorsi #2
+giochi con i percorsi
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,spatial_skill,levelE1,levelE2
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:E3/geometry/oefspatial.fr
+exo=deplacement5&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Traccia il percorso
+Segui i movimenti del pesce, del riccio e del topolino e disegna il percorso che hanno compiuto.
+
+:E3/geometry/oefspatial.fr
+exo=deplacement4
+10
+1
+Trova l'uscita
+Aiuta il riccio e il topolino a trovare l'uscita.
+
+:E3/geometry/oefspatial.fr
+exo=deplacement6&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Descrivi il percorso
+Il riccio e il topolino vogliono essere sicuri di ritrovare la strada: aiutali a tenere traccia del percorso che hanno seguito.
+

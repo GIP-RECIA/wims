@@ -1,0 +1,221 @@
+type=classify
+textarea="data instruction"
+iEdit="instruction"
+
+:Classificar objectes per les seves propietats en una taula.
+
+Presentem una llista d'objectes i una llista d'atributs (propietats). Heu d'omplir
+una taula segons si els objectes verifiquen les propietats o no, marcant o no en el quadre.
+
+<p>
+Per construir un exercici amb aquest model, només cal que introduïu la llista
+d'atributs i una llista d'objectes on s'indiqui si verifiquen o no
+les propietats en el mateix ordre que els atributs (amb un 0 o un 1)
+</p><p>
+Aquest exercici es pot transformar fàcilment per ser inclòs en un mòdul OEF
+si voleu posar les dades en un fitxer auxiliar.
+</p><p class="wims_credits">
+  Autor del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Taula per omplir (checkbox)}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciat
+\text{instruction= Remplir le tableau.}
+
+:Nombre d'objectes triats a l'atzar
+\integer{N=3}
+
+:Nom del fitxer
+Ompliu només si voleu utilitzar un fitxer de dades (en un mòdul OEF).
+\text{file=}
+del tipus
+<pre>
+ poils,plumes,quatre pattes,ailes
+ :pie,0,1,0,1
+ :boeuf,1,0,1,0
+</pre>
+En aquest cas, no es tindrà en compte les dades següents.
+En cas contrari, ompliu les dades.
+
+:Llista d'atributs
+\text{attribut=poils,plumes,quatre pattes,ailes}
+
+:Dades
+Una línia per objecte.
+\text{data=pie,0,1,0,1
+boeuf,1,0,1,0
+chat,1,0,1,0
+moustique,0,0,0,1}
+
+:Text o imatges per indicar una resposta bona o dolenta
+Aquest text es mostra al moment de la resposta, per defecte apareixen les imatges.
+\text{nonoui=}
+
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+
+\text{size=50,50}
+\integer{w=\size[1]+10}
+\css{<style>
+  .big_check{text-align: center}
+  .cross{color:black; font-size:20pt;}
+  @supports (zoom:2){
+    .big_check>input{zoom: 1.4;}
+  }
+  @supports not (zoom:2){
+    .big_check>input{transform: scale(1.4);}
+  }
+  .big_check>label{color:transparent;width:1px;height:1px;position: absolute;}
+ </style>}
+\text{nonoui=\nonoui issametext ? <img src="scripts/authors/jm.evers/gifs/ok.gif" width="15">,<img src="scripts/authors/jm.evers/gifs/nok.gif" width="15">}
+\if{\file notsametext}{
+  \text{file=randitem(\file)}
+  \text{attribut=wims(record 0 of \file)}
+  \integer{datacnt=wims(recordcnt \file)}
+  \integer{N=min(\N,\datacnt)}
+  \text{choix=shuffle(\datacnt)}
+  \text{choix=\choix[1..\N]}
+  \text{data=}
+  \for{s in \choix}{
+    \text{data=\data
+wims(record \s of \file)}
+  }
+  \matrix{data=\data}
+  \text{data=wims(replace internal ;; by ; in \data)}
+}{
+  \text{objet_cnt=rows(\data)}
+  \integer{N=min(\N,\objet_cnt)}
+  \text{bat=shuffle(\objet_cnt)}
+  \text{bat=\bat[1..\N]}
+  \matrix{data=\data}
+  \matrix{data=\data[\bat;]}
+}
+\integer{attribut_cnt=items(\attribut)}
+\text{Data=}
+\text{R=}
+\for{u=1 to \N}{
+  \for{v=2 to \attribut_cnt+1}{
+    \integer{uu=(\u-1)*\attribut_cnt + \v -1}
+    \text{Data=\data[\u;\v]=1? wims(append item \uu to \Data)}
+  }
+}
+\text{C=wims(makelist x for x=1 to \N*\attribut_cnt)}
+\text{C1=wims(makelist x for x=1 to \N*\attribut_cnt)}
+\text{nstep=r1}
+\nextstep{\nstep}
+\text{tab=wims(makelist c for x=1 to \attribut_cnt+1)}
+\text{tab=wims(replace internal , by | in |\tab|)}
+\text{latexsrc=\begin{tabular}{\tab}\hline}
+\for{lk=1 to \attribut_cnt}{
+  \text{latexsrc=\latexsrc&\attribut[\lk]}
+}
+\text{latexsrc=\latexsrc \\\hline}
+\text{latexsol=\latexsrc}
+\for{jl=1 to \N}{
+  \text{latexsrc=\latexsrc
+  \data[\jl;1]}
+  \text{latexsol=\latexsol
+  \data[\jl;1]}
+  \for{kl=1 to \attribut_cnt}{
+    \integer{lkk=(\jl-1)*\attribut_cnt + \kl}
+    \text{latexsrc=\latexsrc &}
+    \text{latexsol=\latexsol &}
+    \if{\lkk isitemof  \Data}{\text{latexsol=\latexsol \(\times\) }}
+  }
+  \text{latexsrc=\latexsrc \\\hline}
+  \text{latexsol=\latexsol \\\hline}
+}
+\text{latexsrc=\latexsrc
+\end{tabular}}
+\text{latexsol=\latexsol
+\end{tabular}}
+
+\text{givegood=slib(oef/env givegood)}
+\text{givegood=\givegood issametext ? 1}
+
+\statement{
+  <div class="instruction">\instruction</div>
+  <table class="wimstable">
+    <thead>
+    <tr>
+      <td></td>
+      \for{k=1 to \attribut_cnt}{<th scope="col">\attribut[\k]</th>}
+    </tr>
+    </thead>
+    <tbody>
+    \for{j=1 to \N}{
+      <tr>
+        <th scope="row">\data[\j;1]</th>
+        \for{k=1 to \attribut_cnt}{
+          \if{\step=1}{
+            <td class="big_check">\embed{r1,\C[(\attribut_cnt)*(\j-1)+\k]}</td>
+          }{
+            <td class="big_check">\C[(\attribut_cnt)*(\j-1)+\k]</td>
+          }
+        }
+      </tr>
+    }
+    </tbody>
+  </table>
+}
+
+\answer{}{\Data;\C1}{type=checkbox}{option=split noanalyzeprint nonstop}
+\text{nstep=}
+\text{C=}
+\if{\givegood=0}{
+  \text{feedbackbon=}
+  \text{feedbackfaux=}
+}
+{
+  \text{feedbackbon=<span class="oef_indgood">\nonoui[1]</span>}
+  \text{feedbackfaux=<span class="oef_indbad">\nonoui[2]</span>}
+}
+\text{croix=<span class="cross">&#9745;</span>}
+\text{nocroix=<span class="cross">&#9744;</span>}
+\text{lignef=}
+\for{u=1 to \N}{
+  \for{v=2 to \attribut_cnt+1}{
+    \integer{uu=(\u-1)*\attribut_cnt + \v -1}
+    \text{C=\uu isitemof \reply1 and \uu isitemof \Data ? wims(append item  \croix \feedbackbon  to \C)}
+    \if{\uu isitemof \reply1 and \uu notitemof \Data}{
+      \text{C= wims(append item \croix \feedbackfaux  to \C)}
+      \text{lignef=wims(append item \u to \lignef)}
+      }
+      {\if{\uu notitemof \reply1 and \uu isitemof \Data}{
+         \text{C= wims(append item \nocroix \feedbackfaux  to \C)}
+         \text{lignef=wims(append item \u to \lignef)}
+         }
+      }
+    \text{C=\uu notitemof \reply1 and \uu notitemof \Data ? wims(append item \nocroix \feedbackbon to \C)}
+  }
+}
+
+\feedback{\givegood>0}{\nonoui[1] : votre réponse est correcte, \nonoui[2] : votre réponse n'est pas correcte.
+}
+\integer{nblignef=items(\lignef)}
+\feedback{\givegood=0 and \nblignef>0}{<div class="feedback oef_indbad">\if{\nblignef=1}{
+La ligne \lignef du tableau n'est pas remplie}{Les lignes \lignef[1..-2] et \lignef[-1] du tableau ne sont pas remplies} correctement.</div>}
+
+
+\latex{
+\begin{statement}
+\instruction
+\newline
+\latexsrc
+\end{statement}
+\begin{solution}\
+\begin{center}
+\latexsol
+\end{center}
+\end{solution}
+}

@@ -1,0 +1,58 @@
+!read tabletheme
+Some files in the distribution are template. They can be changed and used
+for global configuration. They are local so will not be erased by WIMS update.
+
+Preliminary version
+$table_header
+$table_tr
+<td><span class="wims_fname">
+ log/front.phtml.template
+</span></td><td>
+ replace <span class="tt">template</span> by the symbol of a language <span class="tt">xx</span>
+</td><td>
+ read this page instead of
+ <span class="wims_fname">public_html/modules/home/front.phtml.xx</span>
+ so it changes the home page of WIMS for <span class="tt">lang=xx</span>
+</td></tr>
+$table_tr
+<td><span class="wims_fname">
+ log/motd.phtml.template
+</span></td><td>
+ replace <span class="tt">template</span> by the symbol of a language
+ <span class="tt">xx</span>
+</td><td>
+ General message in the front page of WIMS for
+ <span class="tt">lang=xx</span>
+</td></tr>
+$table_tr
+<td><span class="wims_fname">
+  log/manager_msg.phtml.template
+</span></td><td>
+  replace <span class="tt">template</span> by the symbol of a language for
+  <span class="tt">xx</span>
+</td><td>
+  message in all classes seen only by class supervisors for
+  <span class="tt">lang=xx</span>
+</td></tr>
+$table_tr
+<td><span class="wims_fname">
+log/wims.conf.access.template
+</span>
+</td><td>
+  delete <span class="tt">.template</span>
+</td><td>
+  limits the access to some ressources for the whole site
+  see <span class="wims_fname">public_html/scripts/help/xx/accessconf.phtml</span>
+  for example
+</td></tr>
+$table_tr
+<td><span class="wims_fname">
+  themes/*/local.template
+</span></td><td>
+ replace <span class="tt">template</span> by the symbol of a language
+  <span class="tt">xx</span>
+</td><td>
+  can modify the menu in home for
+  <span class="tt">lang=xx</span>
+</td></tr>
+$table_end

@@ -1,0 +1,9 @@
+newfilename=!text select 1234567890azertyuiopqsdfghjklmwxcvbnAZERTYUIOPMLKJHGFDSQWXCVBN. in $wims_deposit
+t_=!char 1 of $newfilename
+!if $t_=.
+  newfilename=!char 2 to - 1 of $newfilename
+!endif
+nbchar_=!charcnt $newfilename
+!if $nbchar_<4
+  error=badfilename
+!endif

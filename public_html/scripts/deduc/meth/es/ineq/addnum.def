@@ -1,0 +1,52 @@
+!set methtit=Sumar un número a ambos lados de una desigualdad
+!set methenv=ZZ QQ RR
+!set methparmtype=number,parm inequality
+!set methhelp=Este método transforma una desigualdad del estilo \(a > b)\
+  en la desigualdad equivalente \(a + n > b + n), donde \(n) es un número.
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!exit
+:form
+Añade el número
+!read deduc/methparm.phtml 1,15
+$ a ambos lados de la desigualdad
+!read deduc/methparm.phtml 2
+
+!exit
+:check
+!distribute items $methparmobj2 into data,left,sign,right
+methexp=Añadir \($methparm1) a ambos lados de \($left $sign $right)
+
+!read deduc/sub/simplify $left + ($methparm1)\
+  $right + ($methparm1)
+!distribute lines $out into newleft,newright
+!if $newleft=$empty or $newright=$empty
+  error=bad_data
+  !exit
+!endif
+newsign=$sign
+newobject2=$newleft $newsign $newright
+oldobject=2
+
+contextlist=$ct_Always,\
+	$ct_Onlywhen el número sumado es positivo,\
+	$ct_Onlywhen la desigualdad es estricta,\
+	$ct_Onlywhen la desigualdad no es estricta
+
+!if $askresult>1
+  !read deduc/sub/simplify $left - ($methparm1)\
+	$right - ($methparm1)
+  !distribute lines $out into badleft, badright
+  badsign=!translate internal <> to >< in $newsign
+
+  resultlist=$newobject2,\
+	$newleft $newsign $badright,\
+	$badleft $newsign $newright,\
+	$newleft $badsign $newright,\
+	$newleft $badsign $badright
+!endif
+
+!exit

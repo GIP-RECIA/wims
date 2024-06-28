@@ -1,0 +1,83 @@
+!set titb=Puissances réelles
+!set keyw=
+!set datm=20210910
+!set prev=embedExpQFrac
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<p>
+Dans le paragraphe précédent, on montre que si 
+!insmath a \gt
+ 0, on peut définir une fonction qui
+à tout nombre rationnel 
+!insmath r
+ associe le nombre réel 
+!insmath a^r
+ (qui sera strictement positif).
+<br>
+Si 
+!insmath a \gt 1
+, cette fonction est strictement croissante et si 
+!insmath a \lt 1
+,
+elle est strictement décroissante.
+</p><p>
+Tout nombre réel non rationnel 
+!insmath x
+ peut être encadré par des nombres
+  décimaux de plus en plus rapprochés
+ et dont la différence est aussi petite que l'on veut ;
+ l'écart entre les images par cette fonction pourra être aussi rendu aussi petit que l'on veut, ce qui permet
+ de définir 
+!insmath a^x
+ comme la limite commune des images des bornes inférieures
+ et supérieures de 
+!insmath x
+
+ lorsque les écarts tendent vers 0.
+</p><p>
+Par exemple, pour avoir un encadrement suffisamment précis de 
+!insmath 2^\pi
+,
+ il suffit d'avoir un encadrement assez précis de 
+!insmath \,\pi
+ &#58;
+
+!insmath 3,14 \lt \pi \lt 3,15 
+ donc 
+!insmath 2^{3,14} \lt 2^\pi \lt 2^{3,15}
+.
+</p><p>
+La fonction 
+!insmath x \mapsto 2^x
+ est ainsi définie de
+ 
+!insmath \RR= \rbrack -\infty ; +\infty\lbrack
+ dans 
+!insmath \rbrack 0 ; +\infty\lbrack
+
+ et elle est strictement croissante sur 
+!insmath \rbrack -\infty ; +\infty\lbrack
+.
+Il en est de même pour 
+!insmath x \mapsto \pi^x
+.
+</p><p>
+Par contre, la fonction 
+!insmath x \mapsto 0,5^x
+ est définie et strictement décroissante
+de 
+!insmath \,\RR
+ dans 
+!insmath \rbrack  0 ; +\infty\lbrack
+.
+</p>
+

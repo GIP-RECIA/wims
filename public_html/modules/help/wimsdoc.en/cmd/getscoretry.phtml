@@ -1,0 +1,12 @@
+!! +exec+ +score+ +subst+ +var+ +adm+
+tit:getscoretry
+type:$type_both; $type_adm
+
+syntax:!getscoretry ``[class=qclass]'' ``[user=quser]'' ``[sheet=qsheet]'' ``[work=qwork]''
+mean: gather user score try numbers with score activated (only ended exercises with display of score count). \
+  <ul><li>Default value for class is ``wims_class''.</li> \
+  <li>Default value for user is ``wims_user''.</li> \
+  <li>If no sheet id is specified, each line represent a sheet.</li> \
+  <li>If no work id is specified, each word (of each line) represents an exercise.</li> \
+  </ul> \
+  The command can be used in non administrative module if no user and no class is specified.

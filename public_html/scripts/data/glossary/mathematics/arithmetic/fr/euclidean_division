@@ -1,0 +1,41 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=arithmetic,division
+!set gl_title=Division euclidienne
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(a\) et \(b\) deux entiers naturels avec \(b\) non nul.<br>
+Il existe un couple unique d'entiers naturels \((q,r)\) tel que \(a= b q + r\)
+et \(0 \leqslant r \lt b\).</div>
+<div class="wims_defn">
+<h4>Définitions</h4>
+Soit \(a\) et \(b\) deux entiers naturels avec \(b\) non nul.<br>
+Effectuer la <strong>division euclidienne</strong> de \(a\) par \(b\), c'est
+déterminer les deux entiers naturels \(q\) et \(r\) tels que \(a= b q + r\) et
+\(0 \leqslant r \lt b\).<br>
+L'entier \(a\) est appelé le <strong>dividende</strong> de cette division, \(b\)
+le <strong>diviseur</strong>, \(q\) le <strong>quotient</strong> et \(r\) le
+<strong>reste</strong>.
+</div>
+<div class="wims_thm">
+<h4>Propriétés</h4>
+<ul>
+	<li>
+	Si \(a\) est divisible par \(b\) alors le reste de la division euclidienne
+	de \(a\) par \(b\) est nul.
+	</li>
+	<li>
+	Deux entiers \(a\) et \(a'\) tels que \(a \geqslant a'\) ont même reste dans
+	la division euclidienne par l'entier naturel non nul \(b\) si et seulement si
+	leur différence \(a - a'\) est divisible par
+	<span style="white-space:nowrap">\(b\).</span>
+	</li>
+</ul>
+</div>
+
+:mathematics/arithmetic/fr/euclidean_division_1

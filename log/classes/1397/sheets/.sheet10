@@ -1,0 +1,52 @@
+Moltiplicazioni #1
+giochi con le moltiplicazioni
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation,levelE2,levelE3,levelE4
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:H3/algebra/arithtable.en
+exo=partial2x2&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 1
+Inserisci i numeri mancanti nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati.
+
+:H3/algebra/arithtable.en
+exo=table2x2&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 2
+Inserisci tutti i numeri nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati.
+
+:H3/algebra/arithtable.en
+exo=typed2x2&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 3
+Trova i numeri mancanti nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati.
+
+:H3/algebra/arithtable.en
+exo=partial2x4&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 4
+Di nuovo, inserisci i numeri nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati.
+
+:H3/algebra/arithtable.en
+exo=table2x4&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 5
+Di nuovo, inserisci tutti i numeri nella tabella in modo che i prodotti delle righe e delle colonne siano i numeri indicati.
+
+:H3/algebra/arithtable.en
+exo=typed2x4&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 6
+Di nuovo, trova i numeri mancanti in modo che i prodotti delle righe e delle colonne siano i numeri indicati.

@@ -1,0 +1,59 @@
+!reset xsize ysize
+
+!set anstype=yes
+!set anstyle=dprompt
+!set ans_require=matchmol,checkmol,jsmol
+!set lang__=$lang
+!if $lang notwordof en fr nl
+  !set lang__=en
+!endif
+!set wims_form_method=post
+
+!if $wims_read_parm=def
+  !exit
+!endif
+!set oef_js_submit=$oef_js_submit getMolfile$i()
+
+!set wims_backslash_insmath=no
+
+!set oef_applet_option=!replace internal $	$ by $\
+$ in $inputsize
+!set mol=!getopt mol in $oef_applet_option
+!set oef_applet_option=!replace internal ; by $\
+$ in $oef_applet_option
+!set oef_applet_option=!nonempty lines $oef_applet_option
+!set Inputsize=!line 1 of $oef_applet_option
+!set testinput=!text remove 0123456789x in $Inputsize
+!if $testinput issametext $empty
+  !set Inputsize=!replace internal x by , in $Inputsize
+  !set oef_applet_option=!line 2 to -1 of $oef_applet_option
+  !distribute items $Inputsize into xsize,ysize
+!endif
+!set oef_answer_option$i=$oef_applet_option
+!default xsize=540
+!default ysize=380
+
+!set show_hydrogen=!getopt show_hydrogen in $oef_applet_option
+!set show_valence=!getopt show_valence in $oef_applet_option
+!set keep_hydrogen=!getopt keep_hydrogen in $oef_applet_option
+!set reaction=!getopt reaction in $oef_applet_option
+!set tool_template=!getopt tool_template in $oef_applet_option
+
+!bound show_hydrogen within yes, no default yes
+!bound keep_hydrogen within yes,no,hetero default yes
+!bound show_valence within yes,no,0,1 default no
+!bound reaction within yes,no,0,1 default no
+!bound tool_template within yes,no,0,1 default no
+
+!set template=!getopt template in $oef_applet_option
+!set file=!getopt file in $oef_applet_option
+!if help isin $(replyoption$i)
+  !set help_option=!getopt help in $(replyoption$i)
+  !set help_option=!replace internal help by in $help_option
+  !set help_option=!declosing $help_option
+  !set help_option=!words2items $help_option
+  !set help_option=!nonempty items $help_option
+  !read anstype/chemdraw.inc $help_option
+!endif
+!read anstype/chemjsme_input.inc
+<input type="hidden" name="reply$i" id="WIMSchemreply$i" value="">

@@ -1,0 +1,99 @@
+!set anstype=yes
+!set anstyle=dprompt
+!set ans_require=
+
+!set oef_js_submit=$oef_js_submit; sendanswer$i()
+!set author=Bernadette Perrin-Riou
+!if $wims_read_parm=def
+  !exit
+!endif
+!reset nx ny taille width
+!set answer=!lines2rows $(replygood$i)
+!set answer=!lines2rows $answer
+
+!set inputsize=!replace internal $	$ by $\
+$ in $inputsize
+!set N=!line 2 of $inputsize
+!set legende=!line 3 of $inputsize
+!set legende=!declosing $legende
+!set N=!item 1 of $N
+!set N=!replace internal x by , in $N
+!distribute items $N into nx,ny
+!set image=$(answer[2..-1;])
+!set taille=!line 1 of $inputsize
+!set taille=!replace internal x by , in $taille
+!distribute items $taille into width,height
+!default nx=!itemcnt $image
+!default ny=1
+!!set width=$[$(taille[1])/$nx]
+!!set height=$[$(taille[2])/$ny]
+!set nb_im=$[$nx*$ny]
+!default taille=500,500
+!set oef_answer_option$i=$image\
+$ny,$nx,$taille\
+$legende
+
+!set style=.selectable_cell{border:1px solid transparent;padding:0}\
+  .ans_multipleclick .selected{\
+    opacity:.45;border-color:var(--wims_ref_bgcolor);border-style:double;\
+  }
+
+!if $style notin $oef_anstype_css
+  !set oef_anstype_css=!append line $style to $oef_anstype_css
+!endif
+
+!! the ans_multipleclick$i class is for retro-compatibility and must not be used anymore (04/2019)
+!! use ".ans_multipleclick" for generic styles,
+!! and "#ans_multipleclick$i" for a particular question (in case of 2 questions with this type)
+<table class="ans_multipleclick ans_multipleclick$i" id="ans_multipleclick$i">
+!for y=1 to $ny
+  <tr>
+  !if $(legende[2;])!=
+    <th scope="row">$(legende[2;$y])</th>
+  !endif
+  !for x=1 to $nx
+    !set t=$[$x+($y-1)*($nx)]
+    !set t_=$[$x+($y-1)*($nx)]
+    <td id="w_$(i)_$t" class="selectable_cell">
+      <a class="ans_label" id="img$(i)_$(x)_$(y)" onclick="javascript:clicktable$i($t);">
+        !imgrename $(image[$t_])
+      </a>
+    </td>
+  !next x
+  </tr>
+!next y
+!if $(legende[1;])!=
+  <tr class="mclic_legend"><td></td>
+  !for x=1 to $nx
+    <th scope="col">$(legende[1;$x])</th>
+  !next
+  </tr>
+!endif
+
+</table>
+
+<script>
+/*<![CDATA[*/
+var fl_clic$i=false;
+var rep=''
+var nb_clic$i=0
+var table$i=Array() ;
+!for ans_t=1 to $nb_im
+  table$i[$ans_t]='0'
+!next
+function clicktable$i(n){
+  if(table$i[n]==0) {document.getElementById('w_$(i)_' + n).classList.add("selected");}
+  else {document.getElementById('w_$(i)_' + n).classList.remove("selected");}
+  table$i[n]=1-table$i[n];
+}
+
+function sendanswer$i() {
+var rep='';
+  for (var j=1 ; j <= $nb_im ;j++) {
+    if (table$i[j]=='1') { rep = rep=='' ? j: rep + ',' + j}
+  }
+ document.getElementById('oefvar$i').value=rep ;
+}
+/*]]>*/
+</script>
+<input type="hidden" name="reply$i" id="oefvar$i" value="">

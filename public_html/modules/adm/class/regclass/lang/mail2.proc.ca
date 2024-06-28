@@ -1,0 +1,30 @@
+!set lang_exists=yes
+!bound adresse2 within $regpassmail default $empty
+!if $adresse2=$empty or $adresse1=$empty
+ wims_module_log=sendpwd error $adresse1@$adresse2
+ !reset adresse1,adresse2
+ !exit
+!endif
+
+sendmail=$adresse1@$adresse2
+!reset adresse1,adresse2,regpass
+wims_module_log=sendpwd $sendmail
+!mailto $sendmail\
+\
+Codi per a la creació d'una classe al servidor WIMS\
+\
+Aquest és el codi per a la creació d'una classe :\
+\
+		$regpasswd\
+\
+Si us plau, introdueix el codi a la pàgina web de la creació de la teva classe.\
+\
+\
+Si no saps de que va: és que algú li va donar la teva adreça de correu electrònic (erròniament) a un programari automàtic.\
+ En aquest cas, pots ignorar aquest missatge.\
+
+\00\00\00\00\00
+
+
+
+

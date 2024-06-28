@@ -1,0 +1,131 @@
+Pesca la carta
+giochi con i numeri
+??, 2020
+1 	 
+E3 	 
+elementary_mathematics 	 
+number,operation,levelE1,levelE2,levelE3,levelE4,levelE5
+Marina, Cazzola 	 
+wims@unimib.it 	 
+Gioca con la matematica
+
+:E3/number/oefdobble.fr
+exo=number1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Numeri interi #1
+Riconosci i numeri uguali.
+:E3/number/oefdobble.fr
+exo=number2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Numeri interi #2
+Riconosci i numeri uguali.
+:E3/number/oefdobble.fr
+exo=number3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Numeri interi #3
+Riconosci i numeri uguali.
+:E3/number/oefdobble.fr
+exo=number4&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Numeri interi #4
+Riconosci i numeri uguali.
+:E3/number/oefdobble.fr
+exo=add&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Operazioni: somma
+Riconosci il risultato della somma.
+:E3/number/oefdobble.fr
+exo=sub&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Operazioni: sottrazione
+Riconosci il risultato della sottrazione.
+:E3/number/oefdobble.fr
+exo=addsub&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Operazioni: somma e differenza
+Riconosci il risultato della somma o della differenza.
+:E3/number/oefdobble.fr
+exo=mult1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Operazioni: moltiplicazione #1
+Riconosci il risultato della moltiplicazione.
+:E3/number/oefdobble.fr
+exo=mult2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Operazioni: moltiplicazione #2
+Riconosci il risultato della moltiplicazione.
+:E3/number/oefdobble.fr
+exo=fraction1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Frazioni e semplificazioni #1
+Riconosci le frazioni equivalenti.
+:E3/number/oefdobble.fr
+exo=fraction2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Frazioni e semplificazioni #2
+Riconosci le frazioni equivalenti.
+:E3/number/oefdobble.fr
+exo=fraction3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Frazioni e semplificazioni #3
+Riconosci le frazioni equivalenti.
+:E3/number/oefdobble.fr
+exo=fraction4&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Frazioni e semplificazioni #4
+Riconosci le frazioni equivalenti.
+:E3/number/oefdobble.fr
+exo=decimal1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Numeri decimali #1
+<p>Riconosci i numeri decimali uguali.</p>
+:E3/number/oefdobble.fr
+exo=rep1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Frazioni e numeri decimali #1
+Risconosci frazioni e numeri decimali equivalenti.
+:E3/number/oefdobble.fr
+exo=rep2&confparm3=line&qnum=1&scoredelay=&seedrepeat=4&qcmlevel=1
+10
+1
+Frazioni e numeri decimali #2
+Risconosci frazioni e numeri decimali equivalenti.
+:E3/number/oefdobble.fr
+exo=decimal2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Numeri decimali #2
+<p>Riconosci i numeri decimali uguali.</p>
+:E3/number/oefdobble.fr
+exo=decimal3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Numeri decimali #3
+<p>Riconosci i numeri decimali uguali.</p>
+:E3/number/oefdobble.fr
+exo=decimal4&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Numeri decimali #4
+<p>Riconosci i numeri decimali uguali.</p>
+:E3/number/oefdobble.fr
+exo=decimal5&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=4&intro_check=1&intro_check=2&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_sol=0&intro_hint=-1&intro_good=0&intro_feed=-1&intro_qcmpresent=4
+10
+1
+Numeri decimali #5
+<p>Riconosci i numeri decimali uguali.</p>

@@ -1,0 +1,10 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+canvastype 100
+linewidth 2
+precision 1000
+jsplot blue,5*sin(x)
+opacity 200,50
+gridfill 6,6,10,10,blue
+gridfill 6,-6,6,6,red

@@ -1,0 +1,187 @@
+Calculer des longueurs, des mesures d'angles
+Pythagore, Thalès
+??,2021
+1
+H4
+geometry
+elementary_geometry,2_shape,thales,pythagore
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Géométrie" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+
+:H3/geometry/OEFevalwimspyth.fr
+exo=formule1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Relation de Pythagore 1
+Identifier la bonne <strong>formule</strong> parmi plusieurs propositions.
+
+:H3/geometry/OEFevalwimspyth.fr
+exo=formule3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Relation de Pythagore 2
+Compléter la <strong>formule</strong> à l'aide de vignettes.
+
+:H3/geometry/OEFevalwimspyth.fr
+exo=formule4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Relation de Pythagore 3
+Compléter la <strong>formule</strong>.
+
+:H3/geometry/OEFpythagore2.fr
+exo=longueur1&qnum=1&qcmlevel=1&scoredelay=&confparm1=1&confparm2=1
+10
+1
+Relation de Pythagore 4
+Calculer la longueur de l'<strong>hypoténuse</strong> (calcul guidé).
+
+
+
+calculator
+:H3/geometry/OEFpythagore2.fr
+exo=longueur2&qnum=1&qcmlevel=1&scoredelay=&confparm1=1&confparm2=1
+10
+1
+Relation de Pythagore 5
+Calculer la longueur d'une <strong>cathète</strong> (calcul guidé).
+
+
+
+calculator
+:H3/geometry/OEFpythagore2.fr
+exo=longueur1&exo=longueur2&confparm1=1&confparm2=2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Relation de Pythagore 6
+Calculer la longueur d'un <strong>coté</strong>.
+
+Calcul de l'hypothénuse ou d'une cathète.
+
+calculator
+:H3/geometry/oefpytha.fr
+exo=Arbreabattu&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Problème concret 1
+Calculer la <strong>hauteur de l'arbre</strong>.
+
+
+
+calculator
+:H3/geometry/oefpytha.fr
+exo=Cerfvolant&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Problème concret 2
+Calculer l'<strong>altitude du cerf-volant</strong>.
+
+
+
+calculator
+:H3/geometry/oefpytha.fr
+exo=Puits
+10
+1
+Problème concret 3
+Calculer la distance du <strong>ballon dans le puits</strong>.
+
+
+
+calculator
+:H4/geometry/OEFevalwimsthales.fr
+exo=produit1&exo=produit2&qnum=1&random=0&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Quatrième proportionnelle 1
+Compléter une <strong>égalité de proportions</strong>.
+
+Base: 2 exercices (prérequis pour Thalès).
+
+calculator
+:H4/geometry/OEFevalwimsthales.fr
+exo=produit3&exo=produit4&qnum=1&random=0&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Quatrième proportionnelle 2
+Compléter une <strong>égalité de proportions</strong>.
+
+Base: 2 exercices (prérequis pour Thalès).
+
+calculator
+:H3/geometry/oefthales2.fr
+exo=raplong3&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Rapports Thalès 1
+Ecrire les <strong>rapports</strong> à partir de vignettes.
+
+:H3/geometry/oefthales2.fr
+exo=raplong4&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Rapports Thalès 2
+Écrire les <strong>rapports</strong> à partir de vignettes.
+
+:H3/geometry/oefthales2.fr
+exo=triangle&exo=triangle2&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calcul Thalès 1
+Calculer une <strong>longueur</strong> (exercice guidé).
+
+Base: 2 exercices.
+
+calculator
+:H4/geometry/OEFevalwimsthales.fr
+exo=longtri1&exo=longtri2&exo=longtri3&exo=longtri4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calcul Thalès 2
+Calculer une <strong>longueur</strong>.
+
+Base: 4 exercices.
+
+calculator
+:H4/geometry/OEFevalwimsthales.fr
+exo=longtri5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calcul Thalès 3
+Calculer une <strong>longueur</strong>.
+
+
+
+calculator
+:H3/geometry/oefthales2.fr
+exo=pap&exo=pap2&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calcul Thalès 4
+Calculer une <strong>longueur</strong> (exercice guidé).
+
+Base: 2 exercices.
+
+calculator
+:H4/geometry/OEFevalwimsthales.fr
+exo=longpap1&exo=longpap2&exo=longpap3&exo=longpap4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calcul Thalès 5
+Calculer une <strong>longueur</strong>.
+
+
+
+calculator
+:H4/geometry/OEFevalwimsthales.fr
+exo=longpap5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calcul Thalès 6
+Calculer une <strong>longueur</strong>
+
+
+
+calculator

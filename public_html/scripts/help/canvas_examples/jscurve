@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+multistrokecolors red,green,blue,orange
+multilinewidth 1,2,3
+multistrokeopacity 0.5,0.8,1.0
+jscurve red,sin(x),1/sin(x),sin(x^2)

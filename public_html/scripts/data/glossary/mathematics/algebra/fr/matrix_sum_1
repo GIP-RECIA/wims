@@ -1,0 +1,8 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Matrice somme (exemple)
+
+!readproc data/glossary/mathematics/algebra/macro/matrix_operation
+
+Soient \(A\) et \(B\) les matrices définies respectivement par \(A = [$gl_A1]\) et \(B = [$gl_A3]\).
+<br>La matrice somme \(A + B\) est définie par  \(A + B =\)\([$gl_S]\).

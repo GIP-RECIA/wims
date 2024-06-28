@@ -1,0 +1,137 @@
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefoperduree1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Addition durées 1
+Savoir additionner des durées, difficulté 1
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefoperduree4&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Addition durées 2
+Savoir additionner des durées, difficulté 2
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefoperduree5&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Soustraction durées 1
+Savoir soustraire des durées, opération posée, difficulté 1
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefoperduree2&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Soustraction durées 2
+Savoir soustraire des durées, difficulté 2
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree1&qnum=2
+10
+1
+Durée : Conversion 1
+Notion de base difficulté 1
+
+Nb. d'heures dans un jour, de minutes dans une heure.
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée : Conversion 2
+Difficulté 2
+
+Conversion heure minute
+
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree3&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée : Conversion 3
+Difficulté 3
+
+Conversion jour seconde
+
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree4&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée : Conversion 4
+Difficulté 4
+
+Conversion jour semaine.
+
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree5&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée: Conversion 5
+Difficulté 5
+
+Conversion heure en jour heure.
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefduree5&exo=oefduree4&exo=oefduree3&exo=oefduree2&exo=oefduree1&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée : conversion 2-5
+Difficulté de 1 à 5 aléatoirement
+
+Toutes les conversions
+
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefhoraire1&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Horaires 1
+Heure d'arrivée
+
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefhoraire2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Horaires 2
+Heure de départ
+
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefhoraire3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Horaires 3
+Durée
+
+
+:H1/geometry/OEFevalwimsgrd.fr
+exo=oefhoraire3&exo=oefhoraire1&exo=oefhoraire2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Horaires 1-3
+Durée, heure de départ, heure d'arrivée aléatoirement
+
+
+
+
+
+:H2/number/oefduration.fr
+exo=prop_duree2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée et proportionnalité
+Problème liant les durées et la proportionnalité.

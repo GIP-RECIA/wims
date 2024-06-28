@@ -1,0 +1,63 @@
+ <b>Mathematical expression.</b>
+ (name: <span class="tt wims_code_words">algexp</span>, <span class="tt wims_code_words">litexp</span> and <span class="tt wims_code_words">formal</span>)<br>
+ This is a mathematical expression that will be compared with the given correct
+ reply, according to different criteria of identification.
+ One may put several correct replies, separated by commas.
+
+<p>
+For <span class="tt wims_code_words">algexp</span> (algebraic expression), there are some limited
+algebraic identifications for the comparison. For example, (x+1)(x-1) will
+not be accepted when the correct reply is x^2-1. Neither for sin(x)^2+cos(x)^2
+against 1. On the other hand, x-y*y and -y^2+x will be considered as the
+same.
+</p>
+
+<p>
+Four <span class="tt wims_code_words">litexp</span> (literal expression), the reply will be compared litterally
+ with the given correct answer, with no algebraic simplification. For example,
+ x+y will not be identified with y+x, nor will 3/2 with 6/4. But 2x and 2*x
+ will be identified, and spaces will be collapsed before comparison. <p>
+ It is useful for forcing students to do expression manipulations.
+ <br>
+!! TODO_lang en
+Il est possible de préciser des mots d'option permettant de spécifier l'analyse syntaxique (uniquement pour le type <span class="tt wims_code_words">litexp</span>).
+!let old=$wims_backslash_insmath
+!let wims_backslash_insmath=yes
+<ul>
+  <li><span class="tt wims_code_words">polexpand</span> Il s'agit de tester une réponse qui est un polynôme de \(\ZZ[X]) sous forme développée. Avec le comportement suivant :
+    <ul>
+          <li>Chaque terme doit être simplifié : pas de \(3\times x\times x).</li>
+          <li>Les coefficients doivent être calculés : pas de \(3\times 2 \times x^2).</li>
+          <li>L'expression doit être réduite : pas de \(2x+5x^2+3x).</li>
+          <li>Pas de parenthèse.</li>
+          <li>Pas de symbole divisé.</li>
+          <li>Il n'est pas utile de fournir la bonne réponse développée : elle sera automatiquement construite à partir de l'expression fournie. 
+              Cependant, vous pouvez le faire si vous désirez voir afficher une forme spéciale comme bonne réponse.</li>
+          <li>Les écritures \(x^0), \(x^1) ne sont pas acceptés.</li>
+          <li>Pour un monôme, la constante doit être placée avant la variable : \(x\times 12) n'est pas accepté pour \(12x).</li>
+          <li>Un message adapté est affiché en cas d'erreur d'écriture.</li>
+    </ul>
+  </li>
+  <li><span class="tt wims_code_words">polfactor</span> Il s'agit de tester une réponse qui est un polynôme de \(\ZZ[X]) sous forme factorisée. Avec le comportement suivant :
+        <ul>
+          <li>Les formes non factorisées sont repérées : par exemple \(x^2+2x+1) pour \((x+1)^2).</li>
+          <li>Tolérence au niveau du signe - : par exemple les réponses \((x+1)(2x+3)), \(-(-x-1)(2x+3)), \((-x-1)(-2x-3)) et \(-(x+1)(-2x-3)) sont acceptées.</li>
+          <li>Les expressions qui ne sont pas des produits sont repérées et l'opération qui pose problème est mise en relief.</li>
+          <li>Chaque facteur doit respecter les règles des expressions développées/réduites énoncées plus haut.</li>
+          <li>Repérage de répétition de facteurs proportionnels : par exemple \((x-2)(2-x)) sera refusé à la place de \(-(x-2)^2).</li>
+          <li>Chaque facteur doit être de contenant inversible dans \(\ZZ).</li>
+          <li>Un seul facteur constant est accepté par défaut. \(2*3*(x+3)) sera refusé à la place de \(6(x+3)).</li>
+          <li>En cas d'utilisation du mot d'option <span class="wims_code_words">factorcontent</span>, le contenant du polynôme doit lui aussi être factorisé. \(6*(x+3)) sera refusé à la place de \(2*3*(x+3)).</li>        
+          <li>il n'est pas utile de fournir la bonne réponse factorisée : elle sera automatiquement construite à partir de l'expression fournie.
+             Cependant, vous pouvez le faire si vous désirez voir afficher une forme spéciale comme bonne réponse.</li>
+          <li>Un message adapté est affiché en cas d'erreur d'écriture.</li>
+        </ul>
+  </li>
+</ul>
+!let wims_backslash_insmath=$old
+</p>
+<p>
+The type <span class="tt wims_code_words">formal</span> (formal expression) is for exact numerical
+comparison. It is as the type <span class="tt wims_code_words">numeric</span>, except that no approximation
+is allowed.
+</p>

@@ -1,0 +1,36 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=area,measurement
+!set gl_title=Aire d'un losange
+!set gl_level=
+:
+:
+:
+:
+<div class="wims_prems">
+<h4>Première approche</h4>
+<p><em>Une unité de longueur étant donnée dans le plan, on considère l'unité d'aire associée.</em></p>
+<p class="spacer">L'aire d'un losange est égale à la moitié de l'aire d'un rectangle de dimensions les longueurs des diagonales du losange.</p>
+</div>
+
+:mathematics/geometry/fr/losange_area_1
+
+:
+<div class="wims_prems">
+<h4>Première approche</h4>
+<p><em>Une unité de longueur étant donnée dans le plan, on considère l'unité d'aire associée.</em></p>
+<p class="spacer">L'aire du losange est également égale à l'aire d'un rectangle de dimensions les longueurs d'une diagonale et de la moitié de l'autre diagonale.</p>
+</div>
+:mathematics/geometry/fr/losange_area_2
+:
+<div class="wims_thm">
+<h4>Théorème (non exigible)</h4>
+<p><em>Une unité de longueur étant donnée dans le plan, on considère l'unité d'aire associée.</em></p>
+<p class="spacer">L'aire d'un losange est égale à la moitié du produit des longueurs de ses diagonales.</p>
+<p class="spacer">Autrement dit :<br>
+Si \(d\) et \(D\) désignent les longueurs des diagonales du losange et <strong>\(A\)</strong> l'aire de ce losange, alors &nbsp;:</p>
+<p class="wimscenter"><span class="nowrap">\(A=\dfrac{d\times D}{2}\).</span>
+</p>
+</div>
+
+:mathematics/geometry/fr/losange_area_3

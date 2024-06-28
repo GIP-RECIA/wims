@@ -1,0 +1,280 @@
+type=select
+textarea="data instruction instruction2"
+iEdit="instruction instruction2"
+
+:Seleccionar una paraula i, tot seguit, proporcionar informació sobre aquesta paraula.
+En el primer pas, es demana marcar paraules; en el segon pas,
+es fa una pregunta sobre aquestes paraules (text per respondre).
+
+<div class="small">
+Aquest exercici es pot transformar fàcilment per ser inclòs en un mòdul OEF
+si voleu posar les dades en un fitxer auxiliar. Per això,
+simplement ompliu el camp \text{file=} posant el nom del fitxer
+(una vegada que l'exercici s'ha transferit a un mòdul OEF d'un compte de Modtool).
+Existeix un exercici més complet del mateix tipus a Quicktool.
+</div>
+
+<p class="wims_credits">
+  Autor del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Preguntes sobre paraules seleccionades primer}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciat per a la primera pregunta
+\text{instruction= Marquer les verbes conjugués.}
+
+:Enunciat per a la segona pregunta
+\text{instruction2=Quels sont leurs infinitifs ?}
+
+:Anàlisi de les respostes a la segona pregunta
+Les possibilitats són <span class="tt">case</span>, <span class="tt">nocase</span> (no té en compte la diferència entre majúscules/minúscules ni els accents).
+Si no es posa res, no es fa una segona pregunta.
+\text{format=case}
+
+:Nombre de línies de dades
+\text{M=3}
+
+:Mida dels camps de resposta de la segona pregunta
+\text{size=15}
+
+:Dades
+Un text per línia. Posem entre dobles signes d'interrogació la paraula a marcar
+seguida del text per respondre la segona pregunta, separada pel símbol
+<span class="tt wims_code_words">|</span>.
+$embraced_randitem
+
+\text{data= Le chat ??mange|manger?? la souris.
+Vous ??{avez bu,buvez}|boire?? du {thé,café}.
+Nous ??tournons|tourner?? les pages du livre une à une.
+Les randonneurs ??{feront,font}|faire?? un feu.
+Il ??{a déménagé,déménage}|déménager?? pendant les vacances.
+Les navires ??{ont quitté,quittent}|quitter?? le port aujourd'hui.
+Mon chien ??remue|remuer?? {la queue,les oreilles}.
+Tu ??{prépareras,as préparé,prépares}|préparer?? un cadeau pour tes {parents,grands-parents}.
+Je ??suis arrivé|arriver?? {en retard,en avance} à mon rendez-vous.
+{Christian,Paul} et moi ??regardons|regarder?? un film d'aventure.
+}
+
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+
+\text{accolade=wims(word 1 of \accolade)}
+
+\text{file=}
+\text{partialscore=split}
+
+\text{first_step=1}
+\text{alea=yes}
+\css{<style>
+  .reponse {border-left-color: var(--wims_ref_color)}
+  .verbe{color:blue;font-size:large;}
+</style>}
+\text{paste=yes}
+\text{pos_rep=outside}
+\text{second_step=\format notsametext ? yes:no}
+#####################
+
+
+\text{format0=mark}
+
+\if{\file notsametext}{
+  \text{file0=randitem(\file)}
+  \integer{cnt_question= wims(recordcnt \file0)}
+  \text{battage=\alea issametext yes ? shuffle(\cnt_question):
+wims(makelist x for x = 1 to \cnt_question)}
+  \text{texte=wims(record \battage[1] of \file0)}
+}{
+  \integer{cnt_question=rows(\data)}
+  \integer{N=min(\cnt_question,\M)}
+  \integer{N=min(\N,10)}
+  \text{liste=shuffle(\cnt_question)}
+  \text{liste=\liste[1..\N]}
+  \matrix{data=\data}
+  \text{texte=\data[\liste;]}
+  \text{texte=wims(replace internal ; by  <br> in \texte)}
+}
+
+\text{autocompletion=\format iswordof case ? autocomplete="off"}
+\integer{first_step=\first_step notwordof 0 ? 1}
+\text{option_reaccent=\reaccent!=yes ? noreaccent:}
+\text{nopaste=\paste issametext no ? slib(utilities/nopaste )}
+
+\text{size=\format iswordof dragfill clickfill ? \size x 1}
+
+\text{texte=wims(\texte)}
+\text{texte=\accolade=1 ?wims(embraced randitem \texte)}
+\text{texte=wims(replace internal ??| by ??&nbsp;| in \texte)}
+\text{texte=wims(replace internal ?? | by ??&nbsp;| in \texte)}
+\text{texte = wims(replace internal <br> by <br> _newline_  in \texte)}
+
+\matrix{texte=slib(text/markgroup \texte)}
+\matrix{numero=\texte[1..-4;]}
+\text{traduction=\texte[-2;]}
+\text{traduction=wims(replace internal || by | in \traduction)}
+\text{cnt_mot = rows(\numero)}
+\text{Numero = wims(rows2lines \numero)}
+\text{Numero = wims(lines2items \Numero)}
+\text{prem_numero=wims(column 1 of \numero)}
+\text{texte = \texte[-3;]}
+\text{texte = wims(replace internal _newline_ by  in \texte)}
+\text{cnt = items(\texte)}
+\text{Texte=wims(items2words \texte)}
+
+\text{rep_compose = }
+\for{ i = 1 to \cnt_mot}{
+  \text{nom_compose= \texte[\numero[\i;]]}
+  \text{nom_compose =wims(items2words \nom_compose)}
+  \text{rep_compose = \rep_compose,\nom_compose}
+}
+\text{rep_compose= wims(nonempty items \rep_compose)}
+
+\text{STEP = wims(makelist r x for x = 2 to \cnt_mot+1)}
+\text{labels = wims(makelist x for x = 2 to \cnt_mot+1)}
+
+\text{position=}
+\integer{a=0}
+\for{t = 1 to \cnt}{
+  \if{\t isitemof \prem_numero}{
+    \integer{a =\a+1}
+    \text{position=\position,\a}
+  }{
+    \text{position=\position,0}
+  }
+ }
+\text{position=wims(nonempty items \position)}
+
+\text{STEP1=\first_step=1?r1}
+\text{STEP1=\second_step issametext yes ? \STEP1
+\STEP
+}
+
+\steps{\STEP1}
+
+
+\integer{reste=\cnt%\coupure}
+\integer{quo=(\cnt-\reste)/\coupure}
+\integer{quo=\reste=0? \quo-1}
+\text{nombre=wims(makelist x for x = 1 to \cnt)}
+%%%%%%%%%%%
+
+\statement{
+  \nopaste <div class="instruction">\instruction</div>
+  \preliminaire
+  \if{\reading notsametext }{\special{help reading,[à lire]}}
+  \if{\image notsametext }{\special{help image,[à regarder]}}
+  \audio\video
+  \if{\step=\first_step}{
+    <div class="wims_question">
+      \if{\format iswordof flashcard}{
+        <p> \for{h=1 to \cnt}{\texte[\h] }</p>}
+      \for{h=1 to \cnt}{
+        \embed{reply 1,\h}
+      }
+    </div>
+  }
+  \if{\step >=1+\first_step}{
+    \if{\pos_rep=outside}{
+      <div class="wims_question reponse">
+        \for{s = 1 to \cnt}{
+          \if{\s notitemof \Numero}{
+            \texte[\s]
+          }{
+            \if{\s isitemof \Numero}{
+              <span class="verbe">\texte[\s]</span>
+            }
+          }
+        }
+      </div>
+      <p>\instruction2</p>
+      <div class="wims_question">
+          \for{s= 1 to \cnt_mot}{
+            <div class="field">
+              <label for="reply\labels[\s]">\rep_compose[\s] :</label>
+              \embed{\STEP[\s],\size
+                \autocompletion}
+            </div>
+          }
+      </div>
+    }
+    \if{\pos_rep=inside}{
+      <p>\instruction2</p>
+      <div class="wims_question">
+        \for{s = 1 to \cnt}{
+          \if{\s notitemof \Numero}{
+            \texte[\s]
+          }{
+            \if{\s isitemof \prem_numero}{
+              \embed{\STEP[\position[\s]], \size
+                \autocompletion}
+            }
+            <span class="smaller" style="color:blue;">\texte[\s]</span>
+          }
+        }
+      </div>
+    }
+    \if{\pos_rep=under}{
+      <div class="wims_question">
+        \for{u = 0 to \quo}{
+          <table style="border:none">
+            <tr>
+            \for{ v = 1 to \coupure}{
+              <td style="text-align:center">
+                \if{\coupure*\u+\v <= \cnt}{
+                  \if{\nombre[\coupure*\u+\v] isitemof \Numero}{<span style="color:blue;">}
+                  \texte[\coupure*\u+\v]
+                }{&nbsp;}
+                \if{\nombre[\coupure*\u+\v] isitemof \Numero}{</span>}
+              </td>
+            }
+            </tr><tr>
+            \for{ v = 1 to \coupure}{
+              <td style="text-align:center">
+                \if{\nombre[\coupure*\u+\v] isitemof \prem_numero}{
+                  \embed{\STEP[\position[\nombre[\coupure*\u+\v]]], \size
+                         \autocompletion}
+                }{&nbsp;}
+              </td>
+            }
+            </tr><tr><td colspan="\coupure"><hr></td></tr>
+          </table>
+        }
+      </div>
+    }
+  }
+}
+
+\answer{}{\Numero;\texte}{type=\format0}{option=\partialscore \option}
+\answer{\rep_compose[1]}{\traduction[1]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[2]}{\traduction[2]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[3]}{\traduction[3]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[4]}{\traduction[4]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[5]}{\traduction[5]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[6]}{\traduction[6]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[7]}{\traduction[7]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[8]}{\traduction[8]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[9]}{\traduction[9]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[10]}{\traduction[10]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[11]}{\traduction[11]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[12]}{\traduction[12]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[13]}{\traduction[13]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[14]}{\traduction[14]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[15]}{\traduction[15]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[16]}{\traduction[16]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[17]}{\traduction[17]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[18]}{\traduction[18]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[19]}{\traduction[19]}{type=\format}{option=\option_reaccent}
+\answer{\rep_compose[20]}{\traduction[20]}{type=\format}{option=\option_reaccent}

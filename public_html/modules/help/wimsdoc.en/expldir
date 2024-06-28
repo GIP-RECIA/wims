@@ -1,0 +1,56 @@
+wims -> {log bin src public_html other}
+log -> classes
+public_html -> {modules scripts html themes bases gifs bin_1 }
+modules-> {adm home "E-H-K-U-Lang-tool-help"}
+html -> themes [style=dashed]
+bases-> {sys class_1}
+sys -> {domain taxonomy}
+scripts -> {anstype data slib oef docu adm_1 help}
+adm -> { class local manage}
+themes -> {_widgets _procs _css Nikaia default standard}
+standard->{_css_1 _widgets_1 _procs_1}
+other -> bin_2
+
+#oef, manage, domain, docu, taxonomy [color=green]
+home [color=red]
+scripts, themes, bases, html [color=orange]
+
+:class_1, contient des fichiers d'indexation générés sur les classes ouvertes,
+:_css_1, fichiers _css pour le thème qui les contient,
+:_css, fichiers _css communs,
+:_procs_1, widgets (calculs) pour le thème qui les contient,
+:_procs,widgets (calculs) pour le thème qui les contient,
+:_widgets_1, widgets pour le thème qui les contient,
+:_widgets, widgets pouvant servir dans les thèmes,
+:adm_1, scripts accessibles uniquement par les modules administratifs,
+:adm, contient tous les modules administratifs (ils ont des droits spéciaux),
+:anstype, contient les différents types de réponses (présentation + analyse de la réponse). Dans chaque module, il est possible d'avoir un tel répertoire.,
+:bases,données diverses pour la plupart générées,
+:bin, scripts ou exécutables non utilisables par un module,
+:bin_1, scripts ou exécutables utilisables par les modules administratifs ou pas,
+:bin_2, autres exécutables très spécifiques,
+:class, contient les modules administratifs utilisés dans les classes,
+:classes, contient les classes,
+:default, historical theme,
+:docu, scripts gérant les documents,
+:data,,
+:domain, contient un lexique de mots clés officiels ainsi que les dépendances entre les mots clés (taxonomie de wims, complété au fur et à mesure des nouveautés),
+:help,dossier contenant des aides,
+:home, module d'entrée (page d'accueil de wims ou d'une classe),
+:html, contient des définitions lues par tous les modules (names.phtml.$lang),
+:"E-H-K-U-Lang-tool-help",tous les modules pédagogiques (classés grossièrement par niveau),
+:local, modules administratifs locaux (autrement dit ne pourront pas être effacés par la distribution et sont dans la sauvegarde du site,
+:log, contient les logs des modules mais surtout les logs des classes (autrement dit toutes les données),
+:manage, module pour l'administrateur du site,
+:modules, contient tous les modules pédagogiques et administratifs,
+:Nikaia, un thème distribué,
+:oef,module script permettant le fonctionnement des exercices oef,
+:public_html, répertoire de base d'où est lancé wims.cgi,
+:scripts, ce qui est dans ce répertoire sauf le répertoire adm est accessible par tous les modules,
+:slib, répertoire contenant des macros utilisables dans tous les modules,
+:src, sources en c,
+:standard, un thème distribué,
+:sys,,
+:taxonomy, répertoire contenant des taxonomies ne s'appuyant pas sur le fichier index des modules,
+:themes,contient les thèmes (il est possible de rajouter un thème local),
+:gifs, répertoire contenant des images communes,

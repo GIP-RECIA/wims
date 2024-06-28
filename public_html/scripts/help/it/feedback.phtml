@@ -1,0 +1,76 @@
+
+<h2 class="wimscenter">Commenti mirati alle risposte</h2>
+
+<p>
+È possibile inserire condizioni (basate sulle risposte date dall'utente)
+per la visualizzazione di commenti ad hoc nella pagina in cui viene mostrato
+l'esito dell'esercizio. Un utilizzo tipico di questa funzione è la
+correzione di errori tipici contenuti nella risposta.
+</p><p>
+Un numero arbitrario di commenti mirati può essere inserito in
+qualsiasi tipo di risposta (risposte aperte o scelte multiple).
+La sintassi è la seguente:
+</p><pre>
+\feedback{CONDIZIONE}{MESSAGGIO}
+</pre><p>
+Tale riga di comando può essere inserita nell'interfaccia di Createxo nel campo
+``Parametri'' (se si il modo guidato) o in qualsiasi punto del codice
+(se si utilizza il modo esperti).
+</p><p>
+Quando <span class="tt">CONDIZIONE</span> è verificata viene mostrato
+<span class="tt">MESSAGGIO</span> nella pagina dei risultati dell'esercizio.
+Le risposte date dall'utente possono essere utilizati in entrambi i
+campi (CONDIZIONE e MESSAGGIO) attraverso le variabili <span class="tt wims_code_variable">\reply1</span>,
+<span class="tt wims_code_variable">\reply2</span>, ... (per le domande a risposta aperta),
+<span class="tt wims_code_variable">\choice1</span>,
+<span class="tt wims_code_variable">\choice2</span>,... (per le domanda a scelta multipla).
+L'ordine di queste variabili è quello in cui le risposte compaiono nel
+codidce dell'esercizio (o nel modulo nel $name_normal).
+</p><p>
+<span class="tt">MESSAGGIO</span> è un testo libero, in cui possono essere
+utilizzate formattazioni html e simboli
+matematici.
+</p><p>
+È anche possibile utilizzare le variabili <span class="tt wims_code_variable">\sc_reply1</span>,
+<span class="tt wims_code_variable">\sc_reply2</span>,
+... che assumono valore 1 se la risposta è corretta, 0 se la risposta è sbagliata
+e 0.5 se la risposta viene considerata imprecisa. Questa variabile
+non tiene conto di eventuali condizioni ulteriori indicate tramite il
+comando <span class="tt wims_code_variable">\condition</span>.
+</p>
+
+$table_header
+<caption>Esempi di condizioni
+<small>
+!href target=wims_mhelp cmd=help&special_parm=if Elenco completo
+</small>
+</caption>
+$table_hdtr<th>condizione</th><th>è verificata quando</th></tr>
+$table_tr<td><span class="tt wims_code_words">\reply1=5</span></td>
+<td>la prima risposta aperta è esattamente uguale a 5</td></tr>
+$table_tr<td><span class="tt wims_code_words">\reply1&gt;\reply2+2</span></td>
+<td>la prima risposta aperta è &gt; della seconda più 2</td></tr>
+$table_tr<td><span class="tt wims_code_words">\choice1=Sì and \choice2=No</span></td>
+  <td>la prima scelta multipla è Sì, e la seconda è No (<b>attenzione</b>
+le condizioni nelle scelte multiple tengono conto del
+maiuscolo-minuscolo!)
+</td></tr>
+$table_tr<td><span class="tt wims_code_words">\reply1&lt;5 or \reply1&gt;8</span></td>
+  <td>la prima risposta è nell'intervallo [5,8].
+</td></tr>
+$table_tr<td><span class="tt wims_code_words">3 isitemof \reply1</span></td>
+  <td>la prima riposta, di tipo <span class="tt wims_code_words">set</span>
+  o <span class="tt wims_code_words">vector</span>,
+  contiene una coponente "3".
+</td></tr>
+$table_end
+
+<p>
+<b>Attenzione</b>: occorre evitare di mischiare <span class="tt wims_code_variable">\reply</span> e
+<span class="tt wims_code_variable">\choice</span> in una stessa condizione. 
+ In questo caso il risultato è imprevedibile.
+ Se necessario è possibile costruire domande a scelta multipla utilizzando
+ opportuni tipi di risposta con il comando
+ <span class="tt wims_code_words">\answer</span>
+</p>
+

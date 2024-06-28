@@ -1,0 +1,45 @@
+Triangoli #1
+giochi di geometria
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,2_shape,triangles,levelE3,levelE4,levelE5
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:E4/geometry/oefpolyqq.it
+exo=triiso&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo isoscele
+Costruisci un triangolo isoscele. Lo sai che cosa è, vero?
+
+:E4/geometry/oefpolyqq.it
+exo=trirett&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo rettangolo
+Costruisci in triangolo rettangolo. Lo sai che cosa è, vero?
+
+:E4/geometry/oefpolyqq.it
+exo=triisorett&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo rettangolo isoscele
+Costruisci un triangolo rettangolo e isoscele. Sarà possibile?
+
+:E4/geometry/oefpolyqq.it
+exo=trirettnoiso&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo rettangolo non isoscele
+Costruisci un triangolo rettangolo, ma non isoscele. Sempre più difficile!
+
+:E4/geometry/oefpolyqq.it
+exo=triisonorett&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo isoscele non rettangolo
+Costruisci un triangolo isoscele, ma non rettangolo. Questa poi!

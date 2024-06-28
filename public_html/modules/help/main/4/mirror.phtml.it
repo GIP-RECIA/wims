@@ -1,0 +1,27 @@
+!set lang_exists=yes
+
+Se sei un docente e vuoi utilizzare WIMS regolarmente, potrebbe essere utile
+installare il software su un server locale di istituto. In questo modo
+l'interazione sarà più veloce e si eviteranno interruzioni del servizio
+dovute a problemi di rete.
+<p>
+WIMS è distribuito con licenza GNU. Può essere
+!href module=adm/light&phtml=download.phtml.$lang scaricato
+gratuitamente e installato su un sistema operativo Linux.
+Maggiori dettagli sono disponibili nel file
+<a href="./README">README</a>
+.
+</p><p>
+È anche possibile contattare il gruppo che mantiene il software
+(
+!mailurl wimsdev@sourcesup.renater.fr wimsdev@sourcesup.renater.fr
+)
+per domande su come installare un server WIMS, oppure
+!href module=adm/light&phtml=mirror.phtml.$lang cliccare qui
+ per una lista di siti mirror di WIMS accessibili liberamente.
+</p><p>
+È invece altamente sconsigliato l'utilizzo di un programma automatico
+per scaricare le pagine di questo sito! Il sito WIMS va consultato
+in maniera interattiva ONLINE, le pagine scaricate da programmi automatici
+sono inutilizzabili.
+</p>

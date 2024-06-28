@@ -1,0 +1,106 @@
+!! display list of participant with usual information
+
+!reset table_center
+!set typen=!defof class_typename in wimshome/log/classes/$wims_class/.def
+!if $usercnt=0
+  <div class="wimscenter">
+  $name_noyetparticipant
+  </div>
+  !exit
+!endif
+!! ------ manage ask for technical variable selection (use new varfilter variable)
+!form reply
+  <input type="hidden" name="job" value="userlist" >
+  !read adm/vfilter/varfilter html
+!formend
+!! ----- displaying table of participant
+<div>
+  $name_userlistdesc
+</div>
+!set table_id=TABLE_userlist
+!set table_class=sortable
+$table_header
+<thead>
+  $table_hdtr
+    <th scope="col">$name_studentglo</th>
+    <th scope="col">$name_date</th>
+    <th scope="col">$name_modtitle</th>
+    <th scope="col"> </th>
+  </tr>
+</thead>
+<tbody>
+  !for i=1 to $usercnt
+    !set uu=!record $i of wimshome/log/classes/$wims_class/.userlist
+    !distribute items $uu into bl,bl,uu
+    !if $varfilter_!=$empty
+      !read adm/vfilter/testfilter $uu\
+$varfilter_
+    !endif
+    !if $(var_filter_test)=1 or $varfilter_=$empty
+      !reset user_exists,$lttechvarid
+      !readproc adm/class/userdef classes,$wims_class,$uu
+      !readdef $userdef
+      $table_tr
+        !reset css_connected
+        !if $uu isitemof $wims_connectedlogin
+          !set css_connected=class="wims_connected"
+          !set wims_ref_title=connected
+        !endif
+        <td $css_connected>
+          $name_studentloc
+        </td>
+        <td>
+          !let r=!record 0 of wimshome/log/classes/$wims_class/swork/averagescore.$uu
+          !if $r!=$empty
+            !let r=!word 2 of $r
+            !readproc date.phtml $r,noprint
+            !replace internal - by $name_at in $slib_out
+          !endif
+        </td>
+        !readproc proc/listwork.proc $uu
+        !let nb=!linecnt $exolist
+        <td>
+          !if $nb>0
+            <table border="0"><tr>
+            !for k=1 to $swork_nbexo
+              !let t=!line $k of $exolist
+              <td>
+                !if $t!=$empty
+                  $(t[1]).$(t[2])
+                  !readproc proc/exoscore.proc $(t[1]),$(t[2]),$uu
+                  !if $(t[3])/100<=$score_out
+                    &#x2705;
+                  !else
+                    !if $(t[4])=0
+                      &#x274C;
+                    !endif
+                  !endif
+                !endif
+              </td>
+            !next k
+            </tr></table>
+          !endif
+        </td>
+        <td>
+          !if $r!=$empty
+            !set wims_ref_class=wims_button
+            !href cmd=reply&job=userlist&duser=$uu&refresh=1 $wims_name_delete
+          !endif
+          !set test=!fileexists wimshome/log/classes/$wims_class/swork/log.$uu
+          !if $test=yes
+            !set wims_ref_class=wims_button
+            !href cmd=reply&job=log&duser=$uu $wims_name_logwork
+          !endif
+        </td>
+      </tr>
+    !endif
+  !next i
+  </tbody>
+  $table_end
+  <div class="wimscenter">
+   &#x2705; $(name_legendtab[1])
+   &#x274C; $(name_legendtab[2])
+  </div>
+
+  !read tablesort.phtml
+!endif

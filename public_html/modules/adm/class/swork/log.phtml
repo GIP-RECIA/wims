@@ -1,0 +1,72 @@
+!! display log list for participant duser
+
+!reset table_center
+!if $nbwork=0
+  <div class="wimscenter">
+    !line 1 of $name_logwork
+  </div>
+  !exit
+!endif
+
+<div>
+  !line 2 of $name_logwork
+</div>
+!if $minwork>1
+  <div>
+    !line 4 of $name_logwork
+  </div>
+!endif
+!!set table_id=TABLE_userwork
+!!set table_class=sortable
+$table_header
+<thead>
+  $table_hdtr
+    <th scope="col">$(name_logworktab[1])</th>
+    <th scope="col">$(name_logworktab[2])</th>
+    <th scope="col">$(name_logworktab[3])</th>
+  </tr>
+</thead>
+<tbody>
+  !for i=$nbwork+1 to $minwork step -1
+    !if $i<=$nbwork
+      !set data=!record $i of wimshome/log/classes/$wims_class/swork/log.$duser
+    !endif
+    !if $data!=$empty
+      $table_tr
+        <td>
+          !readproc date.phtml $(data[1]),noprint
+          !replace internal - by $name_at in $slib_out
+        </td>
+        <td>
+          !if $(data[2])!=$empty
+            !readproc date.phtml $(data[2]),noprint
+            !replace internal - by $name_at in $slib_out
+          !endif
+        </td>      
+        !set data=!item 3 to -1 of $data
+        !set nbexo=!itemcnt $data
+        <td><table border="0"><tr>
+          !for k=1 to $nbexo
+            !distribute word $(data[$k]) into sh,ex,tar,get
+            <td>
+              !if $sh!=$empty
+                $sh.$ex $tar
+                !if $tar<=$get
+                  &#x2705;
+                !else
+                  &#x274C;
+                !endif
+              !endif
+            </td>
+          !next k
+        </tr></table></td>
+      </tr>
+    !endif
+  !next i
+</tbody>
+$table_end
+<div class="wimscenter">
+  &#x2705; $(name_legendtab[1])
+  &#x274C; $(name_legendtab[3])
+</div>
+!!read tablesort.phtml

@@ -1,0 +1,12 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Graphviz
+
+slib_parms=2\
+,le code (voir la documentation de <a href="http://www.graphviz.org">Graphviz</a>).\
+dot,format option : <span class="tt">dot</span>, <span class="tt">jpg</span>, \
+  <span class="tt">plain</span>, <span class="tt">neato</span>, <span class="tt">svg</span>
+slib_out=Si le format est <span class="tt">dot</span>, la sortie est l'adresse url de l'image,\
+Si le format est <span class="tt">jpg</span>, fournit les coordonnées.\
+Si aucun format n'est indiqué, fournit le code permettant de voir l'image : \
+&lt;img src="..."> ;\

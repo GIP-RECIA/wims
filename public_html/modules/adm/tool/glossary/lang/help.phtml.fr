@@ -1,0 +1,55 @@
+
+Vous pouvez sélectionner certains gloses pour créer votre propre glossaire qui
+sera ajouté aux ressources de la classe dans l'onglet Outils.
+<p>
+ Votre glossaire peut être rendu visible aux participants de la classe et peut
+aussi être utilisé comme une aide à un exercice d'une feuille
+(l'accès pour le participant se fera via le bouton
+<span class="wims_button_feedback disabled">$wims_name_feedbackexo</span>
+qui apparait à la fin d'un exercice).
+</p>
+Il est possible de créer plusieurs glossaires.
+
+!goto $wims_read_parm
+
+:newglossary
+<h2>Créer un glossaire dans la classe</h2>
+Cliquez sur le glose que vous voulez mettre dans ce glossaire, puis cliquez
+sur <span class="text_icon addglossary">$wims_name_addglossary </span>. On vous
+demandera de définir le titre du nouveau glossaire. Puis cliquez sur
+<span class="wims_button disabled">Insérer</span>
+<p>
+Le glossaire créé apparaitra dans l'onglet "Outils".
+</p>
+
+<h2>Ajouter un glose dans un glossaire de la classe</h2>
+L'insertion d'autres gloses dans un glossaire déjà créé peut se faire de deux façons :
+<ol><li>À partir du glossaire général, en allant sur une glose, puis en cliquant
+ sur <span class="text_icon addglossary">$wims_name_addglossary </span>
+</li>
+<li>À partir du glossaire de la classe, en cliquant sur
+<span class="text_icon newglose">$wims_name_newglose </span>
+</li>
+</ol>
+!exit
+
+:newglose
+<h2>Ajouter un glose dans un glossaire de la classe</h2>
+L'insertion d'autres gloses dans un glossaire déjà créé se fait en cliquant sur
+<span class="text_icon newglose">$wims_name_newglose </span>
+
+
+<h2>$wims_name_addh</h2>
+Le lien <span class="text_icon addh">$wims_name_addh </span> apparaissant dans
+la page d'introduction du glossaire créé dans la classe permet de faire apparaitre
+un lien vers ce glossaire à la fin d'un exercice d'une feuille selon le score obtenu
+par le participant. Si on veut que le lien pointe directement sur un glose plutôt
+que sur le sommaire du glossaire, il faut déjà aller sur ce glose, puis cliquer le
+lien <span class="text_icon addh">$wims_name_addh</span>.
+
+Pour qu'un participant travaillant sur un exercice puisse voir le contenu d'un
+glossaire de la classe une fois qu'il a terminé un exercice, il suffit d'aller
+dans ce glossaire et d'utiliser le lien
+<span class="text_icon addh">$wims_name_addh </span>.
+Il faudra alors sélectionner la feuille d'exercices et cliquer sur l'exercice choisi.
+!exit

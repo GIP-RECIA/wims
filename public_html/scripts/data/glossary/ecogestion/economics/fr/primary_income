@@ -1,0 +1,34 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Revenus primaires
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+On appelle <strong>revenus primaires</strong> les revenus que
+les agents économiques perçoivent à l'occasion d'une
+<span class="wims_emph">participation au processus de production</span>.
+</div>
+
+
+<div class="wims_rem"><h4>Précisions</h4>
+La participation des agents économiques au processus de production peut se
+faire selon trois modalités :
+<ul>
+<li>soit par une participation à la réalisation de la production, autrement dit par l'exercice
+d'un <span class="wims_emph">travail</span> : on parle alors de <span class="wims_emph">revenus d'activité</span>;
+<p><u>Exemples</u> : les salaires des employés du secteur privé, les traitements des employés du secteur public.</p>
+</li>
+<li>soit par une mise à disposition d'un <span class="wims_emph">capital (financier, matériel ou immatériel)</span> : on parle
+alors de <span class="wims_emph">revenus de la propriété</span>;
+<p><u>Exemples</u> : les dividendes d'actions, les loyers de biens immobiliers, les redevances de brevets.</p>
+</li>
+<li>soit à la fois par <span class="wims_emph">l'exercice d'un travail et l'apport d'un capital</span> : on parle alors
+de <span class="wims_emph">revenus mixtes</span>.
+<p><u>Exemples</u> : les bénéfices perçus par les entrepreneurs individuels et les professionnels des activités libérales (médecins, avocats ...).</p>
+</li>
+</ul>
+</div>

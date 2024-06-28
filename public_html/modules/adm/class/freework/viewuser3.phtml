@@ -1,0 +1,153 @@
+!! display freework page for student and type=3
+
+!if $emptypage=yes
+  !exit
+!endif
+
+!! todo: tune when we want the link to appear (we do not want link
+!!       to appear when students haven't yet opened their 
+!!       freework)
+!if ($toolate=yes or $putiworkco=1) and $wims_user=supervisor
+   !read adm/class/getnextuser $wims_class,$userv,viewuser3,userv
+!endif
+
+!if $desc!=$empty
+  <div class="wims_freework_desc">$desc</div>
+!endif
+
+<div class="wims_widget_box">
+  <div class="title_box">
+    <h2 class="wims_title">$(name_subject)</h2>
+  </div>
+  <div class="box_content">
+    !for i=1 to $nbrezoneteacher
+      !read applet/$(ztypeteacher$i) displayhtml teacher $i 0 $userv
+    !next i
+  </div>
+</div>
+
+!if $nbrezonestudent>0
+<div class="wims_widget_box">
+  <div class="title_box">
+    <h2 class="wims_title">$(name_workof) $name_studentname</h2>
+  </div>
+  <div class="box_content">
+    !for i=1 to $nbrezonestudent
+      !read applet/$(ztypestudent$i) displayhtml student $i 0 $userv
+    !next i
+  </div>
+</div>
+!endif
+
+!if $putiworkco!=1 or $seealltime=1
+  <div class="wims_widget_box">  
+    <div class="title_box"><h2 class="wims_title">$(name_solution)</h2></div>
+!else
+  <fieldset class="property_fields blockcenter">
+    <legend>$(name_solution)</legend>
+    <div class="field box">
+!endif
+
+!if $now<$d1
+      !let date=$date1
+      <div class="formHelp">$(name_desc_listwork4).</div>
+      !if $seealltime=1
+        !! in case of teacher can see work before endtime,
+        !! he can write remark on what he see of the actual work of the student
+        !form reply
+          <input type="hidden" name="job" value="remark3" >
+          <input type="hidden" name="freework" value="$freework">
+          <input type="hidden" name="userv" value="$userv">
+          !! TODO: need to check what we want to show
+          !if $nbrezonestudent>0
+            <div class="field box">
+              <label for="remark">$(name_remark)</label>
+              <div class="formHelp">$name_desc_remark</div>
+              <textarea id="remark" class="iEdit" rows="6" cols="65" name="remark">$remark</textarea>
+            </div>
+          !endif
+          <div class="field box">
+            <label for="finalremark">$(name_finalremark)</label>
+            <div class="formHelp">$name_desc_finalremark</div>
+            <textarea id="finalremark" class="iEdit" rows="6" cols="65" name="finalremark">$finalremark</textarea>
+          </div>
+          <div class="wimscenter wimsform"><input type="submit" value="$wims_name_tosave" name="saveremark">
+            !set wims_ref_class= wims_button wims_secondary_button
+            !href module=$module&+freework=$freework&job=configfw $wims_name_giveup
+          </div>
+         !formend
+      !endif
+!else
+      !if $scoring>0
+        !let k_=!positionof item $userv in $uulist
+        !if $k_!=$empty
+          !let t_=!record $[$k_+1] of wimshome/log/classes/$wims_class/.grades
+          !let t_=!item $[$scoring+2] of $t_
+        !else
+          !let t_=$empty
+        !endif
+      !endif
+      !if $putiworkco!=1
+        <div class="box_content">
+          !let date=$date2
+          <div class="formHelp">$(name_desc_listwork5).</div>
+          <div class="field box">
+            !if $scoring>0
+              <div><strong>$(name_score)</strong> $t_ (/$maxscore)</div>
+            !endif
+            !if $userfileexists=1
+              <div class="field box">
+                <strong>$(name_correctedfile)</strong>
+                !read proc/listfile.phtml usersol 0 $userv
+              </div>
+            !endif
+            !if $nbrezonestudent>0
+              <div><strong>$name_remark</strong> $remark</div>
+            !endif
+            <div><strong>$name_finalremark</strong> $finalremark</div>
+          </div>
+        </div>
+      !else
+        !if $userfileexists=1
+          !let wims_form_method=file
+        !endif
+        !form reply
+          <input type="hidden" name="job" value="uploadco3" >
+          <input type="hidden" name="freework" value="$freework">
+          <input type="hidden" name="userv" value="$userv">
+          !if $userfileexists=1
+            <div class="field box">
+              <label for="file">$(name_correctedfile)</label>
+              !read proc/listfile.phtml usersol 1 $userv
+              <input type="file" id="file" size="35" name="wims_deposit" >
+            </div>
+          !endif
+          !if $seealltime=1 and $nbrezonestudent>0
+            <div><strong>$name_remark</strong> $remark</div>
+          !endif
+          <div class="field box">
+            <label for="finalremark">$(name_finalremark)</label>
+            <div class="formHelp">$name_desc_finalremark</div>
+            <textarea id="finalremark" class="iEdit" rows="6" cols="65" name="finalremark">$finalremark</textarea>
+          </div>
+          !if $scoring>0
+            <div class="field box">
+              <label for="score">$(name_score) (/$maxscore)</label>
+              <input type="text" id="score" name="score" value="$t_" size="3" >
+            </div>
+          !endif
+          <div class="wimscenter wimsform"><input type="submit" value="$wims_name_tosave" name="saveremark">
+            !set wims_ref_class= wims_button wims_secondary_button
+            !href module=$module&+freework=$freework&job=configfw $wims_name_giveup
+          </div>
+        !formend
+      !endif
+!endif
+</div>
+!if $putiworkco=1 or $seealltime=1
+</fieldset>
+!else
+</div>
+!endif
+
+!reset save,saveremark

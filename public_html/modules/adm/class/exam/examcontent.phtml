@@ -1,0 +1,68 @@
+!!!### language independant
+!! ---- affiche le contenu de l'exam $exam de la classe $wims_class
+
+<div id="list">
+$table_header
+ <caption>$name_contentsuper</caption>
+ $table_hdtr
+  !for k=1 to 7
+    !if $mode=1
+      !if $k notwordof 5 7
+        <th>$(name_extab[$k])</th>
+      !endif
+    !else
+      <th>$(name_extab[$k])</th>
+    !endif
+  !next k
+  !if $activetest=0
+    <th colspan="2">$(name_extab[8])</th>
+  !endif
+  </tr>
+ !for i=1 to $exocnt
+    !set ex=!record $i of wimshome/log/classes/$wims_class/exams/.exam$exam
+    !distribute lines $ex into poids,content,title,dep,option,com
+    !if $mode=1
+      !set dep_=!record $exam of wimshome/log/classes/$wims_class/exams/.exams
+      !set dep_=!line 3 of $dep_
+      !set dep_=!word 3 of $dep_
+      !if $dep_!= and $i>1
+        !set dep=$[$i-1]:$dep_
+      !endif
+    !endif
+    $table_tr
+    <td>$i</td>
+    <td>$title</td>
+    <td>
+    !for k in $content
+      !let t=!replace internal . by , in $k
+      !distribute item $t into s_,e_
+      !let t=!record $e_ of wimshome/log/classes/$wims_class/sheets/.sheet$s_
+      !distribute line $t into di,pa,bl,bl,bl,bl,bl
+      !href target=wims_new module=$di&cmd=new&$pa $s_.$e_
+      &nbsp;
+    !next k
+    </td>
+    <td>$poids</td>
+    !if $mode iswordof 0 or $mode=
+      <td>$dep</td>
+    !endif
+    <td>$com</td>
+    !if $mode iswordof 0 or $mode=
+      <td>$option</td>
+    !endif
+    !if $activetest=0
+      <td>
+       !set wims_ref_class=wims_button
+       !href cmd=reply&job=exo&exo=$i $wims_name_change
+       &nbsp;
+       !set wims_ref_class=wims_button wims_warning
+       !href cmd=reply&job=delete&delete=$i#list $wims_name_erase
+      </td>
+      <td>
+       !read adm/sheet/moveafterform.phtml $(name_extab[9])
+      </td>
+    !endif
+  </tr>
+  !next i
+$table_end
+</div>

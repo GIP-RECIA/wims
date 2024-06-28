@@ -1,0 +1,141 @@
+type=classify
+textarea="data explain"
+iEdit="explain"
+
+:Establir la correspondència entre parells d'objectes.
+
+Es presenten parells d'objectes en una taula amb dues columnes. Es demana
+establir la correspondència correcta entre cada parell d'objectes,
+amb l'ajuda del ratolí.
+<p>
+Per construir un exercici amb aquest model, simplement escriviu la llista de
+parells d'objectes.
+</p><p>
+Amb una lleugera modificació, una variant d'aquest exercici pot incloure objectes de 
+tipus imatge.
+</p>
+
+Autor del model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓ      %%%%%%%%%%%%%%%%%%%%
+
+Elimineu la capçalera anterior si elimineu les etiquetes per al model!
+(Són les línies que comencen amb ':'.)
+En cas contrari l'exercici pot no funcionar sota Createxo.
+
+:%%%%%%%% Paràmetres d'exemple per a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Correspondència}
+:\author{Gang, Xiao}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Nombre de (parells) d'objectes que s'han d'associar
+\integer{tot=6}
+
+:La mida vertical de les caixes en píxels
+Pensar en els usuaris que augmenten la mida de la seva font del navegador!
+No poseu les caixes massa petites.
+\integer{sizev=50}
+
+:La mida horitzontal de las caixes de l'esquerra en píxels
+\integer{sizel=250}
+
+:La mida horitzontal de las caixes de la dreta en píxels
+\integer{sizer=250}
+
+:Feedback displayed in all cases after the learner's response.
+\text{feedback_general=}
+
+:L'enunciat de l'exercici
+$embraced_randitem
+\text{explain=Establir la correspondència entre països i les seves capitals.}
+
+:Dades principals
+Definir un parell d'elements associats per línia, separats per una coma.
+$embraced_randitem
+\matrix{data=
+Alemanya, Berlín
+Austràlia, Canberra
+Canadà, Ottawa
+Xina, Pequín
+Espanya, Madrid
+Estats Units, Washington
+Estats Units
+Regne Unit, Londres
+Índia, Nova Delhi
+Indonèsia, Jakarta
+Itàlia, Roma
+Japó, Tòquio
+Rússia, Moscou
+}
+
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Res a canviar abans de l'enunciat %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\integer{datacnt=rows(\data)}
+\integer{tot=\tot>\datacnt?\datacnt}
+
+\text{shuf=item(1..\tot,shuffle(\datacnt))}
+\text{data=row(\shuf,\data)}
+\text{data=\accolade=1? wims(embraced randitem \data)}
+\text{datal=column(1,\data)}
+\text{datar=column(2,\data)}
+\text{size=\sizev[]x\sizel[]x\sizer}
+\text{explain=\accolade=1? wims(embraced randitem \explain)}
+
+# For Latex version
+\text{shuf2=shuffle(\tot)}
+\text{latexdatar=\datar[\shuf2]}
+\real{latexsizel=max(1,min(floor(\sizel/5)/10,6))}
+\real{latexsizer=max(1,min(floor(\sizer/5)/10,6))}
+\text{latexsrc=\begin{tabular}{p{\latexsizel cm}lp{1cm}lp{\latexsizer cm}}}
+\for{lk=1 to \tot}{
+  \text{latexsrc=\latexsrc \datal[\lk] &\(\bullet\) &&\(\bullet\) & \latexdatar[\lk]\\ [1.5ex]  }
+}
+\text{latexsrc=\latexsrc \\ 
+\end{tabular}}
+\text{latexsol=\begin{tabular}{p{\latexsizel cm}lp{\latexsizer cm}}}
+\for{lk=1 to \tot}{
+  \text{latexsol=\latexsol \datal[\lk] &\(\longleftrightarrow \)& \datar[\lk]\\ [1.5ex] }
+}
+\text{latexsol=\latexsol\\ 
+\end{tabular}}
+
+:%%%%%%%%%%%%% Ara la declaració de HTML. %%%%%%%%%%%%%%%%%%%%
+
+::Vostè no necessita canviar això en general.
+
+La comanda per mostrar la taula d'assignació,
+és \embed{reply 1,\size}
+
+\statement{<div class="instructions">\explain</div>
+<div class="wimscenter">
+\embed{reply 1,\size}
+</div>
+}
+
+:%%%%%%%%%%%%% Res a canviar per sota. %%%%%%%%%%%%%%%%%5
+
+\answer{La resposta}{\datal;\datar}{type=correspond}
+\feedback{\feedback_general notsametext }{<p class="feedback">\feedback_general</p>}
+
+# Latex version 
+\latex{
+\begin{statement}
+\explain
+\begin{center}
+\latexsrc
+\end{center}
+\end{statement}
+\begin{solution}\
+\begin{center}
+\latexsol
+\end{center}
+\end{solution}
+}

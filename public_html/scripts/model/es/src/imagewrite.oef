@@ -1,0 +1,75 @@
+type=imaudio
+textarea="data instruction"
+iEdit="instruction"
+
+:Escribir el nombre que corresponda a la imagen (o texto presentado)
+Tenga presente que este modelo solo funcionará bien si carga las imágenes en wims.
+<p>
+Para construir un ejercicio con este modelo, simplemente escriba la lista de imágenes y
+etiquetas correspondientes
+</p>
+<p class="wims_credits">
+Autor del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Reconocer una imagen}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciado
+\text{instruction=<p>Escriba la palabra correspondiente a la imagen.</p>
+<p><em>(el ejercicio solo funcionará cuando se carguen las imágenes)</em></p>}
+
+:Datos
+<p>
+Les données pour les images sont à entrer en utilisant le format simple suivant (une ligne par image) :
+<pre>fichier1, mot1
+fichier2, mot2
+...
+</pre>
+où fichier1, fichier2 ... sont les noms des fichiers des images (extensions comprises) et
+mot1 correspond au mot qui est à associer à l'image fichier1, ...
+\text{data=amphitheatre.png,anfiteatro
+aqueduc.png,acueducto
+arcdetriomphe.png,el arco del Triunfo
+cirque.png,circo
+domus.png,domus
+temple.png,templo
+theatre.png,teatro
+thermes.png,balnearios
+}
+
+:El tamaño de los cuadros en píxeles
+\text{sizeh=40}
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+\text{mot = randrow(\data)}
+\text{mot=wims(embraced randitem \mot)}
+\text{image=\mot[1]}
+\text{ext=item(2,wims(replace internal . by , in wims(lowercase \image)))}
+\text{mot =\mot[2]}
+
+\statement{
+\instruction
+<p class="wimscenter">
+\if{\ext isitemof png,gif,jpg,jpeg}{
+  \img{\imagedir/\image}
+  }
+  {\image}
+</p>
+<div class="wimscenter">
+\embed{r1,\sizeh
+default
+autocomplete="off"}
+</div>
+}
+
+\answer{}{\mot}{type=case}

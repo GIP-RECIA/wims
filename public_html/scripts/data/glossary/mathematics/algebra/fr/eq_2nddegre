@@ -1,0 +1,35 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=canonical_form,trinomial,equations,roots,factorization,polynomials
+!set gl_title=Équation du second degré dans \(\displaystyle{\RR}\)
+!set gl_level=H5 Générale
+:
+:
+:
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Soit \((E)\) : \(a x^2+ b x+ c=0\) une équation du second degré où \(a\) est un
+nombre réel non nul, <span style="white-space:nowrap">\(b\),</span> \(c\) sont
+deux nombres réels et &Delta; son discriminant.
+<ul>
+  <li>
+  si \(\increment \lt 0\) alors l'équation \((E)\) n'a pas de solution dans
+  \(\displaystyle{\RR}\) ;
+  </li>
+  <li>
+  si \(\increment = 0 \) alors l'équation \((E)\) a une unique solution \(x_0\)
+  dans \(\displaystyle{\RR}\) définie par&nbsp;:
+   <div class="wimscenter">
+    \(x_0=\frac{-b}{2a}\) ;
+    </div>
+  </li>
+  <li>
+  si \(\increment \gt 0\) alors l'équation \((E)\) a deux solutions distinctes
+  \(x_1\) et \(x_2\) dans \(\displaystyle{\RR}\) définies par&nbsp;:
+  <div class="wimscenter">
+  \(x_1=\frac{-b -\sqrt{\increment}}{2a}\) et
+  \(x_2=\frac{-b +\sqrt{\increment}}{2a}\).
+  </div>
+  </li>
+</ul>
+</div>

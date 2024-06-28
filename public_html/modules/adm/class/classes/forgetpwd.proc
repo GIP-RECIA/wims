@@ -1,0 +1,32 @@
+!read wimshome/log/classes/$class/.def
+!default step=0
+
+!if $step=1
+  tmp=!defof user_exists\
+user_email in wimshome/log/classes/$class/.users/$auth_user
+  !distribute line $tmp into u,m
+  !if $u!=yes or $m=$empty
+    error=bad_loginmail
+    step=0
+    !exit
+  !else
+    npwd=!randint 111111,999999
+    !! delay 5 minutes after wrong auth password.
+    !read adm/class/authdelay
+    npwdc=!passcrypt $npwd
+    !if $delay!=bad
+      !set mailbody=!record 0 of adm/lang/forgetpwd.$lang.phtml
+      !setdef !set user_password=$npwdc\
+!set user_forcechpwd=yes in wimshome/log/classes/$class/.users/$auth_user
+      !mailto $m\
+\
+$wims_name_n_forgetpwd\
+$mailbody\
+
+
+!! the empty line before must be leaved
+    !else
+      step=0
+    !endif
+  !endif
+!endif

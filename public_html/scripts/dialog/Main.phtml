@@ -1,0 +1,104 @@
+!read dialog/$lang/names
+
+!set renewlink=cmd=renew&worksheet=$worksheet&$module_init_parm
+!set module_title=$module_title: $title
+!set wims_html_header=!append line <style>.dialog_answer {\
+  border: 1px solid #CCC;\
+  border-left-color: var(--wims_ref_bgcolor);\
+  border-left-width: .2em;\
+  margin: 2% 2%;\
+  padding: 1em;}</style>\
+  to $wims_html_header
+!header
+
+!if $title=$empty
+  $name_emptytitle
+  <div class="wimscenter">
+  !set wims_ref_class=wims_button
+  !href module=$module $name_restart
+  , $wims_name_or
+  !set wims_ref_class=wims_button
+  !href $ $wims_name_giveup
+  . </div>
+  !goto end
+!endif
+
+:tester
+!read dialog/present.phtml
+
+<hr style="width:50%">
+
+!if $cmd=hint
+  !read dialog/hint.phtml
+  !goto end
+!endif
+
+!if $status=waiting
+  !if $error!=$empty
+    !read dialog/msg.phtml
+    <hr style="width:50%">
+  !endif
+  !read dialog/form.phtml
+  <p>
+  !if $hint!=$empty and $givehint>0
+    !set wims_ref_class=wims_button_help
+    !href cmd=hint $name_Hint
+  !endif
+  !set wims_ref_class=wims_button
+  !if $qnum<=1
+    !href $renewlink $name_exo_renew
+  !else
+    $name_serie_exo
+    !href $renewlink $name_serie_renew
+  !endif
+  </p>
+!else
+  !if $error!=$empty
+     !read dialog/msg.phtml
+     <hr style="width:50%">
+  !endif
+  !read dialog/answer.phtml
+  <p>
+  !if $status!=$empty
+    $name_serie_exo2 <p>
+    !set wims_ref_class=wims_button
+    !href cmd=next $name_serie_nextexo
+     $wims_name_or
+    !set wims_ref_class=wims_button
+    !href $renewlink $name_exo_renew
+. $name_serie_new2
+ !else
+    !if $qnum>1
+      $name_serie_score
+      !ifval $score>9.8
+        $wims_name_Congratulations
+      !endif
+      <p>
+      !set wims_ref_class=wims_button
+        !href exo_Again
+      !if $wims_sheet=$empty
+        !set wims_ref_class=wims_button
+        !href exo_Intro
+      !endif
+      </p>
+    !else
+      $name_exo_score
+      !ifval $score>9.8
+        $wims_name_Congratulations
+      !endif
+      <p>
+      !set wims_ref_class=wims_button
+      !href exo_Again
+      !if $wims_sheet=$empty and $oef_test!=yes
+        !set wims_ref_class=wims_button
+        !href exo_Intro
+      !endif
+      </p>
+    !endif
+  !endif
+!endif
+
+!read endhook.phtml
+:end
+
+!tail

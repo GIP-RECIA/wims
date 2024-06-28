@@ -1,0 +1,24 @@
+<div style="background-color:yellow;
+      margin:5%;
+      padding:4%">
+Un questionnaire anonyme pour montrer un
+exemple de questionnaire. Vous pouvez écrire des commentaires
+à la fin.
+
+<div class="wims_empth"><i>Ce questionnaire étant anonyme, dès que vous aurez cliqué
+sur "Enregister" en bas de la page, il ne vous sera plus possible
+d'y revenir ou de modifier votre choix.</div>
+<ol>
+ <li> Le tutoriel de programmation d'exercices vous paraît :
+   <p>  \radio{intéressant, inintéressant,quelconque}</p>
+ </li>
+ <li> Les exemples choisis vous paraissent
+   \menu{judicieux,  quelconques,inintéressants}
+  </li>
+  <li> Vous désirez maintenant
+   <p>\list{persévérer, abandonner, vous y remettre plus tard}</p>
+  </li>
+</ol>
+
+Commentaires libres (moins de 300 caractères) :
+<p>\textarea</p>

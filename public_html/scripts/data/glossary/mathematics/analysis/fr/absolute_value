@@ -1,0 +1,32 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_number,absolute_value
+!set gl_title=Valeur absolue
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(x\) un nombre réel.<br>
+  Sur une droite munie d'un repère \((\mathrm{O}\,;\mathrm{I})\), on note
+  \(\mathrm{M}\) le point d'abscisse <span style="white-space:nowrap">\(x\).
+  </span><br>
+  On appelle <strong>valeur absolue</strong> de \(x\) le nombre réel noté
+  \(\lvert x \rvert \) défini par <span style="white-space:nowrap">
+  \(\lvert x \rvert=OM\).</span>
+</div>
+<div class="wims_thm">
+  <h4>Conséquences</h4>
+<ul>
+  <li>
+    Pour tout réel \(x\), \(\lvert x \rvert \) est un nombre réel positif.
+  </li><li>
+   \(\lvert x \rvert=0\)  si et seulement si \(x=0\).
+  </li><li>
+   \(\lvert x \rvert=x\) si \(x \geqslant 0\) ; <span style="white-space:nowrap">
+   \(\lvert x \rvert=-x\) si \(x \leqslant 0\).</span>
+  </li>
+</ul>
+</div>

@@ -1,0 +1,34 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Cycle économique
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Un <strong>cycle économique</strong> est la répétition observée de
+<span class="wims_emph">phases d'expansion et de récession</span> économiques dans un pays donné.</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+<p>De manière plus détaillée, un cycle est la succession d'une période d'expansion,
+suivie d'une période de ralentissement, suivie d'une période de crise,
+suivie d'une période de récession, suivie d'une période de dépression,
+suivie d'une période de reprise, puis d'expansion etc.</p>
+<p>Selon la théorie économique, il est d'usage de distinguer 3 types de cycles :</p>
+<ul>
+<li>les <span class="wims_emph">cycles courts</span> nommés cycles de
+  <span class="wims_emph">Kitchin</span> d'une durée moyenne de
+  <span class="wims_emph">3 à 4 ans</span> ;</li>
+<li>les <span class="wims_emph">cycles majeurs</span> nommés cycles de
+  <span class="wims_emph">Juglar</span> d'une durée moyenne de
+  <span class="wims_emph">8,5 ans</span> ;</li>
+<li>les <span class="wims_emph">cycles longs</span> nommés cycles de
+  <span class="wims_emph">Kondratieff</span> d'une durée approximative de
+  <span class="wims_emph">50 à 60 ans</span>.</li>
+</ul>
+L'intérêt des cycles est de permettre aux économistes d'effectuer des prévisions.
+Mais l'instabilité croissante des économies actuelles rend aujourd'hui périlleuse
+toute analyse économique fondée sur les cycles.
+</div>

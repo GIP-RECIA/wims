@@ -1,0 +1,141 @@
+
+!bound seq between integer 1 and $seq_cnt+1 default $empty
+jquery_defined=!defof jquery_defined in themes/$wims_theme/header.phtml
+
+!if $cf_abandon!=$empty or $seq=$empty
+  !reset cf_abandon
+  job=show
+  !exit
+!endif
+
+!if $seq>$maxseq
+  error=toomanyseq
+  !exit
+!endif
+
+!readproc adm/vfilter/listvarfilter.proc
+
+sharers=
+sharing1=!defof sharable_sheet in wimshome/log/classes/$wims_class/neighbors
+!for c in $sharing1
+  d=!defof sharing_sheet in wimshome/log/classes/$c/neighbors
+  !if $d issametext $wims_class
+    sharers=!append item $c to $sharers
+  !endif
+!next c
+
+!if $save!=$empty or ($old_allowtype!=$allowtype and ($allowtype=techvar and $old_allowtechvar!=$allowtechvar))
+  seq_desc=!replace internal $\
+$ by $ $ in $seq_desc
+  seq_title=!char 1 to $title_limit of $seq_title
+  seq_desc=!char 1 to $desc_limit of $seq_desc
+  new_data=:$seq_title\
+$seq_desc
+  !! ------  manage of allow
+  !if $tv_listname=$empty
+    !bound allowtype within all,none,select default all
+  !else
+    !bound allowtype within all,none,select,techvar default all
+  !endif
+  !read adm/scorerestriction get
+  IPlist=$_output
+  IPlist=!translate ,;\
+* to $    $ in $IPlist
+  IPlist=!trim $IPlist
+  !if $allowtype=select and $IPlist=$empty and $save!=$empty
+    allowtype=all
+  !endif
+  !if $allowtype=all
+    allow_parm=
+  !endif
+  !if $allowtype=none
+    allow_parm=none
+  !endif
+  !if $allowtype=select
+    allow_parm=$IPlist
+  !endif
+  old_allowtype=$allowtype
+  old_allowtechvar=$allowtechvar
+  !if $allowtype=techvar
+    !readproc adm/vfilter/shexselect.proc .S$seq
+  !endif
+  !! ---- save modification of allow parameters for sequence
+  !if $sharers!=$empty and $allowshare=1
+    !if $allowtype=techvar
+      !readproc adm/vfilter/validtechvar.proc $allowtechvar\
+$sharers
+      !if $output=1
+        setclass=$wims_class,$sharers
+      !else
+        error=badallowshare
+        allowshare=0
+        setclass=$wims_class
+      !endif
+    !else
+      setclass=$wims_class,$sharers
+    !endif
+  !else
+    setclass=$wims_class
+  !endif  
+  !if $allow_parm=$empty
+    !sh for c in $setclass; do rm -f $wims_home/log/classes/$$c/.S$seq; done
+  !else
+    setclass=!words2items $setclass
+    !for c in $setclass
+      !writefile wimshome/log/classes/$c/.S$seq $allow_parm
+    !next c
+  !endif
+  wims_class_log=sequence $seq allow $allowtype $allowshare by $wims_realuser
+  !! ---- end of saving
+  !! -------- end manage of allow
+  !set listdoc=!makelist doc_ i for i=1 to $docpubliccnt
+  !set listc=!filelist $wims_home/log/classes/$wims_class/doc
+  !set listc=!lines2items $listc
+  !set listc=!replace internal c by c_$ $ in $listc
+  !set listexam=!makelist exam_ i for i=1 to $examcnt
+  !set listsheet=!makelist sheet_ i for i=1 to $sheetcnt
+  !set listvote=!makelist vote_ i for i=1 to $votecnt
+  !set listtool=!makelist tool_ i for i=1 to $toolcnt
+  !set listglossary=!makelist glossary_ i for i=1 to $glossarycnt
+  !set listfreework=!makelist freework_ i for i=1 to $freeworkcnt
+  list=!nospace $listc,$listdoc,$listsheet,$listexam,$listvote,$listtool,$listglossary,$listfreework
+  list=!nonempty items $list
+  list1=debut
+  !for x in $list
+    list1=!append item $($x) to $list1
+  !next
+  list1=$(list1[2..-1])
+  listcnt=!replace internal ,0, by , in ,$list1,
+  listcnt=!nonempty items $listcnt
+  listcnt=!itemcnt $listcnt
+  !for j = 1 to $listcnt
+    jj=!positionof item $j in $list1
+    !if $jj!=
+      listfinal=!append item $(list[$jj]) to $listfinal
+    !endif
+  !next j
+  list=!replace internal _ by $ $ in $(listfinal)
+  new_data=$new_data\
+$list
+  !bound visible within 0,1 default 0
+  !writefile wimshome/log/classes/$wims_class/seq/.sequence$seq $new_data\
+$visible
+
+  s_ =!record 0 of .sequences
+  s_=!line 2 to -1 of s_
+  !if $seq= $[$seq_cnt+1]
+    seq_cnt=$[$seq_cnt+1]
+    !writefile wimshome/log/classes/$wims_class/seq/.sequences $seq_cnt\
+    $s_
+  !endif
+!endif
+
+!! --- read saving configuration for allow parameters
+  !readproc adm/vfilter/shexread.proc S$seq
+  !! to distribute IPlist content into variable
+  !read adm/scorerestriction put\
+$IPlist
+  old_allowtype=$allowtype
+  old_allowtechvar=$allowtechvar
+  !reset save
+!! --- end of reading

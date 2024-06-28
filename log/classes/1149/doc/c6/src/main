@@ -1,0 +1,9 @@
+<ol>
+ <li>\link{ParabDes}{Utiliser le lien entre l'analyse et la géométrie}</li>
+  <li>\fold{\embed{ParabTab}}{Utiliser un tableau de valeurs}</li>
+  <li>\fold{\embed{ParabFonc}}{Utiliser des fonctions}</li>
+  <li>\fold{\embed{ParabCan}}{Utiliser la forme canonique}</li>
+  <li>\fold{\embed{ParabRes}}{Utiliser une lettre ou résoudre une équation}</li>
+  <li>\fold{\embed{ParabIneq}}{Résoudre une inéquation du second degré}</li>
+  <li>\fold{\embed{ParabAlg}}{Utiliser les transformations algébriques}</li>
+</ol>

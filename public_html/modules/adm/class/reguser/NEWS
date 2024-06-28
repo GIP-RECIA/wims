@@ -1,0 +1,22 @@
+20221110 [r17283] forbidden login name SUPERVISOR reserved for server administrator (FG)
+ ------------ version 2.04 
+20220302 [r16519] use new parameter wims_mail_hidden (FG)
+ ------------ version 2.03 
+20180726 [r13254] error message when no class specified and wims_class=$empty (FG)
+20180612 [r13182 and previous] modification in case of intercourse or optional course
+  (password is taken in account)
+20180612 [r13012] no clickable link in ariane (bpr)
+20180612 [r12935] limit_regvars reading in bases/sys/define.conf (FG)
+Version 3.00 : 2012-03
+  External authentification and identification are implemented.
+
+-----------------------------------------------------------  version 2.02
+20120224 bugfix when registration in a class with existing login (FG)
+20120224 add link return when error (FG)
+20120224 improvement : verify CGU at step=2 (FG)
+-----------------------------------------------------------  version 2.01
+20110710 user need accept CGU to register in a class (FG)
+2010-02 : Version 2.00
+  This module replaces several previously existing language dependent modules adm/class/reguser.xx
+  of Gang Xiao. It has been constructed by localization of these modules, keeping a single
+  computation core and adding dictionaries.

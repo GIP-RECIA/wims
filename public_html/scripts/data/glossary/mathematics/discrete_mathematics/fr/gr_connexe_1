@@ -1,0 +1,17 @@
+!set gl_type=dynamic
+!set gl_title=Graphe connexe (exemple)
+!set gl_author=Bernadette, Perrin-Riou
+!readproc data/glossary/mathematics/discrete_mathematics/macro/gr_connexe
+
+!if $gl_n>1
+  Le graphe représenté n'est pas connexe. Il a $gl_n composantes connexes
+qui sont dessinées en couleur dans la deuxième représentation.
+!else
+  Le graphe représenté est connexe.
+!endif
+<div class="wimscenter">
+  $gl_out2
+!if $gl_n>1
+  $gl_out1
+!endif
+</div>

@@ -1,0 +1,19 @@
+title=Family with swac
+author=Csilla, Ducrocq
+email=csilla.ducrocq@u-psud.fr
+file=swac_corresp
+source=swac_correspond
+
+type_exo=CORRESP
+instruction=Match the words.
+alea=yes
+size=50x150x200
+partialscore=split
+format=clickfill
+style_question=
+style_reponse=
+
+packs=eng
+player=
+player_option=
+M=5

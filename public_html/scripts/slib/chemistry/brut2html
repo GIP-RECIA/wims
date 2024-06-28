@@ -1,0 +1,76 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=Bernadette, Perrin-Riou
+
+slib_example=CH4\
+COCl2^++\
+COCl2^2-\
+HCl/Cl^-\
+C2O4H2/HC2O4^-\
+C8O2H7COOH/C8O2H7COO^-\
+HC2O4^-/C2O4^2-\
+HSO3^-/SO3^2-\
+HSO4^-/SO4^2-,HSO3^-/SO3^2-
+
+!exit
+
+:proc
+
+!reset slib_out
+slib_mol1=!nospace $wims_read_parm
+!if $slib_mol1=$empty
+  !exit
+!endif
+slib_joker=,__
+slib_mol1=!replace internal / by $slib_joker in $slib_mol1
+slib_cnt=!itemcnt $slib_mol1
+!for slib_j =1 to $slib_cnt
+  slib_mol=$(slib_mol1[$slib_j])
+  slib_pos_ion_p=!positionof char + in $slib_mol
+  slib_pos_ion_m=!positionof char - in $slib_mol
+  slib_pos_ion1=!sort numeric item $slib_pos_ion_m,$slib_pos_ion_p
+  slib_pos_ion=!char $(slib_pos_ion1[1]) to -1 of $slib_mol
+  slib_pos_last=!char -1 of $slib_mol
+  slib_test=!text remove +-1234567890 in $slib_pos_ion
+  !! some ions are not at the end of the formula
+  !if $slib_pos_ion1!=$empty and ($slib_test!=$empty or $(slib_pos_last[-1]) notin +-)
+    slib_out=ERROR
+    !exit
+  !endif
+  slib_B=!text mark 0123456789 in $slib_mol
+  slib_c=!charcnt $slib_mol
+  !for slib_i=1 to $slib_c
+    slib_v=!char $slib_i of $slib_mol
+    !if $slib_i>1
+      slib_v1=!char $slib_i-1 of $slib_mol
+    !endif
+    slib_b=!char $slib_i of $slib_B
+    slib_b1=!char $slib_i+1 of $slib_B
+    !if $slib_i>1
+      slib_b2=!char $slib_i-1 of $slib_B
+    !endif
+    !if $slib_b=1 and ($slib_v != 1 or $slib_b1=1 or $slib_b2=1)
+      !if $slib_v1!=^
+        slib_out=$slib_out<sub>$slib_v</sub>
+      !else
+        slib_out=$slib_out$slib_v
+      !endif
+    !else
+      !if $slib_b=1 and $slib_v = 1 and ($slib_b1=0 or $slib_b1=) and $slib_v1=0
+        slib_out=$slib_out
+      !else
+        slib_out=$slib_out$slib_v
+      !endif
+    !endif
+  !next
+  !if ^ isin $slib_out
+    slib_out=!replace internal ^ by <sup> in $slib_out</sup>
+  !endif
+  !if $slib_j<$slib_cnt
+    slib_out=$slib_out,
+  !endif
+  slib_out=!replace internal $slib_joker by / in $slib_out
+  !endif
+!next

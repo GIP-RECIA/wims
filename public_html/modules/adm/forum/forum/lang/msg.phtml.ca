@@ -1,0 +1,20 @@
+
+!set errorhead=<b>Error.</b>
+
+!if forum_not_exist = $error
+  $errorhead Has demanat un fòrum que no existeix. Si us plau, revisa
+  la teva petició.
+  !set fatal=yes
+  !exit
+!endif
+
+!if no_register = $error
+  $errorhead Aquest fòrum no permet el registre d'usuaris en línia.
+  Si us plau
+  !mailurl $mb_email demanar al gestor\
+$mb_title
+  si hi voleu participar.
+  !exit
+!endif
+
+!msg $error

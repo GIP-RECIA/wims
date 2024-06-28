@@ -1,0 +1,14 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Video insertion
+slib_parms=3\
+,URL of the video file (see the comments)\
+$default_slib_option,option for the media insertion for flv video\
+,optional parameters to add to the video tag (sample: <span class="tt">poster="gifs/wims_logo.png"</span>)
+
+slib_out=  Video insertion in html page
+slib_comment= One must give the URL of data file in several formats to be compatible\
+ with browsers: \
+ <div><code>[ogg="http://url_for_ogg" mp4="http://url_for_mp4", webm="http://url_for_webm"]</code></div>\
+ Ogv and mp4 are recommanded.
+

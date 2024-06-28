@@ -1,0 +1,7 @@
+!set lang_exists=yes
+
+!set name_main=Index général
+!set name_wimsdoc_title=Documentation technique pour développeurs (en anglais)
+!set name_browse=parcourir le contenu du serveur
+!set name_question=Q&nbsp;
+!set name_answer=R&nbsp;

@@ -1,0 +1,71 @@
+!set gl_css=<style>\
+table.wims_matrix th{\
+    background-color:#EBEBEB;\
+    border: solid;\
+    border-width: 1px;\
+    text-align:center;\
+    padding: 5px\
+}\
+table.wims_matrix td:first-child {text-align:left}\
+table.wims_matrix td {\
+    text-align:right;\
+    border-left: solid;\
+    border-right: solid;\
+    border-width: thin;\
+    padding: 5px\
+}\
+table.wims_matrix tr:nth-last-child(2) td:nth-last-child(3){text-align:center}\
+table.wims_matrix tr:last-child td:nth-last-child(3){text-align:center}\
+table.wims_matrix tr:last-child td{font-weight:bold}\
+</style>\
+
+!set gl_rc=!randint -40,60
+set gl_rc=-40
+!set gl_rc=$[$gl_rc*1000]
+
+!set gl_pni=!randint 20,50
+!set gl_pni=$[$gl_pni*100]
+!set gl_cnd=!randint 20,50
+!set gl_cnd=$[$gl_cnd*100]
+
+!if $gl_rc > 0
+  !set gl_rcr=$gl_rc
+  !set gl_nomrc=$(gl_nomrc[1])
+  !set gl_rcd=$empty
+  !set gl_totalr=$[$gl_rc+$gl_cnd]
+  !set gl_totald=$gl_pni
+!else
+  !set gl_nomrc=$(gl_nomrc[2])
+  !set gl_rcr=$empty
+  !set gl_rcd=$[abs ($gl_rc)]
+  !set gl_totalr=$gl_cnd
+  !set gl_totald=$[abs ($gl_rc)+$gl_pni]
+!endif
+
+!set gl_rf=$[$gl_totalr-$gl_totald]
+
+!if $gl_rf > 0
+    !set gl_rfr=$gl_rf
+    !set gl_rfd=$empty
+    !set gl_egalr==
+    !set gl_egald=$empty
+!else
+  !set gl_rfr=$empty
+  !set gl_rfd=$[abs ($gl_rf)]
+  !set gl_egalr=$empty
+  !set gl_egald==
+!endif
+
+
+
+!set gl_data=$(gl_traitement[1]),$gl_rcr,$gl_rcd\
+$(gl_traitement[2]),,$gl_pni\
+$(gl_traitement[3]),$gl_cnd,\
+$(gl_traitement[4]),= $(gl_totalr),= $(gl_totald)\
+$(gl_traitement[5]),$gl_egalr $(gl_rfr),$gl_egald $(gl_rfd)\
+
+!readproc slib/text/matrixhtml [$gl_entetes\
+$gl_data],\
+wimsborder,TH=[1;]
+
+!set gl_datas=$gl_css $slib_out

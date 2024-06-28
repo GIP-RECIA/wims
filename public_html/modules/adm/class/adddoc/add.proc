@@ -1,0 +1,79 @@
+!bound step within 0,1 default 0
+
+!if $step=0
+  test=!defof category in wimshome/public_html/modules/$dir/INDEX
+  !if ../adm/ isin ../$dir or $dir=home or \
+      (../devel/ isin ../$dir and $wims_devel_modules notwordof open) or \
+      (document notwordof $test and tool notwordof $test)
+    error=insert_fail
+    !exit
+  !endif
+  !if document iswordof $test
+    !set type=doc
+  !endif
+  !if tool iswordof $test
+    !set type=tool
+  !endif
+  !if $($(type)tot)>=$(max_$(type))
+    error=max$type
+    !exit
+  !endif
+  title=!module title $dir
+  desc=!module description $dir
+  desc=!singlespace $desc
+  desc=!char 1 to $desc_limit of $desc
+  title=!singlespace $title
+  title=!char 1 to $title_limit of $title
+  status=0
+  update=$empty
+  wksheet=0
+  !for i=1 to $($(type)tot)
+    e=!record $i of wimshome/log/classes/$wims_class/$type/.$(type)index
+    !distribute lines $e into wdi,win,otitle
+    !if $dir=$wdi and $iniparm=$win
+      test=$i
+      error=already_exist
+      title=$otitle
+      !exit
+    !endif
+  !next i
+  sdir=$dir
+  siniparm=$iniparm
+!endif
+
+!if $step=1
+  test=!defof category in wimshome/public_html/modules/$sdir/INDEX
+  !if tool iswordof $test
+    !set type=tool
+  !else
+    !set type=doc
+  !endif
+  desc=!singlespace $desc
+  desc=!char 1 to $desc_limit of $desc
+  title=!singlespace $title
+  title=!char 1 to $title_limit of $title
+  !bound status within 0,1 default 0
+  !if $type=tool
+    !reset wksheet
+  !else
+    !bound wksheet within 0 and $nbsheet default 0
+  !endif
+  !if $type=tool and $siniparm!=$empty
+    !set siniparm=cmd=new&$siniparm
+  !endif
+  !appendfile wimshome/log/classes/$wims_class/$type/.$(type)index :$sdir\
+$siniparm\
+$title\
+$desc\
+$status\
+$wksheet\
+
+
+  s$type=!recordcnt wimshome/log/classes/$wims_class/$type/.$(type)index
+  wims_module_log=class $wims_class: add $sdir
+  dir=$sdir
+  iniparm=$siniparm
+  message=$(name_confirm$type)
+  job=prop
+
+!endif

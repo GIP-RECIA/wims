@@ -1,0 +1,37 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Signe d'une fonction polynôme du second degré (illustration)
+!set gl_renew=0
+<style>
+.les3cas {
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+.itemtab{
+margin-right:1em;
+margin-top:1em;
+}
+</style>
+
+!set gl_text1=\begin{matrix}\textrm{signe de}\\a x^2+b x +c\end{matrix}
+!set gl_text2=\begin{matrix}\textrm{signe de}\\a \end{matrix}
+!set gl_text3=\begin{matrix}\textrm{opposé du}\\ \textrm{signe de}\:a\end{matrix}
+
+<div class="les3cas" >
+ <div class="itemtab unbreakable">
+Si \(\increment \lt 0\)
+!readproc slib/function/tabsignes [x,-Inf,,+Inf;$gl_text1,,$gl_text2,]
+$slib_out
+ </div>
+ <div class="itemtab unbreakable">
+  Si \(\increment = 0\)
+!readproc slib/function/tabsignes [x,-Inf,,x_0,,+Inf;$gl_text1,,$gl_text2,0,$gl_text2]
+$slib_out
+ </div>
+ <div class="itemtab unbreakable">
+  Si \(\increment \gt 0\)
+!readproc slib/function/tabsignes [x,-Inf,,x_1,,x_2,,+Inf;$gl_text1,,$gl_text2,0,$gl_text3,0,$gl_text2,]
+$slib_out
+ </div>
+</div>

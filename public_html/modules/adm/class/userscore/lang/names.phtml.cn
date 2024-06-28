@@ -1,0 +1,169 @@
+!set lang_exists=yes
+
+!if $wims_read_parm!=
+ !goto $wims_read_parm
+!endif
+!set name_donchoose=Choix des données
+!set name_studentloc=!nosubst $user_lastname $user_firstname
+!set name_studentglo=!nosubst $wims_name_lastname $wims_name_firstname
+
+!set classname=<span class="wims_emph">$wims_classname</span>,\
+ <span class="wims_emph">$wims_institutionname</span>
+
+!set months=Ò»ÔÂ,¶şÔÂ,ÈıÔÂ,ËÄÔÂ,ÎåÔÂ,ÁùÔÂ,ÆßÔÂ,°ËÔÂ,¾ÅÔÂ,Ê®ÔÂ,Ê®Ò»ÔÂ,Ê®¶şÔÂ
+
+!distribute line °à¼¶Æ½¾ù\
+Æ½¾ù\
+Áã·Ö³ıÍâµÄÆ½¾ù\
+×ÜÆ½¾ù\
+°´×éÆ½¾ù\
+into name_classAverage,name_Average,name_posAverage,name_globalaverage,\
+name_groupAverage
+!set name_dtexolog=Dernier exercice <br>enregistré
+
+!set name_partdeleted=±»É¾µÄ²Î¼ÓÕß
+!set wims_name_reg_ex=¼ÇÂ¼Á·Ï°±í
+!!set name_transfer=´ÓÆäËü°à¼¶×ªÒÆËûµÄ»î¶¯
+
+!!!set name_thsheet=ÏµÁĞºÅ,Ãû³Æ,·ÖÊı<br>ÒªÇó,È¨ÖØ,·ÖÊı<br>µÃµ½,%,ÖÊÁ¿,ÑÏÀ÷¶È,µÃ·Ö,\
+  ×î¸ß·Ö,³¢ÊÔ´ÎÊı,×îĞÂ½á¹û,È¡µÃµÄÑÏÀ÷¶È
+!set name_minmax=°à¼¶µÄ×îµÍ/ÖĞ¼ä/×î¸ß·Ö
+
+!set name_manualscore=½ÌÊ¦ÆÀ·Ö
+!set name_autoscore=WIMS¼ÇÂ¼µÄÆÀ·Ö
+!set name_manual_notes=×Ü·Ö,ÆäËû·Ö,WIMS·Ö
+!set name_examnote=¿¼ÊÔµÃ·Ö
+!set name_auto=Moyenne des notes sur les feuilles et examens pondérée par les poids\
+  attribués à chacune de ces activités.
+
+!set name_severitylevels=×÷ÒµÒ³ÑÏÀ÷¶È
+!set name_formula=ĞòÁĞºÅ,È¨ÖØ,ÑÏÀ÷¶È
+!set name_sheetstatut=×¼±¸ÖĞ,ÒÑ¼¤»î,ÒÑ¹ıÆÚ,Òş²Ø
+
+!distribute items ¿¼ÊÔ,Ò³,Á·Ï°,¿ªÊ¼,µÃ·Ö,»á»°,\
+ Íê³É,µÈ¼ÛÓÚ,Duration\
+into name_Exam,name_Sheet,name_Exercise,name_Start,name_Score,name_Session,\
+name_done,name_equiv,name_Duration
+
+!set name_formula_comment=Äã¿ÉÔÚÒÔÏÂ±í¸ñÀï¶¨Òå×÷ÒµÒ³µÄÑÏÀ÷¶ÈÓëÈ¨ÖØ. \
+×ÜÆÀ·ÖµÄ¼ÆËã½«È¡¼«´óÖµ =
+!set name_formula2=!nosubst ´Ó $scoremax ¼ÆËãµÄ½ÌÊ¦ÆÀ·Ö
+!set name_pickup=Ìô³öÓûÏÔÊ¾µÄÒ³<br>Ò³Æ½¾ù·Ö:
+!set name_warning=ÄãÌá³öÁËÒ»¸ö·Ç·¨µÄÇëÇó.
+
+!set name_click=ÔÚÃû×ÖÉÏµã»÷ÒÔÁË½âÑ§Éú¹¤×÷µÄÏêÇé
+!set name_affi=ÖÊÁ¿,ÒÑ×öµÄ¹¤×÷,µÃ·Ö
+!set name_workdetail=µÄ×÷ÒµµÄÏêÏ¸Çé¿ö
+!set name_activesession=´Ë²Î¼ÓÕßÓĞÒ»¸ö»î¶¯ÖĞµÄ¿¼ÊÔ¶Ô»°
+
+!distribute items Á¬½ÓÖ÷»ú,Ê£ÓàÊ±¼ä, µÄ¿¼ÊÔ¶Ô»°,·Ö\
+into name_connecting,name_remaining_time,name_exam_session,name_minutes
+
+!set name_noyetparticipant=´Ë°à¼¶ÉĞÎŞ²Î¼ÓÕß.
+
+!set name_warning_no_sequence=ÄãÒÑ¾­ÉèÖÃÁËÏµÁĞ, µ«ÊÇÄã»¹Ã»ÓĞ¶¨Òå¹ıÏµÁĞ. Òò´ËÃ»ÓĞ·ÖÊı¿É¹©ÏÔÊ¾.
+
+!if $manual>0
+!set name_manual_explanation=<b>ËµÃ÷.</b> ÔÚ `Average' (Æ½¾ù)À¸Àï, `auto' ÊÇÖ¸×÷ÒµÒ³·ÖÊıµÄÆ½¾ù,\
+ `teacher' ÊÇÖ÷³Ö½ÌÊ¦ÊÖ¹¤ÆÀ·ÖµÄÆ½¾ù, `global' ÊÇ¸ù¾İÕâÁ½¸öÆ½¾ùÓÃÒÔÏÂ¹«Ê½Ëã³öÀ´µÄ:
+
+!endif
+
+!set name_title_showsheet=!nosubst µÚ $numshowsheet Ò³µÄ×÷ÒµÏêÇé<br>$sh_title
+!set name_percentagegot=ÒÑ×ö×÷ÒµµÄ°Ù·Ö±È
+!set name_qualitygot=ÖÊÁ¿ (×î´óÖµ 10)
+!set name_percentagedone=ÒÑ×ö×÷ÒµµÄ°Ù·Ö±È
+!set name_percentagebest=Æ½¾ù×î¼ÑµÃ·Ö
+
+!set name_post=ÏÔÊ¾
+!set name_Post=ÏÔÊ¾
+
+!set name_sheetdetail=µã»÷ÁĞµÄÍ·²¿\
+¿ÉÒÔ¿´µ½ÏàÓ¦Ò³µÄËùÓĞÁ·Ï°µÄËùÓĞ½á¹û.
+!if $job iswordof userprop teacher
+  !distribute items ĞŞ¸Ä,×¢²áºÅ,×¢½â,ÕÕÆ¬µÄurl,±äÁ¿ (¼¼ÊõµÄ),\
+  °à¼¶¿ÚÁî,ÊäÈë²Î¼ÓÕß×¢²áµÄ¿ÚÁî,\
+  Íâ²¿ÑéÖ¤µÄµÇÂ¼,×¢²á,¹ÜÀí,\
+   ±ØĞëµÄ\
+  into name_change,name_regnum,name_comments,name_photourl,name_vars,\
+  name_classpassword,name_enterpassword,name_external_auth,name_inscript,name_gestion,\
+  name_userprop_warning
+  !exit
+!endif
+
+!if $job=examcheck
+ !set name_title_examcheck=!nosubst $name_studentloc µÄ¿¼ÊÔÏêÇé
+ !set name_no_exampart=´Ë²Î¼ÓÕßÃ»ÓĞ²Î¼ÓÈÎºÎ¿¼ÊÔ.
+ !set name_exampart=  ÕâÀïÊÇ´Ë²Î¼ÓÕßµÄ¿¼ÊÔ¶Ô»°. ÔÚÁ·Ï°ÉÏµã»÷ÒÔ¿´ËüµÄÄÚÈİ.
+  !set name_msg_exam_withip=Les notes indiquées avec un symbole &ast; ont été réduites suite à un changement\
+    d'adresse IP pendant la session de l'examen.
+  !set name_real_score=!nosubst $realtsco sans tenir compte du changement d'adresse IP
+ !exit
+!endif
+
+!if $job=getraw
+  !set name_title_getraw=!nosubst $name_studentloc µÄ×÷ÒµµÄÏêÏ¸Çé¿ö<br>(Ô­Ê¼Êı¾İ)
+  !exit
+!endif
+
+!set name_direct_score= Ö±½ÓµÃ·Ö±í
+
+!if $job=csv
+  !distribute lines Äã¿ÉÒÔÏÂÔØÏÂÁĞÎÄ¼ş\
+     ²¢ÓÃÄãÏ²»¶µÄµç×Ó±í¸ñÈí¼ş´ò¿ªËü.\
+    ²Î¼ÓÕßĞÅÏ¢ÒÑ¸Ä±ä\
+    Ìí¼ÓĞÂ²Î¼ÓÕß\
+    ²»ÄÜÌí¼ÓĞÂ²Î¼ÓÕß, ÒòÎªÃ»ÓĞ¿ÉÓÃ¿Õ¼äÁË.\
+    ²Î¼ÓÕßĞÅÏ¢Ã»ÓĞ¸Ä±ä, ÒòÎª×ÜÆÀ·ÖÒÑ¾­ÉÏ´«.\
+    ÔÚÄãµÄÊı¾İÀï, ·şÎñÆ÷¼ÆËãµÄµÃ·Ö(Æ½¾ù·ÖÒÔ¼°×÷ÒµÒ³/¿¼ÊÔµÄµÃ·Ö)½«±»ºöÂÔ, ÒòÎªËüÃÇ²»ÄÜĞŞ¸Ä.\
+    ±»É¾³ıµÄ²Î¼ÓÕßµÄ²»±»¿¼ÂÇµÄÊı¾İ\
+    ÏÂÁĞµÇÂ¼ÃûÒòÎªÌ«¶Ì¶ø²»ÄÜÌí¼Ó\
+    °à¼¶ÄÚÃ»ÓĞÒÔÏÂµÄµÇÂ¼Ãû, ¶øÇÒ²»ÄÜÌí¼Ó, ÕâÊÇÒòÎªÊı¾İÄÚÓĞ²»³ä·Ö/²»ÕıÈ·µÄĞÅÏ¢\
+    °à¼¶ÄÚÃ»ÓĞÒÔÏÂµÄµÇÂ¼Ãû, ¶øÇÒ²»ÄÜÌí¼Ó,  ÕâÊÇÒòÎªÊı¾İËğ»µ»òÃ»ÓĞ¿Õ¼äÁË\
+    Ö»¶ÔÒÑÓĞµÄÀ¸Ä¿¼ÇÂ¼ÈË¹¤×ÜÆÀ·Ö.\
+    ÄãµÄµç×Ó±í¸ñÊı¾İÓë°à¼¶µÄ¼ÇÂ¼Ïà±ÈÃ»ÓĞ·¢ÏÖ¸Ä±ä.\
+    ¼ì²éÈË¹¤ÆÀ·Ö\
+    ÎªÄãµÄµç×Ó±í¸ñÏÂÔØ°à¼¶Êı¾İ, ÇëÑ¡¶¨\
+    ¸ñÊ½\
+    À¸Ä¿\
+    Îª°ÑÄãµÄµç×Ó±í¸ñÊı¾İÉÏ´«µ½°à¼¶, ÇëÑ¡¶¨\
+    Êı¾İÎÄ¼ş\
+    ¿É½ÓÊÜµÄ¸ñÊ½\
+    For the new participants, the password column is compulsory.\
+  into name_file,name_download,name_infochanged,name_added,name_warning1,name_warning2,\
+  name_warning3,name_warning4,name_badlogin,name_nologin1,name_nologin2,name_manual1,name_data1,\
+    name_check,name_data2,name_format,name_column,name_data3,name_data,name_format2,\
+    name_passwarning
+
+  !set name_deposit=!nosubst µç×Ó±í¸ñÎÄ¼ş <span class="tt">$wims_deposit</span> ´¦Àí³É¹¦.
+  !set name_indicateur=Ö¸Ê¾Æ÷
+  !set name_techvar=ÆäËü¹Ø¼ü´Ê
+  !set name_regpropvar=Registration variables
+  !set name_all=ËùÓĞ
+  !set name_allscore=ËùÓĞµÃ·Ö
+  !set name_usedindiv=!nosubst Vous utilisez des variables techniques ($list_sheettechvar) pour individualiser des feuilles de travail actives. La modification de la valeur d'une telle variable\
+technique pour un élève (en utilisant l'importation de la liaison tableur) entraînera la modification du contenu de ces feuilles.\
+Les notes de l'élève relativement à ces feuilles pourront potentiellement changer.
+!endif
+
+!set name_topten=!nosubst °à¼¶µÄÆ½¾ù·Ö×î¸ß $class_topscores ÈË
+
+!if $job=getuser
+  !set name_group=!nosubst (groupe $indtechvarvalue)
+  !set name_withoutgroup=(sans groupe)
+  !set name_deadline=Deadline
+  !! same as freeworks name_givedate
+  !set name_handedin=Last handed in
+  !set name_codownload=Score and remarks visibile (seen)
+  !set name_fwscoring=Manual column
+  !set name_putiworkco=Open for marking
+!endif
+
+!if $job=userexam
+!! TODO_lang 
+  !set name_timeleft=théorique,réel avec les dépendances de score
+!endif
+:end
+!exit
+
+

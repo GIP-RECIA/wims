@@ -1,0 +1,52 @@
+<fieldset class="property_fields blockcenter">
+  <legend>$name_geolocoption</legend>
+!form reply
+  <input type="hidden" name="job" value="geolocoption">
+  $name_geolocoptiondesc
+  <div class="field box">
+    <label for="location">$name_serverlocation</label>
+    <input type="text" size="$desclim" name="location" value="$location" id="location" maxlength="$desclim">
+    <label for="geoloc">$name_geoloc</label>
+    <input type="text" size="50" name="geoloc" value="$geoloc" id="geoloc" maxlength="50" placeholder="X,Y">
+    <div class="formHelp">$name_serverlocation_help</div>
+  </div>
+
+  <div class="field box">
+    <strong>$name_autocompletion</strong>
+    <div class="formHelp">$name_autocompletion_help</div>
+    $table_header
+      <thead>
+      $table_hdtr
+        <th>$wims_name_Language</th>
+        <th>$name_autocompletionscript</th>
+      </tr>
+      </thead>
+      <tbody>
+       !for k=1 to $nblang
+         <tr>
+           <td><label for="up_autocompletion$k">
+             !word $k of $wims_site_languages
+           </label></td>
+           <td>
+             !let n=!itemcnt $geoloclist
+             !default up_autocompletion$k=0
+             !set wims_ref_id=up_autocompletion$k
+             !if $n>5
+               !formselect up_autocompletion$k list 0,$geoloclist prompt $name_noone,$geoloclist
+             !else
+               !formradio up_autocompletion$k list 0,$geoloclist prompt $name_noone,$geoloclist
+             !endif
+           </td>
+           !reset up_autocompletion$k
+       !next k
+      </tbody>
+    $table_end
+  </div>
+  <div class="wimscenter wimsform">
+    <input type="submit" name="save" value="$wims_name_tosave">
+    !set wims_ref_class=wims_button wims_secondary_button
+    !href module=$module&+job=list $wims_name_giveup
+  </div>
+!formend
+</fieldset>
+!reset location geoloc

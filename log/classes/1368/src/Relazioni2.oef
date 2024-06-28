@@ -1,0 +1,84 @@
+\title{Relazioni}
+\language{it}
+\range{-5..5}
+\author{Marina, Cazzola}
+\email{marina.cazzola@unimib.it}
+\computeanswer{no}
+\format{html}
+\precision{10000}
+
+
+
+\integer{n=randint(1..12)}
+\integer{m=randint(1..4)}
+
+\text{insieme=1,2,3,4,5,6}
+\text{elementi=shuffle(\insieme)}
+
+\text{a=item(1,\elementi)}
+\text{b=item(2,\elementi)}
+\text{c=item(3,\elementi)}
+\text{d=item(4,\elementi)}
+\text{e=item(5,\elementi)}
+\text{f=item(6,\elementi)}
+
+\text{rel1=(\a,\a),(\b,\b),(\c,\c),(\d,\d),(\e,\e),(\f,\f)}
+\text{rel2=(\a,\a),(\b,\b),(\c,\c),(\d,\d),(\e,\e),(\f,\f),(\d,\e),(\e,\d)}
+\text{rel3=(\a,\a),(\b,\b),(\c,\c),(\d,\d),(\e,\e),(\f,\f),(\c,\b),(\b,\f),(\f,\c),(\d,\e),(\e,\d)}
+\text{rel4=(\a,\a),(\b,\b),(\c,\c),(\f,\f),(\d,\e),(\e,\d)}
+\text{rel5=(\b,\b),(\c,\c),(\b,\c),(\c,\b),(\d,\e),(\e,\f),(\d,\f)}
+\text{rel6=(\a,\a),(\b,\b),(\c,\c),(\d,\d),(\e,\e),(\f,\f),(\b,\c),(\c,\f)}
+\text{rel7=(\a,\b),(\a,\c),(\b,\c),(\c,\e),(\c,\f),(\f,\e),(\e,\d)}
+\text{rel8=(\a,\a),(\b,\b),(\c,\c),(\d,\d),(\e,\e),(\f,\f),(\d,\a),(\c,\f)}
+\text{rel9=(\a,\b),(\a,\c),(\b,\c),(\c,\f),(\f,\e),(\e,\d),(\d,\d)}
+\text{rel10=(\a,\d),(\a,\e),(\d,\e),(\b,\c),(\b,\f),(\c,\f),(\f,\c)}
+\text{rel11=(\a,\a),(\b,\b),(\d,\d),(\e,\e),(\f,\f),(\d,\e),(\e,\d)}
+\text{rel12=(\a,\a),(\b,\b),(\c,\c),(\d,\d),(\e,\e),(\f,\f),(\c,\b),(\f,\b),(\f,\c),(\d,\e),(\e,\d)}
+
+
+\text{prop1=
+1,1,1,1, 
+1,1,1,0,
+1,0,0,0,
+0,1,0,0,
+0,0,1,0,
+1,0,0,1,
+0,0,0,1,
+1,0,1,1,
+0,0,0,1,
+0,0,1,0,
+0,1,1,0,
+1,0,1,0
+}
+
+\text{testodomanda=riflessiva,simmetrica,transitiva,antisimmetrica}
+
+\text{domanda=item(\m,\testodomanda)}
+
+\text{rel = \n=1? \rel1}
+\text{rel = \n=2? \rel2}
+\text{rel = \n=3? \rel3}
+\text{rel = \n=4? \rel4}
+\text{rel = \n=5? \rel5}
+\text{rel = \n=6? \rel6}
+\text{rel = \n=7? \rel7}
+\text{rel = \n=8? \rel8}
+\text{rel = \n=9? \rel9}
+\text{rel = \n=10? \rel10}
+\text{rel = \n=11? \rel11}
+\text{rel = \n=12? \rel12}
+
+\text{relsorted=wims (sort items \rel)}
+
+\text{risposta=item(4*(\n-1)+\m,\prop1)}
+
+
+\text{testorisposta=\risposta=1? si:no}
+
+\statement{Si consideri l'insieme \(A=\{\insieme\}\). 
+Dire se la seguente relazione su \(A\) è \domanda
+<div class="wimscenter">
+\(R=\{\relsorted\}\)
+</div>}
+
+\choice{\domanda}{\testorisposta}{si,no}

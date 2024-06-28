@@ -1,0 +1,54 @@
+Dérivée et sens de variation d'une fonction
+Sélection d'exercices correspondant à une partie du paragraphe "Fonction dérivée et étude des variations d'une fonction" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+analysis
+functions,real_function,derivative,function_variation
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fonction dérivée et étude des variations d'une fonction" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H5/analysis/derivation1ere.fr
+exo=varTrinome&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Variations 1
+Exercice à 2 étapes:<ol><li>déterminer la <strong>dérivée</strong> d'une fonction du 2nd degré</li> <li>Construire le <strong>tableau</strong> <strong>de signes</strong> de la dérivée et l'interpréter.</li></ol>
+
+
+:H6/analysis/oeftablvar.fr
+exo=deg2&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Variations 2
+Calculer de la <strong>dérivée</strong> d'une fonction polynôme de degré2 et construire son <strong>tableau</strong> de variations.
+
+
+:H5/analysis/OEFevalwimsder1.fr
+exo=signeder2
+10
+1
+Variations 3
+Compléter un tableau de variations <strong>partiellement</strong> rempli.
+
+
+
+
+
+:H5/analysis/OEFevalwimsder1.fr
+exo=signeder3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Variations 4
+Compléter un tableau de variations à partir d<strong>'indications</strong>.
+
+
+:H5/analysis/OEFevalwimsder1.fr
+exo=signeder5
+10
+1
+Variations 5
+Sélectionner les bonnes informations en observant une <strong>courbe</strong>.
+
+

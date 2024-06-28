@@ -1,0 +1,14 @@
+!! Table Sort proc that handle js table sorting
+!! call it with "!read tablesort.phtml"
+
+!if sortable iswordof $table_class
+  !if $tablesort_loaded notsametext yes
+    <script src="scripts/js/tablesort.js"></script>
+    <script src="scripts/js/tablesort.number.js"></script>
+    !set tablesort_loaded=yes
+  !endif
+
+  !if $table_id notsametext $empty
+    <script>new Tablesort(document.getElementById("$table_id"));</script>
+  !endif
+!endif

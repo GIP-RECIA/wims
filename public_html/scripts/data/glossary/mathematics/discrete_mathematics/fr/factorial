@@ -1,0 +1,29 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=combinatorics,factorial
+!set gl_title=Factorielle
+!set gl_level=H6 Générale&nbsp;Spécialité
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(n\) un entier naturel.
+  <br>
+  On appelle <strong>factorielle</strong> de \(n\) le nombre noté \(n!\) défini
+  par&nbsp;:
+  <ul>
+    <li>
+    \(0!=1\)
+    </li><li>
+    et pour tout \(n\in\NN\), \((n+1)!=(n+1)\times n!\).
+    </li>
+  </ul>
+</div>
+<div class="wims_thm">
+  <h4>Théorème</h4>
+  Pour tout entier naturel \(n\) tel que \(n \geqslant 2\),
+  <span style="white-space:nowrap">
+  \(n! = 1 \times 2 \times \ldots \times (n-1) \times n\).</span>
+</div>

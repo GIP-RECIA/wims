@@ -1,0 +1,50 @@
+!!### scoreregform.phtml
+<div class="field box">
+  <label for="allowtechvar">$name_desc_allowtechvar</label>
+  <select id="allowtechvar" name="allowtechvar" onchange="submit()">
+    !let tot=!itemcnt $tv_listcode
+    !for i=1 to $tot
+      !if $(tv_listcode[$i])=$allowtechvar
+        <option value="$(tv_listcode[$i])" selected="selected">$(tv_listname[$i])</option>
+      !else
+        <option value="$(tv_listcode[$i])">$(tv_listname[$i])</option>
+      !endif
+    !next i
+  </select>
+
+  !! table for each value of the technical variable.
+  $table_header
+    <caption>$name_desctableval</caption>
+    <thead>
+      $table_hdtr
+        <th scope="col">$name_value</th>
+        <th scope="col">$name_filtre</th>
+      </tr>
+    </thead>
+    !default allowtechvar=$(tv_listcode[1])
+    !let nb=!positionof item $allowtechvar in $tv_listcode
+    !let don=!line $nb of $tv_listtechvar
+    !distribute item $don into name,classid,number
+    !let don=!record $number of wimshome/log/classes/$classid/.techvar
+    !let listval=!line 2 of $don
+    !let nb=!itemcnt $listval
+    $table_tr
+      <td>$name_EMPTY</td>
+      <td>
+        !read adm/scorerestriction put 0\
+  $(IPlist)
+        !read adm/scorerestriction html 0
+      </td>
+    </tr>
+    !for i=1 to $nb
+      $table_tr
+        <td>$(listval[$i])</td>
+        <td>
+          !read adm/scorerestriction put $i\
+  $(IPtechvar$i)
+          !read adm/scorerestriction html $i
+        </td>
+      </tr>
+    !next i
+  $table_end
+</div>

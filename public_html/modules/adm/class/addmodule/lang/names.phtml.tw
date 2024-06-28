@@ -1,0 +1,50 @@
+!set lang_exists=yes
+
+!set wims_name_sheetcheck=確認清單
+
+!set name_choose= 選擇欲加入作業項目的清單：
+!!set name_title=加入模組到作業清單
+
+!set name_insert= 您想要
+!set name_parm=以原來的參數
+
+!set name_modifytitle=您也可以修改標題及說明內容。.
+
+!set name_required=在這個作業中您要求每位參與者所要獲得的點數為
+!set name_repeat=e每次完全答對習題給 10 點，如果您要參與者重覆練習習題的話，應在這裏提高\
+  點數超過 10 點
+
+!set name_weight=在計算平均時，這個作業所獲點數的加權權值為
+!set name_exotrymax=Maximum number of trials counted
+!set name_exotrymax_hint=Parameter allowing to fix a maximum number <span class="tt">n</span>\
+  of recorded trials in the calculation of the scores during the periods\
+  when recording of scores is open\
+  (the work on the exercise is always possible once this number is exceeded).\
+  Work on a series of exercises is considered a trial,\
+  whether or not a response has been given and\
+  whether the recording of scores has been activated or not.\
+  Score calculation only takes into$ account the scores of the first\
+  <span class="tt">n</span> trials where the recording of scores has been activated.\
+  By default, all record-enabled trials are counted.\
+  Check the compatibility with the number of required points if you put a positive number.
+
+!set name_end=!nosubst 本應用程式 <span class="wims_mod_title">$title</span> 已成功地加入到您課程的清單
+!set name_endallexo=!nosubst a series of exercises was successfully inserted\
+ into$ the <span class="wims_mod_title">$title</span> sheet with the parameters
+!set name_endallexos=!nosubst $addexo series of exercises have been inserted successfully\
+ into$ the <span class="wims_mod_title">$title</span> sheet with the parameters
+!set name_endallexo2s=!nosubst The following $notadd resources could not be inserted because they already exist:
+!set name_endallexo2=!nosubst The following resource could not be inserted because it already exists:
+
+!set name_choose_exo=This resource will be inserted as a new series of sheet exercises.
+!set name_choose_helpexo=This resource will be inserted as a help for one of the sheet exercise sets when the score is less than
+!set name_choose_series=Click on the name of the series of exercises to which to add help
+!set name_actualhelp=Aide actuelle
+!set name_series=Exercise series
+!set name_exo_order=Order of exercises
+!set name_replace_add=Replace,Add
+
+!if $job=addallexo
+  !read oef/en/intronames
+!endif
+

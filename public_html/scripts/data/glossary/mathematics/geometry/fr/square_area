@@ -1,0 +1,21 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=area,measurement
+!set gl_title=Aire d'un carré
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+<div><em>Une unité de longueur étant donnée dans le plan, on considère l'unité d'aire associée.</em></div>
+<div class="spacer">L'aire d'un carré est égale au produit de la longueur du côté par elle-même.</div>
+<div class="spacer">Autrement dit :<br>
+Si \(c\) désigne la longueur du côté du carré et <strong>\(A\)</strong> l'aire de ce carré, alors&nbsp;:<br></div>
+<div class="wimscenter">\(A=c \times c\) <br>
+\(A=c^2\)
+</div>
+</div>
+
+:mathematics/geometry/fr/square_area_1

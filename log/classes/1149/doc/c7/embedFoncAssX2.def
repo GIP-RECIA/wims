@@ -1,0 +1,162 @@
+!set titb=Fonctions associées à la fonction carré
+!set keyw=
+!set datm=20210829
+!set prev=
+!set next=embedFoncAssR
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<ul class="wims_nopuce"><li>
+  <div class="wims_columns">
+  <div class="medium_size">
+  Si 
+!insmath f
+ est définie par 
+!insmath f(x)=-x^2
+, alors
+  
+!insmath C_f
+ est l'image de 
+!insmath C_r
+ par la symétrie orthogonale par rapport à l'axe horizontal 
+!insmath (O ; \vec{i})
+.
+  </div><div class="medium_size">
+  
+!read primitives.phtml 1, draw, 140,160, xrange = -7,7	  yrange=-8,8	  arrow -7,0,7,0,10,black	  arrow 0,-8,0,8,10,black	  text red,2,3,large,r	  text green,2,-2,large,f	  plot red,x^2	  plot green,-x^2	   
+
+</div></div></li><li>
+  <div class="wims_columns">
+  <div class="medium_size">
+  Si 
+!insmath f
+ est définie par 
+!insmath f(x)=a x^2
+ alors
+  
+!insmath C_f
+ est l'image de 
+!insmath C_r
+ par une dilatation verticale de coefficient
+  
+!insmath a
+,
+  autrement dit les ordonnées sont multipliées par 
+!insmath a
+.
+  </div><div class="medium_size">
+  
+!read primitives.phtml 2, draw, 140,160, xrange = -7,7	  yrange=-2,14	  arrow -7,0,7,0,10,black	  arrow 0,-2,0,14,10,black	  text red,2.5,3,large,r	  text green,2.5,13,large,f	  plot red,x^2	  plot green,3*x^2	  dline 2,0,2,12, black	   
+</div></div>
+  </li><li>
+  <div class="wims_columns ">
+  <div class="medium_size text_col">
+  Si 
+!insmath f
+ est définie par 
+!insmath f(x) = x^2 + y_S
+, alors
+  
+!insmath C_f
+ est l'image de 
+!insmath C_r
+ par la translation de vecteur 
+!insmath y_S \vec{j}
+.
+  </div><div class="medium_size img_col">
+  
+!read primitives.phtml 3, draw, 140,140, xrange = -7,7	  yrange=-2,12	  arrow -7,0,7,0,10,black	  arrow 0,-2,0,12,10,black	  text red,2,3,large,r	  text green,1,8,large,f	  plot red,x^2	  plot green,x^2+2	   
+
+  </div></div>
+ </li><li>
+  <div class="wims_columns">
+  <div class="medium_size text_col">
+  Si 
+!insmath f
+ est définie par 
+!insmath f(x) = (x + m)^2
+, alors
+  
+!insmath C_f
+ est l'image de 
+!insmath C_r
+ par la translation de vecteur 
+!insmath -m
+ 
+!insmath \vec{i}
+.
+  </div><div class="medium_size img_col">
+  
+!read primitives.phtml 4, draw, 140,140, xrange = -9,5	  yrange=-2,12	  arrow -9,0,5,0,10,black	  arrow 0,-2,0,12,10,black	  text red,2,3,large,r	  text green,-6,3,large,f	  plot red,x^2	  text black,-4,-0.1,large,-m	  plot green,(x+3)^2	   
+
+  </div></div></li><li>
+  <div class="wims_columns">
+  <div class="medium_size text_col">
+  Si 
+!insmath f
+ est définie par 
+!insmath f(x) = (x - x_S)^2
+, alors
+  
+!insmath C_f
+ est l'image de 
+!insmath C_r
+ par la translation de vecteur 
+!insmath x_S
+ 
+!insmath \vec{i}
+.
+  </div><div class="medium_size img_col">
+  
+!read primitives.phtml 5, draw, 140,140, xrange = -5,9	  yrange=-2,12	  arrow -5,0,9,0,10,black	  arrow 0,-2,0,12,10,black	  text red,-3,3,large,r	  text green,5,3,large,f	  plot red,x^2	  text black,3,0,large,x	  text black,4,-0.5,medium,S	  plot green,(x-3)^2	   
+
+  </div></div></li><li>
+  <div class="wims_columns">
+  <div class="medium_size text_col">
+  Si 
+!insmath f
+ est définie par 
+!insmath f(x) = (x - x_S)^2 + y_S
+, alors
+  
+!insmath C_f
+ est l'image de 
+!insmath C_r
+ par la translation de vecteur 
+!insmath x_S
+ 
+!insmath \vec{i} +
+ 
+!insmath y_S
+ 
+!insmath \vec{j}
+.
+  </div><div class="medium_size img_col">
+  
+!read primitives.phtml 6, draw, 140,140, xrange -5,9	  yrange -2,12	  arrow -5,0,9,0,10,black	  arrow 0,-2,0,12,10,black	  text red,-3,3,large,r	  text green,6,6,large,f	  plot red,x^2	  dline 0,3,4,3,black	  dline 4,0,4,3,black		  text black,4,0,large,x	  text black,5,-0.5,medium,S	  text black,-1.5,4,large,y	  text black,-0.5,3.5,medium,S		  plot green,(x-4)^2+3 
+
+  </div></div></li><li>
+  <div class="wims_columns">
+  <div class="medium_size text_col">
+  Si 
+!insmath f
+ est définie par 
+!insmath f(x) = a (x - x_S)^2 + y_S
+, alors
+  
+!insmath f(x_S + 1) - f(x_S) = a
+.
+  </div><div class="medium_size text_col">
+  
+!read primitives.phtml 7, draw, 140,140, xrange = -2,2	  yrange=-2,8	  line -2,0,2,0,black	  text black,-1.5,2.5,large,a	  text black,1.2,2.5,large,a	  text green,1,5,large,f	  dline 1,0,1,3,black	  dline -1,0,-1,3,black	  text black,0.5,-0.1,large,1	  text black,-0.7,-0.1,large,1	  text black,0,1,large,S	  text black,-0.9,3.5,large,A'	  text black,0.7,3.5,large,A		  plot green,3*x^2	   
+
+  </div></div>
+</li></ul>
+

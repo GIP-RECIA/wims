@@ -1,0 +1,35 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=line_equation,analytic_geometry,direction
+!set gl_title=Coefficient directeur d'une droite
+!set gl_level=H4
+:
+:
+:
+:
+Le plan est muni d'un repère.
+
+<div class="wims_thm"><h4>Théorème 1</h4>
+Soit \(\mathcal{D}\) une droite du plan non parallèle à l'axe des ordonnées.<br>
+Il existe un unique couple de réels \((m,p)\) tel que la droite \(\mathcal{D}\)
+ait pour équation réduite <span style="white-space:nowrap">\(y=m x + p\).</span>
+</div>
+<div class="wims_defn"><h4>Définition</h4>
+Le réel \(m\) est appelé <strong>coefficient directeur</strong> de la droite
+<span style="white-space:nowrap">\(\mathcal{D}\).</span></div>
+<div class="wims_thm"><h4>Théorème 2</h4>
+Soit \(\mathcal{D}\) et \(\mathcal{D}'\) deux droites du plan non parallèles à
+l'axe des ordonnées.<br>
+\(\mathcal{D}\) et \(\mathcal{D}'\) sont parallèles si et seulement si elles ont
+le même coefficient directeur.</div>
+<div class="wims_thm"><h4>Théorème 3</h4>
+Soit \(\mathcal{D}\) une droite du plan non parallèle à l'axe des ordonnées, et
+A et B deux points distincts de \(\mathcal{D}\) de coordonnées respectives
+\((x_\mathrm{A}\,;y_\mathrm{A})\) et <span style="white-space:nowrap">
+\((x_\mathrm{B}\,;y_\mathrm{B})\).</span><br>
+Le coefficient directeur de la droite \(\mathcal{D}\) est le réel \(m\) tel
+que&nbsp;:
+<div class="wimscenter">
+\(m=\frac{y_\mathrm{B}-y_\mathrm{A}}{x_\mathrm{B}-x_\mathrm{A}}\).
+</div>
+</div>

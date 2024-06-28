@@ -1,0 +1,49 @@
+!if $wims_user=supervisor
+  !exit
+!endif
+!distribute items 9,9 into bar_scoreexo_limit, exo_bar_quallimit
+!if $wims_theme=default
+  !set float=
+!else
+  !set float=float_right
+!endif
+!if $wims_read_parm!=$empty
+  !set se=$wims_read_parm
+!endif
+!if $scoremax=
+  !set tmp=!record 0 of wimshome/log/classes/$wims_class/sheets/.severity
+  !set scoremax=!line 1 of $tmp
+  !reset tmp
+!endif
+!default scoremax=10
+
+!set logdir=$wims_home/log/classes/$wims_class/examlog/$wims_user
+!set checksessions=!sh if [ -d $logdir ]; then cd $logdir; ls -tr; fi
+!set checksessions=!words2items $checksessions
+!readproc adm/class/userscore1 $wims_user
+!set sess_$se=!listuniq $(sess_$se)
+!set tmp=!listuniq $(sess_$se)
+<div class="wims_score_bar $float">
+<ol>
+!for j in $tmp
+  !ifval $[$(score$(j)_$se)] > $bar_scoreexo_limit
+    !set exo_class=wims_exo_done wims_congratulation, $wims_name_exo_congratulation
+  !else
+    !set exo_class=wims_exo_done
+  !endif
+  !if $class_examscore_withoutip!=yes
+    !let tmpsco=$(scoreip$(j)_$se)
+  !else
+    !let tmpsco=$(score$(j)_$se)
+  !endif
+  !readproc adm/class/colors $[$tmpsco]
+  <li class="$(exo_class[1])" style=$style_note>
+  <a
+    title="$(exo_class[2]) $(wims_name_thsheet[9]):$[rint($tmpsco*10*$scoremax)/100]/$scoremax">
+    $[$(score$(j)_$se)]
+  </a>
+  </li>
+!next
+</ol>
+</div>
+!!## bar end

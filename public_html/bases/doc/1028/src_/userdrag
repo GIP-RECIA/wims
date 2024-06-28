@@ -1,0 +1,12 @@
+User drags
+:drag segment
+drag xy
+segment 0,0,2,2,blue
+:drag line
+linewidth 4
+drag xy
+line 0,0,2,2,blue
+:drag poly
+drag xy
+fpoly red,0,0,2,3,3,0,3,-3
+:fine:fine

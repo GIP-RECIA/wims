@@ -1,0 +1,21 @@
+
+!if $wims_user!=supervisor
+  !exit
+!endif
+etest=!record 0 of wimshome/log/classes/$wims_class/.parmreg/$getuser.exam
+!distribute words $etest into ehost,esession,etime,esheet
+!if $esheet!=$empty
+  etest=!fileexists wimshome/sessions/$esession/var.stat
+  !if $etime<$wims_nowseconds or $etest!=yes
+    !sh rm -f $wims_home/log/classes/$wims_class/.parmreg/$getuser.exam
+    !reset ehost,esession,etime,esheet,eremain
+  !else
+    eremain=$[$etime-$wims_nowseconds]
+    eremain2=!record 0 of wimshome/sessions/$esession/examdepend.$esheet
+    !default eremain2=$etime
+    eremain2=$[max($eremain2-$wims_nowseconds,0)]
+    !if $eremain2=$eremain
+      !reset eremain2
+    !endif
+  !endif
+!endif

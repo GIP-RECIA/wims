@@ -1,0 +1,110 @@
+/* Sign table, by Gilles Marbeuf.
+   See slib/functions/tabsignes  */
+
+.tabsignes {
+  border-collapse: collapse;
+  border: 1px solid #777;
+  background-color: white;
+  text-align: center
+}
+.tabsignes thead,.tabsignes tbody{
+  border: none
+}
+table.tabsignes>tbody>tr,table.tabsignes>thead>tr{
+  border-bottom: 1px solid #777
+}
+.tabsignes th{
+  font-weight: normal;
+}
+.tabsignes thead td{
+  font-weight: normal;
+}
+.tabsignes td{
+  padding: 4px;
+}
+
+.tab_fonc{
+  border-right: 1px solid #777
+}
+.tab_borneinf{
+  padding-left: 3px;
+  text-align: left
+}
+.tab_bornesup{
+  padding-right: 3px;
+  text-align: right
+}
+.tab_sign_plus,.tab_sign_moins{
+  padding-right: 8px;
+  padding-left: 8px
+}
+
+/* Double barre verticale = indique une division par zéro. */
+.tab_db,.tab_dbl,.tab_dbr {
+  background-image: url('../../../gifs/mathfonts/69/Vert_.gif');
+  background-repeat: repeat-y
+}
+.tab_db {
+  background-position: center;
+  /*padding-left: 15px;
+  padding-right: 15px*/
+}
+.tab_dbl{
+  background-position: 10% 0
+}
+.tab_dbr{
+  background-position: 90%
+}
+/* Double barre avec demi fond gris */
+.tab_db_ndefl, .tab_db_ndefr, .tab_dbl_ndefr, .tab_dbr_ndefl {
+  background-image: url('../../../gifs/mathfonts/69/Vert_.gif'),url('../../../gifs/ndef.png');
+  background-repeat: repeat-y,repeat-y
+}
+.tab_db_ndefl{
+  background-position: center,left;
+  /*background-size: auto,50%*/
+  background-size: auto,45%;
+}
+.tab_db_ndefr{
+  background-position: center,right;
+  /*background-size: auto,50%*/
+  background-size: auto,45%;
+}
+.tab_dbl_ndefr{
+  /*background-position: 4px 0,right*/
+  background-position: 10%,right;
+  background-size: auto,80%;
+}
+.tab_dbr_ndefl{
+  background-position: 90%,left;
+  background-size: auto,80%;
+}
+/* fond gris */
+.tab_ndef{
+  /*background-color:#CCC;*/
+  background-color:#D0D0D0;
+  min-width: 1em;
+}
+/* pointillés */
+.tab_dot{
+  background-image: url('../../../gifs/mathfonts/63/vdots.gif');
+  background-repeat: repeat-y;
+  background-position: center
+}
+/* pointillés + fond gris */
+.tab_dot_ndefl,.tab_dot_ndefr,.tab_dot_ndeflr {
+  background-image: url('../../../gifs/mathfonts/63/vdots.gif'),url('../../../gifs/ndef.png');
+  background-repeat: repeat-y,repeat-y
+}
+.tab_dot_ndefl{
+  background-position: center,left;
+  background-size: auto,50%
+}
+.tab_dot_ndefr{
+  background-position: center,right;
+  background-size: auto,50%
+}
+.tab_dot_ndeflr{
+  background-position: center,center;
+  background-size: auto,cover
+}

@@ -1,0 +1,28 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=combinatorics,combination
+!set gl_title=Combinaison
+!set gl_level=H6 Générale&nbsp;Spécialité
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(n\) un entier naturel non nul et \(E\) un ensemble à \(n\) éléments.
+  <br>
+  Soit \(p\) un entier naturel compris entre 0 et \(n\).
+  <br>
+  On appelle <strong>\(p\)-combinaison</strong> de \(E\) ou <strong>combinaison
+  </strong> de \(p\) éléments de \(E\) tout sous-ensemble de \(E\) à \(p\)
+  éléments.
+</div>
+<div class="wims_thm">
+  <h4>Théorème</h4>
+  Soit \(n\) un entier naturel non nul et \(E\) un ensemble à \(n\) éléments.
+  <br>
+  Soit \(p\) un entier naturel compris entre 0 et \(n\).
+  <br>
+  Le nombre de \(p\)-combinaisons de \(E\) est égal au coefficient binomial
+  <span style="white-space:nowrap">\(\displaystyle{\binom{n}{p}}\).</span>
+</div>

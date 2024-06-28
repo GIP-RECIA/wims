@@ -1,0 +1,43 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=arithmetic,gcd_lcm
+!set gl_title=PPCM (Plus petit commun multiple) de deux entiers naturels non nuls
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(a\) et \(b\) deux entiers naturels non nuls.<br>
+Le <strong>PPCM</strong> de \(a\) et \(b\) est le plus petit des multiples
+communs à \(a\) et à <span style="white-space:nowrap">\(b \).</span>
+</div>
+<div class="wims_rem">
+<h4>Remarque</h4>
+Si \(a\) est un multiple de \(b\) alors le PPCM de \(a\) et \(b\) est égal à
+<span style="white-space:nowrap">\(a\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème 1</h4>
+Soit \(a\) et \(b\) deux entiers naturels non nuls, \(d\) leur PGCD, \(m\) leur
+ PPCM.<br>
+Alors&nbsp;: \(m \times d = a \times b\).
+</div>
+<div class="wims_rem">
+<h4>Méthodes de détermination du PPCM \(m\) de deux entiers naturels non nuls
+\(a\) et <span style="white-space:nowrap">\(b\) :</span></h4>
+<ul>
+<li>on décompose chacun des deux entiers \(a\) et \(b\) en produit de nombres
+premiers&nbsp;; \(m\) est égal au produit des nombres premiers apparaissant dans
+l'une au moins des deux décompositions, chacun d'eux étant affecté du plus grand
+des deux exposants&nbsp;;</li>
+<li>on détermine le PGCD de \(a\) et \(b\) et on utilise le théorème 1.</li></ul>
+</div>
+<div class="wims_thm">
+<h4>Théorème 2</h4>
+Soit \(a\) et \(b\) deux entiers naturels non nuls.<br>
+L'ensemble des multiples communs à \(a\) et à \(b\) est l'ensemble des multiples
+de leur PPCM.
+</div>
+:mathematics/arithmetic/fr/lcm_1

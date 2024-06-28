@@ -1,0 +1,34 @@
+Principio di induzione
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+recurrence
+Marina, Cazzola
+wims@unimib.it
+
+
+:H5/analysis/suites.fr
+exo=suites_rel_rec_par&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=2&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Individuare il termine di una sequenza (in Francese)
+In una sequenza definita passo passo per ricorrenza, individuare alcuni termini.
+
+:H5/analysis/suites.fr
+exo=somme_entier&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=2&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Somma di naturali consecutivi (in Francese)
+Individuare la somma di un certo insieme di numeri naturali consecutivi.
+
+
+module=adm/doc&doc=c1&block=ricorrenza&cmd=new&job=read,10,0
+:H6/analysis/scenarineq.it
+exo=quad1&style=1&level=2
+10
+1
+Argomentare
+Le proprietà formali delle operazioni ci permettono di costruire argomentazioni valide per qualsiasi numero. Riconoscere se una certa argomentazione è corretta o meno.
+

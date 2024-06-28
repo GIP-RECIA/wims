@@ -1,0 +1,19 @@
+!! ce fichier permet d'afficher le source de la feuille
+!!!### langage independant
+
+
+!if $exocnt<=0
+  !let error=srcnoexo
+  <div class="wims_msg alert">
+  !read lang/msg.phtml.$moduclass_lang
+  </div>
+  !goto end
+!endif
+
+<p>$name_getsource</p>
+<div class="field box"><textarea class="wims_source" readonly rows="15">
+!read wimshome/$wims_sesdir/home_sheet.src
+</textarea></div>
+
+:end
+!let wims_menu_items=!append line sheetadmin,1,cmd=resume to $wims_menu_items

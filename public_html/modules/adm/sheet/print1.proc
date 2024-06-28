@@ -1,0 +1,59 @@
+!for j=1 to $n
+  iii=$j
+  l=!record $j of $data
+  !distribute lines $l into m_,p_,r_,w_,title_$j,d_
+  !!! hack for multi-language: the file var.proc of the module is not read -
+  !!! this means that all other options in this var.proc are not taken in account
+  !reset oefenv_lang
+  test_lang=!module language $m_
+  test_tr_lang=!module translation_language $m_
+  !if $lang iswordof $test_tr_lang $test_lang
+    oefenv_lang=$lang
+  !endif
+  module_$j=$m_
+  wims_trustfile=oef/togetfile.proc
+  !read imagedir.proc
+  test=!module category $m_
+  test2=!filelist $(Class_header)src/*.oef
+  !!!if (../classes/ isin ../$m_ or oef isin $test ) and $test2!=$empty
+  p_=!translate internal +&= to $ \
+$ $ in $p_
+  t_=!linecnt $p_
+  e=
+  qnum=
+  !for k=1 to $t_
+    l_=!line $k of $p_
+    !distribute words $l_ into n_,v_
+    !if $n_=exo
+      e=!append item $v_ to $e
+    !endif
+    !if $n_=qnum
+      qnum=$v_
+    !endif
+  !next k
+  !default qnum=1
+  !if $e=$empty
+    !reset exolist
+    wims_prefix=
+    !read $(class_header)Exindex
+    wims_prefix=$wims_prefix2
+    e=$exolist
+  !endif
+  e_cnt=!itemcnt $e
+  e__=!shuffle $e_cnt
+  e__=$(e[$e__])
+  e_cnt=!itemcnt $e__
+  !for l=1 to $qnum
+    module_$iii=$(module_$j)
+    title_$iii=$(title_$j)
+    question_$iii=
+    e_$iii=$(e__[$[$l%$e_cnt + 1]])
+    e_=$(e_$iii)
+    !reset question testcondition format
+    thisexo=$e_
+    !readproc imagedir.proc
+    !read oef/printanalysis.proc
+    !increase iii
+    !reset e__
+  !next
+!next

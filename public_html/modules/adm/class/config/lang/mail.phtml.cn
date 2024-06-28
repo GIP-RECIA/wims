@@ -1,0 +1,21 @@
+
+!mailto $sup_email\
+\
+Code for class configuration\
+\
+<p>\
+你请求对你的虚拟班\
+$httpd_HTTP_HOST 的 $wims_classname 进行配置,\
+但没有定义安全主机.\
+</p>\
+\
+<p>这里是供此目的使用的密码(一次性立即使用): <strong>$code</strong></p>\
+\
+<p>你可以把这个密码输入以进入配置工具.</p>\
+\
+<p>\
+如果你看了此信莫名其妙, 那你的主持教师密码一定已经泄露.\
+请立即修改你的密码.</p>\
+\
+<p style="text-align:right">$wims_site_manager</p>\
+

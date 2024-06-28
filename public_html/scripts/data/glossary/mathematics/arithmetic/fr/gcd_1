@@ -1,0 +1,112 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=PGCD (Plus Grand commun diviseur) de deux entiers naturels non nuls (exemple)
+
+!readproc data/glossary/mathematics/arithmetic/macro/decomposition
+<div>
+Soit \(a\) et \(b\) les nombres entiers distincts définis par \(a=$gl_nbaff1\)
+et <span style="white-space:nowrap">\(b=$gl_nbaff2\).</span> Déterminons le PGCD
+de \(a\) et \(b\) de trois façons différentes&nbsp;:
+</div>
+<ul>
+  <li>
+  	<h4 style="margin-top:0.5em;margin-bottom:0.5em">En explicitant l'ensemble
+    des diviseurs de chaque nombre \(a\) et
+    <span style="white-space:nowrap">\(b\) :</span></h4>
+    <div>
+  	L'ensemble des diviseurs de \($gl_nbaff1\) est
+    <span style="white-space:nowrap">\(\left\{ $gl_divaff1\right\}\).</span>
+  	</div>
+  	<div>
+  	L'ensemble des diviseurs de \($gl_nbaff2\) est
+    <span style="white-space:nowrap">\(\left\{ $gl_divaff2\right\}\).</span>
+  	</div>
+  	<div>
+  	Le PGCD de \(a\) et \(b\) est le plus grand élément commun à ces deux
+    ensembles. Le PGCD de \($gl_nbaff1\) et \($gl_nbaff2\) est donc
+    <span style="white-space: nowrap;">\($gl_pgcdaff \).</span>
+  	</div>
+  </li>
+  <li>
+    <h4 style="margin-top:0.5em;margin-bottom:0.5em">En décomposant chaque nombre
+    \(a\) et \(b\) en produit de facteurs premiers&nbsp;:</h4>
+    <div>
+    !if $gl_estpremier1=1
+      \($gl_nbaff1\) est premier, sa décomposition en facteurs premiers est donc
+       <span style="white-space:nowrap">\($gl_nbaff1 = $gl_decomp1\).</span>
+    !else
+      La décomposition du nombre \($gl_nbaff1\) en produit de facteurs premiers
+      est <span style="white-space:nowrap">\($gl_nbaff1 = $gl_decomp1\).</span>
+    !endif
+    </div>
+    <div>
+    !if $gl_estpremier2=1
+      \($gl_nbaff2\) est premier, sa décomposition en facteurs premiers est donc
+       <span style="white-space:nowrap">\($gl_nbaff2 = $gl_decomp2 \).</span>
+    !else
+      La décomposition du nombre \($gl_nbaff2\) en produit de facteurs premiers
+      est <span style="white-space:nowrap">\($gl_nbaff2 = $gl_decomp2 \).</span>
+    !endif
+    </div>
+    <div>
+    Le PGCD de \($gl_nbaff1\) et \($gl_nbaff2\) est donc égal à
+    !if $gl_pgcd !=1
+      \($gl_decomp3\) soit <span style="white-space: nowrap;">\($gl_pgcdaff\).</span>
+    !else
+      <span style="white-space: nowrap;">\($gl_pgcdaff\).</span>
+    !endif
+    </div>
+  </li>
+  <li>
+    <h4 style="margin-top:0.5em;margin-bottom:0.5em">Avec l'algorithme
+    d'Euclide&nbsp;:</h4>
+    <div class="grid-container fluid" >
+      <div class="grid-x grid-margin-x">
+        <div class="cell small-12 medium-5 large-5">
+          <div style="overflow-x:auto;">
+          <table>
+            !for gl_ii=1 to $(gl_dim[1])
+              <tr>
+              !for gl_jj=1 to $[$(gl_dim[2])+3]
+                !if $[$gl_jj%2]=0
+                  <td>
+                  \(\;$(gl_operation[$[$gl_jj/2]])\;\)
+                  </td>
+                !else
+                  <td class="float_right
+                    !if $gl_ii=$[$(gl_dim[1])-1] and $gl_jj=7
+                      oef_indbad
+                    !endif
+                  ">
+                  !set gl_euc_temp=$(gl_eucmat[$gl_ii;$[($gl_jj+1)/2]])
+                  !if $gl_euc_temp>=1000
+		           !readproc slib/numeration/ecriturenombre $gl_euc_temp,tex
+		           !set gl_euc_temp=$slib_out
+		           \($gl_euc_temp\)
+		          !else
+		           \($gl_euc_temp\)
+		          !endif
+                  </td>
+                !endif
+              !next $gl_jj
+              </tr>
+            !next $gl_ii
+          </table>
+          </div>
+        </div>
+        <div class="cell small-12 medium-7 large-7">
+        !if $gl_nb1=$gl_pgcd || $gl_nb2=$gl_pgcd
+          \($gl_maxaff\) étant un multiple de
+          <span style="white-space: nowrap;">\($gl_minaff\),</span> le PGCD de
+          \($gl_nbaff1\) et \($gl_nbaff2\) est donc égal à
+          <span style="white-space: nowrap;">\($gl_pgcdaff\).</span>
+        !else
+          Le PGCD de \($gl_nbaff1\) et \($gl_nbaff2\) est le dernier reste non
+          nul de l'algorithme d'Euclide, il est donc égal à
+          <span style="white-space: nowrap;">\($gl_pgcdaff \).</span>
+        !endif
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

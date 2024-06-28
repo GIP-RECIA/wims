@@ -1,0 +1,26 @@
+!set list_attribut=!record 0 of wimshome/public_html/themes/icon
+!set list_attribut=!lines2items $list_attribut
+
+!if $list_attribut=$empty
+  !exit
+!endif
+!set list_attribut_=,$list_attribut
+<label for="mod_attribut">$wims_name_attribut</label>
+  <select name="mod_attribut" id="mod_attribut">
+!for i in $list_attribut_
+    <option value="$i"
+  !if $i=$attribut_
+      selected="selected"
+  !endif
+    >$i</option>
+!next
+  </select>
+  $ $ <i class="text_icon icon_$attribut_" id="mod_icon_preview"> </i>
+!if $jquery_defined=yes
+  <script>
+    $$("#mod_attribut").change(function() {
+      document.getElementById("mod_icon_preview").className="text_icon icon_"+$$("#mod_attribut>option:selected").val();
+    });
+  </script>
+!endif
+<div class="formHelp">$wims_name_attribut_help</div>

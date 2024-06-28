@@ -1,0 +1,54 @@
+Multiplications #3
+games with multiplications
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation,fraction
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:H3/algebra/arithtable.en
+exo=partial2x3&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 1
+Drag the fractions into the table so that the products of the rows and of the columns are the given numbers.
+
+:H3/algebra/arithtable.en
+exo=table2x4&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 2
+Drag all the fractions into the table so that the products of the rows and of the columns are the given numbers.
+
+:H3/algebra/arithtable.en
+exo=typed2x3&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 3
+Find the missing fractions in the table so that products of the rows and of the columns are the given numbers.
+
+:H3/algebra/arithtable.en
+exo=partial3x4&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 4
+Drag the missing fractions into so that products of the rows and of the columns are the given numbers. Carefull: the numbers are getting bigger and bigger!
+
+:H3/algebra/arithtable.en
+exo=table3x5&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 5
+Again, drag the missing fractions into so that products of the rows and of the columns are the given numbers. Carefull: the numbers are getting bigger and bigger!
+
+
+:H3/algebra/arithtable.en
+exo=typed3x4&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 6
+Find all the missing fractions in the table so that products of the rows and of the columns are the given numbers. Carefull: the numbers are getting bigger and bigger!
+

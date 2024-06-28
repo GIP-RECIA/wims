@@ -1,0 +1,13 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Barycentre (exemple)
+
+!readproc data/glossary/mathematics/geometry/macro/barycenter
+
+<p>Le barycentre \(G\) du système de points pondérés
+  \(\left\lbrace (A, $(gl_coeff[1])), (B, $(gl_coeff[2])), (C, $(gl_coeff[3])) \right\rbrace\) est le point \(G\) tel que
+<span class="nowrap">\($(gl_coeff[1])\overrightarrow{G A} + $(gl_coeff[2])\overrightarrow{G B} + $(gl_coeff[3])\overrightarrow{G C}=\overrightarrow{0}\).</span>
+</p>
+$gloss_out1
+Chercher les nombres $gl_coeff dans le partage des segments $\([A B]\)$, $\([B C]\)$ et $\([C A]\)$
+par les segments coloriés en gras.

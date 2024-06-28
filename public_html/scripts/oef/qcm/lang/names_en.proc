@@ -1,0 +1,18 @@
+
+!set name_exo_type=Exercice mode
+
+!set name_exo_type_prompt=Continuing questions,Random questions
+
+!set name_questions_bank=Questions Bank
+!set name_difficult_bank=Banks marked by a * are in general harder than the others.
+!set name_Remark=Remark
+!set name_display_auto_bank=Display only bank(s) containing
+!set name_bank_containing=Bank(s) containing
+!set name_select_auto_bank=Select bank(s) containing
+!set name_nb_pages=Number of pages
+
+!set name_remark_shuffle_bank=The banks will be randomly selected from your selection \
+(or otherwise from among all the available banks if you didn't select any).
+
+!set name_questions_per_page=Questions per page
+!set name_questions_per_page_help=A page displays questions from a same bank.

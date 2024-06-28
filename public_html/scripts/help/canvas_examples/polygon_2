@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+opacity 255,25
+fillcolor orange
+filled
+linewidth 1
+onclick
+poly green,0,0,1,3,3,1,2,4,-1,3

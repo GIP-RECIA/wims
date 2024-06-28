@@ -1,0 +1,214 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=Georges, Khaznadar
+slib_license=GPL
+slib_title=Data about nucleides, or LaTeX typesetting
+
+slib_example=H\
+17\
+6\
+H, tex 13, +\
+6, tex\
+6, tex 13\
+Pu, tex\
+Pu, tex 239
+!exit
+
+:proc
+slib_data=$wims_read_parm
+nb_data = !itemcnt $slib_data
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! cette table des nucleides a été extraite du service
+!! web http://nucleardata.nuclear.lu.se/toi/listnuc.asp?sql=
+!! le 7 juillet 2020, et retraitée à l'aide d'un programme
+!! en Python. Les éléments de 110 (Ds) à 118 (Og) ont été
+!! repris de la page https://iupac.org/what-we-do/periodic-table-of-elements/
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+slib_nucleides=1, H, 1, 99.985, 2, 0.015\
+2, He, 3, 0.000137, 4, 99.999863\
+3, Li, 6, 7.5, 7, 92.5\
+4, Be, 9, 100.0\
+5, B, 10, 19.9, 11, 80.1\
+6, C, 12, 98.9, 13, 1.1\
+7, N, 14, 99.634, 15, 0.366\
+8, O, 16, 99.762, 17, 0.038, 18, 0.2\
+9, F, 19, 100.0\
+10, Ne, 20, 90.48, 21, 0.27, 22, 9.25\
+11, Na, 23, 100.0\
+12, Mg, 24, 78.99, 25, 10.0, 26, 11.01\
+13, Al, 27, 100.0\
+14, Si, 28, 92.23, 29, 4.67, 30, 3.1\
+15, P, 31, 100.0\
+16, S, 32, 95.02, 33, 0.75, 34, 4.21, 36, 0.02\
+17, Cl, 35, 75.77, 37, 24.23\
+18, Ar, 36, 0.337, 38, 0.063, 40, 99.6\
+19, K, 39, 93.2581, 40, 0.0117, 41, 6.7302\
+20, Ca, 40, 96.941, 42, 0.647, 43, 0.135, 44, 2.086, 46, 0.004, 48, 0.187\
+21, Sc, 45, 100.0\
+22, Ti, 46, 8.0, 47, 7.3, 48, 73.8, 49, 5.5, 50, 5.4\
+23, V, 50, 0.25, 51, 99.75\
+24, Cr, 50, 4.345, 52, 83.789, 53, 9.501, 54, 2.365\
+25, Mn, 55, 100.0\
+26, Fe, 54, 5.8, 56, 91.72, 57, 2.2, 58, 0.28\
+27, Co, 59, 100.0\
+28, Ni, 58, 68.077, 60, 26.223, 61, 1.14, 62, 3.634, 64, 0.926\
+29, Cu, 63, 69.17, 65, 30.83\
+30, Zn, 64, 48.6, 66, 27.9, 67, 4.1, 68, 18.8, 70, 0.6\
+31, Ga, 69, 60.108, 71, 39.892\
+32, Ge, 70, 21.23, 72, 27.66, 73, 7.73, 74, 35.94, 76, 7.44\
+33, As, 75, 100.0\
+34, Se, 74, 0.89, 76, 9.36, 77, 7.63, 78, 23.78, 80, 49.61, 82, 8.73\
+35, Br, 79, 50.69, 81, 49.31\
+36, Kr, 78, 0.35, 80, 2.25, 82, 11.6, 83, 11.5, 84, 57.0, 86, 17.3\
+37, Rb, 85, 72.165, 87, 27.835\
+38, Sr, 84, 0.56, 86, 9.86, 87, 7.0, 88, 82.58\
+39, Y, 89, 100.0\
+40, Zr, 90, 51.45, 91, 11.22, 92, 17.15, 94, 17.38, 96, 2.8\
+41, Nb, 93, 100.0\
+42, Mo, 92, 14.84, 94, 9.25, 95, 15.92, 96, 16.68, 97, 9.55, 98, 24.13, 100, 9.63\
+43, Tc\
+44, Ru, 96, 5.52, 98, 1.88, 99, 12.7, 100, 12.6, 101, 17.0, 102, 31.6, 104, 18.7\
+45, Rh, 103, 100.0\
+46, Pd, 102, 1.02, 104, 11.14, 105, 22.33, 106, 27.33, 108, 26.46, 110, 11.72\
+47, Ag, 107, 51.839, 109, 48.161\
+48, Cd, 106, 1.25, 108, 0.89, 110, 12.49, 111, 12.8, 112, 24.13, 113, 12.22, 114, 28.73, 116, 7.49\
+49, In, 113, 4.3, 115, 95.7\
+50, Sn, 112, 0.97, 114, 0.65, 115, 0.34, 116, 14.53, 117, 7.68, 118, 24.23, 119, 8.59, 120, 32.59, 122, 4.63, 124, 5.79\
+51, Sb, 121, 57.36, 123, 42.64\
+52, Te, 120, 0.096, 122, 2.603, 123, 0.908, 124, 4.816, 125, 7.139, 126, 18.95, 128, 31.69, 130, 33.8\
+53, I, 127, 100.0\
+54, Xe, 124, 0.1, 126, 0.09, 128, 1.91, 129, 26.4, 130, 4.1, 131, 21.2, 132, 26.9, 134, 10.4, 136, 8.9\
+55, Cs, 133, 100.0\
+56, Ba, 130, 0.106, 132, 0.101, 134, 2.417, 135, 6.592, 136, 7.854, 137, 11.23, 138, 71.7\
+57, La, 138, 0.0902, 139, 99.9098\
+58, Ce, 136, 0.19, 138, 0.25, 140, 88.48, 142, 11.08\
+59, Pr, 141, 100.0\
+60, Nd, 142, 27.13, 143, 12.18, 144, 23.8, 145, 8.3, 146, 17.19, 148, 5.76, 150, 5.64\
+61, Pm\
+62, Sm, 144, 3.1, 147, 15.0, 148, 11.3, 149, 13.8, 150, 7.4, 152, 26.7, 154, 22.7\
+63, Eu, 151, 47.8, 153, 52.2\
+64, Gd, 152, 0.2, 154, 2.18, 155, 14.8, 156, 20.47, 157, 15.65, 158, 24.84, 160, 21.86\
+65, Tb, 159, 100.0\
+66, Dy, 156, 0.06, 158, 0.1, 160, 2.34, 161, 18.9, 162, 25.5, 163, 24.9, 164, 28.2\
+67, Ho, 165, 100.0\
+68, Er, 162, 0.14, 164, 1.61, 166, 33.6, 167, 22.95, 168, 26.8, 170, 14.9\
+69, Tm, 169, 100.0\
+70, Yb, 168, 0.13, 170, 3.05, 171, 14.3, 172, 21.9, 173, 16.12, 174, 31.8, 176, 12.7\
+71, Lu, 175, 97.41, 176, 2.59\
+72, Hf, 174, 0.162, 176, 5.206, 177, 18.606, 178, 27.297, 179, 13.629, 180, 35.1\
+73, Ta, 180, 0.012, 181, 99.988\
+74, W, 180, 0.13, 182, 26.3, 183, 14.3, 184, 30.67, 186, 28.6\
+75, Re, 185, 37.4, 187, 62.6\
+76, Os, 184, 0.02, 186, 1.58, 187, 1.6, 188, 13.3, 189, 16.1, 190, 26.4, 192, 41.0\
+77, Ir, 191, 37.3, 193, 62.7\
+78, Pt, 190, 0.01, 192, 0.79, 194, 32.9, 195, 33.8, 196, 25.3, 198, 7.2\
+79, Au, 197, 100.0\
+80, Hg, 196, 0.15, 198, 9.97, 199, 16.87, 200, 23.1, 201, 13.18, 202, 29.86, 204, 6.87\
+81, Tl, 203, 29.524, 205, 70.476\
+82, Pb, 204, 1.4, 206, 24.1, 207, 22.1, 208, 52.4\
+83, Bi, 209, 100.0\
+84, Po\
+85, At\
+86, Rn\
+87, Fr\
+88, Ra\
+89, Ac\
+90, Th, 232, 100.0\
+91, Pa\
+92, U, 235, 0.72, 238, 99.2745\
+93, Np\
+94, Pu\
+95, Am\
+96, Cm\
+97, Bk\
+98, Cf\
+99, Es\
+100, Fm\
+101, Md\
+102, No\
+103, Lr\
+104, Rf\
+105, Db\
+106, Sg\
+107, Bh\
+108, Hs\
+109, Mt\
+110, Ds\
+111, Rg\
+112, Cn\
+113, Nh\
+114, Fl\
+115, Mc\
+116, Lv\
+117, Ts\
+118, Og
+
+nb_elements = !linecnt $slib_nucleides
+la_ligne = ??
+cle = !item 1 of $slib_data
+cle1 = !char 1 of $cle
+!if $cle1 isin 123456789
+  !! c'est un nombre, à chercher en première position
+  index=1
+!else
+  !! c'est un symbole, à chercher en deuxième position
+  index=2
+!endif
+la_ligne=erreur : symbole inconnu
+!for i=1 to $nb_elements
+  l = !line $i of $slib_nucleides
+  val = !item $index of $l
+  !if $val = $cle
+    la_ligne = $l
+  !endif
+!next
+
+n_ligne = !itemcnt $la_ligne
+n_stables = !eval ($n_ligne / 2) -1
+
+# on construit les données pour lélément dans la variable
+# elt_data : Z, symbole [; A, abondance]...
+
+elt_data = !items 1,2 of $la_ligne
+!if $n_stables > 0
+  !for i=1 to $n_stables
+    i1 = !eval 2 * $i + 1
+    i2 = !eval $i1+1
+    les_items = !items $i1,$i2 of $la_ligne
+    elt_data = $elt_data; $les_items
+  !next
+!endif
+
+!if $nb_data < 2
+  slib_out = $elt_data
+  !goto end
+!endif
+
+!! à ce stade, il y a au moins un deuxième paramètre
+param2 = !item 2 of $slib_data
+param3 = !item 3 of $slib_data
+!if tex isin $param2
+  !! un traduction en chaîne tex est demandée
+  !! on regarde si un isotope particulier est requis
+  A = !replace tex by in $param2
+  !if $A issametext
+    !! c'est le cas où il n'y a pas de demande d'isotope particulier
+    !if $n_ligne > 2
+      !! il y a au moins un isotope stable, on prend celui-là
+      A = !item 3 of $la_ligne
+    !else
+      !! il n'y a pas d'isotope stable, on n'indique pas A
+      A =
+    !endif
+  !endif
+  Z = !item 1 of $la_ligne
+  symbole = !item 2 of $la_ligne
+  !readproc slib/chemistry/leftind $A, $Z, $symbole, $param3
+  !goto end
+!endif
+
+:end
+slib_out = $slib_out

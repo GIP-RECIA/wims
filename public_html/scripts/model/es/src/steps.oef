@@ -1,0 +1,213 @@
+type=question
+textarea="data instruction instruction1 instruction2 instruction3 feedback1 feedback2 feedback3"
+iEdit="instruction instruction1 instruction2 instruction3 feedback1 feedback2 feedback3"
+
+:Se hacen dos o tres preguntas sucesivas sobre un objeto elegido al azar de una lista.
+Puedes elegir el tipo de preguntas
+(numérica, texto, de opción múltiple). En el caso de una pregunta de opción múltiple,
+debemos completar la lista de opciones.
+
+<p>
+Los datos para cada objeto (un objeto por línea) están separados por comas
+y formateados de la siguiente manera:
+</p>
+<pre>
+objeto, respuesta a la pregunta 1, respuesta a la pregunta 2, respuesta a la pregunta 3
+</pre>
+<p>
+El objeto puede ser una imagen (ponga el código html: <span class="tt wims_address">&lt;img src="\imagedir/nom.png" alt=""/></span>).
+En el caso de una opción múltiple, la respuesta es el número de la opción correcta.
+</p>
+<p>
+Para comentarios, el objeto puede ser llamado por la variable <span class="tt wims_code_variable">\name</span>.
+</p>
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Preguntas sucesivas sobre un objeto}
+:\author{Bernadette, Perrin-Riou}
+:\email{bernadette.perrin-riou@math.u-psud.fr}
+:\credits{}
+
+:Formato 1
+\text{format1=item(1, radio (una opción de la siguiente lista),
+    numeric (pregunta numérica),
+    case (sin tolerancia a errores),
+	nocase (tolera mayúsculas/minúsculas),
+	atext (ignora plural/singular y artículos)
+	)}
+:Lista de opciones para la pregunta 1 (si radio)
+Dar la lista de opciones si elige el tipo radio.
+\text{choix1=primer grupo, segundo grupo, tercer grupo}
+
+:Formato 2
+\text{format2=item(3,radio (una opción de la siguiente lista),
+    numeric (pregunta numérica),
+    case (sin tolerancia a errores),
+	nocase (tolera mayúsculas/minúsculas),
+	atext (ignora plural/singular y artículos)
+	)}
+:Lista de opciones para la pregunta 2 (si radio)
+Dar la lista de opciones si elige el tipo radio.
+\text{choix2=}
+:Formato 3
+\text{format3=item(4,0 (ninguna pregunta),
+    radio (una opción de la siguiente lista),
+    numeric (pregunta numérica),
+    case (sin tolerancia a errores),
+	nocase (tolera mayúsculas/minúsculas),
+	atext (ignora plural/singular y artículos)
+	)}
+:Lista de opciones para la pregunta 3 (si radio)
+Dar la lista de opciones si elige el tipo radio.
+\text{choix3=}
+:Texto de aprobación
+\text{right=Tiene usted razón.}
+:Texto de desaprobación
+\text{false=Tu respuesta no es correcta.}
+
+:Datos principales
+\text{data= terminar, 1,yo terminaba,yo terminaré
+comer,2,yo comía,yo comeré
+reir,3,yo reía,yo reiré}
+
+
+:%%%%%%%%%%%%%%
+\text{data=randomrow(\data)}
+\text{name=<span class="name">\data[1]</span>}
+\text{data=\data[2..-1]}
+
+:Enunciado general
+\text{instruction=Estudiaremos el verbo \name.}
+:Enunciado para la primera etapa
+\text{instruction1=Dar el grupo de \name.}
+
+:Enunciado para la segunda etapa
+\text{instruction2=Dar el imperfecto del verbo \name en primera persona del singular sin olvidar el pronombre.}
+
+:Enunciado para la tercera etapa
+\text{instruction3=Da el futuro del verbo \name en la primera persona del singular sin olvidar el pronombre.}
+
+:%%%%%%%%%%%%%% Nothing to modify until statement %%%%%%%%%%%%%%%%
+\css{<style>
+  .name {color:#047;}
+  .big_bullet>li{font-size:2em;color:#599;margin:0 0 .5em .5em;}
+  .big_bullet div, .big_bullet label{font-size:1rem;margin:.2em;}
+  .big_bullet .instruction,.big_bullet .reponse{color:initial;}
+</style>}
+
+\text{format1=wims(word 1 of \format1)}
+\text{format2=wims(word 1 of \format2)}
+\text{format3=wims(word 1 of \format3)}
+\text{rep1=\data[1]}
+\text{rep2=\data[2]}
+\text{rep3=\data[3]}
+
+\text{reponse1=\data[1]}
+\text{reponse2=\data[2]}
+\text{reponse3=\data[3]}
+\if{\format1 issametext radio}{
+  \text{rep1=\data[1];\choix1}
+  \text{reponse1=\choix1[\data[1]]}
+}
+\if{\format2 issametext radio}{
+  \text{rep2=\data[2];\choix2}
+  \text{reponse2=\choix2[\data[2]]}
+}
+\if{\format3 issametext radio}{
+  \text{rep3=\data[3];\choix3}
+  \text{reponse3=\choix3[\data[3]]}
+}
+\text{STEP=r1}
+\if{\format2!=0}{
+  \text{STEP=\STEP
+  r2}
+  \if{\format3!=0}{
+  \text{STEP=\STEP
+  r3}
+  }
+}
+
+\text{reponse1=<span class="oef_indgood">\reponse1</span>}
+\text{reponse2=<span class="oef_indgood">\reponse2</span>}
+\text{reponse3=<span class="oef_indgood">\reponse3</span>}
+:Comentario a la segunda etapa
+
+\text{feedback1=\name es un verbo de \reponse1.}
+
+:Comentario a la tercera etapa
+
+\text{feedback2=El imperfecto de la primera persona del singular de \name es \reponse2.}
+
+:Comentario al final
+
+\text{feedback3=El tiempo futuro en la primera persona singular \name es \reponse3.}
+
+
+:%%%
+\nextstep{\STEP}
+
+\statement{
+<div>\instruction</div>
+<ol class="big_bullet"><li>
+  <div class="instruction">\instruction1</div>
+  \if{\step=1 or \step>=4}{
+    \if{\format1 notsametext radio}{
+      <label class="reponse" for="reply1">\name_my_answer \embed{r1}</label>
+    }{
+      <div class="reponse">\name_my_answer \embed{r1}</div>
+    }
+  }{
+    <div class="reponse">
+      \name_my_answer <span class="name">\reply1</span>
+    </div>
+  }
+
+  \if{\step>=2}{
+    <div class="feedback
+      \if{\sc_reply1=1}{oef_indgood">\right}{\if{\sc_reply1<=0}{oef_indbad}{oef_indpartial}">\false} \feedback1
+    </div>
+    </li><li>
+    <div class="instruction">
+      \instruction2
+    </div>
+  }
+
+  \if{\step=2 or \step>=4}{
+    \if{\format2 notsametext radio}{
+      <label class="reponse" for="reply2">\name_my_answer \embed{r2}</label>
+    }{
+      <div class="reponse">\name_my_answer \embed{r2}</div>
+    }
+  }
+
+  \if{\step>=3}{
+    \if{\step < 4}{
+      <div class="reponse">
+        \name_my_answer <span class="name">\reply2</span>
+      </div>
+    }
+    <div class="feedback
+      \if{\sc_reply2=1}{oef_indgood">\right}{\if{\sc_reply2<=0}{oef_indbad}{oef_indpartial}">\false} \feedback2
+    </div>
+    \if{\format3!=0}{
+      </li><li>
+      <div class="instruction"> \instruction3</div>
+      \if{\format3 notsametext radio}{
+        <label class="reponse" for="reply3">\name_my_answer \embed{r3}</label>
+      }{
+        <div class="reponse">\name_my_answer \embed{r3}</div>
+      }
+    }
+  }
+  \if{\step>=4 and \format3!=0}{
+    <div class="feedback
+      \if{\sc_reply3=1}{oef_indgood">\right}{\if{\sc_reply3<=0}{oef_indbad}{oef_indpartial}">\false} \feedback3
+    </div>
+  }
+  </li>
+</ol>
+}
+
+\answer{}{\rep1}{type=\format1}{option=nonstop}
+\answer{}{\rep2}{type=\format2}{option=nonstop}
+\answer{}{\rep3}{type=\format3}{option=nonstop}

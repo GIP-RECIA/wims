@@ -1,0 +1,122 @@
+!set lang_exists=yes
+n_access=Accès
+n_authorhelp=ajuda per als autors
+n_begin=Crear la pàgina d'inici
+n_blocklist=Llista de blocs del document
+wims_name_blocklist=$n_blocklist
+n_blockpreview=Vista prèvia del bloc
+n_by=per
+n_choosedocument=Trieu el document i l'acció&nbsp;
+n_close=Tancar
+n_codechange=Canviar el codi secret
+n_codedoc=Codi secret del document per a l'edició&nbsp;
+n_codedocr=Codi secret del document per a la lectura&nbsp;
+n_copyright2=Tots els drets reservats per l'autor
+n_create=Crear
+n_create2=Crear-lo
+n_creation=Creació d'un document
+n_content=Contingut
+n_foldout=Amagar
+n_formatted=Amb format
+n_freespace1=Espai de disc disponible inicialment&nbsp;
+n_freespace2=Espai lliure&nbsp;
+n_doctoc=Taula de continguts
+wims_name_doch_toc=TOC
+n_header=Capçalera
+n_help2=Ajuda
+n_helpclose=Tancar aquesta finestra d'ajuda.
+n_lastmod=Darrera modificació.
+n_mainedit=Editar la seva pàgina d'entrada
+n_nocontent=Aquest document encara no té contingut.
+n_nonavailable=[non-disponible]
+n_notitle=Sense títol
+n_number=Nombre
+n_open=Obrir
+n_otherblocks=Altres blocs
+n_preview=Vista prèvia
+n_properties=Propietats del document
+n_read=Lectura
+n_source=Font dels exercicis de la pàgina
+!set wims_name_shsource=$n_source
+n_source0= Font
+n_sourcedoc= Font del document
+n_unknown=Activitat desconeguda
+n_lastpage=Tornar a l'últim bloc
+
+!set name_noncreate=!nosubst El bloc <span class="tt">$block</span> d'aquest document encara no està creat pas.
+!set name_noread=Aquesta pàgina encara no està oberta a la lectura. Torneu més tard!
+!set name_expired=Aquesta pàgina ha caducat. Ja no es pot llegir. Ho sento!
+!set name_src=Document d'origen
+
+!set name_noncreate2=!nosubst El bloc <span class="tt">$titb</span> d'aquest document encara no està creat pas.
+!set name_noexercise=No hi ha dades d'exercici en aquesta pàgina.
+!set name_exercise=Aquí estan els exercicis d'aquesta pàgina en format de full de treball. Podeu copiar-i-enganxar per inserir
+!set name_sheet1= en un full que trieu de la vostra classe.
+!set name_sheet2=en un full d'una classe virtual sota la vostra responsabilitat.
+
+!set name_file=Inserir un arxiu de text
+!set name_compose=Composició en línia
+!set name_blockcreation=Creació del bloc<span class="tt">$block</span>.
+!set name_blockedition=Edició del bloc<span class="tt">$block</span>.
+
+!distribute lines precedent\
+  següent\
+  pare\
+  Data de validesa\
+  de\
+  a\
+  Aquest fitxer\
+  substituirà, afegirà al final de la, afegirà al començament de la\
+  contingut existent\
+  Podeu dipositar un arxiu en aquest document&nbsp;\
+into name_prev, name_next,name_up,name_dates,name_from,name_to,name_prompt0,\
+  name_prompt,name_prompt1,name_upload
+
+!set name_have_been_erased=!nosubst L'arxiu<b>$erase</b> s'ha suprimit.
+
+!set name_warning=Heu excedit el límit d'espai en disc per a aquest document. \
+Ho sentim !
+
+!distribute lines Ho sentim, la teva classe encara no té documents. Consulteu amb el professor.\
+  Ho sentim, encara no hi ha documents oberts al públic.\
+  Ho sentim, encara no hi ha cap document d'aquest autor.\
+  Aquests són els documents de la teva classe.\
+  Aquests són  els documents del lloc als quals teniu accès.\
+  Per als seus propis documents, donar nom de l'autor&nbsp;\
+  L'autor d'aquest document és\
+  Aquest document no està obert al públic. Per llegir-lo, primer cal donar el seu codi secret.\
+  Per editar el document, primer cal donar seu codi secret.\
+  Codi secret per a l'edició\
+  Codi secret per a la lectura\
+into name_home_warning,name_nodocument1,name_nodocument2,name_listdoc1,name_listdoc2,name_listauthor,\
+  name_author_is,name_code_warning1, name_code_warning2,name_secretcode,name_secretcoder
+
+!set name_created=!nosubst S'ha creat el document (número de sèrie: $doc). Pots començar per 
+!set name_codechange2=El codi secret d'aquest document s'ha canviat amb èxit.
+
+!distribute lines Introdueixi el codi actual\
+   Escriviu el nou codi\
+   Repetir el nou codi\
+   Repetiu-lo\
+   Els participants poden\
+   Aquest document només serà visible dins d'aquesta classe.\
+   Obert al públic\
+   per a l'edició\
+   per a la lectura\
+   into name_code1,name_code2,name_code3,name_code5,name_participant,\
+   name_visible,name_public,name_editable,name_readable
+
+!set name_code4=!nosubst El codi secret d'edició dóna dret a modificar el document.\
+   Ha d'estar formada per entre $codemin a $codemax caràcters alfanumèrics.
+!set name_coder4=!nosubst El codi secret de la lectura dóna dret a llegir el document.\
+   Ha d'estar formada per entre $codemin à $codemax caràcters alfanumèrics.
+
+ !!no yet useful
+ !set name_remark=<b>Observació</b>. Cal sol·licitar l'aprovació de l'administrador del lloc\
+ per fer el document disponible al públic.
+
+!distribute lines Desar el document en el compte de desenvolupador\
+   La transferència s'ha realitzat al mòdul\
+   No hi ha cap mòdul de tipus <em>document</em> en el teu compte, primer has de crear-ne un&nbsp;\
+   La transferència ha fallat. Torna-ho a intentar.\
+into name_transfer_modtool,name_transfer_done,name_list_mod_doc_empty,name_transfer_fail

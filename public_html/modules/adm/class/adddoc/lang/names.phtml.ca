@@ -1,0 +1,23 @@
+!set lang_exists=yes
+
+!set name_intro=!nosubst Voleu inserir a la vostra classe\
+el recurs públic <span class="tt wims_fname">$dir</span>
+
+!set name_noone=Cap
+!set name_propdoc=!nosubst Document inserit número $sdoc
+!set name_proptool=!nosubst Eina inserida número $stool
+!set name_deletemsg=!nosubst Vols eliminar el document \
+  <span class="tt wims_fname">$title</span> de la llista d'activitats\
+  accessibles de la teva classe?
+!set name_adddoc=Inserció d'un document públic
+!set name_addtool=Inserció d'una eina
+!set name_confirmdoc=El document públic s'ha inserit correctament a la classe.
+!set name_confirmtool=L'eina s'ha inserit correctament a la classe.
+!set name_savemodif=Modificacions desades
+
+!set name_wksheet=Enllaçar el document al full (opcional)
+!set name_confirmmksheet=!nosubst El full que conté tots els exercicis del document ha estat creat amb el número $autosheet
+!set name_autosheet=Número del full d'exercicis creat
+!set name_nogenerated=No creat
+!set name_generate=Crear
+!set name_generate1=el full d'exercicis del document

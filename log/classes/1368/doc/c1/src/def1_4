@@ -1,0 +1,12 @@
+Il complemento di \(Y\) in \(X\) è descritto nella definizione 1.4 del libro di testo. 
+
+Alcuni esercizi (per esempio \exercise{1/9}) presenti in questo test utilizzano il simbolo \(\complement_X Y\) per 
+indicare quello che nel libro di testo viene indicato con \(X\setminus Y\).
+Alcuni esercizi (per esempio \exercise{1/13}, \exercise{1/14}, \exercise{1/15}), se si suppone di lavorare in un insieme fissato \({}\Omega\), per indicare il complemento 
+\(\Omega \setminus X\) di 
+un certo sottoinsieme \(X\) di \({}\Omega\) in \({}\Omega\) utilizzano la notazione \(X^C\), ove non ci siano ambiguità. Altri 
+(per esempio \exercise{1/16}, 
+\exercise{1/17},\exercise{1/18}), con le stesse ipotesi utilizzano invece il simbolo \(\overline X\) per indicare \(\Omega \setminus X\). In generale questa
+notazione è esplicitata nel testo dell'esercizio o nelle Istruzioni relative.
+
+ Alcuni esercizi (per esempio \exercise{1/9}) utilizzano il termine complementare per complemento.

@@ -1,0 +1,92 @@
+
+:H5/analysis/oefratexp.fr
+exo=cube&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+La duplication du cube
+Quelle doit être l'arête du cube de volume double ?
+
+
+:H5/analysis/oefratexp.fr
+exo=cone&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Les glaces
+Calculer la hauteur et le diamètre pour doubler ou tripler le volume.
+
+
+:H5/analysis/oefratexp.fr
+exo=placement&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Le placement d'Adrien
+Calcule le taux moyen par trimestre.
+
+
+:H5/analysis/oefratexp.fr
+exo=frequence&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+La musique
+Par quel nombre est multipliée la fréquence lorsqu'on monte d'un demi-ton ?
+
+
+:H5/analysis/oefratexp.fr
+exo=taux1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Le taux mensuel moyen de Bastien
+Déterminer le taux mensuel moyen.
+
+
+:H5/analysis/oefratexp.fr
+exo=taux2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Le taux annuel moyen
+Déterminer le taux annuel moyen d'augmentation et de diminution.
+
+
+:H5/analysis/oefratexp.fr
+exo=expos&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Exemples d'exposants rationnels
+Démonstration d'égalités de puissances rationnelles sur des exemples.
+
+
+:H5/analysis/oefratexp.fr
+exo=exposdem&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Démonstrations sur les exposants rationnels
+Démontrer 5 propriétés dans le cas général.
+
+
+
+
+
+:H5/analysis/oefratexp.fr
+exo=calcul1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calculer avec des exposants rationnels
+3 calculs numériques distincts.
+
+
+:H5/analysis/oefratexp.fr
+exo=calcul2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calculer avec des exposants décimaux
+5 calculs où il faut préciser la formule et les paramètres, puis trouver quel nombre est décimal.
+
+
+:H5/analysis/oefratexp.fr
+exo=exposirr&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Exposants irrationnels
+Encadrements de puissances dont les exposants sont irrationnels.
+
+

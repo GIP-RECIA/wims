@@ -1,0 +1,21 @@
+!default helpsquare_lang=fr
+!if $lang iswordof it
+  !set helpsquare_lang=it
+!endif
+
+!if $lang iswordof es
+  !set helpsquare_lang=es
+!endif
+
+!if $lang iswordof ca
+  !set helpsquare_lang=ca
+!endif
+
+!read help/$helpsquare_lang/squarescore.phtml square
+ 	
+<div class="wimscenter">
+    !read adm/class/colors 0,legend
+    $output_legend
+</div>
+
+!read help/$helpsquare_lang/squarescore.phtml seed

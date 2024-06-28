@@ -1,0 +1,155 @@
+type=gapfill
+textarea="data pre post"
+iEdit="pre post"
+
+:Elegir respuesta (menú desplegable o etiqueta) en un texto propuesto al azar.
+
+Este ejercicio presenta textos donde se insertan campos de opción múltiple.
+<p>
+Para construir un ejercicio con este modelo, solo ingrese los textos.
+Una sintaxis sencilla permite incorporar los campos de elección en los textos.
+</p><p class="wims_credits">
+Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a>, modificado por Bernadette Perrin-Riou
+(añadir la opción clickfill)</p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Menús desplegables o etiquetas en varios textos}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Formato de respuesta
+Posibilidades: menu, clickfill, dragfill
+<ul><li><dl class="tt">clickfill</dl> etiqueta a mover (una etiqueta se puede usar varias veces).
+</li>
+<li><dl class="tt">dragfill</dl> etiqueta a mover (cada etiqueta puede ser
+usada solo una vez).
+</li>
+<li><dl class="tt">menu</dl> menú desplegable.
+</li></ul>
+\text{format=item(1,menu,
+	clickfill,
+	dragfill)}
+
+:Tamaño de las cajas (clickfill, dragfill)
+\text{len=150 x 25}
+
+:Datos principales
+Escribir los textos separados por punto y coma.
+Los textos en sí no pueden contener
+punto y coma. <p>
+La pregunta que debe formularse debe hacerse entre un par de
+doble-signo interrogantes "??", siendo la respuesta correcta la primera.
+Puede hacer hasta 20 preguntas en el mismo texto.
+
+$embraced_randitem
+\text{data=
+El ultimo emperador ??Pu Yi, Pu Jie, Ci Xi, Yuan Shikai??
+de la última dinastía china ??Qing,Ming,Song,Tang??, fue destituido por
+??una revuelta militar,los invasores japoneses,el ejército rojo soviético,
+los comunistas?? en
+??1911,1917,1937,1945,1949??. El
+??murió de enfermedad,fue ejecutado,se suicidó?? en
+??1967,1911,1918,1945,1950,1960?? en Pekín.;
+
+Luego de una batalla ??feroz, fácil??, los japoneses invadieron Shangai en
+??1937,1932,1938,1940,1941,1942?? que tenía una concesión
+occidental "común" en ese momento. Ellos
+??respetaron parcialmente,respetaron totalmente,no respetaron en absoluto?? la neutralidad de la concesión
+durante la ocupación hasta ??1941,1939,1942,1945??. La supresión de la
+concesión fue pronunciada por primera vez por el gobierno
+??títere, nacionalista, comunista??
+en ??1943,1945,1949,1960??.;
+
+La Primera Guerra del Opio fue provocada por
+??Gran Bretaña, Francia, Estados Unidos, varios países occidentales??
+contra ??China, India?? en ??1839,{1739,1741,1756},1841,1856??, con el propósito de
+??proteger, prohibir?? el tráfico de drogas (opio). Esta guerra
+resultó en la capitulación del gobierno ??chino, indio??
+??3,2,4,5,8?? años más tarde, con la firma del Tratado de
+??Nanking, Pekín, Guangzhou, Maguan, Taiping, Tianjin??.;
+}
+
+:Texto mostrado antes de la pregunta. Etiquetas HTML permitidas. Puede estar vacío.
+$embraced_randitem
+\text{pre=Completa las casillas:<p>}
+
+:Texto que se muestra después de la pregunta. Etiquetas HTML permitidas Puede estar vacío.
+$embraced_randitem
+\text{post=}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\text{format=wims(word 1 of \format)}
+\text{len=\format issametext menu ? }
+\text{data=wims(singlespace \data)}
+\text{data=wims(nonempty rows \data)}
+\text{data=randomrow(\data)}
+\text{data=\accolade=1 ?wims(embraced randitem \data)}
+\text{data=slib(text/cutchoice2 \data)}
+\integer{qs=min(20,floor(rows(\data)/2))}
+
+\text{good=}
+\text{field=}
+\for{i=1 to \qs}{
+ \text{f=\data[2*\i;]}
+ \text{g=\f[1]}
+ \text{f=wims(sort items \f)}
+ \text{g1=positionof(\g,\f)}
+ \text{good=\format iswordof clickfill dragfill ?\good\g,:\good\g1,}
+ \text{field=\field\f;}
+}
+
+\text{pre=\accolade=1 ?wims(embraced randitem \pre)}
+\text{post=\accolade=1 ?wims(embraced randitem \post)}
+\text{qlist=wims(makelist reply x for x=1 to \qs)}
+\steps{\qlist}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+::Vous n'avez pas besoin de modifier ceci en général.
+
+\statement{
+  <div class="instruction">\pre</div>
+  \data[1;]
+  \for{k=1 to \qs}{
+    \embed{r \k,\len} \data[2*\k+1;]
+  }
+  \post
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Champ 1}{\good[1];\field[1;]}{type=\format}
+\answer{Champ 2}{\good[2];\field[2;]}{type=\format}
+\answer{Champ 3}{\good[3];\field[3;]}{type=\format}
+\answer{Champ 4}{\good[4];\field[4;]}{type=\format}
+\answer{Champ 5}{\good[5];\field[5;]}{type=\format}
+\answer{Champ 6}{\good[6];\field[6;]}{type=\format}
+\answer{Champ 7}{\good[7];\field[7;]}{type=\format}
+\answer{Champ 8}{\good[8];\field[8;]}{type=\format}
+\answer{Champ 9}{\good[9];\field[9;]}{type=\format}
+\answer{Champ 10}{\good[10];\field[10;]}{type=\format}
+\answer{Champ 11}{\good[11];\field[11;]}{type=\format}
+\answer{Champ 12}{\good[12];\field[12;]}{type=\format}
+\answer{Champ 13}{\good[13];\field[13;]}{type=\format}
+\answer{Champ 14}{\good[14];\field[14;]}{type=\format}
+\answer{Champ 15}{\good[15];\field[15;]}{type=\format}
+\answer{Champ 16}{\good[16];\field[16;]}{type=\format}
+\answer{Champ 17}{\good[17];\field[17;]}{type=\format}
+\answer{Champ 18}{\good[18];\field[18;]}{type=\format}
+\answer{Champ 19}{\good[19];\field[19;]}{type=\format}
+\answer{Champ 20}{\good[20];\field[20;]}{type=\format}
+

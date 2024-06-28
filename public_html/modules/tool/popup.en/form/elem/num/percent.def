@@ -1,0 +1,11 @@
+:prealgebra, pre-algebra, number,
+percent, percentage
+
+:operation, percent
+
+:, Show
+
+: <input type="text" name="formula" size="15" maxlength="100" value="3.5454">
+ is what percent of
+ <input type="text" name="formula2" size="15" maxlength="100" value="153.44"> ?</td>
+ $submit1

@@ -1,0 +1,85 @@
+!! job to make list of selected exercices for the user $wims_read_parm
+!! wims_read_parm = user
+!! output : exolist (each line is data for an exo)
+
+user=$wims_read_parm
+ufile=wimshome/log/classes/$wims_class/swork/averagescore.$user
+nbrec=!recordcnt $ufile
+cfdata=!record 0 of $ufile
+!if $cfdata=$empty
+  !reset exolist
+  !exit
+!endif
+!distribute line $cfdata into cfdata,recordin
+!if $recordin!=$empty
+  flag=1
+!else
+  flag=0
+  recordin=!values v for v=1 to $nbrec
+!endif
+nbrec=!itemcnt $recordin
+rec=1
+current=0
+!reset exolist recordout status
+!while $rec<=$nbrec and $current<$swork_nbexo
+  data=!record $(recordin[$rec]) of $ufile
+  !distribute word $data into sh,exnum,sco,bl,tave,tmax,tave2
+  !if ($sco>0 or $bl>0) and $sh notitemof $swork_excludesh and $tave>=100*$swork_minscore
+    datash=!record $sh of wimshome/log/classes/$wims_class/sheets/.sheets
+    !distribute lines $datash into sheet_active,sheet_expiration,sheet_title,sheet_desc,\
+    sheet_docpage,sheet_comment,sheet_icone,exodescshow,sheet_hidetechvar,sheet_indivtechvar
+    !bound exodescshow between 0,1 default 0
+    !readproc proc/scorestatus.proc $user,$sh
+    !if $sheet_active=1 and $scoreopen=1
+      !! ------test if sheet is hidden for this user
+      !if $sheet_hidetechvar!=$empty
+        !readproc adm/vfilter/ishiddensheet.proc $sheet_hidetechvar
+      !else
+        !let hidden=0
+      !endif
+      !! ------------- testing score dependancies for the exo
+      !set requires=!getscorerequire sheet=$sh user=$user
+      !set scores=!getscore sheet=$sh user=$user
+      !set means=!getscoremean sheet=$sh user=$user
+      !if $sh notitemof $listmkdep
+        !readproc adm/mkdepsheet.proc $sh
+        listmkdep=!append item $sh to $listmkdep
+      !endif
+      dep=!record $exnum of wimshome/sessions/$wims_session/exodep.$sh
+      !if $hidden!=1 and $dep=$empty
+        !! ----------- testing individualisation with techvar
+        techvalue=!getdef user_techvar_$(sheet_indivtechvar) in wimshome/log/classes/$userclass/.users/$user
+        indiv=!record $exnum of wimshome/log/classes/$wims_class/sheets/.sheet$sh
+        indiv=!line 11 of $indiv
+        !if $techvalue=$empty or $techvalue isitemof $indiv
+          !if $sco<0
+            target=$tmax
+          !else
+            target=$tave2
+          !endif
+          exolist=!append line $sh,$exnum,$target,1 to $exolist
+          status=1
+          recordout=!append item $(recordin[$rec]) to $recordout
+          !increase current
+        !endif
+      !endif
+    !endif
+  !endif
+  !if $status!=1 and $flag=1
+    !if $sco<0
+      target=$tmax
+    !else
+      target=$tave
+    !endif
+    exolist=!append line $sh,$exnum,$target,0 to $exolist
+    recordout=!append item $(recordin[$rec]) to $recordout
+    !increase current
+    !reset status
+  !endif
+  !increase rec
+!endwhile
+!if $flag=0
+  update_content=!append line $recordout to $cfdata
+  update_field=0
+  !read adm/uprecord $ufile
+!endif

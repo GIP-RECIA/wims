@@ -1,0 +1,41 @@
+!if $success=$empty
+  !form reply
+  <input type="hidden" name="job" value="$job">
+  <input type="hidden" name="job value="sendbug">
+  <div class="field box">
+    <label for="source">$name_content</label>
+    <textarea rows="10" name="source" id="source" required="required" maxlength="1000">$source</textarea>
+  </div>
+  <div class="wimscenter">
+    <input type="submit" name="save" value="$wims_name_send">
+    !if _ isin $wims_session
+      <input type="button" class="wims_button wims_secondary_button" onclick="window.close();" value="$wims_name_back2">
+    !else
+      !let wims_ref_class=wims_button wims_secondary_button
+      !href $cmd_caller $wims_name_back2
+    !endif
+  </div>
+  <div class="field box">
+    <strong>$name_info</strong> $name_to $listaddr:
+    !let nb=!linecnt $data
+    <div class="tt">
+      <ul>
+        !for k=1 to $nb
+          !if $(data[$k;])!=$empty
+            <li>$(data[$k;])</li>
+          !endif
+        !next k
+        <li>$name_rapportbug
+        !replace internal $\
+$ by <br> in $vardata
+        </li>
+        </li>
+      </ul>
+    </div>
+  </div>
+  !formend
+!else
+  !if _ notin $wims_session and $cmd_caller!=$empty
+    !let wims_menu_items=!append line back2,1,$cmd_caller to $wims_menu_items
+  !endif
+!endif

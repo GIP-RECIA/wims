@@ -1,0 +1,77 @@
+
+!if empty_data iswordof $wims_error
+  Has enviat una resposta incompleta.
+  Sisplau completa la resposta abans d'enviar-la.
+  !exit
+!endif
+
+!if double_reply iswordof $wims_error
+  Ja has enviat una resposta a aquest problema, i ja ha estat analitzada i
+  avaluada. Les respostes repetides són ignorades. (No utilitzis el botó
+  `actualitzar' del teu navegador per reenviar respostes!)
+  !exit
+!endif
+
+!if bad_data iswordof $wims_error
+  No he pogut avaluar els valors que has enviat.
+  !exit
+!endif
+
+!if no_ldap_parameter iswordof $wims_error
+  Heu d'omplir els camps marcats amb un asterisc. Consulta-ho
+  al gestor del teu directori ldap.
+  !exit
+!endif
+
+!if bad_class iswordof $wims_error
+  Estrany, però sembla que la vostra classe no és vàlida!
+  !exit
+!endif
+
+!if bad_day iswordof $wims_error or day_dontexist iswordof $wims_error
+  La data que heu introduït no és vàlida.
+  !exit
+!endif
+
+
+!if not_supervisor iswordof $wims_error
+  Ho sento, aquest mòdul només és accessible per al professor d'una classe
+  virtual.
+  !exit
+!endif
+
+!if nouser iswordof $wims_error or iswordof  bad_user iswordof $wims_error \
+  or bad_usercls iswordof $wims_error
+  Estrany, però no trobo aquest alumne en aquesta classe!
+  !exit
+!endif
+
+!if insert_fail iswordof $wims_error
+  El software no ha pogut inserir el teu treball a la classe. Sisplau comprova les teues dades.
+  !exit
+!endif
+
+!if bad_pass iswordof $wims_error
+  Contrasenya incorrecta: ha de tenir entre 4 i 16 caràcters, només lletres i números.
+  I la contrasenya repetida ha de ser idèntica a la primera! Torna-ho a provar.
+  !exit
+!endif
+
+!if bad_auth iswordof $wims_error
+  Error d'autenticació. Torna-ho a provar.
+  !exit
+!endif
+
+!if bad_login iswordof $wims_error
+  <p>El vostre nom d'usuari conté caràcters no permesos. </p>
+  <p>Si us plau, escolliu una paraula que només contingui números i/o lletres
+  sense accent i sense espais entre ells.</p>
+  !exit
+!endif
+
+!if closedmodexcls iswordof $wims_error
+  Ce module n'est pas accessible à partir d'une classe ouverte.
+  !exit
+!endif
+
+Tipus d'error: $wims_error $wims_error_parm.

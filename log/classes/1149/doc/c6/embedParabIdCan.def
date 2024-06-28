@@ -1,0 +1,114 @@
+!set titb=Obtenir la forme canonique par identification des coefficients
+!set keyw=
+!set datm=20210723
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randitem -1,1
+
+!set tmp1=!randitem 2,3,4,5
+
+!set m_a=$[rint($(tmp0)*$(tmp1))]
+
+!set tmp0=!randitem -1,1
+
+!set tmp1=!randitem 2,3,4,5
+
+!set m_b=$[rint($(tmp0)*$(tmp1))]
+
+!set tmp0=!randitem -1,1
+
+!set tmp1=!randitem 2,3,4,5
+
+!set m_c=$[rint($(tmp0)*$(tmp1))]
+
+!set t_=!rawmath -$m_b/(2*$m_a) 
+!set m_x=!exec pari print($t_)
+
+!set t_=!rawmath $m_c-$m_a*($m_x)^2 
+!set m_y=!exec pari print($t_)
+
+<div>
+Soit 
+!insmath f(x) = \a*x^2 + \b*x + \c
+<br>
+Le développement de la forme canonique est &#58;<br>
+
+!insmath a*(x - x_S)^2 + y_S = a*x^2 - 2*a*x_S + a*x_S^2 + y_S
+<br>
+Pour que 
+!insmath f(x) = a*(x - x_S)^2 + y_S
+ pour tout réel 
+!insmath x
+ c-à-d que<br>
+ 
+!insmath a*x^2 - 2*a*x_S*x + a*x_S^2 + y_S = \a*x^2 + \b*x + \c
+ pour tout réel 
+!insmath x
+,<br>
+il faut et il suffit que &#58;<br>
+
+!insmath a = \a
+ et 
+!insmath - 2*a*x_S = \b
+ et 
+!insmath a*x_S^2 + y_S = \c
+<br>
+
+!insmath a = \a
+ et 
+!insmath x_S = -\b/(2*a)
+ et 
+!insmath y_S = \c - a*x_S^2
+<br>
+
+!insmath a = \a
+ et 
+!insmath x_S = \x
+ et 
+!insmath y_S = \c - \a*x_S^2
+<br>
+
+!insmath a = \a
+ et 
+!insmath x_S = \x
+ et 
+!insmath y_S = \c - \a*(\x^2)
+<br>
+
+!insmath a = \a
+ et 
+!insmath x_S = \x
+ et 
+!insmath y_S = \y
+<br>
+La forme canonique de 
+!insmath \a*x^2 + \b*x + \c
+ est 
+!insmath \a*(x - \x)^2 + \y
+<br>
+On peut vérifier que 
+!insmath f(\x) = \a*(\x)^2 + \b*(\x) +\c = \y
+<br>
+Ainsi 
+!insmath f(x_S) = y_S
+.<br>
+De plus, si 
+!insmath a=\a
+ et 
+!insmath b=\b
+, on a 
+!insmath x_S = -b/(2*a) = -\b/(2*\a) = \x
+.
+</div>
+

@@ -1,0 +1,28 @@
+User drawing
+:multiple arrows with erase button
+fcircle 0, 1, 6, blue
+fcircle 0, 2, 6, blue
+fcircle 8, 1, 6, blue
+fcircle 8, 2, 6, blue
+fcircle 8, 3, 6, blue
+fcircle 8, 4, 6, blue
+fcircle 8, 5, 6, blue
+snaptopoints 0,1,0,2,8,1,8,2,8,3,8,4,8,5
+userdraw arrows,black
+clearbutton Erase
+:draw arrow
+userdraw arrow,blue
+:draw arrow with snapto points
+snaptopoints 0,0,1,0,2,0,0,1,0,2,0,3
+userdraw arrow,blue
+:draw multiple arrows with snapto points
+fcircle 0, 1, 6, blue
+fcircle 0, 2, 6, blue
+fcircle 8, 1, 6, blue
+fcircle 8, 2, 6, blue
+fcircle 8, 3, 6, blue
+fcircle 8, 4, 6, blue
+fcircle 8, 5, 6, blue
+snaptopoints 0,1,0,2,8,1,8,2,8,3,8,4,8,5
+userdraw arrows,black
+:finefine

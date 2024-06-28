@@ -1,0 +1,32 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Loi géométrique
+!set gl_level=U1,U2,U3
+:
+:
+:tool/stat/table.fr
+:
+<div class="wims_defn">
+Soit \(p) un réel tel que \(0 < p < 1). La <strong>loi géométrique</strong>
+ \(\mathcal{G}_{\NN}(p)) sur \(\NN) est la loi de probabilité
+ \(q= \{q(k), k \in \NN\}) sur \(\NN).
+<div class="wimscenter">\( q(k) = p(1 - p)^k ) pour tout \(k \in \NN)</div>
+</div>
+<div class="wims_example">
+<h4>Exemple</h4> On dispose d'une pièce qui a une probabilité <span class="green">\(p)</span> de tomber
+ sur <span class="green">face</span> et <span class="red">\(1 - p)</span>
+ de tomber sur <span class="red">pile</span>. Le nombre de lancers effectués
+ avant d'obtenir le premier lancer dont le résultat est <span class="green">face</span> définit
+ une variable aléatoire \(X) dont la loi est la loi géométrique
+ \(\mathcal{G}_\NN(p)).
+ <p>
+Si \(X) est une variable aléatoire de loi \(\mathcal{G}_\NN(p)) alors \(X + 1) est une variable aléatoire
+de loi \(\mathcal{G}_{\NN^*}(p)).
+ </p>
+</div>
+<table class="wimsborder wimscenter"><tr><th>Espérance</th><th>Variance</th>
+<th>Fonction génératrice</th></tr><tr>
+<td>\(\frac{1 - p}{p})</td><td>\(\frac{1 - p}{p^2})</td><td>\(\frac{p}{1 - (1 - p)z})</td></tr></table>
+
+:mathematics/probability/fr/geometric_distribution_1

@@ -1,0 +1,48 @@
+!set help_isread=yes
+
+<h2 class="wims_subtitle">Conditions Générales d&rsquo;Utilisation (CGU)</h2>
+
+L&rsquo;utilisation des classes virtuelles d&rsquo;un serveur WIMS implique l&rsquo;enregistrement de certaines données de connexion
+afin de pouvoir calculer les scores et notes.
+Les informations suivantes sont accessibles à l&rsquo;enseignant sous forme brute ou sous forme analysée&nbsp;:
+<ul>
+  <li>les exercices visualisés et/ou résolus ;</li>
+  <li>l&rsquo;ensemble des notes obtenues ;</li>
+  <li>les jours, heures et IP de connexion des élèves lorsqu&rsquo;ils effectuent
+    un travail (feuilles d&rsquo;exercices) dans la classe WIMS (données brutes).</li>
+</ul>
+Elles permettent à l&rsquo;enseignant d&rsquo;évaluer les difficultés, le temps de travail de l&rsquo;élève.
+<p>
+  Un élève a accès aux scores moyens, maxima, minima de la classe mais n&rsquo;a
+  pas accès aux informations concernant un autre élève.
+  Il a aussi accès aux données brutes qui le concernent.
+</p><p>
+  L&rsquo;utilisation des outils de la classe (forum, mots du jour, cahier de texte, système de notation)
+  est placée sous la responsabilité de l&rsquo;enseignant de la classe ainsi que les sauvegardes des données
+  de la classe qu&rsquo;il peut faire.
+</p><p>
+  !if $save_logincgu!=$empty
+    L&rsquo;ensemble des données de la classe sera archivé automatiquement le
+    !read date.phtml $class_expiration,notime
+    (cependant cette date peut être modifiée par l&rsquo;enseignant).
+  !else
+    L&rsquo;ensemble des données de la classe est archivé automatiquement à l&rsquo;expiration de la classe.
+  !endif
+  Les archives sont régulièrement effacées par les administrateurs du serveur.
+</p>
+!endif
+
+<div class="wims_msg info">
+  En vous inscrivant à une classe de ce serveur,
+  vous acceptez ces conditions générales d&rsquo;utilisation.
+</div>
+<div class="wims_msg info">
+  En créant ou gérant une classe virtuelle,
+  vous acceptez la (co)responsabilité du traitement des données à
+  caractère personnel de la classe que vous créez.
+  Vous êtes responsable des ressources
+  que vous créez et mettez à disposition des apprenants.
+  Vous vous engagez à respecter les réglementations en vigueur
+  sur les données personnelles (par exemple,
+  si vous transférez des données de la classe sur votre ordinateur).
+</div>

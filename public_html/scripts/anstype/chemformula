@@ -1,0 +1,212 @@
+option:symbols=" " order=no or hill or [list of some atoms] latex
+##traitement des ions à vérifier
+ans_list_atoms=C,H,Ac,Ag,Al,Am,Ar,As,At,Au,B,Ba,Be,Bi,Bk,Br,sCa,Cd,Ce,Cf,Cl,Cm,Co,Cr,Cs,Cu,\
+      Dy,Er,Es,Eu,F,Fe,Fm,Fr,Ga,Gd,Ge,He,Hf,Hg,Ho,I,In,Ir,K,Kr,La,Li,Lr,Lu,Md,Mg,Mn,Mo,\
+      N,Na,Nb,Nd,Ne,Ni,No,Np,O,Os,P,Pa,Pb,Pd,Pm,Po,Pr,Pt,Pu,Ra,Rb,Re,Rh,Rn,Ru,S,Sb,Sc,Se,Si,Sm,Sn,Sr,\
+      Ta,Tb,Tc,Te,Th,Ti,Tl,Tm,U,V,W,Xe,Y,Yb,Zn,Zr
+
+!set ans_order=!getopt order in $(replyoption$i)
+
+ans_mol_r=$(reply$i)
+ans_mol_r=!nospace $ans_mol_r
+ans_mol_r=!text remove _ in $ans_mol_r
+ans_mol_r=!trim $ans_mol_r
+ans_mol_r=!nospace $ans_mol_r
+
+transforme la donnée en
+C,1,
+H,5,+
+ion,
+ans_c1=0
+
+!reset ans_brut_r ans_brut_g
+!readproc anstype/chemformula_analysis $ans_mol_r
+ans_brut_r=$slib_out
+!reset slib_out
+ans_brut_r=!nonempty lines $ans_brut_r
+
+dd=$(reply$i)
+dd=!nospace $dd
+!read slib/chemistry/chemeq_tex $dd
+!if ERROR isin $slib_out
+  test=NaN badform
+  !reset slib_out
+  !exit
+!endif
+!if latex iswordof $(replyoption$i)
+  reply_$i=$slib_out
+  reply__$i=$(reply$i)
+!else
+  !read slib/chemistry/brut2html $dd
+  reply_$i=$slib_out
+  reply$i=$slib_out
+!endif
+!reset slib_out
+
+!if $wims_read_parm=nocompare
+  m_reply$i=$(reply$i)\
+$ans_brut_r
+  !exit
+!endif
+good=!singlespace $(replygood$i)
+good=!translate | to $\
+$ in $good
+good=!nonempty lines $good
+replyGood$i=!line 1 of $good
+!readproc slib/chemistry/chemeq_tex $(replyGood$i)
+!if ERROR isin $slib_out
+  Test=bad $i
+  !reset slib_out
+  !exit
+!endif
+!if latex iswordof $(replyoption$i)
+  replyGood$i=$slib_out
+  !reset slib_out
+!else
+  !read slib/chemistry/brut2html $(replyGood$i)
+  replyGood$i=$slib_out
+  !reset slib_out
+!endif
+dd=!replace internal ^ by in $dd
+dd=!replace internal _ by in $dd
+!if $ans_order=$empty
+  diag=no
+  ans_order_score=0
+  good=!translate | to $\
+$ in $good
+  good=!replace internal ^ by in $good
+  t_=!linecnt $good
+  !for n=1 to $t_
+    g=!line $n of $good
+    g=!nospace $g
+    g=!trim $g
+    !if $dd=$g
+      diag=yes
+      ans_order_score=1
+      !goto end
+    !endif
+  !next n
+  !goto end
+!endif
+ans_order_score=1
+ans_mol_g=$(replygood$i)
+ans_mol_g=!nospace $ans_mol_g
+ans_mol_g=!text remove _ in $ans_mol_g
+ans_mol_g=!trim $ans_mol_g
+ans_mol_g=!nospace $ans_mol_g
+
+!readproc anstype/chemformula_analysis $ans_mol_g
+ans_brut_g=$slib_out
+!reset slib_out
+!reset score
+!for ans_at in $ans_list_atoms,ion
+  ans_v= !select $ans_brut_g where column 1=$ans_at
+  ans_w= !select $ans_brut_r where column 1=$ans_at
+!!FIXME hack to a bug in chemformula_analysis
+  !if , notin $ans_v and $ans_v!=$empty
+    ans_v=$ans_v,1
+  !endif
+  !if , notin $ans_w and $ans_w!=$empty
+    ans_w=$ans_w,1
+  !endif
+  !if $ans_v issametext $ans_w and $ans_w notsametext
+    score=!append item 1 to $score
+  !else
+    !if $ans_v notsametext or $ans_w notsametext
+      score=!append item 0 to $score
+    !endif
+  !endif
+  !reset ans_v ans_w
+!next
+!if 0 notin $score
+  diag=yes
+!else
+  diag=no
+  !goto end
+!endif
+
+!if $ans_order=no
+  !goto end
+!endif
+
+#### atom order
+
+ans_brut_r1=!nonempty lines $ans_brut_r
+ans_brut_r1=!lines2rows $ans_brut_r1
+
+ans_order=!declosing $ans_order
+
+!!https://en.wikipedia.org/wiki/Chemical_formula#Condensed_formula
+!if $ans_order issametext hill
+  ans_ordercnt=1
+  ans_wC= !select $ans_brut_r where column 1=C
+  !if $ans_wC!=$empty
+    !if $ans_wC notsametext $(ans_brut_r1[$ans_ordercnt;])
+      ans_order_score=0
+      !goto end
+    !endif
+    !increase ans_ordercnt
+    ans_w= !select $ans_brut_r where column 1=H
+    !if $ans_w!=
+      !if $ans_w notsametext $(ans_brut_r1[$ans_ordercnt;])
+        ans_order_score=-1
+        !goto end
+      !endif
+      !increase ans_ordercnt
+    !endif
+  !endif
+  !readproc slib/data/columnsort 1,nocase, $(ans_brut_r1[$ans_ordercnt..-1;])
+  slib_out=!nospace $slib_out
+  !if $slib_out notsametext $(ans_brut_r1[$ans_ordercnt..-1;])
+    ans_order_score=-2
+    !goto end
+  !endif
+!else
+  ans_ordercnt=1
+  ans_order=!words2items $ans_order
+  !for at in $ans_order
+    ans_w=!select $ans_brut_r where column 1=$at
+    !if $ans_w!=$empty
+      !if $ans_w notsametext $(ans_brut_r1[$ans_ordercnt;])
+        ans_order_score=0
+        !goto end
+      !endif
+      !increase ans_ordercnt
+    !endif
+  !next
+  !readproc slib/data/columnsort 1,nocase, $(ans_brut_r1[$ans_ordercnt..-1;])
+  !if $slib_out notsametext $(ans_brut_r1[$ans_ordercnt..-1;])
+    ans_order_score=-2
+    !goto end
+  !endif
+!endif
+
+:end
+!if $diag=yes
+  !if $ans_order_score=1
+    diareply$i=good
+    !advance freegot
+    m_sc_reply$i=1
+  !else
+    partialgood$i=yes
+    diareply$i=good
+    freegot=$[$freegot + 0.8]
+    m_sc_reply$i=0.5
+  !endif
+!else
+  !if $ans_order=$empty
+    diareply$i=bad
+  !else
+    ans_w_=!itemcnt $score
+    score=!replace internal , by + in $score
+    score=$[rint(min(10,7*($score)/$ans_w_))/10]
+    !if $score > 0.5
+      freegot=$[$freegot+$score]
+      partialgood$i=yes
+      diareply$i=good
+    !else
+      diareply$i=bad
+    !endif
+  !endif
+  m_sc_reply$i=0
+!endif

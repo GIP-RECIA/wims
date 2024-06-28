@@ -1,0 +1,20 @@
+cdt:
+def:
+doc:sheet seq 
+exam:seq 
+exo:exam livret seq sheet freework
+forum:
+livret:
+log:
+manual:
+motd:
+neighbor:
+score:
+seq:
+sheet:exam livret seq
+sup:
+tool:seq sheet
+user:score userphoto
+userphoto:
+vote:
+

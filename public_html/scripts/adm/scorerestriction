@@ -1,0 +1,173 @@
+!!### adm/scorerestriction
+!! file to manage score restriction for sheet, exam and other
+!! don't forget to declare variable into var.def (with right number if in use) of the module
+!! line 1 (2 words)
+!!  -first : html/put/get
+!!    html : html form to display
+!!    put  : initialise var with date in second line
+!!    get  : verify data from reply and make char wimsdata in output
+!!  -second : num of variable default empty (in case of several use in a same html page)
+!! line 2 : value to put (default value in the form)
+
+!distribute line $wims_read_parm into _job,_value
+!distribute word $_job into _job,_num
+!bound _job within html,put,get,empty default empty
+!set MAXnbvalue=!defof MAX_TECHVARVAL in wimshome/public_html/bases/sys/define.conf
+!bound _num between 0 and $MAXnbvalue default $empty
+
+!if $_job=empty
+  !exit
+!endif
+!goto $_job
+
+:put
+!set _value=!words2items $_value
+!set _n=!itemcnt $_value
+!reset IPscore$_num,begindscore$_num,enddscore$_num,begintscore$_num,endtscore$_num
+!set datecheck$_num=$empty
+!for _k=1 to $_n
+  !set _c=!char 1 of $(_value[$_k])
+  !if $_c=>
+    !set begindscore$_num=!char 2 to 9 of $(_value[$_k])
+    !set begintscore$_num=!char 11 to 15 of $(_value[$_k])
+  !else
+    !if $_c=<
+      !set enddscore$_num=!char 2 to 9 of $(_value[$_k])
+      !set endtscore$_num=!char 11 to 15 of $(_value[$_k])
+    !else
+      !set IPscore$_num=$(IPscore$_num) $(_value[$_k])
+    !endif
+  !endif
+!next _k
+!let _now=!char 1 to 8 of $wims_now
+!if $(begindscore$_num)=$class_creation or $(begindscore$_num)=$empty
+  !let begindscore$_num=$_now
+  !if $(enddscore$_num)=$empty
+    !let datecheck$_num=none
+  !endif
+!endif
+!default enddscore$_num=$class_expiration
+!default begintscore$_num=00:00
+!default endtscore$_num=23:59
+!exit
+
+:html
+!let _now=!char 1 to 8 of $wims_now
+!if exam isin $module
+  !set allid_=3,4
+!else
+  !set allid_=2,3
+!endif
+!if $_num != $empty
+  !! score restriction use a $_num for each techvar
+  <label for="datecheck$_num">$(name_shinfo[6])</label>
+  <select name="datecheck$_num" id="datecheck$_num"
+          !if $jquery_defined=yes
+            onchange="toggle_select_option(this, 'select')"
+          !else
+            onchange="submit()"
+          !endif
+  >
+    <option value="none"
+      !if $(datecheck$_num)=none
+        selected="selected"
+      !endif
+    >$(name_allowtype[$(allid_[1])])</option>
+    <option value="select"
+      !if $(datecheck$_num)!=none
+        selected="selected"
+      !endif
+    >$(name_allowtype[$(allid_[2])])</option>
+  </select>
+!endif
+
+<ul class="wims_nopuce"
+  !if $_num != $empty and $(datecheck$_num)=none
+    style="display:none"
+  !else
+    style="display:block"
+  !endif
+>
+  <li>
+    <label for="begindscore$_num">$wims_name_from</label>
+    !if $(begindscore$_num) < $class_creation
+      <div class="wims_msg warning">$wims_name_corrected_date ($(begindscore$_num))</div>
+      !let begindscore$_num=$class_creation
+
+    !endif
+    !read adm/datepickerform.phtml $(begindscore$_num)\
+begindscore$_num\
+"$class_creation","$class_expiration"
+
+    <label for="begintscore$_num">$wims_name_at</label>
+    <input type="time" size="5" name="begintscore$_num" id="begintscore$_num" value="$(begintscore$_num)">
+
+    <label for="enddscore$_num">$wims_name_to</label>
+    !if $(enddscore$_num) < $class_creation
+      <div class="wims_msg warning">$wims_name_corrected_date ($(enddscore$_num))</div>
+      !let enddscore$_num=$class_creation
+    !endif
+    !read adm/datepickerform.phtml $(enddscore$_num)\
+enddscore$_num\
+"$class_creation","$class_expiration"
+
+    <label for="endtscore$_num">$wims_name_at</label>
+    <input type="time" size="5" name="endtscore$_num" id="endtscore$_num" value="$(endtscore$_num)">
+
+  </li><li>
+    <label for="IPscore$_num">$wims_name_IP</label>
+    <input size="15" name="IPscore$_num" id="IPscore$_num" value="$(IPscore$_num)" placeholder="127.0.0.1">
+  </li>
+</ul>
+!reset datecheck$_num
+!exit
+
+:get
+!! error are not display to user but default value replace bad value
+!! date format verification
+!set _e=begin,end
+!set _l=$class_creation,$class_expiration
+!for _t=1 to 2
+  !set $(_e[$_t])dscore$_num=!text select 0123456789 in $($(_e[$_t])dscore$_num)
+  !bound $(_e[$_t])dscore$_num between $class_creation and $class_expiration default $(_l[$_t])
+  !set _y=!char 1 to 4 of $($(_e[$_t])dscore$_num)
+  !set _m=!char 5 to 6 of $($(_e[$_t])dscore$_num)
+  !set _d=!char 7 to 8 of $($(_e[$_t])dscore$_num)
+  !! ---- day and month check (not realy good test should be an exact test of existence of date)
+  !if $_m<1 or $_m>12 or $_d<1 or $_d>31
+    !set $(_e[$_t])dscore$_num=$(_l[$_t])
+  !endif
+!next _t
+!! time format verification
+!set _l=00:00,23:59
+!for _t=1 to 2
+  !set $(_e[$_t])tscore$_num=!text select 0123456789: in $($(_e[$_t])tscore$_num)
+  !set $(_e[$_t])tscore$_num=!replace internal : by , in $($(_e[$_t])tscore$_num)
+  !set _nb=!itemcnt $($(_e[$_t])tscore$_num)
+  !if $_nb=2
+    !distribute item $($(_e[$_t])tscore$_num) into _h,_m
+    !set _h=$[$_h*1]
+    !set _m=$[$_m*1]
+    !if $_h<0 or $_h>23 or $_m<0 or $_m>59 or NaN isin $_h$_m
+      !set $(_e[$_t])tscore$_num=$(_l[$_t])
+    !else
+      !set _h=!char 2 to 3 of $[100+$_h]
+      !set _m=!char 2 to 3 of $[100+$_m]
+      !set $(_e[$_t])tscore$_num=$_h:$_m
+    !endif
+  !else
+    !set $(_e[$_t])tscore$_num=$(_l[$_t])
+  !endif
+!next _t
+!! IP restriction char
+!set IPscore$_num=!text select char 1234567890. in $(IPscore$_num)
+!! write output
+!reset _output
+!if $(begindscore$_num)!=$empty and ($(begindscore$_num)!=$class_creation or $(begintscore$_num)!=00:00) and none notin $(datecheck$_num)
+  !set _output=$_output>$(begindscore$_num).$(begintscore$_num)
+!endif
+!if $(enddscore$_num)!=$empty and ($(enddscore$_num)!=$class_expiration or $(endtscore$_num)!=23:59) and none notin $(datecheck$_num)
+  !set _output=$_output <$(enddscore$_num).$(endtscore$_num)
+!endif
+!set _output=$_output $(IPscore$_num)
+!exit

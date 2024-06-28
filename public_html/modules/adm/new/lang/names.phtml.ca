@@ -1,0 +1,18 @@
+!set lang_exists=yes
+
+!set name_warning_new=Encara no s'ha fet cap actualització de mòdul en el sistema de\
+ publicació i actualització de mòduls introduïts a WIMS.
+
+!set name_warning_update=Encara no s'ha fet cap actualització de mòdul en el sistema de\
+ publicació i actualització de mòduls introduïts a WIMS.
+
+!distribute line Nous mòduls instal·lats al servidor \
+  Recents actualitzacions de mòduls al servidor\
+  Nova<br>versió\
+  Deprecated modules\
+into name_newmodule,name_updatemodule,name_new,wims_name_mod_depr
+
+!set wims_name_mod_depr=Non indexed modules
+!set wims_name_title_mod_depr=Deprecated modules transferred in a multilanguage module\
+  or no more updated
+!set name_depr=$wims_name_title_mod_depr

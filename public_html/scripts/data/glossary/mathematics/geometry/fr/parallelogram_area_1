@@ -1,0 +1,256 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Aire d'un parallélogramme (illustration)
+!set gl_renew=1
+
+!set gl_polyg=BIEN,BIOS,BISE,BLEU,BLOC,BOIS,BOND,BORD,BOUC,BOUM,BOUT,BOXE,BREF,BRIN,BRIO,BROC,BRUN,BRUT,BUSE,CENT,CERF,CEUX,CIEL,CIME,CINQ,CIRE,CLEF,CLES,CLOS,CLOU,CLUB,CODE,COEF,COIN,COTE,COUP,CRIN,CUBE,CUVE,DEFI,DEMI,DEMO,DENT,DEUX,DING,DIRE,DONC,DOUX,DROP,DUEL,DUNE,EMIR,EMOI,EPIS,ETUI,EURO,EXIL,EXPO,FEUX,FIER,FILE,FILM,FILS,FIXE,FLIP,FLOC,FLOP,FLOT,FLOU,FLUO,FLUX,FOIE,FOIN,FOIS,FOND,FORT,FOUR,FRIC,FUEL,FUIR,GENS,GLUE,GOLF,GOND,GOUT,GREC,GRIS,GROS,GRUE,IDEM,ILOT,INDE,INFO,INOX,IODE,ITEM,JEUX,JOIE,JOLI,JONC,JOUE,JOUG,JOUR,JUDO,JUGE,JUIN,JUPE,JURY,LENT,LEUR,LIEN,LIER,LIEU,LIFT,LIME,LION,LOBE,LOFT,LOUP,LOVE,LUGE,LUNE,LUXE,MELO,MENU,MIEL,MIRE,MISE,MODE,MOIS,MOLE,MONT,MUET,MULE,NERF,NEUF,NEWS,NOEL,NOIR,NOIX,NOTE,NOUS,NUIT,OBUS,OCRE,OEUF,OGRE,ONDE,ONYX,ONZE,OPEN,OPUS,ORDI,ORGE,ORYX,OSER,OTER,OUPS,OVNI,PEUR,PIED,PIGE,PILE,PION,PLUS,PNEU,POIS,POLE,POLY,PONT,PORT,POUR,POUX,PRET,PRIX,PROF,PUCE,QUEL,QUID,QUIZ,QUOI,REIN,RIDE,RIEN,ROND,ROSE,ROTI,ROUE,ROUX,SCIE,SECU,SELF,SERF,SEUL,SNIF,SNOB,SOIE,SOIF,SORT,STOP,SUER,SUMO,SURF,TOFU,TOGE,TOLE,TOME,TOUR,TOUS,TOUX,TRIO,TROC,TROP,TROU,TRUC,TUBE,UNIR,URNE,USER,VELO,VENT,VERS,VERT,VETO,VIDE,VOEU,VOIE,VOIR,VOIX,VOTE,VOUS,YETI,YEUX,YOLE,ZEBU,ZERO,ZINC,ZONE
+!set gl_nom=!randitem $gl_polyg
+!set gl_R=!char 1 of $gl_nom
+!set gl_S=!char 2 of $gl_nom
+!set gl_T=!char 3 of $gl_nom
+!set gl_U=!char 4 of $gl_nom
+!readproc data/glossary/mathematics/geometry/macro/randalphanum_gen
+!set gl_alea=$gl_rd
+
+!set gl_b1=brd_$gl_alea
+!set gl_id1=id_$gl_alea
+<style>
+/*<![CDATA[*/
+#appletA{order:2;}
+#appletB{order:1;}
+@media screen and (max-width: 40em) {
+#appletA_$gl_alea{order:2;}
+#appletB_$gl_alea{order:1;}
+}
+div.appletB{padding-left:1.5em;}
+.rem_$gl_alea{font-size:0.8em;font-style:italic;text-align:center}
+/*]]>*/
+</style>
+!set gl_dim1=!randint 5,8
+!set gl_dim2=!randint 1,5
+!set gl_dim3=!randint 5,12
+!set gl_script_$gl_alea =\
+JXG.Options.point.snapToGrid = true;\
+JXG.Options.point.snapSizeX = 1;\
+JXG.Options.point.snapSizeY = 1;\
+JXG.Options.elements.tabindex = -1;\
+const $gl_b1 = JXG.JSXGraph.initBoard('$gl_id1', {\
+  boundingbox:  [-3, 15, 15, -1],\
+  axis:false,\
+  grid:false,\
+  showCopyright : false,\
+  showNavigation:false,\
+  showZoom : false,\
+  keepaspectratio : true,\
+  zoom: {enabled: false,wheel:false,needShift: false,factorX: 0,factorY: 0,min:0.001,max:0.001,pinchHorizontal: false,pinchVertical: false,pinchSensitivity: 0},\
+  pan: {enabled: false,needTwoFingers: false,needShift:false}\
+  });\
+$gl_b1.renderer.displayCopyright('Figure réalisée avec JSXGraph v'+JXG.version,11);\
+dir4 = function () {\
+  if (!this.visProp.fixed) {\
+    $gl_b1.containerObj.style.cursor = 'move';\
+  }\
+};\
+out = function () {\
+  if (!this.visProp.fixed) {\
+    $gl_b1.containerObj.style.cursor = 'default';\
+  }\
+};\
+dir2 = function () {\
+  if (!this.visProp.fixed) {\
+    $gl_b1.containerObj.style.cursor = 'w-resize';\
+  }\
+};\
+let s1_$gl_alea = $gl_dim1;\
+let s2_$gl_alea = $gl_dim2;\
+let s3_$gl_alea = $gl_dim3;\
+let xR_$gl_alea=0;\
+let yR_$gl_alea=0;\
+let z_$gl_alea=[];\
+const coordo_$gl_alea=[[1,1],[5,1],[1,12],[5,12]];\
+for (let m=0;m<4;m++){\
+  z_$gl_alea[m]=$gl_b1.create('point',coordo_$gl_alea[m],{fixed:true,size:0,name:'',face:'',showInfobox:false});\
+}\
+let zone_$gl_alea= $gl_b1.create('polygon',[z_$gl_alea[0],z_$gl_alea[1],z_$gl_alea[3],z_$gl_alea[2]],{hasInnerPoints:true,borders:{visible:false},fillcolor:'transparent',highlight:false});\
+let p1_$gl_alea = $gl_b1.create('point',[xR_$gl_alea, yR_$gl_alea],{name:'$gl_R',size:0,color:'green',fixed:true,face:'plus',showInfobox:false,label:{autoPosition: true,offset:[-10,-8]}});\
+let l1_$gl_alea=$gl_b1.create('segment',[[9,0],[5,0]],{strokeColor:'transparent',highlight:false,fixed:true});\
+let p2_$gl_alea=$gl_b1.create('glider', [s1_$gl_alea, yR_$gl_alea,l1_$gl_alea],{fixed:false,name:'$gl_S',size:2,color:'green',showInfobox:false,tabindex:0,label:{autoPosition: true,offset:[2,-12]},layer:15});\
+let p4_$gl_alea=$gl_b1.create('point', [s2_$gl_alea, s3_$gl_alea],{fixed:false,name:'$gl_U',size:2,color:'green',showInfobox:false,tabindex:0,label:{autoPosition: true,offset:[-10,10]},layer:15});\
+let p3_$gl_alea=$gl_b1.create('parallelpoint',[p1_$gl_alea,p2_$gl_alea,p4_$gl_alea],{name:'$gl_T',size:0,fixed:true,color:'green',showInfobox:false,label:{autoPosition: true,offset:[8,5]},layer:15});\
+let pol_$gl_alea=$gl_b1.create('polygon',[p1_$gl_alea,p2_$gl_alea,p3_$gl_alea,p4_$gl_alea],{hasInnerPoints:true,color:'green',fillOpacity: 0,borders:{strokeColor:'green',strokeWidth:2,layer:10,highlight:false},vertices:{face:'plus',strokeColor:'green',size:0,showInfobox:false,label:{fixed:false,offset:[-4,8]}},highlight: false});\
+let p5_$gl_alea=$gl_b1.create('midpoint', [p1_$gl_alea, p2_$gl_alea],{name:'',size:0,color:'',fixed:true,face:'',showInfobox:false,withLabel:false});\
+let p55_$gl_alea=$gl_b1.create('midpoint', [p3_$gl_alea, p4_$gl_alea],{name:'',size:0,color:'',fixed:true,face:'',showInfobox:false,withLabel:false});\
+let t1_$gl_alea = $gl_b1.create('text',[0, 1,'\(c\)'], {anchor: p55_$gl_alea,anchorX:'middle',anchorY:'top',color:'green',fixed:true});\
+let t2_$gl_alea = $gl_b1.create('text',[0, -0.75,'\(c\)'], {anchor: p5_$gl_alea,anchorX:'middle',anchorY:'top',color:'green',fixed:true});\
+let H_$gl_alea =$gl_b1.create('perpendicularpoint',[p3_$gl_alea, l1_$gl_alea],{name:'H',visible:'true',size:1,face:"plus",color:'blue',showInfobox:false,highlight:false,label:{autoPosition: true,offset:[-2,-10]}});\
+let K_$gl_alea =$gl_b1.create('perpendicularpoint',[p4_$gl_alea, l1_$gl_alea],{name:'K',visible:false,size:1,face:"plus",color:'blue',showInfobox:false,highlight:false,label:{autoPosition: true,offset:[-7,-10]}});\
+let tra_$gl_alea =$gl_b1.create('polygon', [K_$gl_alea, p2_$gl_alea,p3_$gl_alea,p4_$gl_alea], {hasInnerPoints:true,color:'green', withLines:false, fillOpacity: 0.3,highlight:false});\
+let haut_$gl_alea=$gl_b1.create('segment',[H_$gl_alea,p3_$gl_alea],{dash:"1",highlight: false});\
+let haut2_$gl_alea=$gl_b1.create('segment',[K_$gl_alea,p4_$gl_alea],{visible:false,dash:"1",highlight: false});\
+let ang_$gl_alea =$gl_b1.create('angle',[haut_$gl_alea,l1_$gl_alea,1,1],{name:' ',radius:0.4,color:'blue',highlight:false});\
+let ang2_$gl_alea =$gl_b1.create('angle',[l1_$gl_alea,haut2_$gl_alea,-1,1],{name:' ',radius:0.4,color:'blue',highlight:false,visible:false});\
+let base_$gl_alea= $gl_b1.create('segment',[p2_$gl_alea,H_$gl_alea],{dash:"1",highlight: false});\
+let p6_$gl_alea=$gl_b1.create('midpoint',[p3_$gl_alea, H_$gl_alea],{name:' ',size:0,fixed:true,face:'',visible:false,showInfobox:false,withLabel:false,highlight: false});\
+let t3_$gl_alea =$gl_b1.create('text',[0.3,0,'\(h\)'], {anchor:p6_$gl_alea,anchorX:'middle',color:'blue',fixed:true});\
+let p7_$gl_alea = $gl_b1.create('point', [0,0], {name:'', visible:false});\
+let p8_$gl_alea = $gl_b1.create('point', [function() {return p7_$gl_alea.X()+K_$gl_alea.X();}, function(){return p7_$gl_alea.Y();}], {name:'', visible:false});\
+let p9_$gl_alea = $gl_b1.create('point', [function() {return p7_$gl_alea.X()+K_$gl_alea.X();}, function(){return p3_$gl_alea.Y();}], {name:'', visible:false});\
+let tri_$gl_alea = $gl_b1.create('polygon', [p7_$gl_alea, p8_$gl_alea, p9_$gl_alea], {hasInnerPoints:true,color:'green', withLines:false, fillOpacity: 0.3,highlight:false});\
+let cpt_$gl_alea=0;\
+let button_$gl_alea = $gl_b1.create('button', [-2,14, 'Animer', anim_$gl_alea]);\
+button_$gl_alea.rendNodeButton.setAttribute('style','border:0.1em solid #999;border-radius:0.5em;font-weight:bold;cursor:pointer;background-color: #5e5c64;color:#ffffff;font-size:12px;padding:.2em .6em;line-height:2em');\
+function anim_$gl_alea(){\
+  if(cpt_$gl_alea%2==0){\
+    p7_$gl_alea.moveTo([p2_$gl_alea.X(),0], 1000);\
+    if(K_$gl_alea.isOn(p2_$gl_alea)){\
+      K_$gl_alea.setAttribute({visible: false});\
+    } else {\
+      K_$gl_alea.setAttribute({visible: true});\
+    }\
+    haut2_$gl_alea.setAttribute({visible: true});\
+    ang2_$gl_alea.setAttribute({visible: true});\
+    button_$gl_alea.rendNodeButton.innerHTML='&nbsp;&nbsp;&nbsp;Retour&nbsp;&nbsp&nbsp;';\
+    document.getElementById("txt2_$gl_alea").style.display = "block";\
+  }else{\
+    p7_$gl_alea.moveTo([0,0], 0);\
+    button_$gl_alea.rendNodeButton.innerHTML='Animer';\
+    }\
+  cpt_$gl_alea+=1;\
+}\
+p2_$gl_alea.on('over',dir2);\
+p2_$gl_alea.on('out',out);\
+p4_$gl_alea.on('over',dir4);\
+p4_$gl_alea.on('out',out);\
+$gl_b1.fullUpdate();
+
+<div class="grid-container fluid">
+  <div class="grid-x grid-padding-x">
+    <div id="appletA_$gl_alea" class="cell2 small-12 medium-6 large-6">
+      <div class="appletA">
+        !readproc slib/geo2D/jsxgraph $gl_id1 $gl_b1,[250x250, center min=250px max=400px scroll],$(gl_script_$gl_alea)
+        $slib_out
+      </div>
+      <div class="rem_$gl_alea">La figure est modifiable en déplaçant les points \(\mathrm{$gl_$gl_S}\) et <span class="nowrap">\(\mathrm{$gl_U}\).</span>
+      </div>
+    </div>
+    <div id="appletB_$gl_alea" class="cell2 small-12 medium-6 large-6">
+      <div class="appletB">
+        <p><em>Une unité de longueur étant donnée dans le plan, on considère l'unité d'aire associée</em>.</p>
+        <div id="txt_$gl_alea"></div>
+        <div id="txt2_$gl_alea"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+let myText_$gl_alea;
+let myText2_$gl_alea;
+
+const debMML_$gl_alea='<span class="wims_mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mstyle  mathsize="110%">';
+const finMML_$gl_alea='</mstyle></math></span>';
+
+function isIn_$gl_alea(pt,poly) {
+  let coor = new JXG.Coords(JXG.COORDS_BY_USER, [pt.X(), pt.Y()], $gl_b1);
+  return poly.hasPoint(coor.scrCoords[1], coor.scrCoords[2])
+}
+function textDisplay_$gl_alea() {
+  let ph1_$gl_alea,ph2_$gl_alea;
+  type={
+    nature:'<strong>parallélogramme</strong> de côté '+debMML_$gl_alea+'<mrow><mo fence="true" form="prefix">[</mo><mrow><mrow><mi mathvariant="normal">$gl_R</mi></mrow><mrow><mi mathvariant="normal">$gl_S</mi></mrow></mrow><mo fence="true" form="postfix">]</mo></mrow>'+finMML_$gl_alea+' et de hauteur '+ debMML_$gl_alea+'<mrow><mo stretchy="true">[</mo><mi mathvariant="normal">$(gl_T)H</mi><mo stretchy="true">]</mo></mrow>'+finMML_$gl_alea+' relative à ce côté ',
+    cote1:'$gl_R$gl_S',
+    cote2:'$(gl_T)H'
+  };
+  ph1_$gl_alea='Soit '+debMML_$gl_alea+'<mi mathvariant="normal">$gl_R$gl_S$gl_T$gl_U</mi>'+finMML_$gl_alea+' un '+type.nature+' tel que ';
+  ph2_$gl_alea= ((x) => debMML_$gl_alea+'<mi mathvariant="normal">'+x+'</mi><mo>=</mo><mi>c</mi>'+finMML_$gl_alea)(type.cote1);
+  ph2_$gl_alea=ph2_$gl_alea+' et <span class="nowrap">'+ ((x) => debMML_$gl_alea+'<mi mathvariant="normal">'+x+'</mi><mo>=</mo><mi>h</mi>'+finMML_$gl_alea)(type.cote2)+'.</span>';
+
+  myText_$gl_alea='<p>'+ph1_$gl_alea+ph2_$gl_alea+'</p>';
+}
+function textDisplay2_$gl_alea() {
+  let rect_$gl_alea;
+  if(K_$gl_alea.isOn(p2_$gl_alea)){
+    rect_$gl_alea='$(gl_S)H$gl_T$gl_U'
+  }else{
+    rect_$gl_alea='KH$gl_T$gl_U'
+  }
+  let ph7_$gl_alea='<p>L\'aire '+debMML_$gl_alea+'<mi>A</mi>'+finMML_$gl_alea+' du <strong>parallélogramme</strong> ';
+  ph7_$gl_alea=ph7_$gl_alea+debMML_$gl_alea+'<mi mathvariant="normal">$gl_R$gl_S$gl_T$gl_U</mi>'+finMML_$gl_alea+' est égale à l\'aire du rectangle <span class="nowrap">'+debMML_$gl_alea+'<mi mathvariant="normal">'+rect_$gl_alea+'</mi>'+finMML_$gl_alea;
+  if(K_$gl_alea.isOn(p2_$gl_alea)){
+      ph7_$gl_alea=ph7_$gl_alea+'.</span></p>';
+    } else {
+      ph7_$gl_alea=ph7_$gl_alea+',</span><br> où '+debMML_$gl_alea+'<mi mathvariant="normal">K</mi>'+finMML_$gl_alea+' est le pied de la perpendiculaire à '+debMML_$gl_alea+'<mi mathvariant="normal">($gl_R$gl_S)</mi>'+finMML_$gl_alea+' passant par <span class=nowrap">'+debMML_$gl_alea+'<mi mathvariant="normal">$gl_U</mi>'+finMML_$gl_alea+'.</span></p>';
+    }
+  ph7_$gl_alea=ph7_$gl_alea+'<p><span class="nowrap">'+debMML_$gl_alea+'<mi>A</mi><mo>=</mo><mi>c</mi><mo>&#xD7;</mo><mi>h</mi>'+finMML_$gl_alea+'.</span></p>';
+  myText2_$gl_alea=ph7_$gl_alea;
+}
+document.addEventListener('DOMContentLoaded', function() {
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+  document.getElementById("txt2_$gl_alea").style.display = "none";
+})
+$gl_b1.on('update', function(){
+  if(cpt_$gl_alea%2==1){
+    if(K_$gl_alea.isOn(p2_$gl_alea)){
+      K_$gl_alea.setAttribute({visible: false});
+    } else {
+      K_$gl_alea.setAttribute({visible: true});
+    }
+  }else{
+    if(cpt_$gl_alea==0){
+      K_$gl_alea.setAttribute({visible: false});
+    }else{
+      if(K_$gl_alea.isOn(p2_$gl_alea)){
+        K_$gl_alea.setAttribute({visible: false});
+      } else {
+        K_$gl_alea.setAttribute({visible: true});
+      }
+    }
+  }
+  textDisplay2_$gl_alea();
+  document.getElementById("txt2_$gl_alea").innerHTML = myText2_$gl_alea;
+})
+
+p2_$gl_alea.coords.on('update', function(){
+  if(cpt_$gl_alea%2==1){
+    anim_$gl_alea();
+  }
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+  textDisplay2_$gl_alea();
+  document.getElementById("txt2_$gl_alea").innerHTML = myText2_$gl_alea;
+})
+p4_$gl_alea.coords.on('update', function(){
+  if(isIn_$gl_alea(p4_$gl_alea,zone_$gl_alea)==false){
+   switch (true) {
+    case p4_$gl_alea.Y()>12 && p4_$gl_alea.X()>5:
+      p4_$gl_alea.moveTo([5,12]);
+      break;
+    case p4_$gl_alea.Y()>12 && p4_$gl_alea.X()>=1 && p4_$gl_alea.X()<=5:
+      p4_$gl_alea.moveTo([p4_$gl_alea.X(),12]);
+      break;
+    case p4_$gl_alea.Y()>12 && p4_$gl_alea.X()<1:
+      p4_$gl_alea.moveTo([1,12]);
+      break;
+    case p4_$gl_alea.Y()<1 && p4_$gl_alea.X()>5:
+      p4_$gl_alea.moveTo([5,1]);
+      break;
+    case p4_$gl_alea.Y()<1 && p4_$gl_alea.X()>=1 && p4_$gl_alea.X()<=5:
+      p4_$gl_alea.moveTo([p4_$gl_alea.X(),1]);
+      break;
+    case p4_$gl_alea.Y()<1 && p4_$gl_alea.X()<1:
+      p4_$gl_alea.moveTo([1,1]);
+      break;
+    case p4_$gl_alea.X()>5 :
+      p4_$gl_alea.moveTo([5,p4_$gl_alea.Y()]);
+      break;
+    case p4_$gl_alea.X()<1:
+      p4_$gl_alea.moveTo([1,p4_$gl_alea.Y()]);
+      break;
+   }
+  }
+  textDisplay_$gl_alea();
+  document.getElementById("txt_$gl_alea").innerHTML = myText_$gl_alea;
+  textDisplay2_$gl_alea();
+  document.getElementById("txt2_$gl_alea").innerHTML = myText2_$gl_alea;
+})
+</script>

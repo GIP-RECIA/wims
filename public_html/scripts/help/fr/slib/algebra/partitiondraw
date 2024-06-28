@@ -1,0 +1,21 @@
+slib_lang_exists_tmp=yes
+
+slib_title= Dessiner des diagrammes de Young d'une partition
+slib_parms=5\
+,partition\
+30,taille des cases en pixels\
+,largeur\
+,hauteur\
+raw,option : url,html,raw
+
+slib_out=Dessin du diagramme de Young (+ taille de l'image quand l'option est \
+<span class="tt">url</span> or <span class="tt">html</span>).
+slib_comment= Le résultat est : par défaut, le code flydraw ; \
+l'adresse du diagramme pour <span class="tt">url</span> ; \
+le code html du diagramme inséré pour <span class="tt">html</span> ;\
+the html code for inserting canvasdraw is already inserted for \
+  the option <span class="tt">canvas</span>.
+
+slib_comment=<span class="tt">partition</span> doit être entre crochets. \
+  Il est possible d'ajouter un numéro dans les cases avec la syntaxe \
+  <span class="tt">[partition,texte]</span> avec <span class="tt">texte</span> entre crochets.

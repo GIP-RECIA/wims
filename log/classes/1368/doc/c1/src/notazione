@@ -1,0 +1,11 @@
+Per indicare che un numero è scritto in una certa base \(b\) (eventualmente diversa da \(10\)) il libro di testo utilizza la notazione
+<div class="wimscenter">
+\(xxxx_b\)
+</div>
+Alcuni esercizi di questo test utilizzano notazioni differenti per indicare lo stesso numero. Per esempio
+<ul>
+ <li>\(\overline{xxxx}^{b}\) significa \(xxxx_b\)
+ </li>
+<li>\((xxxx)_b\) significa \(xxxx_b\)</li>
+</ul>
+Se è chiaro dal contesto, la base \(b\) può non essere sempre esplicitata.

@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability
+!set gl_title=Issue (collège)
+!set gl_level=H3 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+On appelle <strong>issue</strong> d'une expérience aléatoire tout résultat de
+cette expérience.
+<div>
+L'ensemble des issues est appelé <strong>univers</strong>.
+</div>
+</div>

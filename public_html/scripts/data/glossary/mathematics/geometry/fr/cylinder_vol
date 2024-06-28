@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=volume,measurement,cylinder,solid_geometry,3_shape
+!set gl_title=Volume d'un cylindre
+!set gl_level=H1 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(C\) un cylindre de hauteur \(h\) dont la base est un disque de rayon
+<span style="white-space:nowrap">\(r\).</span><br>
+Le volume \(V\) du cylindre \(C\) est
+<span style="white-space:nowrap">\(V= \pi r^2 h \).</span>
+</div>
+:mathematics/geometry/fr/cylinder_vol_1

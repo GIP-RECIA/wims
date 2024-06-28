@@ -1,0 +1,20 @@
+:signification
+crée une aide popup (tooltip) : le premier paramètre est le texte du lien,
+le troisième paramètre est le texte apparaissant dans l'aide popup.
+Le second paramètre est le style css (forme simple) éventuellement et/ou
+la position.
+:example
+<div class="wims_help_bloc example">
+<h2>Exemple</h2>
+<textarea id="wims_show91" cols="100" rows="8" readonly="readonly">
+\special{tooltip passer la souris ici,,le mot a 5 lettres}
+\special{tooltip passer la souris ici,style="width:100px" class="left", le mot a 5 lettres}
+\special{tooltip passer la souris ici,style="width:300px;background-color:blue;color:white",
+  une formule \(\frac{a}{b}\)}
+</textarea>
+</div>
+:option
+La position peut être indiquée en rajoutant une des classes css <span class="tt">left</span>,
+<span class="tt">right</span>,
+<span class="tt">top</span>,
+<span class="tt">bottom</span>, par défaut, l'indication apparait à droite.

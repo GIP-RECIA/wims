@@ -1,0 +1,10 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Effectifs of statistical series in classes
+
+slib_out= [effectifs of classes], [classes data]
+slib_comment= data : [x_1,...,x_n] ; classes data: [a_1,...,a_m] \
+ (with min and max add if necessary);\
+ if there are only 2 numbers in classes data, the first one is the smaller, \
+ the second one is the width of classes;\
+ if there is no second parameter, classes are created of width ceil(4*n^(1/4)).

@@ -1,0 +1,13 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=
+!set gl_title=Arbre couvrant
+!set gl_keywords=graph
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:U1/algebra/docgraph.fr
+:
+<div class="wims_defn"><h4>Définition</h4>
+  Un <strong>arbre couvrant</strong> d'un graphe \(G\) non orienté et connexe est un arbre
+  inclus dans \(G\) et qui connecte tous les sommets de \(G\).
+</div>

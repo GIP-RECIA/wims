@@ -1,0 +1,71 @@
+!set renewlink=cmd=renew&worksheet=$worksheet&$module_init_parm
+!set option=$opt
+!reset opt
+
+!if $title!=$empty
+  !set module_title=$title
+  !set module_author=$author
+  !set module_address=$email
+!endif
+
+!header
+
+!if $title=$empty
+  $name_intro
+  <div class="wimscenter">
+  !href module=$module $name_tryagain
+  , $wims_name_or
+  !href $ $wims_name_giveup
+  . </div>
+  !goto end
+!endif
+
+!read deduc/present.phtml
+
+<hr style="width:50%">
+!if $cmd=hint
+  !read deduc/hint.phtml
+  !goto end
+!endif
+
+!if $status=waiting
+  !if $error!=$empty
+    !read deduc/$modu_lang/msg.phtml
+    <div class="wims_msg alert">$penaltymsg</div>
+    <hr style="width:50%">
+  !endif
+  !if nostatus notwordof $m_options and $methstep!=3
+    !read deduc/status.phtml
+  !endif
+!! !set wims_ref_anchor=#last
+  !read deduc/form$methstep.phtml
+  <p>
+  !if $hint!=$empty and $givehint>0
+    !set wims_ref_class=wims_button_help
+    !href cmd=hint $wims_name_Hint
+  !endif
+  !if $help!=$empty
+    !set wims_ref_class=wims_button_help
+    !href cmd=help $wims_name_help
+  !endif
+  !set wims_ref_class=wims_button
+  !href exo_Renew
+  </p>
+!else
+  !if $error!=$empty
+    <div class="wims_msg alert">
+    !read deduc/$modu_lang/msg.phtml
+    </div>
+  !endif
+  !read deduc/answer.phtml
+  !set wims_ref_class=wims_button
+  !href exo_Again
+!endif
+!if $wims_sheet=$empty
+  !set wims_ref_class=wims_button
+  !href exo_Intro
+!endif
+!read endhook.phtml
+!read deduc/hist.phtml
+:end
+!tail

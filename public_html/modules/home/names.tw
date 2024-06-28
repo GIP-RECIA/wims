@@ -1,0 +1,106 @@
+
+N_manage = WIMS online site management
+name_nopreparationsheet=You do not have any worksheets in preparation to insert resources. We advise you to create a worksheet before continuing your activity search.
+
+N_within = among
+N_clear = clear
+N_go = go
+name_importfromtest=teaching materials from Test Zone.
+N_at = at
+N_hide = Hide
+name_allexampleclass=All open classes
+
+V_title = WWW Interactive Multipurpose Server
+V_cls = Virtual classes
+wims_name_n_participant = students' area
+wims_name_n_supervisor = teachers' area
+wims_name_mail = ¼g¦ìµ¹ºÞ²zªÌ
+
+CR_1 = Create my own
+CR_Docs=Tutorials
+CR_OEF = simple interactive exercises
+CR_mod = full-power modules
+
+E_comp = ¡C½sÄ¶¤é´Á¡G
+E_manager = ºô¯¸ºûÅ@¡G
+E_software=Interfaced software
+
+wims_name_About_icons=Icon theme
+wims_name_Change_log=Change log
+
+
+RE_prev  = !nosubst Previous Results
+RE_next  = !nosubst Next Results
+RE_found = !nosubst Found $Gotcnt $tt for your search
+RE_found2= They are classified according to the type of activities.\
+  Click the corresponding button to see them.
+RE_warning_more=!nosubst There are too many results, thus not all of them are shown \
+  (limited to $gotlim2 for each type). You can refine the search \
+  by adding keywords and selecting the type of search on all words \
+  (all word groups).
+RE_nomatch = !nosubst Your search resulted in no match
+RE_pop = !nosubst Here are the $gotcnt most popular $tt
+RE_pop2 = !nosubst $gotcnt $tt by order of popularity\
+(number $[$list_start+1] - $[$list_start+$gotcnt])
+RE_try = Try
+RE_noKeyword    = You must type in a keyword
+
+U_greet = !nosubst $wims_firstname $wims_lastname ±z¦n¡IÅwªï¨Ó¨ì\
+$supmail ©ÒºûÅ@ªº½Òµ{¡C
+U_newmsg = There are $$newmsgcnt new message(s) in the message board.
+U_nosheet = ¥»½Òµ{¨S¦³¥ô¦ó§@·~²M³æ¡A½Ð¦bµy«áºÞ²zªÌ¬°±z·Ç³Æ¦n¤§«á¦AÃ±¤J¡I
+U_assign = ±zªººÞ²zªÌ¤w¬°±z«ü©w¤U¦C§@·~²M³æ¡C
+U_expired = ¤w¹L´Á
+U_done = done
+U_average = average
+U_examworking = You were working on an exam.
+U_examdouble = In this case you cannot connect from another post.
+U_examcont = Continue with it.
+wims_name_U_oclass = Other classes
+wims_name_U_account = My account
+
+wims_name_coeff = weight
+
+U_gotoclass1 = Go to a class as participant:
+U_gotoclass3 = Go to a class as supervisor:
+U_gotoclass0 = Go to your working class:
+U_gotoclass11 = $U_gotoclass1
+U_gotoclass31 = $U_gotoclass3
+U_gotoclass01 = $U_gotoclass0
+U_nogotoclass = Aucune classe en accès enseignant.
+
+U_inscription1 = Registering yourself in a working class:
+U_inscription2 = Register in another class.
+U_clickhere =
+U_supervise = Click here to go to a subclass as supervisor.
+name_gotosupervise=To enter another class as teacher, contact the class group administrator.
+
+SU_greet = !nosubst $wims_firstname $wims_lastname ±z¦n¡IÅwªï¨Ó¨ì½Òµ{ºûÅ@ªººô­¶¡C
+SU_Bhome = ¦^ºÞ²zªÌ­º­¶
+SU_log = ½Òµ{ºÞ²zªÌÃ±¤J
+SU_exp1 = which expires
+SU_exp2 =
+SU_nosheet = ±zªº½Òµ{©|¥¼ÀÀ©w
+SU_shlist = Existing resources
+wims_name_SU_Gateway = Structure management
+SU_nopartconnected=No participant is currently online
+SU_numpartconnected=!nosubst There is(are) currently $wims_numpartconnected participant(s) online
+U_supconnected=The teacher is online.
+
+wims_name_SE_list = ¦C¥X°Ñ»PªÌ¤Î¨ä¦¨ÁZ (old)
+wims_name_n_participant = ¬d¸ß°Ñ»PªÌ­º­¶
+wims_name_SE_mod = ¼g¦ìµ¹½Òµ{°Ñ»PªÌ
+wims_name_SE_secu = Security management
+
+ADD_1 = Add a
+ADD_doc = document
+ADD_sheet = work sheet
+ADD_exam = exam
+ADD_exo = exercise
+ADD_vote = vote
+ADD_class = class
+ADD_2 = CL_Names = Levels,Classes,Programs,Courses,Interclass courses
+CL_Test = Test zone
+CL_otherNames = Other $(CL_Names[2]),$(CL_Names[3]),$(CL_Names[4]) of the class
+
+name_sequence_withtechvar_warning=Attention, l'affichage de certaines séquences est piloté par variable technique. La vue élève proposée n'en tient pas compte.

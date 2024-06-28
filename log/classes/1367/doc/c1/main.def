@@ -1,0 +1,28 @@
+!set titb=Materiali e bibliografia
+!set keyw=
+!set datm=20230530
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+!exit
+
+:content
+<p>Questo documento contiene un archivio dei materiali relativi al corso <em>Istituzioni e didattica della matematica</em> (tenuto per 
+il corso di Laurea in Scienze della Formazione primaria nell'anno accademico 2015/16).</p>
+<ul>
+ <li>
+!read primitives.phtml 1, link, materiale 
+
+ </li>
+<li>
+!read primitives.phtml 2, link, esercitazioni 
+</li>
+</ul>
+

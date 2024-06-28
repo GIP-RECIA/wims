@@ -1,0 +1,43 @@
+!bound step within 0,1 default 0
+
+$(type)tot=!recordcnt wimshome/log/classes/$wims_class/$(type)/.$(type)index
+!if $step=0
+  !if NaN isin $[$($type)/10] or $($type)<1 or $($type)>$($(type)tot)
+    error=bad$(type)number $($type) NaN isin $[$($type)/10] or $($type)<1 or $($type)>$($(type)tot)
+    !exit
+  !endif
+  s$(type)=$($type)
+  sh=!record $(s$(type)) of wimshome/log/classes/$wims_class/$(type)/.$(type)index
+  !distribute lines $sh into dir,param,title,desc,status,wksheet,autosheet
+  !reset update
+  !exit
+!endif
+
+!if $step=1
+  !if $update!=$empty
+    job=deldoc
+    step=0
+    !changeto $job.proc
+  !else
+    desc=!singlespace $desc
+    desc=!char 1 to $desc_limit of $desc
+    title=!singlespace $title
+    title=!char 1 to $title_limit of $title
+    !bound wksheet between 0 and $nbsheet default 0
+    !bound status within 0,1 default 0
+    sh=!record $(s$type) of wimshome/log/classes/$wims_class/$(type)/.$(type)index
+    !distribute lines $sh into dir,param,b,b,b,b,autosheet
+    newsh=$dir\
+$param\
+$title\
+$desc\
+$status\
+$wksheet\
+$autosheet
+    !read proc/updatefield.proc wimshome/log/classes/$wims_class/$(type)/.$(type)index\
+$(s$type)\
+$empty\
+$newsh
+    message=$name_savemodif
+  !endif
+!endif

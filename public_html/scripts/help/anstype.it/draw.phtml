@@ -1,0 +1,98 @@
+<b>Costruzioni geometriche con canvasdraw</b>
+(nome: <span class="tt wims_code_words">draw</span>).
+
+<p>
+Questo tipo di risposta permette allo studente di tracciare oggetti
+geometrici di uno stesso tipo (punti, crocette, cerchi, rette, segmenti, frecce, rettangoli,
+  linee spezzate, poligoni, frecce curve).
+</p><p>
+La risposta corretta deve essere data sotto la forma di una matrice (separando
+le righe con punti e virgole `;').
+La prima riga è il codice del disegno utilizzando la sintassi canvasdraw/flydraw
+compreso tra parentesi quadre [ ].
+La seconda riga è la forma che deve essere disegnata e può essere una
+delle seguenti parole chiave
+<span class="tt wims_code_words">points, crosshairs, circles, lines,
+segments, arrows, arrows2,rects, polyline, polygon, curvedarrows, curvedarrows2</span>,
+a seguire le risposte corrette.
+
+Le coordinate dei punti devono essere date utilizzando le coordinate definite
+nel codice canvasdraw.
+</p><p>
+Le dimensioni del disegno devono essere indicate nella prima riga del campo
+<span class="tt wims_code_words">\embed{}</span>.
+</p><p>
+Le opzioni possibili permettono al momento di modificare il colore
+(<span class="tt wims_code_words">color=_colore_</span>),
+e il metodo di calcolo dei voti
+<span class="tt wims_code_words">eqweight split</span>.
+Per permettere una eventuale risposta vuota, si può utilizzare l'opzione 
+<span class="tt wims_code_words">default="empty"</span>.
+</p><p>
+Nel caso si vogliano analizzare le risposte con condizioni, mettere
+il codice <span class="tt wims_code_words">canvasdraw/flydraw</span>
+come terza riga del comando 
+ <span class="tt wims_code_words">embed</span>, e come seconda riga il tipo
+ di oggetto che deve essere disegnato dallo studente.
+</p>
+<p><b>Limite:</b> non è possibile utilizzare il comando canvasdraw
+ nell'enunciato prima del comando <span class="tt wims_code_words">\embed{}.</span>
+</p>
+<h3>Esempio con analisi:</h3>
+<textarea id="wims_show1" cols="100" rows="16" name="wims_show" readonly="readonly">
+\text{canvas_code=xrange -4,4
+  yrange -4,4
+  opacity 155,155
+  linewidth 1
+  grid 1,1,grey
+  opacity 255,255
+  hline 0,0,black
+  vline 0,0,black
+  precision 10
+  linewidth 2
+  snaptogrid
+}
+\statement{
+\embed{r1,200x200}
+}
+\answer{}{[\canvas_code];arrows,0,3,3,0,0,3,-3,0}{type=draw}{option=eqweight split}
+</textarea>
+<textarea id="wims_show2" cols="100" rows="17" name="wims_show" readonly="readonly">
+\text{canvas_code=xrange -4,4
+  yrange -4,4
+  linewidth 1
+  opacity 155,155
+  grid 1,1,grey
+  opacity 255,255
+  hline 0,0,black
+  vline 0,0,black
+  precision 10
+  linewidth 2
+  snaptogrid
+}
+\statement{
+  \embed{r1,200x200}
+}
+\answer{}{[\canvas_code];lines,0,0,3,0,0,0,3,3}{type=draw}{option=color=orange}
+</textarea>
+<h3>Esempio senza analisi:</h3>
+<textarea id="wims_show3" cols="100" rows="20" name="wims_show" readonly="readonly">
+\text{canvas_code=xrange -4,4
+  yrange -4,4
+  opacity 155,155
+  linewidth 1
+  grid 1,1,grey
+  opacity 255,255
+  hline 0,0,black
+  vline 0,0,black
+  precision 10
+  linewidth 2
+  snaptogrid
+}
+\statement{
+\embed{r1,200x200
+arrows
+[\canvas_code]}
+}
+\answer{}{\rep}{type=draw}{option=eqweight split}
+</textarea>

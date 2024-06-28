@@ -1,0 +1,43 @@
+# RestoreClassBackup job
+# Restore a backup of the class with id=`qclass` saved at year `data1`.
+
+!read jobs/listclassbackups.proc
+
+!if $qclass = *
+  error=You must specify one class ID to restore.
+  !exit
+!endif
+
+!! backup_year is mandatory
+!if $backup_year = $empty
+  error=wrong or empty backup year in data1 ($backup_year)
+  !exit
+!endif
+
+!if $cnt <= 0
+  error=No backup available for class $qclass on year $backup_year.
+  !exit
+!endif
+
+date=!char 1 to 8 of $wims_now
+month=!char 5 to 6 of $date
+!if $month=12
+  date=$[$date+10000 - 1100]
+!else
+  date=$[$date+100]
+!endif
+
+test=!sh cd $wims_home\
+cp backup/oldclasses/$backup_year/$qclass.tgz log/classes/\
+cd $wims_home/log/classes/\
+if [ ! `ls -d $qclass | wc -c` -eq 0 ] ; then echo "already existing class id $qclass; nothing was done." ; exit ; fi ;\
+tar xzf $qclass.tgz\
+perl -np -i -e "s:class_expiration=.*:class_expiration=$date:g" $qclass/.def\
+rm $qclass.tgz\
+cd $wims_home; mkdir -p backuprestore/$backup_year; mv backup/oldclasses/$backup_year/$qclass.tgz backuprestore/$backup_year
+
+!if $test!=$empty
+  error=$test
+  !reset test
+  !sh cd $wims_home/log/classes/ ; rm -f $qclass.tgz
+!endif

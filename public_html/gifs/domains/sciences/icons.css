@@ -1,0 +1,16 @@
+/* molecule, flasks, algebra, microscope, ordinateur */
+
+.icon_molecule {
+  background-image:url("/wims/gifs/domains/sciences/molecule.svg")
+}
+
+.icon_flasks {
+  background-image:url("/wims/gifs/domains/sciences/flasks.svg")
+}
+
+.icon_algebra{
+    background-image:url("/wims/gifs/domains/sciences/algebra.svg");
+}
+
+.icon_microscope { background-image:url("/wims/gifs/domains/sciences/mb_microscope.svg");}
+.icon_ordinateur { background-image:url("/wims/gifs/domains/sciences/mb_ordinateur.svg");}

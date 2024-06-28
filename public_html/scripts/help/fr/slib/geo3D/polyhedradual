@@ -1,0 +1,13 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Applet de tracé de polyèdre et de son dual
+slib_parms=2\
+, nom du polyèdre\
+off, if dual=1, only the code of the dual is givent; power=??
+
+slib_index=!record 0 of data/polyedre_off/index
+
+slib_out=code off pour tracer un polyèdre et son dual ou si dual=1, uniquement le dual; \
+  power donne le coefficient de l'inversion utilisée (un défaut est calculé s'il n'est pas donné);
+  le polyèdre est donné par son nom\
+<br> Index de la base de données (format off): <pre>$slib_index </pre>

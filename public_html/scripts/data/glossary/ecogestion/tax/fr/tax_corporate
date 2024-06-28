@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Impôt sur les sociétés
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">L'<strong>impôt sur les sociétés ou IS</strong> est l'impôt
+ qui en principe s'applique aux <span class="wims_emph">bénéfices</span>
+ réalisés par les <span class="wims_emph">entreprises</span> dont la forme
+ juridique est celle d'une <span class="wims_emph">société</span>.
+</div>
+
+<div class="spacer">Il faut toutefois préciser que l'imposition des bénéfices
+ des sociétés peut s'opérer soit dans le cadre de l'IS, soit dans le cadre
+ de l'IR (impôt sur le revenu).
+ Dans le premier cas, la société supporte elle-même l'impôt sur les bénéfices
+ qu'elle réalise. Dans le second cas, ce sont les associés de la société qui,
+ dans le cadre de l'IR sont tenus de prendre à leur charge l'impôt sur
+ les bénéfices réalisés par leur société.
+</div>
+</div>

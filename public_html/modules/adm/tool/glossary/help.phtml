@@ -1,0 +1,7 @@
+!if $wims_user=supervisor 
+  !if $gl=0
+    !changeto lang/help.phtml.$lang newglossary
+  !else
+    !changeto lang/help.phtml.$lang newglose
+  !endif
+!endif

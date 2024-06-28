@@ -1,0 +1,27 @@
+!set methtit=Separar casos según una (in)ecuación
+!set methenv=ZZ QQ RR
+!set methparmtype=function, choice 6, function
+!set methhelp=Este método separa la situación en dos casos, dependiendo de\
+  la veracidad de una ecuación o una desigualdad. La ecuación/desigualdad y su recíproco\
+  se sumarán en las hipótesis de los dos casos respectivamente.
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!exit
+:form
+Separar los casos según la veracidad de la (in)ecuación<br>
+<input size="10" name="methparm1" value="$methparm1">
+!formselect methparm2 from 1 to 6 prompt =,!=,<,>,<=,>=
+<input size="10" name="methparm3" value="$methparm3">
+!exit
+:check
+sign1=!item $methparm2 of =,!=,<,>,<=,>=
+sign2=!item $methparm2 of !=,=,>=,<=,>,<
+
+casesplit=$methparm1 $sign1 $methparm3\
+$methparm1 $sign2 $methparm3
+methexp=Separar los casos \($methparm1 $sign1 $methparm3) y \($methparm1 $sign2 $methparm3)
+
+!exit

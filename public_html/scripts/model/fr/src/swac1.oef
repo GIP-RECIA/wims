@@ -1,0 +1,114 @@
+type=imaudio
+textarea="instruction"
+iEdit="instruction"
+
+:Choisir parmi des étiquettes le mot entendu (à partir d'audios existant sur le serveur WIMS).
+
+L'exercice choisit une liste de mots (une ligne parmi plusieurs
+listes), et montre à l'élève certains mots de cette liste sous forme
+d'étiquettes, ainsi qu'un fichier audio de l'une de ces étiquettes. L'élève
+doit cliquer sur l'étiquette correspondant à l'audio.
+<p>
+Pour construire un exercice avec ce modèle, il suffit d'adapter
+l'énoncé et les listes de mots (une liste par ligne). Tous les mots de
+ces listes doivent exister parmi la base audio de mots enregistrés de
+WIMS (pour vérifier, taper swac dans le moteur de recherche et
+utiliser l'outil proposé). Mais si l'exercice est dans une classe,
+avec une adapatation, il peut être utilisé avec des audios mis dans la
+classe.  </p><p> Pour plus de possibilités, utiliser Quicktool.
+</p><p class="wims_credits"> Auteur du modèle : <a
+href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%% ATTENTION %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Écouter et reconnaître}
+:\author{Bernadette, Perrin-Riou}
+:\email{bernadette.m.riou@orange.fr}
+:\credits{}
+
+:Consigne
+\text{instruction=Clique sur le mot entendu.}
+
+
+:Listes de mots
+S'il y a plusieurs lignes, une sera choisie au hasard et le mot
+audio ainsi que les perturbateurs seront pris sur cette ligne
+(fixée pendant tout l'exercice même si on choisit l'option "tous les mots)".
+\matrix{liste=doctor,teacher,journalist,policeman, fireman, postman
+70,71,72,73,74,75
+60,61,62,63,64,65
+}
+
+:Langue audio : les choix possibles sont <span class="tt">fra</span>, <span class="tt">eng</span>, <span class="tt">dut</span> (et d'autres avec moins de possibilités <span class="tt">pol</span>, <span class="tt">wol</span>, <span class="tt">deu</span>, <span class="tt">swe</span>.)
+\text{lang = eng}
+
+:Nombre de perturbateurs
+Les perturbateurs sont les mots, choisis dans la liste,
+autres que celui qui est présenté en audio. Il y aura donc une
+étiquette de plus que de perturbateurs.
+\integer{cntpertub=3}
+
+:Taille horizontale des étiquettes (en pixels)
+\integer{sizev=200}
+
+:Taille verticale des étiquettes (en pixels)
+\integer{sizel=20}
+
+:Option
+Selon l'option, tous les mots (au plus 10) d'une ligne prise au hasard
+dans les listes de mots sont proposés successivement, en changeant à
+chaque étape les perturbateurs, ou bien l'exercice ne porte que sur un
+seul mot. Dans tous les cas, les mots perturbateurs sont pris dans la
+même ligne.
+
+\text{choix=item(1,1 : tous les mots,
+2 : un seul mot)}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+\text{choix=wims(word 1 of \choix)}
+\text{Audio =}
+\text{Perturb=}
+\text{list=randrow(\liste)}
+\integer{cntlist=items(\list)}
+\text{mots=\choix=1 ? shuffle(\list): randitem(\list)}
+\integer{cnt=items(\mots)}
+\integer{cnt=min(10,\cnt)}
+\integer{cntpertub=min(\cntpertub,\cntlist-1)}
+\for{j=1 to \cnt}{
+  \text{mot=\mots[\j]}
+  \text{audio=slib(lang/swac \mot,\lang)}
+  \text{Audio=wims(append item \audio[1;1] to \Audio)}
+  \text{perturb=wims(listcomplement \mot in \list)}
+  \text{perturb=shuffle(\perturb)}
+  \text{perturb=\perturb[1..\cntpertub]}
+  \text{Perturb=wims(append line \perturb to \Perturb)}
+}
+\text{size=\sizev[]x\sizel[]x\sizer}
+\text{etape=wims(makelist r x for x=1 to \cnt)}
+\text{etape=wims(replace , by ; in \etape)}
+\steps{\etape}
+
+\statement{
+  <div class="wims_question">\instruction</div>
+  <div class="wimscenter">\Audio[\step]</div>
+  <div class="wimscenter">
+    \embed{r \step,\size}
+  </div>
+}
+
+\answer{}{\mots[1];\Perturb[1;]}{type=clickfill}
+\answer{}{\mots[2];\Perturb[2;]}{type=clickfill}
+\answer{}{\mots[3];\Perturb[3;]}{type=clickfill}
+\answer{}{\mots[4];\Perturb[4;]}{type=clickfill}
+\answer{}{\mots[5];\Perturb[5;]}{type=clickfill}
+\answer{}{\mots[6];\Perturb[6;]}{type=clickfill}
+\answer{}{\mots[7];\Perturb[7;]}{type=clickfill}
+\answer{}{\mots[8];\Perturb[8;]}{type=clickfill}
+\answer{}{\mots[9];\Perturb[9;]}{type=clickfill}
+\answer{}{\mots[10];\Perturb[10;]}{type=clickfill}

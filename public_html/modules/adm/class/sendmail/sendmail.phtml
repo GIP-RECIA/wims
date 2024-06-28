@@ -1,0 +1,19 @@
+<div class="wims_msg success">
+  $name_participant1
+  $cnt_user
+  !if $cnt_user=1
+    $(name_user[3])
+  !else
+    $(name_user[4])
+  !endif
+  !if $cnt_teacher>0
+    $name_and $cnt_teacher 
+    !if $cnt_teacher=1
+      $(name_user[1]).
+    !else
+      $(name_user[2]).
+    !endif
+  !else
+.
+  !endif
+</div>

@@ -1,0 +1,35 @@
+
+size 400,400
+xrange -10,10
+yrange -10,10
+axis
+axisnumbering
+precision 1
+grid 2,2,grey,2,2,5,grey
+precision 100
+linewidth 4
+rotationcenter 0,0
+slider -2*pi,2*pi,300,40,angle active,rotate
+snaptogrid
+ftriangle 0,-4,-2,-2,4,--5,blue
+fillcolor red
+fcircle -4.4,4.4,40,blue
+kill slider
+slider -20,20,300,40,x active,x-slide
+ftriangle -2,0,0,4,2,0,green
+fcircle 4.4,4.5,40,red
+kill slider
+slider -20,20,300,40,y active,y-slide
+fcircle 4,-4,40,green
+linewidth 4
+fcircle -4,-4,40,orange
+kill slider
+group
+fcircle -4.4,4.5,10,blue
+fcircle -5.4,4.5,10,blue
+fcircle -6.4,4.5,10,blue
+fcircle -4.4,8,16,green
+fcircle -5.4,8,16,green
+fcircle -6.4,8,16,green
+mouse red,22
+zoom red

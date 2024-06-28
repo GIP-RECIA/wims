@@ -1,0 +1,16 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+axis
+axisnumbering
+precision 1
+grid 2,2,grey,2,2,5,grey
+precision 100
+snaptofunction x,5*sin(x)
+linewidth 3
+crosshairsize 6
+userdraw crosshairs,red
+linewidth 2
+curve blue,5*sin(x)
+xunit = x-value
+display x,blue,22

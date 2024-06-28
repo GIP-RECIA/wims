@@ -1,0 +1,654 @@
+!!!!WARNING If you have to put "into" in the translation, write into$  ...
+
+!if $wims_name_home!=$empty
+  !exit
+!endif
+
+!set lang_exists=yes
+
+!! punctuation
+!set wims_punct_colon=:
+
+!! **** Default Names ***
+!distribute items Nova tasca lliure,Tasques lliures,Tasca lliure,tasques lliures,tasca lliure\
+  into wims_name_add_freework,wims_name_Freeworks,wims_name_Freework,wims_name_freework,wims_name_freeworks
+
+
+!distribute items Cerca,\
+Treball,Tornar al treball,\
+Inici WIMS,Intro/Config,Ajuda,Quant a,Quant a WIMS,\
+Introducció,Tancar,\
+Tancar aquesta finestra,Tornar,Inici de la pàgina,\
+actual,\
+Gestor del lloc,Autor de la pàgina,Autors de la pàgina,\
+Traduït per,Sortida,\
+Guia,Referències,\
+Fòrum,Fòrums,\
+Full d'exercicis,Eines,Eina,\
+Copiar a Modtool,\
+Imprimir,\
+Importar,\
+Versió imprimible,\
+Un altre,\
+Anar a la zona de prova,\
+Actualitzar,\
+Desar,\
+Sí,\
+No,\
+Descarregar,\
+Enviar,\
+Començar,\
+Ampliar,\
+Detalls dels exàmens,\
+Mostrar,\
+Editar,\
+Atenció,\
+Felicitats,\
+o,\
+Explicacions,\
+Exercici,\
+Full,Fulls,\
+Compte,\
+Entrar,\
+Notes,\
+Notes meves,\
+Examen,Exàmens,\
+Explorar el lloc,\
+Tornar al menú,\
+Data de caducitat,\
+Error,\
+Exercici següent,Exercici anterior,\
+Exemple,\
+Qüestionari,Qüestionaris,\
+Cal ajuda?,\
+Enhorabona!,\
+Desconnexió CAS,\
+Crèdits,\
+Novetats,\
+Respondre,\
+Gestió de l'alumnat,\
+Tornar al mòdul,\
+Llegenda,\
+Duplicar el full,\
+Duplicar l'examen,\
+Duplicar tasca lliure,\
+Gestionar les variables tècniques,\
+Variables tècniques antigues,\
+Avaluació,\
+Sèrie,\
+Glossari,Glossaris,\
+La meva activitat,\
+Informar d'un error,\
+Presentar,\
+Pista,\
+veure més,\
+Darrera connexió el,\
+Proposta de treball\
+ into wims_name_search,\
+   wims_name_work,wims_name_resume,\
+   wims_name_home,wims_name_intro,wims_name_help,wims_name_about,wims_name_aboutw,\
+   wims_name_titleintro,wims_name_Close,\
+   wims_name_back,wims_name_back2,wims_name_top_page,\
+   wims_name_current,\
+   wims_name_manager,wims_name_author,wims_name_authors,\
+   wims_name_translatedby,wims_name_exit,\
+   wims_name_whelp,wims_name_reference,wims_name_forum,wims_name_forums,\
+   wims_name_sheet,wims_name_tools,wims_name_Tool,\
+   wims_name_modify,wims_name_print,wims_name_import,\
+   wims_name_printable,wims_name_renew,wims_name_testgo,\
+   wims_name_refresh,wims_name_tosave,\
+   wims_name_yes,wims_name_no,wims_name_download,wims_name_send,wims_name_start,wims_name_detail,wims_name_examdetail,\
+   wims_name_Show,wims_name_Edit,wims_name_warning,wims_name_Congratulations,wims_name_or,\
+   wims_name_Explanations,wims_name_Exercise,wims_name_Sheet,wims_name_Sheets,wims_name_account,wims_name_Enter,\
+   wims_name_Score1,wims_name_myscore,wims_name_Examen,wims_name_Examens,wims_name_browse,wims_name_menuback,\
+   wims_name_expiration,wims_name_Error,wims_name_nextseries,wims_name_previousseries,\
+   wims_name_Example,wims_name_Vote,wims_name_Votes,wims_name_feedbackexo,wims_name_feedbackplus,\
+   wims_name_cas_logout,wims_name_credits,wims_name_mod_new,wims_name_answer,wims_name_usermanage,\
+   wims_name_moduback,wims_name_legend,wims_name_duplicatesheet,wims_name_duplicateexam,wims_name_duplicatefw,wims_name_techvar,wims_name_oldvar,\
+   wims_name_Evaluation,wims_name_Serie,wims_name_Glossary,wims_name_Glossaries,wims_name_myactivity,wims_name_sendbug,wims_name_submit\
+   wims_name_Hint,wims_name_seemore,wims_name_lastconnect,wims_name_swork
+
+!! Legal notice names
+!distribute items Informació legal,Condicions generals d'ús, Política de confidencialitat,\
+Política local de confidencialitat,\
+  into wims_name_legal,wims_name_cgu,wims_name_privacy,wims_name_local_privacy
+
+!! **** Menuprof Names ***
+!distribute items Classes, Cercar,\
+   Creació, Exemples,\
+   Exercicis, Ajudes,\
+   FAQ, Tutorials,\
+   Informacions,\
+   Altres mètodes,\
+   Lloc,\
+  into wims_name_Classes, wims_name_Searching,\
+    wims_name_Creation, wims_name_Samples,\
+    wims_name_Exercices, wims_name_Aid,\
+    wims_name_faq, wims_name_dochelp,\
+    wims_name_Infos, wims_name_othermethods,\
+    wims_name_Site
+
+!! **** Permalink Names ***
+!distribute items aquest mòdul, aquest exercici,\
+   Mostrar,en un lloc/blog,\
+   Amagar aquestes opcions,\
+   Enllaç permanent, Lector exportable,\
+   copiar i enganxar, aquest enllaç, el codi, o, en un correu electrònic,\
+   per, únicament,\
+   la configuració actual,\
+  into wims_name_this_module, wims_name_this_exercice,\
+  wims_name_display,wims_name_on_your_site,\
+  wims_name_mask_this,\
+  wims_name_permalink,wims_name_embeddable,\
+  wims_name_copy_and_paste,wims_name_the_link,wims_name_the_code,wims_name_or,wims_name_in_a_mail,\
+  wims_name_for,wims_name_only,\
+  wims_name_this_config
+
+!set wims_name_Share = Compartir
+!set wims_name_to_embed_it = per incrustar-lo
+!set wims_name_permalink_desc = Còpia un d'aquests enllaços per compartir-ho fàcilment (a través de correu electrònic, adreces d'interés, etc...).
+!set wims_name_hide=Amagar
+!set wims_name_showall=Ampliar
+
+!! the following sentences can be changed according to language if needed
+!set wims_name_display1=!nosubst $wims_name_Share $wims_name_this_module
+!set wims_name_display2=!nosubst $wims_name_copy_and_paste $wims_name_the_link $wims_name_on_your_site $wims_name_or $wims_name_in_a_mail
+!set wims_name_display3=!nosubst $wims_name_copy_and_paste $wims_name_the_code $wims_name_to_embed_it $wims_name_on_your_site
+!set wims_name_permalink1=!nosubst $wims_name_permalink $wims_name_for $wims_name_this_module
+
+!! **** Module About Names ***
+!distribute items Nom,\
+Quant a les icones,\
+Informació del mòdul,\
+Informació de l'exercici,\
+Adreça,\
+Enllaç per Adreces d'interès,\
+Descripció,\
+Versió,\
+Versió WIMS necessària,\
+Llengua,\
+Autor,\
+Mantenidor,\
+Traductor,\
+General,\
+Aquest és un mòdul del,\
+WWW Interactive Multipurpose Server,\
+Drets d'autor,\
+Paraules clau,\
+Email del traductor,\
+Email de l'autor,\
+Email del mantenidor,\
+Domini,\
+Tipus,\
+Nivell/s,\
+Mecanisme de puntuació,\
+exercici/entreteniment,\
+Programari de suport requerit,\
+Temps del servidor,\
+Mòdul de dades,\
+Desenvolupat al WIMS,\
+Centre de publicació,\
+Centre de descàrrega,\
+Sintaxi,\
+Significat,\
+Indexació,\
+Canviar preferències,\
+Configuració,\
+WIMS es distribueix sota llicència <a href="COPYING">GNU GPL</a>.\
+  into wims_name_name,\
+    wims_name_iconabout,\
+    wims_name_module_infos,\
+    wims_name_exo_infos,\
+    wims_name_Address,\
+    wims_name_Link_for_bookmark,\
+    wims_name_Description,\
+    wims_name_Version,\
+    wims_name_Required_WIMS_version,\
+    wims_name_Language,\
+    wims_name_Author,\
+    wims_name_Maintainer,\
+    wims_name_Translator,\
+    wims_name_General,\
+    wims_name_This_is_a_module,\
+    wims_name_WIMS_subtitle,\
+    wims_name_Copyright,wims_name_Keywords,\
+    wims_name_tr_email,wims_name_auth_email,wims_name_maint_email,\
+    wims_name_Domain,wims_name_Type,wims_name_Levels,\
+    wims_name_Scoring,wims_name_Scoringhelp,\
+    wims_name_require,wims_name_server_time,wims_name_datamodule,\
+    wims_name_devwims,wims_name_publish_center,wims_name_download_center,\
+    wims_name_Syntax,wims_name_Meaning,wims_name_Indexation,\
+    wims_name_pref,wims_name_setup,name_wims_licence
+!! Titles of menus
+!distribute items Comunicació,Configuració,\
+   Afegir activitats,Enllaços externs,\
+   Navegació, Infos meves\
+into wims_name_classactivity,wims_name_configuration,\
+  wims_name_classtools,wims_name_otherclasses,\
+   wims_name_navigation,wims_name_myinfo
+
+!! **** Class Relative Names ***
+!if $wims_class!=$empty
+ !distribute items Principal,Inserir a un full d'exercicis,Inserir com una ajuda en un full,\
+Escriure al professorat,Acabar,\
+El registre de notes està tancat.,\
+Tu has suspés el registre de notes.,\
+Activar el registre de notes,Desact. el registre de notes,\
+Ets el professor de la classe,\
+Registrar els detalls d'aquest exercici,\
+Gestió del full,\
+Afegir una seqüència,\
+Vist,\
+Detalls dels exercicis analitzats,\
+Inserir tots els exercicis del mòdul en un full,\
+Vista dels alumnes,\
+Inserir en un glossari,\
+Revisió del glossari,\
+Afegir una glossa,\
+Posició\
+Aquesta sessió d'examen es tancarà automàticament el\
+  into wims_name_class_home,wims_name_add,wims_name_addh,\
+  wims_name_wsup,wims_name_visitor,\
+  wims_name_scoreclose,\
+  wims_name_scoresuspend,\
+  wims_name_scorereopen,wims_name_scoreclose2,\
+  wims_name_syou,\
+  wims_name_exolog,\
+  wims_name_sheetmanagement,\
+  wims_name_add_sequence,\
+  wims_name_readen,\
+  wims_name_save_ex,wims_name_addallexo,\
+  wims_name_participantview,\
+  wims_name_addglossary,wims_name_glossarycheck,wims_name_newglose,\
+  wims_name_Position,\
+  wims_name_exam_ending
+
+!!set wims_name_score=!nosubst Punts obtinguts : $[$wims_homeref_got] punts dels $[$wims_homeref_req] punts demanats\
+  !! <br> Qualitat : $[$wims_homeref_mean]/10.
+  !set wims_name_thsheet=No,Títol,Punts demanats,Pes,Acumulats,%,Qualitat,Regla de càlcul,Nota,\
+Èxit,Nombre d'intents,Darrer resultat,Assolit,Intent,No acabats
+  !set wims_name_you=Ets <b>$wims_firstname $wims_lastname</b>, pertanyent a
+  !if _exam isin $session
+    !distribute items Tornar a la llista d'exercicis,\
+Temps que et queda:,\
+Aquesta sessió d'examen es tancarà automàticament el,\
+quan es cridi aquesta pàgina\
+   into wims_name_back,wims_name_examremain,wims_name_exam_ending,wims_name_whenloaded
+  !endif
+  !if _check isin $session
+    !let wims_page_name=Pàgines
+  !endif
+  !default wims_name_sequence=Seqüència
+  !set wims_name_sequences=seqüències
+
+  !set wims_name_exceeded=La classe ha superat l'espai de disc assignat al servidor.\
+Ja no pots gestionar la classe. Ho sento!<p>Podeu demanar a l'administrador del lloc que augmenti \
+l'assignació d'espai de disc per a les classes virtuals.</p>
+
+  !set wims_name_reaching_limit=La classe arriba al límit d'espai de disc autoritzat.\
+  Si se supera aquest límit, es bloquejarà la gestió de la classe!
+
+  !set wims_name_chseries=!nosubst Desar els canvis en la sèrie d'exercicis $(special_parm4[2]) full $(special_parm4[1])
+!endif
+
+!! exit this file when in userscore export function to avoid a 'variable_name_buffer_overflow' error.
+!if $module=adm/class/userscore and $job=csv
+  !exit
+!endif
+
+!if $wims_user!= and $wims_class!= and $exotrymax!=$empty
+  !distribute lines Intent\
+    Aquest és el vostre intent número\
+    Les notes ara ja no es tenen en compte.\
+    El nombre d'intents possibles en aquesta sèrie és \
+    La nota d'aquest intent es té en compte perquè heu activat l'enregistrament de notes.\
+    La nota d'aquest intent no es té en compte perquè heu suspès l'enregistrament de notes.\
+  into wims_name_try,wims_name_maxexotry0,wims_name_maxexotry1,wims_name_maxexotry2,wims_name_maxexotry_warning1,\
+  wims_name_maxexotry_warning2
+!endif
+
+!!!if adm/class isin $module or adm/manage isin $module
+ !distribute line Professorat\
+Alumnat\
+Classes obertes\
+Autenticació del professorat\
+Autenticació de l'alumnat\
+Autenticació\
+Has oblidat la contrasenya?\
+primària\
+secundària\
+universitat\
+Llista de classes\
+Llista de classes i portals\
+Classe individual\
+Grup de classes\
+Portal de centre\
+Alumnat suprimit\
+del\
+al\
+IP\
+a les\
+Una altra url\
+  into wims_name_n_supervisor,wims_name_n_participant,wims_name_n_example,\
+    wims_name_n_authsupervisor,wims_name_n_authparticipant,wims_name_connexion,\
+    wims_name_n_forgetpwd,wims_name_n_E,wims_name_n_H,wims_name_n_U,\
+    wims_name_classlist,wims_name_portal_list,\
+    wims_name_create_class,wims_name_create_superclass,wims_name_create_portal,wims_name_recover,\
+    wims_name_from,wims_name_to,wims_name_IP,wims_name_at,wims_name_otherurl
+!!!endif
+
+!set wims_name_corrected_date=Tingueu en compte: aquesta data era anterior a la data de creació de la classe i s'ha corregit.
+
+!if adm/new isin $module
+  !distribute line Nous mòduls\
+Mòduls actualitzats\
+Canvis recents al sistema \
+RSS Nous mòduls\
+RSS Mòduls actualitzats\
+Noves característiques\
+  into wims_name_mod_new,wims_name_mod_modif,wims_name_mod_sys,\
+    wims_name_rss_new,wims_name_rss_modif,wims_name_mod_resume
+!endif
+
+!distribute line Crear una classe\
+  into wims_name_classcreate
+
+!if adm/modtool isin $module or adm/createxo isin $module or $wims_user!=$empty or $module!=
+  !distribute line Provar el mòdul\
+Gestor del document\
+Fitxers editables\
+Fitxers editables\
+Propietats\
+Desar\
+Diferències\
+Publicar\
+Nou Mòdul\
+Llista de mòduls\
+Dipòsit de fitxers\
+Restauració\
+Propietats del compte\
+Provador de script\
+Documentació OEF \
+Documentació\
+Llibreria de Scripts\
+Tipus de respostes possibles\
+Documentació tècnica\
+Tornar a la llista de fitxers\
+Editar el fitxer\
+Modificar\
+Pujar\
+Baixar\
+Esborrar\
+Acció\
+Per tal d'utilitzar aquesta activitat, has d'activar el java al teu navegador.\
+Data\
+Afegir\
+Esborrar\
+Codi font\
+Sortir\
+ into wims_name_test,wims_name_docgestion,wims_name_modcontent,wims_name_otherfiles,\
+wims_name_properties,wims_name_modsave,wims_name_checkdiff,wims_name_publish,wims_name_createnew,\
+wims_name_modlist,wims_name_binfile,wims_name_restore,\
+wims_name_account_property,\
+wims_name_scripttest,wims_name_docoef,wims_name_docu,wims_name_docslib,wims_name_docanswer,wims_name_doctec,\
+wims_name_back3,wims_name_edfile,wims_name_change,wims_name_up,wims_name_down,wims_name_erase,wims_name_action,\
+wims_name_nojava,wims_name_date,wims_name_add0,wims_name_delete,wims_name_source,\
+wims_name_visitor
+
+!distribute line Prova i còpia de seguretat\
+Llista de models\
+Models preparats\
+into wims_name_backcreatexo,wims_name_modellist,wims_name_model
+
+!distribute line Provar l'exercici\
+Tornar a confia2qcm\
+Tornar a createqcm\
+Modificar el codi\
+Posar al mòdul de desenvolupament\
+Posar aquest exercici a la classe\
+Desar una nova versió\
+Enviar un fitxer (imatge, àudio ...)\
+Reemplaçar l'antic exercici\
+Esborrar aquest exercici\
+into wims_name_testexo,wims_name_backconfia2qcm,wims_name_backcreateqcm,wims_name_exomodify,\
+wims_name_putmodtool,wims_name_putclass,wims_name_newversion,\
+wims_name_downloadbinary,wims_name_replace,wims_name_exoerase
+
+!endif
+
+!distribute line Nou document\
+Nou full d'exercicis\
+Nou examen\
+Nova classe\
+Nou qüestionari\
+Qüestionaris meus\
+Nou exercici\
+Exercicis de la classe\
+Exercicis del full\
+Exercici següent\
+Exercici anterior\
+into wims_name_add_doc,wims_name_add_sheet,wims_name_add_exam,wims_name_add_class,wims_name_add_vote,wims_name_myvote,\
+wims_name_add_exo,wims_name_classexo,wims_name_sheet_exos,wims_name_next,wims_name_prev
+
+!distribute items sense intentar,sense èxit,amb èxit,amb molt d'èxit,fet \
+  into wims_name_exo_untry,wims_name_exo_undone,wims_name_exo_done,wims_name_exo_congratulation,wims_name_exo_tried
+
+!!! for documents...
+
+!distribute item WIMS,Pàgina d'inici,Docs,Sup,\
+Prec,Seg,Hist.,Recarregar,\
+Versió interactiva,Versió imprimible,\
+Tornar al document,Ajuda,Quant a,\
+Dipòsit de fitxers,\
+Tornar a la llista de fitxers,\
+Pàgina d'entrada al document,\
+Transferir,\
+Capítol següent,\
+Capítol anterior,\
+Capítol,\
+  into wims_name_doch_wims,wims_name_doch_class,wims_name_doch_docs,wims_name_doch_up,\
+  wims_name_doch_prev,wims_name_doch_next,wims_name_doch_hist,wims_name_doch_reload,\
+  wims_name_doch_interactive,wims_name_doch_printable,\
+  wims_name_doch_back,wims_name_doch_help,wims_name_doch_about,\
+  wims_name_doch_upload,wims_name_doch_filelist,wims_name_doch_main,wims_name_doch_transfer,\
+  wims_name_doch_prev_chapt,wims_name_doch_next_chapt,wims_name_doch_Chapter
+
+!! for sequence and document
+
+!distribute line Document\
+Documents \
+ocult,visible\
+Títol\
+Presentació en seqüències\
+Inserir a la classe\
+Crear un document nou\
+Document de prova\
+Estat\
+Inserir\
+S'està preparant,Actiu,Caducat,Caducat+Amagat\
+ni llegir ni escriure,llegir però no escriure,llegir i escriure\
+Número\
+Número d'exercicis\
+into wims_name_doc,wims_name_Docs,wims_name_status,wims_name_title,wims_name_reorder,wims_name_adddoc,\
+wims_name_createdoc,wims_name_doctry,wims_name_Status,wims_name_Insert,wims_name_shstatus,\
+wims_name_Docstatus,wims_name_number,wims_name_cnt_exo
+
+ !distribute line Afegir una data\
+Afegir un fitxer\
+Afegir tasques\
+Configurar\
+Abandonar\
+Agenda\
+  into wims_name_adddate,wims_name_addfile,wims_name_addtodo,wims_name_config,wims_name_giveup,\
+  wims_name_cdt
+
+!set wims_name_supervisor=administrador
+!set wims_name_Supervisor=Administrador
+!set wims_name_namestudent=Alumne
+!set wims_name_nameteacher=Professor
+!set wims_name_teacher=Comptes de professor
+!set wims_name_addteacher=Afegir un compte de professor
+!set wims_name_addparticipant=Afegir un compte d'alumne
+!set wims_name_modteacher=Propietats del compte de professor
+!set wims_name_delteacher=Esborrar un compte de professor
+!set wims_name_student=Comptes d'alumne
+!set wims_name_addstudent=Nou alumne
+!set wims_name_modstudent=Propietats de l'alumne
+!set wims_name_delstudent=Esborrar un alumne
+!set wims_name_delstudent1=Esborrar l'alumne
+!set wims_name_group=Portal
+!set wims_name_portal=Portal
+!set wims_name_level=Nivell
+!set wims_name_class=Classe
+!set wims_name_program=Programa
+!set wims_name_course=Curs
+!set wims_name_icourse=Curs interclasse
+!set wims_name_backstruct=Desar l'estructura
+!set wims_name_tchat=Xat
+!set wims_name_tchatclose=Tancar xat
+!set wims_name_open=obert
+!set wims_name_close=tancat
+
+!if config isin $module or $module=home or $module=adm/class/userscore or $module=adm/class/livret
+  !distribute line $wims_name_config\
+Pàgina principal de configuració\
+Gestió de l'estructura\
+Gestió\
+into wims_name_configb,wims_name_config,wims_name_struct,wims_name_manage
+!endif
+
+!set wims_name_save=Còpia de seguretat i restauració
+!set wims_name_backgateway=Gestió de
+
+!distribute line Afegir un curs\
+Afegir un curs interclasse\
+Afegir una classe\
+Afegir un programa\
+Afegir un nivell\
+login de gestió\
+Canviar de zona\
+Afegir les classes\
+into wims_name_addcourse,wims_name_addicourse,wims_name_addclass,wims_name_addprog,wims_name_addlevel,\
+wims_name_login,wims_name_chzone,wims_name_addcsvclass
+
+!distribute line Estadística dels exercicis\
+Estadística dels alumnes\
+Barem\
+Notes posades manualment\
+Dades en format full de càlcul\
+Estadística de l'alumne\
+into wims_name_class_stat,wims_name_activity,wims_name_formula,wims_name_grades,\
+wims_name_csv,wims_name_activity1
+
+!if adm/class isin $module or reguser isin $module or $wims_class!=$empty
+!distribute line Llista d'alumnes\
+Llista de professors\
+Notes de l'alumne\
+Tancar aquesta sessió d'examen\
+Detall de la feina\
+Esborrar l'alumne\
+Dades detallades\
+Canviar la contrasenya\
+Dades processades\
+Informe de les competències\
+Següent\
+Anterior\
+Filtres\
+Informe d'avaluació\
+Afegir variable tècnica\
+into wims_name_part_list,wims_name_teacherlist,wims_name_scores,wims_name_partexamclose,wims_name_workdetail,\
+wims_name_delprep,wims_name_rawdata,wims_name_passwd,wims_name_getraw,wims_name_livret,\
+ wims_name_next_participant,wims_name_prev_participant,wims_name_filter,\
+ wims_name_livret1,wims_name_add_techvar
+!endif
+
+!if adm/manage isin $module
+  !distribute line Altres tasques de manteniment\
+  into wims_name_sitegestion
+!endif
+
+!if $wims_user=supervisor
+  !distribute line Pàgina del professor \
+  into wims_name_backteacher
+  !set wims_name_attribut=Icona
+  !set wims_name_attribut_help=Mostra una icona davant de l'exercici (opcional)
+!endif
+
+!distribute lines Modtool\
+Createxo\
+Quicktool\
+Latex2wims\
+Imageclick\
+Altres eines\
+   into wims_name_modtool,wims_name_createxo,wims_name_quicktool,wims_name_latex2wims,\
+    wims_name_coordclick,wims_name_othertools
+
+!distribute line activar l'editor HTML\
+desactivar l'editor HTML\
+Atenció, les modificacions fetes no seran desades si canvieu aquesta opció en curs de redacció\
+into wims_name_active, wims_name_desactive,wims_name_speck_warning
+
+!distribute items Cognom,Nom,Contrasenya,Correu electrònic,Nom d'usuari,Repeteix la contrasenya,Comentaris\
+into wims_name_lastname, wims_name_firstname,wims_name_Password,wims_name_email,\
+wims_name_Login,wims_name_repeat_pass,wims_name_comment
+
+!distribute line Orla\
+Enviar correu\
+into wims_name_photoboard,wims_name_sendmail
+
+!distribute items Professor,Administrador,Alumne\
+into wims_name_nameteacher,wims_name_Supervisor,wims_name_namestudent
+
+!!if $module isitemof home,adm/class/sheet,adm/class/exam,adm/class/sequence,adm/class/freework
+ !set wims_name_actionlist=Activar,Caducar,Desactivar,Ocultar,$wims_name_Show,$wims_name_erase,Desar
+!!endif
+
+!if $module isitemof adm/class/sheet,adm/class/exam
+ !set wims_name_end=fi
+ !set wims_name_moveafter=Moure a
+!endif
+!if $module=adm/class/usermanage
+  !set wims_name_regmanage=Gestió d'accés
+!endif
+!set wims_name_cloneclass  =Duplicar una classe existent
+!set wims_name_clonethisclass  =Duplicar aquesta classe
+!set SU_partconnected      =L'alumne està connectat
+!set wims_name_SE_config = Config / Manteniment
+
+!! Site links
+!set wims_name_mirror = Rèpliques
+!set wims_name_ref = Enllaços inversos
+!set wims_name_stat = Estadístiques
+
+!! ending session warnings
+!set swarn_dialog_title1=Final de la sessió imminent
+!set swarn_dialog_title2=Has estat desconnectat
+
+!set swarn_dialog_common=Has estat inactiu massa temps.
+!set swarn_dialog_1=Si no canvieu la pàgina actual, sereu desconnectats en
+!set swarn_dialog_2=La vostra sessió ha caducat. Torneu a connectar-vos per continuar.
+!set swarn_dialog_button=Inicieu la sessió
+
+!! name for freework type=3
+!if $wims_class!=$empty and $wims_fwnumber!=$empty
+!! be careful each line is a different msg
+  !set wims_name_freework_intro=!nosubst Has obtingut una nota suficient. L'exercici s'ha desat automàticament. Ara pots passar a la fase de redacció d'aquest exercici o a un altre exercici de la tasca\
+Has d'aconseguir una puntuació de $wims_fwminscore a l'exercici abans d'escriure en paper els detalls de la teva resolució.\
+Has obtingut la puntuació màxima. Tu pots :\
+Seleccionar aquest exercici per passar a la fase d'escriptura fent clic a l'enllaç següent \
+Repetir l'exercici amb el botó "Reiniciar l'exercici".\
+No has resolt aquest exercici correctament, has de començar de nou.
+
+  !set wims_name_exorenew=Renovar l'exercici
+  !set wims_name_freework_selexo=Triar l'exercici
+  !set wims_name_bc2fw=Tornar a la tasca lliure
+!endif
+!set wims_name_addfw=Inserir en una tasca lliure
+
+!if adm/class/activity isin $module
+  !set wims_name_workingtime=Temps de connexió
+!endif
+
+!set wims_name_noteacherclass=No heu iniciat sessió com a professor d'aquesta classe, sinó com a gestor de l'agrupamant/portal.\
+No heu iniciat sessió com a professor d'aquesta classe, sinó com a administrador del servidor.
+!read name_titles.phtml.ca

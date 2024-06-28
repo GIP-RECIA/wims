@@ -1,0 +1,6 @@
+!set modu_lang=$module_language
+!read deduc/$modu_lang/names
+!if $lang_exists!=yes
+  !let modu_lang=en
+  !read deduc/$modu_lang/names
+!endif

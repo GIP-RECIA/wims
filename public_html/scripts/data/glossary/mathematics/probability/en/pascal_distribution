@@ -1,0 +1,37 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Negative binomial distribution
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Let \(r) be a positive integer and let \(p) be a real between 0 and 1.
+The <strong>negative binomial distribution</strong>
+(also called <span class="wims_emph">Pascal distribution</span>)
+ with parameters
+<span class="green">\(r)</span> and <span class="green">\(p)</span>
+is a probability \(q) on \(\NN) defined by
+
+<div class="wimscenter">
+ \(q(k)=C^{r-1}_{r+k-1}p^{r}(1-p)^{k}) for all nonnegative
+ integer \(k).
+</div>
+</div>
+<div class="wims_example">
+<h4>Example</h4> A biaised coin is tossed repeatedly as long as
+ necessary for \(r) heads to turn up. Assume that each time
+there is a probability <span class="green">\(p)</span> of a
+<span class="green">head</span> turning up and a probability
+<span class="red">\(1 - p)</span> of a <span class="red">tail</span> turning up.
+The number of <span class="red">tails</span> before the \(r)-th
+ <span class="green">head</span>
+is a random variable; it has the negative binomial distribution with
+ parameters \(r), \(p).
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Expectation</th><th>Variance</th><th>Probability generating function</th></tr><tr>
+<td>\(r(\frac{1}{p}-1))</td><td>\(r\frac{1-p}{p^2})</td><td>
+\((\frac{p}{1-(1-p)z})^r) </td></tr></table>

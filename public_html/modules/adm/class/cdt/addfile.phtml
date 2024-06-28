@@ -1,0 +1,58 @@
+
+!if $erase!=$empty
+  <p>$name_erasedfile</p>
+!endif
+
+<div class="field box">
+  !if $quota_free<1
+    $name_nodeposit
+  !else
+    !set wims_form_method=file
+    !form reply
+      <input type="hidden" name="job2" value="deposit">
+      <label for="wims_deposit">$name_depos</label>:
+      <input type="file" size="35" name="wims_deposit" id="wims_deposit">
+      <input type="submit" value="$wims_name_send">
+    !formend
+  !endif
+</div>
+
+!if $flist!=$empty
+  <div class="field box">$name_available:
+    <ul class="file_list">
+    !for f in $flist
+      <li>
+        !set wims_ref_class=text_icon file
+        !getfile cdt/$wims_class/$f $f
+        !set wims_ref_class=link_icon erase
+        !href module=$module&+cmd=reply&+job=$job&+namefile=$f&+job2=erase &#x2716;
+      </li>
+    !next f
+    </ul>
+  </div>
+!!  <div class="field box">
+!!  !form reply
+!!  <input type="hidden" name="job2" value="erase">
+!!  $name_erase:
+!!  !formselect job2 list $flist
+!!  <input type="submit" value="$wims_name_erase">
+!!  !formend
+!!  </div>
+  <div class="field box">
+    $name_explanation1
+    <p class="wimscenter">
+     <span class="tt wims_address">&lt;img src="\filedir/myfile.jpg" alt="myfile"&gt;</span>
+    </p>
+    $name_explanation2
+  </div>
+!endif
+
+<div class="field box">
+  !read adm/class/quotafree.proc html
+</div>
+!!<p>
+!!$(name_availablespace[1]): $quota_total Meg.
+!!$(name_availablespace[2]): $quota_free Meg.
+!!</p>
+
+!reset erase,job2

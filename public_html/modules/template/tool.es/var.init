@@ -1,0 +1,8 @@
+# Archivo de inicialización de archivos.
+# Este archivo se lee en cada nueva sesión.
+
+# contenido del archivo: inicialización del problema.
+
+
+status=waiting
+wims_module_log=$cmd

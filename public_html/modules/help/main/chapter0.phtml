@@ -1,0 +1,30 @@
+
+<ol class="spacer" style="list-style-type:upper-roman">
+  !for i=1 to $chaptercnt
+    !set n=!linecnt $(chapter$i)
+    !set a=!line 1 of $(chapter$i)
+    <li>
+      !href module=$module&chapter=$i $a
+
+      !if robot notin $session and $n >=2
+        <ol class="spacer">
+          !for j=2 to $n
+            !set l=!line $j of $(chapter$i)
+            !set t=!item 1 of $l
+            !set s=!item 2 to -1 of $l
+            <li>
+              !href module=$module&chapter=$i&open=$open,$(i)_$t#$t $s
+            </li>
+          !next j
+        </ol>
+      !endif
+    </li>
+  !next i
+  <li>
+    !if $lang=cn
+      !href module=help/wimsdoc.cn ¿ª·¢ÕßÓÃ¼¼Êõ×ÊÁÏ
+    !else
+      !href module=help/wimsdoc.en $name_wimsdoc_title
+    !endif
+  </li>
+</ol>

@@ -1,0 +1,13 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+opacity 255,0
+fcircle -10,0,100,blue
+opacity 250,50
+fcircle -5,0,100,blue
+opacity 200,100
+fcircle 0,0,100,blue
+opacity 150,150
+fcircle 5,0,100,blue
+opacity 100,200
+fcircle 10,0,100,blue

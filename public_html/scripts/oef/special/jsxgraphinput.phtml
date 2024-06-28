@@ -1,0 +1,127 @@
+!reset inputsize
+!if $wims_read_parm=$empty
+  !exit
+!endif
+!if $wims_read_parm=help
+  !read help/$lang/special/jsxgraphinput.phtml
+  !exit
+!endif
+!set parm=!replace internal ,	r by $	r in $wims_read_parm
+!set parm=!replace internal $	$ by $\
+$ in $parm
+
+!set script_jsxgraph=!item 1 of $parm
+!set script_jsxgraph=!declosing $script_jsxgraph
+
+!set global_css=!item 2 of $parm
+!set global_css=!word 1 of $global_css
+!set global_css=!declosing $global_css
+
+!set tempbrd=$script_jsxgraph
+!set tempbrd=!replace internal initBoard by $ $@@@@$ $ in $tempbrd
+!set tempbrd=!replace internal . by $ $ in $tempbrd
+!set pos=!positionof word @@@@ in $tempbrd
+!set tempbrd=!replace internal = by $ $ in $tempbrd
+!set tempbrd=!words2items $tempbrd
+!set tempbrd=!nonempty item $tempbrd
+!set itempos=!positionof item @@@@ in $tempbrd
+!set board=!item $[$itempos-3] of $tempbrd
+
+!set inputsize=!item 2 to -1 of $parm
+!set parm=!line 2 to -1 of $inputsize
+!set inputsize=!line 1 of $inputsize
+
+!if noanswer isin $inputsize
+  !set noanswer=1
+!endif
+
+!set inputsize=!item 1 of $inputsize
+!default inputsize=4em
+!set inputsize=!items2words $inputsize
+
+!set parmcnt=!linecnt $parm
+!set parm=!sort reverse line $parm
+
+!set sp_jsx_css=<style>\
+.oef_indbad .jxgbox {border-color: var(--oef_indbad);}\
+.oef_indgood .jxgbox {border-color: var(--oef_indgood);}\
+</style>
+
+!reset hlist positionlist
+!for tt = 1 to $parmcnt
+  !set ld=!line $tt of $parm
+  !reset inputsize_tmp
+  !distribute item $ld into m_,xy_,before,css
+  !set css=!declosing $css
+  !set xy_=!replace internal x by , in $xy_
+  !distribute items $xy_ into x_,y_
+  !set reply_tmp=!nospace $m_
+  !set rep_tmp=!replace internal reply by r in $reply_tmp
+  !set n_=!text select 0123456789 in $reply_tmp
+  !set n_=$[$n_]
+  !if debug iswordof $m_oefenv and ?analyze notin $(replygood$n_)
+    !read oef/special/debug.input $n_
+  !endif
+  !if $n_!=$empty and $(replytype$n_) iswordof numeric nocase case atext \
+range litexp algexp formal equation function matrix raw default set aset fset
+    !set embedded=!append item r$n_ to $embedded
+    !if $css=$empty
+      !set hlist=$hlist\
+var in$n_=$board.create('input',[$x_,$y_,'$(reply$n_)','$before'],{cssStyle: $global_css});
+      !set inn=$inn <input type="hidden" name="reply$n_" value="">
+      !set formm=$formm document.forms['replyform'].reply$n_.value=""+in$n_.Value();
+    !else
+      !set hlist=$hlist\
+var in$n_=$board.create('input',[$x_,$y_,'$(reply$n_)','$before'],{cssStyle: $css });
+      !set inn=$inn <input type="hidden" name="reply$n_" value="">
+      !set formm=$formm document.forms['replyform'].reply$n_.value=""+in$n_.Value();
+    !endif
+    !set nrep=!append item $n_ to $nrep
+  !endif
+!next tt
+
+!set script_jsxgraph=$script_jsxgraph\
+$hlist
+
+!readproc slib/geo2D/jsxgraph $script_jsxgraph
+!set graph=$slib_out
+
+!if $q_form=yes
+  $graph
+  $inn
+  <script>function read_graph(){ $formm }</script>
+  !set oef_js_submit=$oef_js_submit read_graph()
+!else
+  $(sp_jsx_css)
+  !read themes/$wims_theme/oefcolors
+  !if $oef_indbad=$empty
+    !read themes/oefcolors
+  !endif
+  !set cl=good
+  !for tt = 1 to $parmcnt
+    !set reply_tmp=!nospace $m_
+    !set rep_tmp=!replace internal reply by r in $reply_tmp
+    !set n_=!text select 0123456789 in $reply_tmp
+    !set n_=$[$n_]
+    !if $n_!=$empty and $(replytype$n_) iswordof numeric nocase case atext \
+range litexp algexp formal equation function matrix raw default set aset fset
+      !set hllist=$hllist\
+in$tt.setAttribute({disabled:true});
+      !if $(diareply$tt)!=good
+        !set cl=bad
+      !endif
+    !endif
+  !next tt
+
+  !set script_jsxgraph=$script_jsxgraph\
+$hlist $hllist
+  !readproc slib/geo2D/jsxgraph $script_jsxgraph
+  !set graph=$slib_out
+
+  !if  $noanswer!=1
+    $sp_jsx_css
+    <div class="oef_ind$cl">
+    $graph
+    </div>
+  !endif
+!endif

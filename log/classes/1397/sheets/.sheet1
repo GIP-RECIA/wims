@@ -1,0 +1,38 @@
+Percorsi #1
+giochi con i percorsi
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,spatial_skill,levelE1
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:E3/geometry/oefspatial.fr
+exo=deplacement1&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Usa la bussola (livello 1)
+Segui le indicazioni sulla bussola e disegna il percorso.
+
+:E3/geometry/oefspatial.fr
+exo=deplacement2&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Usa la bussola (livello 2)
+Segui le indicazioni sulla bussola e individua il punto di arrivo.
+:E3/geometry/oefspatial.fr
+exo=deplacement3&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Usa la bussola (livello 3)
+Segui le indicazioni sulla bussola e individua il quadretto di arrivo.
+
+:E3/geometry/oefspatial.fr
+exo=deplacement7&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Segui le frecce
+Segui le indicazioni e individua il quadretto di arrivo.
+

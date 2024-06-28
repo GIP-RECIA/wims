@@ -1,0 +1,157 @@
+!! template to edit freework data for type=3
+!!
+!!
+
+!if $quota_free<1
+  <div class="wims_msg warning">$name_nodeposit</div>
+!endif
+
+!!let teststatut_subject=0
+!!let teststatut_solution=1
+
+!if $jquery_defined!=yes
+  <fieldset class="property_fields blockcenter">
+    <legend>$name_datafile
+      [
+        !href cmd=resume&infoshow2=no $wims_name_hide
+      ]
+  </legend>
+!endif
+
+!if $activetest<1
+  !set wims_form_method=post
+  !set wims_form_id=freework_data_form
+  !form reply
+    <input type="hidden" name="job" value="configfw" >
+    <input type="hidden" name="freework" value="$freework" >
+    <input type="hidden" name="job2" value="savestructure" >
+!endif
+
+<ul class="accordion" data-accordion data-allow-all-closed="true" data-deep-link="true">
+!for tuser in teacher,student
+  <li class="accordion-item
+    !if $tuser=teacher
+      is-active
+    !endif
+" data-accordion-item>
+    !if $jquery_defined=yes
+      <a href="#zone_$tuser" class="accordion-title">$(name_zonepara_$tuser)</a>
+    !else
+      <h2>$(name_zonepara_$tuser)</h2>
+    !endif
+    <div class="accordion-content" data-tab-content id="zone_$tuser">
+    <div class="list_zones">
+    !if $activetest<1
+      <div class="field box fullwidth">
+        !set wims_ref_class=wims_button_help float_right
+        !href target=wims_mhelp cmd=help&special_parm=typezone $wims_name_help
+        <label for="nbrezone$tuser">$name_nbzone</label>
+        <select id="nbrezone$tuser" name="nbrezone$tuser" onchange="freework_submit()">
+          !for i=$(min_zone$tuser) to $max_zone
+            !if $i=$(nbrezone$tuser)
+              <option value="$i" selected="selected">$i</option>
+            !else
+              <option value="$i">$i</option>
+            !endif
+          !next i
+        </select>
+      </div>
+    !endif
+    !if $tuser=student and $activetest>0 and $(nbrezonestudent)=0
+      <div>$name_teacher_noreplyzone</div>
+    !endif
+    !for i=1 to $(nbrezone$tuser)
+      <div class="wims_widget_box">
+        <div class="title_box">
+          <h3 class="wims_title">$name_zone $i</h3>
+        </div>
+        <div class="box_content">
+          <div class="field box">
+            !if $activetest<1
+              <label for="ztype$(tuser)$i">$name_zonetype</label>
+              !set wims_ref_class=wims_button_help float_right
+              !default ztype$(tuser)$i=$(listfilename_ztype_$tuser[1])
+              !href target=wims_mhelp cmd=help&special_parm=zone$(ztype$(tuser)$i) $wims_name_help
+              <select id="ztype$(tuser)$i" name="ztype$tuser$i" onchange="freework_submit()">
+                !for j=1 to $(nbztype_$tuser)
+                  <option value="$(listfilename_ztype_$tuser[$j])"
+                  !if $(listfilename_ztype_$tuser[$j])=$(ztype$(tuser)$i)
+                    selected="selected"
+                  !endif
+                  >
+                   !let t=!positionof item $(listfilename_ztype_$tuser[$j]) in $(listfilename_ztype)
+                   $(name_listofztype[$t])
+                  </option>
+                !next j
+              </select>
+            !else
+              !let t=!positionof item $(ztype$(tuser)$i) in $(listfilename_ztype)
+              <strong>$name_zonetype</strong>
+              <span class="text_icon $(ztype$tuser$i)">$(name_listofztype[$t])</span>
+            !endif
+          </div>
+          !read applet/$(ztype$tuser$i) parahtml $tuser $i $activeform
+          !if $tuser=teacher
+            <div class="field box">
+              !read applet/$(ztype$tuser$i) displayhtml $tuser $i $activeform
+            </div>
+          !endif
+        </div>
+      </div>
+    !next i
+    </div>
+    </div>
+  </li>
+!next tuser
+</ul>
+
+!if $activetest<1
+  !if $onclickactionlist!=$empty
+    !let onclickactionlist=onclick="$onclickactionlist"
+  !endif
+  <div class="wimscenter"><input type="submit" value="$wims_name_tosave" $onclickactionlist ></div>
+
+  !if $jquery_defined=yes
+    <script>
+    // valide le formulaire en prenant le soin d'y ajouter l'ancre actuelle
+    // L'ancre est utilisée pour se rappeler quel est le dernier accordion ouvert.
+    function freework_submit(){
+      var curr_form = document.getElementById("freework_data_form");
+      curr_form.action += window.location.hash ;
+      curr_form.submit();
+    }
+    </script>
+  !endif
+  !formend
+!endif
+
+!! add "solution" to available upload zones
+!if $activetest<=1 and $ltdownloadzone!=$empty
+  !let t=!append item solution to $ltdownloadzone
+!else
+  !let t=solution
+!endif
+
+!! --------- solution zone
+<div class="wims_widget_box">
+  <div class="title_box">
+    <h2 class="wims_title">$name_datasolution</h2>
+  </div>
+  <div class="box_content">
+    !read proc/listfile.phtml solution $putworkco
+    !if , notin $t
+      !read proc/uploadfileform.phtml $t
+    !endif
+  </div>
+</div>
+
+!! ------- manage of file form upload in all zone
+
+!if , isin $t
+  !read proc/uploadfileform.phtml $t\
+1
+!endif
+
+!if $jquery_defined!=yes
+  </fieldset>
+!endif

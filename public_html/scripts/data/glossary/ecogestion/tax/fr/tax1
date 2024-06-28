@@ -1,0 +1,57 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Impôt
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">L'<strong>impôt</strong> est le nom générique donné
+ à la <span class="wims_emph">contribution</span> dont doit s'acquitter
+ toute personne (physique ou morale) se trouvant dans l'obligation de
+ participer au financement du
+ <span class="wims_emph">budget de l'État</span>.
+ 
+<div class="spacer">Les impôts ainsi que les taxes doivent être versés
+ au <span class="wims_emph">Trésor Public</span> et constituent de
+ ce fait des <span class="wims_emph">prélèvements fiscaux</span>.</div>
+
+<div class="spacer">Un impôt résulte d'un produit entre une
+ <span class="wims_emph">base imposable</span> appelée
+ <span class="wims_emph">assiette fiscale</span> et un
+ <span class="wims_emph">taux</span> (qui peut varier ou non lors
+ du calcul de l'impôt).
+</div>
+
+<div class="spacer">Il existe différentes classifications des impôts
+ selon notamment :
+<ul>
+<li>la nature de la <span class="wims_emph">base imposable</span> :
+ impôts sur le <span class="wims_emph">revenu</span>,
+ impôts la <span class="wims_emph">consommation</span> et
+ impôts sur le <span class="wims_emph">patrimoine</span> ;</li>
+<li>le type de <span class="wims_emph">taux appliqué</span> :
+ impôts à <span class="wims_emph">taux forfaitaire unique</span>,
+ impôts à <span class="wims_emph">taux forfaitaire croissant</span> et
+ impôts à <span class="wims_emph">taux progressif</span> ;</li>
+<li>la personne auprès de qui le contribuable s'acquitte de l'impôt :
+ impôts à <span class="wims_emph">directs</span>
+ et impôts <span class="wims_emph">indirects</span>.</li>
+</ul>
+
+<div class="wims_rem"><h4>Exemples :</h4>
+<ul class="spacer">
+<li>la TVA est un impôt indirect sur la consommation finale à taux
+ forfaitaire unique (pour un bien donné) ;</li>
+<li>l'impôt sur le revenu est un impôt direct sur le revenu des
+ personnes physiques et dont la particularité est d'être à
+ un taux progressif.</li>
+</ul>
+
+
+</div>
+
+
+</div>

@@ -1,0 +1,28 @@
+!set lang_exists=yes
+
+!set wims_name_glosscheck=Verifica il glossario
+
+!set name_choose=Scegli il glossario
+!set name_title=Inserisci in un glossario
+
+!set wims_name_addglossary=Inserire in un glossario
+!set name_insert=Volete inserire la voce
+!set name_parm=con i parametri di configurazione
+
+!set name_endadd=!nosubst La risorsa <span class="wims_mod_title">$title</span> \
+  è stata inserita con successo nel glossario
+!set name_endmod=!nosubst Modifica del glossario $gl\
+  (<span class="wims_mod_title">$title</span>) terminata
+
+!set name_endmod2=!nosubst La risorsa <span class="wims_mod_title">$title</span>\
+  non può essere inserita perché già presente.
+
+!set name_orderchange=Cambiare l'ordine delle voci
+
+!set name_newglostitle=Titolo del nuovo glossario
+!set name_newglos=Nuovo glossario
+!set name_titleglose=Titolo della voce
+
+!set name_helpglo=!nosubst Per aggiungere un'altra voce, ritornare al glossario\
+  generale utilizzando il filo d'Arianna, cliccare sulla voce che desiderate aggiungere\
+  quindi sul link <span class="wims_button disabled">$wims_name_addglossary</span>.

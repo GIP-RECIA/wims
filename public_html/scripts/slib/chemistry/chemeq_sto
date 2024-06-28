@@ -1,0 +1,18 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=Georges, Khaznadar
+slib_license=GPL
+
+slib_example= H2 + 1/2 O2 -> H2O\
+CH4 + 2 O2 -> CO2 + 2 H2O
+slib_require=chemeq
+!exit
+
+:proc
+!reset chemeq_option
+chemeq_option=S
+slib_out=!exec chemeq $wims_read_parm
+!reset chemeq_option
+

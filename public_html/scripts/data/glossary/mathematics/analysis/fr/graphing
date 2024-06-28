@@ -1,0 +1,19 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function,curves,graphing
+!set gl_title=Courbe représentative d'une fonction numérique
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(\mathrm{E}\) un intervalle de \(\displaystyle{\RR}\) et \(f\) une
+fonction de \(\mathrm{E}\) dans <span style="white-space:nowrap">
+\(\displaystyle{\RR}\).</span><br>
+On appelle <strong>courbe représentative</strong> de la fonction \(f\) dans le
+plan muni d'un repère \((\mathrm{O}\,;\mathrm{I},\mathrm{J})\) l'ensemble des
+points \(\mathrm{M}\) du plan pour lesquels il existe \(x\) appartenant à
+\(\mathrm{E}\) tel que \(\mathrm{M}\) ait pour coordonnées
+<span style="white-space:nowrap">\((x\,;f(x))\).</span></div>

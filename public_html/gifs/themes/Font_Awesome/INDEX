@@ -1,0 +1,7 @@
+title=Font Awesome
+description=WIMS Icon theme based on "Font Awesome". It gives you scalable vector icons that can instantly be customized with the power of CSS.
+copyright=Font Awesome by Dave Gandy <dave@davegandy.com> - <a target="_blank" href="//fontawesome.io">fontawesome.io</a>
+author=WIMS icon theme by Olivier Bado
+address=bado@unice.fr
+version=1.00
+wims_version=4.13

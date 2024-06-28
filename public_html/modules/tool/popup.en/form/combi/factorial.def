@@ -1,0 +1,9 @@
+:combinatorics, number, gamma function
+factorial
+
+:
+
+:operation, Factorial
+
+: $submit1
+ <input type="text" name="formula" size="25" maxlength="100" value="30">

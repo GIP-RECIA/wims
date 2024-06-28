@@ -1,0 +1,46 @@
+!!---------------------------- Définition du vocabulaire pour le formulaire html du moteur de recherche
+
+C_A =Activitats WIMS
+C_X =Exercicis interactius
+C_T =Eines de Càlcul
+C_R =Entreteniments
+C_O =Exercicis classificats (OEF)
+C_S =Fulls d'exercicis
+C_D =Cursos i referències
+C_P =Eines ràpides
+C_F =Missatges del Fòrum
+C_C =Classes obertes
+C_M =Mòduls de dades
+C_G =Glossari
+
+CC_A =Activitats WIMS
+CC_X =Mòduls d'exercicis
+CC_T =Eines
+CC_R =Entreteniments
+CC_S =Fulls d'exercicis
+CC_D =Cursos
+CC_O =Exercicis classificats (OEF)
+CC_P =Eines ràpides
+CC_C =Classes obertes
+CC_M =Mòduls de dades
+CC_G =Glossari
+
+N_browse =explorar
+N_browsesite =explorar el lloc
+N_browse2 =Explorar el lloc
+N_Search =Cercar
+N_search =cercar
+N_clear=Reinicialitzar
+
+name_search_engine=Cercador
+name_search_all=Cercar un recurs
+name_search_class=Cercar una classe
+name_search_help=Ajuda per cercar
+name_search_and=totes les paraules, almenys una paraula
+name_keywords_enter=Paraules clau
+name_search_leveltrans=Incloure competències transversals
+name_search_leveltrans_help=Cerqueu també en mòduls que no defineixin un nivell (per llengües per exemple)
+name_search_method=Mètode
+name_search_category=Categoria
+name_search_filters=Filtres
+name_search_level_class_help=Per defecte, el rang del nivell s'estableix al voltant del nivell de la classe.

@@ -1,0 +1,89 @@
+<div class="wims_msg warning">
+!if dontknow iswordof $error
+  Effettivamente l'ultimo passaggio
+  !if $step_reason=OK
+    è corretto. $step_remark
+  !else
+    non è corretto. $step_remark
+    <div>
+    !read reasons/$step_reason.det
+    </div>
+    Una versione corretta dell'ultimo passaggio potrebbe essere
+    <div class="wimscenter">
+    !line $step of $good
+    </div>
+  !endif
+  <p>
+  &Egrave; un peccato che tu non te ne sia accorto.
+  </p>
+  !goto gnext
+!endif
+
+<b>$wims_name_Error.</b>
+
+!if step_error iswordof $error
+  !if $step_reason=OK
+    Ma questo passaggio &Egrave; corretto!
+    $step_remark
+  !else
+    !if $ask_reason>0 and $step_reason!=$ans
+      L'ultimo passaggio non è corretto, ma non per la ragione che tu pensi.
+    !else
+      No, c'è un errore nell'ultimo passaggio.
+    !endif
+    $step_remark
+    <div>
+    !read reasons/$step_reason.det
+    </div>
+    Una versione corretta dell'ultimo passaggio potrebbe essere
+    <div class="wimscenter">
+    !line $step of $good
+    </div>
+  !endif
+  :gnext
+  </div>
+  <p>
+  !if $step<$stepcnt
+    !set wims_ref_class=wims_button
+    !href cmd=reply&ans=next Passaggio successivo
+  !else
+    L'esercizio è terminato. Punteggio ottenuto: $module_score/10.
+  !endif
+  </p>
+  !exit
+!endif
+
+!if bad_step iswordof $error
+  !if $badstep=0
+    Tu pensi che tutti i passaggi siano corretti.
+  !else
+    Tu pensi che il primo passaggio errato sia il numero $badstep.
+  !endif
+  !if $bad_steps=$empty
+    Hai torto: tutti i passaggi sono corretti.
+    <p>
+    !line $badstep of $remarks
+    </p>
+  !else
+    No, il <em>primo</em> passaggio errato è il numero $sss. <p>
+    !if $badstep>0
+      !if $badstep isitemof $bad_steps
+        Il passaggio numero $badstep è effettivamente errato, ma non
+        è il primo passaggio errato.
+      !else
+        Al contrario, il passaggio numero $badstep è corretto.
+      !endif
+    !else
+      $bad_reason
+      <div>
+      !set rrr=!item 1 of $bad_reasons
+      !read reasons/$rrr.det
+      </div>
+    !endif
+  !endif
+  </div>
+  <p>Punteggio ottenuto: $module_score/10.</p>
+  !exit
+!endif
+
+!msg $error

@@ -1,0 +1,505 @@
+!set lang_exists=yes
+
+!set name_communication=Communication
+!set name_optionalmod=Optional modules
+!set name_optionalmoddesc=The following optional modules are available on this server. Only checked modules will be available for teachers in classes.
+!set name_optionalmod_parameter_desc=List of options for the optional modules. Only the checked options will be active.
+!set name_optionalmod_param_freework_nofile=Disable file deposit in freework
+!set name_optionalmod_param_tchat_nofile=Disable temporary file deposit in chat
+!set name_name=ĞÕÃû
+
+!set name_motd=Message settings
+!set name_motdtype=Server home page, Supervisor home page
+!set name_motdintro=!nosubst This interface allows you to enter and modify certain greetings. HTML tags are allowed. \
+Text length is limited to $max_motdchar characters. To enter longer texts it is necessary to connect \
+  directly to the server in console mode.
+!set name_motdtypename=Message
+!set name_motddesc=Content
+!set name_motdlangdesc=The message will only be displayed to users using this language.
+!set name_motdmodify=Edit
+!set name_motdview=View
+!set name_motdview=Verify
+!set name_motd_intro2=Display the home page of the server, Display the messages of the day on supervisors home page
+!set name_motd_introdesc=Ci-dessous le message affiché dans chacunes des langues disponibles sur le serveur.
+
+!set name_geolocoption=Geolocation option
+!set name_geolocoptiondesc=The location indications and GPS coordinates allow the server to be located on the world map.\
+ The classes for which this information is also completed are also marked on the same map.\
+ Classes without GPS coordinates are pointed to the location of the server if it is defined or not pointed if it is not defined.<br>\
+ The server location data is updated every Monday.
+!set name_serverlocation_help=GPS coordinates are two real numbers separated by a comma.
+!set name_serverlocation=Server location (City Country)
+!set name_geoloc=GPS coordinates
+!set name_autocompletion=Automatic location suggestion
+!set name_autocompletion_help=It is possible to define a different autocompletion API for each language (among the available APIs).\
+ Each API manages a region of the world.\
+ The API allows you to auto-complete the GPS coordinates according to the location field\
+ (also to format this field in a standard way).\
+ However, the user can always enter information outside of autocompletion\
+ when this latter is not available or does not give the desired result.
+!set name_autocompletionscript=Autocompletion script
+!set name_noone=No API
+
+!set name_intromain=±¾¹¤¾ßÔÊĞíÍøÕ¾¹ÜÀíÔ±ÔÚÏßÎ¬»¤ WIMS µÄ°²×°.\
+ Æä×¼ÈëÈ¨ÏŞÓÉÒÔÏÂÉèÖÃÎÄ¼şÑÏ¸ñ¿ØÖÆ
+
+!set name_warning_wrongpass=ÄãµÄÃÜÂëÊÇ´íµÄ.
+!set name_try_wrongpass=ÔÙÊÔÒ»´Î
+
+!!list
+ !distribute lines  ¾­±àÒëºóÓ¦²ÉÈ¡°²È«´ëÊ©. ÇëÒÔ root Ö´ĞĞ bin/wrapuid!\
+   ÕâÀïÊÇ¿ÉÒÔÔÚÏßÖ´ĞĞµÄÈÎÎñ±í.\
+   ÉèÖÃ\
+   ÏµÍ³¼ì²é±í\
+   ÔÚÏò·şÎñÆ÷¼ÓÈëĞÂ×ÊÔ´(Ä£¿é, Ò³ÃæµÈ)ºóÔÙÖ´ĞĞ.\
+   ¼ì²é/Î¬»¤\
+   ´´½¨/Î¬»¤\
+   Various\
+into name_warning,name_online,name_configuration,name_checklist,name_mkindex,name_checkmaintain,\
+  name_createmaintain,name_various
+
+!set name_restore_class=»Ö¸´Ò»¸ö°à¼¶
+!!help
+
+!set name_warning_help=Çë¶Ô²»Í¬Ö÷ÌâÊ¹ÓÃ²»Í¬°ïÖúÁ´½Ó.
+
+!set name_visit=·ÃÎÊ
+!set name_click=µã»÷ÕâÀï
+
+!set wims_name_download_module=Ä£¿éÏÂÔØ
+
+!if $job=access
+  !set title=ÉèÖÃ×¼ÈëÔ­Ôò
+  !set name_subtitle=È·¶¨×¼ÈëÔ­Ôò
+  !exit
+!endif
+
+!! activ job strings, but some are also used in class & bestclass jobs
+!if $job iswordof activ class bestclass
+  !set title=µ±Ç°·şÎñÆ÷µÄ»î¶¯
+  !distribute lines ·şÎñÆ÷Ê±¼ä\
+Æ½¾ùÔØÈëÁ¿\
+·ÖÖÓ\
+·ÖÖÓ\
+Ğ¡Ê±\
+Ğ¡Ê±\
+×î½ü\
+×î½ü\
+ÇëÇóÊı\
+×î½ü 10 ·ÖÖÓÄÚ»î¶¯µÄ»á»°\
+»á»°\
+¿Í»§IP\
+ÇëÇó\
+Ä£¿é\
+  into name_servor_time,name_Load,name_min,name_mins,name_hour,name_hours,name_last,name_since,\
+   name_requests,name_activesessions,name_session,name_IP,name_Requests,name_module
+
+  !if $job=activ
+    !exit
+  !endif
+!endif
+
+!if $job=attrib
+  !set title=ÑéÖ¤ÎÄ¼şµÄ×¼ĞíÈ¨ÏŞ
+
+  !distribute lines  WIMS ÊÇ°´°²È«Ä£Ê½ÉèÖÃÎÄ¼şµÄ×¼ÈëÈ¨ÏŞ.\
+   ÏÂÁĞÎÄ¼ş»òÄ¿Â¼¿É±»ËûÈË¶ÁÈ¡, ¶øËüÃÇÓ¦¸ÃÊÇ²»¿É¶ÁÈ¡µÄ:\
+   ÓĞ´óÁ¿ÎÄ¼ş»òÄ¿Â¼¿É±»ËûÈËÖ´ĞĞ, ¶øËüÃÇÓ¦¸ÃÊÇ²»¿ÉÖ´ĞĞµÄ.\
+   ´ËÎÊÌâÖ»ÊÇ²¿·Ö±»¾ÀÕı. Çë\
+   ÖØ¸´´Ë¹ı³Ì\
+   Ö±ÖÁ²»ÔÙÓĞÎÄ¼ş»òÄ¿Â¼¾ßÓĞ´íÎóµÄ×¼ÈëÈ¨ÏŞ\
+   ±¾´Î±»¸ÄÕıµÄ×¼ĞíÈ¨ÏŞ±í:\
+   ÏÂÁĞÎÄ¼ş»òÄ¿Â¼¿É±»ËûÈËĞ´Èë, ¶øËüÃÇÓ¦¸ÃÊÇ²»¿ÉĞ´ÈëµÄ:\
+   ÓĞ´óÁ¿ÎÄ¼ş»òÄ¿Â¼¿É±»ËûÈËÖ´ĞĞ, ¶øËüÃÇÓ¦¸ÃÊÇ²»¿ÉÖ´ĞĞµÄ.\
+   ÓĞ´óÁ¿ÎÄ¼ş»òÄ¿Â¼²»ÊÇ WIMS ÓµÓĞµÄ. ÏÂÃæÁĞ¾ÙÁËÒ»²¿·Ö.\
+   ÒÔÏÂÎÄ¼ş»òÄ¿Â¼²»ÊÇWIMSÓµÓĞµÄ.\
+   ÒÔÏÂµÄÎÄ¼ş»òÄ¿Â¼¿É±»ÈÎºÎÈËÖ´ĞĞ, ÕâÊÇ²»¿ÉÒÔµÄ.\
+into name_attrib1,name_attrib2,name_attrib3,name_attrib4,name_repeat,\
+  name_attrib5,name_attrib6,name_attrib7,name_attrib8,name_attrib9,name_attrib10,
+  name_attrib11
+
+  !set name_warning1=WIMSÄ¿Â¼ÄÚ²»ÄÜÓĞÊôÓÚÆäËûÈËµÄÎÄ¼ş.\
+  Äã±ØĞë¼ì²éÕâĞ©ÎÄ¼şµÄÀ´Ô´, È»ºóÉ¾³ıËüÃÇ»ò¸Ä±äËüÃÇµÄÓµÓĞÕß.
+  !set name_warning2=ÖØÒª°²È«ÌáÊ¾: Çë¸øÎÄ¼ş <span class="tt">public_html/bin/ch..root</span>,\
+  <span class="tt">public_html/bin/wrap..exec</span>, <span class="tt">bin/wimsd</span> ÒÔÕıÈ·µÄÓµÓĞÕß.\
+  Õâ¶Ô°²È«ĞÔÊ®·ÖÖØÒª. Îª´ËÄãÓ¦¸Ã×÷Îª root Ö´ĞĞ bin/wrapuid.
+
+  !set name_warning_chroot=Èç¹ûÄãÊ¹ÓÃ wims-chroot, Äã±ØĞëÒÔ \
+  <span class="tt">root</span> Éí·İÖ´ĞĞ½Å±¾ <span class="tt">bin/setchroot</span>.
+  !set name_warning_wimsd=Èç¹ûÄãÊ¹ÓÃ wimsd, Äã±ØĞëÒÔ <span class="tt">root</span> \
+   Éí·İÖ´ĞĞ½Å±¾ <span class="tt">bin/setwimsd</span>.
+ !set name_warning_wrapexec=Äã±ØĞëÒÔ <span class="tt">root</span> Éí·İÖ´ĞĞ½Å±¾ <span class="tt">bin/setwrapexec</span>.\
+ Õâ¶ÔÓÚ±£Ö¤ÄãµÄ°²×°µÄ°²È«ĞÔÖÁ¹ØÖØÒª.
+
+  !set name_warning3=ÕâĞ©´íÎóµÄÈ¨ÏŞÊ¹ÄãµÄ»úÆ÷ÓĞ°²È«Òş»¼. Ä¿Ç°ÕâĞ©ÎÊÌâÒÑ±»¾ÀÕı,\
+  È»¶øÄãÈÔĞè¾­³£¼ì²é×¼ÈëÈ¨ÏŞ. Èç¹ûÍ¬ÀàÎÊÌâÔÙ´Î³öÏÖ, ÄãÓ¦¸Ã¼ì²éÄãµÄÏµÍ³ÊÇ·ñ±»ÈëÇÖ¹ı,\
+  ·şÎñÆ÷µÄÊı¾İÊÇ·ñ±»×öÁËÊÖ½Å.
+  !exit
+!endif
+
+!if $job=backup
+
+  !distribute lines ±¾·şÎñÆ÷Ã»ÓĞ¼¤»îÊı¾İ±¸·İ.\
+ µã»÷ÕâÀï\
+ ÒÔÉèÁ¢Ã¿ÈÕ×Ô¶¯Êı¾İ±¸·İ.\
+ ×î½üÊı¾İ±¸·İ\
+ ÏÂÔØ±¸·İÎÄ¼şs\
+ Îª»Ö¸´¾ÉµÄ±¸·İÎÄ¼ş, Çë¸ø³öÎÄ¼şÃû (±ØĞëÊÇ*.tgzÎÄ¼ş)\
+ Èç¹ûÉÏ´«µÄÎÄ¼şÌ«´ó, ÔòÄãĞèÒªÓĞÒ»¸ö¸ßËÙÁ¬½Ó.\
+into name_backup,name_click,name_daily,name_last,name_download,name_restore,name_fast
+  !exit
+!endif
+
+!if $job=badconf
+
+  !set name_warning1=!nosubst ÎÄ¼ş $fname ÄÜ±»ÈÎºÎÈË¶ÁÈ¡!\
+  ºÜÓĞ¿ÉÄÜÄãµÄ¹ÜÀíÔ±ÉèÖÃ»òÃÜÂëÒÑ¾­Ğ¹Â©.\
+  ÏÖÔÚÄã±ØĞëĞŞ¸ÄÎÄ¼ş $fname µÄÈ¨ÏŞ, Ê¹ËüÖ»ÄÜ±»ÓµÓĞÕß¶ÁÈ¡,
+  !set name_warning2=¶øÇÒ×÷ÆäËü±ØÒªµÄĞŞ¸Ä.
+  !set name_warning3=¶øÇÒ¶¨ÒåĞÂµÄ¹ÜÀíÔ±ÃÜÂë.
+  !set name_warning4=ÕâĞ©×öÍêºó, ÇëÔÙ´Îä¯ÀÀ±¾Ò³.
+
+ !exit
+!endif
+
+!if $job iswordof class bestclass
+  !set title=
+  !distribute lines µã»÷ÕâÀï\
+    ÒÔÉèÖÃ±¾·şÎñÕ¾¶ÔÓÚĞéÄâ°à¼¶µÄ´æÈ¡²ßÂÔ.\
+    Ã»ÓĞÓëÄãµÄËÑË÷¶ÔÓ¦µÄĞéÄâ°à.\
+    Ñ§Ğ£ºÍ°à¼¶×é±í\
+    ´´½¨ÓÚ\
+    Ê§Ğ§ÓÚ\
+    Ö¸´ÓÏÂÁĞÊ±¼äÒÔÀ´ÀÛ¼ÆµÄÁ¬½ÓĞ¡Ê±Êı:\
+    ¸öÕâ¶ÎÊ±¼äµÄ×î¼Ñ°à¼¶»î¶¯\
+    ²Î¼ÓÕß\
+    ¶ÀÁ¢°à¼¶±í\
+    Ö¸´ÓÏÂÁĞÊ±¼äÒÔÀ´ÀÛ¼ÆµÄĞ¡Ê±Êı³ËÑ§ÉúÁ¬½ÓÊı:\
+    ¸öÀÛ¼ÆÁ¬½ÓĞ¡Ê±Êı×î¶àµÄ°à¼¶, ´ÓÒÔÏÂÊ±¼äËãÆğ:\
+    ÄãµÄ WIMS ĞéÄâ°à\
+    °à¼¶±í\
+    ×°Èë\
+    ¸ñÊ½\
+  into name_click,name_config,name_noclass,name_list,name_created,name_expire,name_cumul,name_best,\
+  name_part,name_listindependant,name_cumul_student,name_bestcumul,name_yourclass,name_listclass,\
+  name_load,name_format
+
+  !set name_search1=±¾·şÎñÆ÷ÓĞĞí¶àĞéÄâ°à. ÎªÑ°ÕÒÒ»¸ö°à¼¶, ÇëÊäÈëÒ»¸ö¹Ø¼ü´Ê.
+  !set name_search2=»¹ÊÇÓĞÌ«¶à°à¼¶ÓëÄãµÄ¹Ø¼ü´Ê¶ÔÓ¦. Çë¸ø³ö¸ü¾«È·µÄ¹Ø¼ü´Ê.
+  !set name_total=!nosubst Õâ¸ö·şÎñÆ÷ÉÏÓĞ $nbcls ¸ö°à¼¶»ò°à¼¶×é.
+
+  !if $job2 iswordof modify erase
+    !set title=
+    !distribute lines ĞéÄâ°à¼¶µÄÖØÒªĞÔÖÊ:\
+     ÊôÓÚ\
+     ĞòÁĞºÅ\
+     ±¾°à¼¶À´×Ô WIMS µÄ·¢²¼.\
+     Ö÷³Ö½ÌÊ¦ÃÜÂë\
+     ²Î¼ÓÕß×¢²áÃÜÂë\
+     É¾³ı´ËÃÜÂë»áÊ¹ÈËÈË¶¼ÄÜ½øÈë´Ë°à¼¶.\
+     °²È«Ö÷»ú\
+     Ê§Ğ§ÈÕÆÚ\
+     Í¨ÖªÖ÷³Ö½ÌÊ¦\
+    .\
+    ÆäËü°à¼¶\
+    ²Î¼ÓÕßÈËÊıÏŞÖÆ\
+    ÄãÈ·¶¨ÒªÉ¾³ı´Ë°à¼¶?\
+    ÄãµÄ WIMS ĞéÄâ°à¼¶\
+    WIMS °à¼¶ĞŞ¸Ä\
+  into name_prop,name_of,name_serial,name_distrib,name_supervisor_p,name_supervisor_r,\
+    name_warning,name_secure,name_expire,name_notify,name_change,name_other,name_limit,name_erase,\
+    name_yourclass,name_yourclassmod
+    !set name_creation=!nosubst ´´Á¢ÔÚ $class_creation ÇÒÓÚ
+    !set name_expires=!nosubst $class_expiration µ½ÆÚ.
+    !set name_remark=<b>¸½×¢</b>. Ö»ÓĞµ±°à¼¶µÄÖ÷³Ö½ÌÊ¦Ìá³öÇëÇóÊ± (Ëû±¾ÈËÊ§È¥ÁË¿ØÖÆ) Ê±²ÅÄÜ¸Ä±äÉÏÊöÄÚÈİ,\
+¶øÇÒÄãÓ¦¸Ã°ÑÄã×÷µÄ¸Ä±ä
+    !exit
+  !endif
+
+  !exit
+!endif
+
+!if $job=conf
+  !set title=!nosubst  $cattit µÄÉèÖÃ
+  !distribute lines ÉèÖÃÃ»ÓĞ±ä¶¯¹ı, ÒòÎªÄã²¢Î´ĞŞ¸Ä.\
+Ä¬ÈÏÖµ\
+recommended\
+   into name_config,name_default,name_recommended
+
+  !set name_updated=!nosubst ÎÄ¼ş <span class="tt">wims.conf</span> ÒÑ¸üĞÂ. Äã¿É´ÓÎÄ¼ş <span class="tt">$backdir/wims.conf.old</span>\
+  ÕÒµ½¾ÉµÄÅäÖÃĞÅÏ¢.
+
+  !set name_warning=Ãû³ÆÉÏ´òĞÇºÅ <span class="tt wims_warning">'*'</span> µÄÊÇÖØÒª²ÎÊı. \
+Èç¹ûÄãÉè´íÁË´ø <span class="tt wims_warning">'!'</span> ºÅµÄ²ÎÊıÓĞ¿ÉÄÜËğ»µÄãµÄ°²×°.<br>\
+Ö»ÒªÉ¾È¥ÎÄ¼ş <span class="tt">log/wims.conf</span> ¾ÍÄÜÔÚÖØÆôºó»Øµ½Ä¬ÈÏÅäÖÃ.\
+±»±£´æµÄÅäÖÃÒ²¿ÉÔÚ log Ä¿Â¼ÀïÕÒµ½.
+!!confcat=6
+  !distribute lines µã»÷ÕâÀï\
+  ÒÔ½øĞĞ±¸·İ¹ÜÀí, Óë\
+  ÕâÀï\
+  ÒÔ½øĞĞÊÖ¹¤Ä£¿é¹ÜÀí.\
+ into name_click,name_backup,name_here,name_manual
+
+!!ressource
+  !set name_config_site=ÒÔÉèÖÃÍøÕ¾µÄ×¼ÈëÏŞÖÆ²ßÂÔ.
+
+!!graphics and software
+   !distribute lines ÒÔ¼ìÑéĞÂÉèÖÃµÄĞ§¹û.\
+   ¼ìÑé WIMS Ä£¿éÊ¹ÓÃµÄ¼ÆËãÈí¼ş°ü\
+   ÒÔ¼ìÑéÍ¼ĞÎÈí¼ş\
+   ÃüÁî\
+   ÖØÒªĞÔ\
+   ¿ÉÓÃĞÔ\
+   ²»¿ÉÓÃ\
+   ÓëËüÓĞ¹ØµÄÄ£¿éµÄÀı\
+   ´ËÈí¼şÍ¨³£°üº¬ÔÚ WIMS ·¢²¼°æÖĞ. ¿ÉÄÜ±àÒëÊ§°Ü\
+   ÒÔ¼ìÑéĞÂÉèÖÃµÄĞ§¹û.\
+ into name_check,name_checksoftware,name_checkgraphics,name_command,name_importance,\
+   name_availability,name_Unavailable,name_dependingonit,name_fail,name_refresh
+
+
+  !set name_warning_program=WIMS Ã»ÓĞÕÒµ½ËüµÄÄ£¿éÖĞÊ¹ÓÃµÄÏÂÁĞÈí¼ş.\
+ ÕâĞ©Èí¼ş»òÕßÃ»ÓĞ±»°²×°ÔÚÏµÍ³ÖĞ (Çë°²×°!), »òÕßÊÇ°²×°ÔÚ WIMS ËÑË÷²»µ½µÄÄ¿Â¼Àï\
+ (ÄÇ¾ÍÇëÄã°ÑÕâ¸öÄ¿Â¼¼Óµ½ÒÔÏÂÄ£¿éµÄ PATH ²ÎÊıÖĞ:
+
+  !set name_imagemagick=±¾ÏµÍ³ÀïÃ»ÓĞ·¢ÏÖÔË×ªÖĞµÄ ImageMagick.\
+ Ã»ÓĞÕâ¸öÈí¼ş°ü, ´ó²¿·ÖWIMSÍ¼ĞÎÒÔ¼°¶¯»­¶¼½«ÊÜËğ.\
+ Òò´ËÔÚ¼ÌĞø½øĞĞÒÔÇ°, ½¨ÒéÄãÒ»¶¨Òª°Ñ ImageMagick °²×°ºÃ.
+
+  !set name_dynamic=¼ìÑé¶¯Ì¬Í¼ĞÎ (Äã¿ÉÔÚ²»Í¬µÄä¯ÀÀÆ÷ÀïÖ´ĞĞ):
+
+  !set name_tex=ÉÏÃæµÄ¹«Ê½Ê¹ÓÃÁË¶¯Ì¬ TeX ²åÈë. Ó¦¸ÃÄÜÕıÈ·ÏÔÊ¾, \
+·ñÔòËµÃ÷ÄãµÄÏµÍ³ÀïÃ»ÓĞÕıÈ·°²×° <span class="tt">TeX</span>.
+  !set name_size=Äã¿ÉÒÔ¸Ä±ä TeX ×ÖÌåµÄ´óĞ¡µÈ¼¶Ê¹ËüÃÇ²»»áÏÔµÃÌ«´ó»òÌ«Ğ¡
+  !set name_mathml=Õâ¸ö¹«Ê½Ê¹ÓÃÁË¶¯Ì¬ MathML. Èç¹û²»ÄÜÕıÈ·ÏÔÊ¾, ±Ø¶¨ÊÇÄãÊ¹ÓÃµÄä¯ÀÀÆ÷²»ÄÜÕıÈ·´¦Àí MathML.
+
+  !set name_drawing=ÒÔÏÂÁ½¸öÍ¼ĞÎÓÉÄÚº­µÄ¶¯Ì¬»æÍ¼³ÌĞòÉú³É. \
+Ò»¸öÊÇ¾²Ì¬Í¼ĞÎ, ÁíÒ»¸öÊÇ¶¯»­. ÄãÄÜÕıÈ·µØ¿´µ½ÕâĞ©Í¼ĞÎÂğ? \
+Èç¹û²»ÄÜ, Çë³¢ÊÔ±ğµÄ»æÍ¼/¶¯»­¸ñÊ½.
+
+
+  !set name_gnuplot1=ÏÂÃæÊ¹ÓÃÁË <span class="tt">gnuplot</span> ÃèÍ¼
+  !set name_gnuplot2=ÇúÏßÓ¦¸ÃÓĞ²»Í¬µÄÑÕÉ«. Èç¹û²»ÄÜÕıÈ·ÏÔÊ¾, Çë³¢ÊÔ²»Í¬µÄÍ¼ĞÎ¸ñÊ½.
+
+  !set name_graphviz1=ÒÔÏÂµÄÃèÍ¼Ê¹ÓÃÁË <span class="tt">graphviz</span>. Èç¹ûÃ»ÓĞÏÔÊ¾, ÄÇÃ´Ò»¶¨ÊÇ
+  !set name_graphviz2=Ã»ÓĞÕıÈ·°²×°.
+
+  !set name_povray1=ÒÔÏÂµÄ¹âÏß¸ú×ÙÍ¼ĞÎ²»ÊÜÉÏÊöÍ¼ĞÎ¸ñÊ½µÄÓ°Ïì. Èç¹ûÃ»ÓĞ³öÏÖÍ¼ĞÎ, ÄÇÃ´Ò»¶¨ÊÇ
+  !set name_povray2=Ã»ÓĞÕıÈ·°²×°.
+  !exit
+!endif
+
+
+!if $job=crontab
+  !set title=Ã¿ÈÕ×Ô¶¯Î¬»¤
+ !distribute lines ·¢ÏÖÁËÊÖ¹¤ÉèÖÃµÄ crontab. Äã¿ÉÒÔ¼ÌĞøÊÖ¹¤¹ÜÀí cron ÈÎÎñ, Èç¹ûÄãÏë×ªµ½Õâ¸öÔÚÏß¹¤¾ß, ÔòÇëÉ¾³ıÄãµÄÊÖ¹¤µÄ crontab.\
+   Èç¹ûÄãÓĞ¸öÈËÉèÖÃµÄ crontab, ÔòÇ§Íò²»ÒªÊ¹ÓÃ±¾¹¤¾ß!\
+   Ææ¹ÖµÄ´íÎó: ÎÒ²»ÄÜ»Ö¸´ÎÒµÄ¹¤×÷Ä¿Â¼. Çë¼ì²éÄãµÄ°²×°: ËüµÄ¹¤×÷²»Õı³£.\
+   ¿ÉÑ¡µÄÎ¬»¤¹¤×÷:\
+   ÔÚÒÔÏÂÊ±¿Ì×öÃ¿ÈÕÊı¾İ±¸·İ\
+   Ñ¡Ôñ·şÎñÆ÷µÄ¿ÕÏĞÊ±¼ä.\
+   »î¶¯µÄ¼ÆÊı (ÓÃÓÚÍøÕ¾Í³¼Æ)\
+into name_manually,name_warning,name_strange,name_available,name_daily,name_notbusy,name_accounting
+
+  !exit
+!endif
+
+!if $job2=del1
+  !set name_warning=Äã¿Ï¶¨ÒªÉ¾³ı¿ª·¢ÕßÕÊ»§Âğ
+
+  !exit
+!endif
+
+!if $job=developer
+  !set title=
+  !set wims_name_adddevel=Ìí¼ÓĞÂ¿ª·¢ÕßÕÊ»§
+  !set wims_name_develaccount=¿ª·¢ÕßÕÊ»§±í
+  !set name_dev=±¾·şÎñÆ÷ÉÏ×¢²áµÄÄ£¿é¿ª·¢Õß
+  !set name_visit=·ÃÎÊ
+  !set name_allowed=ÔÊĞíÔÚ·şÎñÆ÷µÄ±¾µØ×ÓÄ¿Â¼Àï½¨Á¢Ä£¿éµÄ¿ª·¢Õß., ÊäÈëµÇÂ¼Ãû:
+
+  !set name_modification=¿ª·¢ÕßÕÊ»§ĞÔÖÊµÄĞŞ¸Ä.
+  !set name_mod_password=Èç¹û²»¸Ä±äÔ­À´µÄÃÜÂë, ÔòÈÃÃÜÂëÀ¸Áô¿Õ.
+  !set name_add=Îª¼ÓÈëÒ»¸öĞÂµÄ¿ª·¢ÕßÕÊ»§, ÇëÊäÈë: (ËùÓĞÀ¸Ä¿¾ùÓ¦ÌîĞ´)
+  !set name_bad_devpub=The developers who are allowed to install modules must be\
+    also a registered module developpers.
+  !if $job2=mod2
+    !set name_error1=!nosubst µÇÂ¼Ãûtt>$devlogin</tt>¾­±»Ê¹ÓÃ. ÇëÁíÑ¡Ò»¸ö.
+    !set name_error2=!nosubst ÇøÓò <span class="tt">$badfield</span> ÊäÈëÄÚÈİ²»¶Ô. Çë¸ÄÕı.
+  !endif
+
+  !exit
+!endif
+
+!if $job=file
+  !distribute lines ÕâÊÇ¹©ÏÂÔØµÄÎÄ¼ş\
+     ÄãÈ·ÊµÒªÉ¾³ı´ËÎÄ¼ş\
+     ×î½üĞŞ¸ÄÊ±¼ä\
+     ×Ö½Ú\
+     ÊÇÍ¼Ïñ\
+     ÊÇ¶ş½øÖÆÎÄ¼ş\
+     Ì«³¤, ²»ÄÜÏÔÊ¾»ò±à¼­.\
+     ´ËÎÄ¼şÊÇ±»·¢²¼µÄ, ²»Ó¦ĞŞ¸Ä.\
+     ÏÂÔØÎÄ¼ş\
+     ÒÔÏÂÎÄ¼şµÄÄÚÈİ\
+   into name_file,name_erase,name_last,name_bytes,name_image,name_binary,name_toolong,\
+   name_distrib,name_download,name_content
+
+  !exit
+!endif
+
+!if $job=fs
+  !distribute lines µ±Ç°Ä¿Â¼\
+  ×ÓÄ¿Â¼ (µã»÷¼´½øÈë):\
+  ·ûºÅÁ´½Ó\
+  Ìí¼ÓÒ»¸öĞÂÎÄ¼ş\
+  ÎÄ¼ş\
+  ±¾Ä¿Â¼ÄÚÃ»ÓĞÕı³£µÄÎÄ¼ş.\
+into name_current,name_sub,name_symbolic,name_add,name_files,name_file
+
+  !exit
+!endif
+
+!if $job=no_right
+  !set name_warning=¶Ô²»Æğ, Äã²»ÊÇ±¾Õ¾µÄ¹ÜÀíÔ±. ÄãÎŞÈ¨½øÈë´ËÄ£¿é.
+  !exit
+!endif
+
+!if $job=mkindex
+  !set title=ÖØ½¨×ÊÔ´Ë÷Òı
+  !distribute lines  ×ÊÔ´Ë÷ÒıÖØ½¨ÒÑ¾­ÁĞÈë¼Æ»®ÈÎÎñ. Äã½«ÊÕµ½°üº¬ÖØ½¨½á¹ûµÄÓÊ¼ş.\
+    ÖØ½¨×ÊÔ´Ë÷Òı»áÕ¼ÓÃ·şÎñÆ÷×ÊÔ´, Ó¦¸ÃÔÚ·şÎñÆ÷¿ÕÏĞÊ±Ö´ĞĞ.\
+    ÒÔÏÂÊ±¿ÌµÄ×îĞÂ×ÊÔ´Ë÷ÒıÖØ½¨µÄ½á¹û\
+    µã»÷ÕâÀï\
+    ¿ªÊ¼×ÊÔ´Ë÷ÒıÖØ½¨ (Ğ¡ĞÄ).\
+    ¿ªÊ¼½¨Á¢×ÊÔ´Ë÷Òı.\
+  into name_scheduled,name_rebuilding,name_result,name_click,name_restart,name_start
+
+  !exit
+!endif
+
+!if $job=modules
+  !set name_scheduled=!nosubst ÄãµÄ <span class="tt wims_code_words">$auto</span> ÊÇÁĞÈë¼Æ»®Ö´ĞĞµÄ. ½á¹û»áÓÃµçÓÊ·¢¸øÄã.\
+ ÔÚÖ´ĞĞÍê³ÉÇ°ÇëÎğÖØ¸´´ËÃüÁî.
+  !distribute lines Ä£¿é·¢²¼ÍøÕ¾\
+    Ä£¿éµÄ·¶Î§\
+    the general search zone, or <tt>all</tt> for all zones\
+    sample : H1\
+    ÁìÓò\
+    the general search category, or <tt>all</tt> for all categories\
+    sample : geometry\
+    ×î½ü¸Ä¶¯\
+    ÌìÇ°\
+    Reduce the risk of getting new bugs\
+    ÏÂÔØÅäÖÃ\
+  into name_mod, name_zone, muzone_help, muzone_placeholder,\
+    name_cat, mucat_help, mucat_placeholder, name_change, name_ago,\
+    mudelay_help, wims_name_config_module
+
+  !distribute lines ÌáÈ¡Ä£¿éÊ±³ö´í\
+      °²×°/¸üĞÂÊ±³ö´í\
+      °²×°/¸üĞÂ\
+      ³É¹¦\
+      ÄãĞèÒª\
+      ²âÊÔ\
+      ÖØ½¨Ä£¿éË÷Òı\
+      °²×°\
+      ¸üĞÂ\
+      ¶Ô\
+      ĞŞ¸Ä\
+      ĞÂ°æ±¾\
+      ĞÂÄ£¿é\
+      ÄãĞèÒªÔÚÄ£¿é¸üĞÂºó\
+      \
+      µã»÷ÕâÀï\
+      ÅäÖÃÃ¿ÌìµÄ×Ô¶¯Ä£¿é¸üĞÂ.\
+      ÄãÒ²¿ÉÒÔ¸üĞÂ\
+      ÕâÀïÄã¿ÉÒÔ¸üĞÂ»òÏÂÔØÄ£¿é.\
+    into name_error1,name_error2,name_install,name_successful,name_need,name_test,name_rebuild,name_Install,\
+      name_Update,name_versus,name_Changes,name_version,name_newmodule,name_youneed,name_after,\
+      name_click,name_automatic,name_rss,name_canupdate
+
+!!check
+  !distribute lines Ã»ÓĞÄãÒªËÑË÷µÄÄ£¿é·¢²¼.\
+    µã»÷Ä£¿éµÄµØÖ·ÒÔ¼ì²é/°²×°/¸üĞÂ.\
+    ÕÒµ½ĞÂµÄ°æ±¾\
+    ÕÒµ½ĞÂÄ£¿é\
+    ¸üĞÂËùÓĞµÄ\
+    °²×°ËùÓĞµÄ\
+    ¸üĞÂÓÚ\
+    ĞÂ°æ±¾\
+    ĞÂÄ£¿é\
+    ·şÎñÆ÷<br>°æ±¾\
+    ·¢²¼Õß\
+  into name_check1,name_click_adress,name_foundv,name_foundm,name_all_u,name_all_i,name_updated,name_newv,name_newm,name_server,name_published
+
+  !exit
+!endif
+
+!if $job=restore
+  !set name_warning1=´íÎóµÄµµ°¸ÎÄ¼ş: ÆäÖĞÃ»ÓĞ·¢ÏÖÏàÓ¦µÄÄÚÈİ.
+  !set name_warning2=ÒÔÏÂÄ¿Â¼ÀïµÄÊı¾İÒÑ±»³É¹¦»Ö¸´/°²×°
+  !exit
+!endif
+
+!if $job=sess
+  !set title=ÓÃ»§»á»°
+  !distribute lines »á»°ÄÚÈİ\
+    ÒÔÏÂ»á»°±äÁ¿ÎÄ¼şµÄÄÚÈİ\
+    ÒÔÏÂÎÄ¼şµÄÄÚÈİ\
+    ¼¤»îµÄ»á»°±í\
+  into name_content_s,name_content_v,name_content_f,name_listsessions
+  !exit
+!endif
+
+!if $job=upload
+  !set name_warning=Îª¸üĞÂ·şÎñÆ÷µÄ×ÊÔ´, Çë°Ñ°üº¬×ÊÔ´µÄ¹âÅÌ»ò usb ´æ´¢²åÈë¼ÆËã»ú,\
+Í¬Ê±ÔÚÒÔÏÂµÄÊäÈëÇøÓòÄÚÕÒ³ö "wims-resource.tgz" »ò "wimsres-*.tgz":
+  !set name_need=µ±ÉÏ´«ÎÄ¼şºÜ´óÊ±, ÄãĞèÒªÓĞÒ»¸ö¸ßËÙµÄÁ¬½Ó.
+  !set name_depositcheck=Do this only after checking the file you are loading.
+    It can be difficult to go back through this interface.
+  !exit
+!endif
+
+!if $job=rss
+  !set title=ÖØ½¨ RSS feed
+  !set name_start=ÒÔ¿ªÊ¼ÖØ½¨ RSS Feed.
+  !exit
+!endif
+
+!if $job=otherdownload
+  !set name_text1=¿ÉÒÔÊÖ¹¤ÏÂÔØµÄÆäËü×ÊÔ´.
+  !set name_shtooka=ÏÂÔØ Shtooka ×ÊÔ´ (ÓĞÉùÍâÓïµ¥´Ê)
+  !exit
+!endif
+
+!if $job=swac
+  !set name_mkindex=Éú³ÉË÷Òı
+  !set name_text_swac=Äã¿ÉÒÔÏÂÔØ Shtooka ÏîÄ¿µÄÄ³Ğ©°üµÄ mp3 ÎÄ¼ş.\
+<p>Èç¹ûĞèÒªµ÷ÓÃËüÃÇµÄÄ£¿éÔÚ WIMS ·şÎñÆ÷ÖĞ±»Æµ·±Ê¹ÓÃ, Äã¾ÍÓ¦¸ÃÏÂÔØËüÃÇ.\
+·ñÔòµÄ»°, ÕâĞ©Ä£¿éÒªµ½ÍøÕ¾ http://shtooka.net È¥ËÑË÷ mp3.\
+</p><p>ÎªÁËÏÂÔØËüÃÇ, ×îºÃÊÇÖ´ĞĞ½Å±¾ÎÄ¼ş\
+<span class="tt">$wims_home/bin/swac </span> ÀïµÄÃüÁîĞĞ. Ëü»á°ÑÒ»Ğ© swac °ü°²×°ÔÚºÏÊÊµÄµØ·½. \
+</p><p class="small">ÓÉÓÚ WIMS µÄÎÄ¼şÊÇÊ¹ÓÃ iso-latin ±àÂëµÄ, Òò´Ë»¹²»ÄÜÊ¹ÓÃÎ÷Àï¶ûÎÄ°ü.</p>
+!exit
+!endif
+
+!if $job=sendmail
+  !distribute item Ö÷Ìâ,ĞÅÏ¢ \
+into name_subject,name_message
+  !let name_dest=ÊÕĞÅÈË,·şÎñÆ÷¹ÜÀíÔ±,¶ÀÁ¢°à¼¶Ö÷³Ö½ÌÊ¦,³¬¼¶°à¼¶¹ÜÀíÔ±,Ñ§Çø¹ÜÀíÔ±,³¬¼¶°à¼¶½ÌÊ¦,Ñ§Çø½ÌÊ¦
+  !let name_sending=ÄãµÄĞÅÏ¢ÒÑ±»·¢ËÍµ½ËùÓĞÊÕ¼şÈË
+  !exit
+!endif
+
+!if $job=classrestore
+  !distribute lines ÔÚÏÂÁĞÃûµ¥ÖĞÑ¡ÔñÓû»Ö¸´µÄ°à¼¶\
+  Ã»ÓĞÒª»Ö¸´µÄ°à¼¶.\
+  There are many archived classes. You must enter the identifier of the class to restore.\
+into name_restore_choose, name_restore_noclass,name_toomuchbackup
+  !set name_restore_done=!nosubst °à¼¶ <strong>$year/$class</strong> ÒÑ»Ö¸´.\
+ĞÂµÄÊ§Ğ§ÈÕÆÚÊÇ $date. Çë²»ÒªÖØ×öÕâ¸ö²Ù×÷.
+
+  !set name_class_link=Direct link to the class maintenance page:
+  !exit
+!endif

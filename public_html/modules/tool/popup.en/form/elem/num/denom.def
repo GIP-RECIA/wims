@@ -1,0 +1,9 @@
+:algebra, prealgebra, pre-algebra, number, fraction,
+denominator, common denominator
+
+:operation, common denominator
+
+:, Find Common Denominator
+
+:$submit1
+ <input type="text" name="formula" size="25" maxlength="100" value="2/3 + 7/8, 5/9">

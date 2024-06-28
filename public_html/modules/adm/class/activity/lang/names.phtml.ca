@@ -1,0 +1,51 @@
+!set lang_exists=yes
+!!!set name_title=Avaluació d'activitats individuals
+!set name_noparticipant=Aquesta classe encara no té alumnes.
+!set name_lastconnexion=Darrera connexió
+!set name_total=Temps total
+!set name_click=Clica damunt del nom per a veure al detall el seu treball
+!set name_nbsessions=Nombre de sessions
+!set name_exo=exercicis
+!set name_time=Temps
+!set name_cnt_exo=N. exs
+
+!set name_showsheet=Tria els fulls dels que vols informació.
+
+!set name_ylabel=# ex.
+
+!set name_expert0=Pots utilitzar diversos mètodes si t'interessen \
+només certs alumnes. Tria el mètode que vols utilitzar.
+
+!distribute items Menú Expert,Llista de Login,Per selecció,\
+  Per participant,dies, Mostrar els gràfics, Tots els participants\
+into name_menu,name_loginlist,name_select,name_shiftpart,name_days,\
+ name_graphics, name_allpart
+
+!distribute lines Llavors podràs veure el següent alumne (per defecte si s'han demanat els gràfics).\
+El nombre d'alumnes seleccionats està limitat a $limitpart, només es mostraràn els $limitpart primers\
+Si es mostren els gràfics, el nombre d'alumnes que es mostren es limita a $limitpart\
+Només si no es demanen els gràfics.\
+si es demanen els gràfics\
+into name_help1,name_help2,name_help3,name_help0,name_help00
+
+!set name_min=min
+!set name_listdays=Dilluns,Dimarts,Dimecres,Dijous,Divendres,Dissabte,Diumenge
+!set name_workingtime=Avaluació del temps de connexió
+!set name_lgword=fins,entre,i,acabar,Cap activitat
+!set name_studentname=!nosubst $lastname $firstname
+!set name_choose=Trieu el participant
+!set name_activityof=Activitat de
+!set name_notsingleclass=!nosubst Aquesta classe forma part d'una estructura. El temps de l'activitat presentat abans de la data de la $slib_out\
+  és la de l'activitat en el conjunt de l'estructura. Després d'aquesta data, és l'activitat de la classe.
+
+!if $job=cfwtime
+  !set name_titlecfwtime=Configuració de la visualització de l'hora de connexió
+  !set name_config=Permetre la visualització del temps de connexió,\
+Nombre de subdivisions,\
+Durada d'una subdivisió,\
+Acoloriment
+  !set name_desc_config=,\
+Nombre de colors diferents utilitzats a la taula,\
+Longitud d'una subdivisió en minuts,\
+Podeu triar el color de cada subdivisió
+!endif

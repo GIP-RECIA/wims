@@ -1,0 +1,30 @@
+
+<b>Significat dels termes.</b>
+<dl>
+ <dt>pes
+ </dt>
+<dd>Pes de l'exercice en el càlcul de les notes del full.
+ </dd>
+ <dt>índex de dificultat
+ </dt>
+<dd>Fórmula de càlcul d'aquest índex&nbsp;:
+  <div class="wimscenter">
+   !instex $$$$ \frac{4\times\sqrt{\
+   (\hbox{somme des dur\'ees})\times\
+   (\hbox{nombre de d\'emarrages d'exercices})}}\
+   {(\hbox{somme des points obtenus})} $$$$
+  </div>
+  Un exercici normal té un índex comprès entre 0,5 i 3.
+ </dd>
+ <dt>nou</dt>
+ <dd>Nombre de vegades que es va iniciar l'exercici.
+  </dd>
+ <dt>nota</dt>
+ <dd>Nombre de vegades que s'ha completat l'exercici.
+  </dd>
+ <dt>durada</dt>
+ <dd>En minuts. Només es compten les durades dels exercicis acabats.
+  </dd>
+</dl>
+
+

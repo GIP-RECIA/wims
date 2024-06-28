@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+axis
+axisnumbering
+xlabel cm\u00B2 
+ylabel v\u00B2 
+precision 1
+grid 2,2,grey,2,2,5,grey

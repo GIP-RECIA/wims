@@ -1,0 +1,26 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Taxe sur la valeur ajoutée
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">La <strong>taxe sur la valeur ajoutée</strong> communément
+ appelée <span class="wims_emph">TVA</span> est un
+ <span class="wims_emph">impôt sur la consommation finale</span>. Elle est
+ essentiellement collectée par les entreprises pour le compte de l'État au moment de la consommation des ménages.</div>
+<div class="spacer">Il n'existe pas un seul taux de TVA mais
+ <span class="wims_emph">plusieurs taux</span> dont le champ d'application de chacun
+ est établi dans les articles 278 et suivant du code général des impôts.
+ Parmi les différents taux, il convient de distinguer :
+<ul>
+<li>le <span class="wims_emph">taux normal</span> qui est actuellement de 20% et
+ qui en principe et par défaut s'applique aux ventes de biens et de services ;</li>
+<li>les <span class="wims_emph">taux réduits</span> qui sont actuellement de 10%,
+ 5,5% et 2,1% et qui par dérogation au régime normal, s'appliquent à
+ certaines opérations expressément énoncées par le code général des impôts. </li>
+</ul>
+

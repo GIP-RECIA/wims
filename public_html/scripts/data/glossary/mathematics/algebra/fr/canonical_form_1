@@ -1,0 +1,17 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Forme canonique (exemple)
+
+!readproc data/glossary/mathematics/algebra/macro/seconddegre
+
+<div>Soit \(f\) la fonction polynôme du second degré définie pour tout réel \(x\)
+ par <span style="white-space:nowrap">\(f(x)=$gl_expr\).</span>
+</div>
+<div>La forme canonique de \(f\) est définie pour tout réel \(x\) par
+!if $gl_coef3=0
+	<span style="white-space: nowrap;">\(f(x)=$gl_a*(x+$gl_coef1)^2\).</span>
+!else
+	\(f(x)=$gl_a*((x+$gl_coef1)^2+$gl_coef2)\) ou encore par
+<span style="white-space: nowrap;">\(f(x)=$gl_a*(x+$gl_coef1)^2+$gl_coef3\).</span>
+!endif
+</div>

@@ -1,0 +1,117 @@
+!! define global variable for a single freework
+!! (cfr. adm/class/freework/proc/mkglobalvar.proc)
+!!
+!! input: freework number
+fw_=!item 1 of $wims_read_parm
+!!
+!! ($wims_class must be defined)
+!if $wims_class=$empty
+  !debug error
+!endif
+!!
+!! -------------- check right for download/upload participant file and etc... (see description below)
+!! define variables :
+!! loadwork=1 supervisor can download/see user work
+!! nbcopies : number of student deposit work
+!! nbcorrectedcopies : number of work corrected by supervisor
+!! notcorrected : difference between last two values
+!! putworkco=1 supervisor can modify/delete global correction file
+!! putiworkco=1 supervisor can upload individual correction/remark/score
+!! displaysolution=1 student can download general solution
+!! codownload=1 student can view/download personal solution/marking
+!! this variable can be use in subfile of each type
+!!
+!! fwtype
+
+t_=!record $fw_ of wimshome/log/classes/$wims_class/freeworks/.freeworks
+
+!distribute line $t_ into activetest,expdate,title,desc,comment,fwtype,deadline,soldate,sizelimitfile,scoring,seealltime,studentclose
+
+nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+!reset ulist
+!for fwuu=1 to $nbuser
+  u_=!record $fwuu of wimshome/log/classes/$wims_class/.userlist
+  !distribute item $u_ into l_,f_,n_
+  ulist=!append item $n_ to $ulist
+!next fwuu
+
+!for fwval in deadline,soldate
+  t=!replace internal . by , in $($fwval)
+  !distribute item $t into $fwval,time$fwval
+  !default $fwval=$today
+  !default time$fwval=00:00
+!next fwval
+!bound activetest between 0 and 3
+        
+!! end of work date
+d1=!text select char 0123456789 in $(deadline)$(timedeadline)
+!! show solution date
+d2=!text select char 0123456789 in $(soldate)$(timesoldate)
+now=!text select char 0123456789 in $wims_now
+now=!char 1 to 12 of $now
+!distribute item 0,0 into loadwork,putworkco
+!if $activetest=1 and $fwtype>1 and ($now>$d1 or $seealltime=1)
+  loadwork=1
+!endif
+!if $activetest>=1
+  !if $activetest isitemof 1
+    !distribute item 0,0,0,0 into putworkco,putiworkco,displaysolution,codownload
+    !if $fwtype>=1
+      !! ----- make directories in case of download an active freeworks in classe using module=config job=restore/save  
+      !sh mkdir -p $wims_home/log/classes/$wims_class/freeworksdata/$fw_/work;\
+          mkdir -p $wims_home/log/classes/$wims_class/freeworksdata/$fw_/co;
+      !! ------- compute number of copies / corrected copies
+      !if $fwtype=2
+        n1=!sh dir -1 $wims_home/log/classes/$wims_class/freeworksdata/$fw_/work/ | cut -d. -f1;
+        n2=!sh dir -1 $wims_home/log/classes/$wims_class/freeworksdata/$fw_/co/ | cut -d. -f1;
+      !else
+        n1=!sh dir -1 $wims_home/log/classes/$wims_class/freeworksdata/$fw_/work/ | cut -d- -f1 | sort | uniq;
+        !! count correction by teachers (only count saved after deadline)
+        n2=!sh cd $wims_home/log/classes/$wims_class/freeworksdata/$fw_/co;\
+               find * -newermt '$deadline $timedeadline' 2> /dev/null | sort | uniq;
+!!        n2=!filelist $wims_home/log/classes/$wims_class/freeworksdata/$fw_/co
+      !endif
+      n1=!lines2items $n1
+      n1=!listintersection $n1 and $ulist
+      nbcopies=!itemcnt $n1
+      n2=!lines2items $n2
+      n2=!listintersection $n2 and $ulist
+      nbcorrectedcopies=!itemcnt $n2
+    !else
+      nbcorrectedcopies=0
+      nbcopies=0
+    !endif
+    notcorrected=$[$nbcopies-$nbcorrectedcopies]
+    !if $now<$d2
+      putworkco=1
+    !else
+      displaysolution=1
+    !endif
+    !if ($notcorrected>0 or $now<$d2) and $fwtype>1 and $now>=$d1
+        putiworkco=1
+    !endif
+    !if $now>=$d2 and $notcorrected=0 and $fwtype>1
+        codownload=1
+    !endif
+  !else
+    putworkco=0
+    putiworkco=0
+    loadwork=1
+    displaysolution=1
+    codownload=0
+  !endif
+  !! ---  general solution diffused if solutiondate pass or activetest>=2
+  !if $now>$d2 or $activetest>=2
+    displaysolution=1
+  !endif
+!endif
+!if $activetest=0
+  loadwork=0
+  putworkco=1
+  putiworkco=0
+  displaysolution=0
+  codownload=0
+!endif
+!! ------- globalcorrection can be modified all time:
+putworkco=1
+

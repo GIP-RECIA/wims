@@ -1,0 +1,95 @@
+:E6/number/ecrituredecimale.fr
+exo=multipl10_entiers&qnum=3&qcmlevel=3&scoredelay=&confparm1=6&confparm2=3&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Multiplication d'un entier par 10;100;1000...
+Savoir multiplier un nombre par 10, 100 ou 1000
+
+
+
+:E6/number/ecrituredecimale.fr
+exo=multipl10_decimaux&qnum=3&qcmlevel=3&scoredelay=&confparm1=6&confparm2=3&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Multiplication d'un décimal par 10;100;1000...
+Savoir multiplier un nombre décimal par 10, 100 ou 1000
+
+
+:E6/number/ecrituredecimale.fr
+exo=divis10_entiers&qnum=3&qcmlevel=3&scoredelay=&confparm1=6&confparm2=3&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Division d'un entier par 10;100;1000...
+Savoir diviser un nombre par 10, 100 ou 1000
+
+
+:E6/number/ecrituredecimale.fr
+exo=divis10_decimaux&qnum=3&qcmlevel=3&scoredelay=&confparm1=6&confparm2=3&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Division d'un décimal par 10;100;1000...
+Savoir diviser un nombre décimal par 10, 100 ou 1000
+
+
+:H2/number/OEFevalwimscalc.fr
+exo=champmul1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Vocabulaire du champ multiplicatif 1
+Savoir le vocabulaire associé à une multiplication, difficulté 1
+
+
+:H2/number/OEFevalwimscalc.fr
+exo=champmul3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Vocabulaire du champ multiplicatif 2
+Savoir le vocabulaire associé à une multiplication, difficulté 2
+
+
+:H2/number/OEFevalwimscalc.fr
+exo=champmul4&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Vocabulaire du champ multiplicatif 3
+Savoir le vocabulaire associé à une multiplication, difficulté 3
+
+
+:H1/number/OEFevalwimsope.fr
+exo=oefmultiplication3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Poser une multiplication
+Savoir poser une multiplication
+
+
+:H1/number/OEFevalwimsope.fr
+exo=oefgrandeurprod1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Ordre de grandeur multiplication
+Savoir vérifier la vraisemblance du résultat à l'aide des ordres de grandeur
+
+
+:H2/number/OEFevalwimscalc.fr
+exo=calculC1&calculC2&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Priorité de * sur + 1-2
+Savoir les règles de priorité de calcul, difficulté 1 à 2 aléatoirement
+
+
+:H2/number/OEFevalwimscalc.fr
+exo=calculC2&calculC3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Priorité de * sur - et + 2-3
+Savoir les règles de priorité de calcul, difficulté 2 à 3 aléatoirement
+
+
+:H2/number/OEFevalwimscalc.fr
+exo=calculD1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Priorité de * sur - et +
+Savoir les règles de priorité de calcul * savoir appliquer les règles de priorité de calcul

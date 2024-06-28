@@ -1,0 +1,26 @@
+oefenv_idontknow=$idontknow
+oefenv_allchoices=$allchoices
+
+# Avoid classes to import exercises in this module.
+class_importation=no
+
+# All images are in common directory (images/)
+common_images=yes
+
+!if $status!=waiting and $cmd iswordof new renew next
+ !read oef/datafile.proc 6
+!endif
+
+!! nombre de propositions maxi
+!! mode expert
+oefenv_qcmpresent=$intro_qcmpresent
+!! mode simplifié
+!default oefenv_qcmpresent=!item $qcmlevel of 4,4,4,5,5,6,7,8,9
+
+oefenv_presentgood=$presentgood
+oefenv_intro_check=$intro_check
+
+!! le fichier ".def" de l'exercice est lu par var.proc
+!read oef/var.proc
+
+title=$df_title

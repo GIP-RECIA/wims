@@ -1,0 +1,16 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!else
+  !exit
+!endif
+
+:square
+<h2>¿Qué representan los cuadrados?</h2>
+  El trabajo realizado en un ejercicio, cuando las puntuaciones son registradas, se presenta esquemáticamente por una secuencia de cuadrados de color: un cuadrado por intento;
+su color depende de la puntuación obtenida (el primer color se usa para representar un intento no terminado).
+!exit
+
+:seed
+<div>Varios cuadrados que aparecen en una misma columna corresponden a intentos realizados con un mismo enunciado. 
+</div><div>Si su profesor ha escogido limitar el número de intentos contabilizados, no se representan aquellos intentos que se realicen una vez alcanzado el número máximo.
+</div> 

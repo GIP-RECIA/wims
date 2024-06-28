@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+filled
+fillcolor lightblue
+opacity 200,40
+drag y
+linewidth 2
+circles blue,-5,0,3,0,0,2,5,0,4,0,4,3,0,-3,4

@@ -1,0 +1,53 @@
+Multiplications #1
+jeux de multiplication
+??, 2019
+1
+E3
+elementary_mathematics
+levelE3,number,operation
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:H3/algebra/arithtable.en
+exo=partial2x2&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Table magique 1
+Tirer les nombres dans la table de manière à ce que les produits des lignes et des colonnes soient les nombres donnés.
+
+:H3/algebra/arithtable.en
+exo=table2x2&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Table magique 2
+Tirer tous les nombres dans la table de manière à ce que les produits des lignes et des colonnes soient les nombres donnés.
+
+:H3/algebra/arithtable.en
+exo=typed2x2&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Table magique 3
+Trouver les nombres manquants dans la table de manière à ce que les produits des lignes et des colonnes soient les nombres donnés.
+
+:H3/algebra/arithtable.en
+exo=partial2x4&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Table magique 4
+De nouveau, tirer les nombres dans la table de manière à ce que les produits des lignes et des colonnes soient les nombres donnés.
+
+:H3/algebra/arithtable.en
+exo=table2x4&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Table magique 5
+De nouveau, tirer les nombres dans la table de manière à ce que les produits des lignes et des colonnes soient les nombres donnés.
+
+:H3/algebra/arithtable.en
+exo=typed2x4&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Table magique 6
+De nouveau, trouver les nombres manquants dans la table de manière à ce que les produits des lignes et des colonnes soient les nombres donnés.
+

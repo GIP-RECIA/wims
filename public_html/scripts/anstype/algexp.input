@@ -1,0 +1,43 @@
+
+!!!!!!
+!! Algexp generic anstype.input (also used by Formal and Litexp)
+!!!!!!
+
+!set anstype=yes
+!set anstyle=numeric
+!set ans_require=maxima
+!if $wims_read_parm=def
+  !exit
+!endif
+!if debug iswordof $m_oefenv and ?analyze notin $(replygood$i)
+  !set replydefaulted=yes
+  !if $oef_default=yes
+    !set tt=!row 1 of $(replygood$i)
+    !default reply$i=!item 1 of $tt
+    !! -------- added for automake good reponse in case of use of polexpand and polfactor for litexp 
+    !if polexpand iswordof $(replyoption$i) and $(replytype$i)=litexp
+      !default reply$i=!exec maxima print(expand($(reply$i)));
+    !endif
+    !if polfactor iswordof $(replyoption$i) and $(replytype$i)=litexp
+      !default reply$i=!exec maxima print(factor($(reply$i)));
+    !endif
+    !! ------- end of add
+  !endif
+!endif
+!if $wims_read_parm!=noprompt
+  <tr><td><label for="reply$i">$(replyname$i)</label>&nbsp;=</td><td>
+!endif
+
+!read anstype/inputcss.inc
+
+!bound inputsize between integer 1 and 100 default 40
+<input list="emptylist" id="reply$i" size="$inputsize" name="reply$i" value="$(reply$i)" autocapitalize="none" $inputoption>
+
+!if symbols isin $(replyoption$i)
+  !read anstype/symbols.inc
+!endif
+
+!if $wims_read_parm!=noprompt
+  </td></tr>
+!endif
+!reset inputsize inputoption option

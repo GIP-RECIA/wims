@@ -1,0 +1,92 @@
+h2.wims_docu_titleb, h3.wims_docu_titleb {
+  padding-left: 0;
+  padding-right: 0;
+  text-align:left;
+}
+h1.wims_docu_title {
+  font-size: 130%;
+  border-bottom: solid;
+  border-top: solid;
+  border-width: thin;
+  border-color: #808080;
+  padding: 1px;
+  text-align:center;
+ }
+
+h2.wims_docu {
+  font-size: 110%;
+  font-weight:bold;
+ }
+
+.float_right>#doc_toc:not(.menu){background-color: #FFF;padding: .5em 1.5em;}
+.float_right>#doc_toc{border-left:1px solid #999;}
+
+/* classes pour menu*/
+.ui-menu {
+  /*max-width: 200px;*/
+  font-size: 80%;
+}
+.ui-menu-item>a{
+  text-decoration: none;
+}
+
+.float_right>.doc_toc {
+  margin:.4em;
+}
+.doc_toc>li>a{
+  white-space: pre-wrap;
+}
+
+#docprint .doc_toc {visibility:hidden; display:none;}
+
+/** DOC Navigation */
+
+#docnavigation{
+  display: flex;
+  justify-content: space-evenly;
+  /*max-width: 50em;
+  margin: auto;*/
+}
+#docnavigation .menuitem>a{display: inline-block;}
+
+#wimsdoc:not(.editor_mode) .wimsbody {
+  margin-left: 0;
+}
+
+#wimsdoc .navmenu {
+  margin-top: 180px;
+  padding:0px;
+  position: fixed;
+  top:50px;
+}
+#wimsdoc .left.navmenu {
+  /*left: auto;*/
+  display:none;
+}
+#wimsdoc .right.navmenu {
+  margin-left: 0;
+  margin-right: 0;
+  right: 0;
+}
+
+/* Small screens */
+@media only screen and (max-width: 40em) {
+  #doc_toc {max-width: 10em;}
+  /*.float_right>.doc_toc {max-width: 200px;}*/
+}
+
+/* Medium screens */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+  /*.float_right>.doc_toc {max-width: 200px;}*/
+}
+
+/* Medium and large screens */
+@media only screen and (min-width: 40.063em) {
+  #doc_toc {max-width: 32em;}
+  /*.float_right>#doc_toc {max-width: 20em;}*/
+}
+
+/* Large screens */
+@media only screen and (min-width: 64.063em) {
+  #wimsdoc .right.navmenu {right: .5em}
+}

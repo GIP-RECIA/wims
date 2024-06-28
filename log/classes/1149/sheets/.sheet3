@@ -1,0 +1,118 @@
+Pourcentages à répétition
+Résoudre des problèmes où interviennent des pourcentages de pourcentages, des évolutions successives avec des tableau d'indice de base 100, et finalement des suites géométriques.
+??,2022
+2
+H5
+mathematics,
+H5
+Rémi, Belloeil
+
+
+
+
+
+:H5/analysis/oefpercent2.fr
+exo=lait&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Le litre de lait
+Quel est le prix du litre de lait après plusieurs augmentations ? et quel est le pourcentage d'augmentation global ?
+
+:H5/analysis/oefpercent2.fr
+exo=evolution&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Evolutions successives 1
+Déterminer la valeur finale après plusieurs évolutions.
+
+:H5/analysis/oefpercent2.fr
+exo=costume&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Le costume d'André
+Combien André paiera-t-il son costume après une augmentation mais avec un rabais ? Pourcentage de réduction global.
+
+:H5/analysis/oefpercent2.fr
+exo=tvared&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Réduction et TVA
+Faut-il calculer la réduction avant ou après l'ajout de la TVA ?
+
+:H5/analysis/oefpercent2.fr
+exo=tvamod&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+TVA modifiée
+Si le taux de TVA diminue, quel est le pourcentage de diminution pour les clients sur le prix TTC ?
+
+:H5/analysis/oefpercent2.fr
+exo=export&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Exportations
+Que représentent l'informatique dans les exportations ? Choisir le bon graphique et le bon type de pourcentage.
+
+:H5/analysis/oefpercent2.fr
+exo=evolution2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Comparaison d'évolutions
+Quel graphique permet le mieux de comparer les évolutions de deux séries statistiques ?
+
+:H5/analysis/oefpercent2.fr
+exo=comployer1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Comparaison loyers et prix
+Choisir le graphique, déterminer le coefficient de proportionnalité et choisir la bonne analyse.
+
+:H5/analysis/oefpercent2.fr
+exo=comployer2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Comparaison loyers et prix sur tableur
+Comparer l'évolution des loyers et des prix en choisissant les calculs à faire sur un tableur.
+
+
+:H5/analysis/oefpercent2.fr
+exo=indice&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Indice de base 100
+Déterminer 6 valeurs de l'indice de base 100 en 2010.
+
+:H5/analysis/oefpercent2.fr
+exo=evolution3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Évolution des prix
+Au bout de combien d'années, le prix aura-t-il triplé ?
+
+:H5/analysis/oefpercent2.fr
+exo=amort&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Amortissement
+Déterminer la valeur d'une machine au bout d'un an, 2 ans, 10 ans puis dans combien d'année sa valeur sera-t-elle le quart de sa valeur initiale ?
+
+:H5/analysis/oefpercent2.fr
+exo=ami&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Les amis de tes amis
+Les amis de tes amis... combien au rang 2 et 3 ? Quel rang pour dépasser le nombre de Français, d'Européens, d'habitants sur Terre ?
+
+
+
+
+:H5/analysis/oefpercent2.fr
+exo=datation&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Datation au Carbone 14
+Retrouver la date à laquelle le poteau en bois a été coupé de l'arbre.
+
+
+
+

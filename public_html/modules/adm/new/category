@@ -1,0 +1,9 @@
+!if $cat=document
+  !set cat=doc
+!endif
+!if exercise isitemof $cat
+  !set cat=exercise
+!endif
+!if tool isitemof $cat
+  !set cat=tool
+!endif

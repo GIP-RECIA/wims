@@ -1,0 +1,392 @@
+# Variable calculations should be done in this file.
+# It is read and interpreted by wims for all valid calls to the module.
+
+!! --- securise variable
+wims_prefix=class user freework
+!!wims_writable=
+!!wims_readable=
+
+!if $notallowed=1
+  error=notallowedmodule
+  !exit
+!endif
+
+!! configure available applets for type=3
+
+!! list of available applets (files in applet, do not change oder)
+listfilename_ztype=geogebra,texte,file,wimsexo
+!! if you add an applet, add it here and add it to name_listofztype
+!! (lang/name.phtml.$lang). You also need to update lpara_type
+!! E.g.
+listfilename_ztype=geogebra,texte,file,wimsexo,randfile
+
+!! applets for which teachers can upload files
+teacherfile_ztype=file
+teacherfile_ztype=file,randfile
+
+!! applets for which students can upload files
+studentfile_ztype=file
+
+!! applets that do not appear in the student zone
+nostudent_ztype=wimsexo
+nostudent_ztype=wimsexo,randfile
+
+!! applets that do not appear in student zone but have random elements
+!! so teacher has to be able to see student assignment
+studentlist_ztype=wimsexo
+studentlist_ztype=wimsexo,randfile
+
+!! file number to read in function of type
+lpara_type=1,1,3,1
+lpara_type=1,1,3,1,3
+
+!! end configure of applets for type=3 
+
+nbztype=!itemcnt $listfilename_ztype
+
+!! check access
+!if $statutfreework!=open
+  error=notallowedmodule
+  notallowed=1
+  !exit
+!endif
+
+!read linkmodule/freework.proc
+!if $wims_allowlink_freework=no
+  !restart module=home
+!endif
+
+!read adm/language lang/names.phtml
+
+tmp=!defof MAX_FREEWORKS\
+MAX_USERFORGRADES in wimshome/public_html/bases/sys/define.conf
+!distribute line $tmp into max_freeworks,max_userforgrades
+title_limit=50
+desc_limit=2000
+textezone_limit=10000
+fw_nbline=12
+
+!if $cmd=help
+  !exit
+!endif
+
+!! initializing counter for opening file in popup window
+windowfilenumber=0
+
+!if $class_expiration=$empty
+  !defread wimshome/log/classes/$wims_class/.def
+  !if $wims_superclass!=$empty
+    class_expiration=!defof class_expiration in wimshome/log/classes/$wims_superclass/.def
+  !endif
+!endif
+
+!if $class_expiration=$empty
+  error=bad_class
+  !exit
+!endif
+
+jquery_defined=!defof jquery_defined in wimshome/public_html/themes/$class_theme/header.phtml
+
+!if $cmd=resume and $jquery_defined!=yes
+  !for k in infoshow1,infoshow2
+    !bound $k within yes,no default yes
+    !if $(wims_$k)!=$($k)
+      wims_$k=$($k)
+      !setdef wims_$k=$($k) in wimshome/session/$wims_session/var.stat
+    !endif
+  !next k
+!endif
+
+!! ------ check job function of user right
+!if $wims_user=supervisor
+  listjob=configfw,prep_activate,expire,hide,reactivate,deactivate,prep_erase,uploadco,\
+savescore,viewuser3,uploadco3,archive,student,exocheck,addexo,directexo,delexo,remark3,duplicate
+  defjob=configfw
+!else
+  listjob=student,exolog,exocheck,directexo
+  defjob=student
+!endif
+!bound job within $listjob default $defjob
+
+today=!char 1 to 8 of $wims_now
+!! --------- read general data of the freework
+nbfreework=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+!if $job=addexo
+  !changeto $job.proc
+!endif
+!if $wims_user=supervisor
+  !if $job=configfw
+    !bound freework between 1 and $[$nbfreework+1] default $[$nbfreework+1]
+  !else
+    !bound freework between 1 and $nbfreework default 1
+  !endif
+!else
+  !reset save
+  !bound freework between 1 and $nbfreework default 1
+!endif
+!if $freework>$max_freeworks
+  error=bad_maxfreework
+  !exit
+!endif
+
+!! --------   make manual score index
+  uucnt=!recordcnt wimshome/log/classes/$wims_class/.grades
+  !if $uucnt>0
+    !! --- check for column for score
+    tmp=!record 1 of wimshome/log/classes/$wims_class/.grades
+    !distribute line $tmp into bl,score_title,bl
+    score_title=!item 3 to -1 of $score_title
+    nbscore=!itemcnt $score_title
+    !! --- check for score key for each user
+    uucnt=$[$uucnt-1]
+    !for i=1 to $uucnt
+      u_=!record $i+1 of wimshome/log/classes/$wims_class/.grades
+      n_=!item 1 of $u_
+      uulist=!append item $n_ to $uulist
+    !next i
+  !else
+    nbscore=0
+  !endif
+!  ------------ end manual score index
+
+!if $save=$empty and $freework<=$nbfreework
+  tmp=!record $freework of wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !distribute line $tmp into activetest,expdate,title,desc,comment,type,deadline,soldate,sizelimitfile,scoring,seealltime,studentclose
+  !for val in deadline,soldate
+    t=!replace internal . by , in $($val)
+    !distribute item $t into $val,time$val
+    !default $val=$today
+    !default time$val=00:00
+  !next val
+  !bound activetest between 0 and 3
+!endif
+
+!if $type=2
+  showstudlist=yes
+!else
+  showstudlist=no
+!endif
+
+!if $freework>$nbfreework
+  !default deadline=$today
+  !default timedeadline=00:00
+  !default soldate=$today
+  !default timesoldate=00:01
+  !default sizelimitfile=4
+  wims_infoshow1=yes
+  scoring=no
+  seealltime=0
+  studentclose=0
+!endif
+
+!! ---------  check variable values
+title=!singlespace $title
+title=!detag $title
+title=!char 1 to $title_limit of $title
+title=!replace internal : by &#58; in $title
+
+desc=!replace internal $\
+$ by $ $ in $desc
+desc=!char 1 to $desc_limit of $desc
+desc=!replace internal : by &#58; in $desc
+
+comment=!replace internal $\
+$ by $ $ in $comment
+comment=!singlespace $comment
+comment=!detag $comment
+
+
+!! ------- manage activation or not of upload file for student (option manage by wims.conf)
+!if $activetest<1 and $conf_nofile=yes
+  !bound type within 1,3 default 1
+  listfilename_ztype_teacher=$listfilename_ztype
+  listfilename_ztype_student=!listcomplement $studentfile_ztype in $listfilename_ztype
+!else
+  !bound type between 1 and 3 default 1
+  listfilename_ztype_teacher=$listfilename_ztype
+  listfilename_ztype_student=$listfilename_ztype
+!endif
+listfilename_ztype_student=!listcomplement $nostudent_ztype in $listfilename_ztype_student
+nbztype_teacher=!itemcnt $listfilename_ztype_teacher
+nbztype_student=!itemcnt $listfilename_ztype_student
+
+!if $type=1
+  sizelimitfile=$empty
+!else
+  !bound sizelimitfile between 1 and 10 default 4
+  !if $type=3
+    !! ------ incase of type=3 sizelimitfile=0 if no student filezone
+    nb=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freework$freework
+    numberfilezone=0
+    !for k=1 to $nb
+      test=!record $k of wimshome/log/classes/$wims_class/freeworks/.freework$freework
+      test=!line 1 of $test
+      !distribute word $test into s,z
+      !if $s=file and $z=student
+        !increase numberfilezone
+      !endif
+      !! do we have to show users' list?
+      !if $s isitemof $studentlist_ztype or $z=student
+        !set showstudlist=yes
+      !endif
+    !next k
+    !if $numberfilezone=0
+      sizelimitfile=$empty
+    !endif
+  !endif
+!endif
+
+t=0
+!for val in deadline,soldate
+  !! -- check date format
+  $val=!text select 0123456789 in $($val)
+  $val=!char 1 to 8 of $($val)
+  expmon=!char 5 to 6 of $($val)
+  expday=!char 7 to 8 of $($val)
+  expyear=!char 1 to 4 of $($val)
+  expmon=!char 2,3 of $[abs(floor($expmon))+100]
+  expday=!char 2,3 of $[abs(floor($expday))+100]
+  expyear=!char -4 to -1 of $[abs(floor($expyear))+100000]
+  !if $expday>=1 and $expday<=31 and $expmon>=1 and $expmon<=12 \
+      and $($val)<=$class_expiration \
+      and N notin $expmon$expday$expyear
+    $val=$expyear$expmon$expday
+  !else
+    $val=$class_expiration
+  !endif
+  !! -- check time format
+  time$val=!text select 0123456789: in $(time$val)
+  time$val=!replace internal : by , in $(time$val)
+  nb=!itemcnt $(time$val)
+  !if $nb=2
+    !distribute item $(time$val) into h,m
+    h=$[$h*1]
+    m=$[$m*1]
+    !if $h<0 or $h>23 or $m<0 or $m>59 or NaN isin $h$m
+      time$val=00:0$t
+    !else
+      h=!char 2 to 3 of $[100+$h]
+      m=!char 2 to 3 of $[100+$m]
+      time$val=$h:$m
+    !endif
+  !else
+    time$val=00:0$t
+  !endif
+  !increase t
+!next val
+
+!if $type>=2
+  !if $wims_supertype!=4
+    v=!values v,-v for v=1 to $nbscore
+    !if $activetest=0
+      !bound scoring within $v,no,0 default no
+    !else
+      !bound scoring within $v,0 default 0
+    !endif
+  !else
+    !if $activetest=0
+      scoring=no
+    !else
+      scoring=0
+    !endif
+  !endif
+  !if $scoring>0
+    m=!record 0 of wimshome/log/classes/$wims_class/sheets/.severity
+    maxscore=!word 1 of $m
+    !bound maxscore between 0 and 100000 default 10
+  !endif
+!else
+  scoring=0
+!endif
+!bound seealltime between 0 and 1 default 0
+!bound studentclose between 0 and 1 default 0
+
+!! ----------- end check general variable
+
+!! -------------- check right for download/upload participant file and etc...
+!readproc proc/mkglobalvar.proc
+
+!! ------- read existant file for subject/solution
+nb=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freework$freework
+!reset flistsolution,flistsubject
+!for k=1 to $nb
+  dt=!record $k of wimshome/log/classes/$wims_class/freeworks/.freework$freework
+  !if $(dt[1;]) isitemof subject,solution
+    flist$(dt[1;])=!line 2 to -1 of $dt
+    flist$(dt[1;])=!nonempty line $(flist$(dt[1;]))
+    flist$(dt[1;])=!lines2items $(flist$(dt[1;]))
+    field_$(dt[1;])=$k
+  !endif
+!next k
+
+!! ------ make file link for download and some title
+!if $wims_user=supervisor
+  !if $freework>$nbfreework
+    activetest=-1
+    name_title=$name_tmkfreework
+  !else
+    name_title=$name_managefreework
+  !endif
+  !if $activetest>=0 and $type<=3
+  !!
+  !! need to clean getfile/freeworks and getfile/freeworksdata
+  !! (in groupmement teacher switching from student role,
+  !!  see comment in configfw.proc)
+  !!
+    !sh cd $wims_home/$wims_sesdir;\
+       rm -Rf getfile/freeworks;\
+       rm -Rf getfile/freeworksdata;\
+       mkdir -p getfile;\
+       cd getfile;\
+       mkdir -p freeworks;\
+       cd freeworks;\
+       rm -f $freework;\
+       ln -s $wims_home/log/classes/$wims_class/freeworks/$freework $freework;
+  !endif
+!else
+  name_title=!nosubst $wims_name_Freework $freework
+  !if $activetest>=1
+    !if $displaysolution=1
+      flist=!listunion $flistsolution and $flistsubject
+    !else
+      flist=$flistsubject
+    !endif
+    flist=!nonempty item $flist
+    flist=!listuniq $flist
+    flist=!items2words $flist
+  !endif
+  !if $flist!=$empty
+    testfile=!word 1 of $flist
+    test=!fileexists wimshome/sessions/$wims_session/getfile/freeworks/$freework/$testfile
+    !if $test!=yes
+      !sh cd $wims_home/$wims_sesdir;\
+         mkdir -p getfile;\
+         cd getfile;\
+         rm -rf freeworks;\
+         mkdir -p freeworks;\
+         cd freeworks;\
+         mkdir $freework;\
+         cd $freework;\
+         for k in $flist; do\
+           ln -s $wims_home/log/classes/$wims_class/freeworks/$freework/$$k $$k;\
+         done;
+    !endif
+  !endif
+  !sh mkdir -p $wims_home/sessions/$wims_session/getfile/freeworksdata
+!endif
+
+!read lang.phtml.$lang
+!reset firstsee
+!if $job=student
+  !! log first connect of student after $soldate (and all copies corrected)
+  !if (($codownload=1 and $type=1) or ($type>1 and $codownload=1)) and $wims_user!=supervisor
+    test=!defof freework_seeco_$wims_user in wimshome/log/classes/$wims_class/freeworksdata/$freework/.seeco
+    !if $test=$empty
+      !appendfile wimshome/log/classes/$wims_class/freeworksdata/$freework/.seeco freework_seeco_$wims_user=$wims_now
+      firstsee=1
+    !endif
+  !endif
+  job=student$(lpara_type[$type])
+!endif
+
+!changeto $job.proc

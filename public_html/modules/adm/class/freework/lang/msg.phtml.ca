@@ -1,0 +1,232 @@
+!goto $err_
+
+:notallowedmodule
+Aquest mòdul no està activat en aquest servidor. Poseu-vos en contacte amb l'administrador.
+!exit
+
+:badsoldate
+La data d'aparició de la correcció ha de ser posterior a la data en què l'alumnat ha de lliurar la tasca.
+!exit
+
+:badmaxfreework
+El nombre de tasques lliures està limitat a $max_freework. Per tant, no se'n poden crear més.
+!exit
+
+:badstatutsubject
+L'estat de la tasca lliure no permet afegir fitxers per al tema.
+!exit
+
+:badstatutsolution
+L'estat de la tasca lliure no permet afegir fitxers per a la correcció.
+!exit
+
+:goodstatut
+S'ha canviat l'estat.
+!exit
+
+:goodsave
+Ha finalitzat l'enregistrament.
+!exit
+
+:gooderasefile
+El fitxer s'ha suprimit correctament.
+!exit
+
+:goodaddfile
+S'ha afegit fitxer.
+!exit
+
+:notnow
+Ho sento, aquesta funció encara no s'ha implementat.
+!exit
+
+:fwnotperime
+Acció impossible, la tasca lliure no ha caducat.
+!exit
+
+:fwnotactive
+Acció impossible, la tasca lliure no està en estat actiu.
+!exit
+
+:badfilename
+El nom del vostre fitxer no és compatible. Canvieu el nom abans d'intentar carregar-lo de nou.
+!exit
+
+:noterasable
+Aquesta tasca lliure no es pot esborrar. Hi ha d'haver una altra tasca lliure activa amb un número superior.
+!exit
+
+:gooderase
+Tasca lliure esborrada correctament.
+!exit
+
+:gooddeactivate
+Tasca lliure de nou en preparació. Tingueu en compte que és possible que l'alumnat de la classe ja hagi descarregat els fitxers de tasques!
+!exit
+
+:goodhide
+Tasca lliure oculta a l'alumnat.
+!exit
+
+:goodarchive
+Tasca lliure desada correctament.
+!exit
+
+:notenoughfreespace
+No hi ha prou espai a la classe per emmagatzemar tots els fitxers de l'alumnat. Cal reduir la mida màxima de la zona de fitxer per a cada alumne o bé demanar a l'administrador del servidor que hi destini més espai.
+!exit
+
+:badstudentfilesize
+La mida del fitxer supera la mida autoritzada que és $[0.25*$sizelimitfile] MB.
+!exit
+
+:quota_file
+Aquesta classe està plena, ja no és possible penjar cap fitxer. Poseu-vos en contacte amb el professorat!
+!exit
+
+:quota_filestudent
+No podeu afegir aquest fitxer perquè el vostre espai personal no és suficient.
+!exit
+
+:badallows
+No teniu autorització per veure aquesta pàgina. No jugueu amb la barra d'adreces!
+!exit
+
+:putworknotallow
+No és possible enviar còpies corregides per aquesta tasca lliure (estat incorrecte o data de lliurament de còpies per part de l'alumnat encara no superada).
+!exit
+
+:studentwithoutfw
+Aquest alumne no ha presentat cap còpia, de manera que no és possible enviar una còpia corregida.
+!exit
+
+:notallcorrected
+Algunes còpies no s'han corregit. No és possible caducar aquesta tasca lliure.
+!exit
+
+:expire_nosoldisplay
+La tasca lliure no es pot caducar: la data de visualització de la correcció no ha passat.
+!exit
+
+:putworkusernotexists
+Estrany, però aquest alumne no existeix. No jugueu amb la barra d'adreces del navegador.
+!exit
+
+:toomanychar
+Utilitzeu massa caràcters al text. S'ha de limitar a $textezone_limit caràcters.
+!exit
+
+:notallowed_desactivated
+Aquesta tasca lliure no es pot desactivar perquè alguns alumnes ja han lliurat la feina.
+!exit
+
+:addrplay
+La vostra sol·licitud no és correcta. No jugueu amb la barra d'adreces del navegador!
+!exit
+
+:notauthsupervisor
+El vostre lloc de treball no s'ha identificat com a posició segura ni s'ha definit una posició segura. Per tant, no podeu arxivar la vostra tasca lliure. Per continuar, primer heu d'introduir la
+!href module=adm/class/config zona de configuració de la classe
+ per certificar la vostra connexió.
+!exit
+
+:not_secure
+Aquesta acció només és accessible des d'un lloc segur. Accés denegat.
+!exit
+
+:alreadyarchivated
+Aquesta tasca lliure ha estat arxivada. Ja no és possible retornar-la a l'estat actiu.
+!exit
+
+:file_too_large
+No s'ha pogut crear un fitxer de còpia de seguretat que contingui les dades de l'estudiant per a aquesta tasca lliure a causa de la mida.
+<br>Els fitxers estan limitats a <strong>$max_arch_size KB</strong>.
+!exit
+
+:addexo-nofreework
+No hi ha cap tasca lliure del tipus adequat en preparació per inserir un exercici.
+!exit
+
+:not_exo
+El recurs que has seleccionat no és un exercici: no el pots inserir en una tasca lliure.
+!exit
+
+:insert_fail
+La inserció no ha tingut èxit. Només es poden inserir exercicis en una tasca lliure.
+!exit
+
+:no_pick
+La inserció no ha tingut èxit: no hi ha cap tasca lliure seleccionada o la tasca lliure no era del tipus correcte.
+!exit
+
+:bad_freework
+Estrany! El número de la tasca lliure és incorrecte.
+!exit
+
+:too_many_exos
+Aquesta tasca lliure ja conté el nombre màxim d'exercicis.
+!exit
+
+:already_exist
+Aquest recurs ja està inserit a la tasca lliure amb els mateixos paràmetres.
+!exit
+
+:exo-insert
+L'exercici s'ha inserit correctament a la tasca lliure.
+!exit
+
+:exolog-noexo
+No s'ha seleccionat cap exercici.
+!exit
+
+:exolog-exoexists
+Ja heu desat l'exercici $exolog per a aquesta tasca lliure. Ja no és possible canviar-lo.
+!exit
+
+:exolog-badparameter
+La configuració de l'exercici que esteu intentant enregistrar no coincideix amb l'enunciat. No utilitzis la barra d'adreces.
+!exit
+
+:exolog-nofile
+Estrany! No s'ha registrat cap fitxer per a aquest exercici.
+!exit
+
+:exolog-nouser
+El participant no existeix!
+!exit
+
+:ok-delexo
+L'exercici s'ha eliminat correctament.
+!exit
+
+:noinlineanswer
+Estrany! però aquesta tasca lliure no conté una resposta en línia. Eviteu jugar amb la barra d'adreces.
+!exit
+
+:badscore
+La nota que heu introduït és incorrecta. La qualificació ha de ser un nombre enter entre 0 i $maxscore.
+!exit
+
+:printversion
+No és possible inserir una versió imprimible en un full d'exercicis.
+!exit
+
+:exolog-badscore
+Esteu intentant gravar un exercici amb una puntuació insuficient en comparació amb la puntuació requerida. Eviteu jugar amb la barra d'adreces.
+!exit
+
+:toomanywimsexo
+No podeu definir més d'una zona de tipus exercici interactiu.
+!exit
+
+:duplicateok
+Full de treball duplicat correctament.
+!exit
+
+:truncatedtext
+El text introduït és massa llarg i s'ha reelaborat i retallat.
+!exit
+
+:geogebratoolong
+La construcció de GeoGebra és massa complexa i no es pot desar. Torna-ho a provar!
+!exit

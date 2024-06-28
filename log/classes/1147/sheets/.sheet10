@@ -1,0 +1,47 @@
+Exploiter l'équation y = f(x) d'une courbe
+
+??,2021
+1
+H4
+analysis
+functions,real_function,affine_function,reference_function
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fonctions" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+
+:H4/math/quizzautomat.fr
+exo=fct2&qnum=1&scoredelay=60,120&seedrepeat=0&qcmlevel=1
+10
+1
+Appartenance à une courbe
+Déterminer si un point est sur une courbe à partir de la <strong>formule de f(x)</strong>.
+
+:H3/geometry/affine.fr
+type=1&mode1=rep&coeff=1
+10
+1
+Fonctions linéaires/affines et droites
+Placer 2 points d'une <strong>droite</strong> à partir d'une <strong>fonction affine</strong>.
+
+:H4/analysis/OEFevalwimsfnctg.fr
+exo=calcimant3
+10
+1
+Fonction affine
+Calculer des <strong>images</strong> et <strong>antécédents</strong>.
+
+:H4/analysis/OEFevalwimsfctref.fr
+exo=ptecarre3
+10
+1
+Fonction carré
+Calculer des <strong>images</strong> et <strong>antécédents</strong>.
+
+:H4/analysis/OEFevalwimsfctref.fr
+exo=pteinverse4
+10
+1
+Fonction inverse
+Calculer des <strong>images</strong> et <strong>antécédents</strong>.
+

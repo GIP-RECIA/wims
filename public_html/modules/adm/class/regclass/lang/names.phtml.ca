@@ -1,0 +1,122 @@
+!set lang_exists=yes
+
+!set name_password_check=Comprovació de contrasenyes
+!set name_listclass=Classe,classe,Grup de classes,classe,Portal de centre
+
+!default Cltype=$cltype
+!if $Cltype iswordof 2 4
+  !if $Cltype=2
+    !set name_classe=$(name_listclass[$Cltype+1])
+    !set name_sup=del professor-administrador
+  !else
+    !set name_classe=$(name_listclass[$Cltype+1])
+    !set name_sup=de l'administrador
+  !endif
+  !set name_classes= el $name_classe
+  !set name_classess= un $name_classe
+  !set name_classesss= del $name_classe
+  !set name_classessss= El $name_classe
+!else
+  !set name_classe=$(name_listclass[$Cltype+1])
+  !set name_classes=la $name_classe
+  !set name_classess=una $name_classe
+  !set name_classesss= de la $name_classe
+  !set name_classessss= La $name_classe
+  !set name_sup=del professor
+!endif
+
+# the name_cgu second item is the text link for the Terms of use.
+!set name_cgu=He llegit les Condicions generals d'ús,\
+(consultar les Condicions generals d'ús),\
+i les accepto.
+Només podeu acceptar-les si heu llegit les Condicions generals d'ús.
+!set name_supcgu=Ja has acceptat les condicions generals d'ús
+
+# Do not insert line break in noagreecgu_msg to keep JS working
+!set noagreecgu_msg=No és possible crear una classe en aquest servidor si no accepteu les C.G.U.
+
+!distribute lines Continuar\
+  Tornar a començar l'operació.\
+  Creació d'una estructura\
+  Nom del centre\
+  amb un màxim de\
+  amb un mínim de\
+  Reservat a experts.\
+  caràcters\
+  Tornar al començament de l'operació.\
+  Seleccioneu el tipus d'estructura que voleu crear.\
+  entre 4 i 16 caràcters, xifres o lletres sense accent\
+ into name_continue,name_again,title,name_Name_portal,name_atmost,name_atleast,name_expert,\
+   name_characters,name_comeback,name_choose,name_warningpass
+
+!if $regpolicy=file
+  !set noright=No teniu els drets per fer-ho.)
+ !else
+  !set noright=Només el gestor del lloc pot fer-ho.
+ !endif
+
+!set name_regpolicy=!nosubst L'operació de crear $name_classesss només tindrà èxit si es proporciona\
+   una adreça de correu electrònic vàlida i accessible en aquest moment.
+
+!set name_help1=Aquesta contrasenya us permetrà accedir a la vostra $name_classe en tant\
+  que responsable. Heu de ser l'únic que la coneix.
+
+!set name_help2=La contrasenya $name_classesss serà necessària en el registre\
+   dels alumnes de la classe ; així que podeu difondre-la\
+   entre els vostres alumnes.
+
+!set name_help3= La contrasenya $name_classesss serà necessària en el registre\
+ dels <strong>professors</strong> $name_classesss ; <span class="wims_warning">\
+ no s'ha de difondre als alumnes.</span>
+
+!distribute lines Data en la que es desarà automàticament la classe. Deixarà de ser accessible.\
+Nombre màxim d'alumnes del/a $name_classe\
+Accés segur\
+Opcional\
+Aquest codi s'utilitza només una vegada. No el pots utilitzar per connectar-te a $name_classe&nbsp;!\
+Codi de $name_classe\
+Adreça d'autenticació CAS\
+  into name_help_date,name_help_limit,name_secure,name_optional,name_warning_code,name_code,name_cas
+
+!set name_host=!nosubst Noms dels llocs des dels quals faras operacions sensibles a $name_classe. \
+ Si no poses res, s'enviarà un correu electrònic a cada operació \
+ sensible (recomanat). Posar <span class="tt wims_code_words">all</span> desactivarà aquesta mesura de seguretat.
+
+!set name_cas_help=Ompliu aquest camp només si voleu utilitzar l'autenticació externa de tipus CAS\
+(rebuda pel vostre ENT per exemple).
+
+!set name_cpexempleintro=!nosubst Es crearà una còpia de la classe\
+  <span class="tt wims_code_words">$source_title</span>
+!set name_choosemode=Has de triar el tipus de còpia que vols fer d'aquesta classe
+!distribute item Completa,Parcial into name_btcpexemplemeth0,name_btcpexemplemeth1
+
+!set name_cpexemplemeth0=Es copiaran tots els recursos. Els recursos poden ser llavors desactivats \
+  i eliminats o adaptats d'acord amb les dependències.
+!set name_cpexemplemeth1=No es copiaran els exàmens. Els recursos seran desactivats automàticament.\
+ Podràs decidir, llavors, quins vols eliminar, adaptar o mantenir.
+!set name_cpexemplecomment=En tots els casos, les dates de caducitat s'ajustaran\
+ a la data de tancament de la classe creada.
+!set name_research1=Hi ha moltes classes virtuals en aquest lloc. \
+ Posa una part del títol o del nom del professor per trobar el que vols.
+!set name_research2=Encara hi ha massa classes corresponents al terme de cerca. \
+  Escriu una paraula més precisa.
+!set name_searchclass=Trobar una classe
+!set name_nofound=No hi ha cap classe corresponent a aquesta cerca.
+
+!distribute items Lliure, Protegida, No autoritzada, Duplicació, \
+Fes clic a la classe a duplicar\
+into name_free,name_protected,name_disallowed,name_cloning,name_clickclone
+
+!set name_getcloningpwd=!nosubst Es crearà una còpia de la classe <span class="tt wims_code_words">$source_title</span>. \
+Per a això s'ha d'introduir la contrasenya d'administrador de duplicació de la classe que l'administrador de la classe us ha donat.
+!set name_subclass=Subclasse de
+!set name_clonebyclass=A partir d'una classe del servidor
+!set name_clonebytgz=A partir d'una còpia de seguretat de la classe,\
+Trieu la vostra còpia de seguretat,\
+Trieu el fitxer de còpia de seguretat que voleu utilitzar,\
+Aquesta classe s'ha obtingut a partir d'una còpia de seguretat guardada..
+
+!distribute lines Ubicació (ciutat, país)\
+ Omplint aquest camp, s'accepta que nosaltres indiquem que WIMS s'utilitza a la teva ciutat (sense cap altra referència)\
+Coordonnées GPS\
+into name_location,name_location_help,name_geoloc

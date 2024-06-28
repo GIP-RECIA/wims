@@ -1,0 +1,53 @@
+!set titb=Puissances entières
+!set keyw=
+!set datm=20211007
+!set prev=
+!set next=embedExpQFrac
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<h3 class="l2w_content thm">Rappel</h3><div class="l2w_content thm">
+Si 
+!insmath p
+ et 
+!insmath n
+ sont des entiers relatifs et si 
+!insmath a
+ et 
+!insmath b
+ sont des nombres réels non nuls alors &#58;<br>
+
+!insmath a^n a^p = a^{n + p}
+, 
+!insmath \frac{a^n}{a^p} = a^{n - p}
+ , 
+!insmath a^0 = 1
+,
+
+!insmath (a^n)^p = a^{n p}
+ et 
+!insmath a^n b^n = (a b)^n
+.
+</div>
+<h3 class="l2w_content exemple">Exemples</h3><div class="l2w_content exemple">
+<ul><li>
+
+!insmath 2^{-3} \times 5^{-3} = 10^{-3} = 0,001
+ ;</li><li>
+
+!insmath (\sqrt{2})^6 = ((\sqrt{2})^2)^3 = 2^3 = 8
+ ;</li><li>
+
+!insmath (\frac{\pi}{3})^2 = \frac{\pi^2}{9}
+ ;</li><li>
+
+!insmath \pi^0 = 1
+</li></ul>
+</div>

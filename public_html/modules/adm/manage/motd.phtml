@@ -1,0 +1,100 @@
+!! change motd and supervsor message in log file
+
+
+!if $motd_option!=$empty
+  !goto view
+!endif
+
+!if $motd_lang=$empty
+  !set motd_lang=$lang
+  !set motdfile=motd.phtml.$lang
+!endif
+
+<p>$name_motdintro</p>
+
+!form reply
+  <fieldset class="property_fields">
+    <input type="hidden" name="job" value="motd">
+    <div class="field box">
+      <label for="motd_type">$name_motdtypename</label>
+      !set wims_ref_class=wims_formradio
+      !default motd_type=1
+      <select id="motd_type" name="motd_type" onchange="submit()">
+        !for j=1 to 2
+          <option value="$j"
+            !if $motd_type=$j
+              selected="selected"
+            !endif
+          >$(name_motdtype[$j])</option>
+        !next j
+      </select>
+      !set wims_ref_class=wims_button_help
+      !href cmd=help&help_subject=motd&help_conf=modtd $wims_name_help
+    </div>
+    <div class="field box fullwidth">
+      <strong>$wims_name_Language</strong>
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li><a><img src="gifs/$motd_lang.gif" alt="$(Lang_name_$motd_lang)" class="vignette"> $(Lang_name_$motd_lang)</a>
+          <ul class="language_selector">
+            !for i=1 to $wims_language_cnt
+              !set l=!word $i of $wims_site_languages
+              !set l_=<span class="legende">$(lang_name_$l)</span>
+              <li class="menuitem
+                !set wims_ref_title=$(Lang_name_$l)
+                !if $l!=$motd_lang
+                  ">
+                  !href module=adm/manage&motd_lang=$l&cmd=reply <img src="gifs/$l.gif" alt="$(Lang_name_$l)" class="vignette">$l_
+                !else
+                  disabled">
+                  <a class="current"><img src="gifs/$l.gif" alt="$(Lang_name_$l)" class="vignette">$l_ <span class="smaller">($wims_name_current)</span></a>
+                !endif
+              </li>
+            !next i
+          </ul>
+        </li>
+      </ul>
+      <div class="formHelp">$name_motdlangdesc</div>
+    </div>
+    <div class="field box">
+      <label for="motd_desc">$name_motddesc</label>
+      <textarea id="motd_desc" name="motd_desc" rows="6" maxlength="$msg_limit" required>
+!record 0 of wimshome/log/$motdfile
+</textarea>
+    </div>
+    <div class="wimscenter">
+      <input type="submit" name="save" value="$wims_name_tosave">
+
+      !set wims_ref_class=wims_button wims_secondary_button
+      !href module=$module&+job=$empty $wims_name_giveup
+
+      !set wims_ref_class=wims_button
+      !let r=!randint 1,100000
+      !href target=wims_view module=$module&+job=motd&+motd_option=$motd_type&+r=$r $name_motdview
+    </div>
+  </fieldset>
+!formend
+
+!exit
+
+:view
+!! view motd and supervisor message in log file
+
+<h2>$(name_motd_intro2[$motd_option])</h2>
+<br>
+$name_motd_introdesc
+<ul>
+  !for i=1 to $wims_language_cnt
+    !set l=!word $i of $wims_site_languages
+    !set l_=<span class="legende">$(lang_name_$l)</span>
+    <li><img src="gifs/$l.gif" alt="$(Lang_name_$l)" class="vignette">$l_
+    !if $motd_option=1
+      <div id="wims_motd" class="wims_motd">
+    !else
+      <div id="wims_class_manager_msg" class="wims_class_manager_msg">
+    !endif
+       !record 0 of wimshome/log/$(listfile[$motd_option]).$l
+    </div>
+    </li>
+  !next i
+</ul>
+!reset motd_option

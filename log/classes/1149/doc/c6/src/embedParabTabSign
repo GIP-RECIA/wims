@@ -1,0 +1,87 @@
+\def{integer s=randint(-1,1)}
+\def{integer a=\s*randint (2..5)}
+\def{integer b=\s*randint (5..9)}
+\def{integer c=randint (8..12)}
+\def{integer d=-randint (1..5)}
+\def{rational x1=-\b/\a}
+\def{rational x2=-\d/\c}
+\def{text s1=\s>0? \(-) : + }
+\def{text s2=\s<0? \(-) : + }
+\def{text s3=\s>0? positif : négatif }
+\def{text s4=\s<0? positif : négatif }
+\def{text t1=\s>0? \ge : \le }
+\def{text t2=\s<0? \ge : \le }
+\def{function \f=(\a*x+\b)*(\c*x+\d)}
+On veut résoudre  \((\a x+\b) (\c x + \d)) \ge 0 ou \((\a x+\b) (\c x + \d)) \le 0 sur \(\,\RR).<br>
+On commence par étudier le signe de \(f(x) = (\a x+\b) (\c x + \d)) sur \(\,\RR).<br>
+\(\a x+\b = 0) équivaut à \(x = \x1)<br>
+Et comme \a est \s3, le signe de \(\a x+\b) est \s1 puis \s2.<br>
+\(\c x+\d = 0) équivaut à \(x = \x2)<br>
+Et comme \c est positif, le signe de \(\c x+\d) est \(-) puis +.<br>
+<table align="center" cellpadding=10 border=1>
+<tr>
+ <td align="right">\(x)
+ </td>
+ <td align="left">\(-\infty)
+ </td>
+ <td align="center">\x1
+ </td>
+ <td align="center">&nbsp &nbsp &nbsp &nbsp &nbsp
+ </td>
+ <td align="center">\x2
+ </td>
+ <td align="right">\(+\infty)
+ </td>
+</tr>
+<tr>
+ <td align="left" border=1>signe de \(\a x+\b)
+ </td>
+ <td align="center">&nbsp &nbsp \s1 &nbsp &nbsp
+ </td>
+ <td align="center">&nbsp 0 &nbsp
+ </td>
+ <td align="center">&nbsp &nbsp \s2 &nbsp &nbsp
+ </td>
+ <td align="center">&#0124
+ </td>
+ <td align="center">&nbsp &nbsp \s2 &nbsp &nbsp
+ </td>
+</tr>
+<tr>
+ <td align="left" border=1>signe de \(\c x+\d)
+ </td>
+ <td align="center">\(-)
+ </td>
+ <td align="center">&#0124
+ </td>
+ <td align="center">&nbsp &nbsp \(-) &nbsp &nbsp
+ </td>
+ <td align="center">&nbsp 0 &nbsp
+ </td>
+ <td align="center">&nbsp &nbsp + &nbsp &nbsp
+ </td>
+</tr>
+<tr>
+ <td align="right" border=1>signe de \(f(x))
+ </td>
+ <td align="center">&nbsp &nbsp \s2 &nbsp &nbsp
+ </td>
+ <td align="center">&nbsp 0 &nbsp
+ </td>
+ <td align="center">&nbsp &nbsp \s1 &nbsp &nbsp
+ </td>
+ <td align="center">&nbsp 0 &nbsp
+ </td>
+ <td align="center">&nbsp &nbsp \s2 &nbsp &nbsp
+ </td>
+</tr>
+</table>
+<p>
+La question \((\a x+\b) (\c x + \d)) \t1 0 signifie que \(f(x)) est \s3 ou nul,
+l'ensemble des solutions est alors :<br>
+&#93 -\infty &#59 \x1 &#93 U &#91  \x2  &#59 +\infty &#91.</p>
+<p>La question \((\a x+\b) (\c x + \d)) \t2 0 signifie que \(f(x)) est  \s4 ou nul,
+l'ensemble des solutions est alors :<br>
+&#91 \x1 &#59; \x2 &#93</p>
+<p>Lorsque les inégalités sont strictes (\(>) ou \(<)), il suffit d'exclure
+les nombres \x1 et \x2.</p>

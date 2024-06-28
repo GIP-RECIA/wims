@@ -1,0 +1,69 @@
+type=chemistry
+textarea="data file pre post"
+iEdit="pre post"
+
+:Diseñar una molécula en 2D
+
+Pedimos diseñar una molécula en un applet.
+<p>
+Para construir un ejercicio con este modelo, solo da el archivo
+de la estructura.
+</p>
+<p class="wims_credits">
+Autores del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Diseñar una molécula}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Texto antes del applet
+\text{pre=Diseñar la molécula de <b>Méthylbutane</b>}
+
+:Fichero MDMol
+\text{file=xxx
+JME 2006.05 Mon Jul 07 08:51:48 CEST 2008
+
+  5  4  0  0  0  0  0  0  0  0999 V2000
+    0.0000    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6373    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4249    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2124    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4248    1.4000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  4  1  0  0  0  0
+  2  5  1  0  0  0  0
+  3  5  1  0  0  0  0
+  4  5  1  0  0  0  0
+M  END
+}
+
+:El tamaño del applet, en píxeles, ancho x alto
+\text{size1=300x300}
+
+:Opciones
+\text{option=show_hydrogen=no show_carbon=yes}
+
+:Texto después del applet
+\text{post=<i>Verifique que el zoom de su navegador tenga el tamaño normal.</i>}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+
+\statement{\pre
+<p class="wimscenter">
+\embed{reply 1, \size1
+atoms="\atoms" \option}
+</p>
+\post
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{}{\file}{type=chemdraw}

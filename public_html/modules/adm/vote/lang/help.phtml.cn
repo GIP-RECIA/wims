@@ -1,0 +1,122 @@
+!if $special_parm!=$empty
+ !changeto help/$module_language/$special_parm.phtml
+!endif
+
+!if $wims_user!=supervisor
+ ¶Ô²»Æğ, Ã»ÓĞ¶Ô²Î¼ÓÕßµÄ°ïÖú.
+ !tail
+ !exit
+!endif
+
+!if $wims_read_parm=$empty
+Í¶Æ±µÄÄÚÈİ¿ÉÒÔÊÇ html ¸ñÊ½µÄÎÄ±¾, Í¨¹ıÂÛÌ³ĞÅÏ¢µÄÊÖ¶Î¼ÓÒÔÇ¿»¯,
+ÔÙ¼ÓÉÏÒÔÏÂµÄÃüÁî. <dl>
+<dt><span class="tt wims_code_variable">\menu{ÊÇ,·ñ}</span>
+	<dd>ÓÃ²Ëµ¥Ñ¡Ôñ.
+    </dd>
+<dt><span class="tt wims_code_variable">\list{A,B,C,D}</span>
+	<dd>ÓÃÊúÖ±µÄ°´Å¥À´Ñ¡Ôñ.
+    </dd>
+<dt><span class="tt wims_code_variable">\radio{²î, ÖĞ, Á¼, ÓÅ}</span>
+	<dd>ÓÃË®Æ½°´Å¥À´Ñ¡Ôñ.
+    </dd>
+<dt><span class="tt wims_code_variable">\checkbox{A,B,C,D}</span>
+	<dd>ÓÃË®Æ½°´Å¥¶àÖØÑ¡Ôñ.
+	</dd>
+<dt><span class="tt wims_code_variable">\uservar{vname,val0,val1,...}</span>
+	<dd>°Ñ¸Õ²ÅµÄÑ¡Ôñ¼ÇÂ¼ÔÚ²Î¼ÓÕßµÄ¸÷¸ö±äÁ¿ÖĞ, ±äÁ¿ÃûÊÇ <span class="tt">vname</span>.
+Õâ¸ö±äÁ¿µÄÄ¬ÈÏÖµÊÇ <span class="tt">val0</span>, Èç¹ûÑ¡ÖĞµÚÒ»¸öÑ¡Ïî, ÔòÈ¡Öµ <span class="tt">val1</span>,
+ÒÔ´ËÀàÍÆ. <br>
+Í¨¹ı°Ñ <span class="tt wims_code_variable">\vname</span> ·Åµ½Á·Ï°Ò³»òÊÔ¾íµÄÏŞÖÆÌõ¼şÖĞ,
+Õâ¸ö±äÁ¿¿ÉÒÔÓÃÀ´¶¨ÒåÁ·Ï°Ò³»ò¿¼ÊÔµÄ½øÈëĞí¿É.
+ÔÚÕâÖÖÇéĞÎ¿ÉÒÔ¸ø³öÔÊĞíÑ¡ÔñµÄ²Î¼ÓÕßµÄÈËÊıÉÏÏŞ:
+Ã¿¸öÑ¡Ôñ±ØĞëÒÔÕâ¸öÊı×ÖÆğÊ×, ÔÙ½ÓÒÔ <span class="tt wims_code_words">:</span>
+	ÀıÈç,
+<pre>
+\list{46:Seance 1 at 8.00,
+46:Seance 2 at 10.00,
+40:Seance 3 at 13.00}
+</pre>
+Attention cependant, utiliser la même variable technique dans plusieurs questionnaire peut générer des conflits.
+	</dd>
+<dt><span class="tt wims_code_variable">\textarea</span>
+ <dd>×ÔÓÉÊäÈëÎÄ×ÖµÄÇøÓò, ½ö³öÏÖÔÚÄäÃûÍ¶Æ±.
+ </dd>
+<dt><span class="tt wims_code_variable">\inputfield</span>
+  <dd>Une zone de texte libre mais limitée à une ligne, utilisable uniquement
+    lorsque le vote est anonyme. Les résultats sont classés à des espaces près
+    (en développement).</dd>
+</dl>
+
+Ò»¸öÍ¶Æ±¿ÉÒÔ°üº¬¶à´ï $max_parms ¸öÑ¡Ïî.
+
+!tail
+!exit
+!endif
+
+!if generalinfo iswordof $wims_read_parm
+<ul>
+ <li><b>$wims_name_title</b>: ÎÊÌâ±íµÄ±êÌâ.</li>
+ <li><b>$wims_name_Type</b>:
+  <ul>
+   <li><b>$name_anonymous </b>: ÔÚÄäÃûÎÊÌâ±íÀïÃ»ÓĞÈËÖªµÀË­»Ø´ğÁËÊ²Ã´
+   (Ä¿Ç°²»¿ÉÄÜ·µ»Ø,
+   ÇëË«»÷Äã×Ô¼ºµÄ»Ø´ğ.)
+</li>
+   <li><b>´øµÇÂ¼ÎÄ¼şµÄ$name_trace</b>: ±¾ÀàĞÍÓëÄäÃûÎÊÌâ±íÏàËÆ,
+   ²»¹ı¿ÉÒÔ²éÔÄ²Î¼ÓÕßÌá¹©µÄ»Ø´ğ,
+   µ«²»ÄÜĞ¹Â¶²Î¼ÓÕßµÄÉí·İ.</li>
+   <li><b>$name_nominative</b>:  Ã¿¸ö²Î¼ÓÕßµÄ»Ø´ğ¶¼¿ÉÒÔ²éÔÄ
+   (ÔÚÕâÖÖÀàĞÍµÄÎÊÌâ±íÀï²»ÄÜÊ¹ÓÃ"×ÔÓÉ»Ø´ğ"µÄ¸ñÊ½.)</li>
+</ul>
+ </li>
+ <li><b>$wims_name_Status</b>: ÓĞÒÔÏÂ¼¸ÖÖ×´Ì¬:
+     <ul>
+      <li><b>$name_0</b>: ÎÊÌâ±í¿ÉĞŞ¸Ä, ²Î¼ÓÕß¿´²»µ½.</li>
+      <li><b>$name_1</b>: ÎÊÌâ±í²»¿ÉĞŞ¸Ä, ²Î¼ÓÕß¿ÉÒÔ»Ø´ğÎÊÌâ</li>
+      <li><b>$name_2</b>: ÎÊÌâ±í²»¿ÉĞŞ¸Ä, ²Î¼ÓÕß²»ÄÜ»Ø´ğÎÊÌâ </li>
+      <li><b>$name_3</b>: ÎÊÌâ±í²»¿ÉĞŞ¸Ä, ²Î¼ÓÕß²»ÄÜ¿´µ½ÎÊÌâ.</li>
+     </ul>
+ </li>
+ <li><b>$name_result</b>: Èç¹û½á¹ûÒÑ¹«²¼, ²Î¼ÓÕßÔÚÍ¶¹ıÆ±ºó¾Í¿ÉÒÔ²éÑ¯µ½,
+ ·ñÔòÖ»ÓĞ°à¼¶µÄ¹ÜÀíÕß¿ÉÒÔ½Ó´¥ÕâĞ©½á¹û.
+ <li><b>$name_whovote</b>: Èç¹û±¾±í¹«²¼ÁË, °à¼¶µÄ¹ÜÀíÕßºÍ²Î¼ÓÕß¶¼¿ÉÒÔ²éÑ¯µ½
+ (Ö»ÒªÓĞ×ã¹»¶àµÄ²Î¼ÓÕßÍ¶ÁËÆ±),
+ ·ñÔòÃ»ÓĞÈËÖªµÀË­Í¶ÁËÆ±.
+</ul>
+ !goto guidedmode
+!tail
+!exit
+!endif
+
+!if guidedmode iswordof $wims_read_parm
+:guidedmode
+¿ÉÒÔÓĞ¶àÖÖÄ£Ê½ :
+<ul><li>
+  <b>$name_free</b> :
+  Äã¿ÉÒÔ×ÔÓÉµØÊ¹ÓÃ°ïÖúÖĞ¸ø³öµÄÃüÁîÒÔ´´½¨Ò»¸öÎÊÌâ±í.
+  </li><li>
+!readproc adm/lang/sheetexam.phtml.$lang
+  <b>$name_accessvar</b> : ÓÉÕâ¸ö±í¸ñ, ÔÊĞíÄãÔÚÊ±¼äÇø¶Î×¢²á.
+  ÒÑ´´½¨µÄ¸÷ÖÖ¼¼ÊõÔÊĞíÄã¸öĞÔ»¯¶¨ÒåÈçºÎ½øÈëÁ·Ï°Ò³»ò¿¼ÊÔ.
+  Îª´Ë, Èç¹ûÄãÒÑ¾­ÃüÃûËüÎª <span class="tt wims_code_variable">ma_variable</span>,
+  ÄÇÃ´µ±±í¸ñÎÊÄãÊ±, ÄãÖ»Òª°Ñ <span class="tt wims_code_variable">\ma_variable</span> ÌîĞ´µ½
+  Á·Ï°Ò³»ò¿¼ÊÔµÄ¶ÔÓ¦ÓÚ <span class="tt wims_code_words">$(name_shinfo[6])</span> µÄ¿Õ°×ÇøÓòÀï¾Í¿ÉÒÔÁË.
+  </li><li>
+  <b>$name_group</b> : Äã¿ÉÒÔ¹¹½¨×é. ½«»áÒªÇóÄãÌá¹©±äÁ¿Ãû (ÀıÈçÄã³ÆËüÎª <span class="tt wims_code_variable">ma_variable</span>).
+  ÄãÒÔºó¿ÉÒÔÀûÓÃÕâ¸ö±äÁ¿Ãû°´×é·¢ÓÊ¼ş,
+  ³¢ÊÔ°à¼¶ÄÚ°´×éµÄ csv ÎÄ¼ş (<b>ÔÚºóÒ»ÇéĞÎ</b>
+  ÒªÇóÄãÒÑ¾­¶¨ÒåÁË±äÁ¿ <span class="tt wims_code_variable">var_ma_variable</span>).
+  ÆäËüÓ¦ÓÃÉĞÔÚ¿ª·¢ÖĞ.
+  </li>
+<li>Attention cependant, utiliser la même variable technique dans plusieurs questionnaire peut générer des conflits.</li></ul>
+
+±äÁ¿ÃûÓ¦¸Ã²»Í¬ÓÚ WIMS ÒÑÊ¹ÓÃµÄ±äÁ¿,
+(ÀıÈç, ²»ÒªÊ¹ÓÃ <span class="tt wims_code_variable">exam1</span>, ... , <span class="tt wims_code_variable">sheet1</span>, ...,
+<span class="tt wims_code_variable">manual1</span>, ...).
+<br>
+Les modèles <span class="tt wims_code_words">$name_free</span> et <span class="tt wims_code_words">$name_group</span> ne sont pas disponibles lorsque les questionnaires sont partagés avec une autre classe.
+!tail
+!exit
+!endif
+!tail

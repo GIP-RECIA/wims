@@ -1,0 +1,28 @@
+!set lang_exists=yes
+
+!set wims_name_glosscheck=Vérifier le glossaire
+
+!set name_choose=Choisissez le glossaire&nbsp;
+!set name_title=Insertion dans un glossaire
+
+!set wims_name_addglossary=Insérer dans un glossaire
+!set name_insert=Vous voulez insérer le glose
+!set name_parm=avec les paramètres d'initialisation
+
+!set name_endadd=!nosubst La ressource <span class="wims_mod_title">$title</span> \
+  a été insérée avec succès dans le glossaire
+!set name_endmod=!nosubst Modification du glossaire $gl\
+  (<span class="wims_mod_title">$title</span>) faite
+
+!set name_endmod2=!nosubst La ressource <span class="wims_mod_title">$title</span>\
+  n'a pas pu être insérée car elle existait déjà.
+
+!set name_orderchange=Changer l'ordre des gloses
+
+!set name_newglostitle=Titre du nouveau glossaire
+!set name_newglos=Nouveau glossaire
+!set name_titleglose=Titre du glose
+
+!set name_helpglo=!nosubst Pour ajouter un autre glose, retournez dans le glossaire\
+  général par le fil d'ariane, cliquez sur le glose que vous souhaitez ajouter\
+  puis sur le lien <span class="wims_button disabled">$wims_name_addglossary</span>.

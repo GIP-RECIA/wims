@@ -1,0 +1,54 @@
+Addizioni e moltiplicazioni #1
+giochi con addizioni e moltiplicazioni
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation,levelE2,levelE3,levelE4
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:H3/algebra/arithtable.en
+exo=table2x3&confparm1=1&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 1
+Completa la tabella seguendo con attenzione le istruzioni.
+
+:H3/algebra/arithtable.en
+exo=partial2x3&confparm1=1&confparm2=3&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 2
+Completa la tabella seguendo con attenzione le istruzioni.
+
+:H3/algebra/arithtable.en
+exo=typed2x4&confparm1=1&confparm2=3&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 3
+Completa la tabella seguendo con attenzione le istruzioni.
+
+:H3/algebra/arithtable.en
+exo=table2x6&confparm1=1&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 4
+Completa la tabella seguendo con attenzione le istruzioni.
+
+:H3/algebra/arithtable.en
+exo=partial2x4&confparm1=1&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 5
+Completa la tabella seguendo con attenzione le istruzioni.
+
+:H3/algebra/arithtable.en
+exo=typed2x4&confparm1=1&confparm2=2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Tavola magica 6
+Completa la tabella seguendo con attenzione le istruzioni.
+
+

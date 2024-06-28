@@ -1,0 +1,74 @@
+Sommes #3
+Jeux avec des sommes
+??, 2019
+1
+E3
+elementary_mathematics
+levelE3,number,operation,fraction
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide (niveau 1)
+Mettez les nombres dans la pyramide de manière à ce que le nombre soit la somme des deux nombres au-dessous.
+
+:H1/algebra/addfig.en
+exo=pyramid1&confparm1=9&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide (niveau 2)
+De nouveau, mettez les nombres dans la pyramide, mais cette fois-ci vous devez choisir quel nombre utiliser parmi ceux qui sont donnés.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Noeud papillon (niveau 1)
+Mettez les nombres dans le noeud papillon de manière à ce que la somme des nombres vérifient les conditions données.
+
+:H1/algebra/addfig.en
+exo=tie&confparm1=9&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Noeud papillon (niveau 2)
+De nouveau, mettez les nombres dans le noeud papillon, mais cette fois-ci vous devez choisir quel nombre utiliser parmi ceux qui sont donnés.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide double (niveau 1)
+Mettez les nombres dans la pyramide double de manière à ce que les nombres soient la somme des deux nombres au-dessous.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=9&confparm2=1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide double (niveau 2)
+De nouveau, mettez les nombres dans la pyramide double, mais cette fois-ci vous devez choisir quel nombre utiliser parmi ceux qui sont donnés.
+
+:H1/algebra/addfig.en
+exo=pyramid1b&confparm1=9&confparm2=3&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide double (niveau 3)
+Et finalement, de plus en plus difficile : mettez les nombres dans la pyramide double quel nombre utiliser parmi ceux qui sont donnés.
+
+:H1/algebra/addfig.en
+exo=pyramid2&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Pyramide triple
+De plus en plus difficile ! Maintenant, il y a une pyramide plus grande avec beaucoup de nombres...
+
+:H1/algebra/addfig.en
+exo=pyramid1c&confparm1=9&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Super pyramides
+De plus en plus difficile ! Maintenant, il y a plusieurs pyramides : un vrai casse-tête.
+

@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+cursor move
+linewidth 3
+drag xy
+opacity 200,75
+fcircles blue,-5,5,3,-4,-2,6,0,0,5,3,4,2,4,-5,4

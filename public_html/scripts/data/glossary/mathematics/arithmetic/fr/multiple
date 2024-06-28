@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=arithmetic,divisibility
+!set gl_title=Multiple d'un entier naturel
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>Soit \(a\) et \(b\) deux entiers
+naturels.<br>
+On dit que \(a\) est un <strong>multiple</strong> de \(b\) si et seulement si
+il existe un entier naturel \(k\) tel que&nbsp;:
+<span style="white-space:nowrap">\(a=k\times b\).</span></div>
+<div class="wims_rem"><h4>Remarques</h4>
+<ul>
+<li>Tout entier naturel est un multiple de 1.</li>
+<li>0 est un multiple de tout entier naturel.</li>
+<li>Tout entier naturel est un multiple de lui-même.</li>
+<li>\(a\) est un multiple de \(b\) si et seulement si \(b\) est un diviseur de
+<span style="white-space:nowrap">\(a\).</span></li>
+</ul>
+</div>
+:mathematics/arithmetic/fr/multiple_1

@@ -1,0 +1,159 @@
+!! add exercise in a freework type=3 ; zonetype=wimsexo
+
+max_exos=!defof MAX_EXOS in wimshome/public_html/bases/sys/define.conf
+desc_limit=255
+
+tmptest=print=yes
+!if $tmptest isin $iniparm
+  error=printversion
+  notallowed=1
+  !exit
+!endif
+
+!! ----------- delete intro_sol>0 and intro_feed in iniparm
+    t=$ 
+    tmp=!replace internal & by $t in $iniparm
+    !for type in sol,feed
+      !if intro_$type isin $iniparm
+        tmp2=!getopt intro_$type in $tmp
+        !if $tmp2!=0
+          ctmp=intro_$type=$tmp2
+          iniparm=!replace internal $ctmp by intro_$type=0 in $iniparm
+        !endif
+      !else
+        iniparm=$iniparm&intro_$type=0
+      !endif
+    !next type
+    !if intro_expert isin $iniparm
+      tmp2=!getopt intro_expert in $tmp
+      !if $tmp2!=yes
+        ctmp=intro_expert=$tmp2
+        iniparm=!replace internal $ctmp by intro_expert=yes in $iniparm
+      !endif
+    !else
+      iniparm=$iniparm&intro_expert=yes
+    !endif
+!! --------- end
+
+!if $cmd=new or $cmd=resume
+  freeworkslist=$empty
+  !for i=1 to $nbfreework
+    sh=!record $i of wimshome/log/classes/$wims_class/freeworks/.freeworks
+    !distribute lines $sh into stat,t_,title,t_,t_,type
+    !if $stat<1 and $type=3
+      nb_=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freework$i
+      j=1
+      test=0
+      !while $j<=$nb_ and $test=0
+        dt=!record $j of wimshome/log/classes/$wims_class/freeworks/.freework$i
+        dt=!word 1 of $dt
+        !if wimsexo isin $dt
+          test=1
+        !endif
+        !increase j
+      !endwhile
+      !if $test=1
+        freeworkslist=!append line $i,$title to $freeworkslist
+      !endif
+    !endif
+  !next i
+  !if $freeworkslist=$empty
+    freeworkscnt=0
+  !else
+    freeworkscnt=!linecnt $freeworkslist
+  !endif
+  !ifval $freeworkscnt=0
+    error=addexo-nofreework
+    notallowed=1
+    !exit
+  !endif
+  test_transl=!module translation_language $dir
+  !if $lang iswordof $test_transl
+    tr_lang=yes
+    title=!module title_$lang $dir
+    desc=!module description_$lang $dir
+  !endif
+  !read getparm $iniparm exo exotrymax
+
+  desc=!lookup $get_exo in wimshome/public_html/modules/$dir/Descindex
+  obs=!lookup $get_exo in wimshome/public_html/modules/$dir/Obsindex
+  !default title=!module title $dir
+  !default desc=!module description $dir
+  module_cat=!module category $dir
+  !if exercise notin $module_cat and oef notin $module_cat
+    error=not_exo
+    !exit
+  !endif
+  !exit
+!endif
+
+!if $cmd=reply
+  !if ../adm/ isin ../$dir or $dir=home or \
+   (../devel/ isin ../$dir and $wims_devel_modules notwordof open)
+    error=insert_fail
+    !exit
+  !endif
+  !if $pickfreework=$empty
+    error=no_pick
+    !exit
+  !endif
+  pickfreework=$[floor($pickfreework)]
+  !if $pickfreework=NaN or $pickfreework<1 or $picksfreework>min($max_freeworks,$nbfreeworks)
+    error=bad_freework
+    !exit
+  !endif
+  sh=!record $pickfreework of wimshome/log/classes/$wims_class/freeworks/.freeworks
+  a=!line 1 of $sh
+  t=!line 6 of $sh
+  !if $a>0 or $t!=3
+    nb_=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freework$pickfreework
+    j=1
+    test=0
+    !while $j<=$nb_ and $test=0
+        dt=!record $j of wimshome/log/classes/$wims_class/freeworks/.freework$pickfreework
+        dt=!word 1 of $dt
+        !if wimsexo isin $dt
+          test=1
+        !endif
+        !increase j
+    !endwhile
+    !if $test=0
+      error=bad_freework
+      !exit
+    !endif
+  !endif
+  exocnt=!recordcnt wimshome/log/classes/$wims_class/freeworks/.Wfreework$pickfreework
+  !if $exocnt>=$max_exos
+    error=too_many_exos
+    !exit
+  !endif
+  idesc=!singlespace $new_desc
+  iattribut=$mod_attribut
+  idesc=!char 1 to $desc_limit of $idesc
+  iobs=!singlespace $obs
+  iobs=!char 1 to $desc_limit of $iobs
+  ititle=!singlespace $title
+  ititle=!char 1 to $title_limit of $ititle
+  !for i=1 to $exocnt
+    e=!record $i of wimshome/log/classes/$wims_class/freeworks/.Wfreework$pickfreework
+    !distribute lines $e into wdi,win
+    !if $dir=$wdi and $iniparm=$win
+      test=$pickfreework
+      error=already_exist
+      !exit
+    !endif
+  !next i
+  !if oef isin $module_cat
+    copara=!listintersect $copara and solution,feedback
+  !else
+    !reset copara
+  !endif
+  !appendfile wimshome/log/classes/$wims_class/freeworks/.Wfreework$pickfreework :$dir\
+$iniparm\
+$ititle\
+$idesc\
+$copara
+  success=exo-insert
+  exocnt=!recordcnt wimshome/log/classes/$wims_class/freeworks/.Wfreework$pickfreework
+  wims_module_log=class $class: add No$exocnt to freework $pickfreework
+!endif

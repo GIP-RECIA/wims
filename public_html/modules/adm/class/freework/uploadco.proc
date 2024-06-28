@@ -1,0 +1,102 @@
+!! uploadco for type=2
+!if $type!=2
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! -------------- check right for download/upload participant correction file
+!if $putiworkco!=1
+  error=putworknotallow
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! -------- check for valid student (in class)
+!bound student within $ulist default $empty
+!if $student=$empty
+  error=putworkusernotexists
+  job=configfw
+  !changeto $job.proc
+!endif
+
+
+!! -------- test si la copie de l'etudiant existe (pas de depot de correction si pas de copie)
+
+!readproc proc/findfile.proc $freework,$student
+!if $data_0=$empty
+  error=studentwithoutfw
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!readproc adm/class/quotafree.proc proc
+oldsize=0
+!if $(data_0[5])!=$empty
+  du=!sh du -ks $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$(data_0[5])
+  du=!word 1 of $du
+  oldsize=$[($du)/1024]
+  delold=rm -f $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$(data_0[5]);
+!endif
+!if $wims_deposit!=$empty and $wims_deposit!=noname.file and / notin $wims_deposit and .. notin $wims_deposit
+  du=!sh du -ks $wims_home/$wims_sesdir/user-deposit
+  du=!word 1 of $du
+  newsize=$[($du)/1024]
+  !read proc/checkfilename.proc $freework
+  !if $error!=badfilename
+    exten=!replace internal . by , in $newfilename
+    n=!itemcnt $exten
+    !if $n>=2
+      exten=!item -1 of $exten
+      exten=.$exten
+    !else
+      exten=$empty
+    !endif
+    success=goodaddfile
+    !if $quota_free-$newsize-$oldsize<0
+      error=quota_filestudent
+      !reset success
+    !else
+      !!mise en place du nouveau fichier (et destruction de l'ancien s'il existe)
+      !sh $delold mv $wims_home/$wims_sesdir/user-deposit $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$student$exten;
+      !if $(data_0[5])=$empty
+          !increase nbcorrectedcopies
+          notcorrected=$[$nbcopies-$nbcorrectedcopies]
+      !endif
+    !endif
+  !endif
+!endif
+!! ------------ save new score (only if scoring>0)
+!if $scoring>0
+  m=!record 0 of wimshome/log/classes/$wims_class/sheets/.severity
+  maxscore=!word 1 of $m
+  !bound maxscore between 0 and 100000 default 10
+  key2=!positionof item $student in $ulist
+  sendscore=$(score$key2)
+  !bound score$key2 between 0 and $maxscore default $empty
+  !if $sendscore!=$(score$key2)
+    error=badscore
+  !endif
+  key=!positionof item $student in $uulist
+  list=!values 0 for v=1 to $nbscore
+  list=!replace internal 0 by $empty in $list
+  !if $key=$empty
+    list=!replace item number $scoring by $(score$key2) in $list
+    !appendfile wimshome/log/classes/$wims_class/.grades :$student,$(flist[$key2]) $(llist[$key2]),$list
+    uulist=!append item $student to $uulist
+  !else
+    update_content=!record $[$key+1] of wimshome/log/classes/$wims_class/.grades
+    update_content=!append item $list to $update_content
+    update_content=!item 1 to $[$nbscore+2] of $update_content
+    update_content=!replace item number $[$scoring+2] by $(score$key2) in $update_content
+    update_field=$[$key+1]
+    update_nbline=$empty
+    !read adm/uprecord wimshome/log/classes/$wims_class/.grades
+  !endif
+!endif
+!reset wims_deposit
+!if $notcorrected=0
+  !restart module=$module&freework=$freework&job=configfw
+!else
+  job=configfw
+  !changeto $job.proc
+!endif

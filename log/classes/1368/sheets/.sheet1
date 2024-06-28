@@ -1,0 +1,161 @@
+Contare
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+number,calculation,sets
+Marina, Cazzola
+wims@unimib.it
+
+
+:H1/algebra/addfig.en
+exo=pyramid1&exo=pyramid2&exo=pyramid1c&exo=pyramid1d&confparm1=1&confparm2=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Somme
+Acquisire familiarità con l'operazione somma: risolvere semplici quiz.
+
+
+module=adm/doc&doc=c1&block=somma&cmd=new&job=read,10,0
+:H3/algebra/arithtable.en
+exo=partial2x3&exo=partial3x4&confparm1=2&confparm2=4&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Prodotto
+Acquisire familiartià con l'operazione prodotto.
+
+:H3/algebra/arithtable.en
+exo=typed2x3&exo=typed3x4&confparm1=2&confparm2=2&qnum=1&scoredelay=&seedrepeat=1&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Somme e prodotti
+Acquisire familiarità con le operazioni: somma e prodotto.
+
+:H6/set/oefsetop.fr
+exo=union_et_intersection&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=2&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Unione e intersezione
+Operazioni tra insiemi: unione e intersezione.
+
+:H6/set/oefsetop.fr
+exo=differences&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=2&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Complemento di Y in X
+Operazioni tra insiemi: complemento di Y in X.
+
+:H6/set/oefsetop.fr
+exo=produit_cartesien1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Prodotto cartesiano #1
+Operazioni tra insiemi: prodotto cartesiano di due insiemi.
+
+:H6/set/oefsetop.fr
+exo=produit_cartesien2&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Prodotto cartesiano #2
+Operazioni tra insiemi: descrivere un insieme dato tramite una operazione di prodotto cartesiano.
+
+:H6/set/oefsetop.fr
+exo=produit_cartesien3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Prodotto cartesiano di tre insiemi
+Operazioni tra insiemi: prodotto cartesiano di tre insiemi.
+
+:H6/set/oefsetop.fr
+exo=complementaire_h&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Complementare
+Operazioni tra insiemi: insieme complementare.
+
+
+module=adm/doc&doc=c1&block=def1_4&cmd=new&job=read,10,0
+:H6/set/oefsetop.fr
+exo=operations_combinees1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Operazioni tra insiemi #1
+Determinare esplicitamente l'insieme risultato di certe operazioni tra certi insiemi dati.
+
+:H6/set/oefsetop.fr
+exo=operations_combinees2&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Operazioni tra insiemi #2
+Determinare esplicitamente l'insieme risultato di certe operazioni tra certi insiemi dati.
+
+:H6/set/oefset.fr
+exo=unionint&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Operazioni tra insiemi #3
+Scrivere esplicitamente gli elementi di un insieme ottenuto come risultato di una certa operazione tra insiemi.
+
+:H6/set/oefset.fr
+exo=ensem&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Operazioni tra insiemi #4
+Significato delle operazioni tra insiemi.
+
+
+module=adm/doc&doc=c1&block=def1_4&cmd=new&job=read,10,0
+:H6/set/oefset.fr
+exo=traduction2&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Operazioni tra insiemi #5
+Significato delle operazioni tra insiemi.
+
+
+module=adm/doc&doc=c1&block=def1_4&cmd=new&job=read,10,0
+:H6/set/oefset.fr
+exo=traduction3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Operazioni tra insiemi #6
+Significato delle operazioni tra insiemi (appartenenza).
+
+
+module=adm/doc&doc=c1&block=def1_4&cmd=new&job=read,10,0
+:H6/set/graphset.en
+atype=2&style=u1&style=i1&style=ui1&style=uc1&style=uc2&style=uc3&style=ic1&style=ic2&style=ic3&repeat=1
+10
+1
+Operazioni tra insiemi #7
+Riconoscere il diagramma corrispondente a una certa operazione tra insiemi.
+
+
+module=adm/doc&doc=c1&block=def1_4&cmd=new&job=read,10,0
+:H6/set/graphset.en
+atype=2&style=uic1&style=uic2&style=uic3&style=uic4&repeat=1
+10
+1
+Operazioni tra insiemi #8
+Riconoscere il diagramma corrispondente a una certa operazione tra insiemi.
+
+
+module=adm/doc&doc=c1&block=def1_4&cmd=new&job=read,10,0
+:H6/set/graphset.en
+atype=1&style=31&style=32&style=33&style=34&repeat=1
+10
+1
+Operazioni tra insiemi #9
+Riconoscere l'operazione tra insiemi corrispondente a un certo diagramma.
+
+
+module=adm/doc&doc=c1&block=def1_4&cmd=new&job=read,10,0
+:H6/set/oefset.fr
+exo=compens&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=2&intro_check=2
+10
+1
+Relazioni tra insiemi
+Inclusione e eguaglianza tra due insiemi in termini di unione e intersezione.
+
+ 

@@ -1,0 +1,255 @@
+domain:biology,chemistry,informatics,language,mathematics,physics,zdomain
+
+zdomain:arts,geography,civic_education,earth_sciences,history,sciences,ecogestion,\
+ physical_education,astronomy,industrial_sciences
+
+ecogestion:economics,management,gestion,tax
+
+gestion:financial_analysis,financial_mathematics,corporate_finance,\
+financial_market
+financial_market:actions,bonds,riskreturn
+
+sciences:body_system,phase_changes,sense,zoology,color
+zoology:butterfly
+physical_education:sports
+civic_education:road_traffic_safety,ecology,sustainable_dev
+history:classical_antiquity,timeline
+astronomy:planetology,solar_system, planet,moon,satellite,kepler
+planetology:geology
+mathematics:math_skill,elementary_mathematics,algebra,analysis,geometry,probability,statistics,\
+ discrete_mathematics,financial_mathematics,number_theory,operational_research,logic,\
+ numerical_analysis,topology
+
+biology:biochemistry,botany,zoology,cell_biology,ecology,genetics,histology,immunology,\
+  medecine,pharmacy,evolution,molecular_biology, biodiversity,physiology
+molecular_biology:electrophoresis,dna,nucleotide,nucleic_acid,\
+  rna,chromatin,dna_polymerase,dna_replication,dna_repair,rna_transcription,\
+  rna_translation,ribosome,gene_expression
+botany:plant,mycology
+genetics:population_genetics,codon
+evolution:phylogenetics,diversity,phylogenetic_tree,monophyletic_group,\
+ common_ancestor,tree_topology,phylo_homology
+phylogenetic_tree:unroot_tree,root_tree
+phylogenetics:maximum_parsimony,distance_method
+histology:animal_tissue,vegetal_tissue
+animal_tissue:epithelial_tissue,muscle_tissue,nervous_tissue,connective_tissue
+immunology:infection,leucocyte,receptor,innate_immunity,adaptative_immunity
+infection:microbe,bacteria,virus,toxin
+leucocyte:hematopoiesis,lymphocyte,nk_cell,dendritic_cell,macrophage,neutrophil,flow_cytometry
+receptor:immunoglobulines,antibody,t_cell_receptor,class_i,class_ii,fc_receptor,signaling_pathway
+innate_immunity:complement_system,phagocytosis,interferon,cytokine
+adaptative_immunity:antigen,clonal_selection,antibody_diversity,gene_rearrangement,\
+  lymphoid_organ,development_of_lymphocytes,selection_of_lymphocytes,cell_differentiation,\
+  mhc,histocompatibility,vaccine
+
+biochemistry:amino_acid,peptide,ionisation,titration,protein,enzyme,catalysis,\
+  kinetics,inhibitor,cooperativity,specificity,active_site, electrophoresis
+cell_biology:eucaryote,cell_cycle,photosynthesis,metabolism, meiosis,membrane
+eucaryote:plant_cell,animal_cell,organelle
+cell_cycle:cell_division,mitosis,chromosome,cell_death
+
+pharmacy:pharmacology,antibiotherapy,infection,medication
+
+biodiversity:climate,habitat,threatened_species,invasive_species
+
+arts:music,weaver
+
+chemistry:biochemistry,crystallography,inorganic_chemistry,\
+  organic_chemistry,thermodynamics,medicinal_chemistry,thermochemistry,\
+  chemical_reaction, molecule,atom, periodic_table,\
+  functional_group,stereochemistry,coordination,solutions,chemical_kinetics,\
+  physical_chemistry
+
+physical_chemistry:molecular_orbital,chemical_bond
+
+chemical_kinetics:reaction_order,activation_energy,rate_constant,reaction_rate,\
+  integrated_rate_law,rate_law,kinetic_mechanism,elementary_reaction,\
+  bodenstein_steady_state
+
+chemical_reaction:acid_base_reaction,substitution_reaction,addition_reaction,\
+  elimination_reaction
+
+organic_chemistry:chemical_bond,chemical_nomenclature,chemical_polarity,isomers
+
+solutions:oxydoreduction,electrode,titration,complexation,solubility,coordination,dose,\
+  precipitation
+
+stereochemistry:stereogenic_center,enantiomerism,diastereoisomerism,lewis,cram,newman
+
+crystallography:cubic_crystal_system
+
+medicinal_chemistry:chemical_synthesis,pharmocophore,diabete_drug,nsaids,\
+ pain_drug,anesthetic_drug,antiseptic_drug,contrast_agent,steroid
+
+language:english,french,german,finnish,listening,grammar,phonetics,\
+  speaking,reading,vocabulary,linguistics,etymology,literature,spelling,\
+  greek,latin,homonymy,\
+  cercl_a1, cercl_a2, cercl_b1, cercl_b2, cercl_c1, cercl_c2
+vocabulary:static_register,lexical_field
+greek:ancient_greek
+listening:sentence_stress,emphasis
+
+spelling:diacritical_mark
+
+english:american_civilisation,pronunciation,written_english,business_english,\
+  technical_language,english_vocabulary
+
+french:french_grammar,french_conjugation,french_spelling,french_reading,french_vocabulary
+german:german_grammar,german_conjugation,german_vocabulary
+
+grammar:past_tenses,passive_form
+
+informatics:information_theory,coding,cryptology,combinatorics,\
+  linear_optimisation,algorithmics,programming,infonet
+programming:data_structures,imperative_programming,prog_functions,ioput,\
+ units_tests,python
+
+prog_functions:recursive_functions,procedures
+data_structures:composite_types
+composite_types:struct,collections
+collections:arrays,2d_arrays
+imperative_programming:variables,cond_instruction,loops
+
+infonet:spreadsheet
+
+coding:cyclic_code,hamming,error_correcting_codes
+
+cryptology:encryption
+
+algorithmics:complexity,discrete_logarithm
+information_theory:error_detection,entropy,hamming,error_correcting_codes
+
+linear_optimisation:simplex_method
+elementary_mathematics:pbsolving,measurement,number,elementary_geometry,data_gestion
+
+discrete_mathematics:graph,combinatorics
+logic:set_theory,maps,reasoning,methodology,truth_table,math_symbols,logic_recreation
+maps:surjectivity, injectivity, image,preimage
+graph:graph_coloring,eulerian_graph
+arithmetic:integers,divisibility,modular_arithmetic,gcd_lcm,factorization,\
+  diophantine_equations,goldbach,continued_fraction,irreducible_fraction,primes,\
+  euclidean_algorithm,bezout_algorithm
+reasoning:contraposition, negation, implication,quantifier
+number:number_writing,operation,fraction,numbering_system,percents,proportionality,decimals,\
+  exponent,power,scientific_notation,calculation,methodical_calculation,rational_number,numeration,\
+  priority_rule,mental_calculation,number_line,oper_prec,conversion,irreducible_fraction
+
+operation:addition,multiplication,division,subtraction,ratio
+measurement:length,angles,area,volume,time,perimeter,masse,protractor
+time:clock,calendar,month_week
+
+elementary_geometry:2_shape,3_shape,symmetry,parallelogram,spatial_skill,parallel,thales,\
+  plane_section, geometric_vocabulary,ruler_and_compass,pythagore
+
+3_shape:cone,pyramid,cube,sphere,cylinder,prism
+
+complex_number:real_number,trigonometry,complex_plane,trigonometric_circle,argument
+
+real_number:absolute_value,order,inequalities,intervals,signdigits
+
+algebra:elementary_algebra,linear_algebra,abstract_algebra,arithmetic,coding
+
+abstract_algebra:group_theory,ring,field,finite_field,module,algebraic_fraction
+
+group_theory:quotient_group,symmetric_group,group_action,cyclic_group,\
+   finite_group,abelian_group
+
+linear_algebra:matrix,gauss_algorithm,linear_maps,determinant,linear_system,vector_space,\
+ bilinear_algebra,endomorphism_reduction,range_kernel
+
+matrix:rank,characteristic_polynomial,diagonalization
+bilinear_algebra:quadratic_form
+
+vector_space:vectors,basis,basis_change,matrix,rank,dimension,complementary_subspace
+
+elementary_algebra:relative_number,complex_number,equations,inequations,polynomials,roots,\
+  squareroot,factorization,literal_calculation,equation_systems,canonical_form
+polynomials:trinomial,binomial
+
+analysis:elementary_calculus,calculus,vectorial_analysis,complex_analysis,\
+  differential_equation,modelling,multivariable_function
+
+modelling:linear_optimisation
+multivariable_function:critical_point, extremum, partial_derivative,level_set
+vectorial_analysis:line_integral,divergence,curl,vectorial_field,gradient,circulation,\
+ potential
+numerical_analysis:numerical_method,interpolation,curve_fitting,numerical_integration
+complex_analysis:complex_plane,homography
+topology:dynamic_system
+elementary_calculus:real_number,inequalities,functions,roots,equations,trigonometry
+functions:affine_function,linear_function,exponential,logarithm,trigonometric_functions,reference_function,monotonic_function
+calculus:limit,convergence,continuity,real_function,sequence,series,signal_processing
+series:power_series,taylor_series,fourier_series
+signal_processing:fourier_transform,dirac_delta_function
+sequence:arithmetic_sequence,geometric_sequence,recurrence_relation
+real_function:bound,upper_bound,function_variation,inverse_function,asymptote,derivative,\
+  integral,taylor_expansion,convexity
+differential_equation:ode,differential_system,linear_differential_equation
+geometry:euclidean_geometry,analytic_geometry,affine_geometry,\
+  algebra_geometry,algebraic_geometry,differential_geometry,\
+  vectorial_geometry,solid_geometry
+integral:primitive,definite_integral,subst_integral
+differential_geometry:tangent
+affine_geometry:line,plane,hyperplane,coordinates,direction
+euclidean_geometry:scalar_product,cross_product,lines,circle,rectangles,polygons,\
+  triangles,quadrilateral,angles,symmetry,distance,frieze,tiling,polyhedron,midpoint
+triangles:altitude,median_line,perpendicular_bisector,angle_bisector
+
+analytic_geometry:barycenter,circle_equation,plane_equation,line_equation,\
+  surfaces,curves,graphing
+curves:parametric_curves,polar_curves,conics,lissajous
+surfaces:parametric_surfaces,normal_vector,tangent_plane,stokes_thm
+conics:parabola,hyperbola,ellipse,circle
+algebra_geometry:isometries,transformation_group,similarities,homothety
+isometries:rotation,translation
+combinatorics:factorial,combination,permutation
+probability:random,probability_space,random_variable,random_vector,\
+  markov_chains,prob_graph,rv_convergence
+rv_convergence:clthm
+random_variable:probability_distribution,independent_random_variables
+probability_space:conditional_probability,events,independent_events,\
+ combinatorics
+probability_distribution:discrete_probability_distribution,continuous_probability_distribution,\
+  cumulative_distribution,quantile,decile
+discrete_probability_distribution:binomial_distribution,poisson_distribution,\
+probability_generating_function,geometric_distribution,uniform_distribution
+continuous_probability_distribution:normal_distribution,density,exponential_distribution,\
+laplace_distribution,uniform_distribution
+
+statistics:data_analysis,sampling,descriptive_statistics,inferential_statistics,\
+ simulation
+
+data_analysis:clustering,euclidean_cloud
+
+clustering:hierarchical_cluster_analysis,ward_method
+
+descriptive_statistics:mean,median,variance,expectation,standard_deviation,\
+  covariance,correlation,regression,percentage,histogram,boxplot,quartile,cumulative_frequency,\
+  absolute_frequency,contribution_variance,variation_coefficient,\
+  between_variance,within_variance,contingency_table,conditional_frequency,\
+  transition_matrix,association_rate,phi2
+
+inferential_statistics:estimation,statistical_test,prediction_interval,\
+  confidence_interval,sampling_distribution,binomial_distribution,binomial_test,\
+  student_test,chisquare_test
+
+markov:markov_chains,transition_matrix
+physics:cinematics,dynamics,electricity,electronics,electrical_engineering,\
+  electrostatics,fluid_mechanics,gas_mechanics,magnetism,mechanics,optics,\
+  thermodynamics,vibration,process_engineering,relativity,tensor_field
+optics:ray_optics
+cinematics:velocity, acceleration, trajectory
+electricity:resistance,ohm_law,voltage,circuit_law,inductance, capacitor
+
+mechanics:dimensional_analysis,energy,oscillators
+thermodynamics:gaz_mechanics,ideal_gas,chemical_equilibrium,enthalpy,combustion,\
+  gibbs_free_energy
+
+gaz_mechanics:pression,volume
+
+operational_research:scheduling,pert,linear_optimisation,maximum_flow
+industrial_sciences:automation,process_control,quality_control,supervision\
+qhse,production_management
+
+math_skill:skill_calculate, skill_search, skill_reasoning, skill_modelling,skill_represent,\
+skill_communicate, quizz

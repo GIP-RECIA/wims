@@ -1,0 +1,104 @@
+!set cat=!nospace $wims_read_parm
+!if $(gotcnt$cat)>0
+  <ul class="wims_home_result_list">
+  !for i=1 to $(gotcnt$cat)
+    !set m_=!line $i of $(gotm$cat)
+    !set cat_=!module category $m_
+    !set w_=!word $i of $(gotw$cat)
+    !set l_=!line $i of $(gotl$cat)
+    !set t_=!line $i of $(gott$cat)
+    !set d_=!line $i of $(gotd$cat)
+    !set a_=!line $i of $(gota$cat)
+    !set maint_=!module maintainer $m_
+    <li>
+    !if $wims_ismanager=2
+      <span class="small">$w_</span>
+    !endif
+    !if $l_!=$search_lang
+      !set ltrans=!module translation_language $m_
+      !if  $search_lang notin $ltrans
+        <img src="gifs/$l_.gif" alt="$l_.gif">
+      !endif
+      !set t_=!module title_$search_lang $m_
+      !set d_=!module description_$search_lang $m_
+    !endif
+    !if $t_=
+      !set t_=!module title $m_
+    !endif
+    !if $d_=
+      !set d_=!module description $m_
+    !endif
+    !set L=
+    !if ../local/ isin ../$m_
+      !set L=<sup>local</sup>
+    !endif
+    !if ../com/ isin ../$m_
+      !set L=<sup>com</sup>
+    !endif
+    !if ../contrib/ isin ../$m_
+      !set L=<sup>contrib</sup>
+    !endif
+    !set ltrans=!module translation_language $m_
+    !set t_=!replace internal OEF by in $t_
+    !href module=$m_ $t_
+    $L, $d_
+    !if $wims_show_author=yes
+      <span class="small">
+      !!!if $maint_!=
+      !!  !replace internal , by $ $ in ($a_; $maint_)
+      !!!else
+        !replace internal , by $ $ in ($a_)
+      !!!endif
+      </span>
+    !endif
+    !if $ltrans!=$empty
+      ($l_ $ltrans)
+    !endif
+    !if oef isin $cat_
+      !set exokeyword=!record 0 of wimshome/public_html/modules/$m_/Dickeywords
+      !if $exokeyword!=$empty
+        !reset tmp_list
+        !! keywords no modified in srch0
+        !for exk in $srch0
+          !set ext=!lookup $exk in wimshome/public_html/modules/$m_/Dickeywords
+          <ul>
+          !for exa in $ext
+            !if $exa notitemof $tmp_list
+              !set tmp_list=!append item $exa to $tmp_list
+              <li>
+              !set exta=!lookup $exa in wimshome/public_html/modules/$m_/Extitles_$search_lang
+              !if $exta=$empty
+                !set exta=!lookup $exa in wimshome/public_html/modules/$m_/Extitles
+                !if $wims_user=supervisor
+                  !href module=$m_&special_parm=$exta&cmd=intro $exta
+                !else
+                  !href module=$m_&exo=$exa&cmd=new $exta
+                !endif
+              !else
+                !if $wims_user=supervisor
+                  !href module=$m_&special_parm=$exta&cmd=intro&lang=$search_lang $exta
+                !else
+                  !href module=$m_&exo=$exa&cmd=new&lang=$search_lang $exta
+                !endif
+              !endif
+              !if $wims_show_author=yes
+                !set exauthor=!lookup $exa in wimshome/public_html/modules/$m_/Exauthors
+                !set exauthor=!replace internal , by $ $ in $exauthor
+                !set exauthor=!replace internal ; by , $ in $exauthor
+                !if $exauthor!=$empty
+                  <span class="small">($exauthor)</span>
+                !endif
+              !endif
+              </li>
+            !endif
+          !next
+          </ul>
+        !next
+        !reset exokeyword exk exa exta exauthor tmp_list
+      !endif
+    !endif
+    </li>
+    !reset d_ t_
+  !next i
+  </ul>
+!endif

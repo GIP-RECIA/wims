@@ -1,0 +1,43 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=combinatorics,combination
+!set gl_title=Coefficient binomial
+!set gl_level=H6 Générale&nbsp;Complémentaire, H6 STI2D&nbsp;Spécialité
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+ On considère une expérience aléatoire constituée de la répétition de \(n\)
+ épreuves de Bernoulli identiques et indépendantes, représentée par un arbre.
+ <br>
+ L'entier \(\displaystyle{\binom{n}{k}}\) est le nombre de chemins de l'arbre
+ réalisant \(k\) succès pour les \(n\) répétitions de l'épreuve.
+</div>
+<div class="wims_thm">
+  <h4>Théorème </h4>
+Pour tout \(n \in \NN\) et pour tout \(k \in \NN\) tel que
+\(0\leqslant k \leqslant n\)&nbsp;:
+
+  <ul>
+       <li>
+  \(\displaystyle{\binom{n}{k}=\binom{n}{n-k}}\) ;
+      </li><li>
+   si \(k != n\), \(\displaystyle{\binom{n}{k}+\binom{n}{k+1}=\binom{n+1}{k+1}}\).
+      </li>
+  </ul>
+</div>
+<div class="wims_rem">
+  <h4>Cas particuliers</h4>
+  <ul>
+    <li>
+    Pour tout entier naturel \(n\), \(\displaystyle{\binom{n}{0}=1}\) et
+    \(\displaystyle{\binom{n}{n}=1}\).
+    </li>
+    <li>
+    Pour tout entier naturel non nul \(n\), \(\displaystyle{\binom{n}{1}=n}\) et
+    \(\displaystyle{\binom{n}{n-1}=n}\).
+    </li>
+  </ul>
+</div>

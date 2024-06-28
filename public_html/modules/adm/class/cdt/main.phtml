@@ -1,0 +1,41 @@
+!read adm/css.phtml
+
+!read js/speckedit.phtml name_deposit0 name_deposit1 name_deposit2 name_deposit3 name_deposit4
+!! avant de pouvoir passer à tinyMCE, il faut refaire les scripts de helplink.phtml
+!!read js/external/tinymce.phtml .iEdit
+
+!if link isin $job
+  !if $(module_title_$moduclass_lang)!=
+    !set module_title=$(module_title_$moduclass_lang)
+  !endif
+  !header
+!else
+  !header1
+!endif
+
+!default cdt_title=$wims_name_cdt
+!read adm/title.phtml 1\
+\
+$cdt_title\
+$cdt_subtitle
+
+!if $error!=$empty
+  <div class="wims_msg alert">
+    !read lang/msg.phtml.$moduclass_lang
+  </div>
+!endif
+
+!if $error!=bad_class
+  !if $job2=print and $job isitemof todo,work
+    !read print$job.phtml
+  !else
+    !read $job.phtml
+  !endif
+
+  !if _ notin $wims_session and $job!=home
+    !set wims_menu_items=!append line back2,1,module=$module \
+ to $wims_menu_items
+  !endif
+!endif
+
+  !tail

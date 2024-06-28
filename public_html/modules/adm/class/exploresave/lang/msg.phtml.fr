@@ -1,0 +1,39 @@
+!goto $err_
+
+:badright
+  Vous n'auriez pas dû arriver sur cette page. Ne pas jouer avec la barre d'adresse du navigateur !
+!exit
+
+:badressource
+  Aucune ressource valide sélectionnée.
+!exit
+
+:classfull
+  Le nombre maximum de ressource de ce type a été atteint pour cette classe :
+  vous ne pouvez pas en rajouter de nouvelles.
+!exit
+
+:bad_file
+  Le fichier que vous avez fourni ne semble pas être une sauvegarde valide d'une classe WIMS.
+!exit
+
+:notsupervisor
+  Seul l'administrateur de la classe peut utiliser ce module.
+  Ne pas jouer avec la barre d'adresse du navigateur !
+!exit
+
+:importdone
+  La ressource est importée.
+!exit
+
+:replacedone
+  La ressource a été correctement remplacée.
+!exit
+
+:faileddoc
+  Les documents suivants n'ont pas pu être importés : $comp_.
+!exit
+
+:cannotreplace
+  Le remplacement ne peut pas s'effectuer la ressource cible n'est pas en préparation ou n'existe pas.
+!exit

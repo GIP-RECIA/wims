@@ -1,0 +1,67 @@
+!set lang_exists=yes
+
+Il servizio WIMS è disponibile gratuitamente su Internet SENZA ALCUNA
+GARANZIA.
+
+<p>Il <em>core system</em> del sever è soggetto alla
+<a href="COPYING" target="wims_external">GNU General Public Licence</a>.
+Il codice sorgente è disponibile pubblicamente
+[
+!href module=adm/light&phtml=download.phtml.$lang Dettagli
+]
+</p><p class="wims_credits">
+&copy; 1997- Autore del sistema: 
+XIAO, Gang
+di
+<a href="http://www.unice.fr">Université de Nice - Sophia Antipolis</a>.
+</p><p>
+Il gruppo che ha preso in carico la manutenzione del server a partire
+dalla versione 3.62 è contattabile all'indirizzo
+!mailurl wimsdev@sourcesup.renater.fr wimsdev@sourcesup.renater.fr\
+WIMS
+
+e i codici sorgenti del sistema sono accessibili attraverso il sito
+<a href="https://sourcesup.renater.fr/projects/wimsdev/">sourcesup.renater.fr</a>.
+</p><p>
+Un traduzione in Cinese Big5 (<em>core system</em> e moduli) è stata resa disponibile da
+!mailurl ychuang@cc.cktc.edu.tw Y. C. Huang
+ (non più aggiornata).
+</p><p>
+Traduzioni in cinese semplificato (<em>core system</em> e moduli) sono realizzate da un gruppo coordinato da
+!mailurl zjchen@math.ecnu.edu.cn CHEN, Zhijie
+.
+</p><p>
+Traduzioni in italiano (<em>core system</em> e moduli) sono realizzate da
+!mailurl marina.cazzola@unimib.it Marina Cazzola
+.
+</p><p>
+Traduzioni in olandese (<em>core system</em> e moduli) sono realizzate da
+!mailurl jm.evers@schaersvoorde.nl J.M. Evers
+.
+</p><p>
+Traduzioni in spagnolo (<em>core system</em> e moduli) sono realizzate da
+!mailurl juanrafael.fernandez@hispalinux.es Juan Rafael Fernández García
+ et par
+!mailurl didsene@wanadoo.fr Didier Sénéchal
+.
+</p><p>
+Traduzioni in sloveno (<em>core system</em> e moduli) sono realizzate da
+!mailurl bostjan.kuzman @gmail.com Bostjan Kuzman
+.
+</p><p>
+Traduzioni in catalano (<em>core system</em> e moduli) sono realizzate da
+!mailurl mquerol@xtec.cat Manel Querol
+.
+</p><p>
+Ogni singolo modulo WIMS ha un suo copyright (riportato in una apposita
+pagina) che può essere diverso da quello del <em>core system</em>. Si rimanda
+alle pagine relative di ogni modulo.
+</p>
+!!<p>Il codice sorgente dei moduli di pubblico dominio è disponibile
+!!attraveso lo stesso sito in cui è disponibile il software del sistema.</p>
+
+<p>Alcuni moduli utilizzano software commerciale. È responsabilità
+dell'amministratore di ogni sito WIMS verificare con i proprietari del
+software che l'installazione di tali moduli e l'utilizzo di tale software
+sul proprio server non ne violi la licenza.
+</p>

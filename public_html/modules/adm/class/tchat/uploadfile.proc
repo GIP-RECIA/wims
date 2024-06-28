@@ -1,0 +1,32 @@
+!if . isin $user or $tchat_configfilesize<=0
+  job=edit
+  !changeto $job.proc
+!endif
+
+!if $wims_deposit!=$empty and / notin $wims_deposit and .. notin $wims_deposit and noname.file!=$wims_deposit
+  du=!sh du -ks $wims_home/sessions/$wims_session/user-deposit;
+  du=!word 1 of $du
+  filesize=$[$du/1024]
+  !ifval $filesize>$tchat_configfilesize*0.25
+     error=toobigfile
+  !else
+    newfilename=!text select 1234567890azertyuiopqsdfghjklmwxcvbnAZERTYUIOPMLKJHGFDSQWXCVBN. in $wims_deposit
+    ext=!replace internal . by , in $newfilename
+    ext=!item -1 of $ext
+    nbchar=!charcnt $newfilename
+    nbext=!charcnt $ext
+    !if $nbchar<4 or . notin $newfilename or $nbext<2
+      error=badfilename
+    !else
+      newfilename=$user.$ext
+      !sh cd $wims_home/sessions/$wims_session;\
+          mkdir -p getfile;\
+          cd getfile;\
+          rm -rf tchat;\
+          mkdir tchat;\
+          mv $wims_home/sessions/$wims_session/user-deposit $wims_home/sessions/$wims_session/getfile/tchat/$newfilename;
+    !endif
+  !endif
+!endif
+job=edit
+!changeto $job.proc

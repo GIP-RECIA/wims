@@ -1,0 +1,29 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Fonction affine (exemple)
+
+!readproc data/glossary/mathematics/analysis/macro/func_gen
+!set gl_choix=!randint 0,1
+<h4>Exemples</h4>
+<div>La fonction \(f\) définie pour tout nombre \(x\) par \(f(x)=$gl_aff1\) est
+une fonction affine.</div>
+
+<div class="spacer"></div>
+<div>La fonction \(g\) définie pour tout nombre \(x\) par \(g(x)=$gl_trinom1\)
+n'est pas une fonction affine.</div>
+
+<div class="spacer"></div>
+
+!if $gl_choix=0
+  <div>La fonction \(h\) définie pour tout nombre \(x\) par
+  \(h(x)=$gl_aff2_noneval\) est une fonction affine.</div>
+  <div>En effet, pour tout nombre \(x\), <span style="white-space:nowrap">
+  \(h(x)=$gl_aff2\).</span></div>
+
+!else
+  <div>La fonction \(h\) définie pour tout nombre \(x\) par
+  \(h(x)=$gl_trinom2_noneval\) n'est pas une fonction affine.</div>
+  <div>En effet, pour tout nombre \(x\), <span style="white-space:nowrap">
+  \(h(x)=$gl_trinom2\).</span></div>
+
+!endif

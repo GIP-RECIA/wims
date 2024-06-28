@@ -1,0 +1,19 @@
+:title,Help subjects
+:oef,Explanation on the format OEF
+:examples,Examples of exercises
+:format,The formats of the statement,of the exercise
+:parameters,Random parameters, in an interactive exercise
+:math,Mathematical formulas,in the exercises
+:draw,Dynamic drawings,into the exercises
+:canvasdraw,Dynamic and interactive drawings,into the exercises
+:reply,How the user can reply to an exercise
+:feedback,Feedbacks,to user replies.
+:oefspecial,Special methods
+:oefadv,Advanced features
+:oefscore,Score computation in an exercise
+:slib&slib_cmd=help,Library of scripts,(slib)
+:command,Instruction list
+:parameters%2Coefparm#list,Function list
+:if,List of conditional relations
+:css, Styles css
+:all,Everything in the help

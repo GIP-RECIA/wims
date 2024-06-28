@@ -1,0 +1,126 @@
+type=numbers gapfill
+textarea="explain"
+iEdit="explain"
+random="a b c d"
+computed="ans"
+asis="explain"
+
+:Una pregunta numèrica amb 4 paràmetres aleatoris.
+
+<p>Model que permet fer un exercici en el que l'enunciat depèn de 4 paràmetres \a, \b, \c i \d i la resposta demanada és un número.
+ Cada cop que l'alumne comenci de nou l'exercici, els valors dels 4 paràmetres es triaran a l'atzar d'un interval o d'una llista de valors que definireu.
+</p>
+Teniu la possibilitat de definir:
+<ul><li>els intervals o llistes de valors a partir dels quals es triaran els valors dels paràmetres \a, \b, \c i \d </li>
+<li> la fórmula per a la resposta que pot dependre de \a, \b, \c i \d </li>
+<li>quines respostes s'accepten:
+si la resposta demanada és un nombre enter o una fracció racional, només és possible acceptar el valor exacte.
+En altres casos, podeu definir un marge d'error absolut o relatiu.  </li></ul>
+
+$oef_help
+
+<p class="wims_credits">
+Autor del model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Eliminar la capçalera anterior si voleu esborrar les etiquetes per al model!
+(Són les línies que comencen amb un ':'.)
+En cas contrari l'exercici pot no funcionar sota Createxo.
+
+:%%%%%%%% Paràmetres d'exemples a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Quatre paràmetres}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Primer paràmetre \a
+\real{a=randint(-20..20)}
+
+:Segon paràmetre \b
+\real{b=randint(-20..20)}
+
+:Tercer paràmetre \c
+\real{c=randint(-20..20)}
+
+:Quart paràmetre \d
+\real{d=randint(-20..20)}
+
+:Com calcular la resposta correcta
+Es reconeixen totes les funcions habituals. Utilitzem \a, \b, \c, \d per a
+designar els paràmetres aleatoris definits anteriorment.
+\real{ans=(\a)*(\d) - (\b)*(\c)}
+:Marge d'error acceptat
+<p>
+Seleccioneu "cap" si només accepteu el valor 
+exacte (útil per a respostes enteres o fraccions). </p> <p>
+Seleccioneu "relatiu" (resp. "absolut") si accepteu valors aproximats amb una precisió relativa (resp. absoluta) que després definireu (mireu l'ajuda per al camp següent).
+</p>
+\text{marge=item(2,1. cap,2. relatiu,3. absolut)}
+
+:Valor d'aquest marge d'error
+Nota <span class="tt">err</span> el valor d'aquest marge d'error, <span class="tt">good</span>  la resposta correcta
+i <span class="tt">rep</span>  la resposta de l'alumnat. La resposta de l'alumnat serà considerada
+bona  si
+<ul><li>  <span class="tt">|good - rep| &le; err</span> en el cas que hàgiu seleccionat "absolut",</li>
+<li><span class="tt">|good - rep| &le;  err*|rep|</span>  en el cas que hàgiu seleccionat "relatiu",</li></ul>
+\real{erreur=0.001}
+
+:Instruccions per introduir la resposta
+Modifiqueu el text per adaptar-lo segons el marge d'error que hàgiu escollit.
+\text{instruction=El valor donat es considerarà correcte si l'error relatiu és inferior a 0,001.}
+
+:Enunciat
+
+$embraced_randitem
+\text{explain=
+Calcular el determinant de la matriu \([\a,\b;\c,\d]\).
+}
+
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+: Solució
+Text que apareixerà a sota de l'anàlisi de la resposta enviada per l'alumnat
+(el professorat que utilitzi aquest exercici podrà decidir si mostra o no aquest text).
+\text{textsol=}
+
+:%% Càlculs que no cal canviar
+\text{accolade=wims(word 1 of \accolade)}
+\text{explain=\accolade=1. ?wims(embraced randitem \explain)}
+\text{marge=wims(word 1 of \marge)}
+\if{\marge=1.}
+  {\text{format=numexp}
+  }
+  {\text{format=range}
+   \if{\marge=2.}{\real{ecart=\erreur*\ans}}{\real{ecart=\erreur}}
+   \real{ansmin=\ans-\ecart}
+   \real{ansmax=\ans+\ecart}
+   \text{ans=\ansmin,\ansmax,\ans}
+   }
+:%%%%%%%%%%%%% Ara l'enunciat en codi html. %%%%%%%%%%%%%%%%%%%%
+
+::No cal canviar això en general.
+
+\statement{\explain
+\if{\instruction notsametext}{<div class="wims_instruction">\instruction</div>}
+}
+
+:%%%%%%%%%%%%% Res per canviar a continuació. %%%%%%%%%%%%%%%%%5
+
+\answer{Resposta}{\ans}{type=\format}
+\if{\textsol notsametext}{
+\solution{\textsol}
+}
+\latex{
+\begin{statement}
+ \explain\newline
+ \textit{\instruction}
+\end{statement}
+\begin{solution}
+\textsol
+\end{solution}
+}

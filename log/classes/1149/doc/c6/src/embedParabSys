@@ -1,0 +1,24 @@
+\def{integer a=2*randint(1..5)}
+\def{integer b=2*randint(1..5)}
+\def{integer c=randint(25..50)}
+\def{integer d=\a+\b}
+\def{integer L=4*\c-\d}
+\def{integer p=\a*\b}
+\def{integer S=4*\c}
+\def{integer s=2*\c}
+<p>
+On sait que \(x+L+x-\a+L-\b=\L) et on cherche \(x) tel que \(L x -(\b)(\a)) soit maximal.
+</p><p>
+On exprime \(L) en fonction de \(x) :<br>
+\(2 L + 2 x - \d = \L)<br>
+\(2 L + 2 x = \S)<br>
+\(L + x = \s)<br>
+\(L = \s - x)<br>
+</p><p>
+Puis on substitue \(\s - x) à \(L) dans \(L x -(\b)(\a)) : <br>
+\(L x -(\b)(\a) = (\s - x)(x) - \p = - x^2 + \s x -\p)<br>
+Ce trinôme a un maximum sur \(\,\RR) car le coefficient de \(x^2) est négatif.<br>
+Pour 0 et \s, le trinôme vaut \(- \p) donc le maximum de ce trinôme est obtenu
+pour \(\frac{0+\s}{2}=\c).<br>
+Ainsi le maximum est obtenu lorsque \(x=\c) et \(L = \s - x = \s - \c = \c).
+</p>

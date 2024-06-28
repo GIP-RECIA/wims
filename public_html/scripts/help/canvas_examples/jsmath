@@ -1,0 +1,5 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+jsplot blue,sin(x^2)
+jsmath sin(x^2)

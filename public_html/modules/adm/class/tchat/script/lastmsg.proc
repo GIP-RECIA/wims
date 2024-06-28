@@ -1,0 +1,31 @@
+!! check data for last message of a living
+!! wims_read_parm is the living name
+!! output variables : 
+!! - lastmsg (first 10 words of lastmsg if it is student message)
+!! - lastdate of lastmsg (if exists)
+!! - lastauth last user/supervisor write a msg
+!! 
+!! remark : hidden msg not count
+!! this script don't search in old file of a living
+
+!reset lastmsg lastdate lastauth
+nb_=!recordcnt wimshome/log/classes/$wims_class/tchat/$wims_read_parm
+!if $nb_=0
+  !exit
+!endif
+n_=1
+hide_=hide
+!while $hide_=hide and $n_<=$nb_
+  tmp_=!record -$n_ of wimshome/log/classes/$wims_class/tchat/$wims_read_parm
+  l_=!line 1 of $tmp_
+  !distribute word $l_ into lastauth,lastdate,hide_
+  !if $hide_!=hide
+    !if $lastauth!=supervisor
+      tmp_=!line 2 to -1 of $tmp_
+      lastmsg=!word 1 to 10 of $tmp_
+    !else
+      !reset lastdate
+    !endif
+  !endif
+  !increase n_
+!endwhile

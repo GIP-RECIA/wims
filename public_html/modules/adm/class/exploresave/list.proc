@@ -1,0 +1,150 @@
+classnumber=!record 0 of wimshome/sessions/$wims_session/upload/class/serial
+
+docpubliccnt=!recordcnt wimshome/sessions/$wims_session/upload/class/doc/.docindex
+classdocpubliccnt=!recordcnt wimshome/log/classes/$wims_class/doc/.docindex
+doccnt=!recordcnt wimshome/sessions/$wims_session/upload/class/doc/.index
+classdoccnt=!recordcnt wimshome/log/classes/$wims_class/doc/.index
+sheetcnt=!recordcnt wimshome/sessions/$wims_session/upload/class/sheets/.sheets
+classsheetcnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+examcnt=!recordcnt wimshome/sessions/$wims_session/upload/class/exams/.exams
+classexamcnt=!recordcnt wimshome/log/classes/$wims_class/exams/.exams
+votecnt=!recordcnt wimshome/sessions/$wims_session/upload/class/vote/.votes
+classvotecnt=!recordcnt wimshome/log/classes/$wims_class/vote/.votes
+toolcnt=!recordcnt wimshome/sessions/$wims_session/upload/class/tool/.toolindex
+classtoolcnt=!recordcnt wimshome/log/classes/$wims_class/tool/.toolindex
+glossarycnt=!recordcnt wimshome/sessions/$wims_session/upload/class/tool/.glossaryindex
+classglossarycnt=!recordcnt wimshome/log/classes/$wims_class/tool/.glossaryindex
+freeworkcnt=!recordcnt wimshome/sessions/$wims_session/upload/class/freeworks/.freeworks
+classfreeworkcnt=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+
+
+!! -------------  make list of ressources not in the class
+!for k in sheet,doc,glossary,freework
+  list$(k)import=$empty
+!next k
+data=!mexec script/newrec.sh
+nbdata=!linecnt $data
+!for k=1 to $nbdata
+  dt=!line $k of $data
+  !distribute word $dt into ty,nu,bl
+  list$(ty)import=!append item $nu to $(list$(ty)import)
+!next k
+
+!! ------------ analyse of sheet
+listsheeterror=!values 0 for v=1 to $sheetcnt
+listnoimport=$empty
+!! ---- error code (notnull = cannot import) :
+!! 0 can import
+!! 1 with exo of the class
+!! 2 with a public module not install on serveur
+!! 3 sheet with techvar individualisation
+!for k in $(listsheetimport)
+  shinfo=!record $k of wimshome/sessions/$wims_session/upload/class/sheets/.sheets
+  shinfo=!line 10 of $shinfo
+  !if $shinfo=$empty
+    nbexo=!recordcnt wimshome/sessions/$wims_session/upload/class/sheets/.sheet$k
+    exo=1
+    test=1
+    !while $exo<=$nbexo and $test=1
+      data=!record $exo of wimshome/sessions/$wims_session/upload/class/sheets/.sheet$k
+      mod=!line 1 of $data
+      modc=!char 1 to 8 of $mod
+      !if classes/=$modc
+        listnoimport=!append item $k to $listnoimport
+        listsheeterror=!replace item number $k by 1 in $listsheeterror
+        test=0
+      !else
+        mod=!nospace $mod
+        t=!fileexists wimshome/public_html/modules/$mod/var.proc
+        !if $t!=yes
+          listnoimport=!append item $k to $listnoimport
+          listsheeterror=!replace item number $k by 2 in $listsheeterror
+          test=0
+        !endif
+      !endif
+      !increase exo
+    !endwhile
+  !else
+    listsheeterror=!replace item number $k by 3 in $listsheeterror
+    listnoimport=!append item $k to $listnoimport
+  !endif
+!next k
+listsheetimport=!listcomplement $listnoimport in $listsheetimport
+
+!! ---------- make list of sheet in a class which are in status=0 (can be replaced)
+dropbuttonlink=$empty
+!for k=0 to $classsheetcnt
+  t=!record $k of wimshome/log/classes/$wims_class/sheets/.sheets
+  t=!line 1 of $t
+  !if $t=0
+    l=cmd=reply&+module=$module&+job=replace&+type=sheet&+num=IIII&+target=$k $name_sheet $k
+    dropbuttonlink=!append line $l to $dropbuttonlink 
+  !endif
+!next k
+
+!! ------------ analyse of document
+!! ---- list of doclink in class
+!reset listclsdoclink listdocpublicnomodule listshdoc
+!if $docpubliccnt>0
+  !for k=1 to $classdocpubliccnt
+     d=!record $k of wimshome/log/classes/$wims_class/doc/.docindex
+     d=!line 1 of $d
+     listclsdoclink=!append item $d to $listclsdoclink
+  !next k
+  !for k=1 to $docpubliccnt
+    d=!record $k of wimshome/sessions/$wims_session/upload/class/doc/.docindex
+    !distribute line $d into d,bl,bl,bl,bl,shd
+    !if $d notitemof $listclsdoclink
+      d=!nospace $d
+      test=!fileexists wimshome/public_html/modules/$d/var.proc
+      !if $test!=yes
+        listdocpublicnomodule=!append item $k to $listdocpublicnomodule
+      !else
+        listdocimport=!append item P$k to $listdocimport
+        !if $shd>0
+          listshdoc=!append item $k to $listshdoc
+        !endif
+      !endif
+    !endif
+  !next k
+!endif
+
+!! ------------ analyse of tool
+!! ---- list of toollink in class
+!reset listclstool
+!if $toolcnt>0
+  !for k=1 to $classtoolcnt
+     d=!record $k of wimshome/log/classes/$wims_class/tool/.toolindex
+     d=!line 1 of $d
+     d=!nospace $d
+     listclstool=!append item $d to $listclstool
+  !next k
+  !for k=1 to $toolcnt
+    d=!record $k of wimshome/sessions/$wims_session/upload/class/tool/.toolindex
+    d=!line 1 of $d
+    d=!nospace $d
+    !if $d notitemof $listclstool
+      test=!fileexists wimshome/public_html/modules/$d/var.proc
+      !if $test!=yes
+        listtoolnomodule=!append item $k to $listtoolnomodule
+      !else
+        listtoolimport=!append item $k to $listtoolimport
+      !endif
+    !endif
+  !next k
+!endif
+
+!! ------------ analyse of freework
+!reset listclsfreework
+!!listfreeworkimport=!values v for v=1 to $freeworkcnt
+!! ---------- make list of freework in a class which are in status=0 (can be replaced)
+fwdropbuttonlink=$empty
+!for k=0 to $classfreeworkcnt
+  t=!record $k of wimshome/log/classes/$wims_class/freeworks/.freeworks
+  t=!line 1 of $t
+  !if $t=0
+    l=cmd=reply&+module=$module&+job=replace&+type=freework&+num=IIII&+target=$k $name_freework $k
+    fwdropbuttonlink=!append line $l to $fwdropbuttonlink
+  !endif
+!next k
+

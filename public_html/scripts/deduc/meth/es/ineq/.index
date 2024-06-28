@@ -1,0 +1,18 @@
+addeqineq:Añadir una ecuación a una desigualdad
+addineq:Sumar dos desigualdades
+addnum:Sumar un número a ambos lados de una desigualdad
+addterm:Agregar una expresión a ambos lados de una desigualdad
+constineq:Introducir una desigualdad constante
+divexp:Dividir una desigualdad por una expresión
+divnum:Dividir una desigualdad por un número
+exsides:Intercambiar los dos lados de una desigualdad
+lincomb:Suma de desigualdades con coeficientes
+mulexp:Multiplicar una desigualdad por una expresión
+mulineq:Multiplicar dos desigualdades
+mulnum:Multiplicar una desigualdad por un número
+obvineq:Introducir una desigualdad obvia
+rewrite:Reescribir una desigualdad
+simpdeduc:Deducción de desigualdad simple
+splitineq:Separar los casos según una desigualdad
+sqrpos:Positividad de un cuadrado
+trans:Transitividad de las desigualdades

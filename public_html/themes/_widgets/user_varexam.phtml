@@ -1,0 +1,17 @@
+!set t=!recordcnt wimshome/log/classes/$wims_class/exams/.exams
+!set aelist=
+!for i=1 to $t
+  !set e_$i=!record $i of wimshome/log/classes/$wims_class/exams/.exams
+  !set a_=!line 1 of $(e_$i)
+  !! ------test if sheet is hidden for this user
+    !set h_=!line 8 of $(e_$i)
+    !if $h_!=$empty
+      !readproc adm/vfilter/ishiddensheet.proc $h_
+    !endif
+  !! -----end test
+  !if $a_>=1 and $a_<=2 and $hidden_sheet!=1
+    !set aelist=!append item $i to $aelist
+  !endif
+  !reset hidden_sheet
+!next i
+!set m=!itemcnt $aelist

@@ -1,0 +1,123 @@
+#! /bin/sh
+###############################################################################
+# gifs/themes/mkindex
+#
+# Create an automatic file "icon.css" for each theme icon directory.
+# wimsedu only :
+# when adding a new icon, delete the file wimsedu/test
+###############################################################################
+
+cd `dirname $0`
+type_list="png gif svg"
+
+if [ ! -f wimsedu/test ] ; then
+  cd wimsedu ;
+  for i in `ls *.png 2>/dev/null`; do convert -resize 30 $i ../wimsedu2/$i; done
+  for i in `ls *.png 2>/dev/null`; do convert -resize 18 $i ../wimsedu1/$i; done
+  touch test;
+  cd .. ;
+fi;
+
+for j in `ls` ; do
+  if [ -d "$j" ] ; then
+    if [ ! -s "$j/icon_orig.css" ] ; then
+      if [ -s "$j/icon.css" ] ; then rm $j/icon.css ; fi;
+      touch $j/icon.css ;
+      w=0; h=0
+      for a in $type_list ; do
+        if [ -s $j/home.$a ]; then
+          w=`identify -format \%w $j/home.$a`;
+          h=`identify -format \%h $j/home.$a`;
+        fi;
+      done;
+      w=`expr $w + 4`
+      h=`expr $h + 0`
+      pad_left=`expr $w + 2`
+      for dir in `ls -d ../domains/*`; do
+        if [ -d $dir ] ; then
+          cat $dir/icons.css >> icon.css
+        fi;
+      done;
+      echo "
+/*** Slideout Menu (Used in Nikaia) ***/
+
+@media only screen{
+  .slide-menu-closed .slide-menu{
+    width: 2.8rem;
+  }
+
+  .slide-menu-closed #wimstopbox, .slide-menu-closed div#wimsbodybox{
+    margin-left: 2.8rem
+  }
+}
+
+.menuitem a, .icon_button span, .menuitem h2, .text_icon, .menuitem>.text_item{
+  background-repeat:no-repeat;
+  background-position:3px 50%;
+  padding-left:"$pad_left"px;
+  line-height:"$h"px;
+  display: inline-block;
+}
+.dropdown .is-dropdown-submenu a{
+  padding-left:"$pad_left"px;
+}
+/* all css class that begin with 'icon_' */
+.text_icon[class*='icon_']{
+  min-height:"$h"px;
+  vertical-align: bottom;
+}
+
+.breadcrumbs>.menuitem>a,.breadcrumbs>.menuitem>.text_item{
+  padding-left:1.5em;
+  background-position-x:0;
+}
+.footer .menuitem>a, #wimstopbox .menuitem>a{
+  line-height:"$h"px;
+  /*background-position:0% 50%;*/
+}
+.icon_button span, .text_icon{
+  line-height:"$h"px;
+}
+.text_icon{
+  background-position:2px 50%;
+  /*border:thin solid #CCC;*/
+  padding-top:2px;
+  padding-bottom:2px;
+  padding-right:2px;
+  padding-left:"$pad_left"px;
+  background-size: "$h"px;
+}
+.language_selector a{padding-left: .5rem;}
+.dropdown.menu>li>a{padding-left:"$pad_left"px;}
+.dropdown .submenu:not(#lang_list)>li{padding-left: .3rem;}
+.wims_msg{background-repeat: no-repeat;padding-left:"$pad_left"px;}
+" >> icon.css
+      for a in $type_list ; do
+        for i in `ls $j/*.$a 2>/dev/null` ; do
+          file=`basename $i .$a` ; echo ".$file{background-image:url($file.$a);}" >> icon.css;
+        done
+      done
+      echo "
+.menuitem{background-image:none;}" >> icon.css;
+      mv icon.css $j ;
+    fi;
+
+    # Si un fichier "icon_orig.css" existe, alors c'est celui-ci qui est minifie
+    if [ -s "$j/icon_orig.css" ] ; then
+      java -jar ../../themes/yuicompressor $j/icon_orig.css -o $j/icon-min.css -v;
+    else
+      java -jar ../../themes/yuicompressor $j/icon.css -o $j/icon-min.css -v;
+    fi;
+    echo "$j icon theme done."
+  fi;
+
+done
+## Creation of the icon list
+dir_iconlist="../../themes";
+if [ -f $dir_iconlist/icon ]; then mv $dir_iconlist/icon $dir_iconlist/icon.tmp; fi
+for dir in `ls -d ../domains/*`; do
+  if [ -d $dir ] ; then
+    head -1 $dir/icons.css | sed -e 's,/\*,,g' -e 's,\*/,,g' >> $dir_iconlist/icon;
+  fi;
+done;
+rm -f $dir_iconlist/icon.tmp;

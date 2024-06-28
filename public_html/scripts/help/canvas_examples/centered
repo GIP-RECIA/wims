@@ -1,0 +1,21 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontfamily 12pt Arial
+string blue,-9,-9,no offset
+point -9,-9,red
+centered
+string blue,-6,-6,centered
+point -6,-6,red
+xoffset
+string blue,-3,-3,xoffset
+point -3,-3,red
+yoffset
+string blue,0,0,yoffset
+point 0,0,red
+xyoffset
+string blue,3,3,xyoffset
+point 3,3,red
+resetoffset
+string blue,6,6,resetoffset
+point 6,6,red

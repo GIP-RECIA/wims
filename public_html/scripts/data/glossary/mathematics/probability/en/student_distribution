@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Student distribution
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+  Let \(n) be a positive integer. The <strong>Student distribution</strong> with \(n) degrees
+  of freedom (denoted by
+  \(\mathcal{T }(n))) is the distribution of the following random variable
+  \(\frac{X}{\sqrt{Y/n}}) where \(X) is \(\mathcal{N}(0,1)) distributed and
+  \(Y) is independent of \(X) and \(\chi^{2}(n)) distributed.
+  It is a continuous distribution over \(\RR) with density function
+  <div class="wimscenter">
+  \(x\mapsto\frac{\Gamma(\frac{n+1}{2})}{\sqrt{n\pi}
+  \Gamma(\frac{n}{2})}(1+\frac{x^2}{n})^{-\frac{n+1}{2}})
+  </div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Expectation</th><th>Variance</th><th>Characteristic function</th></tr>
+<td>0 si \(n>1) </td><td>\(\frac{n}{n-2}) si \(n>2)</td><td></td></tr></table>

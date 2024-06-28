@@ -1,0 +1,33 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function
+!set gl_title=Taux de variation
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(f\) une fonction numérique définie sur un intervalle \(\mathrm{I}\) et
+\(a\) et \(b\) deux réels distincts de <span style="white-space:nowrap">
+\(\mathrm{I}\).</span><br>
+Le <strong>taux de variation</strong> de \(f\) entre \(a\) et \(b\) est le
+nombre réel \(m\) défini par&nbsp;:
+<div class="wimscenter">
+\(m=\frac{f(b)-f(a)}{b-a}\).
+</div>
+</div>
+<div class="wims_rem">
+<h4>Remarques</h4>
+<ul>
+<li>Le nombre \(m\) est le coefficient directeur de la droite passant par les
+points \(\mathrm{A}\) et \(\mathrm{B}\) de coordonnées respectives \((a\,;f(a))\)
+et <span style="white-space:nowrap">\((b\,;f(b))\).</span>
+</li>
+<li>Si \(f\) est une fonction linéaire ou affine, alors \(m\) est indépendant de
+\(a\) et \(b\) et \(m\) est le coefficient directeur de la droite représentant
+\(f\) dans un repère du plan.
+</li>
+</ul>
+</div>

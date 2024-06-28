@@ -1,0 +1,50 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=decimals,inequalities
+!set gl_title=Troncature (collège)
+!set gl_level=H2 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définitions</h4>
+Soit \(x\) un nombre décimal positif.
+<ul>
+<li>La <strong>troncature</strong> de \(x\) <strong> à l'unité</strong> est le
+nombre entier \(t\) tel que <span style="white-space:nowrap">
+\(t \leqslant x \lt t + 1 \).</span>
+</li>
+<li>
+La <strong>troncature</strong> de \(x\) <strong> au dixième</strong> (ou
+<strong>à une décimale</strong>) est le nombre décimal \(t\) tel que \(10 t\)
+est entier et <span style="white-space:nowrap">\(t \leqslant x \lt t + 0,1\).
+</span>
+</li>
+<li>
+La <strong>troncature</strong> de \(x\) <strong> au centième</strong> (ou
+<strong>à deux décimales</strong>) est le nombre décimal \(t\) tel que \(100 t\)
+est entier et <span style="white-space:nowrap">\(t \leqslant x \lt t + 0,01\).
+</span>
+</li>
+<li>
+La <strong>troncature</strong> de \(x\) <strong> au millième</strong> (ou
+<strong>à trois décimales</strong>) est le nombre décimal \(t\) tel que \(1000 t\)
+est entier et <span style="white-space:nowrap">\(t \leqslant x \lt t + 0,001\).
+</span>
+</li>
+</ul>
+</div>
+<div class="wims_rem">
+<h4>Remarques</h4>
+<ul>
+<li>La troncature de \(x\) à l'unité est une valeur approchée de \(x\) à 1 près
+par défaut.</li>
+<li>La troncature de \(x\) au dixième est une valeur approchée de \(x\) à 0,1
+près par défaut.</li>
+<li>La troncature de \(x\) au centième est une valeur approchée de \(x\) à 0,01
+près par défaut.</li>
+<li>La troncature de \(x\) au millième est une valeur approchée de \(x\) à 0,001
+près par défaut.</li>
+</ul>
+</div>

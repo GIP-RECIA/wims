@@ -1,0 +1,40 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Exigibilité
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">L'<strong>exigibilité</strong> se définit comme l'évènement ou
+ l'opération à partir de laquelle le <span class="wims_emph">Trésor Public
+ est en droit de demander le paiement de l'impôt qui lui est dû</span>.
+ 
+<div class="spacer">Il est important de distinguer le <i>fait générateur</i>
+ et l'<i>exigibilité</i> d'un impôt. En effet, le fait qu'un évènement
+ génère un impôt n'induit pas nécessairement que l'impôt en question
+ doivent être versé immédiatement au Trésor Public. Parfois, un décalage
+ est constaté entre le moment de la naissance d'un impôt et le moment
+ de son exigibilité.</div>
+
+
+<div class="wims_rem"><h4>Exemples :</h4>
+<ul class="spacer">
+<li>en matière de <span class="wims_emph">TVA sur les biens</span>,
+ l'exigibilité intervient au moment de
+ <span class="wims_emph">la livraison des biens</span> et
+ elle est confondue avec le fait générateur ;</li>
+<li>en matière de <span class="wims_emph">TVA sur les services</span>,
+ l'exigibilité intervient en principe au moment de
+ l'<span class="wims_emph">encaissement des prestations de services</span> et
+ elle est en principe postérieure au fait générateur qui se situe au moment de
+ la réalisation des prestations de services.</li>
+</ul>
+
+
+</div>
+
+
+</div>

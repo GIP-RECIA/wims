@@ -1,0 +1,15 @@
+size 400,400
+xrange 0,100
+yrange 0,10
+fillpattern hatch
+linewidth 3
+fillcolor red
+strokecolor green
+boxplot x,1,2,4,14,27,39,66
+strokecolor blue
+boxplot x,1,4,15,45,50,66,87
+strokecolor red
+boxplot x,1,6,45,70,80,90,100
+strokecolor orange
+boxplot x,1,8,28,38,48,56,77
+mouse red,16

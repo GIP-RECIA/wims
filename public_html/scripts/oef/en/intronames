@@ -1,0 +1,127 @@
+!! read also by modules/adm/class/config
+
+!distribute line Sorry, this module has no available exercise for the time being. Come back later!\
+  This module currently contains only one exercise\
+  Try it.\
+  Choose the exercises\
+  Exercises containing\
+  One series will have\
+  Level of severity\
+  Time limit\
+  seconds\
+  Number of items shown in multiple choices\
+  Give solution\
+  Give feedback\
+  Simplified menu\
+  Back to simplified menu\
+  Expert menu\
+  Select titles containing word\
+  exercises\
+  Set-up\
+  General parameters\
+  Specific set-up for this module\
+  General setup\
+  Set-up for the analysis of answers\
+  Set-up for the helps\
+  Select all exercises containing\
+  function\
+into name_noexercise,name_oneexercise,name_tryit,name_chooseexo,name_exercisescontaining,name_oneserie,\
+    name_levelseverity,name_chrono,name_secondes,name_qcmanswer,name_solutiongiven,name_feedgiven,\
+    name_simplifiedmenu,name_simplifiedmenu_back,name_expertmenu,name_select,name_exercises,name_menu,name_general_parms,name_module_setup,\
+    name_general_setup,name_score_setup,name_help_setup,name_select_auto,name_select_placeholder
+
+!set name_qcmanswer_help=Each question will display this maximum choices.
+
+!distribute lines Score calculation in a multiquestion exercise\
+No extra penalty, Small extra penalty for errors, High extra penalty for errors\
+Score calculation in a series of exercises\
+only if you choose a series containing at least two exercises\
+No extra penalty, Small extra penalty for errors, High extra penalty for errors\
+Penalty for poor precision\
+Sometimes\
+into name_expower,name_prompt_expower, name_sepower,name_warning_pow,\
+name_prompt_sepower, name_precweight,name_sometimes
+
+!set name_warning_expower=Arithmetic mean of scores obtained for each question to the power \
+  of the selected number.
+
+!set name_warning_sepower=Arithmetic mean of scores obtained for each question to the power \
+  of the selected number.
+
+!set name_datamodule=This module needs the data module <span class="tt">$module_data</span> \
+   which is not installed on this server. If you whish to use it, \
+   you should ask the site maintainer to install it.
+
+!set name_choice=never,always,after activity expiration date
+!set name_qcm=QCM (only for some exercise types)
+!set name_choice_check=Always contain correct reply,\
+  Penalty for wrong replies in multiple choices.,\
+  Show correct reply,\
+  Allow hint,\
+  Show a calculator
+!set name_calc=$wims_name_no,basic,no basic
+
+!set name_aleaseries= Propose the exercises of the series in order.
+!set name_remarkintro1=Choose one or more exercises from the list and \
+specify the settings (simplified or expert menu). Then \
+click <a class="wims_button disabled inline" href="#oef_intro_launch">$wims_name_work</a>. \
+The exercises will be randomly selected from your selection \
+(or otherwise from among all the available exercises if you didn't select any).
+!set name_defserie=A series of exercises corresponds to the work that needs to be done before\
+  getting a grade.
+
+!distribute lines Maximum tries with the same version of an exercise series\
+  Maximum number of tries counted\
+into name_seedrepeat,name_exotrymax
+
+!set name_help_seedrepeat=Select a number n larger than 1 to avoid a change \
+  of the random data of the series at each new try:\
+  the data will change only after a correct answer or after n tries.
+
+!set name_help_givegood= When the maximal number of tries for the same version\
+  of the series is larger than 1, the correct answer is shown after the last try\
+  for that version (unless if <span class="tt">$(name_choice[1])</span> or \
+  <span class="tt">$(name_choice[3])</span> are checked).\
+  Si vous cochez <span class="tt">$(name_choice[3])</span>, la bonne réponse ne s'affichera\
+  que si l'activité (par exemple la feuille) est périmée.\
+  <br> Some exercises may also provide hints, feedback or a solution.\
+  the setup for that display acts the same way.
+
+!set name_tries=or after the study of, versions of the series of exercises
+!set name_latex=A latex version of some of the exercises is accessible by\
+  the printable version.
+
+!if * isin $titlelist
+  !set name_remarkintro2=Exercises marked by a * are in general harder than the others.
+!endif
+!!leave on one line
+!set name_remarkintro3=You can put two numbers into the time limit, \
+a smaller limit followed by a larger one, separated by a comma, without space. \
+In this case, the first limit (counted in seconds) starts score reduction. \
+The second number, by default equal to the first one, gives the delay until \
+the score reaches 0.
+
+!set name_remarkseverity= Here is a table showing the correspondence \
+between severity levels (simplified menu) and different settings (expert menu).
+
+!set name_remarkallexo=!nosubst If you use the link\
+<span class="wims_button disabled inline">$wims_name_addallexo</span>,\
+you will be asked later for settings.
+
+!set name_remarkorder1=The order is by default the order you see in the list. \
+It is only relevant if the number of selected exercises equals the number \
+of exercises in the series.
+
+!set name_remarkorder2=You may later change this order after insertion in a worksheet.
+
+!set name_help_precweight=The smaller the number, the harsher the penalty.
+
+!set name_examplepenality=Example: these tables give the calculation of the\
+  score for an exercise with several equally important questions\
+  according to the number of wrong answers and the chosen penalty.
+
+!set name_example1=!nosubst Exercise with $tmp_n questions <br>Score
+!set name_entete1=Coefficient for extra penalty
+!set name_entete2=mistake(s)
+
+!set name_warning_levelseverity=Click on <span class="wims_button disabled inline">$name_expertmenu</span> for further details.

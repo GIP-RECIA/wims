@@ -1,0 +1,818 @@
+@import "../../domains/general/icons.css";
+@import "../../domains/sciences/icons.css";
+
+.text_icon{
+  background-repeat: no-repeat;
+}
+
+/* all css class that begin with "icon_" */
+.text_icon[class^='icon_'], .text_icon[class*='icon_']{
+  padding-left:1.5em;
+  background-size: 1.2em;
+  min-height:1.2em;
+  background-position: 2px 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/*** Slideout Menu (Used in Nikaia) ***/
+@media only screen{
+  .slide-menu-closed .slide-menu{
+    width: 46px;
+  }
+
+  .slide-menu-closed #wimstopbox, .slide-menu-closed div#wimsbodybox{
+    margin-left: 46px
+  }
+}
+/* Medium  and large screens */
+@media only screen and (min-width: 40.063em)  {
+  .slide-menu .menuitem>a{
+    padding: .4rem 1rem;
+  }
+}
+
+/*!
+ *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/* FONT PATH
+ * -------------------------- */
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('fonts/fontawesome-webfont.eot?v=4.7.0');
+  src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.text_icon:before,
+.menuitem a:before,
+.text_item:before,
+.menuitem a:after,
+.icon_button>span:before,
+.icon-ul a:before,
+#oef_renew:before,
+#oef_hint:before,
+.wims_msg:before,
+.success:before,
+a.external_link:before{
+    display:inline-block;
+    font-family:FontAwesome;
+    font-style:normal;
+    font-weight:normal;
+    font-size:20px;
+    line-height:1;
+    text-rendering: auto;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    vertical-align:-3px;
+    margin-right:3px;
+}
+
+/* Default icon */
+.menuitem>a:before,.menuitem>.minus:before{content:"\f068"}
+.nav>a:before,.language_selector a:before{content:'';}
+
+.external_link{
+  white-space: nowrap;
+}
+.breadcrumbs a:before,.breadcrumbs .text_item:before{font-size:1.2em;vertical-align:initial;}
+.wims_button_help:before{
+    font-family:FontAwesome;margin-right:2px;font-weight:normal;
+}
+
+strike.text_icon:before{
+  text-decoration: line-through;
+  vertical-align: baseline;
+  font-size: inherit;
+  margin-right: 0;
+}
+
+.footer .menuitem>a{padding: .7rem 1rem;}
+/*.menuitem a:before,
+.icon_button>span:before,
+.icon-ul a:before{
+    margin-right:3px;
+}*/
+.menuitem a:after{
+    margin-left:3px;
+}
+#wimsmenumodubox .menuitem a:before{min-width:1em}
+.menuitem a.small a:before,.icon_button.small>span:before{font-size:14px;vertical-align: -1px;}
+
+/* Icon Sizes modifiers */
+.icon-lg a:before{font-size:1.33333333em;line-height:.75em;vertical-align:-15%}
+.icon-2x a:before{font-size:2em}
+.icon-3x a:before{font-size:3em}
+.icon-4x a:before{font-size:4em}
+.icon-5x a:before{font-size:5em}
+
+.icon-fw a:before{width:1.28571429em;text-align:center}
+
+/* Bullet list icons (for a list of links)*/
+.icon-ul{padding-left:0;margin-left:2.14285714em;list-style-type:none}
+.icon-ul>li{position:relative}
+.icon-ul a:before{position:absolute;left:-2.14285714em;width:2.14285714em;top:.14285714em;text-align:center}
+
+/* Adds a border around icon */
+.icon_border a:before{padding:.2em .25em .15em;border:solid .08em #eee;border-radius:.1em;}
+
+
+/** Icon Optional Effects (rotate, spin,  flip) **/
+.icon-spin a:before, .text_icon.icon-spin:before{
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
+.icon-pulse a:before{
+  -webkit-animation: fa-spin 1s infinite steps(8);
+  animation: fa-spin 1s infinite steps(8);
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+.icon_rotate-90 a:before{  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.icon_rotate-180 a:before{-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.icon_rotate-270 a:before{-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.icon_flipH a:before{ -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.icon_flipV a:before{-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+
+:root .icon_rotate-90,
+:root .icon_rotate-180,
+:root .icon_rotate-270,
+:root .icon_flipH,
+:root .icon_flipV {
+  filter: none;
+}
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+/**** Icons List ****/
+
+.menuitem .glass:before{content:"\f000"}
+.menuitem .music:before{content:"\f001"}
+.menuitem .Searching:before,.menuitem>.search:before, .icon_button>.Searching:before{content:"\f002";vertical-align: -1px}
+.menuitem .sendmail:before,.menuitem>.SE_mod:before,
+.menuitem .mail:before,.text_icon.mail:before,
+.menuitem>.compose:before,.envelope-o:before{content:"\f003"}
+.menuitem .heart:before{content:"\f004"}
+.menuitem .star:before{content:"\f005"}
+.menuitem .star-o:before{content:"\f006"}
+.menuitem .account:before, .user:before{content:"\f007"}
+.menuitem .film:before{content:"\f008"}
+.menuitem .th-large:before{content:"\f009"}
+.menuitem .th:before{content:"\f00a"}
+.menuitem .th-list:before{content:"\f00b"}
+.success:before,.menuitem>.check:before{content:"\f00c"}
+.success:before{color:#2AA52A;}
+
+.menuitem>.remove:before,.menuitem>.close:before,.menuitem>.times:before,
+.icon_button>.back:before{content:"\f00d"}
+.menuitem .search-plus:before{content:"\f00e"}
+.menuitem .search-minus:before{content:"\f010"}
+.menuitem>.exit:before,.menuitem>.endexam:before,.menuitem>.visitor:before,.power-off:before{content:"\f011"}
+.menuitem .signal:before{content:"\f012"}
+/*.pref:before,*/
+.menuitem>.properties:before,.icon_button>.properties:before,
+.menuitem .config:before,.menuitem>.configb:before,.menuitem>.config_oef:before,.menuitem>.config_module:before,
+.menuitem .SE_config:before,.menuitem>.intro:before,.gear:before,
+.menuitem>.sheetadmin:before,.menuitem>.cog:before,
+.menuitem>.regmanage:before,
+.menuitem>.sheetmanagement:before{content:"\f013"}
+
+.menuitem>.exoerase:before,.menuitem>.delstudent1:before,
+.icon_button>.trash:before,
+.text_icon.trash:before,.menuitem>.trash-o:before{content:"\f014"}
+
+.menuitem .class_home:before,.menuitem>.home:before{content:"\f015"}
+
+.text_icon.file:before,
+.menuitem>.binfile:before,.menuitem>.filemode:before,
+.menuitem>.putsource:before,.menuitem>.file-o:before{content:"\f016"}
+
+.text_icon.clock-o:before,.menuitem .clock-o:before{content:"\f017"}
+.menuitem>.rallye:before,.menuitem>.road:before{content:"\f018"}
+
+.menuitem>.restore:before,
+.menuitem>.import:before,.text_icon.import:before,
+.menuitem>.download_module:before,.icon_button>.download:before,
+.text_icon.download:before,.menuitem>.exploresave:before,
+.menuitem>.download:before{content:"\f019"}
+
+.menuitem>.arrow-circle-o-down:before{content:"\f01a"}
+.menuitem>.doch_up:before,.text_icon.doch_up:before,
+.menuitem>.arrow-circle-o-up:before{content:"\f01b"}
+
+.menuitem .inbox:before{content:"\f01c"}
+.menuitem .play-circle-o:before{content:"\f01d"}
+.menuitem .rotate-right:before,.repeat:before{content:"\f01e"}
+
+#oef_renew:before, a.refresh:before,
+.menuitem>.doch_reload:before,
+.menuitem>.refresh:before,.menuitem>.renew:before{content:"\f021"}
+
+.menuitem>.statdetail:before,.menuitem>.modellist:before,
+.menuitem>.classlist:before,.menuitem>.develaccount:before,
+.menuitem>.part_list:before,.menuitem>.teacherlist:before,
+.menuitem>.list-alt:before{content:"\f022"}
+
+.menuitem .config_secure:before,
+.menuitem .config_restr:before,
+.menuitem .config_score:before,
+.menuitem>.passwd:before,
+.menuitem .lock:before{content:"\f023"}
+
+.menuitem>.config_auth:before,
+.menuitem>.plug:before {content: "\f1e6";}
+
+.menuitem .flag:before{content:"\f024"}
+.menuitem .headphones:before{content:"\f025"}
+.menuitem .volume-off:before{content:"\f026"}
+.menuitem .volume-down:before{content:"\f027"}
+.menuitem .volume-up:before{content:"\f028"}
+.menuitem .qrcode:before{content:"\f029"}
+.menuitem .barcode:before{content:"\f02a"}
+.menuitem .tag:before{content:"\f02b"}
+.menuitem>.Keywords:before,.text_icon.tags:before,.menuitem .tags:before{content:"\f02c"}
+
+.menuitem>.doch_docs:before,.menuitem>.livret:before,.menuitem>.livret1:before,
+.menuitem>.docoef:before,.menuitem>.doctec:before,
+
+.text_icon.Glossary:before,.menuitem>.Glossary:before,
+.menuitem>.cdt:before,.menuitem>.book:before{content:"\f02d"}
+
+.menuitem .bookmark:before{content:"\f02e"}
+
+.icon_button>.printable:before,.menuitem>.printable:before,.menuitem>.doch_printable:before,
+.menuitem>.print:before{content:"\f02f"}
+
+.menuitem .camera:before{content:"\f030"}
+.menuitem .font:before{content:"\f031"}
+.menuitem .bold:before{content:"\f032"}
+.menuitem .italic:before{content:"\f033"}
+.menuitem .text-height:before{content:"\f034"}
+.menuitem .text-width:before{content:"\f035"}
+.menuitem .align-left:before{content:"\f036"}
+.menuitem .align-center:before{content:"\f037"}
+.menuitem .align-right:before{content:"\f038"}
+.menuitem .align-justify:before{content:"\f039"}
+.menuitem>.blocklist:before,.menuitem>.list:before{content:"\f03a"}
+.menuitem .dedent:before,.outdent:before{content:"\f03b"}
+.menuitem .indent:before{content:"\f03c"}
+.menuitem .video-camera:before{content:"\f03d"}
+
+.menuitem>.coordclick:before,.menuitem>.config_present:before,
+.menuitem>.downloadbinary:before,.picture-o:before{content:"\f03e"}
+
+.menuitem .pencil:before{content:"\f040"}
+.menuitem>.map:before{content:"\f279"}
+.menuitem .map-marker:before{content:"\f041"}
+.menuitem .adjust:before{content:"\f042"}
+.menuitem .tint:before{content:"\f043"}
+
+.menuitem>.sheet:before,.menuitem>.edit:before,
+.menuitem>.exomodify:before,.menuitem>.edfile:before,
+.menuitem>.change:before,.text_icon.exomodify:before,
+.menuitem>.modify:before,.pencil-square-o:before{content:"\f044"}
+
+.menuitem>.share:before,.menuitem>.share-square-o:before{content:"\f045"}
+.menuitem .check-square-o:before,
+.text_icon.qcm:before{content:"\f046"}
+
+.menuitem .U_oclass:before,.arrows:before{content:"\f047"}
+.menuitem .step-backward:before{content:"\f048"}
+
+.menuitem>.doch_main:before,.menuitem>.doch_class:before,
+.menuitem>.fast-backward:before{content:"\f049"}
+
+.menuitem>.moduback:before,.menuitem>.back2:before,.menuitem>.back3:before,
+.menuitem>.back:before,.menuitem>.backward:before,.menuitem>.backteacher:before,
+.menuitem>.mainpage:before,.text_icon.back:before,.text_icon.back2:before,
+.menuitem .resume:before,.icon_button>.resume:before{content:"\f04a"}
+
+.menuitem>.scorereopen:before,.menuitem .play:before{content:"\f04b"}
+.menuitem>.scoreclose2:before,.menuitem .pause:before{content:"\f04c"}
+.menuitem .stop:before{content:"\f04d"}
+.menuitem .forward:before{content:"\f04e"}
+.menuitem .fast-forward:before{content:"\f050"}
+.menuitem>.normalmode:before,.menuitem .step-forward:before{content:"\f051"}
+.menuitem .eject:before{content:"\f052"}
+
+.menuitem>.adddoc:before,.menuitem>.add_doc:before,.menuitem>.add_vote:before,.menuitem>.add_sheet:before,
+.menuitem>.addexo:before,.menuitem>.add_exo:before,.menuitem>.classcreate:before,.menuitem>.add_exam:before,
+.menuitem>.addclass:before,.menuitem>.Creation:before,.menuitem>.add_sequence:before,
+.menuitem>.adddate:before,.menuitem>.addfile:before,.menuitem>.addtodo:before,
+.menuitem>.createnew:before,.menuitem>.createdoc:before,.menuitem>.create_class:before,
+.menuitem>.addcourse:before,.menuitem>.addprog:before,.menuitem>.add_competence:before,
+.menuitem>.addmanual:before,.menuitem>.addglossary:before,.menuitem>.addicourse:before,
+.menuitem>.add_techvar:before,.menuitem>.newglose:before,.menuitem>.addliving:before,
+.icon_button>.createnew:before,.menuitem>.add_freework:before,.menuitem>.newmsg:before,
+.menuitem>.plus-circle:before{content:"\f055"}
+
+.menuitem .minus-circle:before{content:"\f056"}
+
+.menuitem>.tchatclose:before,.menuitem>.times-circle:before{content:"\f057"}
+
+.menuitem>.sheetcheck:before,.menuitem>.glossarycheck:before,
+.menuitem>.check-circle:before{content:"\f058"}
+
+.menuitem>.doch_help:before,.wims_button_help:before,
+.menuitem>.wims_button_help:before,
+.menuitem>.help:before,.wims_msg.help:before,.menuitem>.whelp:before,
+.menuitem>.question-circle:before{content:"\f059"}
+
+.menuitem .crosshairs:before{content:"\f05b"}
+.menuitem .times-circle-o:before{content:"\f05c"}
+.menuitem .check-circle-o:before{content:"\f05d"}
+.menuitem .ban:before{content:"\f05e"}
+
+.menuitem>.prev:before,.menuitem>.prev_participant:before,
+.menuitem .previousseries:before, .arrow-left:before{content:"\f060"}
+
+.menuitem>.next:before,.menuitem>.next_participant:before,
+.menuitem .nextseries:before,.menuitem .nextseries a:after, .arrow-right:before{content:"\f061"}
+
+.menuitem>.arrow-up:before{content:"\f062"}
+.menuitem .arrow-down:before{content:"\f063"}
+.menuitem>.publish:before,.menuitem .mail-forward:before{content:"\f064"}
+.menuitem .expand:before{content:"\f065"}
+.menuitem .compress:before{content:"\f066"}
+.menuitem .plus:before{content:"\f067"}
+.menuitem .minus:before{content:"\f068"}
+.menuitem .asterisk:before{content:"\f069"}
+.menuitem .exclamation-circle:before{content:"\f06a"}
+.menuitem .gift:before{content:"\f06b"}
+.menuitem .leaf:before{content:"\f06c"}
+.menuitem .fire:before{content:"\f06d"}
+.menuitem .eye:before{content:"\f06e"}
+.menuitem .eye-slash:before{content:"\f070"}
+
+.menuitem>[class^='living']:before,.menuitem>.hashtag:before{content: "\f292";}
+.menuitem .plane:before{content:"\f072"}
+.menuitem .calendar:before{content:"\f073"}
+
+.menuitem>.classexo:before,.text_icon.classexo:before,
+.menuitem>.random:before{content:"\f074"}
+
+.menuitem .comment:before{content:"\f075"}
+.menuitem .magnet:before{content:"\f076"}
+.menuitem .retweet:before{content:"\f079"}
+.menuitem .shopping-cart:before{content:"\f07a"}
+.menuitem .folder:before{content:"\f07b"}
+.menuitem .n_example:before,.folder-open:before{content:"\f07c"}
+.menuitem .arrows-v:before{content:"\f07d"}
+.menuitem .arrows-h:before{content:"\f07e"}
+.menuitem>.myactivity:before,.menuitem .activity:before,.menuitem>.activity1:before,.menuitem>.class_stat:before,
+.menuitem .stat:before,.menuitem>.bar-chart-o:before{content:"\f080"}
+.menuitem .twitter-square:before{content:"\f081"}
+.menuitem .facebook-square:before{content:"\f082"}
+.menuitem .camera-retro:before{content:"\f083"}
+.menuitem .key:before{content:"\f084"}
+
+.menuitem .wimsmanager:before,.menuitem>.config_list:before,.gears:before,
+.menuitem>.listliving:before,
+.menuitem .pref:before,.cogs:before{content:"\f085"}
+
+.menuitem>.tchat:before,.menuitem>.comments:before{content:"\f086"}
+.menuitem .thumbs-o-up:before{content:"\f087"}
+.menuitem .thumbs-o-down:before{content:"\f088"}
+.menuitem .star-half:before{content:"\f089"}
+.menuitem .heart-o:before{content:"\f08a"}
+.menuitem .sign-out:before{content:"\f08b"}
+.menuitem .linkedin-square:before{content:"\f08c"}
+.icon_button>.thumb-tack:before,.menuitem>.thumb-tack:before{content:"\f08d"}
+a.external_link:before,
+.menuitem .external-link:before{content:"\f08e"}
+.menuitem .n_participant:before,.sign-in:before{content:"\f090"}
+
+.menuitem>.myscore:before,.menuitem>.Score1:before,
+.menuitem>.grades:before,.menuitem>.scores:before,
+.menuitem>.getraw:before,.menuitem>.otherscore:before,
+.menuitem .scoreexam:before,.menuitem>.trophy:before{content:"\f091"}
+.menuitem .examdetail:before,.menuitem>.trophy:before{content:"\f091"}
+
+.menuitem>.formula:before,.menuitem>.balance-scale:before {
+  content: "\f24e";
+}
+
+.menuitem .github-square:before{content:"\f092"}
+
+.menuitem>.doch_upload:before,.text_icon.downloadbinary:before,
+.text_icon.upload:before,.menuitem>.upload:before{content:"\f093"}
+
+.menuitem .lemon-o:before{content:"\f094"}
+.menuitem .phone:before{content:"\f095"}
+
+.menuitem .bookmark-o:before{content:"\f097"}
+.menuitem .phone-square:before{content:"\f098"}
+.menuitem .twitter:before{content:"\f099"}
+.menuitem .facebook:before{content:"\f09a"}
+.menuitem .github:before{content:"\f09b"}
+.menuitem .unlock:before{content:"\f09c"}
+.menuitem .credit-card:before{content:"\f09d"}
+.menuitem .rss_new:before,.menuitem>.rss_modif:before,.menuitem>.rss:before{content:"\f09e"}
+.menuitem .hdd-o:before{content:"\f0a0"}
+.menuitem .forum:before,.bullhorn:before{content:"\f0a1"}
+.menuitem .bell:before{content:"\f0f3"}
+.menuitem .certificate:before{content:"\f0a3"}
+.menuitem .hand-o-right:before{content:"\f0a4"}
+.menuitem .hand-o-left:before{content:"\f0a5"}
+.menuitem .hand-o-up:before{content:"\f0a6"}
+.menuitem .hand-o-down:before{content:"\f0a7"}
+
+.menuitem>.doch_prev:hover:before,.menuitem>.arrow-circle-left:before{content:"\f0a8"}
+.menuitem>.doch_next:hover:before,.menuitem>.arrow-circle-right:before{content:"\f0a9"}
+.menuitem>.doch_up:hover:before,.menuitem>.arrow-circle-up:before{content:"\f0aa"}
+.menuitem>.arrow-circle-down:before{content:"\f0ab"}
+
+.menuitem>.mirror:before,.menuitem>.config_otherserver:before,.menuitem>.globe:before{content:"\f0ac"}
+.menuitem>.tools:before,.menuitem>.wrench:before{content:"\f0ad"}
+.menuitem>.living_activeshare:before,.menuitem>.living_activerefresh:before,
+.menuitem>.activate:before,.menuitem>.toggle-off:before {content: "\f204"}
+.menuitem>.living_stopshare:before,.menuitem>.living_stoprefresh:before,
+.menuitem>.desactivate:before,.menuitem>.toggle-on:before {content: "\f205"}
+
+.menuitem>.reorder:before,.menuitem>.sequence:before,
+.menuitem>.tasks:before{content:"\f0ae"}
+
+.menuitem>.config_clean:before,.menuitem>.filter:before{content:"\f0b0"}
+.menuitem>.n_supervisor:before,.menuitem>.briefcase:before{content:"\f0b1"}
+.menuitem>.config_neigh:before,.menuitem>.arrows-alt:before{content:"\f0b2"}
+
+.menuitem>.photoboard:before,.menuitem>.usermanage:before,.menuitem>.SE_list:before,
+.menuitem>.userlistliving:before,
+.menuitem>.group:before,.text_icon.users:before,.users:before{content:"\f0c0"}
+
+.menuitem .chain:before,.menuitem>.link:before{content:"\f0c1"}
+.menuitem .cloud:before{content:"\f0c2"}
+
+.menuitem>.chemtool:before,
+.menuitem>.flask:before,
+.text_icon.flask:before{content:"\f0c3"}
+.menuitem>.cut:before,.menuitem>.scissors:before{content:"\f0c4"}
+
+.menuitem>.duplicatesheet:before,.menuitem>.duplicateexam:before,
+.menuitem>.cpexam:before,.text_icon.newversion:before,
+.menuitem>.newversion:before,
+.menuitem>.copy:before,.menuitem>.files-o:before{content:"\f0c5"}
+
+.menuitem>.paperclip:before{content:"\f0c6"}
+
+.menuitem>.modsave:before,.menuitem>.save:before,
+.menuitem>.backstruct:before,.menuitem>.exolog:before,
+.menuitem>.putclass:before,
+.text_icon.save:before,.text_icon.save_ex:before,
+.menuitem>.replace:before,.menuitem>.putmodtool:before,
+.menuitem>.backcreatexo:before,.floppy-o:before{content:"\f0c7"}
+
+.menuitem>.square:before{content:"\f0c8"}
+.menuitem>.square-o:before{content:"\f096"}
+
+.menuitem>.doch_toc:before,.text_icon.toc:before,
+.text_icon.doch_toc:before,
+.menuitem>.bars:before{content:"\f0c9"}
+
+.menuitem .Createqcm:before,.menuitem>.Confia2qcm:before,
+.menuitem>.list-ul:before{content:"\f0ca"}
+
+.menuitem .list-ol:before{content:"\f0cb"}
+.menuitem .strikethrough:before{content:"\f0cc"}
+.menuitem .underline:before{content:"\f0cd"}
+
+.menuitem .csv:before, .menuitem>.table:before, .menuitem>.addcsvclass:before{content:"\f0ce"}
+
+.menuitem>.model:before,.menuitem>.adapt:before,
+.menuitem>.magic:before{content:"\f0d0"}
+
+.menuitem .truck:before{content:"\f0d1"}
+.menuitem .pinterest:before{content:"\f0d2"}
+.menuitem .pinterest-square:before{content:"\f0d3"}
+.menuitem .google-plus-square:before{content:"\f0d4"}
+.menuitem .google-plus:before{content:"\f0d5"}
+.menuitem .money:before{content:"\f0d6"}
+.menuitem .caret-down:before{content:"\f0d7"}
+.menuitem .caret-up:before{content:"\f0d8"}
+.menuitem .caret-left:before{content:"\f0d9"}
+.menuitem .caret-right:before{content:"\f0da"}
+.menuitem .columns_layout:before{content:"\f0db"}
+.menuitem .unsorted:before,.menuitem>.sort:before{content:"\f0dc"}
+.menuitem .sort-down:before,.menuitem>.sort-asc:before{content:"\f0dd"}
+.menuitem .sort-up:before,.menuitem>.sort-desc:before{content:"\f0de"}
+.menuitem .envelope:before{content:"\f0e0"}
+.menuitem .linkedin:before{content:"\f0e1"}
+.menuitem .rotate-left:before,.menuitem>.undo:before{content:"\f0e2"}
+.menuitem .cgu:before,.menuitem>.legal:before,.gavel:before{content:"\f0e3"}
+.menuitem .dashboard:before,.tachometer:before{content:"\f0e4"}
+.menuitem .comment-o:before{content:"\f0e5"}
+.menuitem .faq:before,.menuitem>.comments-o:before{content:"\f0e6"}
+.menuitem .flash:before,.menuitem>.bolt:before{content:"\f0e7"}
+.text_icon.browse:before,.menuitem>.browse:before,.menuitem>.sitemap:before{content:"\f0e8"}
+.menuitem .umbrella:before{content:"\f0e9"}
+.menuitem .paste:before,.menuitem>.clipboard:before{content:"\f0ea"}
+a#oef_hint:before, .lightbulb-o:before{content:"\f0eb"}
+.menuitem .ref:before,.menuitem>.exchange:before{content:"\f0ec"}
+.menuitem .cloud-download:before{content:"\f0ed"}
+.menuitem .cloud-upload:before{content:"\f0ee"}
+.menuitem>.user-md:before{content:"\f0f0"}
+
+.menuitem>.addparticipant:before,.menuitem>.addteacher:before,
+.menuitem>.addstudent:before,
+.menuitem>.adddevel:before,.menuitem>.user-plus:before {content: "\f234";}
+
+.menuitem>.recover:before,.text_icon.user-times:before,.menuitem>.user-times:before {content: "\f235";}
+
+.menuitem .stethoscope:before{content:"\f0f1"}
+.menuitem .suitcase:before{content:"\f0f2"}
+.menuitem .bell-o:before{content:"\f0a2"}
+.menuitem .coffee:before{content:"\f0f4"}
+.menuitem .cutlery:before{content:"\f0f5"}
+
+.menuitem .dochelp:before,.menuitem>.docgestion:before,
+.menuitem>.file-text-o:before{content:"\f0f6"}
+
+.menuitem>.otherfiles:before,.menuitem>.modcontent:before,.file-code-o:before {content: "\f1c9";}
+
+.menuitem .building-o:before{content:"\f0f7"}
+.menuitem .hospital-o:before{content:"\f0f8"}
+.menuitem .ambulance:before{content:"\f0f9"}
+.menuitem .medkit:before{content:"\f0fa"}
+.menuitem .fighter-jet:before{content:"\f0fb"}
+.menuitem .beer:before{content:"\f0fc"}
+.menuitem .h-square:before{content:"\f0fd"}
+.menuitem>.addsexo:before,.menuitem>.addallexo:before,
+.menuitem>.create_superclass:before,.menuitem>.plus-square:before{content:"\f0fe"}
+
+.navmenu .backhist:before,.menuitem>.backhist:before,
+.text_icon.backhist:before,
+.menuitem>.angle-double-left:before{content:"\f100"}
+
+.navmenu .nexthist:before,.menuitem>.nexthist:before,
+.text_icon.nexthist:before,
+.menuitem>.angle-double-right:before{content:"\f101"}
+
+.menuitem>.angle-double-up:before{content:"\f102"}
+.menuitem>.angle-double-down:before{content:"\f103"}
+
+.menuitem .angle-left:before{content:"\f104"}
+.menuitem .angle-right:before{content:"\f105"}
+.menuitem .angle-up:before{content:"\f106"}
+.menuitem .angle-down:before{content:"\f107"}
+
+.menuitem .desktop:before{content:"\f108"}
+.menuitem .laptop:before{content:"\f109"}
+.menuitem .tablet:before{content:"\f10a"}
+.menuitem .mobile-phone:before,.mobile:before{content:"\f10b"}
+.menuitem .circle-o:before{content:"\f10c"}
+.menuitem .quote-left:before{content:"\f10d"}
+.menuitem .quote-right:before{content:"\f10e"}
+.text_icon.spinner:before,.menuitem .spinner:before{content:"\f110"}
+.menuitem .circle:before{content:"\f111"}
+.menuitem>.mail-reply:before,.menuitem>.reply:before{content:"\f112"}
+.menuitem .github-alt:before{content:"\f113"}
+.menuitem .folder-o:before{content:"\f114"}
+.menuitem .folder-open-o:before{content:"\f115"}
+.menuitem .smile-o:before{content:"\f118"}
+.menuitem .frown-o:before{content:"\f119"}
+.menuitem .meh-o:before{content:"\f11a"}
+.icon_button>.work:before,.menuitem .work:before, .gamepad:before{content:"\f11b"}
+.menuitem .keyboard-o:before{content:"\f11c"}
+.menuitem .flag-o:before{content:"\f11d"}
+.menuitem .flag-checkered:before{content:"\f11e"}
+
+.menuitem>.scripttest:before,.menuitem>.sheetsource:before,
+.menuitem .techvar:before,.menuitem>.source:before,
+.menuitem>.rawdata:before,.menuitem>.rawmode:before,.terminal:before{content:"\f120"}
+
+.menuitem .code:before{content:"\f121"}
+.menuitem .reply-all:before{content:"\f122"}
+.menuitem .mail-reply-all:before{content:"\f122"}
+.menuitem .star-half-empty:before,.star-half-full:before,.star-half-o:before{content:"\f123"}
+.menuitem .location-arrow:before{content:"\f124"}
+.menuitem .crop:before{content:"\f125"}
+.menuitem .code-fork:before{content:"\f126"}
+.menuitem .unlink:before,.chain-broken:before{content:"\f127"}
+.menuitem .question:before{content:"\f128"}
+.menuitem .info-nocircle:before{content:"\f129"}
+.wims_msg.alert:before, .menuitem .exclamation:before{content:"\f12a"}
+.alert:before{color:#A52A2A;}
+.menuitem .superscript:before{content:"\f12b"}
+.menuitem .subscript:before{content:"\f12c"}
+.menuitem .eraser:before{content:"\f12d"}
+
+.menuitem>.docslib:before,.menuitem .Samples:before,
+.puzzle-piece:before{content:"\f12e"}
+
+.menuitem .microphone:before{content:"\f130"}
+.menuitem .microphone-slash:before{content:"\f131"}
+.menuitem .shield:before{content:"\f132"}
+.menuitem .calendar-o:before{content:"\f133"}
+.menuitem .fire-extinguisher:before{content:"\f134"}
+.menuitem .rocket:before{content:"\f135"}
+.menuitem .maxcdn:before{content:"\f136"}
+
+.navmenu .backhist:hover:before,.menuitem>.chevron-left:before{content:"\f053"}
+.navmenu .nexthist:hover:before,.menuitem>.chevron-right:before{content:"\f054"}
+.menuitem>.chevron-up:before{content:"\f077"}
+.menuitem>.chevron-down:before{content:"\f078"}
+.menuitem>.chevron-circle-left:before{content:"\f137"}
+.menuitem>.chevron-circle-right:before{content:"\f138"}
+.menuitem>.chevron-circle-up:before{content:"\f139"}
+.menuitem>.chevron-circle-down:before{content:"\f13a"}
+
+.menuitem .html5:before{content:"\f13b"}
+.menuitem .css3:before{content:"\f13c"}
+.menuitem .anchor:before{content:"\f13d"}
+.menuitem .unlock-alt:before{content:"\f13e"}
+.menuitem .bullseye:before{content:"\f140"}
+.menuitem .ellipsis-h:before{content:"\f141"}
+.menuitem .ellipsis-v:before{content:"\f142"}
+.menuitem .rss-square:before{content:"\f143"}
+
+.text_icon.testexo:before,.menuitem>.testexo:before,.menuitem>.test:before,
+.menuitem .play-circle:before{content:"\f144"}
+
+.menuitem .ticket:before{content:"\f145"}
+.menuitem .minus-square:before{content:"\f146"}
+.menuitem .minus-square-o:before{content:"\f147"}
+.menuitem .level-up:before{content:"\f148"}
+.menuitem>.config_propagate:before,.menuitem>.level-down:before{content:"\f149"}
+.menuitem>.docanswer:before,.menuitem .check-square:before{content:"\f14a"}
+.menuitem .pencil-square:before{content:"\f14b"}
+.menuitem .external-link-square:before{content:"\f14c"}
+.menuitem>.share-square:before{content:"\f14d"}
+.menuitem .compass:before{content:"\f14e"}
+.menuitem .toggle-down:before,.caret-square-o-down:before{content:"\f150"}
+.menuitem .toggle-up:before,.caret-square-o-up:before{content:"\f151"}
+.menuitem .toggle-right:before,.caret-square-o-right:before{content:"\f152"}
+.menuitem .euro:before,.eur:before{content:"\f153"}
+.menuitem .gbp:before{content:"\f154"}
+.menuitem .dollar:before,.usd:before{content:"\f155"}
+.menuitem .rupee:before,.inr:before{content:"\f156"}
+.menuitem .cny:before,.rmb:before,.yen:before,.jpy:before{content:"\f157"}
+.menuitem .ruble:before,.rouble:before,.rub:before{content:"\f158"}
+.menuitem .won:before,.krw:before{content:"\f159"}
+.menuitem .bitcoin:before,.btc:before{content:"\f15a"}
+.menuitem .file:before{content:"\f15b"}
+.menuitem .file-text:before{content:"\f15c"}
+.menuitem .sort-alpha-asc:before{content:"\f15d"}
+.menuitem .sort-alpha-desc:before{content:"\f15e"}
+.menuitem .sort-amount-asc:before{content:"\f160"}
+.menuitem .sort-amount-desc:before{content:"\f161"}
+.menuitem .sort-numeric-asc:before{content:"\f162"}
+.menuitem .sort-numeric-desc:before{content:"\f163"}
+.menuitem .thumbs-up:before{content:"\f164"}
+.menuitem .thumbs-down:before{content:"\f165"}
+.menuitem .youtube-square:before{content:"\f166"}
+.menuitem .youtube:before{content:"\f167"}
+.menuitem .xing:before{content:"\f168"}
+.menuitem .xing-square:before{content:"\f169"}
+.menuitem .youtube-play:before{content:"\f16a"}
+.menuitem .dropbox:before{content:"\f16b"}
+.menuitem .stack-overflow:before{content:"\f16c"}
+.menuitem .instagram:before{content:"\f16d"}
+.menuitem .flickr:before{content:"\f16e"}
+.menuitem .adn:before{content:"\f170"}
+.menuitem .bitbucket:before{content:"\f171"}
+.menuitem .bitbucket-square:before{content:"\f172"}
+.menuitem .tumblr:before{content:"\f173"}
+.menuitem .tumblr-square:before{content:"\f174"}
+
+.menuitem>.long-arrow-down:before{content:"\f175"}
+.menuitem>.long-arrow-up:before{content:"\f176"}
+.menuitem>.long-arrow-left:before{content:"\f177"}
+.menuitem>.long-arrow-right:before{content:"\f178"}
+
+.menuitem .apple:before{content:"\f179"}
+.menuitem .windows:before{content:"\f17a"}
+.menuitem .android:before{content:"\f17b"}
+.menuitem .linux:before{content:"\f17c"}
+.menuitem .dribbble:before{content:"\f17d"}
+.menuitem .skype:before{content:"\f17e"}
+.menuitem .foursquare:before{content:"\f180"}
+.menuitem .trello:before{content:"\f181"}
+.menuitem .female:before{content:"\f182"}
+.menuitem .male:before{content:"\f183"}
+.menuitem .gittip:before{content:"\f184"}
+.menuitem .mod_sys:before,.menuitem>.mod_modif:before,
+.menuitem>.mod_new:before,.menuitem>.sun-o:before{content:"\f185"}
+
+.menuitem .moon-o:before{content:"\f186"}
+
+.menuitem>.reg_ex:before,.text_icon.archive:before,
+.menuitem>.archive:before{content:"\f187"}
+
+.menuitem>.sendbug:before,.menuitem>.bug:before{content:"\f188"}
+.menuitem .vk:before{content:"\f189"}
+.menuitem .weibo:before{content:"\f18a"}
+.menuitem .renren:before{content:"\f18b"}
+.menuitem .pagelines:before{content:"\f18c"}
+.menuitem .stack-exchange:before{content:"\f18d"}
+
+.menuitem>.doch_next:before,.text_icon.doch_next:before,
+.menuitem>.arrow-circle-o-right:before{content:"\f18e"}
+.menuitem>.doch_prev:before,.text_icon.doch_prev:before,
+.menuitem>.arrow-circle-o-left:before{content:"\f190"}
+
+.menuitem .toggle-left:before,.caret-square-o-left:before{content:"\f191"}
+.menuitem .dot-circle-o:before{content:"\f192"}
+.menuitem .wheelchair:before{content:"\f193"}
+.menuitem .vimeo-square:before{content:"\f194"}
+.menuitem .turkish-lira:before,.try:before{content:"\f195"}
+.menuitem>.add:before,.menuitem>.addh:before,
+.menuitem>.addlevel:before,.menuitem .plus-square-o:before{content:"\f196"}
+.menuitem>.Indexation:before,.server:before {content: "\f233";}
+
+.menuitem>.checkdiff:before,.menuitem>.swork:before,
+.menuitem>.fa-map-signs:before {content: "\f277";}
+
+.menuitem>.participantview:before,.child:before{content: "\f1ae";}
+
+.menuitem>.doctry:before,.paper-plane:before {content: "\f1d8";}
+
+.menuitem>.backexam:before,
+.menuitem>.fa-mortar-board:before,.menuitem>.fa-graduation-cap:before {
+  content: "\f19d";
+}
+
+.menuitem>.create_portal:before,.menuitem>.institution:before,
+.menuitem>.bank:before,.menuitem>.university:before,
+.menuitem>.struct:before {content: "\f19c";}
+
+.menuitem>.partexamclose:before,
+.menuitem>.fa-times-rectangle:before,.menuitem>.fa-window-close:before {
+  content: "\f2d3";
+}
+
+.menuitem>.clone:before,.menuitem>.cloneclass:before {content: "\f24d";}
+
+.menuitem>.automobile:before,.menuitem>.car:before {content: "\f1b9";}
+.menuitem>.bicycle:before{content: "\f206";}
+.menuitem>.doch_transfer:before,.menuitem>.bus:before {content: "\f207";}
+
+/* WIMS Messages. */
+.wims_msg.warning:before,.exclamation-triangle:before{content:"\f071"}
+
+.menuitem>.iconabout:before,.text_icon.about:before,.menuitem>.about:before,
+.info:before,.menuitem>.doch_about:before,
+.menuitem>.info-circle:before,.menuitem>.aboutw:before{content:"\f05a"}
+.info:before{color:#004077;float:left;}
+/*.help:before{color:#007740;}*/
+
+.menuitem>.doch_interactive:before,.menuitem>.mouse-pointer:before {content: "\f245";}
+
+.menuitem>.cube:before{content: "\f1b2";}
+.menuitem>.module:before,.menuitem>.cubes:before{content: "\f1b3";}
+
+/** Letters **/
+.menuitem>.createxo:before,.text_icon.createxo:before,
+.menuitem>.modtool:before,.text_icon.modtool:before,
+.menuitem>.quicktool:before,.text_icon.quicktool:before,
+.menuitem>.latex2wims:before,.text_icon.latex2wims:before{
+  font-weight:bold;
+  min-width: 1em;
+}
+
+.menuitem>.createxo:before,.text_icon.createxo:before{content:"C"}
+.menuitem>.modtool:before,.text_icon.modtool:before{content:"M"}
+.menuitem>.quicktool:before,.text_icon.quicktool:before{content:"Q"}
+.menuitem>.latex2wims:before,.text_icon.latex2wims:before{content:"L"}

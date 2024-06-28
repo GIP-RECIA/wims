@@ -1,0 +1,19 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Agent économique
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+La science économique distingue <strong>deux types d'agents économiques</strong> :
+les <span class="wims_emph">producteurs</span> et les <span class="wims_emph">consommateurs</span>.
+Un <strong>agent économique</strong> est donc une personne qui intervient dans l'activité économique soit en tant que producteur, soit en tant que consommateur.
+<p>Les <span class="wims_emph">producteurs offrent</span> des biens et des services
+tandis que les <span class="wims_emph">consommateurs demandent</span> des biens et des services.</p>
+<p>L'ensemble des producteurs est donc constitué des <span class="wims_emph">entreprises</span>
+et l'ensemble des consommateurs est constitué des<span class="wims_emph"> ménages</span>.</p>
+</div>
+

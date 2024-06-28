@@ -1,0 +1,1 @@
+!changeto lang/msg.phtml.fr $wims_read_parm

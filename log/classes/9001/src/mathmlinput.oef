@@ -1,0 +1,21 @@
+\title{mathmlinput}
+
+\statement{
+<div class="spacer">
+\special{editarea
+\special{mathmlinput [5+\frac{reply1}{reply2}],5,noanswer
+ reply 1
+ reply 2
+ }
+ }
+</div>
+Formule : \(5+\frac{x^2}{2}\).
+<div class="wimscenter">
+ \special{mathmlinput [5+\frac{reply1}{reply2}],5,noanswer
+ reply 1
+ reply 2
+ }
+ </div>
+}
+\answer{}{x^2}{type=formal}
+\answer{}{2}{type=numeric}

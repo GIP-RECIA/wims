@@ -1,0 +1,77 @@
+!!
+!! page edition to add glossary_item into a glossary
+!!
+!if $cmd=new or $cmd=resume
+  $name_insert <span class="tt wims_fname">$dir</span>
+  !if $iniparm!=$empty
+    $name_parm
+    <p>
+    <span class="tt wims_parm">
+    !replace internal & by &amp; in $iniparm
+    </span>
+    </p>
+  !endif
+  !form reply
+  <fieldset class="property_fields halfwidth blockcenter">
+    <legend>$name_title</legend>
+    <div class="field box">
+    <label for="pickglossary">$name_choose</label>
+    <select name="pickglossary" id="pickglossary">
+    !for i=1 to $glossarytot
+      !set sh=!line $i of $glossarys
+      !set se=!item 1 of $sh
+      !set ti=!item 2 to -1 of $sh
+      !if $se>0
+        !if $se=$glossarytot
+          <option value="$se" selected="selected">$wims_name_Glossary $se: $ti</option>
+        !else
+          <option value="$se">$wims_name_Glossary $se: $ti</option>
+        !endif
+      !endif
+    !next i
+    <option value="$[$glossarytot+1]">$name_newglos</option>
+    </select>
+    </div>
+    <div id="js-new_glossary" class="field box">
+      <ul class="wims_nopuce"><li>
+      <label for="new_glossary">$name_newglostitle</label>
+      <input size="50" name="new_glossary" value="$new_glossary" id="new_glossary" maxlength="$title_limit">
+      </li><li>
+      <label for="new_glossarydesc">$wims_name_Description</label>
+      <input size="50" name="new_glossarydesc" value="$new_glossarydesc" id="new_glossarydesc">
+      </li>
+      </ul>
+    </div>
+    <div class="field box">
+      <label for="gloss_title">$name_titleglose</label>
+      <input size="50" name="title" value="$gl_title" id="gloss_title" required="required" maxlength="$title_limit">
+    </div>
+    !if $jquery_defined=yes
+      <script>
+        $$('#pickglossary').on('change', function() {
+          var check = this.value === "$[$glossarytot+1]";
+          $$("#new_glossary").prop('required', check);
+          !!$$("#gloss_title").prop('required', check);
+          if(check){
+            $$("#js-new_glossary").slideDown();
+          }else{
+            $$("#js-new_glossary").hide();
+          }
+        }).change();
+      </script>
+    !endif
+    <input type="hidden" name="job" value="add">
+    <div class="wimscenter wimsform"><input type="submit" value="$wims_name_Insert"></div>
+  </fieldset>
+  !formend
+!endif
+
+!if $cmd=reply
+  <div class="wims_msg success">$name_endadd $pickglossary.</div>
+  <div class="wimscenter menuitem">
+    !set wims_ref_class=glossarycheck
+    !href module=adm/tool/glossary&gl=$pickglossary $wims_name_glossarycheck
+  </div>
+  !set wims_menu_items=!append line glossarycheck,1,module=adm/tool/glossary&gl=$pickglossary\
+to $wims_menu_items
+!endif

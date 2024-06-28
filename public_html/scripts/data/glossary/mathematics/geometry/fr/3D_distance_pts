@@ -1,0 +1,22 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=coordinates, distance,analytic_geometry,solid_geometry
+!set gl_title=Distance de deux points de l'espace
+!set gl_level=H6 Générale&nbsp;Spécialité
+:
+:
+:
+:
+L'espace est muni d'un repère <strong>orthonormé</strong>
+\(\left(O;\overrightarrow{i},\overrightarrow{j},\overrightarrow{k}\right)\).
+<div class="wims_thm"><h4>Théorème</h4>
+Si \(\mathrm{A}\) et \(\mathrm{B}\) sont deux points de coordonnées respectives
+\((x_\mathrm{A}; y_\mathrm{A}; z_\mathrm{A})\) et
+\((x_\mathrm{B}; y_\mathrm{B}; z_\mathrm{B})\) alors <strong>la distance</strong>
+\(\mathrm{AB}\) des deux points \(\mathrm{A}\) et \(\mathrm{B}\) est donnée
+par&nbsp;:
+<div class="wimscenter">
+\(\sqrt{(x_\mathrm{B} - x_\mathrm{A})^2 + (y_\mathrm{B} - y_\mathrm{A})^2 +
+(z_\mathrm{B} - z_\mathrm{A})^2}\).
+</div>
+</div>

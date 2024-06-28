@@ -1,0 +1,57 @@
+type=imaudio
+textarea="data instruction"
+iEdit="instruction"
+
+:Escribir la palabra escuchada (se proporcionarán los audios).
+
+Se propone un audio y se debe escribir el texto exactamente. El audio se debe poner en la clase.
+<p>
+Para construir un ejercicio con este modelo, simplemente escriba la lista de
+palabras y coloque los archivos con sus audios en la clase.
+</p><p>
+Para obtener más posibilidades, utilice Quicktool.
+</p><p class="wims_credits">
+Autor del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Escuchar y escribir II}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciado
+\text{instruction=Escriba la palabra escuchada, sin errores ortográficos.
+Observe que el ejercicio sólo funcionará cuando haya cargado el audio al ejercicio.}
+
+:Lista de audio y de palabras
+\text{data=nom_audio1,doctor
+nom_audio2,teacher
+nom_audio3,journalist}
+
+:El tamaño vertical de las cajas en número de caracteres
+\integer{size=12}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+\text{mot=randrow (\data)}
+
+\statement{
+\instruction
+<div class="wimscenter">
+\audio{\imagedir/\mot[1]}
+</div>
+
+<div class="wimscenter">
+ \embed{r1, \size
+ default
+ autocomplete="off"}
+</div>
+}
+\answer{}{\mot[2..-1]}{type=case}

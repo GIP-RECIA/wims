@@ -1,0 +1,309 @@
+!! procedure for create a new virgin class (in or not a structure)
+
+today=!char 1 to 8 of $wims_now
+thisyear=!char 1 to 4 of $today
+thismonth=!char 5,6 of $today
+thisday=!char 7,8 of $today
+limit_expdate=!sh date --date '1 years 3 months' +%Y%m%d
+!if $thismonth>5
+  !default exp_date=$[min($[$thisyear+1]0915,$limit_expdate)]
+!else
+  !default exp_date=$(thisyear)0915
+!endif
+
+!default limit=50
+!default ilimit=50
+!default level=U1
+
+!if $step=0
+  !reset code,password,passsup
+  Cltype=$cltype
+!endif
+
+!if $step=1
+  code=
+  !if $agreecgu!=yes
+    error=noagreecgu
+    !exit
+  !endif
+
+  !! for groups and portals
+
+  !! for subclasses, supervisor already exists.
+  !if $Cltype=1
+    listpwd=password
+  !else
+    listpwd=password,passsup
+  !endif
+
+  !if $Cltype isin 24
+    !reset level,checklist
+  !endif
+
+  !for i in $(checklist)institution,description,firstname,lastname,email,$listpwd,location
+    $i=!translate ,!$$"< to $     $ in $($i)
+    $i=!singlespace $($i)
+    $i=!trim $($i)
+
+    !!required fields (class password can be empty except for portal where the password is for
+    !!  teacher registering)
+    !if $($i)=$empty and $i notitemof location and ($i notitemof password or $Cltype isin 24)
+      error=has_empty
+      error_subject=$i
+      !exit
+    !endif
+
+    !! fields with a minimun length
+    n=!charcnt $($i)
+    !if $n<$(min_$i) and $i notitemof location,password
+      error=too_short
+      error_subject=$i
+      !exit
+    !endif
+
+    !! fields with a maximum length
+    !if $n>$(max_$i)
+      $i=!char 1 to $(max_$i) of $($i)
+      warn=too_long
+      warn_subject=$i
+    !endif
+  !next i
+  !! --- check geoloc
+  geoloc=!text select -0123456789., in $geoloc
+  X=!item 1 of $geoloc
+  X=$[$X * 1]
+  Y=!item 2 of $geoloc
+  Y=$[$Y * 1]
+  N=!itemcnt $geoloc
+  !if $N!=2 or NAN isin $X$Y
+    geoloc=$empty
+  !endif
+  !! --- end check geoloc
+  !!! can be defined in the file names.phtml.$lang if it is not the good order
+  !default name_username=$firstname $lastname
+  supervisor=$name_username
+  secure=!trim $secure
+  !if $secure!=$empty
+    secheck=!checkhost $secure
+    !if $secheck<1
+      error=bad_secure
+      !exit
+    !endif
+  !endif
+  ilevel=!char 1,2 of $level
+  !if $Cltype notin 24 and $ilevel notitemof $wims_listlevel
+    error=bad_level
+    !exit
+  !endif
+
+  !for i in $listpwd
+    ptest=!text select $char_passwd in $($i)
+    !if $ptest != $($i)
+      error=bad_pass
+      error_subject=$i
+      !exit
+    !endif
+  !next i
+  temoin=!tolower $institution,$description
+  existing=!recordcnt wimshome/log/classes/.index
+  !for i=1 to $existing
+    test=!record $i of wimshome/log/classes/.index
+    test=!item 3 to -1 of $test
+    test=!replace , $ by , in $test
+    test=!tolower $test
+    !if $test=$temoin
+      error=existing
+      !exit
+    !endif
+  !next i
+  exp_year=!char 1 to 4 of $exp_date
+  exp_month=!char 6 to 7 of $exp_date
+  exp_day=!char 9 to 10 of $exp_date
+  !if N isin $exp_day$exp_month$exp_year or \
+    $exp_day<1 or $exp_month<1 or $exp_year<$thisyear or \
+    $exp_day>31 or $exp_month>12 or $exp_date>$limit_expdate
+    error=bad_date
+    !exit
+  !endif
+  expiration=$exp_year$exp_month$exp_day
+  !if $expiration<=$today
+    error=anti_date
+    !exit
+  !endif
+  ilimit=$[abs(floor($limit))]
+  !if NaN isin $ilimit or $ilimit<10
+    ilimit=10
+  !endif
+  !if $ilimit>$wims_class_user_limit
+    ilimit=$wims_class_user_limit
+  !endif
+  email=!word -1 of $email
+  email=!translate <>,;% to $     $ in $email
+  !if @ notin $email
+    error=bad_email
+    !exit
+  !endif
+  mailtest=!translate @ to $\
+$ in $email
+  mailtest=!line 2 of $mailtest
+  !if . notin $mailtest
+    error=bad_email
+    !exit
+  !endif
+  pword=!passcrypt $password
+  !if $Cltype=1
+    psup=!defof user_password in $userdef
+  !else
+    psup=!passcrypt $passsup
+  !endif
+  password=
+  passsup=
+  datasave=$institution\
+$description\
+$lastname\
+$firstname\
+$email\
+$location\
+$geoloc
+  !exit
+!endif
+
+!if $step=2
+  passsup_check=!passcheck $passsup and $psup
+  passclass_check=!passcheck $password and $pword
+  !reset tmp
+  !if $pword!=$empty and $passclass_check!=yes
+    tmp=class
+  !endif
+  !if $passsup_check!=yes and $Cltype!=1
+    tmp=!append word sup to $tmp
+  !endif
+  !if $tmp!=$empty
+    error=pass_discord $tmp
+    !exit
+  !endif
+  !if $regpolicy=file or $wims_user!=$empty
+    code=$r_code
+  !else
+    :newcode
+    code=!randint 11111,10^7-1
+    class_defined=
+    !defread wimshome/log/classes/$code/.def
+    !if $class_defined=yes
+      !goto newcode
+    !endif
+  !endif
+  !if $regpolicy=email
+    !read adm/language lang/mail.proc
+    typecode=
+    !exit
+  !else
+    typecode=$code
+    step=3
+  !endif
+!endif
+
+!if $step=3
+  !if $code=$empty or $code!=$typecode
+    error=bad_code
+    !exit
+  !endif
+  !distribute lines $datasave into \
+    institution,description,lastname,firstname,email,location,geoloc
+  class_defined=
+  !defread wimshome/log/classes/$code/.def
+  !if $class_defined=yes
+    error=duplicate
+    !exit
+  !endif
+  !!lastname=!word -1 of $supervisor
+  !!firstname=!word 1 to -2 of $supervisor
+  !!lastname=!char 1 to 30 of $lastname
+  !!firstname=!char 1 to 50 of $firstname
+  !default name_username=$firstname $lastname
+  supervisor=$name_username
+  !if ! isin $institution$description$supervisor or \
+      ? isin $institution$description$supervisor or \
+    (+134.59.102. isin +$httpd_REMOTE_ADDR and unice.fr+ notin $email+)
+    error=abuse
+    !exit
+  !endif
+   # abuse check
+  check=!deaccent $check
+  check=!lower $institution, $description, $supervisor, $location
+  mask=!text mark $char_lower in $check
+  check=!text select $char_lower in $check
+  check=!text expand $check using $mask
+  dictionary=bases/sys/abuse.$lang
+  check=!exec translator $check
+  !if abuse iswordof $check
+    error=abuse
+    !exit
+  !endif
+  !if $wims_class!=$empty
+    superclass=!append item $class_superclass to $wims_class
+    superclass=!nonempty items $superclass
+    cadd_Supervisor=$wims_user
+    !if $wims_user!=supervisor
+      wims_supervise=!append item $code to $wims_supervise
+      !setdef !set user_supervise=$wims_supervise in $userdef
+      !setdef wims_supervise=$wims_supervise in wimshome/$wims_sesdir/var.stat
+    !endif
+  !else
+    !reset superclass
+  !endif
+  !for t in description,institution,email,lang,expiration,\
+      superclass,defid,secure,cas_auth,location,geoloc
+    cadd_$t=$($t)
+  !next t
+  cadd_cas_auth=!listcomplement other in $cadd_cas_auth
+  cadd_password=$pword
+  cadd_limit=$ilimit
+  cadd_level=$ilevel
+  cadd_type=$Cltype
+  cadd_typename=class
+  cadd_bgcolor=$wims_bgcolor
+  cadd_bgimg=$wims_bgimg
+  cadd_css=$(wims_css)
+  cadd_theme=$(wims_theme)
+  cadd_theme_icon=$(wims_theme_icon)
+  !if $cadd_cas_auth!=$empty
+    cadd_authidp=cas;
+  !endif
+  !if $superclass!=$empty
+    cadd_parent=$superclass
+  !endif
+  !for t in firstname,lastname,email,agreecgu
+    sadd_$t=$($t)
+  !next t
+  psup=!passcrypt $psup
+  sadd_password=$psup
+  sadd_agreesupcgu=yes
+  !read adm/class/addclass $code
+  !if $error!=$empty
+    !exit
+  !endif
+  !defread wimshome/log/classes/$code/.def
+  !if $class_defined!=yes
+    error=define_fail
+    !exit
+  !endif
+  !if $wims_class!=$empty
+    !sh $wims_home/log/classes/.build-index $wims_class
+  !else
+    !sh $wims_home/log/classes/.build-index $code
+  !endif
+  !if $wims_user!=$empty
+    creator=$wims_class/$wims_user
+    !if $wims_email=$empty
+      !setdef !set user_email=$email in $userdef
+    !endif
+    !setdef !set user_agreesupcgu=yes in $userdef
+  !else
+    creator=$email
+  !endif
+  wims_module_log=created $code by $creator
+  !if $wims_user!=$empty and $job=emptyclass
+    !restart module=home
+  !endif
+!endif

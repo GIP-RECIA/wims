@@ -1,0 +1,30 @@
+<h2>$wims_name_mod_resume</h2>
+!set data=!sh head -$syslimit $wims_home/public_html/html/Changelog_resume
+
+!set data_linecnt=!linecnt $data
+
+!for j=1 to $data_linecnt
+  !set tmp=!line $j of $data
+  !if :: isin $tmp
+    !if $begin=1
+      </ul>
+      !set begin=0
+    !endif
+    <h3>
+    !char 3 to -1 of $tmp
+    </h3>
+    !set begin=1
+    <ul>
+  !else
+    !if $tmp!=$empty
+      !if : isin $tmp
+          <li>
+        !char 2 to -1 of $tmp
+        </li>
+      !else
+        $tmp
+      !endif
+    !endif
+  !endif
+!next
+</ul>

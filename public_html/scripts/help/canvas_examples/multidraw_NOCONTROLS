@@ -1,0 +1,12 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 2,2,grey
+linewidth 3
+strokecolor green
+fillcolor blue
+filled
+opacity 255,60
+multilabel NOCONTROLS
+multidraw circles
+# RIGHT MOUSE CLICK REMOVES LAST OBJECT

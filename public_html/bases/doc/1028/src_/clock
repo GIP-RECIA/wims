@@ -1,0 +1,28 @@
+Clock
+:clock:type 0
+clock 0,0,80,3,30,21,0,0,red
+:clock:type 1
+clock 0,0,80,3,30,10,1,0,red
+:clock:type 2
+clock 0,0,80,3,30,45,2,0,red
+:clock:type 2
+clock 0,0,80,3,30,21,2,0,red
+:clock:optional colors
+clock 0,0,80,3,30,21,2,0
+:clock
+clock 0,0,80,3,30,21,2,0,red,green,black,white
+
+:
+clock 0,0,80,1,15,15,1,2,,
+:
+clock 0,0,80,1,15,15,1,2
+:
+clock 0,0,80,2,35,25,1,2,,,,yellow,red
+
+:
+clock 0,0,80,3,45,35,1,2,white,white,white,black,yellow
+:
+clock 0,0,80,4,25,45,1,2,,
+:
+clock 0,0,80,5,55,55,1,2,,,,yellow,red
+:fine:fine

@@ -1,0 +1,39 @@
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">¸öÈËµÄ×Ü»î¶¯</h2>
+  </div>
+´Ë±í¸ñÕ¹Ê¾
+<ul>
+<li>×î½üÒ»´Î×ö×÷ÒµµÄÈÕÆÚé
+</li>
+<li>»á»°´ÎÊı 
+</li>
+<li>
+Ã¿Ò»Ò³µÄÍê³É×÷Òµ(µÃµ½·ÖÊı)µÄ¸öÊı(ÖØ¸´Ò²Ëã½øÈ¥),
+»¨·ÑµÄÊ±¼ä.
+</li>
+</ul>
+</div>
+
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">Temps de connexion</h2>
+  </div>
+  Il s'agit du temps de connexion dans la classe quelle que soit l'activité : regarder ses notes, le cahier de texte,\
+      faire des exercices, travailler sur un document, etc... Contrairement aux données présentées dans les tableaux d'activités
+      individuelles qui elles concernent uniquement le travail sur des exercices d'une feuille ou d'un examen.
+<ul>
+  <li>Les données sont mises à jour une fois par nuit lors de la maintenance du serveur.</li>
+  <li>La plage de date démarre à la création de la classe (ou au plus un an avant le jour courant) et se termine la veille du jour courant.</li>
+  !if $class_type=1 or $class_type=3
+    <li>Dans un groupement ou un portail d'établissement, les statistiques d'activités concernent l'activité globale dans la structure
+    (toutes classes confondues).</li>
+  !endif
+  !if $wims_user=supervisor
+    <li>L'unité de temps qui permet de régler l'échelle de couleur est modifiable dans le panneau de configuration de la classe.</li>
+    !if $wims_show_stat!=yes
+      <li>Les statistiques de connexion ont été désactivées par l'administrateur du serveur.</li>
+    !endif
+  !endif
+</ul>
+</div>

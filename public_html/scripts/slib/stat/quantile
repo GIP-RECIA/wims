@@ -1,0 +1,59 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+slib_title=Quantile
+slib_parms=3\
+ ,data\
+ [0.1,0.25,0.5,0.75,0.9],ordres des quantiles demandés (réels entre 0 et 1)\
+ 2,option 1 ou 2
+
+slib_out= Quantiles
+slib_comment=Option 1 : donne la j-ème\
+  valeur de data ordonné par ordre croissant avec j=ceil(np)\
+  si n est la taille de data et p l'ordre du quantile demandé.\
+  Option 2 : la formule diffère seulement\
+  lorsque np est un entier; dans ce cas, la valeur donnée est\
+  la moyenne des j-ème et (j+1)-ème valeurs de data ordonné\
+  par ordre croissant.
+slib_author=Sophie, Lemaire
+
+slib_example=[0,1,1,7,8,9,4],[0.25,0.5,0.75,0.9,0.1],1\
+[0,1,1,7,8,9,4],[0.25,0.5,0.75,0.9,0.1],2\
+[-1.5,1,1.5,7,8,9,4,5,6,4],[0,0.2,0.5,0.7,1],1\
+[-1.5,1,1.5,7,8,9,4,5,6,4],[0,0.2,0.5,0.7,1],2\
+[-2],[0.5]
+!exit
+:proc
+!reset slib_out
+!distribute item $wims_read_parm into slib_data,slib_order,slib_option
+!set slib_data=!declosing $slib_data
+!set slib_order=!declosing $slib_order
+!default slib_order=0.1,0.25,0.5,0.75,0.9
+slib_data=!sort numeric items $slib_data
+
+slib_datacnt=!itemcnt $slib_data
+slib_ordercnt=!itemcnt $slib_order
+slib_data=!nospace $slib_data
+slib_quant=!values ceil(x*$slib_datacnt)+1 for x in $slib_order
+slib_data=$(slib_data[1]),$slib_data,$(slib_data[-1])
+
+!default slib_option=2
+!if $slib_option=1
+  slib_quantile=!item $slib_quant of $slib_data
+!endif
+
+!if $slib_option=2
+  slib_quant2 = $slib_quant
+  !for slib_i = 1 to $slib_ordercnt
+    slib_aux = $[$(slib_order[$slib_i])*$slib_datacnt]
+    slib_aux = $[ceil($slib_aux)-$slib_aux]
+    !if $slib_aux=0
+      slib_quant2=!replace item number $slib_i by $[$(slib_quant[$slib_i])+1] in $slib_quant2
+    !endif
+  !next
+  slib_quant=!item $slib_quant of $slib_data
+  slib_quant2=!item $slib_quant2 of $slib_data
+  slib_quantile=!exec pari ([$slib_quant]+[$slib_quant2])*0.5
+!endif
+
+slib_out=$slib_quantile

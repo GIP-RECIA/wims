@@ -1,0 +1,77 @@
+# Variable initialisation file.
+# This file is read by wims for new sessions.
+# content of the file: initialisation of the problem.
+!set data_dir=wimshome/public_html/scripts/data/glossary
+!set data_dir0=scripts/data/glossary
+!default gl=0
+!if $wims_class!=$empty and $gl>0
+  !reset Listfile2
+  !set test=!filexists wimshome/log/classes/$wims_class/tool/.glossary$gl
+  !if $test=yes
+    !set tmp=!record $gl of wimshome/log/classes/$wims_class/tool/.glossaryindex
+    !distribute lines $tmp into o_,ti_,de_
+    !set test_cnt=!recordcnt wimshome/log/classes/$wims_class/tool/.glossary$gl
+    !for j=1 to $test_cnt
+      !set g_r=!record $j of wimshome/log/classes/$wims_class/tool/.glossary$gl
+      !distribute lines $g_r into a_,t_
+      !set Listfile=!append line $t_;$a_ to $Listfile
+      !!to compare with connex gloses
+      !set Listfile2=!append item $a_/main to $Listfile2
+    !next
+    !set Listfile=!replace internal / by , in $Listfile
+    !set glossary_self=no
+    !goto end
+  !endif
+!endif
+
+!! not used finally ...
+!!set dirparm=mathematics\
+probability,analysis\
+en
+
+!set listfile=!filelist $data_dir0
+!set listfile=!lines2items $listfile
+!set listfile=!listcomplement index, glist, mkindex.pl,strong_index, connex_domain in $listfile
+!if $(dirparm[1;])!=empty and $dirparm!=$empty
+  !set listfile=!listintersect $(dirparm[1;]) and $listfile
+!endif
+!for dir in $listfile
+  !set listfile1=!filelist $data_dir0/$dir
+  !set listfile1=!listcomplement macro in $listfile1
+  !set listfile1=!lines2items $listfile1
+  !if $(dirparm[2;])!=empty and $dirparm!=$empty
+    !set listfile1=!listintersect $(dirparm[2;]) and $listfile1
+  !endif
+  !for dir1 in $listfile1
+    !set listfile2=!filelist $data_dir0/$dir/$dir1
+    !set listfile2=!lines2items $listfile2
+    !set listfile2=!trim $listfile2
+    !if $(dirparm[3;])!=empty and $dirpar!=$empty
+      !set listfile2=!listintersect $(dirparm[3;]) and $listfile2
+    !endif
+    !for dir2 in $listfile2
+      !set listfile3=!filelist $data_dir0/$dir/$dir1/$dir2
+      !set listfile3=!lines2items $listfile3
+      !set listfile3=!trim $listfile3
+      !for dir3 in $listfile3
+        !set tmp=!getdef gl_type in $data_dir/$dir/$dir1/$dir2/$dir3
+        !default tmp=main
+        !if $dir2!=macro
+          !set Listfile=!append line $dir,$dir1,$dir2,$dir3,$tmp to $Listfile
+        !endif
+      !next
+    !next
+  !next
+!next
+
+:end
+
+!set Listfile=!nonempty lines $Listfile
+!set Listfile=!sort nocase line $Listfile
+!set Listfilecnt=!linecnt $Listfile
+
+!set listlang=!column 3 of $Listfile
+!set listlang=!listuniq $listlang
+!set listlang=!sort item $listlang
+status=waiting
+wims_module_log=$cmd

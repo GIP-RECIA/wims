@@ -1,0 +1,51 @@
+% traduzione locale di H5/analysis/suites.fr -- suites_rel_rec_par
+\title{Ricorrenza}
+\language{it}
+\range{-5..5}
+\author{Frédéric, Pitoun}
+\email{frederic.pitoun@free.fr}
+\computeanswer{yes}
+\format{html}
+\precision{1000}
+
+\integer{a=randint(-1,1)*randint(1..5)}
+\integer{b=randint(1..5)}
+\integer{c=randint(-1,1)*randint(1..5)}
+
+\integer{u0=randint(-5..5)}
+\function{f=maxima(\b*n+\c)}
+\integer{p=\confparm1= ? 2:\confparm1}
+\integer{n=randint(2..\p)}
+
+\integer{rep1=\a*\u0+\b*0+\c}
+\integer{rep2=\a*\rep1+\b*1+\c}
+
+\function{fonc=maxima(\a*x+\b*y+\c)}
+\text{fonc=wims(replace internal y by n in \fonc)}
+\text{fonc=wims(replace internal x by u_n in \fonc)}
+
+\text{rel=texmath(\fonc)}
+
+
+
+
+
+
+
+\statement{
+Considerare la sequenza \((u_n)) definita ricorsivamente ponendo \(u_0=\u0) e 
+<p class="wimscenter">
+\(u_{n+1}=\rel)
+</p>
+Calcolare \(u_1) e \(u_2) .<br/>
+<p class="wimscenter">
+Il termine \(u_1\)  vale \(\;\;\) \embed{reply 1,5}
+</p>
+<p class="wimscenter">
+Il termine \(u_2\)  vale \(\;\;\) \embed{reply 2,5}
+</p>
+}
+
+
+\answer{Risposta u_1}{\rep1}{type=default}
+\answer{Risposta u_2}{\rep2}{type=default}

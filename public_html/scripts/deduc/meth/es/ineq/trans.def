@@ -1,0 +1,59 @@
+!set methtit2=Aplicar la transitividad de las desigualdades
+!set methtit=Transitividad de desigualdades
+!set methenv=ZZ QQ RR
+!set methparmtype=parm inequality >,parm inequality >
+!set methhelp=Este método aplica transitividad en dos desigualdades\
+   del estilo \(a > b) y \(b > c), para deducir una tercera \(a > c) que \
+   pondrá en las hipótesis. Las dos desigualdades iniciales se pueden dar \
+   en la forma \(a > b) y \(c < b) por ejemplo.
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!exit
+:form
+Aplicar la transitividad a las desigualdades
+!read deduc/methparm.phtml 1
+$ y
+!read deduc/methparm.phtml 2
+
+!exit
+:check
+!distribute items $methparmobj1 into data,left1,sign1,right1
+!distribute items $methparmobj2 into data,left2,sign2,right2
+methexp=Transitividad en \($left1 $sign1 $right1) y \($left2 $sign2 $right2)
+
+gt=>
+lt=<
+!if ($gt isin $sign1 and $lt isin $sign2) or\
+	($lt isin $sign1 and $gt isin $sign2)
+  !exchange left2,right2
+!endif
+!read deduc/sub/simplify ($right1) - ($left2)\
+	($right2) - ($left1)
+!distribute lines $out into test1,test2
+!if $test1!=0
+  !if $test2!=0
+    error=La transitividad no se aplica a sus desigualdades.
+    !advance penalty
+    !exit
+  !else
+    !exchange right1,right2
+    !exchange left1,left2
+  !endif
+!endif
+
+!if $gt isin $sign1
+  s_=>
+!else
+  s_=<
+!endif
+eq=$empty=
+!if $eq isin $sign1 and $eq isin $sign2
+  s_=$s_=
+!endif
+newobject0=$left1 $s_ $right2
+oldobject=0
+
+!exit

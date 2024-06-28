@@ -1,0 +1,33 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Liquidation
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">En fiscalité, la <strong>liquidation</strong>
+ d'un impôt correspond à la <span class="wims_emph">procédure par laquelle
+ l'impôt est calculé</span>. "Liquider" un impôt signifie donc "calculer" un impôt.
+ 
+<div class="spacer">Il est à noter que certains impôts sont calculés
+ par l'<span class="wims_emph">administration fiscale</span> alors que d'autres
+ sont calculés soit par un <span class="wims_emph">intermédiaire</span>, soit par
+ le <span class="wims_emph">contribuable lui-même</span>. Dans ce dernier cas, on parle alors de procédure <span class="wims_emph">auto-liquidative</span>.
+</div>
+
+
+<div class="wims_rem"><h4>Exemples :</h4>
+<ul class="spacer">
+<li>l'impôt sur le revenu est calculé par l'administration fiscale ;</li>
+<li>la TVA est calculée par les entreprises ;</li>
+<li>l'impôt sur les sociétés est calculé par les sociétés.</li>
+</ul>
+
+
+</div>
+
+
+</div>

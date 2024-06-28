@@ -1,0 +1,214 @@
+N_manage	=Configurazione di WIMS online
+wims_name_mirror  = Mirrors
+wims_name_Mirror  = Mirrors
+
+name_nopreparationsheet=Non avete predisposto alcun test di autovalutazione in cui inserire le attività. Vi consigliamo di creare subito un test prima di cominciare la ricerca.
+
+N_within	=tra
+## define also in scripts/adm/search_engine
+N_clear		=ricomincia da capo
+
+N_go		=vai
+name_importfromtest=materiali didattici dalla zona di Test
+N_at		=presso
+N_hide		=Nascondi
+name_allexampleclass=Tutti i corsi pubblici
+
+name_example_motd=State visitando questo corso aperto come visitatore anonimo.\
+Se volete avere un resoconto attendibile del vostro lavoro, vi consigliamo di disconnettervi \
+e di registrarvi con i vostri dati. Le iscrizioni sono resettate regolarmente, \
+ma mai nel corso dell'anno scolastico.
+
+V_title		=WWW Interactive Multipurpose Server
+V_cls		=Corsi interattivi
+wims_name_n_participant = Area Studenti
+wims_name_n_supervisor = Area Docenti
+wims_name_mail = Contatta il docente
+
+wims_name_ref           = Indirizzi di provenienza
+wims_name_stat          = Statistiche
+wims_name_title_stat=Statistiche di utilizzo di questo server WIMS
+
+CR_1		=Creazione di risorse pedagogiche
+CR_Docs		=Documentazione
+## old version
+CR_OEF		=esercizi interattivi semplici
+CR_mod		=moduli	di esercizi completi
+CR_sequence	=Avete scelto di presentare agli studenti le risorse attraverso percorsi pedagogici.\
+Quando create nuove risorse ricordatevi di aggiungergerle al percorso corrispondente.
+
+##
+
+E_comp		=compilato il
+E_manager	=Amministratore del sito
+E_software	=Software utilizzato
+!set name_wimsabout1=Se avete riscontrato un problema con questo server,\
+potete contattare l'
+!set name_wimsabout2=precisando:\
+<ul><li> il <strong>codice del corso</strong> se il problema si è verificato mentre lavoravate in un corso virtuale (e se proprio non avete il codice, per lo meno il nome del corso);\
+    </li><li> la <strong>data e l'ora</strong> in cui si è verificato il problema;\
+    </li><li> il <strong>sistema operativo</strong> del vostro computer (per esempio: <span class="tt">Ubuntu versione 14.04</span>, <span class="tt">Windows 10</span>...);\
+    </li><li> il <strong>browser</strong> che utilizzate (per esempio: <span class="tt">firefox versione 55.0.2</span> ...);\
+    </li><li> la <strong>natura del problema</strong>, descrivendo con precisione tutto quello che avete fatto prima che il problema si verificasse.\
+</li></ul>\
+Se avete dimenticato i dati di accesso al corso, invece dovete \
+    <strong>contattare il vostro docente</strong>.
+wims_name_About_icons=Tema per le Icone
+wims_name_Change_log=Modifiche
+
+
+RE_prev     =!nosubst Risultati precedenti
+RE_next     =!nosubst Risultati successivi
+RE_found	=!nosubst Sono stati trovate $Gotcnt $tt
+RE_found2= Risultati ordinati secondo il tipo di attività.\
+  Clicca sul bottone corrispondente per vedere i risultati di ciascun tipo.
+RE_warning_more= !nosubst La ricerca ha portato a troppi risultati, ne vengono mostrati solo alcuni \
+  (fino a un massimo di $gotlim2 per tipo di attività). È possibile raffinare la ricerca \
+  aggiungendo parole chiave e utilizzando la ricerca su tutti i termini\
+  (tutte le parole).
+RE_nomatch	=!nosubst Nessun risultato trovato
+RE_pop		=!nosubst Ecco i/le $gotcnt $tt più utilizzati/e
+RE_pop2		=!nosubst $gotcnt $tt in ordine di frequenza di utilizzo\
+(da $[$list_start+1] a $[$list_start+$gotcnt])
+RE_try		=Prova la ricerca in
+RE_noKeyword    =È ncessario inserire una parola chiave
+
+U_greet		=!nosubst Cara/o $wims_firstname $wims_lastname, benvenuta/o!
+
+U_newmsg	=Ci sono $$newmsgcnt nuovi messaggi nel forum.
+U_nosheet	=Non c'è materiale disponibile. Torna più tardi.
+
+U_assign	=Il docente ha predisposto il seguente materiale.
+U_expired	=chiuso, a disposizione per consultazione
+U_done		=completato
+U_average	=con media
+U_examworking	=Questo è un esame!
+U_examdouble	=In questo caso non puoi accedere da un'altra postazione.
+U_examcont	=Continua con questo esame.
+wims_name_U_oclass = Zone di lavoro
+wims_name_U_account	=I miei dati
+wims_name_coeff         = peso
+
+U_gotoclass1	=Accedi come studente:
+U_gotoclass3	=Accedi come docente:
+U_gotoclass0	=Puoi accedere alle seguenti zone di lavoro:
+U_gotoclass11 = $U_gotoclass1
+U_gotoclass31 = $U_gotoclass3
+U_gotoclass01 = $U_gotoclass0
+U_nogotoclass = Nessun corso con accesso docente.
+
+U_inscription1	=Per registrarvi ad una delle zone di lavoro, cliccate su uno dei corsi in elenco:
+U_inscription2	=Iscriviti a un modulo come studente.
+U_clickhere	=Clicca qui
+U_supervise	=Iscriviti a un modulo come docente.
+name_gotosupervise=Per accedere a un modulo non in elenco come docente, contatta il docente coordinatore.
+SU_greet	=!nosubst Cara/o,  $wims_firstname $wims_lastname! <br>Benvenuta/o\
+nella pagina di gestione del tuo corso interattivo
+SU_Bhome	=Ritorna alla pagina di gestione del corso interattivo
+SU_log		=area docente
+SU_exp1		=che si conclude il
+SU_exp2		=
+SU_nosheet	=Non c'è ancora materiale per gli studenti.
+
+!!! In a group of classes
+!if $class_type=2
+SU_nosheet =Questa zona è dedicata esclusivamente alla configurazione del coordinamento di corsi.\
+<ul><li>\
+Cliccare su "Help su WIMS" per visionare le istruzioni relative al funzionamento di un gruppo di corsi coordinati.\
+</li><li>\
+Come prima cosa configurare la modalità di autenticazione per il corso (in "Configurazione del corso")\
+prima di inserire studenti e/o docenti.\
+</li></ul>
+!endif
+!!! In a class zone in an institutional structure:
+!if $class_typename=class and $class_type=3
+SU_nosheet =Questa zona è dedicata all'iscrizione degli stuenti di uno stesso turno/sezione con accesso a \
+ uno stesos insieme di corsi.\
+ <ul><li>Potete inserire in questo spazio un "Messaggio del giorno" \
+ visibile a tutti i partecipanti che accedono a questa zona prima di \
+ entrare in uno dei corsi disponibili (cfr. "Vita del corso").\
+</li><li>\
+ La voce del menu "Strumenti del corso" permette di aggiungere le attività.\
+</li><li>\
+ Cliccando su una qualsiasi delle voci, nella pagina di creazione delle attività sono disponibili "Istruzioni" dedicate.\
+</li></ul>
+!endif
+!!! In a test zone:
+!if /0// isin $wims_class//
+SU_nosheet =Questa zona è dedicata alla preparazione delle attività.\
+ Una volta verificate, le attività qui presenti devono essere messe a disposizione degli studenti \
+ importandole nella zona dell'insegnamento/materia.\
+<div>\
+Consiglio: potete utilizzare questa zona per riutilizzare le risorse di un certo insegnamento/materia da \
+ un anno all'altro.</div>
+!endif
+
+!!! In an individual class or a program zone:
+!if $class_typename=program or $class_type=0 or\
+   ($class_type=1 and $class_typename!=course and /0// notin $wims_class//)
+
+SU_nosheet =Per configurare rapidamente il corso:\
+<ul><li>\
+Utilizzare il motore di ricerca per individuare e quindi selezionare test di autovalutazione\
+ o documenti prodotti da altri docenti e disponibili nella distribuzione.\
+</li><li>\
+Utilizzare il link "Strumenti del corso" per creare da zero i vostri\
+test di autovalutazione o documenti.\
+</li><li>\
+ Un test di autovalutazione può contenere uno qualsiasi degli esercizi visualizzati tramite il motore\
+ di ricerca o potete decidere di creare i vostri esercizi (cfr. "$CR_1" e quindi "Esercizi del corso")\
+</li><li>\
+ Cliccando su una qualsiasi delle voci, nella pagina relativa sono disponibili "Istruzioni" dedicate.\
+</li><li>\
+Per maggiori dettagli, si veda "$CR_Docs".\
+</li></ul>
+!endif
+SU_shlist	=Elenco dei materiali già predisposti
+wims_name_SU_Gateway	=Gestione del portale di sede
+SU_Bprogram     =Torna all'insegnamento/materia
+SU_nopartconnected=Nessuno studente è attualmente connesso
+SU_numpartconnected=!nosubst In questo momento sono connessi $wims_numpartconnected utenti
+U_supconnected=Il docente è connesso.
+
+wims_name_SE_list = Elenco dei partecipanti e dei punteggi (old)
+wims_name_n_participant = Home page del corso (area studenti)
+
+wims_name_SE_mod = Messaggio del giorno
+wims_name_SE_secu = Opzioni di sicurezza
+
+ADD_1		=Aggiungi
+ADD_doc		=documento
+ADD_sheet	=test di autovalutazione
+ADD_exam	=tema d'esame
+ADD_exo		=esercizio
+ADD_vote	=questionario
+ADD_class	=corso
+ADD_2		=
+ADD_3		=Aggiungi un
+ADD_cdt		=Agenda
+
+CL_Names	=Livelli,Moduli,Insegnamenti/materie,Corsi,Corsi comuni
+CL_Name	        =livello,modulo,insegnamento/materia,corso,corso comune
+CL_Test		=Zona di test
+CL_otherNames=Altri $(CL_Names[2]),$(CL_Names[3]),$(CL_Names[4]) del corso
+
+!if $wims_supertype=4
+ wims_name_U_oclass = Cambia zona
+!else
+ wims_name_U_oclass = Altri corsi
+!endif
+
+!set name_deps = Devi migliorare i tuoi punteggi negli esercizi
+!set name_dep = Devi migliorare il tuo punteggio nell'esercizio
+!set name_dep2 = prima di cominciare a lavorare su questo.
+!set name_dep3 = torna al lavoro.
+
+
+
+!set name_msg_openclasses=State visitando questo corso aperto come visitatore anonimo, questo significa che i punteggi che visualizzate \
+tengono conto delle risposte i tutti i visitatori anonimi.\
+Se volete avere un resoconto attendibile del vostro lavoro, vi consigliamo di disconnettervi \
+e di registrarvi con i vostri dati. Le iscrizioni sono resettate regolarmente, \
+ma mai nel corso dell'anno scolastico.
+
+name_sequence_withtechvar_warning=Attenzione, i percorsi pedagocici sono mostrati agli studenti differenziati secondo una variabile tecnica. Questa visualizzazione non tiene conto di tale configurazione.

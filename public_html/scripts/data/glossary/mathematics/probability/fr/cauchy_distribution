@@ -1,0 +1,31 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Loi de Cauchy
+!set gl_level=U1,U2,U3
+:
+:
+:tool/stat/table.fr
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soient \(lambda) et \(s) des réels avec \(s > 0\).
+La <strong>loi de Cauchy</strong> \(C(\lambda , s))
+est la loi continue sur \(\RR) de densité :
+<div class="wimscenter">
+\(x\mapsto \frac{1}{\pi s}\frac{1}{1+(\frac{x-\lambda}{s})^2} )
+</div>
+</div>
+<p>
+Si \(X) est une variable aléatoire de loi de Cauchy \(C(0, 1)) alors
+\(Y=\lambda+s X) est une variable aléatoire de loi de Cauchy
+\(C(\lambda,s)).</p>
+<p>La médiane de \(Y) est \(\lambda) ; \(\lambda - s) est le premier
+quantile et \(\lambda + s) est le troisième quartile.
+La loi de Cauchy n'a pas d'espérance.
+</p>
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th><th>Fonction caractéristique</th></tr>
+<tr>
+<td></td><td></td><td>\(\exp(i t\lambda-s|t|))</td></tr></table>
+
+

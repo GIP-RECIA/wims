@@ -1,0 +1,116 @@
+!set lang_exists=yes
+
+!set name_form1_1=The case,is over
+!set name_form1_2=It remains the last case to process,\
+  It is your last case to process
+!set name_form1_3=It remains,You have,case, to process. Current case:
+!set name_form1_4=You must solve this exercise step by step, \
+  using the step methods presented in the menu.
+!set name_form1_5=Method for the first step,\
+  Method for step
+!set name_form1_erasehyp=Erase useless hypotheses
+
+!set name_form3_1=What is the condition of application of this method
+!set name_form3_2=What gives this method
+
+!set name_formnewcase_1=Error of manipulation: there is only one remaining case.
+!set name_formnewcase_2=!nosubst You have the following $[$casecnt-1] cases to process.\
+  Click on one to go to it.
+!set name_current_case=current case
+
+!set name_answer1=No! You have made bad manipulations which have led you to a situation\
+ where the proof of the exercise is no longer possible. The exercise\
+ is therefore aborted, score=0.
+!set name_answer2=  No! You have exceeded the limit of allowed steps. The operation is\
+  aborted, score=0.
+!set name_answerprompt=Phew, Well, Yes, Great, Bravo, Congratulations
+!set name_solve=!nosubst You have solved the exercise in $ctstep steps.
+!set name_shouldbe=!nosubst It can be done in $m_minsteps steps.
+!set name_scoreend=Score,stray steps, penalties for serious errors
+
+!set name_intro=This module is a groupment of exercises. You have apparently requested it\
+  without precising which valid exercise you want to do. It is either because\
+  you clicked on a wrong link, or because of a software bug.
+!set name_tryagain=Try to restart your operation
+
+!set name_introprompt=Never, According to the exercises, Always
+!set name_intro1=  Sorry, this module has no available exercise for the time being.\
+  Come back later!
+!set name_introone=This module contains actually only one exercise,\
+  Try it
+!set name_intro2=Exercises containing,\
+  Choose the exercises,\
+  Level of severity,\
+  Ask for application conditions of methods,\
+  Ask the result of methods
+!set name_intro3=Select titles containing word
+!set name_intro_remark1=<b>Remarks</b>. The exercises will be randomly taken \
+  among your choice (or among all the \
+  available exercises if your choice is empty).
+!set name_intro_remark2=Exercises marked by a * are in general harder than the others.
+
+!distribute item -- choose --, I have no idea,\
+	precise if necessary\
+	the good reply is, the good replies are\
+	into ch_choose, ch_noidea, ch_optional
+
+!set name_badsize=Your answer does not even have a correct size.
+!set name_exo=Exercise.
+
+!distribute item It is always applicable,\
+	Only when\
+  into ct_Always, ct_Onlywhen
+
+!distribute item Starting hypotheses,\
+  New hypothesis,\
+  Now you have,\
+  Still to prove\
+into name_status_hyp,name_status_newhyp,name_status_now,name_toprove
+
+!distribute item undo,redo,Goal change,Not counted for score\
+into name_undo,name_redo, name_change,name_noaccount
+
+!distribute item History of steps,Step,Case,Result,Method,Remarks,Methods \
+  into name_hist,name_step, name_case,name_result,name_method,name_remarks,name_methods
+
+!distribute item Status of the exercise,Change the method\
+  into name_state, name_methchange
+
+!set name_continue=Continue
+
+!set name_nohint=Sorry, no hint is available for this exercise.
+
+!set name_otherhelp=Other help subjects
+!set name_nosuphelp=There is no further help for this method.
+!set name_noparthelp=This exercise has no particular help.
+!set name_subjecthelp=Help subjects
+
+!set name_methodtitle=Allowed methods for this exercise
+
+!set name_titlestate=Current status of the exercise
+!set name_hypusable=Usable hypotheses
+!set name_totransform=Objects to transform
+!set name_remaintoprove=Still to prove
+!set name_statushelp_1=!nosubst You should solve this exercise in \
+  $m_minsteps steps in order to have a maximal score.
+!set name_statushelp_2=!nosubst This exercise can be solved with \
+  $m_minsteps steps, but in its current status you can make up to \
+  $[$m_minsteps+$tolerance] steps and still have a maximal score.
+!set name_statushelp_3=You are now on the step number
+!set name_statushelp_4=!nosubst You have finished at the end of $[$currstep-1] steps.
+!set name_statushelp_5=!nosubst You still have $[$casecnt-1] cases to process.\
+  Current case
+!set name_statushelp_6=This is your last case to process
+
+!set name_author=Author of this exercise
+!distribute lines This exercise contains both an methexped solution and a hint.\
+  This exercise has an methexped solution but no hint.\
+  This exercise contains a hint but no methexped solution.\
+  This exercise has neither methexped solution nor hint.\
+  Information about this collection of exercises.\
+into name_expl1,name_expl2,name_explhint,name_nohint,name_information
+
+!set name_copyright=The copyright of the exercises belong to their respective authors.\
+  Any installation of the sources of the exercises on a server\
+  requires expresse permission from the authors.
+

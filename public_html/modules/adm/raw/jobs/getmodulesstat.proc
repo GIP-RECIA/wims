@@ -1,0 +1,37 @@
+# GetModule use statistic
+# Permet d'obtenir les infos d'utilisation concernant les modules pédagogiques sur une durée spécifiée par "option" (quatre choix :
+		- day un jour
+		- week une semaine
+		- month un mois
+		- year un an
+		
+
+!if $ident_type=$empty and $format != $empty
+	ident_type=$format
+!endif
+
+badchars=!text select ?*#~!@ in $option
+!if .. isin $option or $badchars!=$empty
+ error=illegal file name
+ !exit
+!endif
+
+!bound option within day,week,month,year default year
+
+test=!fileexists wimshome/log/account/00access.act
+!if $test!=yes
+  error=nostat
+  !exit
+!endif
+
+end=!char 1 to 8 of $wims_now
+
+!sh cd $wims_home/log/account/;\
+    end=$end;\
+    start=`date -d "1 $option ago" '+%Y%m%d'`;\
+    ll=`ls [EHLUct]* | grep -v 'classes@' | sed 's/\...$$//g' | sort | uniq`;\
+    export ll start end;\
+    $wims_home/bin/modstat | awk '$$1>0{print $$0}' >$wims_home/sessions/$wims_session/modstat.mod          
+
+fname=sessions/$wims_session/modstat.mod
+

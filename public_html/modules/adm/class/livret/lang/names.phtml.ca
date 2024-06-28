@@ -1,0 +1,89 @@
+!let lang_exists=yes
+
+!read adm/lang/date.phtml.$lang
+
+!distribute items Competència,\
+competència,\
+Competències,\
+competències,\
+Nivell,\
+Nivells,\
+nivell,\
+nivells,\
+Tots,\
+informe d'avaluació de competències,\
+into name_Competence,name_competence,name_Competences,name_competences,name_n_Palier,name_n_Paliers,name_n_palier,name_n_paliers,name_All,name_livret
+
+!set name_no_competence=No hi ha cap $name_competence en aquest informe !
+!set name_noyetparticipant=Aquesta classe encara no té alumnes.
+!set name_info=Informació sobre aquesta $name_competence&nbsp;
+!set name_param_change=Aquests són els paràmetres que podeu configurar&nbsp;
+!set name_color=Color del fons de les caixes segons el grau d'adquisició de cada $name_n_palier &nbsp;
+!set name_score_modify=Les notes dels exercicis dels fulls d'exercicis següents no s'utilitzaran per al càlcul dels graus d'adquisició dels $name_n_paliers &nbsp;
+!set name_cocher=Si us plau, trieu els exercicis que voleu utilitzar per a aquest $name_n_palier.
+!set name_selectsheet=Mostra només els exercicis del full
+!let name_nowork=No ha fet res
+!let name_listscoreoption=de la classe,de l'informe
+!let name_listscoreview=no mostrar,enter,amb un decimal,amb dos decimals,amb tres decimals,amb quatre decimals
+
+!distribute item Activitat,Color,Llegenda\
+into name_activity, name_colorchoice,name_legend
+
+!distribute items Títol de la $name_competence&nbsp;,\
+Títol del $name_n_palier&nbsp;,\
+Número de $name_n_paliers&nbsp;,\
+de la classe,\
+Nota mínima per a considerar assolida la competència ,\
+Utilització dels colors per als nivells,\
+Mostrar els resultats numèrics dels nivells,\
+Mostrar l'informe als alumnes,\
+Mostrar als alumnes les $name_competences sense contingut\
+into name_title_comp,name_title_palier,name_cnt_palier,name_configtext2,name_configtext3,name_configtext4,name_configtext5,name_configtext6,name_configtext7
+
+!!------------------------------- définition des noms de liens pour wims_menu_items
+!if $wims_user=supervisor
+ !let tmp=!defof wims_name_SE_list in wimshome/public_html/modules/home/names.$lang
+!else
+  !let tmp=$wims_name_myscore
+!endif
+
+!distribute line Nova competència\
+$tmp\
+ into wims_name_add_competence,wims_name_go_userlist
+
+!!FIXME wims_name_cls_livret=$wims_name_livret ??
+!if $job=addcomp
+ !set name_job=!nosubst Afegir/Modificar la $name_competence $comp
+ !exit
+!endif
+
+!if $job=modpalier
+  !set name_job=!nosubst Modificar el $name_n_palier $palier (<span class="wims_emph">$name_palier</span>)\
+  de la $name_competence $comp (<span class="wims_emph">$name_comp</span>).
+  !exit
+!endif
+
+!if $job=user
+  !set name_job=!nosubst <span class="wims_emph">$user_firstname $user_lastname</span>
+!endif
+
+!if $job=delpalier
+ !let name_delpalier=!nosubst Esteu segur que voleu eliminar el $name_n_palier $palier \
+ <span class="wims_emph">$mem_palier</span> de la $name_competence $comp \
+   <span class="wims_emph">$mem_title</span>del $name_livret ?
+ !exit
+!endif
+
+!if $job=delcomp
+ !let name_delcomp=!nosubst Esteu segur que voleu eliminar la competència $comp <span class="wims_emph">$mem_title</span> del $name_livret ?
+ !exit
+!endif
+
+!if $job=save
+ name_get=Podeu descarregar al vostre ordinador el fitxer següent que conté l'estructura del \
+ vostre Informe (sense les referències als exercicis) per restaurar-lo en una altra classe.
+ name_put=Indiqueu el nom d'un fitxer de còpia de seguretat de l'Informe al vostre dics dur.\ \
+ Les competències trobades s'afegiran a la llista actual de competències.
+!endif
+
+

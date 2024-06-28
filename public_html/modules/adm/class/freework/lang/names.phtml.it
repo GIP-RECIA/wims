@@ -1,0 +1,192 @@
+!set lang_exists=yes
+wims_name_freework=Compito
+name_info=Informazioni generali
+name_content=Contenuti del compito
+name_parametrage=Configurazione generale del compito
+name_listwork=Elenco delle consegne
+name_ltsolution=Data correzione
+name_ltannotation=Data di correzione
+name_solutiondeposit=File correzioni individuali
+name_correctedwork=Correzione individuale
+name_studentglo=Cognome e nome
+name_givedate=Data ultima consegna
+name_mega=Mega
+name_studentname=!nosubst $lastname $firstname
+!let name_shinfo=!nosubst $wims_name_title,\
+Tipo,\
+$wims_name_Status,\
+Spiegazione,\
+$wims_name_comment,\
+Visibile agli studenti,\
+Data di consegna,\
+Data di pubblicazione delle correzioni,\
+Votazione,\
+Il docente può vedere le consegne degli studenti in qualsiasi momento,\
+Lo studente deve premere il bottone Consegna ora
+
+name_type_list=Pubblicazione,Pubblicazione e consegna,Testo on line
+name_desc_title=!nosubst limitato a $title_limit caratteri
+name_desc_type=Una volta che il compito è stato creato non è più possibile modificarne il tipo.
+name_desc_desc=!nosubst limitato a $desc_limit caratteri; tag e link html sono permessi
+name_desc_comment=Visibile solamente al docente.
+name_desc_scoring=Permette di assegnare manualmente un voto a ogni studente
+name_desc_seealltime=Il docente può consultare le consegne degli studenti prima della data di termine configurata (tuttavia, non sarà possibile effettuare la correzione).
+name_desc_studentclose=Una volta premuto il bottone consegna lo studente non può più modificare il suo compito.
+name_mkfreework=Crea il compito
+name_tmkfreework=!nosubst Creazione del compito a risposta aperta $freework
+name_managefreework=!nosubst Configurazione del compito a risposta aperta $freework
+name_datasubject=File testo del compito
+name_datasolution=File soluzioni
+name_desc_deadline=Data entro cui gli studenti devono completare la consegna.
+name_desc_soldate=Data a partire da quando le correzione e le valutazioni sarnno visibili per gli studenti.
+name_nodeposit=Non è più possibile caricare alcun file in quanto il corso è vicino, o ha superato, la quota di spazio disponibile. Siamo spiacenti.
+name_depos=Nuovo file
+name_limitestudent=Dimensioni massime dei file caricabili dagli studenti
+name_available=File già caricato/i
+name_erase=File da cancellare
+name_badstatut=Al momento non è possibile caricare file.
+name_subject=Testo del compito
+name_solution=Correzione generale
+name_copie=Consegna
+name_solutiondate=Una risoluzione sarà disponibile a partire dal giorno
+name_copie_type1=Il compito deve essere consegnato direttamente al docente prima del giorno
+name_copie_type2=Puoi inserire o modificare la consegna in questo spazio fino al giorno
+name_copie_type2bis=!nosubst Puoi caricare al massimo $[0.25*$sizelimitfile] Mega
+name_usedstorage=!nosubst Hai utilizzato $[rint($used*100)/100] Mega
+name_copie_toolate=Non è più possibile consegnare o modificare il compito. La scadenza era il giorno
+name_copie_toolate2=Non è più possibile consegnare o modificare il compito
+name_desc_sizelimitfile=Permette di configurare il limite della dimensione dei file per ciascuno studente.
+name_fortheclass=per i/gli studenti del corso
+name_oldwork=File caricato
+!! verificare!
+name_the=il
+name_userperimemessage=La correzione del compito (se hai effettato la consegna) non è più disponibile.
+name_userperimemessage3=Il compito è terminato e quindi quanto da te consegnato non è più visibile.
+name_desc_listwork2=Gli studenti hanno accesso alla correzione e alla valutazione solo dopo la data di pubblicazione delle correzioni e solo se tutte le correzioni sono state effettuate dal docente.
+name_desc_listwork3=Gli studenti possono effettuare le loro consegne.
+name_desc_listwork31=Voi le potete visualizzare al termine del periodo di consegna impostato
+name_desc_listwork32=Voi le potete visualizzare, ma potete effettuare la correzione solo al termine del periodo di consegna impostato
+name_desc_listwork4=!nosubst Gli studenti possono ancora caricare o modificare le loro consegne fino al giorno $date
+name_desc_listwork5=!nosubst La correzione non è più possibile dopo la data di pubblicazione delle soluzioni ($date)
+name_allworkcorrected=Tutte le consegne sono state corrette.
+name_worknotcorrecteds=!nosubst Restano $notcorrected consegne da correggere.
+name_worknotcorrected=!nosubst Resta $notcorrected consegna da correggere.
+name_nbcopies=!nosubst $nbcopies studenti hanno cominciato a lavorare.
+name_nbcopie=!nosubst $nbcopies studente ha cominciato a lavorare.
+name_datafile=File
+name_noscoring=Nessuna votazione
+name_usedscoring=Assegnare un voto manualmente
+name_none=Nessuna
+name_score=Voto
+name_workof=Consegna di
+name_remark=Commenti in fase di lavoro
+name_desc_remark=Eventuali commenti per lo studente (visibili da subito, prima della data di consegna).
+name_finalremark=Commenti finali 
+name_desc_finalremark=Eventuali commenti sullo svolgimento complessivo del compito (visibili per lo studente dopo la data di pubblicazione delle correzioni).
+name_app=Valutazione e commenti
+
+name_zone=Zona
+name_titlezone=Titolo della zona
+name_desczone=Descrizione
+name_zonepara_teacher=Configurazione della parte testo del compito
+name_zonepara_student=Configurazione della parte risposte degli studenti
+name_zonetype=Tipo
+name_zonecontent=Contenuto della zona
+name_answerzone=Risposta/e
+name_nbzone=Numero di zone
+name_ztype=tipo di zona
+name_listofztype=GeoGebra,Testo,File,Esercizio interattivo,RandFile
+name_applet_geogebra=Opzioni di configurazione per l'applet,Copia il contenuto della zona testo del compito numero,Mostrare questa zona agli studenti
+name_noone=Nessuno
+name_noparameters=Nessun parametro specificato
+
+name_badstatutsubject=Non è più possibile aggiungere o modificare file per il testo del compito.
+name_badstatutsolution=Non è più possibile aggiungere o modificare file per la soluzione.
+name_warningseealltime=Il docente può prendere visione di quanto da te salvato in ogni momento.
+name_warning_fullclass=Questo corso ha raggiunto la quota limite, non è più possible caricare file. Contattate il docente!
+name_warning_fullzone=Avete raggiunto la quota limite per il caricamento di file che vi è stata attribuita dal docente.
+name_noscore=senza voto
+name_nomorecodownload=La copia con la risoluzione non è più disponibile
+name_nouploaded=Non hai effettuato la consegna.
+
+name_textarealimit=!nosubst Limitato a $textezone_tmplimit caratteri (ultimo salvataggio $textezone_currlimit caratteri)
+name_nofile=Nessun file
+name_depositzone=File caricati
+name_filedeposit=Caricamento file
+name_archivefreework=Archiviazione compito
+name_desc_filearchive=Questo file contiene i dati relativi ai compiti degli studenti del corso\
+ (consegne e eventuali correzioni individuali)
+name_warning_archive=!nosubst State per archiviare il compito a risposta aperta  $freework.\
+ Questo eliminerà dal server tutti i dati relativi a questo compito (consegne/correzioni individuali).\
+ Assicuratevi di scaricare l'archivio contenente tutti i questi dati al link qui sopra (si disponible).\
+ Attenzione, questa operazione è irreversibile. Una volta che sarà completata,\
+ <ul><li> i dati saranno eliminati dal server;</li>\
+ <li>non sarà possibile utilizzare l'archivio così creato per ripristinare i dati sul server.</li></ul>\
+ Siete sicuri di voler continuare?
+name_archivatedfreework=Questo compito è stato archiviato, non è più possibile accedere alle consegne degli studenti.
+
+name_msgstudenthavefile=È possibile caricare un solo file. Hai già consegnato una risposta, se consegni un altro file il file consegnato precedentemente sarà cancellato.
+name_toomany_users=!nosubst Il corso contiene troppi studenti (più di $max_userforgrades), non è quindi possibile inserire un voto tramite questa pagina a questo compito a risposta aperta. Dove modificare manualmente il file dei voti a partire dalla pagina di gestione dei
+name_modulegrades=Voti inseriti manualmente
+name_preview=Visualizza anteprima del testo
+name_outpreview=Anteprima
+
+name_exochoice=Scelta degli esercizi
+name_nodeposit=Nessuna consegna
+name_wimsexo=Esercizi
+name_nofiledeposit=La consegna di file non è abilitata per questo compito.
+name_insert=Vuoi inserire una risorsa del modulo
+name_parm=con la seguente configurazione
+name_choose_exo=Questa risorsa sarà inserita come un nuovo esercizio nel compito a risposta aperta.
+name_choose=Scegli il compito
+name_freeworkcheck=Verifica il compito
+name_end=!nosubst La risorsa <span class="wims_mod_title">$title</span> è stata inserita correttamente nel compito a risposta aperta $pickfreework
+name_listexo=Elenco degli esercizi
+name_listexo_desc=Gli esercizi possono essere aggiunti utilizzando le stesse modalità che si utilizzano per i test di autovalutazione.
+name_num=N
+name_description=Descrizione
+name_action=Azione
+name_typequatre_desc=Devi risolvere gli esercizi proposti da WIMS e ottenere il voto massimo per ognuno di questi. In caso contrario devi ricominciare l'esercizio. Per ciascun esercizio, devi scrivere la soluzione su un file e caricarla nello spazio apposito (visibile se il docente ha abilitato le consegne). Puoi in ogni momento consultare l'esercizio fatto mentre elabori questa risposta.
+name_done=Fatto
+name_teacher_noreplyzone=La risoluzione deve essere inviata direttamente al docenet senza utilizzare l'interfaccia WIMS.
+name_maxnumberoffile=Numero massimo di file
+name_maxfilelimit=Lo spazio disponibile per il caricamento di file è esaurito. Per caricare un altro file è necessario cancellare uno dei file già caricati.
+name_nowork=Lo studente non ha ancora iniziato il compito.
+name_correctedfile=File corretto/i
+name_textlimitsize=Numero massimo di caratteri
+name_textlimitsizedesc=!nosubst Questo numero deve essere compreso tra 1 e $textezone_limit. 
+name_minscoretosave=Punteggio minimo
+name_desc_minscoretosave=Il punteggio minimo che lo studente deve ottenere nell'esercizio per poterlo salvare automaticamente o manualmente).
+name_autoreg=Salvataggio automatico
+name_remarkinwork=Osservazioni in fase di lavoro
+name_ltremark=Data dell'osservazione
+name_seeco=Presa visione correzione
+name_closeco=Consegna definitiva
+name_co_para=Configurazione per la correzione
+name_solutiongiven=Soluzione
+name_feedbackgiven=Feedback
+name_co_desc=Questi elementi saranno visibili solamente quando il compito viene visualizzato dopo la data di pubblicazione delle correzioni.
+name_detailact=Dettagli esercizi svolti
+name_close_alertpre1=Hai deciso di consegnare ora. La tua risposta sarà salvata come è mostrata più sotto. Verifica attentamente le tue risposte e premi sul bottone
+name_close_alertpre2=in fondo alla pagina.
+name_close_alertpost=Stai effettuando la consegna definitiva. Una volta confermato le tue risposte non saranno più modificabili.
+name_close_confirm=Conferma consegna
+name_close_closed=Consegna effettuata il giorno,le tue risposte non sono più modificabili
+name_close_info=Una volta terminato, puoi salvare definitivamente le tue risposte.
+name_close_doclose=Consegna ora
+name_reopen=Riapri
+
+!set name_showhidetitle=Condizioni per mostrare il compito agli studenti
+!let name_allowtype=visibile per tutti,nascosto per tutti,limitata ai seguenti IP (e/o orari),visibile secondo una variabile tecnica
+!set name_desc_allowtechvar=Scelta della variabile tecnica
+!set name_desctableval=Filtri per ogni gruppo secondo i valori della variabile tecnica scelta
+!set name_value=Valore
+!set name_filtre=Filtro
+!set name_EMPTY=(nessun valore)
+
+!set name_notyet=Questo compito sarà disponibile a partire dal giorno
+!set name_at=ore
+!set name_notavailable=Questo compito non è disponibile.
+
+!set wims_name_studscores=Punteggi studente
+

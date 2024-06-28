@@ -1,0 +1,84 @@
+:H1/geometry/oefevalwimssym.fr
+exo=oefsymconst1&exo=oefsymconst2&exo=oefsymconst3&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Sym. axiale : construire 1-3
+Savoir tracer le symétrique d'un point par rapport à une droite, difficulté 1 à 3 aléatoirement.
+
+
+
+:H1/geometry/oefevalwimssym.fr
+exo=oefsymconst3&exo=oefsymconst4&exo=oefsymconst5&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Sym. axiale : construire 3-5
+Savoir tracer le symétrique d'un point par rapport à une droite, difficulté 3 à 5 aléatoirement.
+
+
+
+:H1/geometry/oefevalwimssym.fr
+exo=symaxplac1&exo=symaxplac2&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Sym. axiale placer 1-2
+Savoir tracer le symétrique d'un point par rapport à une droite, difficulté 1 à 2 aléatoirement.
+
+
+
+:H1/geometry/oefevalwimssym.fr
+exo=symaxplac2&exo=symaxplac3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Sym. axiale placer 2-3
+Savoir tracer le symétrique d'un point par rapport à une droite, difficulté 2 à 3 aléatoirement.
+
+
+
+:H1/geometry/oefevalwimssym.fr
+exo=oefsymfig1&exo=oefsymfig2&exo=oefsymfig3&qnum=1
+10
+1
+Protocole de construction du symétrique 1-3
+Vignettes à déplacer, difficulté 1 à 3 aléatoirement
+
+
+
+:H1/geometry/oefevalwimssym.fr
+exo=oefsymfig4&exo=oefsymfig5&exo=oefsymfig3&qnum=1
+10
+1
+Construction du symétrique 3-5
+Vignettes à déplacer, difficulté 3 à 5 aléatoirement
+
+
+
+:H1/geometry/oefevalwimssym.fr
+exo=symaxrec1&exo=symaxrec2&exo=symaxrec3&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Reconnaître une symétrie axiale 1-3
+Difficulté 1 à 3 aléatoirement
+
+
+
+:H1/geometry/oefevalwimssym.fr
+exo=symaxrec4&exo=symaxrec5&exo=symaxrec3&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Reconnaître une symétrie axiale 3-5
+Difficulté 3 à 5 aléatoirement.
+
+
+
+:E6/geometry/oefsym.fr
+exo=axpoint1&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Clic sur le symétrique d'un point (symétrie axiale)
+
+
+:E6/geometry/oefsym.fr
+exo=axpoint&qnum=4&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Construire le symétrique d'un point (symétrie axiale)

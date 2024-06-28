@@ -1,0 +1,11 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Nombre premier (exemple)
+
+!readproc data/glossary/mathematics/arithmetic/macro/decomposition
+
+!if $gl_estpremier1=1
+  \($gl_nbaff1\) est premier.
+!else
+  \($gl_nbaff1 = $gl_decomp1\) &nbsp;donc \($gl_nbaff1\) n'est pas premier.
+!endif

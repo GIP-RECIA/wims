@@ -1,0 +1,91 @@
+!! this file generate :
+!! .require require points of each exercise in a sheet
+!! .weight weight of each exercise in a sheet
+!! .active indicate hide/show of each exercise of the sheet
+!! .vars indicate if a technical variable is used to make indivual sheets
+!!
+!! the three first files have the same format :
+!! - each record is a sheet
+!! - first line of each record is the default line,
+!!  the others correspond to the different technical value if it exists (defined in .vars) ;
+!! - each word of the line correspond to the parameters for an exercise of the sheet
+!!
+!! each record of .vars file is a sheet ; first line is technical variable name followed
+!! by the list of values
+
+!! remark: when activating/desactivating a single sheet, the script
+!! rebuilds all the files for all the sheets (maybe we could only work on the modified sheet)
+
+!readproc adm/vfilter/listvarfilter.proc
+scnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+!if $max_sheets!=$empty
+  scnt=$[min($scnt,$max_sheets)]
+!endif
+!sh cd $wims_home/log/classes/$wims_class/sheets;\
+ rm -f .require .weight .vars .active;\
+ touch .require .weight .vars .active;
+
+!for s=1 to $scnt
+  ecnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$s
+  !reset indivtechvar_
+  indivtechvar_=!record $s of wimshome/log/classes/$wims_class/sheets/.sheets
+  indivtechvar_=!line 10 of $indivtechvar_
+  !if $indivtechvar_ notitemof $tv_listcode
+    !reset indivtechvar_
+  !endif
+  !if $indivtechvar_!=$empty
+    p=!positionof item $indivtechvar_ in $tv_listcode
+    p=!line $p of $tv_listtechvar
+    !distribute item $p into n_,cls_,num_
+    tmp_=!record $num_ of wimshome/log/classes/$cls_/.techvar
+    listval_=!line 2 of $tmp_
+    !for k_ in $listval_
+      !distribute item ,, into active_$(k_),require_$(k_),weight_$(k_)
+    !next k_
+  !endif
+  !distribute item , into requires_,weights_
+  !for e=1 to $ecnt
+    r=!record $e of wimshome/log/classes/$wims_class/sheets/.sheet$s
+    !distribute lines $r into t_,t_,require,weight,t_,t_,t_,t_,t_,t_,indiv_
+    !for j_ in require,weight
+      $(j_)d_=!row 1 of $($j_)
+      $(j_)s_=!append word $($(j_)d_) to $($(j_)s_)
+      tmp_=!row 2 to -1 of $($(j_))
+      $(j_)1_=!column 1 of $tmp_
+      $(j_)2_=!column 2 of $tmp_
+    !next j_
+    !if $indivtechvar_!=$empty
+      !for k_ in $listval_
+        !if $k_ isitemof $indiv_
+          active_$k_=!append word 1 to $(active_$k_)
+        !else
+          active_$k_=!append word 0 to $(active_$k_)
+        !endif
+        !for j_ in require,weight
+          p_=!positionof item $k_ in $($(j_)1_)
+          !if $p_!=$empty
+            $(j_)_$k_=!append word $($(j_)2_[$p_]) to $($(j_)_$k_)
+          !else
+            $(j_)_$k_=!append word $($(j_)d_) to $($(j_)_$k_)
+          !endif
+        !next j_
+      !next k_
+    !endif
+  !next e
+  !appendfile wimshome/log/classes/$wims_class/sheets/.require :$requires_
+  !appendfile wimshome/log/classes/$wims_class/sheets/.weight :$weights_
+  v_=!values 1 for v=1 to $ecnt
+  v_=!items2words $v_
+  !appendfile wimshome/log/classes/$wims_class/sheets/.active :$v_
+  !if $indivtechvar_!=$empty
+    t_=!items2words $listval_
+    !appendfile wimshome/log/classes/$wims_class/sheets/.vars :$indivtechvar_ _EMPTY_ $t_
+    !for k_ in $listval_
+      !appendfile wimshome/log/classes/$wims_class/sheets/.active $(active_$k_)
+      !appendfile wimshome/log/classes/$wims_class/sheets/.require $(require_$k_)
+      !appendfile wimshome/log/classes/$wims_class/sheets/.weight $(weight_$k_)
+    !next k_
+  !else
+    !appendfile wimshome/log/classes/$wims_class/sheets/.vars :
+  !endif
+!next s

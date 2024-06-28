@@ -1,0 +1,88 @@
+<div class="wims_msg warning">
+!if dontknow iswordof $error
+  In fact, the last step
+  !if $step_reason=OK
+    is correct. $step_remark
+  !else
+    is wrong. $step_remark
+    <div>
+    !read reasons/$step_reason.det
+    </div>
+    A correct versionof the last step will be
+    <div class="wimscenter">
+    !line $step of $good
+    </div>
+  !endif
+  <p>
+  It's a pity that you didn't see all this.
+  </p>
+  !goto gnext
+!endif
+
+<b>$wims_name_Error.</b>
+
+!if step_error iswordof $error
+  !if $step_reason=OK
+    But this step IS perfectly right!
+    $step_remark
+  !else
+    !if $ask_reason>0 and $step_reason!=$ans
+      No, the last step is wrong, but not for what you think to be.
+    !else
+      But no, there is well an error in the last step.
+    !endif
+    $step_remark
+    <div>
+    !read reasons/$step_reason.det
+    </div>
+    A correct version of the last step will be
+    <div class="wimscenter">
+    !line $step of $good
+    </div>
+  !endif
+  :gnext
+  </div>
+  <p>
+  !if $step<$stepcnt
+    !set wims_ref_class=wims_button
+    !href cmd=reply&ans=next Pass to the next step.
+  !else
+    This is the end of the exercise. Your score: $module_score/10.
+  !endif
+  </p>
+  !exit
+!endif
+
+!if bad_step iswordof $error
+  !if $badstep=0
+    You think that all the steps are correct.
+  !else
+    You think that the first bad step is number $badstep.
+  !endif
+  !if $bad_steps=$empty
+    You are wrong: all the steps are correct.
+    <p>
+    !line $badstep of $remarks
+    </p>
+  !else
+    No, the <em>first</em> bad step is number $sss. <p>
+    !if $badstep>0
+      !if $badstep isitemof $bad_steps
+        The step number $badstep is indeed wrong, but it is not the first bad step.
+      !else
+        On the contrary, step $badstep is quite right.
+      !endif
+    !else
+      $bad_reason
+      <div>
+      !set rrr=!item 1 of $bad_reasons
+      !read reasons/$rrr.det
+      </div>
+    !endif
+  !endif
+  </div>
+  <p>Your score: $module_score/10.</p>
+  !exit
+!endif
+
+!msg $error

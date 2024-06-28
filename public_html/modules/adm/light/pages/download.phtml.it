@@ -1,0 +1,56 @@
+!!INDEX
+!! Erase the above line to hide your page from wims search engine.
+!! Line starting with double exclamations are comment lines.
+!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!
+!! Indexing definitions. You should modify them according to your case.
+!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!! Put every definition in ONE LINE!!
+!let module_author	=
+!let module_address	=
+!let module_title	=Download WIMS
+!let module_description	=
+
+!let module_language	=$lang
+
+!!Your copyright policy.
+!!Your page will be included in wims distribution if the word `GNU'
+!! appears in the following definition.
+!let module_copyright	=&copy; 2009 (<a href="COPYING">GNU GPL</a>)
+
+!header
+<div class="wims_widget_box medium_size float_left">
+    <div class="title_box">
+        <h2>Installazione</h2>
+    </div>
+    <div class="box_content">
+        <p>WIMS è disponibile su <a class="external_link" target="wims_external" href="http://sourcesup.renater.fr">SourceSup</a>, la fucina dell'insegnamento superiore e della ricerca francese.</p>
+        <p class="wimscenter"><a href="https://sourcesup.renater.fr/frs/?group_id=379" class="wims_button icon_button "><span class="download">Download WIMS</span></a></p>
+
+    <p><em>NB: Le versioni stabili sono le versioni pari, come 3.64,
+        le versioni dispari sono versioni intermedie.</em></p>
+    <p>
+        Consigli e istruzioni di installazione sono disponibili sulla wiki
+	dell'associazione <a class="external_link" target="wims_external" href="http://wimsedu.info">l'association&nbsp;WIMS&nbsp;EDU</a>:
+        <a class="wims_button" target="wims_external" href="https://wiki.wimsedu.info/doku.php?id=installation:a">wiki.wimsedu.info</a>
+    </p>
+
+  </div>
+</div>
+<div class="wims_widget_box medium_size float_left">
+  <div class="title_box">
+    <h2>Configurazione</h2>
+  </div>
+  <div class="box_content">
+    <p>Una volta effettuata l'installazione i moduli possono essere installati grazie allo strumento di configurazione del sito.</p>
+    <p>Alcuni moduli di dati, utilizzati da altri moduli, possono essere di dimensioni tali per cui deve essere effettuato un download separato.</p>
+    <p class="wimscenter">
+        <a class="wims_button external_link" target="wims_external" href="https://wiki.wimsedu.info/doku.php?id=installation:first_config">Prima configurazione di WIMS</a>
+    </p>
+  </div>
+</div>
+
+!tail

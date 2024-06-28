@@ -1,0 +1,51 @@
+!set lang_exists=yes
+
+!set wims_name_sheetcheck=Check the worksheet
+
+!set name_choose=Choose the worksheet
+
+!set name_insert=You want to insert the work item
+!set name_parm=with initiation parameters
+
+!set name_modifytitle=You can also modify the title and description text.
+
+!set name_required=Number of points required to successfully complete this work
+!set name_repeat=Each complete success on the exercise gives 10 points; so put more than 10 points here if you\
+  want the participant to repeat the exercise.
+
+!set name_weight=Weight of points obtained on this work
+!set name_weight_hint=Used to calculate working indicators as well as the overall score for the exercise.\
+ Attribute a zero-weight (0) if you do not wish the scores obtained for the exercise to be counted.
+!set name_exotrymax=Maximum number of trials counted
+!set name_exotrymax_hint=Parameter allowing to fix a maximum number <span class="tt">n</span>\
+  of recorded trials in the calculation of the scores during the periods\
+  when recording of scores is open\
+  (the work on the exercise is always possible once this number is exceeded).\
+  Work on a series of exercises is considered a trial,\
+  whether or not a response has been given and\
+  whether the recording of scores has been activated or not.\
+  Score calculation only takes into$ account the scores of the first\
+  <span class="tt">n</span> trials where the recording of scores has been activated.\
+  By default, all record-enabled trials are counted.\
+  Check the compatibility with the number of required points if you put a positive number.
+
+!set name_end=!nosubst The application <span class="wims_mod_title">$title</span> has been successfully inserted into the worksheet
+!set name_endallexo=!nosubst a series of exercises was successfully inserted\
+ into$ the <span class="wims_mod_title">$title</span> sheet with the parameters
+!set name_endallexos=!nosubst $addexo series of exercises have been inserted successfully\
+ into$ the <span class="wims_mod_title">$title</span> sheet with the parameters
+!set name_endallexo2s=!nosubst The following $notadd teaching material could not be inserted because they already exist:
+!set name_endallexo2=!nosubst The following resource could not be inserted because it already exists:
+
+!set name_choose_exo=This resource will be inserted as a new series of sheet exercises.
+!set name_choose_helpexo=This resource will be inserted as a help for one of \
+  the sheet exercise sets when the score is between, and
+!set name_choose_series=Click on the name of the series of exercises to which to add help
+!set name_actualhelp=Current help
+!set name_series=Exercise series
+!set name_exo_order=Order of exercises
+!set name_replace_add=Replace,Add
+
+!if $job=addallexo
+  !read oef/en/intronames
+!endif

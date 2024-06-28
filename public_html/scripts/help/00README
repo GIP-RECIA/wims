@@ -1,0 +1,28 @@
+When an answer type ('_name_') is added: 
+
+- create a help file in the directory <span class="tt">public_html/modules/scripts/help/anstype</span> 
+with name <span class="tt">_name_.phtml</span> 
+and eventually in oher language directory anstype.$lang ; in the language
+you do not know, create a help file and copy something like
+<pre>
+!changeto  help/anstype/_name_.phtml
+</pre>
+
+- add a line in the file public_html/scripts/help/$lang/reply.phtml in the variable
+typelist2 (do it in any $lang/reply.phtml, by default in english to help the translators).
+
+To add a new section in the help of Createxo:
+- create a file _name_.phtml <span class="tt">public_html/modules/scripts/help</span> with the line 
+!read help/$lang/oefscore.phtml
+
+- create a file  _name_.phtml in the subdirectories <span class="tt">public_html/modules/scripts/help/$lang</span> for your language
+ - write in this file the text for the new section 
+
+-  in the file <span class="tt">adm/createxo/lang/help.phtml.$lang</span>, add a line
+:_name_, title_for_the_new_section
+in order that a link title_for_the_new_section appears in the table of contents
+of the help of Createxo at the place you want 
+
+- add _name_ in the definition of the variable helplist in the file 
+<span class="tt">public_html/modules/adm/createxo/help.phtml</span>
+The order of items in this list defines the order of file reading.

@@ -1,0 +1,80 @@
+!read oef/default
+!if $step=$empty
+  !readdef wimshome/log/classes/$wims_class/supervisor
+  !read oef/default
+  !bound user_qnum between integer 1 and 9 default $(default_choice[1])
+  !bound user_qcmlevel between integer 1 and 9 default $(default_choice[2])
+  !bound user_sepow between 1 and 6 default $(list_sepow[1])
+  !bound user_expow between 1 and 6 default $(list_expow[1])
+  !bound user_precw between 0 and 1 default $(list_precw[1])
+  !if $nw_scoredelay!=$empty
+    nw_scoredelay=!items2words $nw_scoredelay
+    !distribute word $nw_scoredelay into l1,l2
+    !bound l1 between 1 to 2000
+    !bound l2 between $l1 to 2000 default $l1
+    nw_scoredelay=$l1,$l2
+  !endif
+  !bound user_qcmpresent between integer 2 and 8 default $(default_choice[4])
+  !bound user_givegood between 0 and $limit_version default $(default_choice[3])
+  !bound user_givefeed between 0 and $limit_version default $(default_choice[3])
+  !bound user_givehint between 0 and $limit_version default $(default_choice[3])
+  !bound nw_givegood between 0 and $limit_version default $user_nw_givegood
+  !bound nw_givehint between -1 and $limit_version default $user_nw_givehint
+  !bound nw_givefeed between -1 and $limit_version default $user_nw_givefeed
+  nw_check_=$nw_check1,$nw_check2
+  nw_check_=!listintersect $nw_check_ and 1,2
+!else
+  !bound nw_qnum between integer 1 and 9 default $user_qnum
+  !bound nw_qcmlevel between 1 and 9 default $user_qcmlevel
+  nw_scoredelay=!items2words $nw_scoredelay
+  !distribute word $nw_scoredelay into l1,l2
+  !if $l1!=$empty or $l2!=$empty
+    !bound l1 between 1 and 2000
+    !bound l2 between $l1 and 2000 default $empty
+    nw_scoredelay=$l1,$l2
+  !else
+    nw_scoredelay=$empty
+  !endif
+  !bound nw_qcmpresent between 2 and 8 default $user_qcmpresent
+  !bound nw_givesol between 0 and $limit_version default $user_givesol
+  !bound nw_givefeed between -1 and $limit_version default $user_givefeed
+  !bound nw_givegood between 0 and $limit_version default $user_givegood
+  !bound nw_givehint between -1 and $limit_version default $user_givehint
+  !bound nw_sepow between 1 and 6 default $user_sepow
+  !bound nw_expow between 1 and 6 default $user_expow
+  !bound nw_precw between 0 and 1 default $user_precw
+  !set nw_check_=$nw_check1,$nw_check2
+  !set nw_check_=!nonempty items $nw_check_
+  !set nw_check_=!listintersect $nw_check_ and 1,2
+
+  !setdef !set user_qnum=$nw_qnum\
+!set user_qcmlevel=$nw_qcmlevel\
+!set user_scoredelay=$nw_scoredelay\
+!set user_qcmpresent=$nw_qcmpresent\
+!set user_givesol=$nw_givesol\
+!set user_givefeed=$nw_givefeed\
+!set user_givegood=$nw_givegood\
+!set user_givehint=$nw_givehint\
+!set user_check=$nw_check_\
+!set user_sepow=$nw_sepow\
+!set user_expow=$nw_expow\
+!set user_precw=$nw_precw\
+in wimshome/log/classes/$wims_class/supervisor
+
+  !setdef wims_oefdefault_qnum=$nw_qnum\
+wims_oefdefault_qcmlevel=$nw_qcmlevel\
+wims_oefdefault_scoredelay=$nw_scoredelay\
+wims_oefdefault_qcmpresent=$nw_qcmpresent\
+wims_oefdefault_sol=$nw_givesol\
+wims_oefdefault_feed=$nw_givefeed\
+wims_oefdefault_good=$nw_givegood\
+wims_oefdefault_hint=$nw_givehint\
+wims_oefdefault_check=$nw_check_\
+wims_oefdefault_expow=$nw_expow\
+wims_oefdefault_sepow=$nw_sepow\
+wims_oefdefault_precw=$nw_precw\
+in wimshome/sessions/$wims_session/var.stat
+
+  !readdef wimshome/log/classes/$wims_class/supervisor
+
+!endif

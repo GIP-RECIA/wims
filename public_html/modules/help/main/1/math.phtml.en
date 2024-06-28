@@ -1,0 +1,75 @@
+!set lang_exists=yes
+
+<p>
+When you work with WIMS, you will often be asked to enter mathematical
+expressions.
+</p>
+Mathematical expressions can be typed in the usual way:
+<ul>
+  <li>
+    <code>3*x+5</code> for
+    !insmath 3x+5
+  </li><li>
+    <code>sin(pi*x)</code> for
+    !insmath sin(pi*x)
+  </li><li>
+    <code>y^3+1</code> for
+    !insmath y^3+1
+  </li><li>
+    <code>(x+1)/(y-1)</code> for
+    !!set ins_align=middle
+    !insmath {x+1 \over y-1}
+  </li><li>etc...</li>
+</ul>
+<p>
+Besides, WIMS contains an intelligent analyzer which can correct common
+``errors'' in the mathematical expressions. For example, <code>3x+5</code>
+will be corrected to <code>3*x+5</code>, <code>sin x</code> will be corrected to
+<code>sin(x)</code>, etc. But we do not recommend you to rely too heavily on
+this corrector, because sometimes ambiguities in the expressions might lead
+to wrong interpretations. It is best to always type mathematical expressions
+``correctly'', even if it is sometimes combersome.
+</p><p>
+Here is a list of mathematical functions and the (correct) way to enter
+them. These functions are recognized by WIMS whenever they make sense. (Some
+modules may accept additional functions; please refer to help pages of
+the modules.)
+</p><p>
+  !set x=<i class="wims_mathfont">x</i>
+  !set y=<i class="wims_mathfont">y</i>
+  You may replace $x and $y by any sub-expression in the following table.
+</p>
+
+
+!set table_th = Function, Description, How to type
+
+!set table_descs=constant known to all\
+base of natural logarithmic\
+absolute value of $x\
+sign of $x\
+square root of $x\
+closest integer to $x\
+largest integer\
+smallest integer\
+exponential\
+natural logarithmic\
+logarithmic of base 10\
+trigonometric sine\
+trigonometric cosine\
+trigonometric tangent\
+trigonometric cotangent\
+inverse trigonometric sine\
+inverse trigonometric cosine\
+inverse trigonometric tangent\
+hyperbolic sine\
+hyperbolic cosine\
+hyperbolic tangent\
+inverse hyperbolic sine\
+inverse hyperbolic cosine\
+inverse hyperbolic cotangent\
+Bigger among $x and $y\
+Smaller among $x and $y\
+Greatest Common Divisor\
+Least Common Multiple\
+
+!read 1/math.phtml.common

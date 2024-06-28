@@ -1,0 +1,256 @@
+!set wims_module_log=error: $error
+
+!if not_supervisor=$error
+±§Ç¸, Ö»ÓĞ°à¼¶µÄÖ÷³Ö½ÌÊ¦²ÅÓĞÈ¨×¼±¸»òĞŞ¸Ä×÷ÒµÒ³.
+ !exit
+!endif
+
+!if bad_series=$error
+Ææ¹Ö, ÎÒÕÒ²»µ½ÒªĞŞ¸ÄµÄÁ·Ï°ÏµÁĞ !!
+ !exit
+!endif
+
+!if bad_source=$error
+ÄãÌá½»µÄÔ´ÂëµÄµÚ $bad_source ÏîÊÇÎŞĞ§µÄ.
+ !href cmd=reply&job=prep_putsource $name_correctsource
+.
+ !exit
+!endif
+
+!if active_sheet=$error
+ ´ËÒ³ÒÑ¼¤»î. ÆäÄÚÈİ²»ÄÜĞŞ¸Ä.
+ !exit
+!endif
+
+!if bad_sheet=$error
+ÄãµÄÒ³Âë²»ÕıÈ·. ÊÇÈí¼şµÄÂ©¶´?
+ !exit
+!endif
+
+!if bad_maxsheet=$error
+ Ò³Êı²»ÄÜ³¬¹ı $max_sheets. Äã²»ÄÜÔÙ´´½¨ĞÂÒ³.
+ !exit
+!endif
+
+!if no_title=$error
+ÄãÏë×¢²áÒ»¸öÃ»ÓĞ±êÌâµÄÒ³Ãæ, ÎÒÃÇ²»Ï£ÍûÄãÕâÑù×ö. ÊÇÍü¼ÇÁËÂğ?
+ !exit
+!endif
+
+!if $error=not_secure
+±¾²Ù×÷±ØĞëÀ´×Ô°²È«Ö÷»ú.
+ !if $sec=$empty
+ÄãÃ»ÓĞ¶¨Òå°²È«Ö÷»ú, ²»ÄÜ´æÈ¡. Äã¿ÉÒÔÒªÇóÍøÕ¾¹ÜÀíÔ±ÎªÄãÉèÖÃ.
+ !else
+½ûÖ¹½øÈë.
+ !endif
+ !exit
+!endif
+
+!if $error=sharing_sheet
+ÄãÔÚÓëÆäËü°à¼¶¹²ÏíÒ³Ãæ!
+ !if $wims_ismanager<2
+ÄãÓ¦¸ÃÒªÇóÍøÕ¾¹ÜÀíÔ±È¡Ïû¼¤»î´ËÒ³Ãæ.
+  !exit
+ !endif
+È¡Ïû¼¤»î´ËÒ³ºóÓĞ¿ÉÄÜÊ¹ÏàÁÚ°àÏİÈë»ìÂÒ. Òò´Ë<b>Ç¿ÁÒÈ°¸æ</b>Äã²»Òª×ö´Ë²Ù×÷.
+<p>
+ÄãÊÇ·ñÈÔÒªÈ¡Ïû¼¤»î´ËÒ³?
+</p>
+  <div class="wimscenter">
+ !href cmd=reply&job=deactivate&confirm=yes $wims_name_yes; $(wims_name_actionlist[3])
+ .&nbsp;&nbsp;
+ !href cmd=resume $wims_name_no; $wims_name_giveup
+ . </div>
+ <b>ÔÚ¼ÌĞø´Ë²Ù×÷Ç°, ÖÁÉÙÓ¦¸ÃÍ¨ÖªÏàÁÚ°àµÄÖ÷³Ö½ÌÊ¦±£´æËûÃÇµÄ°à¼¶!</b>
+ !exit
+!endif
+
+!if sheet_in_exam iswordof $error
+  !set exa=!word 2 of $error
+  ´ËÒ³²»ÄÜÈ¡Ïû¼¤»î, ÒòÎªÄãµÄ¿¼ÊÔÒªÓÃµ½ËüµÄÄÚÈİ (for example, the exam $exa).
+  !exit
+!endif
+
+!if $error=non_empty_activities
+  <p class="wims_msg warning">ÄãÏëÒªÈ¡Ïû¼¤»îÒ³Ãæ $sheet, µ«ÊÇ²Î¼ÓÕßÒÑ¾­¿ªÊ¼ÔÚÕâ¸öÒ³ÃæÉÏ¹¤×÷ÁË!</p>
+ !if share iswordof $confirmed
+´ËÍâ, ´ËÒ³ÊÇÓëÆäËü°à¼¶¹²ÏíµÄ, ÄÇÀïÒ²¿ÉÄÜÓĞ×÷Òµ»ò·ÖÊı.
+Òò´Ë²»ÔÊĞíÈ¡Ïû¼¤»î.
+  !exit
+ !endif
+Èç¹ûÄãÈ¡Ïû¼¤»î, ´ËÒ³µÄËùÓĞµÃ·Ö¶¼½«É¾³ı. È·ÊµÒªÕâÑù×öÂğ?
+  <div class="wimscenter">
+ !href cmd=reply&job=deactivate&confirm=yes $wims_name_yes; $(wims_name_actionlist[3])
+ .&nbsp;&nbsp;
+ !href cmd=resume $wims_name_no; $wims_name_giveup
+ . </div>
+ÔÚ´ËÒ³×÷×÷ÒµµÄÕÊ»§±í:
+ <p class="tt">$worktest</p>
+ <div class="wims_msg info"><b>×¢Òâ</b>. Èç¹ûÊÇ²âÊÔÓÃµÄ°à¼¶, Ôò½ö½öÈ¡Ïû¼¤»î.</div>
+ !exit
+!endif
+
+!if prep_activate=$error
+ÄãÏëÒª¼¤»îÒ³Ãæ $sheet.
+¼¤»îÒ³Ãæºó, Ëü¾ÍÄÜ±»°à¼¶µÄËùÓĞ²Î¼ÓÕß¿´µ½. Ò»µ©±»¼¤»î,
+Äã¾Í²»ÔÙÄÜĞŞ¸ÄÁË, ³ı·ÇÄãÏÈÈ¡Ïû¼¤»î, ¶øÕâÑù×öÓĞ¿ÉÄÜÉ¾³ıËùÓĞµÄ·ÖÊı.
+!if $test_expire!=$empty
+  <div class="wims_warning">
+   ±¾Ò³µÄÊ§Ğ§ÈÕÆÚÒÑ¹ı,
+   Ëü½«ÔÚ´Ë°à¼¶µÄÊ§Ğ§ÈÕ±»¸üĞÂ.
+  </div>
+ !endif
+ <p>
+Òª¼ÌĞøÂğ?
+</p>
+  <div class="wimscenter">
+ !href cmd=reply&save=$wims_name_tosave&job=activate $wims_name_yes; $(wims_name_actionlist[1])
+ .&nbsp;&nbsp;
+ !href cmd=resume $wims_name_no; $wims_name_giveup
+ . </div>
+ !exit
+!endif
+
+!if prep_erase=$error
+ÄãÕæµÄÒªÉ¾³ıµÚ $sheet Ò³ ($title)?
+  <div class="wimscenter">
+  !set wims_ref_class=wims_button wims_warning
+ !href cmd=reply&job=erase $wims_name_yes; $wims_name_erase
+  !set wims_ref_class=wims_button
+ !href cmd=resume $wims_name_no ; $wims_name_giveup
+</div>
+ !exit
+!endif
+
+!if prep_expire=$error
+µÚ $sheet Ò³ ($title) Õı³£µÄÊ§Ğ§ÈÕÆÚÊÇ $expyear,
+ !item $expmon of $months
+ $expday. ÄãÒªÊ¹ËûÔÚÏÖÔÚÊ§Ğ§Âğ?
+  <div class="wimscenter">
+ !href cmd=reply&job=expire $wims_name_yes ; $(wims_name_actionlist[2])
+ .&nbsp;&nbsp;
+ !href cmd=resume $wims_name_no ; $wims_name_giveup
+ . </div><b>×¢Òâ.</b> ÄãµÄÑ§Éú²»ÄÜÔÚÒÑÊ§Ğ§µÄÒ³ÉÏ×ö×÷Òµ.
+µ«ËûÃÇÒÔÇ°µÄ³É¼¨ÈÔ±»±£´æ(¶øÇÒÔÚÍ³¼ÆÊ±±»¼ÆÈë), Äã×ÜÊÇÄÜ²é¿´ÕâĞ©³É¼¨.
+ !exit
+!endif
+
+!if prep_putsource=$error
+Èç¹ûÄãÓĞÒÑ±£´æµÄÔ´Âë, Äã¿É½«Õâ¶ÎÔ´Âë²åÈëµ±Ç°Ò³, Ö»Ğè½«Õâ¶ÎÔ´Âë¸´ÖÆÈëÒÔÏÂ´°¿Ú,
+ÔÙµã»÷°´Å¥ <span class="wims_button disabled">$wims_name_send</span>.
+Õâ¸ö±íÒ²ÔÊĞíÄãÓÃÇĞ¸î-¸´ÖÆµÄĞÎÊ½²åÈë¹«¿ª×÷ÒµÒ³µÄÔ´Âë.
+
+ !set wims_menu_items=!append line sheetadmin,1,cmd=resume \
+to $wims_menu_items
+
+ !set wims_form_method=post
+ !form reply
+ <input type="hidden" name="job" value="putsource"><p class="wimscenter">
+ <textarea cols="55" rows="10" name="source">$ssource</textarea></p>
+ <p class="wimscenter"><input type="submit" value="$wims_name_send">
+ </p>
+!formend
+ <span class="wims_warning">$wims_name_warning</span>.
+ ²»ÒªĞŞ¸ÄÒ³ÃæµÄÔ´Âë, ÕâÑù¿ÉÄÜÊ¹ÄãµÄÕû¸ö×÷ÒµÒ³ÎŞ·¨Ê¹ÓÃ.
+ !exit
+!endif
+
+!if prep_modify=$error
+ !set cnt=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+ !if $modif>$cnt or $modif<1
+  ÄãÊäÈëÁËÒ»¸öÎŞĞ§ÇëÇó, ²»Óè¿¼ÂÇ.
+ !else
+  !set exo=!record $modif of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+  !read exomodify.phtml $exo
+ !endif
+ !exit
+!endif
+
+!if $error=toolate
+!read adm/lang/date.phtml.$moduclass_lang $class_expiration
+ <p>$name_expiration1 ($l_date_out). $name_expiration2 </p>
+ !set wims_ref_class=wims_button
+ !href cmd=resume&job=$empty&save=$empty $wims_name_back2
+ ($wims_name_sheetmanagement)
+ !exit
+!endif
+
+!if $error=srcnoexo
+ ±¾Ò³²»º¬ÈÎºÎÁ·Ï°, Òò´ËÆäÔ´ÂëÊÇ¿ÕµÄ.<br>
+ !href cmd=resume ·µ»Ø×¼±¸Ò³
+ !exit
+!endif
+
+!if $error=depindiv
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+    Il n'est pas possible de définir des dépendances de score en même temps que
+    l'activation de l'individualisation des feuilles de travail avec une variable technique.
+    <br>
+    Vous devez choisir entre les deux avant de pouvoir activer cette feuille.
+    !reset error
+  </div>
+  <div class="wimscenter">
+   !set wims_ref_class=wims_button
+   !href cmd=resume Retour
+  </div>
+  !exit
+!endif
+
+!if badtechvarname iswordof $error
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+    !let code=!word 2 to -1 of $error
+    !if $code=_
+      une des conditions <span class="wims_code_words">Condition pour cacher la feuille aux participants</span> n'a pas de nom de variable
+    !else
+      Un des noms de variable (
+        !let code=!listcomplement _ in $code
+        $code
+      ) n'est pas un nom correct de variable technique. Les noms incorrects de variable technique
+      ont été supprimés du champs <span class="wims_code_words">Condition pour cacher la feuille aux participants</span>.
+    !endif
+  </div>
+  <div class="wimscenter">
+   !set wims_ref_class=wims_button
+   !reset error
+   !href cmd=resume Retour
+  </div>
+  !exit
+!endif
+
+!if toomanyexo=$error
+  <div class="wims_msg alert">
+    Le nombre d'exercices dans une feuille est limité à $max_exos. Vous devez supprimer des exercices avant de pouvoir
+    l'activer.
+  </div>
+  !exit
+!endif
+
+!if $error=badallowshare
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+  La variable technique que vous souhaitez utiliser n'est pas disponible dans toutes les classes en partage de ressources avec votre
+  classe.
+  Vous ne pouvez donc pas propager ces réglages aux autres classes en partage.
+  </div>
+  <div class="wimscenter">
+   !set wims_ref_class=wims_button
+   !reset error
+   !href cmd=resume Retour
+  </div>
+  !exit
+!endif
+
+!if $error=hiddenbadtechvar
+  Attention, la <span class="wims_code_words">condition pour cacher la feuille aux participants</span> en utilisant une variable technique est incorrecte. Vous devez la corriger.
+  !exit
+!endif
+
+!if techvardiscord iswordof $error
+  !! TODO_lang techvardiscord
+  !changeto lang/msg.phtml.fr
+!endif
+
+!msg $error

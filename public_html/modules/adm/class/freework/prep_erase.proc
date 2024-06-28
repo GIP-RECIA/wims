@@ -1,0 +1,43 @@
+!! activate freework
+
+!! --- testing if erasable
+!read proc/iserasable.proc $freework
+!if $erasable=no
+  error=noterasable
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!if $nbfreework=1
+  !sh rm -f $wims_home/log/classes/$wims_class/freeworks/.freework$freework >/dev/null\
+    rm -rf $wims_home/log/classes/$wims_class/freeworksdata/$freework >/dev/null\
+    $wims_home/log/classes/$wims_class/freeworks/.Wfreework$freework >/dev/null\
+    rm -f $wims_home/log/classes/$wims_class/freeworks/.freeworks >/dev/null\
+    touch $wims_home/log/classes/$wims_class/freeworks/.freeworks
+!else
+  !sh cd $wims_home/log/classes/$wims_class/freeworks/;\
+    rm -f .freework$freework >/dev/null\
+    rm -f .Wfreework$freework >/dev/null\
+    rm -rf $freework >/dev/null\
+    rm -rf $wims_home/log/classes/$wims_class/freeworksdata/$freework >/dev/null\
+    n=$[$freework+1];\
+    while [ $$n -le $nbfreework ]; do\
+      mv .freework$$n .freework$$(($$n-1)) >/dev/null\
+      mv .Wfreework$$n .Wfreework$$(($$n-1)) >/dev/null\
+      mv $wims_home/log/classes/$wims_class/freeworksdata/$$n $wims_home/log/classes/$wims_class/freeworksdata/$$(($$n-1)) >/dev/null\
+      mv $wims_home/log/classes/$wims_class/freeworks/$$n $wims_home/log/classes/$wims_class/freeworks/$$(($$n-1)) >/dev/null\
+      n=$$(($$n+1))\
+    done
+  data=$empty
+  !for k=1 to $nbfreework
+    rec=!record $k of wimshome/log/classes/$wims_class/freeworks/.freeworks
+    !if $k!=$freework
+      data=$data\
+:$rec
+    !endif
+  !next k
+  !filewrite wimshome/log/classes/$wims_class/freeworks/.freeworks $data
+!endif
+nbfreework=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+success=gooderase
+!restart module=home

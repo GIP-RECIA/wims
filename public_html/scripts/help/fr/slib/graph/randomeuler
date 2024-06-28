@@ -1,0 +1,9 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Graphe aléatoire ayant une chaine eulérienne
+slib_parms=2\
+,n nombre d'arcs\
+,m nombre approximatif de sommets;\
+,option: si euler, graphe eulerien
+
+slib_out=[matrice d'adjacence],[chaine eulérienne ou cycle eulérien]

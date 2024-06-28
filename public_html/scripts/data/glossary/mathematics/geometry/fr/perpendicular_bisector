@@ -1,0 +1,36 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=perpendicular_bisector,triangles
+!set gl_title=Médiatrice d'un segment
+!set gl_level=E6 Cycle&nbsp;3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>Soit A et B deux points distincts, et
+I le milieu de [AB].<br>
+La <strong>médiatrice</strong> du segment [AB] est la droite perpendiculaire
+à (AB) passant par I.
+</div>
+
+:mathematics/geometry/fr/perpendicular_bisector_1
+:
+<div class="wims_thm">
+<h4>Propriétés caractéristiques</h4>
+Soit A et B deux points distincts.
+<ul><li>
+La médiatrice du segment [AB] est l'ensemble des points équidistants de A et B.
+</li><li>
+La médiatrice du segment [AB] est l'axe de symétrie du segment [AB]
+autre que la droite (AB).
+</li></ul>
+</div>
+
+:mathematics/geometry/fr/perpendicular_bisector_2
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Les médiatrices des trois côtés d'un triangle sont concourantes.
+<br>Leur point de concours est équidistant des trois sommets du triangle.
+</div>
+
+:mathematics/geometry/fr/perpendicular_bisector_3

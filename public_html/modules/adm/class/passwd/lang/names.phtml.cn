@@ -1,0 +1,26 @@
+!set lang_exists=yes
+
+!!set module_title=¸Ä±äÃÜÂë
+
+!distribute line Ñ¡ÔñÃÜÂëÀàĞÍ\
+  ÄãµÄ¸öÈËµÇÂ¼ÃÜÂë\
+  The login password of the teacher/administrator.\
+  ÏÂÁĞÑ§ÉúµÄÃÜÂë\
+  ÕâÖÖÇéĞÎÄã²»±ØÂ¼ÈëÔ­ÃÜÂë\
+  The one used by participants to register in your class\
+  °à¼¶ÃÜÂë(¼´²Î¼ÓÕß×¢²áÊ±Ê¹ÓÃµÄÃÜÂë)\
+  The one used by teachers to register in your class\
+  °à¼¶×éÃÜÂë, ¼´½ÌÊ¦ÓÃÀ´µÇÈë´Ë°à¼¶µÄÃÜÂë\
+  Only required when changing the teacher/administrator password\
+  ĞÂÃÜÂë\
+  ÔÙÊäÈëÒ»´ÎĞÂÃÜÂë\
+  ¶ÔÓÚ¸öÈËÃÜÂë: Èç¹ûÄãÒªÌí¼ÓÒ»´ÎĞÔÃÜÂë, Ö»ÒªÔÚĞÂÃÜÂëÇ°¼ÓÉÏ·ûºÅ `+'.\
+  ÃÜÂë±ØĞëÓÉ 4 ÖÁ 16 ¸öÓ¢ÎÄ×ÖÄ¸×é³É.\
+  Èí¼şÄÜ½ÓÊÜ¿ÕµÄÃÜÂë, µ«ÊÇÍøÕ¾¹ÜÀíÔ±¿ÉÄÜ²»ÔÊĞíÃ»ÓĞ°à¼¶ÃÜÂëµÄÎ´¾­ÊÚÈ¨µÄ°à.\
+into name_passwdtype, name_userpasswd, name_userpasswd_hlp, name_partpasswd, name_classpasswd, name_classpasswd_hlp, name_classpasswdt, name_classpasswdt_hlp,\
+name_actualpasswd, name_actualpasswd_hlp, name_newpasswd,  name_newpasswd2, name_jetable, name_alphanumer, name_emptypasswd
+
+name_desc_forcechpwd=Votre mot de passe actuel a été défini par le serveur (procédure d'expédition de mot de passe par message électronique) \
+ou par votre enseignant. Vous devez définir un nouveau mot de passe pour garantir la sécurité de votre compte.
+name_desc_forcechpwd2=Votre mot de passe actuel a été défini par le serveur procédure d'expédition de mot de passe par message électronique) \
+ou par l'administrateur du groupement/portail. Vous devez définir un nouveau mot de passe pour garantir la sécurité de votre compte.

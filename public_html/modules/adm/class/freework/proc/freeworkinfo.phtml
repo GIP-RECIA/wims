@@ -1,0 +1,253 @@
+!form reply
+<input type="hidden" name="job" value="configfw" >
+<input type="hidden" name="freework" value="$freework">
+<fieldset class="property_fields blockcenter">
+  <legend>$name_info
+    !if $jquery_defined!=yes and $freework<=$nbfreework
+      [
+        !href cmd=resume&infoshow1=no $wims_name_hide
+      ]
+    !endif
+  </legend>
+!! --------- manage of title
+  <div class="field box">
+    <label for="title">$(name_shinfo[1])</label>
+    <input maxlength="$title_limit" name="title" id="title" value="$title" required="required" >
+    <div class="formHelp">$name_desc_title</div>
+  </div>
+!! -------- manage of type of freework
+  <div class="field box">
+    <label for="type">$(name_shinfo[2])</label>
+    !set wims_ref_class=wims_button_help float_right
+    !href target=wims_mhelp cmd=help&special_parm=type $wims_name_help
+    !if $activetest<0
+      !if $conf_nofile=yes
+        !let tmp_val=1,3
+      !else
+        !let tmp_val=1,2,3
+      !endif
+      !let tmp=!item $tmp_val of $name_type_list
+      !formselect type list $tmp_val prompt $tmp
+      <div class="formHelp">$name_desc_type</div>
+    !else
+      <span data-type="$type">$(name_type_list[$type])</span>
+    !endif
+  </div>
+!! -------- manage of status
+  !ifval $activetest>-1
+    <div class="field box">
+      <strong>$(name_shinfo[3])</strong>
+      <span class="wims_status wims_status_$activetest">$(wims_name_shstatus[$activetest+1])</span>
+      !read adm/freeworkaction.phtml freework,$freework,$activetest,0,$type
+    </div>
+  !endif
+!! ------- manage of description
+  <div class="field box fullwidth">
+    <label for="desc">$(name_shinfo[4])</label>
+    <div class="formHelp">$name_desc_desc</div>
+    <textarea id="desc" class="iEdit" rows="6" cols="65" name="desc">$desc</textarea>
+  </div>
+!! ------- manage of comment
+  <div class="field box">
+    <label for="comment">$(name_shinfo[5])</label>
+    <div class="formHelp">$name_desc_comment</div>
+    <textarea id="comment" class="iEdit" rows="6" cols="65" name="comment">$comment</textarea>
+  </div>
+!! ------ manage of filesizelimit
+  !if $type=2 or $type=4 or ($type=3 and $numberfilezone>0)
+    !let nbuser_=!recordcnt wimshome/log/classes/$wims_class/.userlist
+    <div class="field box fullwidth">
+      !set wims_ref_class=wims_button_help float_right
+      !href target=wims_mhelp cmd=help&special_parm=sizelimitfile $wims_name_help
+      <label for="sizelimitfile">$name_limitestudent</label>
+      <div class="formHelp">$name_desc_sizelimitfile</div>
+      !reset l2
+      !if $type=4
+        !let l2=$name_nodeposit
+        !let init=0
+      !else 
+        !let init=1
+      !endif
+      !for v=1 to 10
+        !set limit_option=$[$v*0.25]
+        !let l2=!append item $limit_option$name_mega ($[$limit_option*$class_limit]$name_mega $name_fortheclass.) to $l2
+      !next v
+      !if $activetest=0
+        !let tmp=!item 1 to 2 of $name_type_list
+        !let l1=!values v for v=$init to 10
+        !default sizelimitfile=0
+        !formselect sizelimitfile list $l1 prompt $l2
+        <hr>
+        !read adm/class/quotafree.proc html
+      !else
+        !if $type=2 or $type=4 or ($type=3 and $numberfilezone>0)
+          !item $[$sizelimitfile+1] of $l2
+        !endif
+      !endif
+    </div>
+  !endif
+!! ------- manage of deadline (end of student work)
+  <div class="field box halfwidth">
+    !set wims_ref_class=wims_button_help float_right
+    !href target=wims_mhelp cmd=help&special_parm=datedeadline $wims_name_help
+    <label for="deadline">$(name_shinfo[7])</label>
+    <div class="formHelp">$name_desc_deadline</div>
+    !if $activetest<=0
+      !read adm/datepickerform.phtml $deadline\
+deadline\
+"$class_creation","$class_expiration"
+      <label for="timedeadline">$wims_name_at</label>
+      <input type="time" name="timedeadline" id="timedeadline" value="$timedeadline" >
+    !else
+      !read adm/date.phtml $deadline
+      $l_date_out
+      $wims_name_at
+      !replace internal : by H in $timedeadline
+    !endif
+  </div>
+!! -------- manage of deadline for solution
+  <div class="field box halfwidth">
+    !set wims_ref_class=wims_button_help float_right
+    !href target=wims_mhelp cmd=help&special_parm=datetimesoldate $wims_name_help
+    <label for="soldate">$(name_shinfo[8])</label>
+    <div class="formHelp">$name_desc_soldate</div>
+    !if $activetest<=1
+      !read adm/datepickerform.phtml $soldate\
+soldate\
+"$class_creation","$class_expiration"
+      <label for="timesoldate">$wims_name_at</label>
+      <input type="time" name="timesoldate" id="timesoldate" value="$timesoldate" >
+    !else
+      !read adm/date.phtml $soldate
+      $l_date_out
+      $wims_name_at
+      !replace internal : by H in $timesoldate
+    !endif
+  </div>
+  !ifval $type>1 and $wims_supertype!=4
+!! --------- manage of scoring parameter
+    <div class="field box">
+      !if $activetest=0
+        <label for="scoring">$(name_shinfo[9])</label>
+      !else
+        <strong>$(name_shinfo[9])</strong>
+      !endif
+      !set wims_ref_class=wims_button_help float_right
+      !href target=wims_mhelp cmd=help&special_parm=scoring $wims_name_help
+      <div class="formHelp">$name_desc_scoring</div>
+        !if $activetest=0
+          !if $scoring<0
+            !let scoring=no
+          !endif
+          !bound scoring within 0,no default 0
+          !formradio scoring list 0,no prompt $wims_name_yes,$wims_name_no
+        !else
+          !if $scoring<=0
+            $name_noscoring
+          !else
+            $name_usedscoring $(score_title[$scoring])
+          !endif
+        !endif
+    </div>
+  !endif
+!! ----------- manage of seealltime option
+  <div class="field box">
+        !if $activetest=0
+          !formcheckbox seealltime list 1 prompt $(name_shinfo[10])
+        !else
+          <strong>$(name_shinfo[10])</strong>
+          !if $seealltime=1
+            $wims_name_yes
+          !else
+            $wims_name_no
+          !endif
+        !endif
+        <div class="formHelp">$name_desc_seealltime</div>
+        !reset seealltime
+  </div>
+!! ----------- manage "consigne" before time
+!! only available for type=3
+!if $type=3
+  <div class="field box">
+        !if $activetest=0
+          !formcheckbox studentclose list 1 prompt $(name_shinfo[11])
+        !else
+          <strong>$(name_shinfo[11])</strong>
+          !if $studentclose=1
+            $wims_name_yes
+          !else
+            $wims_name_no
+          !endif
+        !endif
+        <div class="formHelp">$name_desc_studentclose</div>
+        !reset studentclose
+  </div>
+!endif
+!! ---------- manage fw access
+  <div class="field box">
+    <label for="allowtype">$(name_showhidetitle)</label>
+    !set wims_ref_class=wims_button_help float_right
+    !href target=wims_mhelp cmd=help&special_parm=allowtype $wims_name_help
+    <select id="allowtype" name="allowtype"
+            onchange="toggle_allowtype(this,{'select': '#js_restricted_time','techvar': '#js_restricted_techvar'})"
+      >
+      !if $tv_listname=$empty
+        !set list_allowtype=all,none,select
+      !else
+        !set list_allowtype=all,none,select,techvar
+      !endif
+      !let nboption=!itemcnt $list_allowtype
+      !for i=1 to $nboption
+        !if $(list_allowtype[$i])=$allowtype
+          <option value="$(list_allowtype[$i])" selected="selected">$(name_allowtype[$i])</option>
+        !else
+          <option value="$(list_allowtype[$i])">$(name_allowtype[$i])</option>
+        !endif
+      !next i
+    </select>
+    <div id="js_restricted_time"
+      !if $allowtype=select
+        style="display:block"
+      !else
+        style="display:none"
+      !endif
+      >
+      !readproc adm/vfilter/shexselect.proc F$freework
+      !readproc adm/scorerestriction get
+      !read adm/scorerestriction html
+    </div>
+
+    <div id="js_restricted_techvar"
+      !if $allowtype=techvar
+        style="display:block"
+      !else
+        style="display:none"
+      !endif
+      >
+      !read adm/vfilter/scoreregform.phtml
+    </div>
+    <script src="scripts/js/interface/ui_utils.js"></script>
+
+    !default allowshare=0
+    !if $sharers!=$empty
+      <div>
+        <label for="allowshare">$name_allowshare</label>
+        !formselect allowshare list 0,1 prompt $wims_name_no,$wims_name_yes
+      </div>
+    !else
+      <input type="hidden" name="allowshare" value="0">
+    !endif
+  </div>
+!! ---------- end manage fw access
+</fieldset>
+
+<div class="wimscenter wimsform">
+  !ifval $activetest=-1
+    <input type="submit" value="$name_mkfreework" name="save">
+  !else
+    <input type="submit" value="$wims_name_tosave" name="save">
+  !endif
+  !set wims_ref_class= wims_button wims_secondary_button
+  !href module=home $wims_name_giveup
+</div>
+!formend

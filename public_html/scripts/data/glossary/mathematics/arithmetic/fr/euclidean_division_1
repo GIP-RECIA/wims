@@ -1,0 +1,28 @@
+!set gl_type=dynamic
+!set gl_title=Division euclidienne (exemple)
+!readproc data/glossary/mathematics/arithmetic/macro/euclidean_division
+
+On a \($gl_a=$gl_q \times $gl_b + $gl_r\) avec \(0\leqslant $gl_r \lt $gl_b\).
+
+<br>Dans la division euclidienne de $gl_a par $gl_b,
+
+<ul class="wims_nopuce">
+    <li>
+    le dividende est $gl_a ;
+    </li><li>
+    le diviseur est $gl_b ;
+    </li><li>
+    le quotient est $gl_q ;
+    </li><li>
+    le reste est $gl_r.
+  </ul>
+
+<span class="wims_warning">$wims_name_warning</span>:
+  \($gl_a=$gl_q \times $gl_b + $gl_r\)
+!if $gl_q <= $gl_r
+   n'est pas la division euclidienne de $gl_a par $gl_q
+   car \($gl_r \geqslant $gl_q.\)
+!else
+  est aussi la division euclidienne de $gl_a par $gl_q
+  car \(0\leqslant $gl_r \lt $gl_q.\)
+!endif

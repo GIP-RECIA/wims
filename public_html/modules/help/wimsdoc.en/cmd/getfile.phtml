@@ -1,0 +1,20 @@
+!! +exec+ +html+
+tit:getfile
+type:$type_exec; $type_adm
+alias:outfile, fileout
+syntax:!getfile ``filename [prompt]''
+mean:Creates a hypertext reference pointing to a specified file on the current wims session. <br>\
+  Whenever possible, this command should be used instead of a direct use of\
+  html tag ``&lt;a href="..."&gt;''. <br>\
+  ``filename'' is the file name to find in the /getfile directory of current session,\
+  which should not contain white spaces.\
+  <br>\
+  ``prompt'' is an optional text on which the hypertext link sits. It can be\
+  any text or a &lt;img...&gt; tag, but dynamic insertions are not accepted yet.\
+  <br>There is no need to add the end tag ``&lt;/a&gt;''.\
+  <p>The CSS class (class='...') of the link can be controlled via the variable\
+  ``wims_ref_class''.</p>\
+  <p>The title (title='...') of the link can be controlled via the variable\
+  ``wims_ref_title''.</p>\
+  <p>The HTML ID (id='...') of the link can be controlled via the variable\
+  ``wims_ref_id''.</p>\

@@ -1,0 +1,284 @@
+:E5/number/oefdecimal.fr
+exo=ecrituredecimale&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Fraction décimale >> Écriture décimale
+Savoir écrire un nombre déimal à partir d'une fraction décimale
+
+
+
+
+:E5/number/oefdecimal.fr
+exo=fraction_decimal&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Écriture fractionnaire et écriture décimale
+Relier une écriture décimale à son écriture fractionnaire
+
+
+
+
+:H3/number/OEFnbredeccollege.fr
+exo=oefdevinette1&qnum=2&qcmlevel=3&scoredelay=&confparm1=1&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Devinette partie entière et décimales d'un nombre
+
+
+
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefecritdec1&exo=oefecritdec2&exo=oefecritdec3&exo=oefecritdec4&exo=oefecritdec5&qnum=3&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Écriture d'un nombre décimal
+Partie entière, partie décimale, zéros inutiles, déplacement de virgule
+
+
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oeffractdec1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+fraction décimale 1
+Décomposition en fractions décimales, difficulté 1
+
+
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oeffractdec2&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Fraction décimale 2
+Décomposition en fractions décimales, difficulté 2
+
+
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oeffractdec3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Fraction décimale 3
+Décomposition partie entière et partie décimale avec fraction décimale, difficulté 3
+
+
+
+
+:E6/number/ecrituredecimale.fr
+exo=decompo_decimaux1&qnum=3&qcmlevel=3&scoredelay=&confparm1=6&confparm2=3&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Décomposition de décimaux
+Savoir écrire un nombre décimal à partir d'une décomposition
+
+
+
+
+:E5/number/oefdecimal.fr
+exo=cor_lecture&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Lecture d'un nombre décimal
+
+
+
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefecritdeclitt1&qnum=3&random=0&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Écriture décimale 1
+Trouver un nombre décimal à partir d'une écriture en toutes lettres, difficulté 1
+
+
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefecritdeclitt3&exo=oefecritdeclitt4&exo=oefecritdeclitt5&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Écriture décimale 2
+Trouver un nombre décimal à partir d'une écriture en toutes lettres, difficulté 2
+
+
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefencadr1&exo=oefencadr2&exo=oefencadr3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Encadrer 1-3
+Encadrer des nombres décimaux, difficulté 1 à 3 aléatoirement
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefencadr3&exo=oefencadr4&exo=oefencadr5&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Encadrer 3-5
+Encadrer des nombres décimaux, difficulté 3 à 5 aléatoirement
+:H1/number/OEFevalwimsnumber.fr
+exo=oeffractdec1&exo=oeffractdec2&exo=oeffractdec3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Décomposer en fraction décimale 1-3
+Difficulté 1 à 3 aléatoirement
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oeffractdec3&exo=oeffractdec4&exo=oeffractdec5&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Décomposer en fraction décimale  3-5
+Difficulté 3 à 5 aléatoirement
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oeffractdix1&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Addition de fraction décimale 1
+Difficulté 1 : mêmes dénominateurs
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oeffractdix3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Addition de fraction décimale 3
+Difficulté 3 : dénominateurs différents
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefinterc3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Intercaler un décimal
+Intercaler un décimal entre deux décimaux
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefordre1
+10
+1
+Ordre des entiers
+Choisir le plus grand et justifier.
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefordre3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Ordre des décimaux
+Choisir le plus grand et justifier.
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefrang1&exo=oefrang2&exo=oefrang3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Trouver le bon chiffre 1-3
+Celui des unités, des dizaines, des dixièmes... difficulté 1 à 3
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefrang3&exo=oefrang4&exo=oefrang5&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Trouver le bon chiffre 3-5
+Celui des unités, des dizaines, des dixièmes... difficulté 3 à 5
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefapproch1&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Relier nombre et sa valeur approchée 1
+Difficulté 1
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefapproch2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Choisir la précision
+
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefecritvoc1&exo=oefecritvoc2&exo=oefecritvoc3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Vocabulaire sur le rang 1-3
+Difficulté 1 à 3 aléatoirement
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefecritvoc3&exo=oefecritvoc4&exo=oefecritvoc5&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Vocabulaire sur le rang 3-5
+Difficulté 3 à 5 aléatoirement.
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefecritdeclitt1&exo=oefecritdeclitt2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Écriture décimale suite 1-2
+Donner une écriture décimale à partir de sa décomposition décimale. Difficulté 1 à 2
+
+:H1/number/OEFevalwimsnumber.fr
+exo=oefecritdeclitt3&exo=oefecritdeclitt5&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Écriture décimale suite 3-5
+Donner une écriture décimale à partir de sa décomposition décimale. Difficulté 3 à 5
+
+
+:H3/number/OEFnbredeccollege.fr
+exo=oefdevinette2&qnum=1
+10
+1
+Devinette sur les décimaux et entiers
+
+
+:E5/number/oefdecimal.fr
+exo=classer&qnum=2&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Ordre : Classer des nombres décimaux
+
+:E5/number/oefdecimal.fr
+exo=comparer&qnum=2&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Ordre : Comparer deux nombres
+
+:E5/number/oefdecimal.fr
+exo=encadrer&qnum=2&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Encadrer par deux entiers consécutifs
+:E5/number/oefdecimal.fr
+exo=entierproche&qnum=2&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+L'entier le plus proche
+:E5/number/oefdecimal.fr
+exo=regle1&qnum=2&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+La droite graduée 1
+Nombre ayant une décimale
+:E5/number/oefdecimal.fr
+exo=regle2&qnum=2&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+La droite graduée 2
+Nombre ayant deux décimales
+:E5/number/oefdecimal.fr
+exo=regle3&qnum=2&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+La droite graduée 3
+Nombre ayant trois décimales
+:E5/number/oefdecimal.fr
+exo=jeudesfamilles&qnum=2&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Le jeu des familles
+Regrouper si même valeur

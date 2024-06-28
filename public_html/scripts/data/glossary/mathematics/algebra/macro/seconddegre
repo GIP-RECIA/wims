@@ -1,0 +1,49 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!! Generation of the trinomial function !!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!set gl_rand1 =!randint 0,1
+!set gl_rand2=!randint 1,9
+
+!set gl_a =$[(-1)^$gl_rand1 * $gl_rand2]
+!set gl_b =!randint -9,9
+!set gl_c =!randint -9,9
+!set gl_expr =!exec pari $gl_a*x^2+$gl_b*x+$gl_c
+
+!!!!!!!!!!!!!!!!!!!!!!
+!!!! Discriminant !!!!
+!!!!!!!!!!!!!!!!!!!!!!
+!set gl_delta =!exec pari $[($gl_b)^2-4*$gl_a*$gl_c]
+!if $gl_a>0
+  !set gl_itema=!texmath $gl_a
+!else
+  !set gl_itema= ($gl_a)
+!endif
+
+!if $gl_b>=0
+  !set gl_itemb=!texmath $gl_b
+!else
+  !set gl_itemb=($gl_b)
+!endif
+
+!if $gl_c>=0
+  !set gl_itemc=!texmath $gl_c
+!else
+  !set gl_itemc=($gl_c)
+!endif
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!! Generation of non trinomial function !!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!set gl_d=!randint -9,9
+
+!set gl_choix=!randint 1,3
+!set gl_expr1 =!exec pari $gl_a*x+$gl_b
+!set gl_expr2 =!exec pari $gl_a*x^3+$gl_b*x^2+$gl_c*x+$gl_d
+!set gl_expr3 =$gl_a/x+$gl_b*x+$gl_c
+
+!!!!!!!!!!!!!!!!!!!!!!!!
+!!!! Canonical form !!!!
+!!!!!!!!!!!!!!!!!!!!!!!!
+!set gl_coef1=!exec pari $gl_b/(2*$gl_a)
+!set gl_coef2=!exec pari -1*$gl_delta/(4*($gl_a)^2)
+!set gl_coef3=!exec pari -1*$gl_delta/(4*$gl_a)

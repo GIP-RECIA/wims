@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_number,inequalities
+!set gl_title=Valeur approchée (lycée)
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(x\) et \(a\) deux nombres et \(p\) un nombre réel strictement positif.
+<br>Le nombre \(a\) est <strong>une valeur approchée</strong> de \(x\) à \(p\)
+près ou à la précision \(p\) si et seulement si \(\lvert x-a \rvert \leqslant\ p)
+c'est à dire si et seulement si <span style="white-space:nowrap">
+\(a-p\leqslant x \leqslant a+p\).</span>
+</div>
+<div class="spacer">
+Cela signifie que la distance entre \(x\) et \(a\), c'est-à-dire l'erreur commise
+en remplaçant \(x\) par \(a\) est inférieure à <span style="white-space:nowrap">
+\(p\).</span>
+</div>
+<div class="wims_rem"><h4>Remarque</h4>
+Le nombre \(p\) est souvent de la forme \(10^{-n}\) où \(n\) est un entier
+naturel.
+</div>

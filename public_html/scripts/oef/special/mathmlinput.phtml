@@ -1,0 +1,124 @@
+!reset inputsize
+!set force_mathml=yes
+!if $wims_read_parm=$empty
+  !exit
+!endif
+!if $wims_read_parm=help
+  !read help/$lang/special/mathmlinput.phtml
+  !exit
+!endif
+!set prompt_empty_=\cdots\cdots\cdots
+!set parm=!replace internal ,	r by $	r in $wims_read_parm
+!set parm=!replace internal $	$ by $\
+$ in $parm
+
+!set code=!item 1 of $parm
+!set code=!declosing $code
+
+!set inputsize=!item 2 to -1 of $parm
+!set parm=!line 2 to -1 of $inputsize
+!set inputsize=!line 1 of $inputsize
+
+!if noanswer iswordof $inputsize
+  !set noanswer=1
+!endif
+!set inputsize=!item 1 of $inputsize
+!set inputsize=!text select 0123456789 in $inputsize
+!default inputsize=5
+!set inputsize=!items2words $inputsize
+
+!set parmcnt=!linecnt $parm
+!set parm=!sort reverse line $parm
+
+!set pretext=!replace internal reply by REPLY in $code
+
+!for tt = 1 to $parmcnt
+  !set ld=!line $tt of $parm
+  !set upcase=!uppercase $(ld[1])
+  !reset inputsize_tmp
+  !distribute item $ld into m_,inputsize_tmp,css
+  !default inputsize_tmp=$inputsize
+  !set reply_tmp=!nospace $m_
+  !set rep_tmp=!replace internal reply by r in $reply_tmp
+  !set n_=!text select 0123456789 in $reply_tmp
+  !set n_=$[$n_]
+  !bound n_ between integer 1 and 100 default $
+  !if $printing=yes
+    !set pretext=!replace internal REPLY$n_ by $prompt_empty_ in $pretext
+  !else
+    !if $n_!=$empty and $(replytype$n_) iswordof numeric nocase case atext chemformula \
+        range litexp algexp formal equation function raw symtext default aset fset set numexp
+      !set embedded=!append item r$n_ to $embedded
+      !if debug iswordof $m_oefenv and ?analyze notin $(replygood$n_)
+        !read oef/special/debug.input $n_
+      !endif
+      !set pretext=!replace internal REPLY$n_ by $ \input{$(inputsize_tmp)}{$n_}{$(css)}{$(reply$n_)}{0} $ in $pretext
+      !set hlist=$hlist<input type="hidden" name="reply$n_" value="">
+      !set formm=$formm document.forms['replyform'].reply$n_.value=document.getElementById("mathml"+$n_).value;
+      !set nrep=!append item $n_ to $nrep
+    !endif
+  !endif
+!next tt
+!if $printing=yes
+  \($pretext)
+  !exit
+!endif
+!if $q_form=yes
+  <script>function read_mathml(){ $formm }</script>
+  \( $pretext )
+  $hlist
+  !reset hlist
+  !set oef_js_submit=$oef_js_submit read_mathml();
+!else
+  !if $cmd=hint
+    !set noanswer=1
+  !endif
+  !readproc themes/$wims_theme/oefcolors
+  !if $oef_indbad=$empty
+    !readproc themes/oefcolors
+  !endif
+  !if $presentgood>0
+    !distribute item $oef_indbad,$oef_indgood,$oef_indforget,$oef_indpartial,$oef_indprec\
+    into colorr_bad,colorr_good,colorr_forget,colorr_partial,colorr_prec
+  !else
+    !distribute item black,black,black,black,black\
+    into colorr_bad,colorr_good,colorr_forget,colorr_partial,colorr_prec
+  !endif
+  !set codegood=$code
+  !set codereply=$code
+  !set test=0
+  !for tt = 1 to $parmcnt
+    !reset inputsize_tmp
+    !set ld=!line $tt of $parm
+    !distribute item $ld into m_,inputsize_tmp,css
+    !default inputsize_tmp=$inputsize
+    !set m_=!text select 0123456789 in $m_
+    !set m_=$[$m_]
+    !if $m_ isitemof $nrep
+      !default reply_$m_=$(reply$m_)
+      !set tt1=!word 1 of $(replygood$m_)
+      !if $tt1!=?analyze
+        !set cl=$(colorr_$(diareply$m_))
+      !else
+        !set cl=$colorr_ana
+        !set noanswer=1
+      !endif
+      !if $(diareply$m_)!=good
+        !set test=1
+      !endif
+      !set replytolatex=!rawmath $(reply_$m_)
+      !set replytolatex=!texmath $replytolatex
+      !set rgoodtolatex=!rawmath $(replyGood$m_)
+      !set rgoodtolatex=!texmath $rgoodtolatex
+      !set defaultrgoodtolatex=!rawmath $(replygood$m_)
+      !default rgoodtolatex=!texmath $defaultrgoodtolatex
+      !set codereply=!replace internal reply$m_ by $ \color{$cl}{$replytolatex} $ in $codereply
+      !set codegood=!replace internal reply$m_ by $ $(rgoodtolatex)$ in $codegood
+    !endif m_
+  !next tt
+  !if $test=1 and $noanswer!=1 and $presentgood>0
+    \( $codereply \quad\) \(\quad $codegood\)
+  !else
+    \( $codereply \)
+  !endif
+!endif

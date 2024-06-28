@@ -1,0 +1,21 @@
+!! check if exists class geoloc
+opengeoloc=!fileexists wimshome/log/stat/class.geoloc
+!if $opengeoloc=yes
+  nbclass=!recordcnt wimshome/log/stat/class.geoloc
+!else
+  nbclass=0
+!endif
+
+!! check geoloc of server
+!if $opengeoloc=yes
+  serverloc=!record 0 of wimshome/log/stat/server.geoloc
+  Xserver=$(serverloc[2])
+  Yserver=$(serverloc[3])
+  !if NaN isin $[$Xserver*$Yserver]
+    Yserver=7.253866
+    Xserver=43.712854
+    serverloc=0
+  !else
+    serverloc=1
+  !endif
+!endif

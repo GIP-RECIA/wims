@@ -1,0 +1,24 @@
+!set gl_n=!randint 7,12
+!set gl_ar=!randint 4,10
+!set gl_c=!randitem 0,1
+!!set test=!exec pari about
+
+!if $gl_c=1
+  !readproc slib/graph/grapheuler.gp
+  !readproc slib/graph/randomeuler $gl_n,$gl_ar,euler
+!else
+  !readproc slib/graph/randomeuler $gl_n,$gl_ar
+!endif
+
+!set gl_A=$(slib_out[1])
+!if $gl_c=0
+  !set gl_test=!exec pari a=$gl_A; !vector(#a,i,sum(j=1,#a,a[i,j])%2)
+!endif
+!set gl_ch=!declosing $(slib_out[2])
+!set gl_list=!makelist x for x=1 to $gl_n
+!set gl_listA=A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P
+!set gl_listA=$(gl_listA[1..$gl_n])
+!set gl_ch=!items2words $(gl_listA[$gl_ch])
+gl_out=$slib_out
+
+!readproc slib/graph/draw $gl_A,red,red,[$gl_listA],,html

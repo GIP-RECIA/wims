@@ -1,0 +1,30 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=area,measurement
+!set gl_title=Couronne circulaire
+!set gl_level=
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>
+    Définition
+  </h4>
+  Soit \(R\) et \(r\) deux nombres strictement positifs tels que \(R \gt r\) et
+  \(O\) un point du plan.
+  <br>
+  On appelle couronne circulaire de centre \(O\) et de rayons \(r\) et \(R\)
+  l'ensemble des points \(M\) du plan tels que <span style="white-space:nowrap">
+  \(r \leqslant OM \leqslant R\).</span>
+</div>
+<div class="wims_thm">
+  <h4>
+    Théorème
+  </h4>
+  Soit \(R\) et \(r\) deux nombres strictement positifs tels que
+  \(R \gt r\), \(O\) un point du plan et \(C\) la couronne circulaire de centre
+  \(O\) et de rayons \(r\) et <span style="white-space:nowrap">\(R\).</span>
+  <br>
+  L'aire de \(C\) est égale à \(\pi \times \left(R^2 - r^2 \right)).
+</div>

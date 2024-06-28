@@ -1,0 +1,62 @@
+!! job to make/save individualisation of sheet with a technical variable.
+
+!if $activetest=0
+  nb=!positionof item $indivtechvar in $tv_listcode
+  don=!line $nb of $tv_listtechvar
+  !distribute item $don into name,classid,number
+  don=!record $number of wimshome/log/classes/$classid/.techvar
+  listval=!line 2 of $don
+!else
+  listval=!record $sheet of wimshome/log/classes/$wims_class/sheets/.vars
+  listval=!word 3 to -1 of $listval
+  listval=!words2items $listval
+!endif
+nb_val=!itemcnt $listval
+list_require=!values 10*v for v=0 to $require_limit
+
+!if $save_indiv!=$empty and $activetest=0
+!! save data in .sheet$sheet
+  recdata=!record 0 of wimshome/log/classes/$wims_class/sheets/.sheet$sheet 
+  !writefile wimshome/sessions/$wims_session/.sheettmp $recdata
+  num=0
+  !for i=1 to $exocnt
+    recdata=!record $i of wimshome/log/classes/$wims_class/sheets/.sheet$sheet
+    indiv$i=!listintersect $(indiv$i) and $listval
+    recdata=!replace line number 11 by $(indiv$i) in $recdata\
+$empty\
+$empty\
+$empty\
+$empty\
+$empty\
+$empty\
+$empty\
+$empty\
+$empty\
+$empty
+    !! save require and weight in fonction of techvar values
+    oldrequire=!line 3 of $recdata
+    oldweight=!line 4 of $recdata
+    defaultr=!row 1 of $oldrequire
+    defaultw=!row 1 of $oldweight
+    req=$defaultr
+    wei=$defaultw
+    !for k=1 to $nb_val
+      !increase num
+      !bound require$num within $list_require default $defaultr
+      !if $(require$num)!=$defaultr
+        req=$req;$(listval[$k]),$(require$num)
+      !endif
+      !bound weight$num between $min_weight and $max_weight default $defaultw
+      !if $(weight$num)!=$defaultw
+        wei=$wei;$(listval[$k]),$(weight$num)
+      !endif
+    !next k
+    recdata=!replace line number 3 by $req in $recdata
+    recdata=!replace line number 4 by $wei in $recdata
+    recdata=!line 1 to 11 of $recdata
+    !appendfile wimshome/sessions/$wims_session/.sheettmp :$recdata
+  !next i
+  !reset save_indiv
+  !sh rm -f $wims_home/log/classes/$wims_class/sheets/.sheet$sheet;\
+      mv $wims_home/sessions/$wims_session/.sheettmp $wims_home/log/classes/$wims_class/sheets/.sheet$sheet;
+!endif

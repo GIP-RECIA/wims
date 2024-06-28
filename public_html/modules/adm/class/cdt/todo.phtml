@@ -1,0 +1,81 @@
+
+
+!if $cdt_description!=$empty
+  <br>$cdt_description<br>
+!endif
+
+!read proc/searchform.phtml
+
+<div class="wimscenter" style="font-weight:bold;">
+ $name_worktodo
+!if $jour_begin!=$jour_end
+  $name_between <span class="wims_emph">
+    !read date.phtml $jour_begin,notime
+  </span>
+  $name_and <span class="wims_emph">
+    !read date.phtml $jour_end,notime
+  </span>
+ !else
+    $name_for
+    <span class="wims_emph">
+    !read date.phtml $jour_begin,notime
+    </span>
+!endif
+</div>
+
+
+!if $nbligne=0
+  <p>$name_nowork.</p>
+  !exit
+!endif
+
+!set table_class=sortable
+!set table_id=TABLE_cdt_todo
+$table_header
+ <thead>
+  $table_hdtr
+    <th>$name_for</th>
+    !if no isin $cdt_supervise
+      <th>$name_discipline</th>
+    !endif
+    <th>$name_work</th><th>$name_giventhe</th>
+  </tr>
+ </thead>
+ <tbody>
+!for i=1 to $nbligne
+  $table_tr
+  !if $cdt_reversedate=1
+    !let don=!line $nbligne+1-$i of $list
+  !else
+    !let don=!line $i of $list
+  !endif
+  !distribute item $don into todo,date,dir,matiere
+  !let m_filedir=$wims_ref_name?session=$wims_session&cmd=getfile&special_parm=cdt/$dir
+  !read wimshome/log/classes/$dir/cdt/def/$date
+  !let no=!positionof item $todo in $date_todo
+   <td valign="top">
+  !read date.phtml $todo,notime $dateoption
+   </td>
+  !if no isin $cdt_supervise
+    <td>$matiere</td>
+  !endif
+   <td>
+    !read wimshome/log/classes/$dir/cdt/def/$date todo$no
+   </td>
+   <td>
+    !read date.phtml $date,notime $dateoption
+   </td>
+  </tr>
+!next i
+</tbody>
+$table_end
+!read tablesort.phtml
+
+<div class="wimscenter">
+  !set wims_ref_class=wims_button
+  !href target=wims_new cmd=new&module=$module&job=todo&job2=print&$jdate=$jdate&jdate2=$jdate2 $wims_name_print
+</div>
+
+!set wims_menu_items=!append line printable,1,cmd=new&module=$module&job=todo&job2=print&jdate=$jdate&jdate2=$jdate2\
+to $wims_menu_items
+

@@ -1,0 +1,82 @@
+!! check session of the user supervisor can view
+!! wims_read_parm is 
+!! word 1 : the user login
+!! word 2 : 1 if refresh session list to be made
+!! output variables : 
+!! - list_window  (list of session user)
+!! - sharescreen yes or no
+!! - userconnected yes or no (connected to the tchat)
+!! - list_tmpfile (list of tmpfile uploaded by user in tchat session)
+!! - list_title
+
+sharescreen=no
+userconnected=no
+!distribute word $wims_read_parm into user_,refresh_
+!default refresh_=0
+clscode_=!replace internal / by ~ in $wims_class
+dt_=!record 0 of wimshome/tmp/whoconnect/$clscode_
+li_=!positionof item $user_ in $(dt_[;1])
+!if $li_!=$empty
+  li_=!item 1 of $li_
+  list_session_=!item 4 to -1 of $(dt_[$li_;])
+  !reset list_window list_tmpfile
+  list_session_=!nospace $list_session_
+  !for ses_ in $list_session_
+    test_=!defof wims_sharescreen\
+wims_opentchat in wimshome/sessions/$ses_/var.stat
+    !distribute line $test_ into test_,test2_
+    !if $test2_!=$empty
+      userconnected=yes
+    !endif
+    !if $test_!=$empty
+      sharescreen=yes
+      tmp_=!sh cd $wims_home/sessions/;\
+grep -r wims_session=$ses_ ./$(ses_)*/var | cut -d: -f1 | cut -d/ -f2
+      tmp_=!lines2items $tmp_
+      tmp_=!listcomplement $(ses_)_tchat in $tmp_
+      !for ses2_ in $tmp_
+        mod_=!defof w_module in wimshome/sessions/$ses2_/var
+        !if adm notin $mod_ and home notin $mod_
+          list_window=!append item $ses2_ to $list_window
+        !endif
+      !next ses2_
+    !endif
+    !reset test_
+    !! --------- search user tmpfile
+      t_=!sh if [ -d $wims_home/sessions/$(ses_)_tchat/getfile/tchat/ ]; then \
+               cd $wims_home/sessions/$(ses_)_tchat/getfile/tchat/;\
+               dir -1 $user.*;\
+             fi;
+      !if $t_!=$empty
+        t_=!replace internal / by , in $t_
+        t_=!item -1 of $t_
+        list_tmpfile=!append line $ses_,$t_ to $list_tmpfile
+      !endif
+  !next ses_
+!endif
+list_window=!listuniq $list_window
+!if $list_window!=$empty and $refresh_!=1
+  old_list_=!getdef $user_ in wimshome/sessions/$wims_session/.indexusersession
+  already_=$empty
+  !for k_ in $old_list_
+    !if $k_ isitemof $list_window
+      already_=!append item $k_ to $already_
+    !else
+      old_list_=!replace item $k_ by $empty in $old_list_
+    !endif
+  !next k_
+  list_window=!listcomplement $already_ in $list_window
+  !if $list_window!=$empty
+    list_window=!append item $list_window to $old_list_
+  !else
+    list_window=$old_list_
+  !endif
+  !setdef $(user_)=$list_window in wimshome/sessions/$wims_session/.indexusersession
+!else
+  !setdef $(user_)=$empty in wimshome/sessions/$wims_session/.indexusersession
+!endif
+!reset list_title
+!for k_ in $list_window
+  !readproc script/mktitle.proc $k_
+  list_title=!append line $output_title to $list_title
+!next k_

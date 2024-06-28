@@ -1,0 +1,142 @@
+!reset inputsize
+!if $wims_read_parm=$empty
+  !exit
+!endif
+!if $wims_read_parm=help
+  !read help/$lang/special/codeinput.phtml
+  !exit
+!endif
+!set parm=!replace internal ,	r by $	r in $wims_read_parm
+!set parm=!replace internal $	$ by $\
+$ in $parm
+
+!set code=!item 1 of $parm
+!set code=!declosing $code
+
+!set inputsize=!item 2 to -1 of $parm
+!set parm=!line 2 to -1 of $inputsize
+!set inputsize=!line 1 of $inputsize
+
+!if noanswer iswordof $inputsize
+  !set noanswer=1
+  !set inputsize=!replace internal noanswer by $ in $inputsize
+!endif
+!if div iswordof $inputsize
+  !set pre=div
+  !set inputsize=!replace internal div by $ in $inputsize
+!else
+  !set pre=pre
+!endif
+!set inputsize=!nonempty items $inputsize
+!set inputsize=!item 1 of $inputsize
+!default inputsize=1x5
+
+!set parmcnt=!linecnt $parm
+!set parm=!sort reverse line $parm
+!set pretext=!replace internal for="reply by for="label in $code
+!set pretext=!replace internal reply by REPLY in $pretext
+
+!for tt = 1 to $parmcnt
+  !set ld=!line $tt of $parm
+  !set upcase=!uppercase $(ld[1])
+  !reset inputsize_tmp
+  !if $(upcase) isin $pretext
+    !set reply_tmp=!nospace $(ld[1])
+    !set i_tmp=!text select 0123456789 in $reply_tmp
+    !if debug iswordof $m_oefenv and ?analyze notin $(replygood$i_tmp)
+      !read oef/special/debug.input $i_tmp
+    !endif
+    !set rep_tmp=!replace internal reply by r in $reply_tmp
+    !set embedded=!append item $rep_tmp to $embedded
+    !distribute item $ld into m_,inputsize_tmp,css
+    !default inputsize_tmp=$inputsize
+    !set inputsize_tmp=!translate x to , in $inputsize_tmp
+    !if $(inputsize_tmp[2])=$empty and $(inputsize_tmp[1])!=$empty
+      !set inputsize_tmp=1,$inputsize_tmp
+    !endif
+    !set inputsize_tmp=!nospace $inputsize_tmp
+    !set inputsize_tmp=!items2words $inputsize_tmp
+    !set nbdim=!wordcnt $inputsize_tmp
+    !if $nbdim==2
+      !distribute words $inputsize_tmp into sizer,sizec
+      !if $sizer==1
+        !set nbdim=1
+        !set inputsize_tmp=$sizec
+      !endif
+    !endif
+    !if $printing=yes
+      !set pretext=!replace internal $upcase by $prompt_empty in $pretext
+    !else
+      !reset style_tmp option_tmp
+      !if $(css)!=$empty
+        !if $(css)=default
+          !set class_tmp=class="wims_oef_input"
+        !endif
+        !set style_tmp=style="$(css)"
+      !endif
+      !if $nbdim==2
+        !set pretext=!replace internal $upcase by <textarea $class_tmp $style_tmp rows="$sizer" cols="$sizec" name="$reply_tmp">$($reply_tmp)</textarea> in $pretext
+      !else
+        !if $(replytype$i_tmp) iswordof menu
+          !set pretext_=!row 2 of $(replygood$i_tmp)
+          !if sort iswordof $(replyoption$i_tmp)
+            !set pretext_=!sort items $pretext_
+          !else
+            !set pretext_=!shuffle $pretext_
+          !endif
+          !set pretextcnt=!itemcnt $pretext_
+          !set pretext_tmp=<option value="">$ch_choose</option>
+          !for tmp=1 to $pretextcnt
+            !set pretext_tmp=!append word <option value="$(pretext_[$tmp])">$(pretext_[$tmp])</option>\
+              to $pretext_tmp
+          !next
+          !set pretext=!replace internal $upcase by \
+            <select id="$reply_tmp" name="$reply_tmp">$pretext_tmp</select> in $pretext
+        !else
+          !set pretext=!replace internal $upcase by <input $class_tmp $style_tmp id="$reply_tmp" size="$inputsize_tmp" name="$reply_tmp" value="$($reply_tmp)"> in $pretext
+        !endif
+      !endif
+    !endif
+  !endif
+!next
+
+!set pretext=!replace internal for="label by for="reply in $pretext
+!if $q_form=yes or $printing=yes
+  <$pre class="oef_codeinput">
+  $pretext
+  </$pre>
+!else
+  !set pretext=$code
+  !set pretext=!replace internal </label> by in $pretext
+  !read themes/$wims_theme/oefcolors
+  !if $oef_indbad=$empty
+    !read themes/oefcolors
+  !endif
+  !for tt = 1 to $parmcnt
+    !set ld=!line $tt of $parm
+    !distribute item $ld into m_,inputsize_tmp,css
+    !default inputsize_tmp=$inputsize
+    !if $(ld[1]) isin $pretext
+      !set pretext=!replace internal <label for="reply$tt"> by in $pretext
+      !set m_=!text select 0123456789 in $(ld[1])
+      !default reply_$m_=$(reply$m_)
+      !set tt=!word 1 of $(replygood$m_)
+      !if $tt!=?analyze
+        !set cl=!nospace oef_ind$(diareply$m_)
+        !if $(precreply$m_)=yes and $(diareply$m_)=bad
+          !set cl=!nospace oef_indprec
+        !endif
+        !if $(partialgood$m_)=yes
+          !set cl=!nospace oef_indpartial
+        !endif
+      !else
+        !set cl=oef_empty
+      !endif
+      !set pretext=!replace internal $(ld[1]) by <div class="inline $cl">$(reply_$m_)</div><sup>[$m_]</sup> in $pretext
+      !set replyname$m_=[$m_]
+    !endif
+  !next
+  <$pre>
+  $pretext
+  </$pre>
+!endif

@@ -1,0 +1,114 @@
+!set lang_exists=yes
+
+!set name_form1_1=El caso,terminó
+!set name_form1_2=Tienes el último caso del que ocuparte,\
+   Este es su último caso para tratar
+!set name_form1_3=Todavía tienes, Tienes, caso, para tratar. Caso actual
+!set name_form1_4=Debes resolver este ejercicio paso a paso, \
+  con los métodos de pasos que se presentan en el menú.
+!set name_form1_5=Método para el primer paso,\
+  Método para el paso
+!set name_form1_erasehyp=Borrar las suposiciones innecesarias
+
+!set name_form3_1=¿Cuál es la condición para aplicar este método
+!set name_form3_2=¿Qué se obtiene con el metodo
+
+!set name_formnewcase_1=Error de operación: sólo queda un caso.
+!set name_formnewcase_2=!nosubst Tiene los $[$casecnt-1] \
+  casos siguientes para tratar. Haga clic en uno para ir allí.
+!set name_current_case=caso actual
+
+!set name_answer1=¡No! Hiciste malas manipulaciones\
+   lo que te llevó a una situación en la que la demostración del ejercicio \
+   ya no es posible. Por lo tanto, el ejercicio se cancela, puntuación = 0.
+!set name_answer2=No ! Ha superado el límite de pasos permitidos. \
+   La operación es abortada, puntuación=0.
+!set name_answerprompt=Finalmente, Eso es todo, Sí, Bien, Bien hecho, Felicidades
+!set name_solve=!nosubst Has resuelto el ejercicio en $ctstep pasos.
+!set name_shouldbe=!nosubst Esto se puede hacer en $m_minsteps pasos.
+!set name_scoreend=Puntuación, pasos fuera de lugar, penalizaciones por errores graves
+
+!set name_intro=Este módulo es un grupo de ejercicios. Obviamente lo pidió\
+   sin especificar un ejercicio válido que quieras hacer. Ya sea porque\
+   hizo clic en un enlace incorrecto, o debido a un error de software.
+!set name_tryagain=Intente rehacer su operación
+
+!set name_introprompt=nunca, dependiendo de los ejercicios, siempre
+!set name_intro1=Lo sentimos, no hay ejercicios disponibles en este módulo en este momento.\
+   ¡Vuelve mas tarde!
+!set name_introone=Este módulo actualmente contiene solo un ejercicio,\
+   Pruébalo
+!set name_intro2=Ejercicios que contienen,\
+  Elige los ejercicios,\
+   Nivel de severidad,\
+   Pregunta por las condiciones de aplicación de los métodos,\
+   Solicitar el resultado de los métodos.
+!set name_intro3=Seleccionar títulos con la palabra
+!set name_intro_remark1=<b>Remarques</b>. Se realizarán los ejercicios propuestos \
+   al azar entre sus elecciones (o entre todos \
+   los ejercicios disponibles si su elección está vacía).
+!set name_intro_remark2=Los ejercicios marcados con un * son generalmente más difíciles que los demás.
+
+!distribute item -- escoja --, no tengo idea,\
+	especificar si es necesario\
+	into ch_choose, ch_noidea, ch_optional
+
+!set name_badsize=Tu respuesta ni siquiera es del tamaño correcto.
+!set name_exo=Ejercicio.
+
+!distribute item Siempre es aplicable,\
+  Sólo cuando\
+  into ct_Always, ct_Onlywhen
+
+!distribute item Suposiciones iniciales,\
+  Nuevas suposiciones,\
+  Ahora tiene,\
+  Queda por demostrar\
+into name_status_hyp,name_status_newhyp,name_status_now,name_toprove
+
+!distribute item deshacer,rehacer,Cambio de objetivo,No se contó para la puntuación\
+into name_undo,name_redo, name_change,name_noaccount
+
+!distribute item Historial de pasos, Paso, Caso, Resultado, Método, Observaciones, Métodos\
+  into name_hist,name_step, name_case,name_result,name_method,name_remarks,name_methods
+
+!distribute item Estado del ejercicio, Cambiar de método\
+  into name_state, name_methchange
+
+!set name_continue=Continuar
+
+!set name_nohint=Lo sentimos, no hay pista disponible en este ejercicio.
+
+!set name_otherhelp=Otros temas de ayuda
+!set name_nosuphelp=No hay ayuda adicional para este método.
+!set name_noparthelp=Este ejercicio no tiene ninguna ayuda particular.
+!set name_subjecthelp=Temas de ayuda
+
+!set name_titlestate=État actuel de l'exercice
+!set name_hypusable=Hipótesis utilizables
+!set name_totransform=Objetos por transformar
+!set name_remaintoprove=Queda por probar
+!set name_statushelp_1=!nosubst Vous devez résoudre cet exercice en \
+  $m_minsteps étapes pour avoir un score maximal.
+!set name_statushelp_2=!nosubst Cet exercice peut se résoudre en $m_minsteps étapes, \
+  mais dans son niveau actuel vous pouvez faire jusqu'à \
+  $[$m_minsteps+$tolerance] étapes et avoir un score maximal.
+!set name_statushelp_3=Vous êtes actuellement sur l'étape numéro
+!set name_statushelp_4=!nosubst Vous avez terminé au bout de $[$currstep-1] étapes.
+!set name_statushelp_5=!nosubst Vous avez encore $[$casecnt-1] cas à traiter. \
+  Cas actuel&nbsp;
+!set name_statushelp_6=Ceci est votre dernier cas à traiter&nbsp;
+
+!set name_methodtitle=Métodos autorizados en este ejercicio
+
+!set name_author=Autor de este ejercicio
+!distribute lines Este ejercicio contiene tanto una solución explicada como una pista.\
+  Este ejercicio contiene tanto una solución explicada como una pista.\
+  Este ejercicio contiene una pista, pero ninguna solución explicada.\
+  Este ejercicio no contiene soluciones explicadas ni pistas.\
+  Información sobre esta colección de ejercicios.\
+into name_expl1,name_expl2,name_explhint,name_nohint,name_information
+
+!set name_copyright=Los derechos de autor de los ejercicios pertenecen \
+  a sus respectivos autores. Cualquier instalación de fuentes de ejercicio \
+  en un servidor requiere el permiso expreso de los autores.

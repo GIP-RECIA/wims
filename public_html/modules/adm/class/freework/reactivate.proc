@@ -1,0 +1,58 @@
+!! reactive a freework which is perime
+!! change statut from 2 or 3 to 1
+
+!! --- testing if freework is perime
+!if $activetest!=2 and $activetest!=3
+  error=fwnotperime
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! --- testing if freework not archivated
+test=!fileexists wimshome/log/classes/$wims_class/freeworksdata/$freework/.archivated
+!if $test=yes and $type>=2
+  error=alreadyarchivated
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! testing for enough class capacity
+!readproc adm/class/quotafree.proc
+!read adm/du $wims_home/log/classes/$wims_class/freeworksdata/$k_/work
+nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+need=$[$nbuser*$sizelimitfile*0.25-$du]
+!if $quota_free-$need <10
+  error=notenoughfreespace
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!! change statut
+activetest=1
+update_content=1\
+$class_expiration\
+$title\
+$desc\
+$comment\
+$type\
+$deadline.$timedeadline\
+$soldate.$timesoldate\
+$sizelimitfile\
+$scoring\
+$seealltime\
+$studentclose
+
+update_field=$freework
+update_nbline=$fw_nbline
+!read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freeworks
+
+success=goodstatut
+!if $back=1
+  !restart module=home
+!else
+  job=configfw
+  !reset back
+  !changeto $job.proc
+!endif
+
+

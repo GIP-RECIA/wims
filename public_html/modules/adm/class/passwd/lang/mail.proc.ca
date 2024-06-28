@@ -1,0 +1,19 @@
+!mailto $user_email\
+\
+WIMS contrasenya classe virtual\
+\
+$class_supervisor,\
+\
+<p>Ets el professor d'una classe virtual a WIMS, $class_description\
+  de $class_institution, sur $httpd_HTTP_HOST.</p>\
+\
+<p>Amb aquest missatge, et confirmem un canvi de la contrasenya\
+de professor per a aquesta classe virtual, sol·licitada per una connexió des\
+  de $httpd_REMOTE_ADDR.</p>\
+\
+<p>Si no has originat aquest canvi de contrasenya, és\
+perquè algú t'ha robat la contrasenya i és probable que pugui\
+ja connectar-se a la teva classe a causa del canvi de contrasenya.\
+En aquest cas, si us plau, posa't en contacte amb l'administrador del servidor per canviar\
+  la contrasenya.</p>\
+

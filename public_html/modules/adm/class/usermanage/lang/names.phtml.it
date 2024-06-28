@@ -1,0 +1,83 @@
+!set lang_exists=yes
+
+!if $wims_read_parm!=
+  !goto $wims_read_parm
+!endif
+
+!set name_studentloc=!nosubst $user_firstname $user_lastname
+!set name_studentglo=!nosubst $wims_name_firstname $wims_name_lastname
+
+!set name_click=Selezionare un nome per visualizzare i dettagli.
+!set name_noyetparticipant=Non ci sono ancora studenti.
+!set name_transfer=Importa la sua attività da altro corso
+!set name_filter=Variabili tecniche
+!set name_mkclass=Può creare corsi
+
+!if $job=regmanage
+	!set name_all=Tutti gli studenti
+	!set name_reguser=Iscrivi
+	!set name_unreguser=Cancella iscrizione
+  !set name_display=Mostra
+  !set name_techvardisplay=Selezionare attraverso una variabile tecnica
+	!set name_description=Selezionare gli studenti e i corsi in modo da modificare, cliccando sul bottone rilevante, la possibilità di accesso.
+!endif
+
+!if $job iswordof userprop teacher userlist getclasspwd
+  !distribute items Name,Value,Cambia,Matricola,Commenti,URL di una foto,Variabili tecniche,\
+  Password pubblica del corso,Inserire la password <em>pubblica</em> del corso e cio&egrave;quella utilizzata per effettuare la prima iscrizione,\
+  Identificativo per autenticazione esterna,Iscrizione,Accesso come docente,\
+   Richiesto,Carica file di una foto\
+  into name_name,name_value,name_change,name_regnum,name_comments,name_photourl,name_vars,\
+  name_classpassword,name_enterpassword,name_external_auth,name_inscript,name_gestion,\
+  name_userprop_warning,name_photofile
+  !set name_commentmess=Lo studente potrà vedere questo commento.
+  !set name_commentmessv5=è stata introdotta una modifica nel funzionamento di WIMS, che porterà a una funzionalità diversa. Nel prossimo corso che creerete questo commento sarà visibile per lo studente.
+  !set name_commentuser=Note del docente
+  !set name_filterhelp=Queste variabili possono essere definite dal docente per dividere\
+    gli studenti in gruppi per alcune attività.
+  !exit
+!endif
+
+!if $job=transfer
+   !set name_title_transfer=Trasferisci l'attività di
+   !distribute items Unisci, Sostituisci,Verifica\
+   into name_merge, name_replace,name_show
+
+ !set name_error1=L'utente non è iscritto a nessun corso corrispondente \
+     al corso scelto, e quindi non è possibile trasferie i dati
+ !set name_error2=Errore nel codice corso. Wrong manoeuvre or bug of the software?
+!set name_activities=!nosubst Dettaglio dell'attività in $i (massimo 1000 righe).
+!set name_totransfer=Questi sono i corsi in cui lo studente ha svolto attività. Clicca su\
+una opzione per trasferire i dati in questo corso.
+  !exit
+!endif
+
+!if $job=recover
+  !set name_empty=Non è stato escluso alcuno studente.
+  !set name_click= Selezionare il login dello studente da reinserire.
+  !exit
+!endif
+
+!if $job=delprep
+  !set name_delete=!nosubst Siete sicuri di voler escludere <b><em>$name_studentloc</em></b>\
+   dal vostro $(name_struct[$type_class+1])?
+  !set name_subclsinscrit=Il est inscrit dans (les inscriptions seront conservées en cas de nouvelle activation du compte):
+  !exit
+!endif
+
+!exit
+
+:transfer
+<b>Note</b>.
+<ol>
+  <li>"$name_merge" significa che sono unite le attività dei due corsi.</li>
+  <li>"$name_replace" significa che le attività dell'altro corso sostiuiscono
+  quelle registrate per questo (questo è possibile sole se le prime non sono
+  vuote).</li>
+  <li>I punteggi d'esame e le attività che non danno luogo a punteggio sono
+  sempre unite.</li>
+  <li>La registrazione di dettagli degli esercizi non sono trasferiti.</li>
+  <li>Dopo aver effettuato il trasferimento (sia come "$name_merge" che come
+  "$name_replace"), i dati dello studente nell'altro corso sono azzerati.</li>
+</ol>
+!exit

@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+cursor move
+linewidth 2
+drag xy
+curvedarrows red,-8,0,0,8,8,0,-5,5,0,-10,6,3

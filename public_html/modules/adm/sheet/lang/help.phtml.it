@@ -1,0 +1,104 @@
+!goto $wims_read_parm
+
+:general
+<h2>Funzionamento generale</h2>
+<p>
+Quando cliccate sul titolo di un esercizio nel test, vi
+ appare l'enunciato dell'esercizio. Per ottenere un punteggio per l'esercizio
+  è necessario rispondere a tutte le domande poste. Viene attribuito
+  un punteggio in decimi (punteggio massimo 10).
+</p>
+<p>
+ Per alcuni esercizi, l'enunciato può essere composto da domande
+ che appaiono via via che voi rispondete alle domande precedenti
+ (si può trattare di esercizi a passi o combinazioni in serie di esercizi).
+</p>
+<p>
+  È necessario terminare un esercizio prima di cominciare a lavorare su un altro
+ (altrimenti non viene registrato il punteggio ottenuto sul primo esercizio).
+Non è possibile ritornare su una risposta già data
+(e in generale, non deve essere utilizzato il menu del browser per cambiare
+pagina o tornare alla pagina precedente).
+</p>
+<p>
+Se tornate a lavorare su un certo esercizio, l'enunciato di tale esercizio
+ può variare.
+</p>
+<h2> $(wims_name_thsheet[3])</h2>
+Se il numero di punti richiesti per un certo esercizio è superiore a 10, significa
+ che il vostro docente desidera che voi affrontiate più volte lo stesso esercizio.
+
+<h2> $(wims_name_thsheet[14]) </h2>
+Se nella descrizione dell'esercizio appare <span class="wims_code_variable">$(wims_name_thsheet[14]) X/Y </span>,
+questo significa che il vostro docente ha scelto di limitare il numero
+di volte che un esercizio può essere ripetuto contribuendo all'acquisizione
+ di un punteggio:
+<ul><li>
+<span class="wims_code_variable">Y</span> indica il numero massimo di volte
+che l'esercizio può dar luogo a un punteggio valido per contribuire al punteggio assegnato nel
+test (il punteggio ottenuto in ogni svolgimento successivo non è più tenuto
+in considerazione);
+</li><li><span class="wims_code_variable">X</span> indica il numero di
+svolgimenti dell'esercizio da voi fatti e conteggiati.
+</ul>
+Attenzione, il lavoro su un esercizio è conteggiato come uno svolgimento,
+sia che voi terminiate l'esercizio o meno, sia che voi abbiate sospeso la
+registrazione dei punteggi o meno.
+<h3>Esempio 1</h3>
+ Se su un esercizio trovate scritto <span class="wims_code_variable">$(wims_name_thsheet[14]) 0/4</span>
+   e se la registrazione dei punteggi è attiva, questo significa che:
+<ul><li>
+ non avete ancora lavorato su questo esercizio da quando il vostro docente
+ lo ha attivato:
+</li><li>
+ il punteggio ottenuto in questo esercizio contribuirà al calcolo del punteggio
+ nel test solo se sono soddisfatte le due condizioni seguenti:
+<ol><li>
+il punteggio è ottenuto in uno dei primi 4 svolgimenti di questo esercizio
+nel periodo in cui la registrazione dei punteggi è attiva;
+</li><li>
+non avete sospeso la registrazione dei punteggi.
+</li></ol>
+</li></ul>
+
+<h3>Esempio 2</h3>
+Se su un esercizio trovate scritto <span class="wims_code_variable">$(wims_name_thsheet[14]) 5/5</span>, questo significa che
+ avete utilizzato tutte e 5 le possibilità di ripetizione dell'esercizio
+ autorizzate dal vostro docente. Se continuate a lavorare su questo esercizio,
+ il punteggio ottenuto non sarà preso in considerazione per il calcolo del punteggio
+ globale assegnato al test.
+
+<h2> $(wims_name_thsheet[7])</h2>
+L'indicatore <span class="wims_code_variable">$(wims_name_thsheet[7])</span>
+per un certo esercizio tiene conto dei punteggi ottenuti in ciascun
+svolgimento dell'esercizio e del numero di svolgimenti effettuati.
+<p>
+Potete cliccare sul link <span class="text_icon myscore">$wims_name_myscore</span>
+per visualizzare il punteggio assegnato al lavoro svolto su questo test e quindi su
+<span class="wims_button_help disabled">Formula calcolo punteggio</span>
+per conoscere il modo in cui sono calcolati i diversi indicatori del vostro
+lavoro nel test.
+</p>
+
+!exit
+
+:printversion
+<h2>$wims_name_printable</h2>
+Non tutti gli esercizi sono disponibili anche in una versione stampabile.
+Per esempio per gli esercizi a passi in cui parte dell'enunciato viene mostrato
+solo dopo che avete inserito una prima risposta, nella versione stampabile
+viene mostrata solo la prima parte dell'enunciato.
+
+<h2>$wims_name_exolog</h2>
+Una volta terminato un esercizio (tipicamente quando vi viene assegnato un
+punteggio), il link <span class="text_icon exolog">$wims_name_exolog</span>
+vi permette di salvare copia dell'effettivo enunciato dell'esercizio che
+avete svolto e della risposta che avete dato. Questa registrazione
+è visibile anche al docente. Potete quindi utilizzare questa funzione
+se non capite la valutazione effettuata dal server e per
+chiedere chiarimenti al vostro docente. <br>
+Attenzione, per questo corso è possibile registrare solo $wims_class_exolog svolgimenti
+di esercizi.
+I salvataggi successivi cancellano le registrazioni salvate in precedenza.
+!exit
+

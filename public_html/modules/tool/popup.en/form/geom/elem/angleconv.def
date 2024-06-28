@@ -1,0 +1,26 @@
+# record 1: header: parent, keywords
+# record 2: calling parameters
+# record 3: submit buttons
+# record 4: html form content
+
+:geometry, elementary geometry, euclidean geometry
+angle, angle conversion, convert angle,
+degree, radian
+
+:precision, 12
+operation, angle conversion
+
+:, Convert Angle
+
+:
+ $submit1
+
+ <input type="text" size="20" name="formula" value="60">
+ <select name="option">
+ <option value="radian" selected="selected">
+  degrees to radians
+ </option>
+ <option value="degrees">
+ radians to degrees
+ </option>
+ </select>

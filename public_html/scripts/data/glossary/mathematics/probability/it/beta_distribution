@@ -1,0 +1,23 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Distribuzione beta
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Siano \(a) e \(b) due numeri positivi. La <strong>distribuzione beta</strong> con parametri
+\(a) e \(b) (denotata da
+\(\mathcal{B}(a,b))) è una distribuzione continua su \(\rbrack 0, 1\lbrack)
+con funzione di densità
+
+<div class="wimscenter">
+\(x\mapsto\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} x^{a-1} (1-x)^{b-1}1_{\rbrack 0, 1\lbrack}(x))
+</div>
+</div>
+<table class="wimsborder wimscenter"><tr><th>Valore atteso</th>
+<th>Varianza</th><th>Funzione generatrice di probabilità</th></tr><tr>
+<td>\(\frac{a}{a+b})</td><td>\(\frac{ab}{(a+b)^2(a+b+1)})</td><td></td></tr></table>
+

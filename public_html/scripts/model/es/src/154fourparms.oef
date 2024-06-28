@@ -1,0 +1,74 @@
+type=gapfill first
+textarea="explain"
+iEdit="explain"
+random="a b c d"
+computed="ans"
+asis="explain"
+
+:Una pregunta numérica con 4 parámetros aleatorios.
+
+El modelo elige aleatoriamente los cuatro parámetros entre valores pertenecientes
+a intervalos determinados por el diseñador del ejercicio.
+La fórmula que combina estos parámetros, correspondiente al cálculo que debe realizar
+el alumno para encontrar la respuesta correcta, también es editable por el diseñador.
+
+$oef_help
+
+<p class="wims_credits">Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Cuatro parámetros}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Primer parámetro \a
+\real{a=randint(-20..20)}
+
+:Segundo parámetro \b
+\real{b=randint(-20..20)}
+
+:Tercer parámetro \c
+\real{c=randint(-20..20)}
+
+:Cuarto parámetro \d
+\real{d=randint(-20..20)}
+
+:Cómo calcular la respuesta correcta
+Todas las funciones habituales son reconocidas. Usamos \a, \b, \c, \d para
+designar los parámetros aleatorios definidos anteriormente.
+\real{ans=(\a)*(\d) - (\b)*(\c)}
+
+:Enunciado
+Tenga en cuenta que la sintaxis \ (...) muestra una fórmula matemática.
+$embraced_randitem
+\text{explain=
+Calcular el determinante de la matriz \([\a,\b;\c,\d]).
+}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%% Calculs à ne pas modifier
+\text{accolade=wims(word 1 of \accolade)}
+
+\text{explain=\accolade=1 ?wims(embraced randitem \explain)}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+::Vous n'avez pas besoin de modifier ceci en général.
+
+\statement{\explain}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Respuesta}{\ans}{type=number}

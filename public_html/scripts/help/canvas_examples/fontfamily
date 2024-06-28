@@ -1,0 +1,23 @@
+size 400,400
+xrange -10,10
+yrange -10,10	
+fontfamily Bold 10pt Arial
+string blue,-9,9,10 pt Arial
+fontfamily Italic 20pt Arial
+string blue,0,9,20 pt Arial
+fontfamily Bold 10pt Helvetica
+string blue,-9,5,10 pt Helvetica
+fontfamily Italic 20pt Helvetica
+string blue,0,5,20 pt Helvetica 
+fontfamily Bold 10pt Courier
+string blue,-9,0,10 pt Courier
+fontfamily Italic 20pt Courier
+string blue,0,0,20 pt Courier
+fontfamily Bold 10pt Fixed
+string blue,-9,-5,10 pt Fixed
+fontfamily Italic 20pt Fixed
+string blue,0,-5,20 pt Fixed 
+fontfamily Bold 10pt Times
+string blue,-9,-9,10 pt Times
+fontfamily Italic 20pt Times
+string blue,0,-9,20 pt Times

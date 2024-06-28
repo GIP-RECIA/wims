@@ -1,0 +1,28 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=decimals,inequalities
+!set gl_title=Troncature (lycée)
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(x\) un nombre décimal positif et \(n\) un nombre entier naturel.<br>
+La <strong>troncature</strong> de \(x\) à \(10^{-n}\) est le nombre décimal \(t\)
+tel que \(10^{n} \times t) est entier et <span style="white-space:nowrap">
+\(t \leqslant x \lt t + 10^{-n}\).</span>
+</div>
+<div class="wims_rem">
+<h4>Remarques</h4>
+<ul>
+<li>La troncature de \(x\) à \(10^{-n}\) est une valeur approchée de \(x\) par
+défaut à \(10^{-n}\) près.</li>
+<li>Lorsque \(n = 0\), \(t\) est la troncature de \(x\) à l'unité.<br>
+lorsque \(n = 1\), \(t\) est la troncature de \(x\) au dixième.<br>
+lorsque \(n = 2\), \(t\) est la troncature de \(x\) au centième.<br>
+lorsque \(n = 3\), \(t\) est la troncature de \(x\) au millième&#8230;
+</li>
+</ul>
+</div>

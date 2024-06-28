@@ -1,0 +1,49 @@
+
+!! read autocompletion script of the server
+geoloclist=!filelist $wims_home/public_html/scripts/adm/geoloc/
+geoloclist=!lines2items $geoloclist
+
+nblang=!wordcnt $wims_site_languages
+
+!! --- save newconfiguration
+!if $save!=$empty and $job=geolocoption
+  !! --- check geoloc
+  geoloc=!text select 0123456789., in $geoloc
+  X=!item 1 of $geoloc
+  X=$[$X * 1]
+  Y=!item 2 of $geoloc
+  Y=$[$Y * 1]
+  N=!itemcnt $geoloc
+  !if $N!=2 or NAN isin $X$Y
+    geoloc=$empty,$empty
+  !endif
+  !! --- check location
+  location=!translate ,!$$"< to $     $ in $location
+  location=!singlespace $location
+  location=!trim $location
+  !writefile wimshome/log/stat/server.geoloc $location,$X,$Y
+
+  !! --- check for autocompletion
+  data=$empty
+  !for k=1 to $nblang
+    l=!word $k of $wims_site_languages
+    up_autocompletion$k=!listintersection $(up_autocompletion$k) and 0,$geoloclist
+    !if $(up_autocompletion$k)=$empty
+      up_autocompletion$k=!lookup $l in wimshome/log/stat/geoloc.dictionary
+    !endif
+    !if $(up_autocompletion$k)!=$empty and $(up_autocompletion$k)!=0
+      data=!append line $l:$(up_autocompletion$k) to $data
+    !endif
+  !next k
+  !writefile wimshome/log/stat/geoloc.dictionary $data
+  !restart module=adm/manage&job=list
+!endif
+
+!! read server parameter
+t=!record 0 of wimshome/log/stat/server.geoloc
+location=!item 1 of $t
+geoloc=!item 2 to 3 of $t
+!for k=1 to $nblang
+  l=!word $k of $wims_site_languages
+  up_autocompletion$k=!lookup $l in wimshome/log/stat/geoloc.dictionary
+!next k

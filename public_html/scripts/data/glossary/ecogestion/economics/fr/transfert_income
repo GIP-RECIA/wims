@@ -1,0 +1,21 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Revenus de transfert
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+On appelle <strong>revenus de transfert</strong> les revenus que
+les agents économiques perçoivent à l'occasion du
+<span class="wims_emph">mécanisme de redistribution des revenus</span>.
+</div>
+
+
+<div class="wims_rem"><h4>Précisions</h4>
+En effet, afin de réduire les inégalités, l'État peut décider de prélever une partie
+des revenus primaires auprès de certains agents économiques pour les redistribuer
+à d'autres sous forme de revenus de transfert : allocations familiales, pensions de retraite, indemnités de chômage…
+</div>

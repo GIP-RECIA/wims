@@ -1,0 +1,101 @@
+!set lang_exists=yes
+!distribute item scegliere, non so, nessuna risposta è esatta,\
+	la risposta esatta è, le risposte esatte sono\
+	into ch_choose, ch_noidea, ch_none, ch_good1, ch_goodn
+
+!set name_badsize=(La risposta data non contiene il corretto numero di elementi.)
+!set name_empty=La risposta è incompleta.
+!set name_exo=Esercizio
+!set name_sorry=spiacente
+!set name_noprint=Non-stampabile
+!set name_print=Versione stampabile
+!set name_send=Invia
+!set name_sendanswer=Invia la risposta
+!set name_enterreply=Inserire la risposta
+!set name_correctreply=<b>Correggere</b> la risposta:
+!set name_step=passo
+!set name_remark=<b>Nota.</b> Scegliete '$ch_none', se ritenete che \
+ nessuna delle risposte indicate sia esatta.
+!set name_answeranalysis=Analisi della risposta
+!set name_Hint=Suggerimento
+!set name_answers=Risposta
+!set name_answer_i=Risposta all'esercizio
+!set name_Solution=Soluzione
+!set name_sol_print=Stampa la soluzione
+!set name_Contribute=Collaboratori:
+
+!set name_lastname=Anonimo
+!set name_firstname=Visitatore
+!!!!
+
+!set name_emptytitle=Questo modulo contiene un gruppo di esercizi. Apparentemete non è\
+ stato specificato quale esercizio svolgere. Avete cliccato\
+ su un link errato o si tratta di un bug nel sistema.
+
+!distribute line Riprovare\
+  Questa serie ha un limite di tempo.\
+  Questo esercizio ha un limite di tempo.\
+  Un nuovo esercizio\
+  Un'altra serie\
+  Continuare la serie passando all'esercizio successivo\
+  È necessario terminare una serie per ottenere un punteggio.\
+  (Sei stato punito per non aver terminato l'esercizio nel tempo stabilito.)\
+  Debug\
+  le risposte esatte sono inserite come risposte di default\
+  inserire le risposte corrette nei campi delle risposte\
+  Se si clicca su $$wims_name_giveup viene visualizzato un nuovo enunciato per lo stesso esercizio; il lavoro fatto viene perciò perso.\
+  Sei sicuro?\
+  Sei sicuro?\
+  Non hai risposto a tutte le domande. Sei sicuro di voler inviare la risposta?\
+into name_restart,name_serie_limit,name_exo_limit,name_exo_renew,name_serie_renew,\
+  name_serie_nextexo,name_serie_new2,name_penalty,\
+  name_devel_mode,name_devel_warning,name_devel_insert,name_exo_giveup,name_giveup_confirm,name_are_you_sure,name_exo_form_check
+
+!set name_serie_giveup=Questa serie di esercizi non è finita; devi terminarla \
+  per ottenere un punteggio. Se annulli, \
+  gli esercizi fin qui svolti saranno cancellati e ti sarà proposta una nuova domanda \
+  per ricominciare la da capo.
+!set name_serie_exo=!nosubst Questo è l'esercizio numero $[$reply_cnt+1] di una serie composta da $qnum esercizi.
+!set name_serie_exo2=!nosubst Questo è l'esercizio numero $[$reply_cnt] di una serie composta da $qnum esercizi.
+!set name_serie_score=!nosubst Questa serie di $qnum esercizi è terminata con un punteggio di \
+   $module_score su 10.
+!set name_exo_score=!nosubst Punteggio ottenuto: $module_score su 10.
+
+!!!!
+!if $cmd=intro
+ !read oef/it/intronames
+!endif
+
+!distribute line Spiacente, non sono disponibili istruzioni specifiche per questo esercizio.\
+Spiacente, non c'è alcun suggerimento disponibile.\
+into name_warning_help, name_warning_hint
+
+!if $special_parm=about
+  !distribute line State lavorando su un esercizio di tipo\
+  È disponibile sia un suggerimento che la soluzione completa dell'esercizio.\
+  È disponibile la soluzione dell'esercizio.\
+  È disponibile un suggerimento per l'esercizio (ma non la soluzione).\
+  Non sono disponibili né suggerimenti, né soluzioni.\
+  Questo esercizio fa parte di una collezione di esercizi (modulo), queste sono le informazioni relative a questa collezione.\
+  Il copyright degli esercizi appartiene ai rispettivi autori. \
+  Link per\
+  Note\
+into name_about1,name_hint1,name_hint2,name_hint3,name_hint4,\
+ name_collection,name_copyr,name_linkfor,name_Observation
+
+!endif
+!if $latexuser=yes
+  !set name_latexprint=versione personalizzata di alcuni esercizi disponibili in formato LaTeX.
+!else
+  !set name_latexprint=esercizi disponibili in formato LaTeX.
+!endif
+!set wims_name_printlatex=Versione Latex
+
+!set name_warninglatex=Scaricare il file. Non eseguire di nuovo il comando \
+  se non dopo aver verificare il file LaTeX.
+
+!set name_tryagain=Ti verrà riproposta questa stessa versione dell'esercizio per riprovare.
+!set name_tryagain2=!nosubst Ti verrà riproposta questa stessa versione della \
+  serie di $qnum esercizi per riprovare.
+!set name_authordesc=Commenti dell'autore
+!set name_authordesc_desc=Questi commenti non sono visibili per gli studenti.

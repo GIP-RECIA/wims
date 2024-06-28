@@ -1,0 +1,221 @@
+  varcnt=!defof varcnt in $(class_header)def/$e_.def
+  !default varcnt=0
+  !for v=2 to $varcnt+5
+    val$v=
+  !next v
+  status=prep
+  wims_prefix_=$wims_prefix
+  !reset wims_prefix
+  !! hack for declaring not printable exercise if the commande !getdef (equivalent defof) is used
+  !! should be better to allow this command as in the printable version outside a class
+  testgetdef=!sh grep !getdef $(Class_header)def/$e_.def
+  !if $testgetdef!=
+    question=
+  !else
+    !read $(class_header)def/$e_.def
+    embedcnt$iii=$embedcnt
+    oefcss_$iii=$oefcss
+  !endif
+  wims_prefix=$wims_prefix_
+  !if $format=html
+    question_$iii=$question
+    !if __EXECUTED_ isin $question
+      varcnt_$iii=$varcnt
+      var_$iii=$val1
+      !for v=2 to $varcnt+5
+        v_=!translate internal $\
+$ to $	$ in $(val$v)
+        var_$iii=$(var_$iii)\
+$v_
+      !next v
+    !endif
+    !ifval $replycnt=0 and $choicecnt=1
+      rep=!item 1 to 6 of $choicebad1
+      rep=!append item $choicegood1 to $rep
+      rep=!listuniq $rep
+      rep=!sort items $rep
+      rep=!replace , by </li><li> in <ul style="list-style-type:square;"><li>$rep</li></ul>
+      chce_$iii=$rep
+      test_print=1
+    !else
+      chce_$iii=
+    !endif
+    rep=
+    replatex=
+    !!FIXME
+    !if 3 isin $intro_check or $intro_check=$empty
+      !for k=1 to $choicecnt
+        !if $(choicename$k)!=
+          rep=!append line <em>$(choicename$k)</em>: $(choicegood$k) to $rep
+          replatex=!append line $(choicename$k) : \verb!$(choicegood$k)! to $replatex
+        !else
+          rep=!append line $(choicegood$k) to $rep
+          replatex=!append line \verb!$(choicegood$k)! to $replatex
+        !endif
+      !next k
+      !for k=1 to $replycnt
+        thisstep=!line 1 of $oefsteps
+        !if r$k isitemof $thisstep or $oefsteps=$empty
+          rg_=$(replygood$k)
+          !reset anstyle
+          !readproc anstype/$(replytype$k).input def
+          replystyle$k=$anstyle
+          Replytype$iii=!append item $(replytype$k) to $(Replytype$iii)
+          Replystyle$iii=!append item $(replystyle$k) to $(Replystyle$iii)
+
+          !if $(replytype$k) iswordof flashcard time crossword
+            question_$iii=
+            !reset rg_
+            Rg$iii=!append line $prompt_empty to $(Rg$iii)
+            !goto endRg
+          !endif
+          !if $(replytype$k) iswordof checkbox click mark menu radio clickfill dragfill multipleclick
+            rg_=!rows2lines $rg_
+            rg1_=!line 1 of $rg_
+            rg2_=!line 2 to -1 of $rg_
+            rg2_=!translate internal $\
+$ to ; in $rg2_
+            !if $(replytype$k) iswordof checkbox click mark menu radio
+              rg_=!item $rg1_ of $rg2_
+            !else
+              rg_=$rg1_
+            !endif
+            rg_tmp=$rg2_
+            !if $(replytype$k) iswordof clickfill dragfill
+              !if ?analyze notin $rg1_
+                rg_tmp=!listuniq $rg1_,$rg2_
+              !else
+                rg_tmp=$rg2_
+              !endif
+            !endif
+            Rg$iii=!append line $rg_tmp to $(Rg$iii)
+            !goto endRg
+          !endif
+          !if $(replytype$k) iswordof coord
+            rg_=<img src="$(rg_[1;])">
+            Rg$iii=!append line $rg_ to $(Rg$iii)
+            !goto endRg
+          !endif
+          !if $(replytype$k) iswordof atext wlist nocase case
+            rg_=!translate internal ;| to $\
+\
+$ in $rg_
+            rg_=!line 1 of $rg_
+            Rg$iii=!append line $prompt_empty to $(Rg$iii)
+            !goto endRg
+          !endif
+          !!!FIXME why $(replystyle$k) iswordof numeric text
+          !if $(replytype$k) iswordof function default equation sigunits numexp\
+            or ($(replystyle$k) iswordof numeric text and $(replytype$k) notwordof set)
+            rg_=!item 1 of $rg_
+            Rg$iii=!append line $prompt_empty to $(Rg$iii)
+            !goto endRg
+          !endif
+          !if $(replytype$k) iswordof imgcomp textcomp compose reorder
+            rg_=!translate internal | to $\
+$ in $rg_
+            rg_=!rows2lines $rg_
+            rg_=!nonempty lines $rg_
+            !! due to , in math mode for example
+            rg_tmp=!items2lines $rg_
+            rg_tmp=!replace internal , by &#44; in $rg_tmp
+            rg_tmp=!lines2items $rg_tmp
+            !if ?analyze isin $(rg_tmp[1])
+              rg_tmp=!item 2 to -1 of $rg_tmp
+            !endif
+            rg_=!line 1 of $rg_
+            !if $(replytype$k)=imgcomp
+              rg_=!item 2 to -1 of $rg_
+              rg_=!nospace $rg_
+              rg_=!replace , by ">,<img src="$imagedir/ in <img src="$imagedir/$rg_">
+              rg__=!shuffle $rg_
+              Rg$iii=!append line $rg__ to $(Rg$iii)
+            !else
+              rg_cnt_=!itemcnt $rg_tmp
+              rg__=!shuffle $rg_cnt_
+              rg_tmp=!listuniq $(rg_tmp[$rg__])
+              Rg$iii=!append line $rg_tmp to $(Rg$iii)
+            !endif
+            rg_=!translate , to $ $ in $rg_
+            !goto endRg
+          !endif
+          !if $(replytype$k) iswordof correspond
+            !set rg__=!rows2lines $rg_
+            !distribute lines $rg__ into rg1__,rg2__
+            !set rg__cnt=!itemcnt $rg1__
+            !set rg_2_=!shuffle $rg__cnt
+            !set rg__=<table class="wimscenter wimsnoborder"><tr>
+            !set rgg_=<table class="wimscenter wimsnoborder"><tr>
+            !for tmp=1 to $rg__cnt
+              !set rg__=$rg__<tr><td>$(rg1__[$tmp])</td><td style="min-width:30px;text-align:left">&bullet;</td><td style="min-width:30px;text-align:right">&bullet;</td><td>$(rg2__[$(rg_2_[$tmp])])</td></tr>
+              !set rgg_=$rgg_<tr><td>$(rg1__[$tmp])</td><td>\(\longleftrightarrow\)</td><td>$(rg2__[$tmp])</td></tr>
+            !next
+            !set rg__=$rg__</tr></table>
+            !set rg_=$rgg_</tr></table>
+            !!FIXME latex version
+            Rg$iii=!append line $(rg__) to $(Rg$iii)
+            !goto endRg
+          !endif
+          !if $(replytype$k) iswordof draw
+            rg__=$(rg_[2;])
+            tmp=!item 1 of $rg__
+            !if $tmp=arrows
+              arrow_head=!getopt arrowhead in $(replyoption$k)
+              !default arrow_head=10
+              comp=,$arrow_head
+            !endif
+            rg__=!replace internal $tmp by $tmp blue$comp in $rg__
+            !reset comp
+            rg_=!declosing $(rg_[1;])
+            !! FIXME inputsize is in the field embed not accessible here
+            rg_=200,200$	$ $rg_
+            !readproc oef/canvasdraw.phtml $rg_
+            canvasdraw=!replace internal $\
+$ by in $canvasdraw_out
+            Rg$iii=!append line $canvasdraw to $(Rg$iii)
+            !readproc oef/canvasdraw.phtml $rg_$	$ $rg__
+            rg_=!replace internal $\
+$ by in $canvasdraw_out
+            !goto endRg
+          !endif
+          Rg$iii=!append line $prompt_empty to $(Rg$iii)
+:endRg
+          !if $conditioncnt<1
+            tmp=!replace internal , by &#44; in $(replyname$k)
+            Replyname$iii=$(Replyname$iii)$tmp,
+            !if noanalyzeprint notwordof $(replyoption$k)
+              !if $(replyname$k)$rg_ !=
+                !if http isin $(replyname$k)$rg_
+                  rep=$rg_
+                  replatex=
+                !else
+                  !if $(replyname$k)!=
+                    rep=!append line <em>$(replyname$k)</em>: $rg_ to $rep
+                    replatex=!append line $(replyname$k) : \verb£ $rg_ £ to $replatex
+                  !else
+                    rep=!append line $rg_ to $rep
+                    replatex=!append line \verb£ $rg_ £ to $replatex
+                  !endif
+                !endif
+              !endif
+            !endif
+          !endif
+        !else
+          Replytype$iii=!append item $(replytype$k) to $(Replytype$iii)
+          Replystyle$iii=!append item $(replystyle$k) to $(Replystyle$iii)
+        !endif r$k isitemof $thisstep
+        !reset replyoption$k
+      !next k
+    !endif
+    rep=!imgrename $rep
+    ans_$iii=!trim $rep
+    anslatex_$iii=!trim $replatex
+    !if $(ans_$iii)!=
+      test_print=1
+    !endif
+  !endif
+  !reset intro_check
+  Rg$iii=!imgrename $(Rg$iii)
+  !if $latex_exists>=0
+    !readproc oef/latex.proc exo
+  !endif

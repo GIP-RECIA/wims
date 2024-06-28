@@ -1,0 +1,144 @@
+<h2>I Pourcentages directs (de proportion ou de répartition)</h2>
+<p>Calculer le pourcentage d'une quantité par rapport à une autre, c'est trouver la valeur
+de cette quantité pour obtenir la même proportion en supposant que la référence soit égale à 100.
+</p>
+En fait, il s'agit simplement de calculer la proportion d'une quantité par rapport à une autre.
+<div>\fold{\embed{P100Ex1}}{<h3 class="l2w_content thm">Exemple</h3>}</div>
+<p>Il faut bien noter qu'<b>un pourcentage exprime une proportion et n'a de sens que si
+on précise quelle est la référence qui correspond aux 100 %</b>.</p>
+<p>
+Remarquer aussi que les calculs tombent rarement "justes" et qu'il faudra souvent arrondir le résultat, la précision
+peut varier selon le contexte (à 1 % près, ou 0,1 % près...).
+Dans les calculs ultérieurs, il faut reprendre le quotient exact pour
+éviter de cumuler les erreurs d'arrondi.</p>
+<u>Cas général</u>:
+On peut considérer le tableau suivant, ce qui revient à l'égalité
+\(\frac{y}{x} = \frac{p}{100}= t):
+<table class="wimscenter wimsborder">
+<caption>Tableau de proportionnalité</caption>
+<tr><th>Effectif</th><th>Pourcentage</th></tr>
+<tr><th>Partie</th><td>\(y)</td><td>\(p)</td></tr>
+<tr><th>Total</th><td>\(x)</td><td>100</td></tr>
+</table>
+Schématiquement :
+<div class="wims_columns">
+<div class="medium_size">
+\(\Large{x\underset{\phantom{xxx}\times t\phantom{xxx}}{\overset{p\%}{\mapsto}}y }\)
+avec \(t=\frac{p}{100}) et \(\frac{y}{x} = \frac{p}{100})
+</div><div class="medium_size">
+<ul><li>Calcul de la partie à partir du tout : \(y=\frac{p}{100}x)</li>
+<li>Calcul du tout à partir de la partie : \(x = \frac{y}{t})</li>
+<li>Calcul du pourcentage : \(p=\frac{y}{x} \times 100)</li>
+</ul></div></div>
+
+<h2>II Pourcentages d'augmentation</h2>
+\fold{\embed{P100Ex2}}{<h3 class="l2w_content thm">Exemple</h3>}
+<p>
+<b>Augmenter une quantité de \(p) %, c'est la multiplier par \((\frac{100+p}{100})) autrement dit
+par \((1 +\frac{p}{100})).</b>
+</p>
+On peut considérer le tableau suivant, ce qui revient à l'égalité \(\frac{y}{x} = \frac{100 + p}{100}= 1 + t) :
+<table class="wimscenter wimsborder">
+<tr><td></td><th>Effectif</th><td>Pourcentage</th></tr>
+<tr><th>Valeur finale</th><td>\(y)</td><td>\(100 + p)</td></tr>
+<tr><th>Valeur initiale</th><td>\(x)</td><td>100</td></tr>
+</table>
+Schématiquement :
+<div class="wims_columns">
+<div class="medium_size">
+\(\Large{x\underset{\phantom{xxx}\times (1+t)\phantom{xxx}}
+{\overset{+ p\%}{\mapsto}}y }\)
+avec \(t=\frac{p}{100}), \(x) = valeur initiale, \(y) = valeur finale
+</div><div class="medium_size">
+<ul><li>Calcul de la valeur finale : \(y=(1+\frac{p}{100}) x)</li>
+<li>Calcul de la valeur initiale : \(x = \frac{y}{1 + t})</li>
+<li>Calcul du pourcentage : \(p=\frac{y - x}{x} \times 100)</li>
+</ul></div></div>
+<h3 class="l2w_content exemple">Exemple</h3><div class="l2w_content exemple">
+Un DVD coûte 20 &euro; Toute Taxe Comprise, la TVA est de 15 % sur le prix Hors Taxe. Quel est le prix H.T. de ce DVD ?<br>
+On cherche l'antécédent à l'aide du schéma :
+<div class="wimscenter">
+\(\Large{x\underset{\phantom{xxx}
+\times (1+0,15)\phantom{xxx}}{\overset{+ 15\%}{\mapsto}} 20}\)
+</div>
+Le prix H.T. de ce DVD est \(\frac{20}{1,15} \approx 17,39) &euro; et non pas \(20 - \frac{15}{100} 20) car les 15 % portent sur \(x) et non pas sur 20.<br>
+Rechercher la valeur initiale avant une hausse de 15 % ne revient pas à appliquer une diminution de 15 % sur la valeur finale.<br>
+</div>
+<h2>III. Pourcentages de diminution</h2>
+<b>Diminuer une quantité de \(p) %, c'est la multiplier
+par \((\frac{100-p}{100})) autrement dit par \((1 - \frac{p}{100})).</b>
+
+On peut considérer le tableau suivant, ce qui revient à l'égalité : \(\frac{y}{x} = \frac{100 - p}{100}= 1 - \frac{p}{100}).
+<table class="wimscenter wimsborder">
+<tr><td></td><th>Effectif</th><th>Pourcentage</th></tr>
+<tr><th>Valeur finale</th><td>\(y)</td><td>\(100 - p)</td></tr>
+<tr><th>Valeur initiale</th><td>\(x)</td><td>100</td></tr>
+</table>
+Schématiquement :
+<div class="wims_columns">
+<div class="medium_size">
+\(\Large{x\underset{\phantom{xxx}
+\times (1-p/100)\phantom{xxx}}{\overset{-p\%}{\mapsto}}y }\)
+avec \(t=-\frac{p}{100}), \(t\) négatif,
+\(x) = valeur initiale et \(y) = valeur finale
+</div><div class="medium_size">
+<ul><li>Calcul de la valeur finale : \(y=(1 - \frac{p}{100}) x)</li>
+<li>Calcul de la valeur initiale : \(x = \frac{y}{1 - p/100})</li>
+<li>Calcul du taux \(t = \frac{- p}{100} =\frac{y - x}{x} = \frac{y}{x} - 1)</li>
+<li>Calcul du pourcentage : \(p = - \frac{y - x}{x} \times 100)</li>
+</ul></div></div>
+
+<p>Remarque : Le taux d'évolution \(t) est toujours égal à
+\(\frac{\text{valeur finale} - \text{valeur initiale}}{\text{valeur initiale}}).
+S'il est positif, il s'agit d'une augmentation ; s'il est négatif, il s'agit d'une diminution.</p>
+
+<h3 class="l2w_content exemple">Exemple</h3><div class="l2w_content exemple">
+Un DVD coûte 18 &euro; après une remise de 25 % sur le prix initial. Quel était le prix de ce DVD avant la remise ?<br>
+Il ne faut pas ajouter 25 % au prix final puisque les 25 % doivent s'appliquer sur le prix initial.<br>
+On peut utiliser une équation : \(x - \frac{25}{100} x = 18),
+c'est-à-dire \(0,75 x = 18),
+ou plus directement, rechercher l'antécédent à l'aide du schéma :
+<div class="wimscenter">
+\(\Large{x\underset{\phantom{xxx}
+\times (1-0,25)\phantom{xxx}}{\overset{-25 \%}{\mapsto}} 18 }\)
+</div>
+Le prix initial de ce DVD est \(\frac{18}{0,75}= 24) &euro;.<br>
+On n'obtient pas le bon résultat si on augmente le prix final de 25 %, cela donnerait \(18 + \frac{25}{100} 18 = 22,5).
+</div>
+<h2>IV Conclusion</h2>
+Les types de pourcentages envisagés ici sont :
+<ul>
+<li><b>les pourcentages proportions</b> (incluant les pourcentages de répartition),</li>
+<li><b>les pourcentages d'augmentation</b> (qui font partie des pourcentages d'évolution),</li>
+<li><b>les pourcentages de diminution</b> (qui font partie des pourcentages d'évolution).</li>
+</ul>
+Les types de questions envisagées ici sont :
+<ul>
+<li><b>trouver la valeur de la quantité observée</b> (la valeur de la partie ou la valeur finale),</li>
+<li><b>trouver le pourcentage \(p)</b> (ou le taux \(t) = \(p) % = \(p)/100 ou le coefficient multiplicateur),</li>
+<li><b>trouver la référence des 100 %</b> (la totalité ou la valeur initiale).</li>
+</ul>
+Les types de méthodes proposées ici sont :
+<ul>
+<li><b>dessiner, schématiser</b> pour représenter la situation, <b>traduire géométriquement</b> le problème.</li>
+<li><b>faire un tableau de proportionnalité, écrire des proportions égales, résoudre une équation</b>,</li>
+<li><b>utiliser un opérateur</b> ou <b>une fonction linéaire</b>.</li>
+</ul>
+<h3 class="l2w_content warning">Attention</h3><div class="l2w_content warning">
+<b>On ne peut additionner des pourcentages que s'ils ont la même référence.</b>
+<p style="color:red">
+Chercher la valeur initiale avant une augmentation de \(p) % ne consiste pas à diminuer la valeur finale de \(p) %.<br>
+Et chercher la valeur initiale avant une diminution de \(p) % ne consiste pas à augmenter la valeur finale de \(p) %.<br>
+Une augmentation de 10 % suivie d'une diminution de 10 % sur la nouvelle valeur ne redonne pas la valeur initiale.
+</p><p>
+Il faut donc bien repérer si la situation correspond à une augmentation ou une diminution.
+</p><p>
+Il faut aussi distinguer ces pourcentages du calcul direct de la valeur de l'augmentation ou de celle du rabais,
+qui sont des pourcentages proportions.</p>
+<p>Le pourcentage de répartition donne les proportions de chacun
+des constituants d'un tout, ainsi il ne peut dépasser 100 %.
+</p><p>
+Enfin, une diminution de plus de 100 % est difficile à interpréter (si cela a un sens).
+</p><p>
+Il faut noter aussi qu'aucun pourcentage d'évolution ne peut se calculer à partir d'une valeur nulle.
+</p>

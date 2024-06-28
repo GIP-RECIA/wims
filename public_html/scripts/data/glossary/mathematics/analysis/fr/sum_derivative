@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=derivative,real_function
+!set gl_title=Somme de deux fonctions dérivables
+!set gl_level=H5 Générale&nbsp;et&nbsp;Technologique
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(f\) et \(g\) deux fonctions définies sur un intervalle \(\mathrm{I}\) et
+\(h\) la fonction définie sur \(\mathrm{I}\) par
+<span style="white-space:nowrap">\(h=f + g \).</span><br>
+Si \(f\) et \(g\) sont dérivables sur \(\mathrm{I}\), alors la fonction \(h\) est
+dérivable sur <span style="white-space:nowrap">\(\mathrm{I}\),</span> et sur
+<span style="white-space:nowrap">\(\mathrm{I}\) :</span>
+<div class="wimscenter">
+ \(\displaystyle{h' = f' + g'}\)
+</div>
+c'est-à-dire, pour tout \(x\in\mathrm{I}\),
+<div class="wimscenter">
+\(\displaystyle{h'(x) = f'(x) + g'(x)}\).
+</div>
+</div>

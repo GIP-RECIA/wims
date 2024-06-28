@@ -1,0 +1,87 @@
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefconvvol1&exo=oefconvvol2&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Conversions de volumes 1-2
+Famille des m², difficulté 1 à 2 aléatoirement
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefconvvol2&exo=oefconvvol3&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Conversions de volumes 2-3
+Famille des m², difficulté 2 à 3 aléatoirement
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefvolume1&exo=oefvolume2&exo=oefvolume3&qnum=3&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Volume pavé calcul 1-3
+Compter ou calculer le volume d'un parallélépipède rectangle, difficulté 1 à 3 aléatoirement
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefvolume3&exo=oefvolume4&qnum=2&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Volume pavé calcul 3-4
+Calculer le volume d'un parallélépipède rectangle, difficulté 2 à 4 aléatoirement
+:E3/measurement/oefgrandeur.fr
+exo=volume00&confparm1=1&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Volumes de pavés droits &#58; comparaison
+Par découpage en cube d'une unité de volume
+
+:E3/measurement/oefgrandeur.fr
+exo=volume0&confparm1=2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Volume d'un pavé droit &#58; compter
+Par découpage en cube d'une unité de volume
+
+:E3/measurement/oefgrandeur.fr
+exo=volume1&confparm1=2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Volume d'un pavé droit mobile &#58; compter
+Solide mobile, par découpage en cube d'une unité de volume.
+
+:E3/measurement/oefgrandeur.fr
+exo=volume2&confparm1=1&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Volume de plusieurs pavés droits 1
+Solide mobile, composé de cubes de volume unitaire, difficulté 1
+
+:E3/measurement/oefgrandeur.fr
+exo=volume2&confparm1=2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Volume de plusieurs pavés droits 2
+Solide mobile, composé de cubes de volume unitaire, difficulté 2
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefrecpersp2&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Cube &#58; particularités
+Sommets, arêtes, côtés, faces
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefconstpat1&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Cube &#58; construction d'un patron
+Savoir les particularités du cube pour dessiner son patron
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefrecpatron1&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Cube &#58; reconnaître un patron
+
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefrecpatron2&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Reconnaître un patron de pavé droit

@@ -1,0 +1,43 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph,eulerian_graph
+!set gl_title=Graphe eulérien
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définitions</h4>
+    Soit \(G\) un graphe.
+  <ul>
+    <li>
+      Une <strong>chaîne eulérienne</strong> de \(G\) est une chaîne de \(G\) qui
+      contient une fois et une seule chaque arête de
+      <span style="white-space:nowrap">\(G\).</span>
+    </li><li>
+      Un <strong>cycle eulérien</strong> de \(G\) est une chaîne eulérienne de
+      \(G\) qui est un cycle, c'est-à-dire une chaîne eulérienne dont les
+      extrémités sont confondues.
+    </li><li>
+      Le graphe \(G\) est un <strong>graphe eulérien</strong> si et seulement
+      s'il admet un cycle eulérien.
+    </li>
+  </ul>
+</div>
+<div class="wims_thm">
+  <h4>Théorème 1</h4>
+  Un graphe connexe \(G\) admet un cycle eulérien si et seulement si tous ses
+  sommets sont de degré pair.
+ </div>
+
+<div class="wims_thm">
+  <h4>Théorème 2</h4>
+  Un graphe connexe \(G\) admet une chaîne eulérienne distincte d'un cycle si et
+  seulement si le nombre de sommets de \(G\) de degré impair est égal à 2.
+  <br>
+    Dans ce cas, si \(A\) et \(B\) sont les deux sommets de \(G\) de degré impair,
+    alors le graphe \(G\) admet une chaîne eulérienne d'extrémités \(A\) et
+    <span style="white-space:nowrap">\(B\).</span>
+</div>
+:mathematics/discrete_mathematics/fr/eulerian_graph_1

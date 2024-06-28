@@ -1,0 +1,140 @@
+type=classify
+textarea="data explain"
+iEdit="explain"
+
+:Match two items.
+
+Items are presented in a table in two columns. Match the
+items by clicking on the two items that correspond.
+<p>
+To make an exercise with this model, type the list of matching items.
+</p><p>
+With a slight modification, a variant of this exercise can accept images as items.
+</p>
+
+<p class="wims_credits">Author of the model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags i.e. the lines starting
+with a ':'. Otherwise the exercise might not be recognised by Createxo.
+
+:%%%%%%%% Example parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Correspondance}
+:\author{Gang, Xiao}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Number of (pairs of) matching items.
+\integer{tot=6}
+
+:The vertical size of labels in pixels.
+Think of people who have to increase the font size of their browsers to see well!
+Don't make the labels too small.
+\integer{sizev=50}
+
+:The horizontal size of left boxes (in pixels).
+Think of people who have to increase the font size of their browsers to see well!
+Don't make the labels too small.
+\integer{sizel=250}
+
+:The horizontal size of right boxes (in pixels).
+Think of people who have to increase the font size of their browsers to see well!
+Don't make the labels too small.
+\integer{sizer=250}
+
+:Feedback displayed in all cases after the learner's response.
+\text{feedback_general=}
+
+:Instructions
+$embraced_randitem
+\text{explain=Match the countries and their capitals.}
+
+:Main data.
+Write one pair of corresponding items per line, separated by a comma.
+$embraced_randitem
+\matrix{data=
+Germany,		Berlin
+Australia,		Canberra
+Canada,			Ottawa
+China,			Beijing
+Spain,			Madrid
+United States,		Washington
+France,			Paris
+Great Britain,		London
+India,			New Delhi
+Indonesia,		Jacarta
+Italy,			Rome
+Japon,			Tokyo
+Russia,			Moscow
+}
+
+:Embraced random items
+$embraced_randitem
+
+\text{accolade=item(1,1 yes,
+2 no)}
+
+:%%%%%%%%%%%%%% Nothing to modify before the statement %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\integer{datacnt=rows(\data)}
+\integer{tot=\tot>\datacnt?\datacnt}
+
+\text{shuf=item(1..\tot,shuffle(\datacnt))}
+\text{data=row(\shuf,\data)}
+\text{data=\accolade=1? wims(embraced randitem \data)}
+\text{datal=column(1,\data)}
+\text{datar=column(2,\data)}
+\text{size=\sizev[]x\sizel[]x\sizer}
+\text{explain=\accolade=1? wims(embraced randitem \explain)}
+
+# For Latex version
+\text{shuf2=shuffle(\tot)}
+\text{latexdatar=\datar[\shuf2]}
+\real{latexsizel=max(1,min(floor(\sizel/5)/10,6))}
+\real{latexsizer=max(1,min(floor(\sizer/5)/10,6))}
+\text{latexsrc=\begin{tabular}{p{\latexsizel cm}lp{1cm}lp{\latexsizer cm}}}
+\for{lk=1 to \tot}{
+  \text{latexsrc=\latexsrc \datal[\lk] &\(\bullet\) &&\(\bullet\) & \latexdatar[\lk]\\ [1.5ex]  }
+}
+\text{latexsrc=\latexsrc \\ 
+\end{tabular}}
+\text{latexsol=\begin{tabular}{p{\latexsizel cm}lp{\latexsizer cm}}}
+\for{lk=1 to \tot}{
+  \text{latexsol=\latexsol \datal[\lk] &\(\longleftrightarrow \)& \datar[\lk]\\ [1.5ex] }
+}
+\text{latexsol=\latexsol\\ 
+\end{tabular}}
+
+:%%%%%%%%%%%%% Now the statement in html. %%%%%%%%%%%%%%%%%%%%
+
+::You don't need to modify this in general.
+
+# The command to show the correspondance table is
+# \embed{reply 1,\size}
+
+\statement{<div class="instructions">\explain</div>
+<div class="wimscenter">
+\embed{reply 1,\size}
+</div>
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%5
+\answer{The reply}{\datal;\datar}{type=correspond}
+\feedback{\feedback_general notsametext }{<p class="feedback">\feedback_general</p>}
+
+# Latex version
+\latex{
+\begin{statement}
+\explain
+\begin{center}
+\latexsrc
+\end{center}
+\end{statement}
+\begin{solution}\
+\begin{center}
+\latexsol
+\end{center}
+\end{solution}
+}

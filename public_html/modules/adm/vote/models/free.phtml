@@ -1,0 +1,15 @@
+<div class="field box">
+  <label for="src">$name_content:</label>
+!if $vote_status>0
+  <br>$name_nowritable
+  !let tmp=!record 0 of $votedir/$vote.src
+  !readproc adm/msgchange.proc read
+  <pre>$out_script</pre>
+!else
+  !set wims_ref_class=wims_button_help float_right
+  !href cmd=help $wims_name_help
+  <div class="wimscenter">
+    <textarea class="iEdit" id="src" name="reg_src" cols="80" rows="20">$src</textarea>
+  </div>
+!endif
+</div>

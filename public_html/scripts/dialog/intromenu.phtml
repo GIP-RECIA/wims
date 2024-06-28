@@ -1,0 +1,69 @@
+!read dialog/$lang/names
+
+<hr style="width:35%">
+
+!read Exindex
+!set exocnt=!itemcnt $exolist
+!set qcnt=8
+!if $qcnt>$exocnt
+  !set qcnt=$exocnt
+!endif
+!if $exocnt<1
+  $name_noexercise
+  !exit
+!endif
+!if $exocnt=1
+  $name_oneexercise, <b>
+  !item 1 of $(titlelist.$modu_lang)
+  </b>.
+  !set exoo=!item 1 of $exolist
+  !set wims_ref_class=wims_button
+  !href cmd=new&module=$module&exo=$exoo $name_tryit.
+  !exit
+!endif
+!form new
+<div id="oef_intro_params">
+  <fieldset class="property_fields blockcenter">
+  <legend>
+  $wims_name_setup</legend>
+
+<input type="hidden" name="module" value="$module">
+<div class="field">
+<label for="exo">$name_chooseexo</label>:
+!if $exocnt>6
+  !set selsize=6
+!else
+  !set selsize=$exocnt
+!endif
+!set wims_formselect_switch=multiple="muliple" size="$selsize"
+!set exo=$special_parm
+
+!!!if $exo!=$empty
+  !set exolist=!replace , by , $ in $exolist
+  !set titlelist=$(titlelist_$modu_lang)
+!!!endif
+!formselect exo list $exolist prompt $titlelist
+</div><div class="field">
+!set wims_formselect_switch=
+<label for="qnum">$name_oneserie</label>
+!set qnum=1
+!formselect qnum from 1 to $qcnt
+$name_exercises.
+</div>
+<div class="field">
+<label for="qcmlevel">$name_levelseverity</label>
+!set qcmlevel=3
+!formselect qcmlevel from 1 to 8
+</div>
+!read introhook.phtml
+<div class="wimscenter">
+<input type="submit" value="$wims_name_work">
+</div>
+</fieldset>
+!formend
+</div>
+!!$name_remarkintro1
+
+!if * isin $titlelist
+ <p>$name_remarkintro2</p>
+!endif

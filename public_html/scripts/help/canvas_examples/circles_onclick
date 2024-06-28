@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+filled
+fillcolor lightblue
+opacity 255,50
+onclick
+circles blue,0,0,2,2,2,3,-3,-3,3,3,3,4,3,-4,2
+zoom red

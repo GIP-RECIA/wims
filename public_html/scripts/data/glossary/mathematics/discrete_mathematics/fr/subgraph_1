@@ -1,0 +1,10 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Sous-graphe (exemple)
+
+!readproc data/glossary/mathematics/discrete_mathematics/macro/subgraph
+
+<div class="float_right">$slib_out</div>
+Un sous-graphe du graphe représenté ci-contre est représenté en rouge.
+Ses sommets sont
+<div class="wimscenter tt">$gl_sub</div>

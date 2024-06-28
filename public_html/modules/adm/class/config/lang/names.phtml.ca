@@ -1,0 +1,761 @@
+!set lang_exists=yes
+
+!if $wims_read_parm!=
+  !goto $wims_read_parm
+!endif
+
+!if $job=list
+!distribute lines Ubicació (ciutat, país)\
+ Omplint aquest camp, s'accepta que nosaltres indiquem que WIMS s'utilitza a la teva ciutat (sense cap altra referència)\
+Coordonnées GPS\
+into name_location,name_location_help,name_geoloc
+  !set name_config_hideaverage=Cacher les moyennes générales aux participants
+  !set name_config_mexolog=Autoriser les participants à signaler l'enregistrement d'exercices à l'enseignant
+  !set name_config_utime=Longueur des intervalles de temps de connexion (en min)
+  !set name_utime_help=Durée de chaque zone de temps dans les statistiques de temps de connexion des participants
+!endif
+
+!distribute items zones,alumnes,exercicis,documents,professors,fulls d'exercicis\
+into wims_name_zones,wims_name_participants,wims_name_exercises,wims_name_docs,wims_name_teachers,\
+name_sheets
+
+!distribute item missatge del dia,exercici,fulls d'exercicis,exàmens,documents,\
+  participants,Seqüències pedagògiques,competències bàsiques,competència(es),qüestionaris,\
+  agenda,compte de professor,fòrum,missatge(s) del fòrum,Avançat,Document public\
+into name_motd,name_exo,name_sheet,name_exam,name_doc,\
+  name_user,name_seq,name_livret,name_competence,name_vote,\
+  name_cdt,name_sup,name_forum,name_forum_mesg,name_advanced,name_pdoc
+
+!distribute item missatges del dia,\
+  exercicis,fulls d'exercicis,exàmens,documents,alumnes\
+into name_motds,name_exos,name_sheets,name_exams,name_docs,name_users
+
+!if $job=grestrict
+ !set name_allowedsites=IP permeses
+ !set name_excepted=Excepcions
+!endif
+!if $job=connectlink
+  !set title=Enllaços de Connexió
+!endif
+!if $job=arch
+ !set title=Còpia de seguretat i Restauració
+ !set name_title_save=Còpia de seguretat de la classe
+ !set name_title_restore=Restauració dels recursos a partir d'una còpia de seguretat
+ !set name_intro1=Seleccioneu el fitxer de còpia de seguretat per restaurar
+ !set name_intro=Feu clic al format de còpia de seguretat seleccionat
+ !set name_tosend=Seleccioneu el fitxer de còpia de seguretat per restaurar
+ !set name_namefile=si us plau dóna el nom del fitxer de còpia de seguretat&nbsp;
+ !set name_help=A continuació, podràs seleccionar els recursos de la classe a restaurar.
+ !set name_deposit=!nosubst La teva còpia de seguretat <span class="tt wims_fname">$wims_deposit</span> conté els següents\
+ recursos. Si us plau indica els que vols restaurar a la teva classe.
+ !set name_no_restore=No es pot restaurar perquè comparteixes els recursos d'una altra\
+        classe. La restauració només es pot fer de la classe mestra de compartir.
+ !set name_check_dependency=Include dependencies
+ !set name_desc_dependency=Warning: Your backup may not work if you don't include required dependencies.
+ !set name_limit_exceed=Importation impossible car le nombre de ressources dépasse la capacité maximale
+ !set name_dependance=dépendance d'une ressource dépassant la capacité maximale
+
+ !distribute lines toggle all\
+No s'ha seleccionat cap recurs per restaurar.\
+Restaurar tot, excepte la configuració de la classe i el compte de professor.\
+<span class="wims_warning">Perill!</span> <span class="small">Mira més avall.</span>\
+Configuració de la classe\
+Compte de professor (inclosa la contrasenya)\
+comptes d'alumnes\
+Comptes existents\
+documents\
+Documents existents\
+exercicis\
+Exercicis existents\
+fulls d'exercicis\
+Implica la restauració dels exercicis\
+Fulls existents\
+fulls d'examen\
+Implica la restauració de fulls d'exercicis i dels exercicis\
+Exàmens existents\
+missatges del fòrum\
+Missatges existents\
+Registre d'activitats dels alumnes i puntuació automàtica. Implica la restauració de comptes d'usuari.\
+Notes posades pel professor\
+Notes existents\
+una agenda per a la classe\
+una agenda existent\
+Competències bàsiques\
+competències existents\
+Seqüències pedagògiques\
+Implica la restauració dels fulls d'exercicis, exercicis, exàmens i documents\
+Seqüències pedagògiques existents\
+Tipus de recursos\
+Mètode de restauració\
+Reemplaçament\
+Elimina els recursos existents i els substitueix pels recursos seleccionats\
+Fusió\
+fusiona els comptes dels participants; combina els exercicis de la classe substituint els exercicis del mateix nom; <span class="wims_warning"> substituir els altres recursos existents</span>\
+Restaurar els recursos seleccionats\
+Missatge del dia existent\
+Fotos individuals\
+Fotos existents\
+Eines\
+Eines existents\
+Tasca lliure\
+Implica la restauració dels exercicis\
+Tasques lliures existents\
+ into name_toggle_all,name_noselect,name_all,name_danger,name_config,name_teacher,name_user,name_user1,name_doc,\
+   name_doc1,name_exo,name_exo1,name_sheet,name_sheet0,name_sheet1,name_exam,name_exam0,name_exam1,name_forum,\
+   name_forum1,name_activity,name_manual,name_manual1,name_cdt,name_cdt1,name_livret,name_livret1,name_seq,\
+   name_seq0,name_seq1,name_res_type,name_method,name_replace,name_replace1,name_merge,name_merge1,\
+   name_selectrestore,name_motd1,name_userphoto,name_userphoto1,name_tool,name_tool1,name_freework,name_freework0,name_freework1
+
+!!set name_cnil_warning=Recordem que d'acord a les declaracions fetes a la CNIL, \
+   no s'han de desar dades sobre els estudiants més d'un any. S'haurà de destruir\
+   totes les còpies de seguretat que contenen dades dels alumnes.\
+   Fes una còpia de seguretat selectiva si vols desar els recursos que \
+   has creat (fulls, exàmens, documents), o utilitzar la possibilitat de duplicació.
+
+!distribute lines Recursos de còpia de seguretat restaurats a la classe&nbsp;\
+    La restauració dels comptes dels participants (i els registres d'activitat) s'ha refusat perquè no hi ha prou espai disponible.\
+    La data de caducitat de la classe s'ha canviat després de la restauració perquè la data restaurada és\
+    Compte(s) d'alumne(s) sense restaurar perquè l'identificador ja està en ús en el grup/portal\
+    La restauració és impossible perquè la teva classe ha autoritzat la compartició de recursos\
+    La còpia de seguretat i la restauració no són útils en aquest nivell de la estructura\
+ into name_restore1,name_restore2,name_restore3,name_restore4,name_forbiddenrestore,name_restore5
+
+ !distribute items irreconeixible, massa aviat, massa tard into ebad, eearly, elate
+
+ !distribute lines Ho sentim, no hem pogut arxivar la teva classe. Error intern.\
+   Feu clic a l'arxiu de còpia de seguretat de la classe\
+   per a desar-la al teu ordinador. \
+   També pots fer una còpia de seguretat selectiva. Per això, trieu les dades que voleu desar\
+   a continuació, feu clic al botó \
+   Còpia de seguretat selectiva\
+   per modificar el fitxer de còpia de seguretat i guardar-lo en el teu ordinador.\
+   Potser pots provar un altre format\
+ into name_download1,name_download2,name_download3,name_download4,\
+   name_selective1,name_selective2,name_selective3,name_try_other_format
+
+ !set name_download5=Aquest fitxer de còpia de seguretat té una mida que pot superar el límit permès\
+   per enviar al servidor. Per reduir la mida del fitxer, pots\
+   seleccionar les dades a desar
+
+ !goto commun
+!endif
+
+!if $job=clean
+ !set title=Manteniment de la classe
+ !set name_lines=línies dels registres d'activitat dels alumnes.
+ !set name_cdtdates=L'agenda
+ !set name_livretcomp=Competències bàsiques
+ !set name_userphoto=fotos individuals
+ !set name_empty=La teva classe està buida&nbsp;!<br>\
+  No hi ha recursos a la classe que es puguin esborrar.
+ !set name_no_erase=No es poden netejar, per que estan compartits amb una altra classe.
+
+ !distribute lines Netejar tot el que es pugui\
+   Esborrar també els registres d'activitat\
+   Esborrar també els exàmens\
+   Fer còpia de seguretat de la classe\
+   Recursos actuals de la classe\
+ into name_cleanall,name_erase1,name_warning_exam,name_saveclass,name_ressource
+  !set name_warning_clean=Els recursos esborrats des d'aquesta pàgina no poden ser recuperats!
+
+ !goto commun
+!endif
+
+!if $job=neighbor
+ !set title=Classes veïnes
+ !set name_noclass=No es poden definir classes veïnes perquè no hi ha cap altra classe\
+ en aquest lloc.
+ !set name_toomany=Hi ha massa classes virtuals en aquest lloc. Si us plau, introdueixi una paraula clau\
+  per buscar la classe que vols entrar.
+ !set name_toomany2= Hi ha massa classes corresponents a la teva cerca. Si us plau,\
+   escriu una paraula clau més precisa.
+
+ !distribute lines Trobar una classe\
+  No s'ha trobat cap classe per a la teva cerca. Intenteu-ho de nou.\
+  Mostrar les classes obertes del servidor\
+  Les relacions de veïnatge entre classes virtuals permeten l'intercanvi de recursos i/o el desplaçament entre classes.\
+  Feu clic al nom d'una classe per a canviar les relacions de veïnatge amb ella.\
+  Classes amb la mateixa llengua que la teva\
+  Classes en altres llengües\
+  Exemples\
+into name_research,name_noclass,name_exampleclass,name_help,name_changeneigh,\
+  name_samelanguage,name_otherlanguage,name_example
+
+ !distribute lines Declaració de veïnatge\
+   Intercanvi de recursos\
+   per tu\
+   per l'altra\
+   Activar compartir mutuament.\
+   Tu comparteixes els recursos.\
+   Compartir els recursos.\
+   Permetre compartir mutuament.\
+   El dret a compartir els teus recursos.\
+   Tu permets compartir els recursos.\
+   Aturar Compartir\
+   Compartir\
+   importar-los tots\
+   Recursos d'ensenyament\
+   Importar altres recursos\
+   Classes poden compartir els teus recursos\
+   Recursos permesos\
+   actiu\
+   Llista de totes les classes\
+   Informació compartir recursos\
+   Mostrar les classes obertes del servidor\
+   importar recursos\
+   Pots\
+   de la classe\
+   Clica aquí per acceptar\
+   fotos individuals\
+   eines\
+   Importation de ressources\
+ into name_declaration,name_sharing,name_byyou,name_other,name_actif,name_share1,name_share2,\
+ name_permit1,name_permit2,name_permit3,name_stopsharing,name_share,name_everybodyimport,name_teaching,\
+ name_otherone,name_classsharing,name_ressourceallowed,name_active,name_listclass,name_infoshare,name_exampleclass,\
+ name_import_resource,name_youcan,name_fromtheclass,name_click_ok,name_userphoto,name_tool,name_importres
+
+ !set name_nonewres=!nosubst No hi ha cap (nou) tipus de recurs a la classe \
+  <span class="wims_emph">$nei_description</span> que estiguis autoritzat a compartir.
+
+ !set name_newres=!nosubst La classe <span class="wims_emph">$nei_description</span> \
+  $nei_description</span> t' <b>autoritza</b> a compartir el seus
+
+ !set name_chooseres=!nosubst Tria els recursos que <b>autoritzes</b> la classe \
+ <span class="wims_emph">$nei_description</span> a compartir&nbsp; (<i>selecciona i clica a <span class="wims_button disabled">$wims_name_tosave</span></i>)
+
+ !set name_warning_authorized=!nosubst La classe <span class="wims_emph">$nei_description</span>\
+  us permet compartir certs recursos. No heu de permetre que comparteixi els mateixos tipus de recursos \
+   sota risc de confusió. Comenceu per decidir quina classe, entre els que teniu \
+   vol compartir recursos, permetre compartir aquest tipus de recursos \
+   i quines classes accepten aquest ús compartit.
+
+ !distribute lines Relació de veïnatge \
+    no va declarar la vostra classe com a veïna \
+    accepta com a classe veïna per a \
+    amb \
+    Ja compartiu els recursos següents de la classe \
+    no té recursos que podeu importar \
+    té els següents recursos importats \
+    El mateix títol de la vostra classe \
+    Buida \
+    en preparació \
+    Reemplaçar \
+    L'inici de sessió ja s'ha fet servir a la vostra classe \
+    Alumne esborrat existent a la vostra classe\
+    Importació a partir de la classe \
+    S'ha transferit correctament \
+    comptes d'estudiants de la classe veïna \
+    Comprovar el resultat \
+ into name_neighbor_relation,name_text1,name_text2,name_with,name_sharealready,\
+   name_no_ressource,name_importable,name_same_title,name_empty,name_inpreparation,\
+   name_replace,name_existinglogin,name_part_erased,name_import,name_transfered,\
+   name_neigh_account,name_verify
+
+    !set name_warning_duplicate=Només els fulls amb continguts (codi font dels fulls) \
+  siguin diferentes són importables. Més endavant es podrà duplicar un full si desitja\
+  tenir dos fulls amb el mateix contingut.
+
+ !set name_inactif=!nosubst La (El) $(name_$itype) es posa en estat inactiu per permetre \
+   modificació.
+
+ !set name_accept=!nosubst Acceptes la classe <span class="wims_emph"> $nei_description</span> com a veïna per a
+
+ !if $job2=stopshare
+  !set title=Deixar de compartir
+  !set name_warning=La classe té un registre d'activitat actiu i \
+  els recursos compartits no estan buits. Si deixeu de compartir \
+  ara, no podreu compartir-los més tard. \
+  <br> Estàs segur que vols aturar aquesta compartició per sempre&nbsp;?
+
+ !set name_stop=atura-ho.
+ !endif
+ !if $job2=sharelist
+  !set title=Informació de compartiment de recursos.
+  !set name_sharelist=!nosubst Estàs compartint $(name_$rec) de
+  !distribute lines No estàs usant recursos compartits d'altres classes.\
+  Estàs compartint recursos d'altres classes\
+  into name_noresource,name_resource
+  !endif
+
+  !if $job2=addshare
+    !set title=Compartir els recursos d'una classe
+    !set name_class_share=La classe <span class="wims_emph">$nei_description</span>\
+      et permet compartir els recursos següents.
+  !distribute lines disponible(s) \
+     Estàs compartint. \
+     No podeu compartir-los ja que ja els compartiu d'una altra classe. \
+     neteja els vostres recursos \
+     si és possible.
+     És molt perillós compartir el compte del professor&nbsp;!\
+  into name_available,name_actually_sharing,name_nosharing,name_cleanup,name_ifpossible,\
+    name_dangerous
+
+  !set name_warning1=No podeu compartir-los perquè permets a altres classes\
+    compartir els teus recursos del mateix tipus. Les accions en cascada no són \
+    permeses. Per tant, primer heu d'aturar els permisos de compartir\
+    amb l'altra classe abans de poder compartir els de la classe
+  !set name_warning2=!nosubst No podeu compartir-los perquè els vostres propis $(name_$r) no són \
+    buits. Abans de compartir, primer heu de fer servir
+  !set name_warning_erase=!nosubst Això ESBORRARÀ els teus $(name_$r) existents!\
+     Es perdran definitivament si no tens còpia de seguretat.
+
+  !endif
+
+  !distribute items ---,<span class="small">professor</span>,\
+  <span class="small">alumnat</span>,\
+  <span class="small">professorat i alumnat</span>\
+  into n_n0, n_n1, n_n2, n_n3
+
+  !if $job2=import
+    !set code1=No
+    !set code2=$wims_name_yes però diferent
+    !set code3=$wims_name_yes, actiu i diferent
+  !endif
+ !goto commun
+!endif
+
+!if $job=connect
+ !set title=Connectar-se a altres servidors/plataformes
+ !set name_listserver=Llista de servidors
+
+ !distribute lines Provar una connexió amb un servidor\
+   Provar la connexió amb la classe remota\
+   Afegir una classe remota\
+   Gestionar una classe remota\
+   classe local, classe remota\
+   definició de la classe, llista d'usuaris, mitjana de notes, detalls de la nota, tots, excepte la definició de la classe\
+   Sincronitzar\
+   (amb l'altra) per\
+   Classe remota\
+   Servidor remot\
+   Manteniment\
+   Destrueix la classe remota\
+   Aquesta connexió al servidor remot funciona.\
+   S'ha afegit la connexió a la vostra classe\
+   El servidor remot no respon. Informeu a\
+   La connexió és rebutjada pel servidor remot. Missatge d'error\
+   Classe remota controlada\
+   Aquesta connexió funciona. Les dades retornades de la classe remota\
+   Per connectar-vos a una classe del servidor anterior, especifiqueu\
+   Identificador de la classe remota\
+   Si la classe remota està buida, el servidor crearà una nova classe al servidor remot, duplicant les propietats d'aquesta.\
+   Actualitzeu automàticament la classe remota per als canvis realitzats en aquesta\
+   Permetre que la classe remota modifiqui aquesta classe\
+   Aquesta classe no té connexions amb altres servidors.\
+   Heu declarat les següents connexions a altres servidors.\
+   Servidor\
+   Aquest servidor WIMS pot establir connexions amb els següents servidors.\
+   Accions sobre la connexió\
+   Accions a la classe\
+ into wims_name_connecttest,wims_name_classtest,wims_name_addconnection,wims_name_connectmanage,name_prompt1,\
+   name_prompt2,name_synchronize,name_withotherone,name_remoteclass,name_remoteserver,wims_name_Manage,\
+   wims_name_destroy,name_working,name_error1,name_errornoreply,name_errorreject,name_check,name_data,\
+   name_toconnect,name_identifier,name_help,name_automatically,name_allow,name_noconnection,name_declaration,\
+   wims_name_server,name_listserver1,name_connexion_action,name_class_action
+
+ !goto commun
+!endif
+
+!if $job=access
+ !set title=Configuració de l'accés als recursos
+ !goto commun
+!endif
+
+!if $job=grestrict
+ !set title=Restricció de l'accés a les notes
+ !goto commun
+!endif
+
+!if $job=present
+ !set title=Configuració de l'apparença de la classe.
+ !set name_helpcolor=El primer color afecta els exercicis inacabats.
+ !goto commun
+!endif
+
+!if $job=oefdefault
+ !set title=Configuració per defecte dels mòduls OEF
+  !read oef/ca/intronames
+
+  !distribute lines $name_oneserie\
+    $name_levelseverity\
+    $name_chrono\
+    $name_secondes\
+    $name_qcmanswer\
+    $name_solutiongiven\
+    $name_choice\
+    $(name_choice_check[1])\
+    $(name_choice_check[2])\
+    $(name_choice_check[3])\
+    $(name_choice_check[4])\
+   into name_series,name_severity,name_chrono,name_secondes,name_qcmanswer,\
+     name_solution,name_prompt,name_prompt1,name_prompt2,name_prompt3,name_prompt4
+    !set name_warning=$(name_remarkintro3)
+  !goto commun
+!endif
+
+!if $job=security
+ !set title=Activitats de gestió de seguretat disponibles
+ !set name_see_activity2=Heu de ser l'origen de totes aquestes activitats; si no és\
+   el cas, heu de verificar on hi ha una filtració de la contrasenya del professor.
+ !set name_see_activity1=Vegeu el fitxer de registre de la gestió d'activitats de la vostra classe
+ !distribute lines Configureu les restriccions de la classe \
+   dels llocs que tinguin accés a les notes.\
+   Altres configuracions de seguretat a\
+   la configuració de la classe \
+ into name_restriction1,name_restriction2,name_otherrestriction1,name_otherrestriction2
+ !goto commun
+!endif
+
+!if $job=authtype
+ !set title=Autenticació externa
+ !set name_intro_authtype=Trieu l'autenticació i la identificació desitjades\
+ i ompliu els camps útils corresponents.
+ !set name_method_list= autenticació wims, autenticació via CAS, \
+ autenticació via CAS i identificació via ldap,\
+ autenticació i identificació via ldap,\
+ autenticació via CAS i identificació via php,\
+ autenticació i identificació via php
+ !goto commun
+!endif
+
+!!if $job2=importar
+ !set code1=No
+ !set code2=$wims_name_yes però diferent
+ !set code3=$wims_name_yes, actiu i diferent
+!!endif
+
+!if $job=propagate
+  !if $wims_supertype=2
+   !set name_thisclass=del portal
+   !set name_subclasses=subclasses
+  !else
+   !set name_thisclass=de la zona actual
+   !set name_subclasses=zones dependents
+  !endif
+
+ !distribute lines Configuracions enviades amb èxit a $name_subclasses\
+  Pots triar enviar les configuracions següents de $name_thisclass a totes les seves $name_subclasses\
+ into name_propagate_succes,name_propagate_choose
+
+ !set name_warning=Tingues present que això només s'aplica a $name_subclasses ja creades i que \
+  les $name_subclasses no reflectirà els canvis posteriors \
+   de les configuracions $name_thisclass. Heu de tornar a enviar els canvis cada vegada \
+   que vulgueu que s'apliqui a les $name_subclasses.
+
+!endif
+
+!if $job=log
+  !set name_warning_log=Aquest és el registre de certes activitats de gestió de la vostra classe. Aquest registre \
+us permet verificar si hi ha activitats sospitoses.
+!endif
+
+!if $job=index
+  !set title=!nosubst Actualització de l'índex $tit
+  !set name_done=Fet
+  !set name_result=Resultat de l'Script
+
+
+  !if $job2=structure
+   !set tit=de les zones
+  !endif
+  !if $job2=userlist
+   !set tit=dels alumnes
+  !endif
+  !if $job2=teacherlist
+   !set tit=dels professors
+  !endif
+  !if $job2=oef
+   !set tit=dels exercicis
+  !endif
+  !if $job2=doc
+   !set tit=dels documents
+  !endif
+!endif
+
+!if $job iswordof list new auth or $job=
+!! pas d'espace en début de ligne
+  !distribute line Nom del centre\
+Nom de la classe\
+Número de la classe\
+Paraules d'opció\
+Compte de desenvolupador de Modtool\
+Bloqueig de connexió\
+Millors qualificacions,nombre,anonimat\
+Nombre màxim d'alumnes\
+Data de caducitat\
+Exercicis registrats\
+Registre d'exàmens\
+visible per als alumnes\
+per canviar l'estil de les pàgines de la classe com els colors, afegir un logotip ..\
+preferències personals, no canvieu l'aparença de la classe per als alumnes\
+Repercutir les configuracions a les zones dependents\
+definir relacions de veïnatge amb altres classes en aquest servidor\
+definir relacions amb altres servidors\
+definiir una autenticació externa a WIMS; la configuració s'ha de fer abans de registrar els alumnes\
+els alumnes\
+Actualitza els índexs\
+el canvi de \
+fer una còpia de seguretat de la classe a l'ordinador o restaurar els recursos de la classe des d'una còpia de seguretat\
+restringir els recursos accessibles per un alumne connectat a la classe\
+restringir les condicions sota les quals es registren les notes obtingudes per un alumne\
+per als quals es registren les notes\
+Fer una neteja selectiva\
+Configurar\
+barrejar\
+Permetre als alumnes desactivar les notes\
+Títol dels exercicis de l'OEF per als alumnes\
+Els alumnes saben si el professor està connectat\
+Mostra la IP de l'alumne a l'administrador d'una classe\
+Camps addicionals per omplir al registre\
+Tenir en compte el possible canvi d'IP durant un examen\
+paràmetres definits en crear la classe, configuració dels fulls i dels exàmens\
+Mostrar el correu del professor\
+  into name_name_institution,name_name_class,name_name_number,name_optionword,name_devaccount,name_lock_level,\
+    name_bestscore,name_limit,name_expirationdate,name_register_exo,name_register_exam,\
+    name_visible,name_apparence,name_pref,name_dependant_zone,name_neigh,name_link,name_useauth,name_ldap,name_index,\
+    name_change,name_load,name_restriction1,name_restriction2,name_score,name_clean,\
+    name_config,name_mix_auth,name_config_authscoresuspend,\
+    name_config_exotitleform,name_config_supconnectshowed,name_config_show_IP,name_regvars,\
+    name_examscore_withoutip,name_param,name_sendmailteacher
+
+ !set name_config_exotitleformoption=Cap,Títol de l'exercici,Nombre del full d'exercicis i de la sèrie d'exercicis, Títol del full d'exercicis i nombre de la sèrie d'exercicis, Títol del full d'exercicis i títol de la sèrie d'exercicis dins del full d'exercicis
+ !set name_allowcloning=Permetre la duplicació
+ !set name_cloningpwd=Contrasenya de duplicació
+!endif
+
+:commun
+!distribute line Configuració global\
+Autentificació\
+Preferències\
+Restriccions d'accés\
+Configuració OEF\
+Classes veïnes\
+Gestió de seguretat\
+Manteniment\
+Actualitzar\
+Altres servidors\
+Contrasenyes\
+Zones dependents\
+Aparença\
+Restricció de notes\
+Adreça d'una plataforma\
+de\
+Autenticació externa\
+into wims_name_config_list,wims_name_config_auth,wims_name_config_pref,wims_name_config_restr,wims_name_config_oef,\
+wims_name_config_neigh,wims_name_config_secure,wims_name_config_clean,wims_config_refresh,\
+wims_name_config_otherserver,wims_name_config_passwd,wims_name_config_propagate,wims_name_config_present,\
+wims_name_config_score,wims_name_config_ent,name_of,wims_name_external_auth
+
+!let wims_name_exploresave=Restauration sélective
+
+!distribute lines Llocs segurs\
+Full d'estil\
+Logo\
+Posició del logo\
+superior esquerra, superior dreta\
+Tema\
+Joc d'icones\
+Nivell acadèmic\
+Llocs autoritzats a les notes\
+Contrasenya de registre\
+Contrasenya del professor\
+Límits d'enrregistrament d'exercicis i d'exàmens\
+Enllaços a una plataforma o pàgina web\
+Color de fons de les pàgines\
+Color de fons dels menús\
+Color dels enllaços als menús\
+Imatge de fons de les pàgines\
+Transfereix un fitxer css\
+Degradat de colors de les notes (de 0 a 10)\
+Color de fons dels botons\
+Color del text als botons\
+Color de fons dels botons d'ajuda\
+Color del text als botons d'ajuda\
+Enllaços d'inici de sessió\
+Color del text\
+Colors a la presentació d'activitats\
+adreces dels enllaços de connexió directa a la classe\
+Configuració OEF per defecte\
+Tipus d'autenticació\
+Colors\
+Mail del professor visible\
+into name_secure,name_css,name_logo,name_position_logo,name_logo_side,name_theme,\
+   name_theme_icon,name_level,name_security,name_password,name_supass,name_exolog,name_ent,\
+   name_background_color,name_menu_color,name_refmenu_color,name_image,name_css_transfer,\
+   name_colorscore,name_button_bgcolor,name_button_color,name_button_help_bgcolor,\
+   name_button_help_color,name_connectlink,name_act_color,name_coloract,\
+   name_connectlinkhelp,name_oefdefault,name_auth,name_colors,\
+   name_sendmailteacher
+
+!set name_content_style =<span class="tt wims_code_words">$name_css</span> ha d'estar a <span class="tt wims_code_words">class</span>
+
+!set name_content_style2=Insereix les definicions d'estil css
+
+!distribute lines Presentació de la classe i els seus recursos\
+també es pot fer la configuració de les següents eines des de la pàgina d'inici\
+la configuració també es pot fer fora d'aquesta zona\
+la configuració per defecte per inserir exercicis en un full\
+Accés als recursos i al registre de notes\
+Relació amb altres classes wims o altres servidors\
+Els enllaços següents permeten modificar determinats paràmetres de la classe.\
+Còpia de seguretat i manteniment de la classe\
+into name_newrem1,name_newrem2,name_seqrem,name_oefrem,\
+  name_title_access,name_title_other,name_configrem,name_title_saveman
+!exit
+:arch
+
+ Has enviat recursos desats d'una altra classe.
+ Si restaures recursos incompatibles amb la teua classe, simplement es destruirà.
+ !href cmd=help&special_parm=dependències Per què&nbsp;?
+ <br>
+ !href cmd=reply&job=list Aturar
+ si no estàs del tot segur del que estàs fent. En tot
+ cas, fes una còpia de seguretat de l'estat actual abans de continuar.
+!exit
+
+:arch_end
+ <span class="wims_warning">IMPORTANT</span>. <ul><li>No hi ha cap verificació de les dades que heu
+enviat i el sistema no permet l'edició manual d'arxius de
+còpia de seguretat. Els errors introduïts per modificació manual dels
+arxius poden generar un comportament impredictible a la vostra classe.
+</li>
+<li> Excepte en cas d'absoluta necessitat, evita restaurar
+<span class="wims_warning">la configuració de la classe</span> i
+<span class="wims_warning">el compte de professor</span>.
+Els errors en les dades enviades per a aquests dos camps poden fer-te
+perdre tot el control de la teva classe.
+</li><li> Podeu utilitzar una còpia de seguretat d'una classe per instal·lar una classe
+nova. En aquest cas, eviteu restaurar els registres d'activitat i les
+notes (manuals i automàtiques). Aquests dos tipus de recursos no poden ser
+esborrats una vegada instal·lats (mesura de seguretat). I moltes
+operacions de manteniment de la classe són impossibles quan la
+la classe conté notes.
+</li></ul>
+!exit
+
+:clean
+ <p>
+ No podeu suprimir recursos de la classe
+ quan els alumnes ja han començat les activitats.
+ </p><p>
+ Aquesta és una mesura de seguretat important. Si et vols
+ saltar aquesta restricció, tingues en compte els dos aspectes següents.
+ </p><p>
+ D'una banda, suposem que un estudiant roba la contrasenya. Si entra a
+ aquesta pàgina per esborrar-ho tot, els estudiants honestos patiran molt,
+ i les vostres activitats docents seran significativament interrompudes.
+ </p><p>
+ D'altra banda, els diferents recursos de la classe són interdependents.
+ Si esborreu alguns recursos sense esborrar els que depenen d'ells,
+ la vostra classe ja no funcionarà.
+ !href cmd=help&special_parm=dependències Exemples.
+ </p><p>
+ De totes maneres, si realment vols netejar aquesta classe, pots
+ esborrar-la sempre (establint la data de caducitat a avui&nbsp;
+ la classe desapareixerà demà al matí), o bé
+ <a href="mailto:$wims_site_manager?subject=Sisplau esborra la meua classe">demanar
+ al gestor del lloc</a> que l'esborri.
+ </p>
+ !exit
+
+ :clean2
+ <span class="wims_warning">Notes</span>. <ul><li> Aquesta pàgina només és accessible mentre
+ la classe està en preparació. Un cop iniciades les activitats dels alumnes,
+ ja no és possible esborrar recursos.
+</li><li>
+ Els recursos compartits per diferents classes només poden ser
+ esborrats a partir de la classe mestra del compartiment. Les altres classes
+han de
+!href cmd=reply&job=neighbor&job2=sharelist deixar de compartir
+ els recursos abans d'esborrar-los.
+ </li></ul>
+!exit
+
+:connect_first_info
+ La connexió amb altres servidors / plataformes permet a la vostra classe comunicar-se directament amb
+ una altra classe en un altre servidor WIMS o en una altra plataforma d'e-learning. Els alumnes
+ poden navegar sense problemes entre les classes connectades.
+<br>
+ Per exemple, podeu fer una còpia mirall d'aquesta classe en un altre servidor WIMS remot,
+ de manera que si aquest servidor no està disponible temporalment, la feina es pot continuar a la
+ mirall. Les notes del mirall es recolliran més endavant.
+!exit
+
+:connect_first
+
+ Aquest servidor WIMS no ha establert connexió amb un servidor remot. Per utilitzar la possibilitat
+ de connexió, el
+ <a href="mailto:$wims_site_manager?subject=server connection">gestor del lloc</a>
+ ha de declarar un servidor remot i el servidor remot també ha de declarar aquest servidor WIMS
+ com a capaç d'estar connectat.
+  (El gestor del lloc pot fer referència al fitxer
+ <span class="tt wims_fname">$basedir/log/classes/.connections/myself</span> per obtenir més informació sobre com declarar
+  servidors remots).
+
+ !exit
+
+:import2
+ <p>El full d'exercicis que voleu importar pot utilitzar els exercicis
+    definits a la classe veïna.
+   </p><p>
+   Si els mateixos exercicis no existeixen a la vostra classe, el full importat
+   no funcionarà correctament. Comproveu acuradament que tots
+   els exercicis de la classe veïna tenen un duplicat a la vostra.
+   </p>
+!exit
+:import3
+  <p>Els fulls d'examen es basen en els fulls d'exercicis.
+   </p><p>
+   Importar un full d'examen només té sentit si tens exactament els
+   mateixos fulls d'exercicis que la classe veïna i si aquests fulls estan
+   en el mateix ordre en ambdues classes.
+   </p><p>
+   Si aquest no és el cas, el full d'examen importat només pot tenir
+   un comportament erràtic.
+   </p>
+!exit
+
+:import4
+
+Esteu a punt de reemplaçar un(a) $(name_$itype)
+  existent de la vostra classe pel recurs importat. No hi haurà
+   possibilitat de tornar enrere després d'aquesta operació.
+!exit
+
+:import5
+ Cap compte d'alumne s'ha afegit a la vostra classe. Comproveu si la vostra
+ classe està plena (i si encara hi ha espai al lloc per afegir
+ nous alumnes).
+!exit
+
+:auth1
+<p>Aquesta eina de configuració només és accessible per a llocs segurs.
+</p><p>
+Com que no heu definit cap lloc segur, comprovem la vostra
+autenticació enviant-vos un codi secret a la vostra adreça de correu electrònic.
+Llegiu els vostres correus, agafeu el codi i escriviu-lo a continuació&nbsp;:
+</p>
+!exit
+:auth2
+<p>
+<b>Notes</b>. Aquesta autenticació serveix per garantir que, fins i tot si la vostra
+contrasenya és robada o perduda, els danys a la vostra classe seran limitats.
+El procediment d'autenticació es simplifica si definiu els
+llocs segurs correctament, mantenint un alt nivell de seguretat.
+</p>
+!exit
+
+:download
+<p><b>Nota</b>. Aquests solen ser els
+registres d'activitats dels alumnes, missatges de discussió i els
+documents de la classe que componen la major part de la mida del fitxer.
+Podeu realitzar diverses còpies de seguretat selectives per a diferents recursos.
+</p>
+!exit
+
+:import_livret
+Esteu a punt de reemplaçar l'estructura de les competències bàsiques
+   existent de la vostra classe pel recurs importat.
+No hi haurà possibilitat de tornar enrere després d'aquesta operació.
+Els enllaços als fulls d'exercicis de la classe no s'importen (es perdran els existents).
+!exit

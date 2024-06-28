@@ -1,0 +1,20 @@
+<script type="text/javascript" src="scripts/js/wz_tooltip.js"></script>
+:signification
+create a tooltip :  the first parameter is the text of the
+link,
+the third parameter is the text which appears in the tooltip.
+Le second parameter is the css style (in a simple form) and/or the position.
+
+:example
+<span class="wims_help_example">Example</span>
+<textarea id="wims_show91" cols="100" rows="8" readonly="readonly">
+\special{tooltip the tooltip,,the word has 5 letters}
+\special{tooltip the tooltip,style="width:100px" class="left", the word has 5 letters}
+\special{tooltip the tooltip,style="width:300px;background-color:blue;color:white",
+  a formula \(\frac{a}{b}\)}
+</textarea>
+
+The position can be fixed by adding one of the css <span class="tt">left</span>,
+<span class="tt">right</span>,
+<span class="tt">top</span>,
+<span class="tt">bottom</span>, by default, the tooltip is on the right.

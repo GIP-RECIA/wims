@@ -1,0 +1,21 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Consommateur
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Le <strong>consommateur</strong> est un agent économique dont la
+fonction est de <span class="wims_emph">demander des biens et des services</span>
+en vue de satisfaire ses besoins économiques.</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+<p>Sur un marché donné, <span class="wims_emph">l'ensemble des consommateurs</span>
+constitue <span class="wims_emph">la demande</span> de ce marché.</p>
+Dans la mesure où l'action du consommateur conduit à la destruction immédiate ou progressive
+de biens et de services, cet agent économique est qualifié de
+<span class="wims_emph">consommateur final</span>.
+</div>

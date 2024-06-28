@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+xunit centimetre
+yunit seconds
+display xy,red,22
+userdraw segments,blue

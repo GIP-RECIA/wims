@@ -1,0 +1,41 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Loi de Bernoulli
+!set gl_level=H5 Technologique,H6 Générale&nbsp;Complémentaire,H6 Générale&nbsp;Spécialité
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(p\) un nombre réel appartenant à \([0\,;1]\).<br>
+  On appelle <strong>épreuve de Bernoulli de paramètre \(p\)</strong> toute
+  expérience aléatoire n'admettant que deux issues \(\mathrm{A}\) et
+  \(\bar{\mathrm{A}}\) de probabilités respectives \(p\) et
+  <span style="white-space:nowrap">\(q=1-p\).</span>
+</div>
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit &#937;\(=\{0\,;1\}\) l'univers associé à une expérience aléatoire, et
+  soit \(p\) un nombre réel appartenant à <span style="white-space:nowrap">
+  \([0\,;1]\).</span><br>
+  On appelle <strong>loi de Bernoulli de paramètre \(p\)</strong> la loi de
+  probabilité définie sur &#937; par \(\mathrm{P}({1})=p\) et
+  <span style="white-space:nowrap">\(\mathrm{P}({0})=1-p\).</span>
+</div>
+
+<div class="wims_thm">
+  <h4>Théorème</h4>
+  Soit \(p\in[0\,;1]\) et \(B_p\) la loi de Bernoulli de paramètre \(p\).
+  <br>
+  On pose \(q=1-p\).
+  <ul>
+    <li>
+      L'espérance mathématique \(\mathbf{E}\) de \(B_p\) est \(\mathbf{E}=p\) ;
+    </li>
+    <li>
+      La variance \(\mathbf{V}\) de \(B_p\) est \(\mathbf{V}=p q).
+    </li>
+  </ul>
+</div>

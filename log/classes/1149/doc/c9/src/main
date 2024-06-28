@@ -1,0 +1,117 @@
+\def{text f0 =xrange 0,80
+yrange 0,16
+arrow 0,8,80,8,20,black}
+\def{text f1 =\f0
+line 0,0,0,16,black}
+\def{text g1 =xrange 0,80
+yrange 0,20
+line 79,0,79,16,black
+arrow 80,8,0,8,20,black}
+\def{text dessin=xrange -0.4,5.6
+yrange -0.5,5.5
+linewidth 1
+parallel -0.4,-0.4,5.6,-0.4,0,0.2, 35, lightblue
+parallel -0.4,-0.4,-0.4,5.6,0.2,0, 35, lightblue
+linewidth 2
+parallel -0.4,1,5.6,1,0,1,5, grey
+parallel 1,-0.4,1,5.6,1,0, 5, grey
+
+linewidth 2
+arrow  -0.4,0,5.6,0,10,black
+arrow   0,-0.5,0,5.5,10,black
+
+text black,-0.2,-0.05,large,0
+text black,0.9,-0.05,large,1
+text black,1.9,-0.05,large,2
+text black,2.9,-0.05,large,3
+text black,3.9,-0.05,large,4
+text black,4.9,-0.05,large,5
+text black,-0.3,1.2,large,1
+text black,-0.3,2.2,large,2
+text black,-0.3,3.2,large,3
+text black,-0.3,4.2,large,4
+text black,-0.3,5.2,large,5
+linewidth 1
+line 4.15,1.8,4.2,1.7,red
+line 4.2,1.7,4.3,1.9,red
+line 4.3,1.9,4.5,1.9,red
+}
+\def{text Gr1=\dessin
+linewidth 3
+plot black,x
+plot green,x^2
+plot red,sqrt(x)
+
+text black,3.5,3.3,giant,y = x
+text green,0.7,3.6,giant,y = x
+text green,1.5,3.7,large,2
+text green,0.8,0.4,giant,f
+text red,3.5,1.9,giant,y =
+text red,4.3,1.9,giant,x
+text red,0.2,0.9,giant,g
+}
+Considérons une fonction \(f) définie sur l'ensemble de définition \(D_f) et dont l'ensemble des images est \(I_f).<br>
+Le mot <strong>fonction</strong> impose que chaque élément de \(D_f) ait une image et une seule.<br>
+Si <b>chaque élément de \(I_f) est l'image par \(f) <u>d'un seul</u> élément de \(D_f)</b>,
+autrement dit s'il a <u>un seul</u> antécédent par \(f) dans \(D_f), <br>
+alors on peut définir une fonction \(g) de \(I_f) dans \(D_f) qui à chaque élément de \(I_f) <b>associe son antécédent</b> par \(f).<br>
+On dit alors que \(g) est la <b>fonction réciproque</b> de \(f).<p>
+Schématiquement :
+<div class="wimscenter">
+\(\begin{matrix}
+  D_f & \Large{\overset{f}{\longrightarrow}}&I_f\\
+  x & \Large{\mapsto}&y = f(x)\\
+  x = g(y)&\Large{\overset{g}{\mapsfrom}}&y
+  \end{matrix}
+ \left |\begin{matrix}
+  = D_g&\Large{\overset{g}{\longrightarrow}}&D_f = I_g\\
+  y&\Large{\mapsto}&x = g(y)&\\
+  y = f(x)& \Large{\overset{f}{\mapsfrom}}&x
+  \end{matrix}
+  \right |
+  \begin{matrix}&\\&g(f(x)) = x\\&f(g(y)) = y\\&\end{matrix}
+\)
+</div>
+<p>
+En passant de \(f) à \(g), on a en quelque sorte inversé les variables de départ et d'arrivée.
+En conséquence, le graphique de \(g) est obtenu à partir de celui de \(f) en inversant les axes.
+Et si le repère est orthonormé, la courbe de \(g) est obtenue par symétrie orthogonale de celle de \(f)
+par rapport à la droite d'équation \(y=x).
+</p><p>
+C'est ainsi que l'on peut définir et tracer la courbe de la fonction racine carrée à partir de celle de la fonction carré
+définie sur \(\lbrack 0 ; +\infty \lbrack\), et plus généralement celle de la fonction racine \(n)<sup>ième</sup> à partir de
+la fonction puissance \(n) définie sur \(\lbrack 0 ; +\infty \lbrack\).
+</p>
+<ul class="inline wims_nopuce">
+<li>\draw{200,200}{\Gr1}</li><li>
+<img alt="Courbes des fonctions puissances 2, 3 et 12 et de leurs fonctions réciproques" src="\filedir/racnx_xn.png"/>
+</li></ul>
+<h3 class="l2w_content thm">Théorème</h3><div class="l2w_content thm">
+<p>
+Si une fonction \(f) est définie, continue et strictement croissante sur un intervalle I et si l'ensemble des images
+est un intervalle J, alors \(f) admet une fonction réciproque \(g) de J dans I qui est strictement croissante sur J.
+</p></div>
+<p>L'expression <strong>strictement croissante</strong> peut être remplacée par <strong>strictement décroissante</strong>.<br>
+Une fonction est croissante si les images sont dans le même ordre que les antécédents
+donc sa réciproque est alors aussi croissante.
+Elle est décroissante si les images sont dans l'ordre inverse des antécédents, dans ce cas sa réciproque est aussi décroissante.
+L'adverbe <strong>strictement</strong> signifie que deux nombres distincts de l'ensemble de définition I n'ont pas la même image,
+ce qui garantit que la fonction admet une fonction réciproque.
+</p><p>
+Le mot <strong>continue</strong> signifie précisément que l'image de tout intervalle inclus dans I
+est un intervalle, autrement dit, il n'y a pas de "trous" dans l'ensemble des images.
+Toutes les fonctions linéaires, affines, trinômes et plus généralement les polynômes sont des fonctions continues
+sur chaque intervalle de \(\,\RR). Il en est de même de chaque fonction racine
+\(n)<sup>ième</sup>.</p>
+La fonction inverse est définie, continue et strictement décroissante sur
+\(\rbrack 0;+\infty\lbrack\) et l'ensemble des images est
+\(\rbrack 0 ; +\infty \lbrack\), elle admet donc une fonction réciproque définie de
+\(\rbrack 0 ; +\infty\lbrack\)
+dans \(\rbrack 0 ; +\infty \lbrack\) ;
+c'est la fonction inverse elle-même ! Or pour \(x \ne 0), \(\frac{1}{x} = x^{-1}) ;
+on voit que l'on peut enrichir l'ensemble des
+puissances rationnelles avec des exposants négatifs à condition de réduire l'ensemble de définition
+à \(\rbrack 0 ; +\infty \lbrack\).</p>
+Remarquons aussi que la fonction réciproque de \(x \mapsto x^{3/2}) est \(y \mapsto y^{2/3})
+car \((x^{3/2})^{2/3} = x) et de façon plus générale, pour deux entiers \(n) et \(d) non nuls,
+la fonction réciproque de  \(x \mapsto x^{n/d}) est \(y \mapsto y^{d/n}).

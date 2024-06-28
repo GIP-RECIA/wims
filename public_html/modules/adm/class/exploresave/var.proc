@@ -1,0 +1,57 @@
+# Variable calculations should be done in this file.
+# It is read and interpreted by wims for all valid calls to the module.
+
+wims_prefix=class
+!read adm/language lang/names.phtml
+!read tabletheme
+
+!if $cmd=help
+  !exit
+!endif
+
+!if $wims_user!=supervisor
+  error=notsupervisor
+  notallowed=1
+  !exit
+!endif
+
+!if $class_expiration=$empty
+  !defread wimshome/log/classes/$wims_class/.def
+  !if $wims_superclass!=$empty
+    class_expiration=!defof class_expiration in wimshome/log/classes/$wims_superclass/.def
+  !endif
+!endif
+
+tmp=!defof MAX_SHEETS\
+MAX_EXAMS\
+MAX_VOTES\
+MAX_FREEWORKS in wimshome/public_html/bases/sys/define.conf
+!distribute line $tmp into max_sheets,max_exams,max_votes,max_freeworks
+
+!! ------------ il va falloir globaliser ces deux variables (comme pour MAX_SHEETS etc...)car elles sont definies dans le module class/adddoc
+max_linkdoc=32
+max_tool=32 
+max_doc=$max_sheets
+max_glossary=$max_linkdoc
+
+!if $class_expiration=$empty
+  error=bad_class
+  !exit
+!endif
+
+!! ------------- test accessright
+!readproc linkmodule/exploresave.proc
+!if $wims_allowlink_exploresave!=yes
+  error=badright
+  notallowed=1
+  !exit
+!endif
+
+!bound job within upload,list,import,replace  default upload
+
+!set wims_ariane=!append line exploresave,1,module=adm/class/exploresave to $wims_ariane
+!set wims_ariane=!append line "$page_name",8, to $wims_ariane
+!set wims_ariane_self=no
+
+!read lang.phtml.$lang
+!changeto $job.proc

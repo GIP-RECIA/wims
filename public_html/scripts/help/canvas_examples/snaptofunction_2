@@ -1,0 +1,18 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+axis
+axisnumbering
+precision 1
+grid 2,2,grey,2,2,5,grey
+precision 100
+snaptofunction y^2-9,y
+#snaptofunction y^2-9,abs(y)
+linewidth 3
+crosshairsize 6
+userdraw crosshairs,red
+linewidth 2
+curve blue,sqrt(x+9)
+curve blue,-1*sqrt(x+9)
+yunit = y-value
+display y,blue,22

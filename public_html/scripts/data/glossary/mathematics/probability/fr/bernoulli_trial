@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Épreuve de Bernoulli
+!set gl_level=H5 Technologique, H6 Générale&nbsp;Complémentaire, H6 Générale&nbsp;Spécialité
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+   Soit \(p\) un nombre réel appartenant à \([0\,;1]\).<br>
+On appelle <strong>épreuve de Bernoulli de paramètre \(p\)</strong> toute
+expérience aléatoire n'admettant que deux issues \(\mathrm{A}\) et
+\(\bar{\mathrm{A}}\) de probabilités respectives \(p\) et
+<span style="white-space:nowrap">\(q=1-p\).</span>
+</div>

@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 1,1,grey
+canvastype 4
+snaptogrid
+replyformat 10
+userdraw dotfill,blue
+clearbutton REMOVE LAST RECTANGLE

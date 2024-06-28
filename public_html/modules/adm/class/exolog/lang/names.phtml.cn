@@ -1,0 +1,23 @@
+!set lang_exists=yes
+
+!set name_noexercise=ÄãÃ»ÓĞÁ·Ï°Òª¼ÇÂ¼.
+!set name_listexercise=!nosubst ×÷ÒµÒ³$logsheet¿É¼ÇÂ¼µÄÁ·Ï°;
+!set name_noexercise2=ÕâÀïÓĞ$ Î´¼ÇÂ¼µÄÁ·Ï°.
+!set name_click= !nosubst ÕâÀïÓĞ$(names[1]) $(names[2])ÒÑ¼ÇÂ¼µÄÁ·Ï°.\
+µã»÷ÈÕÆÚÒÔ»Ø·Å.
+
+!distribute items ²½Öè,¸öÊı \
+into name_Step,name_number
+
+!set name_source=Ô´
+!set name_sendmail=ÓĞÃ«²¡?
+!set name_bug=Èç¹ûÄãÈÏÎªÁ·Ï°ÓĞÃ«²¡,\
+ÇëÍ¨¹ıµã»÷°´Å¥ <span class="wims_button disabled">$name_sendmail</span> ·¢ËÍµçÓÊ²¢¸½ÉÏÎÄ¼ş\
+<span class="wims_button disabled">$name_source</span>.
+
+!! TODO_lang
+!set name_ssendmail=Prévenir l'enseignant de la classe ? (vous pouvez également saisir un message à destination de votre enseignant)
+!set name_msg=!nosubst L'élève $ufirst $ulast a sauvegardé le $unow un exercice dans la classe $uclass de $ueta sous la référence $uref.
+!set name_comment=Il a ajouté le commentaire suivant :
+!set name_exolog=Enregistrer les détails d'un exercice
+!set wims_name_SE_mod=Message pour l'élève

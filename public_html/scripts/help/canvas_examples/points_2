@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+opacity 255,255
+linewidth 1
+onclick
+points red,0,0,1,1,2,2,3,3
+onclick
+points blue,0,1,1,2,2,3,3,4

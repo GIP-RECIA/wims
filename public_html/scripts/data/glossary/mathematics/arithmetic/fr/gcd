@@ -1,0 +1,47 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=arithmetic,gcd_lcm,euclidean_algorithm,division,divisibility
+!set gl_title=PGCD (Plus Grand commun diviseur) de deux entiers naturels non nuls
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition 1</h4>
+Soit \(a\) et \(b\) deux entiers naturels non nuls.<br>
+Le <strong>PGCD</strong> de \(a\) et \(b\) est le plus grand des diviseurs
+communs à \(a\) et à <span style="white-space:nowrap">\(b\).</span>
+</div>
+
+<div class="wims_rem">
+Si \(b\) est un diviseur de \(a\) alors le PGCD de \(a\) et \(b\) est égal à
+\(b\).</div>
+<div class="wims_defn"><h4>Définition 2</h4>
+Soit \(a\) et \(b\) deux entiers naturels non nuls.<br>
+Si le PGCD de \(a\) et \(b\) est égal à 1, on dit que \(a\) et \(b\)
+sont <strong>premiers entre eux</strong>.</div>
+<div class="wims_rem"><h4>Méthodes de détermination du PGCD \(d\)
+de deux entiers naturels non nuls \(a\) et
+<span style="white-space:nowrap">\(b\) :</span></h4>
+<ul>
+<li>on détermine l'ensemble des diviseurs de \(a\) et l'ensemble des diviseurs
+de <span style="white-space:nowrap">\(b\) ;</span> \(d\) est le plus grand
+élément commun à ces deux ensembles&nbsp;;</li>
+<li> par l'<strong>algorithme d'Euclide</strong>&nbsp;: on effectue la division
+euclidienne de \(a\) par \(b\) (si \(a \geqslant b\)), puis la division
+euclidienne de \(b\) par le reste obtenu, puis celle de ce reste par le second
+reste obtenu, et ainsi de suite. Après un nombre fini d'étapes, on obtient un
+reste nul&nbsp;; \(d\) est le dernier reste non nul&nbsp;;</li>
+<li>on décompose chacun des deux entiers \(a\) et \(b\) en produit de nombres
+premiers&nbsp;; \(d\) est égal au produit des nombres premiers communs aux deux
+décompositions, chacun d'eux étant affecté du plus petit des deux exposants.</li>
+</ul>
+</div>
+<div class="wims_thm"><h4>Théorème</h4>
+Soit \(a\) et \(b\) deux entiers naturels non nuls.<br>
+L'ensemble des diviseurs communs à \(a\) et à \(b\) est l'ensemble des diviseurs
+de leur PGCD.</div>
+<div class="wims_thm"><h4>Conséquence</h4>
+Tout diviseur commun aux deux entiers \(a\) et \(b\) divise leur PGCD.
+</div>
+:mathematics/arithmetic/fr/gcd_1

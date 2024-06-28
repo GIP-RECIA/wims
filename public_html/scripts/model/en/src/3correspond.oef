@@ -1,0 +1,103 @@
+type=imaudio
+textarea="data explain"
+iEdit="explain"
+
+:Establish the correspondence between pairs of objects (with audios from the database).
+
+Object pairs are presented in a two-column table.
+You must restore the good correspondence in the pairs
+ by modifying the column on the right, by drag and drop
+ or click with the mouse.
+Objects on the left are mandatorily audio files taken in the Shtooka base of WIMS.
+To check if a word exist, use the Swac tool
+(in the search engine look for <span class="tt">swac</span>).
+<p>
+To build an exercise with this model, just type the list of object pairs.
+For more possibilities, use Quicktool.
+</p>
+<p class="wims_credits">
+Author of the model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Correspondence with pre-recorded audio}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Number of (pairs of) objects to match
+\integer{tot=3}
+
+:Height of the boxes (in pixels)
+Think of people who increase the font size of their browsers.
+Do not set too small boxes.
+\integer{sizev=50}
+
+:Width of the boxes on the left (in pixels)
+\integer{sizel=250}
+
+:Width of the boxes on the right (in pixels)
+\integer{sizer=250}
+
+:Audio language: the possible choices are <span class="tt">fra</span>,  <span class="tt">eng</span>,  <span class="tt">dut</span> (and others with fewer possibilities: <span class="tt">pol</span>,  <span class="tt">wol</span>,  <span class="tt">deu</span>,  <span class="tt">swe</span>.)
+\text{lang=eng}
+
+:Main data.
+Define a pair of matching objects per line, separated by a comma.
+$embraced_randitem
+\matrix{data=
+village, town
+house, building
+father, mother
+street, highway
+blue, green
+}
+
+:Instructions
+$embraced_randitem
+\text{explain=Establish the correspondence of meaning between the written words and the spoken words.}
+
+:Embraced random items
+$embraced_randitem
+\text{accolade=item(1,1 yes,
+2 no)}
+
+:%%%%%%%%%%%%%% Nothing to modify until statement %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\integer{datacnt=rows(\data)}
+\integer{tot=\tot>\datacnt?\datacnt}
+
+\text{shuf=item(1..\tot,shuffle(\datacnt))}
+\text{data=row(\shuf,\data)}
+\text{data=\accolade=1 ? wims(embraced randitem \data)}
+\text{datal=column(1,\data)}
+\text{datar1=column(2,\data)}
+\text{datar=}
+\for{k =1 to \tot}{
+  \text{audio=\datar1[\k]}
+  \text{audio=slib(lang/swac \audio,\lang)}
+  \text{audio=\audio[1;1]}
+  \text{datar=wims(append item \audio to \datar)}
+}
+\text{size=\sizev[]x\sizel[]x\sizer}
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+
+:%%%%%%%%%%%%% Now the statement in HTML. %%%%%%%%%%%%%%%%%%%%
+
+::You don't need to modify this in general.
+
+\statement{\explain
+<div class="wimscenter">
+\embed{reply 1,\size}
+</div>
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%5
+
+\answer{The answer}{\datal;\datar}{type=correspond}
+

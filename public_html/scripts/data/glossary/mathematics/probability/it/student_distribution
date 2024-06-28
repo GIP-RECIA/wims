@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_keywords=continuous_probability_distribution
+!set gl_author=Sophie, Lemaire
+!set gl_title=Distribuzione di Student
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Sia \(n) un intero positivo. La <strong>distribuzione di Student</span> con \(n)
+gradi di libertà (denotata da
+\(\mathcal{T }(n))) è la distribuzione della variabile aleatoria seguente
+\(\frac{X}{\sqrt{Y/n}}) dove \(X) ha distribuzione \(\mathcal{N}(0,1))
+ e \(Y) è indipendente da \(X) e con distribuzione \(\chi^{2}(n)). Essa
+  è una distribuzione continua su \(\RR) con funzione di densità
+<div class="wimscenter">
+\(x\mapsto\frac{\Gamma(\frac{n+1}{2})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{x^2}{n})^{-\frac{n+1}{2}})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Valore atteso</th><th>Varianza</th><th>Funzione caratteristica</th></tr>
+<td>0 si \(n>1) </td><td>\(\frac{n}{n-2}) si \(n>2)</td><td></td></tr></table>

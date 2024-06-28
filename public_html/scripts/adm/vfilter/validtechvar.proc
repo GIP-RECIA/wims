@@ -1,0 +1,21 @@
+!! this script test if a technical variable is accessible from a list of class
+!! first line is the technical internal name 
+!! second line is the list of class
+!! output=1 : techvar is in all class of the list
+!! output=0 : techvar is not in one of the class
+
+output=1
+!distribute line $wims_read_parm into techvar_,ltclass_
+nb_=!itemcnt $ltclass_
+rac_=!replace internal _ by , in $techvar_
+rac_=!item 1 to -2 of $rac_
+rac_=!replace internal , by / in $rac_
+rac_=!nospace $rac_
+k=1
+!while $k<=$nb_ and $output=1
+  cls=!item $k of $sharers
+  !if $rac_ notin $(ltclass_[$k])
+    output=0
+  !endif
+  !increase k
+!endwhile

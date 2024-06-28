@@ -1,0 +1,227 @@
+Lettura dell'orologio
+giochi con l'orologio
+??,2019
+1
+E3
+elementary_mathematics
+measurement,time,clock,levelE1,levelE2,levelE3,levelE4,levelE5
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:E3/measurement/oefclock.fr
+exo=clock3&confparm1=0&confparm4=0&confparm2=0&confparm2=1&confparm3=1&qnum=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #1
+Sei capace di regolare l'orologio secondo l'ora indicata? Anche se sull'orologio non sono indicati i numeri?
+
+I minuti sono multipli di 1. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock2&confparm1=0&confparm4=0&confparm2=0&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #2
+Sei capace di regolare l'orologio secondo l'ora indicata? Anche in questo caso sull'orologio non sono indicati i numeri.
+
+I minuti sono multipli di 5. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock1&confparm1=0&confparm4=0&confparm2=0&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #3
+Sei capace di regolare l'orologio secondo l'ora indicata? Di nuovo, non sono indicati i numeri, ma ti chiediamo solo orari particolari.
+
+I minuti sono multipli di 15. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock3&confparm1=1&confparm4=0&confparm2=0&confparm2=1&confparm3=1&qnum=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #4
+Sei capace di regolare l'orologio secondo l'ora indicata? La sai distinguere la lancetta delle ore da quella dei minuti, vero?
+
+I minuti sono multipli di 1. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock2&confparm1=1&confparm4=0&confparm2=0&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #5
+Sei capace di regolare l'orologio secondo l'ora indicata? Anche qui attenzione a non confondere la lancetta delle ore da quella dei minuti.
+
+I minuti sono multipli di 5. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock1&confparm1=1&confparm4=0&confparm2=0&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #6
+Sei capace di regolare l'orologio secondo l'ora indicata? Di nuovo, attenzione a non confondere la lancetta delle ore da quella dei minuti.
+
+I minuti sono multipli di 15. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock3&confparm1=0&confparm4=1&confparm2=0&confparm2=1&confparm3=1&qnum=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #7
+Sei capace di regolare l'orologio secondo l'ora indicata? Ti ripropniamo tutti gli esercizi che hai già fatto, questa volta le lancette sono indicate con colori diversi.
+
+I minuti sono multipli di 1. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock2&confparm1=0&confparm4=1&confparm2=0&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #8
+Sei capace di regolare l'orologio secondo l'ora indicata? Ti ripropniamo tutti gli esercizi che hai già fatto, questa volta le lancette sono indicate con colori diversi.
+
+I minuti sono multipli di 5. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock1&confparm1=0&confparm4=1&confparm2=0&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #9
+Sei capace di regolare l'orologio secondo l'ora indicata? Ti ripropniamo tutti gli esercizi che hai già fatto, questa volta le lancette sono indicate con colori diversi.
+
+I minuti sono multipli di 15. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock3&confparm1=1&confparm4=1&confparm2=0&confparm2=1&confparm3=1&qnum=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #10
+Sei capace di regolare l'orologio secondo l'ora indicata? Ti ripropniamo tutti gli esercizi che hai già fatto, questa volta le lancette sono indicate con colori diversi.
+
+I minuti sono multipli di 1. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock2&confparm1=1&confparm4=1&confparm2=0&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #11
+Sei capace di regolare l'orologio secondo l'ora indicata? Ti ripropniamo tutti gli esercizi che hai già fatto, questa volta le lancette sono indicate con colori diversi.
+
+I minuti sono multipli di 5. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock1&confparm1=1&confparm4=1&confparm2=0&confparm2=1&confparm3=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #12
+Sei capace di regolare l'orologio secondo l'ora indicata? Ti ripropniamo tutti gli esercizi che hai già fatto, questa volta le lancette sono indicate con colori diversi.
+
+I minuti sono multipli di 15. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock3&confparm1=0&confparm4=0&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #13
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 1. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock2&confparm1=0&confparm4=0&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #14
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 5. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock1&confparm1=0&confparm4=0&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #15
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 15. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock3&confparm1=1&confparm4=0&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #16
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 1. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock2&confparm1=1&confparm4=0&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #17
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 5. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock1&confparm1=1&confparm4=0&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #18
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 15. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock3&confparm1=0&confparm4=1&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #19
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 1. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock2&confparm1=0&confparm4=1&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #20
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 5. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock1&confparm1=0&confparm4=1&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #21
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 15. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock3&confparm1=1&confparm4=1&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #22
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 1. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock2&confparm1=1&confparm4=1&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #23
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 5. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+
+:E3/measurement/oefclock.fr
+exo=clock1&confparm1=1&confparm4=1&confparm2=0&confparm2=1&confparm3=2&confparm3=3&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Regolare l'ora #24
+Sei capace di regolare l'orologio secondo l'ora indicata? E ora ti riproponiamo tutti gli esercizi che hai già fatto, ma questa volta con gli orari scritti a parole.
+
+I minuti sono multipli di 15. Niente secondi. Parametro di configurazione per visualizzare o meno i numeri.
+

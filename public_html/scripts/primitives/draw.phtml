@@ -1,0 +1,33 @@
+!!scripts/oef/draw.phtml modules/adm/doc/primitives/draw.phtml scripts/docu/primitives/draw.phtml
+!if $parms=$empty
+  !exit
+!endif
+
+!set parms=!slashsubst $parms
+!distribute items $parms into sx,sy
+!set pp=!item 3 to -1 of $parms
+!set pp=!replace internal $	$ by $\
+$ in $pp
+
+!set a_=!word 1 of $pp
+!if $a_=alt
+  !set a_=!line 1 of $pp
+  !set a_=!word 2 to -1 of $a_
+  !set pp=!line 2 to -1 of $pp
+  !set wims_ins_alt=$a_
+  !set ins_attr=alt="$a_"
+  !set wims_ins_alt=empty
+!endif
+!set a_=!word 1 of $pp
+!if $a_=animate
+  !set a_=!line 1 of $pp
+  !set a_=!word 2 to -1 of $a_
+  !set pp=!line 2 to -1 of $pp
+  !set ins_anim_frames=!item 1 of $a_
+  !set ins_anim_delay =!item 2 of $a_
+  !set ins_anim_loop  =!item 3 of $a_
+!endif
+
+!set insdraw_size=$sx,$sy
+!set ins_align=middle
+!insdraw $pp

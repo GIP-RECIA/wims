@@ -1,0 +1,10 @@
+!set src=!record 0 of help/canvas_examples/$wims_read_parm
+!if latex isin $wims_read_parm
+  !set src=!replace \f by \\f in $src
+  !set src=!replace \t by \\t in $src
+!endif
+!exec canvasdraw $src
+!read script_canvasdraw
+<textarea id="wims_show" cols="100" rows="10"
+  name="wims_show" readonly="readonly">$src
+</textarea>

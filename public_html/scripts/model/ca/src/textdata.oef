@@ -1,0 +1,137 @@
+type=gapfill
+textarea="data words pre post"
+iEdit="pre post"
+
+:Preguntes amb respostes de text incorporades en un text aleatori. Les respostes només han de contenir paraules imposades.
+
+Aquest exercici presenta textos "amb forats", cadascun per a ser omplert amb
+una paraula (fins i tot una frase molt curta).
+<p>
+Per construir un exercici amb aquest model, només cal que introduïu els textos.
+Una senzilla sintaxi us permet especificar els forats i la paraula correcta
+acceptada.
+</p> <p>
+L'analitzador de respostes sap ignorar les "petites" diferències a la
+resposta: absència o addició d'un article, majúscules/minúscules, accents,
+plural/singular. Tampoc pot comptar errors d'escriptura com
+una resposta falsa. També es poden declarar els sinònims.
+</p>
+Autor del model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Qüestions textuals}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Longitud de les caselles a omplir. S'han de preveure les respostes més llargues
+\integer{len=20}
+
+:Dades principals
+Els textos han de ser separats per punt i coma. Els textos mateixos
+no poden contenir punt i coma.<p>
+Les preguntes a demanar (forats) s'han de posar entre un parell de
+doble-signe d'interrogació "??".
+Hi pot haver fins a 6 preguntes en un sol text.
+Si una pregunta accepta diverses respostes correctes, poseu
+totes les respostes correctes (sinònims) separades per una línia vertical
+<span class = "tt wims_code_words"> | </ span>.
+<p>
+L'analitzador no té en compte petites diferències de resposta:
+absència o addició d'un article, majúscules/minúscules, accents,
+plural/singular.
+$embraced_randitem
+\text{data=
+l'unité de base pour mesurer une intensité est ??ampère??.;
+l'unité de base pour mesurer une tension est ??volt??.;
+l'unité de base pour mesurer une résistance est ??ohm??.;
+l'unité de base pour mesurer la capacité d'un condensateur est ??farad??.;
+l'unité de base pour mesurer l'inductance d'un solénoïde est ??henry??.;
+l'unité de base pour mesurer la puissance dissipée sur une composante est ??watt??.;
+l'unité de base pour mesurer une fréquence est ??hertz??.;
+
+l'ampère est une unité de mesure pour ??l'intensité??.;
+le volt est une unité de mesure pour ??la tension|la charge??.;
+le ohm est une unité de mesure pour ??la résistance??.;
+le watt est une unité de mesure pour ??la puissance??.;
+
+}
+
+:Tipus d'anàlisi de resposta
+Els tipus <span class="tt">case</span> i <span class="tt">nocase</span> són especialment adequats per a
+aplicacions lingüístiques. En altres casos, és preferible <span class="tt">atext</span>.
+\text{atype=item(3,case (no es tolera cap error),
+	nocase (tolera minúscules/majúscules),
+	atext (ignora plural/singular i articles))}
+
+:Llista de possibles paraules
+Posi les paraules reconegudes per l'exercici a la llista següent. Qualsevol resposta que contingui una paraula
+fora d'aquesta llista es considerarà un error tipogràfic i
+es demanarà tornar-ho a escriure.<p>
+Si aquest camp està buit, qualsevol resposta no reconeguda es considera incorrecta. Que
+hauria de ser el cas en general per a les aplicacions de llengües.
+</p>
+\text{words=ampere volt ohm farad henry watt hertz
+electricite electrique circuit composante intensite courant tension charge
+resistor resistance diode transistor condensateur capacite solenoide
+inductance puissance frequence
+}
+
+:Text que es mostra abans de la pregunta. Es permeten etiquetes HTML. Pot estar buit
+$embraced_randitem
+\text{pre=En électricité,}
+
+:Text que es mostra després de la pregunta. Es permeten etiquetes HTML. Pot estar buit
+$embraced_randitem
+\text{post=}
+
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+
+\text{accolade=wims(word 1 of \accolade)}
+\text{data=wims(singlespace \data)}
+\text{data=wims(nonempty rows \data)}
+\text{data=randomrow(\data)}
+\text{data=\accolade=1 ?wims(embraced randitem \data)}
+\text{data=slib(text/cutchoice2 \data)}
+\integer{qs=floor(rows(\data)/2)}
+\text{words=wims(trim \words)}
+\text{atype=wims(word 1 of \atype)}
+
+\text{pre=\accolade=1 ?wims(embraced randitem \pre)}
+\text{post=\accolade=1 ?wims(embraced randitem \post)}
+\text{qlist=wims(makelist reply x for x=1 to \qs)}
+\steps{\qlist}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+::Vous n'avez pas besoin de modifier ceci en général.
+
+\statement{\pre
+\data[1;]
+\for{k=1 to \qs}{
+\embed{r \k,\len} \data[2*\k+1;]
+}
+\post
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Champ 1}{\data[2;];\words}{type=\atype}
+\answer{Champ 2}{\data[4;];\words}{type=\atype}
+\answer{Champ 3}{\data[6;];\words}{type=\atype}
+\answer{Champ 4}{\data[8;];\words}{type=\atype}
+\answer{Champ 5}{\data[10;];\words}{type=\atype}
+\answer{Champ 6}{\data[12;];\words}{type=\atype}
+

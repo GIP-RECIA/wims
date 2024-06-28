@@ -1,0 +1,16 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Taxe
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">Une <strong>taxe</strong> est le nom donné
+ à un prélèvement fiscal ayant en principe pour objet de
+ <span class="wims_emph">financer une dépense particulière de l'État</span>.
+<br>C'est le cas notamment de la <span class="wims_emph">taxe d'apprentissage</span>
+ qui doit financer la <span class="wims_emph">formation professionnelle</span>.
+ </div>

@@ -1,0 +1,92 @@
+type=gapfill
+textarea="data explain"
+iEdit="explain"
+
+:Type the property of an object chosen randomly from a list
+
+<p>
+An item is randomly selected from a list and you are asked to type its property.
+</p><p>
+To build an exercise with this model, just give the list of objects and their properties.
+</p>
+<p>Author of the model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Typed property}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Width of the field to type
+Sufficient space must be provided for the longest property.
+\integer{size=20}
+
+:Main data.
+<p>Define an object by line, first the name of the object to be displayed, then its property as it should be typed, separated by a comma.
+</p><p>
+You can declare synonyms of properties to be recognized, separated by vertical lines (example: dark|gloomy).</p>
+\matrix{data=
+gift, gifts
+pebble, pebbles
+horse, horses
+sky, skies
+hole, holes
+child, children
+man, men
+woman, women
+mouse, mice
+tooth, teeth
+foot, feet
+}
+
+:Type of response analysis
+The <span class="tt">case</ span> and <span class="tt">nocase</ span> types are mostly suitable for language applications.
+In other cases, prefer <span class="tt"> atext </span>.
+\text{atype=item(1,case (no error tolerance),
+  nocase (tolerate lowercase / uppercase),
+  atext (ignore plural / singular and articles))}
+
+:Embraced random items
+$embraced_randitem
+\text{accolade=item(1,1 yes,
+2 no)}
+
+:%%%%%%%%%%%%%% Nothing to modify until statement %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\text{data=randomrow(\data)}
+\text{name=\data[1]}
+\text{prop=\data[2]}
+\text{atype=wims(word 1 of \atype)}
+
+:%%%%%%%%%%%%% Now the statement in HTML. %%%%%%%%%%%%%%%%%%%%
+
+:Instructions
+To evoke the picked object, write <span class="tt">\name</span>.
+$embraced_randitem
+\text{explain=
+Type the plural of the word <span style="color:blue;font-weight:bold;">\name</span>:
+}
+
+:%% Do not modify
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+
+::One does not need to modify the statement directly in general.
+
+\statement{
+  <label for="reply1" class="oef_explain">\explain</label>
+  <span class="oef_input">
+  \embed{r1,\size
+  autocomplete="off"}.
+  </span>
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%5
+
+\answer{The answer}{\prop}{type=\atype}
+

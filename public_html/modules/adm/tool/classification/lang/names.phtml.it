@@ -1,0 +1,27 @@
+!set lang_exists=yes
+
+!distribute lines Esercizio non pubblicato\
+Esercizio non oef\
+Non pertinente,Nessuna opinione,Pertinente\
+Scegliere la tassonomia più indicata per l'esercizio scelto.\
+Valuta le parole chiave già proposte per questo esercizio\
+Aggiungete le vostre parole chiave, separandole con virgole.\
+Aggiungere una parola chiave\
+Selezionare nella tassonomia qui sotto la parola chiave che meglio descrive questo esercizio.\
+Grazie per il vostro contributo\
+Ecco un riassunto delle parole chiave di questo esercizio:\
+nessuna parola chiave proposta.\
+parola1\
+Parole chiave\
+Mostra/Nascondi\
+    into name_nonpublished, name_nonoef, name_prompt, name_intro, name_evaluation,\
+         name_addkeywords, name_addkeyword_label, name_selectkeyword,\
+         name_thank_you, name_recap_keywords, name_no_keyword,\
+         name_onewordmax,name_keywords,name_fold
+
+!set name_keywords_instruction=Voi potete prendere visione della classificazione \
+qui sotto cliccando su una delle categorie, selezionando un elemento e quindi\
+cliccando su \
+<span class="wims_button disabled">$wims_name_tosave</span>. \
+Se volete inserire una parola chiave che non esiste,\
+potete utilizzare il campo apposito.

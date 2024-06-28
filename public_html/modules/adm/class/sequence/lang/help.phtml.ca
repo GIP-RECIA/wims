@@ -1,0 +1,114 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!else
+  !exit
+!endif
+
+!!:hide
+!!<h2>$name_hidedate</h2>
+!!Si une date est saisie dans le champ, la séquence passera automatiquement en mode <span class="tt">cachée</span> le jour fixé.<br>
+!!Le changement s'effectue lors de la maintenance quotidienne du serveur. Si la date est déjà dépassée, il ne se passera rien.
+!!!exit
+
+!!:show
+!!<h2>$name_showdate</h2>
+!!Si une date est saisie dans le champ, la séquence passera automatiquement en mode <span class="tt">visible</span> le jour fixé.<br>
+!!Le changement s'effectue lors de la maintenance quotidienne du serveur. Si la date est déjà dépassée, il ne se passera rien.
+!!!exit
+
+:allowtype
+<h2 id="allowtype">Configuració de la visibilitat de la seqüència.</h2>
+
+Podeu imposar una restricció, per exemple en el temps,
+perquè la seqüència sigui visible. Aquesta restricció no s'aplica a les classes
+compartides. L'estat de la seqüència té prioritat sobre aquesta restricció.
+<br>
+Hi ha diverses opcions disponibles:
+<ul>
+ <li><span class="tt wims_code_words">$(name_allowtype[1])</span> :
+la seqüència és visible per tot l'alumnat.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[2])</span> :
+la seqüència no la veu ningú.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[3])</span> :
+una interfície d'entrada,
+<span class="tt wims_code_words">$(name_shinfo[6])</span>,
+apareix i es pot indicar un interval de temps així com les
+adreces IP des de les quals és visible la seqüència.
+Aquesta restricció s'escriu utilitzant una expressió en tres parts (que pot ser
+ que no estiguin totes):
+ <ul>
+  <li>Una data i hora d'inici</li>
+  <li>Una data i hora de finalització</li>
+  <li>Un interval d'IP</li>
+ </ul>
+Les dates (format <span class="tt wims_code_words">aaaammjj</span>) i les hores
+(format <span class="tt wims_code_words">hh:mm</span>) han d'estar en hora local del SERVIDOR.
+ <p>
+Exemple :
+$wims_name_form <span class="tt wims_code_words">20131007</span> $wims_name_at <span class="tt wims_code_words">10:30</span> $wims_name_to <span class="tt wims_code_words">20131001</span> $wims_name_at <span class="tt wims_code_words">10:00</span> $wims_name_IP<span class="tt wims_code_words"> 127.0.</span> <br>
+permet l'enregistrament de notes entre 2 dates i només per a números IP que comencen
+per <span class="tt wims_code_words">127.0.</span>
+</p>
+
+</li><li><span class="tt wims_code_words">$(name_allowtype[4])</span> :
+aquesta opció es pot escollir per individualitzar les restriccions
+d'accés mitjançant una <span class="tt wims_code_words">variable
+technique</span> (aquesta variable tècnica està definida per a cada
+participant ja sigui manualment mitjançant el mòdul de gestió de variables tècniques
+o mitjançant un <span class="tt wims_code_words">$wims_name_Vote</span>).
+En triar aquesta opció, un menú permet escollir la variable
+tècnica que servirà de diferenciació i una taula permet
+ajustar el filtre (utilitzant el mateix format
+anterior) per a cada valor possible de la variable.
+No especificar res com a filtre per a un valor de la variable tècnica significa
+no obrir l'enregistrament de notes per als participants que tinguin aquest valor.
+<p>
+En el cas d'una variable tècnica definida mitjançant el model
+<span class="tt wims_code_words">Accés individualitzat</span>
+d'un <span class="tt wims_code_words">$wims_name_Vote</span>
+específica la creació d'una reserva de franges horàries,
+la taula ja està preemplenada amb les dades proposades quan es va
+crear el qüestionari. Aquestes dades es poden modificar,
+però les modificacions no es reflecteixen en el qüestionari.
+</p>
+<p>Exemple : Suposem la taula que descriu els filtres per a la variable tècnica
+<span class="tt wims_code_variable">grup</span> que pren els valors 1, 2 i 3:
+!readproc slib/text/matrixhtml [$name_value,$name_filtre\
+$name_EMPTY, 129.50.10. &#62;20160915.12&#58;00\
+1,&#62;20160915.15&#58;00 &#60;20160925.12&#58;00\
+2,\
+3,127.0.],wimscenter wimsborder wimstable,TH=[1;]
+$slib_out
+</p>
+Dins del límit de la data de caducitat del full,
+<ul><li>
+per a l'alumnat per al qual
+<span class="tt wims_code_variable">grup</span> no té cap valor,
+la seqüència és visible des del
+15/09/2016 12h i només a les estacions de treball la IP de les quals comença per
+129.50.10.
+</li><li>
+per a l'alumnat per al qual <span class="tt wims_code_variable">grup=1</span>,
+la seqüència és visible entre el 15/09/2016 15h i el 25/09/2016 12h.
+</li><li>
+per a l'alumnat per al
+qual <span class="tt wims_code_variable">grup=2</span>, la seqüència no és visible.
+</li><li>
+per a l'alumnat per al qual
+<span class="tt wims_code_variable">grup=3</span>,
+la seqüència només és visible des de les estacions de treball
+la IP de la qual comença per 127.0.
+</li></ul>
+</li>
+</ul>
+
+!if $tv_listtechvar!=$empty
+ Les variables tècniques disponibles actualment a la teva classe són:
+ !read adm/vfilter/listvar.phtml
+!else
+<div class="wims_msg info">
+ Actualment no hi ha cap variable tècnica definida a la vostra classe.
+Si voleu utilitzar aquesta opció, primer heu de definir una variable tècnica.
+</div>
+!endif
+!exit

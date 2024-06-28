@@ -1,0 +1,137 @@
+type=gapfill
+textarea="data words pre post"
+iEdit="pre post"
+
+:Preguntas con respuestas de texto incorporadas en un texto aleatorio. Las respuestas solo deben contener palabras impuestas.
+
+Este ejercicio presenta textos "con agujeros", cada uno para ser llenado por una
+palabra (incluso una frase muy corta).
+<p>
+Para construir un ejercicio con este modelo, solo ingrese los textos.
+Una sintaxis fácil le permite especificar los agujeros y la palabra correcta
+aceptada.
+</p><p>
+El analizador de respuestas sabe cómo ignorar las "pequeñas" diferencias en la
+respuesta: ausencia o adición de un artículo, mayúsculas/minúsculas, acentos,
+plural/singular. Tampoco puede contar los errores de tipeo como
+una respuesta falsa. Los sinónimos también pueden ser declarados.
+</p><p class="wims_credits">
+Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Preguntas textuales}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Longitud de las cajas para llenar. Han de preverse las respuestas más largas
+\integer{len=20}
+
+:Datos principales
+Los textos deben estar separados por punto y coma. Entonces los textos mismos
+no puede contener punto y coma.<p>
+Las preguntas a hacer (agujeros) se deben poner entre un par de
+doble-signo de interrogación "??".
+Puede haber hasta 6 preguntas en un solo texto.
+Si una pregunta acepta varias respuestas correctas, ponga
+todas las respuestas correctas (sinónimos) separadas por una línea vertical
+<span class = "tt wims_code_words"> | </ span>.
+<p>
+El analizador no tiene en cuenta las pequeñas diferencias en la respuesta:
+ausencia o adición de un artículo, mayúsculas/minúsculas, acentos,
+plural/singular.
+$embraced_randitem
+\text{data=
+la unidad base para medir una intensidad es ??amperio??;
+la unidad base para medir voltaje es ??voltio??;
+la unidad base para medir la resistencia es ??ohm??;
+la unidad base para medir la capacitancia de un capacitor es ??faradio??;
+la unidad básica para medir la inductancia de un solenoide es ??henry??.;
+la unidad básica para medir la potencia disipada en un componente es ??vatio??.;
+la unidad base para medir una frecuencia es ??hertz??;
+
+el amperio es una unidad de medida para la ??intensidad??;
+el voltio es una unidad de medida de ??voltaje|carga??.;
+el ohm es una unidad de medida de ??resistencia??;
+el watt es una unidad de medida de ??potencia?;
+
+}
+
+:Tipo de análisis de respuesta
+Los tipos <span class="tt">case</span> y <span class="tt">nocase</span> son especialmente adecuados para
+aplicaciones lingüísticas. En otros casos, es preferible <span class="tt">atext</span>.
+\text{atype=item(3,case (no tolera ningún error),
+	nocase (tolera minúsculas/mayúsculas),
+	atext (ignora plural/singular y artículos))}
+
+:Lista de palabras posibles
+Ponga las palabras reconocidas por el ejercicio en la siguiente lista. Cualquier respuesta que contenga una palabra
+fuera de esta lista se considerará un error tipográfico y
+se pedirá escribirlo de nuevo.<p>
+Si este campo está vacío, cualquier respuesta no reconocida se considera incorrecta. Lo que
+debería ser el caso en general para aplicaciones de lenguaje.
+</p>
+\text{words=amperio voltio ohm faradio henry vatio hertz
+electricidad eléctrico circuito componente intensidad corriente voltaje carga
+resistencia resistencia diodo transistor capacitor capacitancia solenoide
+inductancia potencia frecuencia
+}
+
+:Texto mostrado antes de la pregunta. Etiquetas HTML permitidas. Puede estar vacío
+$embraced_randitem
+\text{pre=En electricidad,}
+
+:Texto que se muestra después de la pregunta. Etiquetas HTML permitidas Puede estar vacío
+$embraced_randitem
+\text{post=}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+
+\text{accolade=wims(word 1 of \accolade)}
+\text{data=wims(singlespace \data)}
+\text{data=wims(nonempty rows \data)}
+\text{data=randomrow(\data)}
+\text{data=\accolade=1 ?wims(embraced randitem \data)}
+\text{data=slib(text/cutchoice2 \data)}
+\integer{qs=floor(rows(\data)/2)}
+\text{words=wims(trim \words)}
+\text{atype=wims(word 1 of \atype)}
+
+\text{pre=\accolade=1 ?wims(embraced randitem \pre)}
+\text{post=\accolade=1 ?wims(embraced randitem \post)}
+\text{qlist=wims(makelist reply x for x=1 to \qs)}
+\steps{\qlist}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+::Vous n'avez pas besoin de modifier ceci en général.
+
+\statement{\pre
+\data[1;]
+\for{k=1 to \qs}{
+\embed{r \k,\len} \data[2*\k+1;]
+}
+\post
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Champ 1}{\data[2;];\words}{type=\atype}
+\answer{Champ 2}{\data[4;];\words}{type=\atype}
+\answer{Champ 3}{\data[6;];\words}{type=\atype}
+\answer{Champ 4}{\data[8;];\words}{type=\atype}
+\answer{Champ 5}{\data[10;];\words}{type=\atype}
+\answer{Champ 6}{\data[12;];\words}{type=\atype}
+

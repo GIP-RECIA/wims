@@ -1,0 +1,9 @@
+size 400,400
+xrange -5,10
+yrange -5,10
+hline 0,0,black
+vline 0,0,black
+fillcolor orange
+opacity 255,40
+protractor 2,-2,6,0,-1,1,1
+mouse red,22

@@ -1,0 +1,84 @@
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefdefcomperim1&exo=oefdefcomperim2&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Comparaison périmètres 1-2
+savoir définir un périmètre et savoir exprimer un périmètre à l'aide d'une unité de longueur, difficulté 1 à 2 aléatoirement
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefdefcomperim3&exo=oefdefcomperim4&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Comparaison périmètres 3-4
+savoir définir un périmètre et savoir exprimer un périmètre à l'aide d'une unité de longueur, difficulté 3 à 4 aléatoirement
+:E5/measurement/oefperimaire.fr
+exo=convlongregle&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Convertir une longueur tableau de conversion
+Savoir changer d'unité de longueur à l'aide du tableau
+:E6/geometry/perimetarea.fr
+exo=converlong&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Convertir des longueurs
+Savoir changer d'unité de longueur
+:H1/geometry/OEFevalwimscirc.fr
+exo=oefcercle1&exo=oefcercle2&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Cercle : vocabulaire 1-2
+Savoir la définition d'un cercle et son vocabulaire, difficulté 1-2
+:H1/geometry/OEFevalwimscirc.fr
+exo=oefcercle3&exo=oefcercle4&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Cercle : vocabulaire 3-4
+Savoir la définition d'un cercle et son vocabulaire, difficulté 3-4
+:H1/geometry/OEFevalwimscirc.fr
+exo=oefconstcer1&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Cercle Programme de construction 1
+Savoir tracer un cercle, difficulté 1
+:H1/geometry/OEFevalwimscirc.fr
+exo=oefconstcer2&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Cercle Programme de construction 2
+Savoir tracer un cercle, difficulté 2
+:H1/geometry/OEFevalwimscirc.fr
+exo=oeftracecerc1&exo=oeftracecerc2&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Reconnaître un cercle Tracé 1
+Savoir reconnaître un cercle défini par une phrase.
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefformcercle1&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Cercle arrondi de pi
+
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefperimcercle3&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Cercle calculer la longueur
+Savoir calculer le périmètre d'un cercle
+:E6/geometry/perimetarea.fr
+exo=perimcarre&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Périmètre d'un carré, d'un losange
+Savoir calculer le périmètre d'un carré (ou d'un losange)
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefperim1&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Périmètre d'un rectangle
+Savoir calculer le périmètre d'un rectangle
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefperim2&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Périmètre d'un polygone
+Savoir calculer le périmètre d'une figure constituée d'éléments simples

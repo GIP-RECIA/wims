@@ -1,0 +1,67 @@
+slib_mol=$wims_read_parm
+!!!peut-etre faire un expand selon les majuscules ...
+pour separer les molecules
+ans_ch_r=!charcnt $slib_mol
+!reset ans_cnt_ion slib_out
+!for ans_n=1 to $ans_ch_r
+  ans_c=!char $ans_n of $slib_mol
+  !if $ans_c isin ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    !if $slib_out!=$empty and $ans_cnt_ion!=$empty
+      slib_out=!append item $[$ans_cnt_ion_at] to $slib_out
+    !endif
+    !if $ans_c1 isin abcdefghijklmnoqrstuvwxyz and $slib_out!=$empty
+      slib_out=$slib_out,1
+    !endif
+    !reset ans_c1 ans_cnt_ion_at
+    slib_out=$slib_out\
+$ans_c
+  !else
+    !if $ans_c isin abcdefghijklmnoqrstuvwxyz
+      slib_out=$slib_out$ans_c
+    !else
+      !if $ans_c isin 123456789
+        !if $ans_c1 isin ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoqrstuvwxyz
+          slib_out=$slib_out,$ans_c
+        !endif
+        !if $ans_c1 isin 123456789
+          slib_out=$slib_out$ans_c
+        !endif
+      !else
+        !if $ans_c=^
+          !if $ans_c1 notin 123456789
+            slib_out=$slib_out,1
+          !endif
+        !else
+          !if $ans_c isin 123456789 and $ans_c1 isin ^
+            ans_c1=$ans_c
+            !goto $(ans_c1)
+          !endif
+          !if $ans_c isin +- and $ans_c1 isin ^
+            ans_cnt_ion_at=$ans_cnt_ion_at $ans_c 1
+          !endif
+          !if $ans_c isin 123456789 and $ans_c1 isin 123456789
+            ans_cnt_ion_at=$ans_cnt_ion_at$ans_c
+          !endif
+          !if $ans_c isin +- and $ans_c1 isin 123456789
+            ans_cnt_ion_at=$ans_cnt_ion_at $ans_c$ans_c1
+          !endif
+          !if $ans_c isin +- and $ans_c1 isin +-
+            !if $ans_cnt_ion_at=$empty
+              ans_cnt_ion_at=$(ans_c)2
+            !else
+              ans_cnt_ion_at=$ans_cnt_ion_at
+            !endif
+          !endif
+        !endif
+      !endif
+    !endif
+  !endif
+  !if $ans_cnt_ion_at!=
+    ans_cnt_ion=$ans_cnt_ion +($ans_cnt_ion_at)
+  !endif
+  ans_c1=$ans_c
+:endf
+!next
+slib_out=!append line ion,$[$ans_cnt_ion] to $slib_out
+
+!reset ans_cnt_ion $ans_cnt_ion_at

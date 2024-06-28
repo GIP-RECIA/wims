@@ -1,0 +1,50 @@
+Forme
+giochi di geometria
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,2_shape,levelE2,levelE3,levelE4
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:E3/geometry/oefgeo2D.fr
+exo=tracerect2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Rettangolo
+Disegna un rettangolo seguendo le indicazioni. <br/><strong>ATTENZIONE</strong> occorre cliccare sui quattro vertici del rettangolo e poi di nuovo sul primo per "chiudere" la figura.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracecircle&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Cerchio
+Disegna un cerchio seguendo le istruzioni
+
+:E3/geometry/oefgeo2D.fr
+exo=tracetrirect&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Triangolo rettangolo
+Disegna un triangolo rettangolo (lo sai che cosa è, vero?). <br/><strong>ATTENZIONE</strong> occorre cliccare sui tre vertici del triangolo e poi di nuovo sul primo per "chiudere" la figura.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracetri&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Triangolo non rettangolo
+Ora disegna un triangolo che <strong>NON</strong> è rettangolo. <br/><strong>ATTENZIONE</strong> occorre cliccare sui tre vertici del triangolo e poi di nuovo sul primo per "chiudere" la figura.
+
+
+:E3/geometry/oefgeo2D.fr
+exo=centre&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Centro del cerchio
+Lo sai che cosa è il centro di un cerchio? Mostracelo!
+
+
+
+

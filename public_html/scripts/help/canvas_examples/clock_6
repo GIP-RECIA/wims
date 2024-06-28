@@ -1,0 +1,5 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+clock -5,0,80,4,35,45,2,2,red,green,blue,lightgrey,black
+clock 5,0,80,8,55,15,2,2,red,green,blue,lightgrey,black

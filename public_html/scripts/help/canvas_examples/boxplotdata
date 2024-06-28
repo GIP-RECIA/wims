@@ -1,0 +1,10 @@
+size 400,400
+xrange 0,100
+yrange 0,10
+strokecolor orange
+fillpattern hatch
+linewidth 3
+strokecolor green
+boxplotdata 11,22,13,15,23,43,12,12,14,2,45,32,44,13,21,24,13,19,35,21,24,23
+boxplot x,2,2
+mouse red,16

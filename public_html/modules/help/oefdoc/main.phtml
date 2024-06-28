@@ -1,0 +1,56 @@
+!!set wims_html_header=!append line <link rel="stylesheet" href="html/themes/_css/tech_doc.css">\
+<style>\
+/* prevent table for being larger than a small screen */\
+.wimstable{table-layout: fixed;}\
+.wimstable td{word-wrap:break-word;}\
+.wims_command .wimsdoc_tit{margin:0}\
+.wims_folding>a::before {margin-right: 1em;content: "+";}\
+.wims_folding.is-active>a::before {content: "-";}\
+</style>
+!readproc tabletheme
+
+!header1
+!!!robottrap
+
+!read adm/title.phtml 1\
+\
+$module_title
+!set wims_ref_class=wims_button
+<div class="float_right">
+!href cmd=new $wims_name_back2
+</div>
+  <div class="wims_content">
+    <div id="index">
+    <ul>
+      <li>
+  !set record_cnt=!recordcnt help/$lang/oefchapterhelp
+  !set ss_=!record $record_cnt of help/$lang/oefchapterhelp
+  !href cmd=reply&special_parm=$(ss_[1])&subject=$(ss_[1]) $(ss_[2])
+      </li>
+  !for s_=2 to $record_cnt-1
+      <li>
+    !set ss_=!record $s_ of help/$lang/oefchapterhelp
+    !!! two hacks
+    !if oefparm isin $ss_
+      !set ss_=oefparm,$(ss_[2..-1])
+    !endif
+    !if slib isin $(ss_[1])
+      !set ss_=slib,$(ss_[2..-1])
+    !endif
+    !href cmd=reply&special_parm=$(ss_[1])&subject=$(ss_[1]) $(ss_[2])
+      $(ss_[3])
+    !if $(ss_[1]) isitemof $subject or $subject=all
+      !set test=!fileexists cmd/$(ss_[1])
+      !if $test=no
+        !read help/$(ss_[1]).phtml
+      !else
+        !read cmd/$(ss_[1]).phtml
+      !endif
+    !endif
+      </li>
+  !next s_
+    </ul>
+  </div>
+</div>
+
+!tail

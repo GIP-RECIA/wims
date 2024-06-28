@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Assiette			
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">En terme fiscal, l'<strong>assiette</strong> se définit comme
+ la <span class="wims_emph">nature de la base imposable</span> à laquelle
+ est appliqué le taux d'imposition.</div>
+ 
+<div class="wims_rem"><h4>Exemples :</h4>
+<ul class="spacer">
+<li>en matière de TVA, l'assiette de calcul est en principe le chiffre d'affaires des entreprises ;</li>
+<li>en matière d'impôt sur les sociétés, l'assiette de calcul est le bénéfice net (appelé également résultat fiscal) réalisé par les sociétés.</li>
+</ul>
+
+
+</div>
+
+
+</div>

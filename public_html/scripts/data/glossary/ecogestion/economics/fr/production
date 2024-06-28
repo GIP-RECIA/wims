@@ -1,0 +1,28 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Production
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+La <strong>production</strong> peut se définir comme l'opération économique fondamentale consistant
+à <span class="wims_emph">combiner des facteurs de production</span> en vue de créer
+un bien ou un service destiné à satisfaire un besoin économique.
+</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+<ul class="wims_nopuce spacer">
+<li>
+La production peut faire l'objet de différentes classifications :
+<span class="wims_emph">production du secteur primaire, secondaire et tertiaire</span>,
+<span class="wims_emph">production matérielle et production immatérielle</span>,
+<span class="wims_emph">production marchande et non marchande</span>...
+</li><li>
+Au niveau macro-économique, la production d'un pays se mesure
+avec deux indicateurs : le produit intérieur brut (PIB) et le produit national brut (PNB).
+</li>
+</ul>
+</div>

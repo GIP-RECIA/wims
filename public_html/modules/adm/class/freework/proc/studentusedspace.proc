@@ -1,0 +1,20 @@
+!! ---- check used space disk for current student
+!! global variable used wims_user, freework, ltdownloadzone
+!! define two variables :
+!! used = used space
+!! auth_upload=no  if limit is depassed (empty if not)
+
+!if $used=$empty
+  used=0
+  !for k_ in $ltdownloadzone
+    c_=!char -1 of $k_
+    du_=!sh mkdir -p $wims_home/log/classes/$wims_class/freeworksdata/$freework/work/$(wims_user)-file$c_;\
+         du -ks $wims_home/log/classes/$wims_class/freeworksdata/$freework/work/$(wims_user)-file$c_;
+    du_=!word 1 of $du_
+    used=$used+$du_
+  !next k_
+  used=$[($used)/1024]
+!endif
+!ifval $used>0.25*$sizelimitfile
+  auth_upload=no
+!endif

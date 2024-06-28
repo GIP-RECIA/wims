@@ -1,0 +1,16 @@
+!set lang_exists=yes
+!mailto $email\
+\
+[WIMS] Codi WIMS de creació d'una classe\
+\
+<pre>Aquest és el codi per la classe $description de $institution :\
+\
+		$code\
+\
+Si us plau copia el codi a la pàgina web per crear la teva classe.\
+\
+NOTA que aquest codi es fa servir només una vegada, durant la creació de la classe.\
+Per connectar-te a la teva classe, has d'utilitzar la contrasenya que TU has indicat.\
+\
+Si no saps de que va: és que una altra persona va donar la teva adreça de correu electrònic (erròniament) a un programari automàtic.\
+En aquest cas, pots ignorar aquest missatge.</pre>\

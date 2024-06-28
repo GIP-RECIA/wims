@@ -1,0 +1,64 @@
+!set wims_module_log=error: $error
+
+!if no_pick=$error
+  Sisplau
+  !href cmd=resume tria un full
+  abans de clicar al botó <span class="wims_button disabled">$wims_name_Insert</span>.
+  !exit
+!endif
+
+!if not_supervisor=$error
+  Ho sento, però l'operació de modificar un full de treball
+  està  reservada al professor registrat d'una classe.
+  !exit
+!endif
+
+!if no_sheet=$error
+  La teva classe no té fulls d'exercicis en preparació. Un treball s'ha d'inserir en un full
+  d'exercicis en preparació.
+  !href module=adm/class/sheet&sheet=$[$sheettot+1] $wims_name_add_sheet
+?
+  !exit
+!endif
+
+!if bad_sheet=$error
+  Número de full incorrecte.
+  !exit
+!endif
+
+!if too_many_exos=$error
+  El full d'exercicis $picksheet ja conté el màxim permés de ($max_exos)
+  objectes de treball. Esborra'n algun abans d'inserir-ne d'altres.
+  !exit
+!endif
+
+!if already_exist=$error
+  El treball que vols inserir ja existeix en el full $test.
+  No has de posar el mateix exercici dues vegades amb els
+  mateixos paràmetres inicials al mateix full.
+  <p>
+  Sisplau canvia els paràmetres de l'exercici abans d'inserir-lo
+  en un full.
+  </p><p>
+  Si vols que els alumnes repeteixin el treball de l'exercici,
+  has d'incrementar el nombre de punts exigits en aquest exercici.
+  </p>
+  !exit
+!endif
+
+!if $error=bad_exo
+  Cap sèrie d'exercicis corresponen a la informació que has indicat.
+  !exit
+!endif
+
+!if $error=not_exo
+  El mòdul que intentes inserir al full no és un mòdul d'exercicis. Deu haver un error!
+  !exit
+!endif
+
+!if $error=printversion
+  Il est impossible d'insérer une version imprimable dans une feuille d'exercices.
+  !exit
+!endif
+
+!msg $error

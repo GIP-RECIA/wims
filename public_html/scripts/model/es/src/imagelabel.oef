@@ -1,0 +1,75 @@
+type=imaudio
+textarea="data instruction"
+iEdit="instruction"
+
+:Elegir la etiqueta correspondiente a la imagen (o texto presentado)
+Tenga presente que este modelo solo funcionará bien si carga las imágenes en wims.
+<p>
+Para construir un ejercicio con este modelo, simplemente escriba la lista de imágenes y
+etiquetas correspondientes
+</p>
+<p class="wims_credits">
+Autor del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Encontrar la etiqueta correcta}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciado
+\text{instruction=Haga clic en la palabra correspondiente a la imagen.
+(El ejercicio solo funcionará cuando se carguen las imágenes
+en el ejercicio)}
+
+:Datos
+\text{data=amphitheatre.png,anfiteatro
+aqueduc.png,acueducto
+arcdetriomphe.png,el arco del Triunfo
+cirque.png,circo
+domus.png,domus
+temple.png,templo
+theatre.png,teatro
+thermes.png,balnearios
+}
+
+:Cantidad de disruptores
+\integer{cntpertub=3}
+
+:El tamaño vertical de los cuadros en píxeles
+\text{sizev=40}
+
+:El tamaño horizontal de los cuadros en píxeles
+\text{sizeh=200}
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+\text{mot = randrow(\data)}
+\text{image=\mot[1]}
+\text{ext=item(2,wims(replace internal . by , in wims(lowercase \image)))}
+\text{mot =\mot[2]}
+\text{liste=column(2, \data)}
+\text{perturb=wims(listcomplement \mot in \liste)}
+\text{perturb=shuffle(\perturb)}
+\text{perturb=\perturb[1..\cntpertub]}
+
+
+\statement{
+\instruction
+<p class="wimscenter">
+\if{\ext isitemof png,gif,jpg,jpeg}{
+  \img{\imagedir/\image}
+  }
+  {\image}</p>
+
+<p class="wimscenter">
+\embed{r1,\sizeh x \sizev}
+</p>
+}
+\answer{}{\mot;\perturb}{type=clickfill}

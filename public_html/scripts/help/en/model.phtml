@@ -1,0 +1,69 @@
+
+!set embraced_randitem=<p>\
+This field accepts the randomization by nestable curly embraces:\
+if you put several words (or groups of words), separated by commas,\
+within a pair of embraces, one of the words will be randomly drawn\
+at the time when the text is presented to students. This will add\
+randomness to your text.</p><p>\
+For example, if you enter the text</p><p>\
+<span class="tt">I will go to {Paris, New York, London}\
+{tomorrow, the next week}</span>,\
+the result will be one of the following sentences, at random:</p>\
+<pre>\
+I will go to Paris tomorrow\
+I will go to New York tomorrow\
+I will go to London tomorrow\
+I will go to Paris the next week\
+I will go to New York the next week\
+I will go to London the next week\
+</pre><p>\
+If you wish to enter mathematical formulas, it is advisable to\
+ disable this possibility by putting the switch\
+ <span class="wims_code_words">Embraced random items</span>\
+ on <span class="tt">$wims_name_no</span>.</p>
+
+!set name_random=Some examples of random generation of parameter:<ul>\
+ <li>For an integer between 10 and 100 (inclusive):\
+     <span class="tt wims_code_words">randint(10..100)</span>\
+ <li>For an integer multiple of 10 between 10 and 1000 (inclusive):\
+    <span class="tt wims_code_words">randint(1..100)*10</span>\
+ <li>For a decimal number between 0 and 2:\
+    <span class="tt wims_code_words">random(0..2)</span>\
+ </li><li>For a random item within a list:\
+    <span class="tt wims_code_words">randitem(a,b,c,10,100,word,a phrase)</span>\
+ </ul>
+
+!set name_detail_parm=More details on the computation of parameters.
+
+!set image_help=<h4>Inserting images</h4>\
+To insert images in your exercise, you must first load the images\
+ in the exercise module of your class and secondly put the html code that displays the image.\
+The insertion code is\
+<pre>&lt;img src="\imagedir/nom_image"/></pre>,\
+where <span class="tt">nom_image</span> is the name of the image (including the <span class="tt">.jpg</span>, <span class="tt">.png</span>,\
+... extension) and <span class="tt wims_code_variable">\imagedir</span> represents the directory where the image is located.\
+You can put it in most of the texts of the prepared models (including in the instructions).\
+You can start your exercise even if the images are not uploaded yet.\
+Once the exercise is in the classroom, follow the link\
+<span class="tt">Upload a file</span> in the exercise</tt> or <span class="tt">$wims_name_downloadbinary</span>\
+and upload all the images you need. Test, then adjust the image sizes.\
+It is recommended that you do not take images that are too large,\
+ because they take longer to load while performing the exercise\
+ and reduce them before putting them in the classroom module.\
+
+!set math_help= <h4>Inserting mathematical formulas</h4>\
+To enter mathematical formulas, enclose the tex code by \
+<span class="tt wims_code_variable">\(</span>\
+and\
+<span class="tt wims_code_variable">\)</span>.\
+For example,\
+<pre>\( x^2+\frac{3}{2} \)</pre>
+
+!set oef_help= <div class="wims_smallremark"><h4>For the most advanced</h4>\
+it is possible in the definition of the parameters\
+ to use most of the functions of the OEF exercises.\
+</div>
+
+!set credits_help=<h4>References</h4>\
+You may use the field <span class="tt wims_code_words">$wims_name_credits</span> to give\
+short references, for example for the images inserted in the exercise.

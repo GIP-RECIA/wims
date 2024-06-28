@@ -1,0 +1,42 @@
+!set lang_exists=yes
+
+!read adm/lang/sheetexam.phtml.$modu_lang
+!set name_from=dal giorno
+!set name_student1=!nosubst È possibile lavorare su questo test di autovalutazione. I punteggi sono registrati $fromdate fino al giorno $expday $expmon $expyear.
+!set name_student2=Avresti dovuto aver già completato questo test di \
+ autovalutazione. Puoi ancora lavorarci, \
+ ma i punteggi ottenuti non saranno più tenuti in considerazione.
+!set name_student3=Questo test di autovalutazione non è ancora disponibile. Verificate con il vostro docente.
+!set name_student5=La registrazione dei punteggi è stata chiusa dal docente.\
+Puoi comunque continuare a lavorare sul test.
+
+!set name_score=!nosubst hai ottenuto $[$got] punti dei $[$require] richiesti, con media
+!set name_score2=!nosubst sono richiesti $[$require] punti
+
+!set name_scoreopen=La registrazione dei punteggi è attiva.
+!set name_scoreclose=La registrazione dei punteggi non è attiva.
+!set name_scoreclosesup=Non è possibile sospendere la registrazione dei punteggi.
+
+
+!set name_textsource=Questo è il sorgente del test di autovalutazione. \
+ Puoi fare un copia&amp;incolla per inserirlo in un altro corso.
+!set name_answer_i=Risposta all'esercizio
+
+!set name_title=!nosubst $wims_name_sheet $wims_name_number $sh
+!set name_exo=!defof name_exo in wimshome/public_html/scripts/oef/$modu_lang/names.proc
+!set name_noprint=!defof name_noprint in oef/$modu_lang/names.proc
+!set name_answers=!defof name_answers in oef/$modu_lang/names.proc
+
+!distribute items livello approssimativo,durata \
+into name_level,name_duration
+
+!set name_skillbullet=Competenze relative
+!set name_indivsupervisor=Questo test è personalizzato in funzione di una variabile tecnica.\
+ È possibile visualizzare il test in funzione dei diversi valori della variabile utilizzando il menu a tendina qui sotto.
+!set name_choosevalue=Mostra per il valore
+!set name_novalue=Nessun valore
+!set name_msgusergroup=!nosubst Gli esercizi presenti in questo test dipendono dal tuo gruppo di lavoro. Al momento fai parte del gruppo $uservartechvalue.
+!set name_msgusergroupempty=!nosubst Gli esercizi presenti in questo test dipendono dal tuo gruppo di lavoro. Al momento non fai parte di alcun gruppo.
+
+!distribute items Cognome,Nome,Corso into name_lastname,name_firstname,name_class
+!set wims_name_latexuser=versione latex personalizzata del test

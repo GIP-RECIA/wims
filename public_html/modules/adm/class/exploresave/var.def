@@ -1,0 +1,3 @@
+any: job 
+reply: wims_deposit delete type num target 
+deny: listsheetimport listdocimport listtoolimport listglossaryimport listfreeworkimport

@@ -1,0 +1,18 @@
+!if $error!=$empty
+  !exit
+!endif
+
+!! --- warning this css do not move (if needed to move replace script in viewpage.proc should replace word dropdown-pane by another key word to isolate copy screen 
+!! from normal screen. best is to contact FG)
+<style>
+.dropdown-pane {
+visibility: hidden;
+display: none;
+}
+</style>
+!! --- end css
+
+<div class="field box fullwidth">
+$page_content
+</div>
+

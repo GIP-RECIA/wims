@@ -1,0 +1,16 @@
+!! doc $sdoc
+
+!if NaN isin $[$($type)/10] or $($type)<1 or $($type)>$($(type)tot)
+  error=bad$(type)number
+  !exit
+!endif
+s$type=$($type)
+tmp=!record $(s$type) of wimshome/log/classes/$wims_class/$type/.$(type)index
+s=!line 5 of $tmp
+tmp=!replace internal line number 5 by $[1-$s] in $tmp
+!read proc/updatefield.proc wimshome/log/classes/$wims_class/$(type)/.$(type)index\
+$(s$type)\
+\
+$tmp
+
+!restart module=home

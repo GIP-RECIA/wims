@@ -1,0 +1,28 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=plane_equation,analytic_geometry,solid_geometry
+!set gl_title=Équation cartésienne d'un plan
+!set gl_level=H6 Générale&nbsp;Spécialité
+:
+:
+:
+:
+L'espace est muni d'un repère.
+<div class="wims_thm"><h4>Théorème 1</h4>
+Soit P un plan. Il existe des nombres réels \(a\), \(b\), \(c\) et \(d\)
+tels que \((a,b,c)\neq (0,0,0)\) et tels que P soit l'ensemble des points M de
+coordonnées \((x; y; z)\) vérifiant \(a x + b y + c z + d=0\).
+</div>
+
+<div class="wims_thm"><h4>Théorème 2</h4>
+Soit \(a\), \(b\), \(c\) et \(d\) quatre nombres réels tels que
+\((a,b,c)\neq (0,0,0)\).
+<br>
+L'ensemble des points M de coordonnées
+\(x; y; z \) telles que \(a x + b y + c z + d=0\) est un plan P.
+</div>
+
+<div class="wims_defn"><h4>Définition</h4>
+L'équation \(a x + b y + c z + d=0\) est appelée <strong>équation cartésienne
+</strong> du plan P.
+</div>

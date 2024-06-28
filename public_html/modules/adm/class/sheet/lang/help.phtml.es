@@ -1,0 +1,474 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:general
+<h2 id="general">Introducción</h2>
+
+<p>
+Una hoja permite proponer a los estudiantes una actividad con nota compuesta por una lista de ejercicios WIMS.
+</p>
+<div>
+El servidor registra un cierto número de datos sobre el trabajo
+efectuado por un participante en los ejercicios de una hoja permitiendo
+al profesor seguir las actividades de los participantes:
+<ul><li>fecha en la cual un estudiante abre el enunciado de un ejercicio de la hoja,
+</li><li> fecha en la cual ingresa sus respuestas,
+</li><li>su puntuación en el ejercicio.
+</li></ul>
+<p>
+La nota de la hoja se calcula a partir de las puntuaciones obtenidas en cada intento
+de realización de los ejercicios de la hoja. Por defecto, esta nota se calcula entre 0 y 10.
+</p>
+</div>
+<div>
+Por omisión, un estudiante puede:
+<ul><li>hacer de nuevo un mismo ejercicio de la hoja tantas veces como quiera;
+</li><li>
+trabajar en los ejercicios de una hoja en el orden que quiera;
+</li><li>optar por trabajar en una hoja sin que las puntuaciones obtenidas se tomen en cuenta en la nota de la hoja.
+</li></ul>
+</div>
+<div>
+De forma predeterminada, el tiempo durante el cual un
+ estudiante puede responder a un ejercicio desde el
+ momento en que hace clic para obtener una declaración
+ solo está limitado por la duración máxima de una
+ sesión (la duración máxima de una sesión sin actividad
+ la establece el administrador del servidor en $idle_time minutos).
+</div>
+<div style="margin-top:1em">
+Para formar las hojas de su clase, podemos
+<ul><li>
+importar hojas que encuentre gracias al motor de búsqueda (haga clic en
+el título de la hoja y luego en el enlace
+<span class="tt wims_code_words">$wims_name_import</span>)
+y luego modificarla si así lo estima conveniente;
+</li><li>
+crear una nueva hoja a partir de un enlace
+<span class="tt wims_code_words">$wims_name_add_sheet</span> en la página de inicio
+de la clase,
+luego construir el contenido de la hoja añadiendo
+los ejercicios encontrados a través del motor de búsqueda o entre los ejercicios
+de su clase; (el enlace <span class="tt wims_code_words">$wims_name_add</span>
+se hace visible cuando trabajamos en el enunciado de un ejercicio,
+el enlace <span class="tt wims_code_words">$wims_name_addallexo</span>
+se hace visible en la página de introducción de ciertos módulos de ejercicios);
+</li><li>
+crear una nueva hoja a partir de ejercicios de un documento
+publicado en el servidor (la creación de una hoja se propone al momento
+de la inserción de un documento en la clase).
+</li></ul>
+Una vez creada la hoja, también es posible añadir un código fuente de una
+lista de ejercicios encontrada por ejemplo en un documento wims.
+</div>
+<p>
+A cada ejercicio de la hoja, el profesor puede asociar una ayuda que puede ser
+un enlace hacia un documento o un ejercicio WIMS que será propuesto al estudiante cuando su puntuación
+en un intento del ejercicio sea estrictamente menor a un valor escogido.
+Puede definir dependencias con otros ejercicios de una hoja de modo de hacer visibles
+ciertos ejercicios solo cuando el estudiante haya obtenido suficiente puntuación en el ejercicio.
+</p><p>
+Las hojas son numeradas en el orden de su creación/inserción en la clase.
+Es posible reorganizar la presentación de las hojas a los estudiantes usando
+el enlace <span class="tt wims_code_words">$wims_name_reorder</span>.
+</p>
+
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+:statut
+<h2 id="statut">Estado de una hoja</h2>
+Una hoja puede tener cuatro estados:
+<span class="wims_code_variable">
+!replace internal , by ,$ $ in $(wims_name_shstatus).
+</span>
+<p>
+<span class="wims_code_variable">$(wims_name_shstatus[1]) :</span>
+es el estado inicial de una hoja. En este estado, la hoja no es
+visible para los estudiantes.
+</p><p>
+<span class="wims_code_variable">$(wims_name_shstatus[2]) :</span>
+cuando se hace clic en
+<span class="tt wims_code_words">$(wims_name_actionlist[1])</span>,
+la hoja se vuelve visible para los estudiantes (ellos(as) podrán trabajar
+en los ejercicios si ningún parámetro en el campo
+<span class="tt wims_code_words">$(name_shinfo[6])</span>
+lo impide), su contenido
+ya no se puede modificar excepto los títulos y los textos de explicación de la hoja y
+los ejercicios, el campo
+<span class="tt wims_code_words">$(name_shinfo[6])</span> y
+los campos
+<span class="tt wims_code_words">$wims_name_feedbackexo</span> de los ejercicios.
+</p><p>
+Del estado
+<span class="tt wims_code_words">$(wims_name_shstatus[2])</span>,
+la hoja puede pasar al estado
+<span class="tt wims_code_words">$(wims_name_shstatus[3])</span>
+ haciendo clic en el botón
+ <span class="tt wims_code_words">$(wims_name_actionlist[2])</span>.
+No se puede volver al estado
+<span class="tt wims_code_words">$(wims_name_shstatus[1])</span>.
+</p><p>
+<span class="wims_code_variable">$(wims_name_shstatus[3]) :</span>
+el estudiante puede trabajar en la hoja pero su trabajo no se contabiliza.
+</p><p>
+Una vez que la hoja expira, se puede hacer invisible a los estudiantes haciendo clic en
+<span class="tt wims_code_words">$(wims_name_actionlist[4])</span>,
+pero también se puede volver a colocarla en el estado
+<span class="tt wims_code_words">$(wims_name_shstatus[2])</span>.
+ </p>
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+:allowtype
+<h2 id="allowtype">Configuración del registro de notas.</h2>
+
+Usted puede imponer una restricción, por ejemplo en el tiempo,
+en el que se registrarán las notas. Hay varias opciones disponibles:
+<ul>
+ <li><span class="tt wims_code_words">$(name_allowtype[1])</span> :
+las notas serán registradas.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[2])</span> :
+ninguna nota será registrada.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[3])</span> :
+una interfaz de entrada,
+<span class="tt wims_code_words">$(name_shinfo[6])</span>,
+aparece y usted puede indicar un rango horario así como también
+las direcciones IP desde las cuales se registrarán las notas.
+Esta restricción se escribe con la ayuda de una expresión de tres partes (que pueden
+ no estar presentes): <br>
+ <ul>
+  <li>Una fecha y hora de inicio;</li>
+  <li>Una fecha y hora de término;</li>
+  <li>Un rango de IP;</li>
+ </ul>
+Las fechas (formato <span class="tt wims_code_words">aaaammjj</span>) y las horas
+(formato <span class="tt wims_code_words">hh:mm</span>) deben estar indicadas en tiempo local del SERVIDOR.
+ <p>
+Ejemplo:
+$wims_name_form <span class="tt wims_code_words">20131007</span> $wims_name_at <span class="tt wims_code_words">10:30</span> $wims_name_to <span class="tt wims_code_words">20131001</span> $wims_name_at <span class="tt wims_code_words">10:00</span> $wims_name_IP<span class="tt wims_code_words"> 127.0.</span> <br>
+permite registrar notas entre 2 fechas y solamente para los números IP que comiencen
+por <span class="tt wims_code_words">127.0.</span>.
+</p>
+</li><li><span class="tt wims_code_words">$(name_allowtype[4])</span> :
+esta opción puede ser escogida para individualizar las restricciones
+de acceso con la ayuda de una <span class="tt wims_code_words">variable
+técnica</span> (esta variable técnica está definida para cada
+participante, sea manualmente usando el módulo de gestión de
+variables técnicas, o sea con la ayuda de un
+<span class="tt wims_code_words">$wims_name_Vote</span>).
+Cuando se escoja esta opción, un menú permite elegir la variable
+ técnica que servirá para diferenciar y una tabla permite
+efectuar ajustes del filtro (usando el mismo formato
+anterior) para cada valor posible de la variable.
+No indicar nada en el filtro para un valor de la variable técnica significa
+no abrir el registro de notas para los participantes que posean este valor.
+<p>
+En el caso de una variable técnica definida con la ayuda de un modelo
+<span class="tt wims_code_words">Acceso personalizado</span>
+de un <span class="tt wims_code_words">$wims_name_Vote</span>
+específico para la creación de reserva de intervalo horario,
+la tabla ya está prellenada con los datos propuestos cuando el cuestionario
+ fue creado. Estos datos pueden ser modificados,
+pero las modificaciones no afectan el cuestionario.
+</p>
+<p>Ejemplo: Supongamos que la tabla que describe los filtros para la variable técnica
+<span class="tt wims_code_variable">grupo</span>, que toma los valores 1, 2 y 3, es:
+!readproc slib/text/matrixhtml [$name_value,$name_filtre\
+$name_EMPTY, 129.50.10. &#62;20160915.12&#58;00\
+1,&#62;20160915.15&#58;00 &#60;20160925.12&#58;00\
+2,\
+3,127.0.],wimscenter wimsborder wimstable,TH=[1;]
+$slib_out
+</p>
+En el límite de la fecha de expiración de la hoja,
+<ul><li>
+para los estudiantes cuyo
+<span class="tt wims_code_variable">grupo</span> no tiene valor,
+el registro de notas se abre a partir de
+15/09/2016 12h y solamente en los puestos cuyas IP comiencen por
+129.50.10.
+</li><li>
+para los estudiantes cuyo <span class="tt wims_code_variable">grupo=1</span>,
+el registro de notas estará abierto entre 15/09/2016 15h y 25/09/2016 12h.
+</li><li>
+para los estudiantes
+con <span class="tt wims_code_variable">grupo=2</span>, el registro de notas no se abrirá.
+</li><li>
+para los estudiantes con
+<span class="tt wims_code_variable">grupo=3</span>,
+el registro de notas estará abierto solamente para puestos
+cuya IP comience por 127.0.
+</li></ul>
+</li>
+<li>Ces réglages peuvent être propagés :
+<ul>
+  <li>Dans un groupement, pour des classes en partage à partir de la classe ayant initié le partage et en utilisant une variable technique provenant du groupement.</li>
+  <li>Dans un portail, à partir d'un programme vers les cours en utilisant une variable technique provenant du portail ou du niveau.</li>
+</ul>
+</li>
+</ul>
+
+!if $tv_listtechvar!=$empty
+ Las variables técnicas actualmente disponibles en su clase son:
+ !read adm/vfilter/listvar.phtml
+!else
+<div class="wims_msg info">
+Actualmente no hay ninguna variable técnica definida en su
+clase. Si usted quiere usar esta opción, tendrá que
+definir una variable técnica.
+</div>
+!endif
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+:variable
+<p>
+Para individualizar las restricciones de acceso, es posible ingresar
+una variable (en el ejemplo abajo, ingresar
+<span class="tt wims_code_words">\timelimit</span>).
+Esta variable debe entonces estar definida para cada participante según
+las reglas precedentes, o manualmente en las propiedades de
+la cuenta de un participante (variable técnica).
+</p><p>
+Ejemplo: ingresar
+<span class="tt wims_code_words">timelimit=&lt;20131007.10:30 &gt;20131001.10:00</span>
+en el campo <span class="tt wims_code_words">variable técnica</span>
+de las propiedades de cuenta de un estudiante.
+Para los participantes que tengan esta variable técnica vacía,
+el registro de notas estará cerrado.
+</p><p>
+Es posible añadir esta variable con la hoja de cálculo.
+Si la restricción es una elección del participante (inscripción según
+ciertas fechas por ejemplo), es posible crear y usar
+un cuestionario en modo guiado (mirar la ayuda correspondiente).
+</p>
+!!if $wims_read_parm!=$empty
+!exit
+!!endif
+
+:dependancies
+<h2 id="dependancies">$(name_shtab[6])</h2>
+<p>
+Si agregamos una dependencia de puntuaciones en un ejercicio, un participante debe
+primero lograr suficientes puntos en otros ejercicios de la hoja. </p>
+El campo <span class="tt wims_code_words">$(name_shtab[6])</span>
+de un ejercicio permite indicar los puntos que debe obtener un participante
+en otros ejercicios de la hoja antes de poder trabajar en este.
+Por ejemplo, colocar <span class="tt wims_code_words">1:50,2:30,3+4+5:60</span>
+en el ejercicio 6 significa que el participante debe tener un éxito de 50% en
+el ejercicio 1, 30% en el ejercicio 2, y una media de éxito de 60% en
+ los ejercicios 3, 4, 5 para poder hacer el ejercicio 6.
+</p>
+
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+:feedback
+<h2 id="feedback">$(name_shtab[10])</h2>
+
+Podemos indicar en este campo un enlace a un documento de WIMS
+o un ejercicio de WIMS. El enlace a este recurso aparecerá cuando el puntaje sea
+estrictamente menor a una nota fijada (entre 0 y 10).
+El segundo elemento es la nota límite (entre 0 y 10), el primer elemento es la dirección en la siguiente forma (forma abreviada):
+<ul><li>
+Ejercicio de un módulo o documento público:
+<span class="tt wims_address">module=xxx</span>
+(como en <span class="wims_button disabled">$wims_name_about</span>).
+</li><li>
+Ejercicio de la clase:
+<span class="tt wims_address">module=classes/fr&exo=_nom_fichier_</span>
+o <span class="tt">_nom_fichier_</span> es el nombre del archivo del ejercicio
+(sin la extensión <span class="tt">.oef</span>).
+</li><li>
+Documento de la clase:
+<span class="tt wims_address">module=adm/doc&doc=c1&+block=_nom_bloc</span>
+</li><li>
+Glose du glossaire général
+<span class="tt wims_address">module=adm/tool/glossary&special_parm=_nom_glose</span>
+(par exemple, _nom_glose est mathematics/algebra/fr/affixe).
+</li></ul>
+Los siguientes elementos son la puntuación máxima y la puntuación mínima (por defecto 0)
+para que aparezca el enlace (los tres elementos deben estar en la misma línea).
+Por ejemplo, en el caso siguiente, si la nota es menor a
+5, el estudiante será dirigido al documento <span class="tt">c2</span>
+de la clase, más precisamente
+a la página correspondiente al bloque
+<span class="tt">aaa</span> de este documento.
+<pre>module=adm/doc&doc=c2&+block=aaa,5</pre>
+En el siguiente ejemplo, habrá un
+enlace a un ejercicio del módulo <span class="tt wims_fname">H6/set/oefset.fr</span>
+cuyo código fuente tiene por nombre <span class="tt">traduction1</span>
+(la nota que el estudiante obtenga en este ejercicio no será registrada en
+la clase).
+<pre>module=H6/set/oefset.fr&cmd=new&exo=traduction1,10</pre>
+
+Ingresando dos números (donde el segundo es estrictamente positivo), el botón
+aparece cuando el puntaje se ubica entre el segundo
+número y el primer número: por ejemplo, si ingresa
+<pre>module=H6/set/oefset.fr&cmd=new&exo=traduction1,11,10</pre>
+el botón aparece cuando el puntaje es de 10 y es la palabra
+$wims_name_feedbackplus que aparece. Si el segundo número es 0,
+el sistema se comporta como si no lo hubiese ingresado.
+
+Es posible definir varios enlaces correspondientes a
+diferentes rangos de notas (por el momento, sin verificación
+por software).
+
+<pre>module=H6/set/oefset.fr&cmd=new&exo=traduction1,10,5
+module=adm/doc&doc=c2&+block=aaa,5,4
+</pre>
+
+Usted también puede insertar un enlace de ayuda en la hoja
+seleccionando primero un recurso WIMS y haciendo clic en el enlace
+<span class="wims_button disabled">$wims_name_addh</span>
+en el menú de la izquierda. Sin embargo, es aconsejable comprobar después de
+haber insertado todos los enlaces la compatibilidad de los rangos de notas.
+
+!exit
+
+:series
+<p>
+En general, los ejercicios de una serie son mostrados aleatoriamente
+y al menos un ejercicio de cada tipo es presentado si el número
+pedido lo permite.
+</p><p>
+En la configuración experta usted pidió que el orden no sea
+aleatorio,
+aquí puede cambiar el orden de los ejercicios de una serie.
+</p>
+!exit
+
+:score
+!changeto adm/lang/help.score.es
+
+:exotrymax
+<h2 id="exotrymax">Máximo número de intentos contabilizados</h2>
+Parámetro que permite establecer el número máximo <span class="tt">n</span>
+de intentos contabilizados en el cálculo de notas mientras que el registro de notas
+de la hoja está abierto.
+<p>
+Deje el campo vacío si no desea colocar un número máximo de intentos contabilizados.
+</p>
+<p>
+<strong>Intento</strong>: el trabajo en una serie de ejercicios se considera como un intento o ensayo
+independientemente si se entregó una respuesta o no o si el registro de notas estaba abierto o no.
+</p>
+Si usted ingresa un entero positivo <span class="tt">n</span>
+<ul><li>
+trabajar en el ejercicio es siempre posible, incluso después que este número se alcance;
+</li><li>
+el contador del número de intentos solo se incrementa cuando el registro
+de notas de la hoja se encuentra abierto por el profesor;
+</li><li>
+el cálculo de las notas solo toma en cuenta las puntuaciones de los primeros <span class="tt">n</span>
+ intentos (realizados cuando el registro de notas haya sido activado). En consecuencia, el número de puntos
+requeridos en un ejercicio no debe superar <span class="tt">10 x n,</span> pues es el número máximo
+de puntos que un participante podrá obtener en el ejercicio.
+</li></ul>
+!exit
+
+:weight
+!changeto adm/lang/weight.es
+!exit
+
+:weightexo
+!set wims_backslash_insmath=yes
+<h2 id="weightexo">Peso de un ejercicio en la hoja</h2>
+El peso del ejercicio en la hoja influye en el cálculo de los tres
+ indicadores del trabajo de la hoja - <span class="wims_code_variable">$(wims_name_thsheet[5]),
+$(wims_name_thsheet[10]), $(wims_name_thsheet[13])</span> -
+y en cálculo de la nota <span class="wims_code_variable">$(wims_name_thsheet[7])</span> de la hoja.
+<ul><li>
+El valor del indicador <span class="wims_code_variable">$(wims_name_thsheet[5])</span>
+es una media ponderada del indicador
+de acumulación de cada ejercicio de la hoja, usando como coeficiente de ponderación el producto del peso
+del ejercicio en la hoja por el número de puntos requeridos. La regla es análoga para el cálculo de los
+ valores de <span class="wims_code_variable">$(wims_name_thsheet[10])</span>
+ y <span class="wims_code_variable">$(wims_name_thsheet[13])</span>.
+ </li><li>
+La nota <span class="wims_code_variable">$(wims_name_thsheet[7])</span>
+ de la hoja es una media ponderada de la nota de calidad
+obtenida en cada ejercicio usando como coeficiente de ponderación el producto
+del peso del ejercicio por el indicador de acumulación obtenido en ese ejercicio.
+</li></ul>
+<p>
+Coloque el peso 0 si usted no desea que las puntuaciones en este ejercicio
+sean contabilizadas.
+</p>
+Ejemplo: la tabla describe los resultados obtenidos por un participante en
+una hoja de 3 ejercicios:
+$table_header
+  <thead>
+  $table_hdtr
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[1])</th>
+    <th scope="col">$(wims_name_thsheet[2])</th>
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[3])</th>
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[4])</th>
+  !!qualite
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[7])</th>
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[5])</th>
+  </tr>
+  </thead>
+  <tbody>
+<tr><td> 1 </td><td>Exo 1</td><td>20</td><td>2</td><td>5.5</td><td>60%</td></tr>
+<tr><td> 2 </td><td>Exo 2</td><td>10</td><td>3</td><td>6.5</td><td>25%</td></tr>
+<tr><td> 3 </td><td>Exo 3</td><td>10</td><td>0</td><td>8.5</td><td>100%</td></tr>
+  </tbody>
+$table_end
+<ul><li>La nota $(wims_name_thsheet[5]) en la hoja se calcula como
+\(\frac{2\times 20 \times 60 + 3 \times 10 \times 80 + 0}{2\times 20 + 3 \times 10}\% = 68.57\%\)
+</li><li>
+La nota $(wims_name_thsheet[7]) en la hoja se calcula como
+\(\frac{2\times 60 \times 5.5 + 3 \times 80 \times 6.5 + 0}{2\times 60 + 3 \times 80} = 6.17\)
+</li></ul>
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+:exodescshow
+<h2 id="statut">$(name_shinfo[13])</h2>
+Si usted marca <span class="tt">$wims_name_yes</span>, la descripción del ejercicio
+aparecerá en el encabezado del ejercicio y no solo en la lista de ejercicios
+de la hoja.
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+:indivtechvar
+<h2 id="statut">$name_individualisation</h2>
+La opción <span class="wims_code_words">$name_desc_indivtechvar</span>
+le permite indicar una variable técnica que se utilizará para seleccionar ciertos
+ejercicios en la hoja para cada valor de la variable técnica:
+esto permite ofrecer diferentes versiones de la hoja a grupos de participantes.
+<p>
+El participante ve la versión de la hoja correspondiente al valor de la variable
+ técnica que se le asigna. Los participantes cuya variable técnica no haya sido
+ asignada verán todos los ejercicios en la hoja de trabajo. <br>
+Nota: El participante verá el nombre de la variable técnica seguido de su valor
+debajo del título de la hoja y en la tabla que describe su trabajo en la hoja.
+</p><p>
+Las diferentes versiones de la hoja se crean en la pestaña <span class="wims_code_words">$name_individualisation</span>
+que aparece solo cuando se selecciona una variable técnica.
+Entonces es posible seleccionar la serie de ejercicios presentes en cada versión de
+la hoja y fijar los puntos y pesos asignados a esta serie de ejercicios.
+<p><p class="wims_msg warning">
+Esta opción es incompatible con las dependencias de puntuación.
+La variable técnica debe ser local.
+</p><p class="wims_msg info">
+!if $tv_listlocal!=$empty
+Las variables técnicas locales actualmente disponibles en su clase son:
+!read adm/vfilter/listvar.phtml local
+!else
+Actualmente no hay variables técnicas definidas en su clase.
+Si desea utilizar esta opción, primero defina una variable técnica.
+!endif
+</p>
+!if $wims_read_parm!=$empty
+  !exit
+!endif

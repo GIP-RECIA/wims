@@ -1,0 +1,26 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph,graph_coloring
+!set gl_title=Nombre chromatique d'un graphe
+
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(G\) un graphe.
+  <br>
+  On appelle <strong>nombre chromatique</strong> de \(G\) le nombre minimum de
+  couleurs, noté <span style="white-space:nowrap">\(\chi(G)\),</span> nécessaire
+  pour colorier chaque sommet du graphe \(G\) de façon que deux sommets adjacents
+  quelconques soient de couleurs différentes.
+</div>
+<div class="wims_thm">
+  <h4>Théorème</h4>
+  Soit \(d\) le plus grand degré des sommets d'un graphe \(G\) et \(\chi(G)\) le
+  nombre chromatique de ce graphe.
+  <br>
+  On a&nbsp;:
+  \(\chi(G)\leqslant d+1\).
+</div>

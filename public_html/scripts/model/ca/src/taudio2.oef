@@ -1,0 +1,57 @@
+type=imaudio
+textarea="data instruction"
+iEdit="instruction"
+
+:Escriure la paraula que s'ha escoltat (s'han de proporcionar els àudios).
+
+Es proposa un àudio i s'ha d'escriure el text exactament. L'àudio s'ha de posar a la classe.
+<p>
+Per construir un exercici amb aquest model, simplement escriviu la llista de
+paraules i poseu els fitxers amb els seus àudios a la classe.
+</p><p>
+Per obtenir més possibilitats, utilitzeu Quicktool.
+</p><p class="wims_credits">
+Autor del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Escoltar i escriure II}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciat
+\text{instruction=Escriviu la paraula oïda, sense errors ortogràfics.
+Tingueu present que l'exercici només funcionarà quan hàgiu carregat l'àudio a l'exercici.}
+
+:Llista d'àudio i de paraules
+\text{data=nom_audio1,doctor
+nom_audio2,teacher
+nom_audio3,journalist}
+
+:La mida vertical de les caixes en nombre de caràcters
+\integer{size=12}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+\text{mot=randrow (\data)}
+
+\statement{
+\instruction
+<div class="wimscenter">
+\audio{\imagedir/\mot[1]}
+</div>
+
+<div class="wimscenter">
+ \embed{r1, \size
+ default
+ autocomplete="off"}
+</div>
+}
+\answer{}{\mot[2..-1]}{type=case}

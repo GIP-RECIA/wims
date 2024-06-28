@@ -1,0 +1,11 @@
+cls=!defof class_superclass in wimshome/log/classes/$wims_class/.def
+!if $cls=$empty
+  photodir=$wims_class
+!else
+  photodir=$wims_superclass
+!endif
+!sh cd $wims_home/$wims_sesdir;\
+mkdir -p getfile\
+cd getfile\
+rm -rf photoboard\
+ln -s $wims_home/log/classes/$photodir/photoboard

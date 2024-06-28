@@ -1,0 +1,28 @@
+Buttons
+:clearbutton lines
+userdraw lines,blue
+clearbutton Erase
+:clearbutton line
+userdraw line,blue
+clearbutton Erase
+:clearbutton points, when erased, it is not possible to draw again
+linewidth 10
+userdraw points,blue
+clearbutton Erase
+:clearbutton point, when erased, it is not possible to draw again
+linewidth 10
+userdraw point,blue
+clearbutton Erase
+:clearbutton circles
+userdraw circles,blue
+clearbutton Erase
+:clearbutton circle
+userdraw circle,blue
+clearbutton Erase
+:clearbutton rectangles
+userdraw rects,blue
+clearbutton Erase
+:clearbutton rectangle
+userdraw rects,blue
+clearbutton Erase
+:fine:fine

@@ -1,0 +1,11 @@
+size 400,400
+xrange -5,5
+yrange -5,5
+axis
+axisnumbering
+precision 1
+grid 1,1,grey,4,1,6,grey
+linewidth 1
+snaptogrid
+userdraw crosshairs,blue
+mouse red,22

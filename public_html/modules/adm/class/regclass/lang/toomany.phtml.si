@@ -1,0 +1,25 @@
+!set lang_exists=yes
+
+<h1 class="wims_title">Pozor!</h1>
+<p>
+©tevilo uèilnic na WIMS stre¾niku <span class="wims_warning">$httpd_HTTP_HOST</span>
+je doseglo zgornjo mejo, zato ni veè mo¾no ustvariti nove.</p>
+
+<p>
+  We invite you to try one of the other public WIMS servers
+  some of which you will find here:
+  <span class="menuitem">
+    !set wims_ref_class=mirror
+    !href module=adm%2Flight&+phtml=mirror.phtml.fr $wims_name_mirror
+  </span>
+</p>
+
+<p>
+If it is really important for you to be able to create a class, you may
+!mailurl $wims_site_manager write to the webmaster\
+WIMS@$httpd_HTTP_HOST creation of class
+ asking him to manually create a class for you.</p>
+
+Uèilnico lahko ustvarite tudi na kak¹nem drugem stre¾niku WIMS ali pa namestite
+<a target="wims_external" href="http://sourcesup.renater.fr/frs/?group_id=379">programsko opremo WIMS</a>
+na svoj stre¾nik.

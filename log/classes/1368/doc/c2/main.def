@@ -1,0 +1,20 @@
+!set titb=Materiali integrativi
+!set keyw=
+!set datm=20230529
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+Questo documento contiene materiali integrativi al volume <em>Matematica per scienze della formazione primaria</em> di Marina Cazzola, edito da Carocci (2017).
+<ul>
+ <li><a href="$m_filedir/errata.pdf" target="_blank">Errata corrige</a>
+ </li>
+</ul>

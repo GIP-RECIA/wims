@@ -1,0 +1,11 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 1,1,grey
+#use larger linewith to improve selecting a draggable object !
+linewidth 4
+drag xy
+frect 0,5,3,3,red
+affine cos(pi/4),sin(pi/4),-cos(pi/2),sin(pi/2),-5,-5
+drag xy
+frect 0,5,3,3,red

@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=volume,solid_geometry,3_shape,pyramid
+!set gl_title=Volume d'une pyramide
+!set gl_level=H2 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(P\) une pyramide de hauteur \(h\) dont l'aire de la base est égale à
+\(b\).<br>
+Le volume \(V\) de la pyramide \(P\) est donné par&nbsp;:
+<div class="wimscenter">
+\(V=\frac{1}{3} \times b \times h\).
+</div></div>
+:mathematics/geometry/fr/pyram_vol_1

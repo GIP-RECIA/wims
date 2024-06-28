@@ -1,0 +1,187 @@
+!! process to manage texte zone
+!! firstline 
+!! word1 : type of process to read
+!! word 2 : teacher or student 
+!! word 3 : identification num of zone
+!! word 4 : 1/0 if zone is activated or not
+!! word 5 : user
+!! script_data=entry parameters
+!! script_output= reply parameter
+
+
+
+!set p_=!line 1 of $wims_read_parm
+!distribute word $p_ into proc_,stype_,zone_,activated_,user_
+!bound activated_ within 1,0 default 0
+!goto $proc_
+!exit
+
+:parahtml
+!! form html interface for parameters
+  !! ----- first parameter (title)
+  !let num_=$[($zone_-1)*5+1]
+  <div class="field box">
+    !if $activated_=1
+       <label for="param$(stype_)$num_"> $(name_titlezone)</label>
+       <input type="text" id="param$(stype_)$num_" name="param$(stype_)$(num_)" value="$(param$(stype_)$(num_))" >
+       <div class="formHelp">$name_desc_title</div>
+    !else
+      <strong>$(name_titlezone)</strong>
+      <p>$(param$(stype_)$(num_))</p>
+    !endif
+  </div>
+  !! ----- second parameter - description
+  !let num_=$[($zone_-1)*5+2]
+  <div class="field box">
+    !if $activated_=1
+       <label for="param$(stype_)$num_"> $(name_desczone)</label>
+       <textarea name="param$(stype_)$(num_)" id="param$(stype_)$(num_)" rows="10" cols="100" class="iEdit" maxlength="$desc_limit">$(param$(stype_)$(num_))</textarea>
+       <div class="formHelp">$name_desc_desc</div>
+    !else
+      <strong>$(name_desczone)</strong>
+      !let insmath_rawmath=yes
+      !let wims_backslash_insmath=yes
+      <div>$(param$(stype_)$(num_))</div>
+      !let insmath_rawmath=no
+      !let wims_backslash_insmath=no
+    !endif
+  </div>
+  !! ----- third parameter - number maximal of charactere (only for student zone)
+  !if $stype_=student
+    !let num_=$[($zone_-1)*5+3]
+    <div class="field box">
+      !if $activated_=1
+         <label for="param$(stype_)$num_"> $(name_textlimitsize)</label>
+         <input type="number" id="param$(stype_)$num_" name="param$(stype_)$(num_)" value="$(param$(stype_)$(num_))" >
+         <div class="formHelp">$name_desc_textlimitsize</div>
+      !else
+        <strong>$(name_textlimitsize)</strong>
+        <div>$(param$(stype_)$(num_))</div>
+      !endif
+    </div>
+  !endif
+!exit
+
+:pararead
+  !! parameter reading
+  !! --- parameter save 1 (title)
+  param$(stype_)$[($zone_-1)*5+1]=!line 1 of $script_data
+  param$(stype_)$[($zone_-1)*5+1]=!detag $(param$(stype_)$[($zone_-1)*5+1])
+  param$(stype_)$[($zone_-1)*5+1]=!char 1 to $title_limit of $(param$(stype_)$[($zone_-1)*5+1])
+  !! --- parameter save 2 (description)
+  param$(stype_)$[($zone_-1)*5+2]=!line 2 of $script_data
+  param$(stype_)$[($zone_-1)*5+2]=!char 1 to $desc_limit of $(param$(stype_)$[($zone_-1)*5+2])
+  !! --- parameter save 3 (text limit size)
+  param$(stype_)$[($zone_-1)*5+3]=!line 3 of $script_data
+  !bound param$(stype_)$[($zone_-1)*5+3] between 1 and $textezone_limit default $textezone_limit
+!exit
+
+:parasave
+  !! --- parameter save 1 (title)
+  output_data=!replace internal $\
+$ by   in $(param$(stype_)$[($zone_-1)*5+1])
+  output_data=!detag $output_data
+  output_data=!char 1 to $title_limit of $output_data
+  !! --- parameter save 2 (description)
+  tmpdata_=!replace internal $\
+$ by   in $(param$(stype_)$[($zone_-1)*5+2])
+  tmpdata_=!char 1 to $desc_limit of $tmpdata_
+  output_data=$output_data\
+$tmpdata_
+  !! --- parameter save 3 (text limit size)
+  !if $stype_=student
+    tmpdata_=$(param$(stype_)$[($zone_-1)*5+3])
+    !bound tmpdata_ between 1 and $textezone_limit default $textezone_limit
+  !else
+    tmpdata_=$textezone_limit
+  !endif
+  output_data=$output_data\
+$tmpdata_
+
+!exit
+
+:displayhtml
+<div class="field box">
+  !if $job!=configfw
+    !if $(param$(stype_)$[($zone_-1)*5+1])!=$empty
+      !let tmptitle_=$(param$(stype_)$[($zone_-1)*5+1])
+    !else
+      !let tmptitle_=$name_zone $zone_
+    !endif
+    !if $activated_=1
+      <label for="applet$zone_">$(tmptitle_)</label>
+    !else
+      <h2 class="box_title">$(tmptitle_)</h2>
+    !endif
+    <div class="freeworkdesczone">
+      !let insmath_rawmath=yes
+      !let wims_backslash_insmath=yes
+      $(param$(stype_)$[($zone_-1)*5+2])
+      !let insmath_rawmath=no
+      !let wims_backslash_insmath=no
+    </div>
+  !else
+    !if $activated_=1
+      <label for="applet$zone_">$(name_zonecontent)</label>
+    !else
+      <strong>$(name_zonecontent)</strong>
+    !endif
+  !endif
+  !if $stype_=teacher
+    !let script_data_output=!record 0 of wimshome/log/classes/$wims_class/freeworks/$freework/.$stype_-texte$zone_
+  !else
+    !let script_data_output=!record 0 of wimshome/log/classes/$wims_class/freeworksdata/$freework/work/$(user_)-texte.$zone_
+  !endif
+  !if $activated_=1
+!!    <label for="applet$zone_">$(listfilename_ztype[2])</label>
+    <textarea id="applet$zone_" name="freepar_applet$zone_" rows="6" class="iEdit" maxlength="$(param$(stype_)$[($zone_-1)*5+3])">
+      $script_data_output
+    </textarea>
+    !set textezone_tmplimit=$(param$(stype_)$[($zone_-1)*5+3])
+    !set textezone_currlimit=!charcnt $(freepar_applet$zone_)
+    <div class="formHelp">$name_textarealimit</div>
+    !if $cf_preview!=$empty and $stype_=student and $script_data_output!=$empty
+      !let insmath_rawmath=yes
+      !let wims_backslash_insmath=yes
+      <div><strong>$(name_outpreview)</strong>$script_data_output</div>
+      !let insmath_rawmath=no
+      !let wims_backslash_insmath=no
+    !endif
+  !else
+    !let insmath_rawmath=yes
+    !let wims_backslash_insmath=yes
+    <div>$script_data_output</div>
+    !let insmath_rawmath=no
+    !let wims_backslash_insmath=no
+  !endif
+</div>
+!exit
+
+:displayread
+  !!iEditor is always needed
+  !!if $activated_=1
+  !!  !let iedit_activated=1
+  !!!endif
+!exit
+
+:displaysave
+  tmplength=!charcnt $(freepar_applet$zone_)
+  !if $tmplength > $(param$(stype_)$[($zone_-1)*5+3])
+    freepar_applet$zone_=!detag $(freepar_applet$zone_)
+    error=truncatedtext
+  !endif
+  freepar_applet$zone_=!char 1 to $(param$(stype_)$[($zone_-1)*5+3]) of $(freepar_applet$zone_)
+  !if $stype_=student
+    script_data_input=$(freepar_applet$zone_)
+    !readproc adm/partialdetag.proc variable
+    freepar_applet$zone_=$script_data_output
+  !endif
+  !if $(freepar_applet$zone_)!=$empty
+    !if $stype_=teacher
+      file_=wimshome/log/classes/$wims_class/freeworks/$freework/.teacher-texte$zone_
+    !else
+      file_=wimshome/log/classes/$wims_class/freeworksdata/$freework/work/$user_-texte.$zone_
+    !endif
+    !writefile $file_ $(freepar_applet$zone_)
+  !endif
+!exit

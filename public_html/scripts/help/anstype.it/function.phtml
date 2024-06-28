@@ -1,0 +1,57 @@
+:title
+ <b>Funzioni numeriche.</b> (nome: <span class="tt wims_code_words">function</span>)
+ 
+:light
+ La risposta viene valutata come una funzione e il confronto viene eseguito
+ per i valori delle variabili in un intervallo definito dall'autore e con
+ la precisione definita dall'autore.
+
+:documentation
+<p>
+La risposta corretta per la funzione deve essere data. Se la risposta
+data dallo studente contiene variabili che non sono presenti
+nella funzione data, viene richiesto di correggere la risposta.
+Per evitare ciò, è possibile aggiungere una serie di variabili che sono
+ammesse.
+Questo in particolare è necessario se la funzione è scelta casualmente e
+il numero di variabili può variare.
+</p>
+<pre>
+\answer{}{x^2,x,y}{type=function}
+</pre>
+<p>
+L'intervallo di variazione delle variabili è definito tramite il campo
+\range{}, di default viene assunto l'intervallo [-5,5].
+Tuttavia è possibile precisare per ciascuna variabile un intervallo
+che verrà utilizzato per il confronto, come negli esempi seguenti.
+</p><pre>
+\answer{}{log(x)+y,x=[1,5],y}{type=function}
+</pre><p>
+In questo caso, la risposta viene valutata per 10 valori casuali di x tra 1 e 5
+e 10 valori casuali di y tra -5 e 5.
+</p><pre>
+\answer{}{log(x)+log(-y),x=[1,5],y=[-5,-1]}{type=function}
+</pre><p>
+In questo caso, la riposta viene valutata per 10 valori casuali di x tra 1 e 5
+e 10 valori casuali di y tra -5 e -1.
+</p><p>
+In particolare, nel caso di più domande in uno stesso esercizio,
+l'intervallo può essere diverso a seconda della domanda.
+</p><pre>
+\answer{}{log(x),x=[1,5]}{type=function}
+\answer{}{log(-x),x=[-5,-1]}{type=function}
+</pre>
+
+È disponibile l'opzione <span class="tt wims_code_words">integer</span>.
+<pre>
+\answer{}{1/(x+9)+1/(x-9)+1/x}{type=function}{option=integer}
+</pre>
+In questo caso, i valori per effettuare la verifica della funzione sono interi
+contenuti negli intervalli dati. È anche possibile definire
+esattamente i valori da verificare con una lista esplicita:
+<pre>
+\answer{}{1/(x-3)+1/(x-2)+1/x,x=[-8,-7,-6,-4,4,5,6,7,8,9]}{type=function}{option=integer}
+</pre>
+Questa opzione è da utilizzare con cautela, in particolare è raccomandato
+di dare una lista di almeno 10 valori.
+

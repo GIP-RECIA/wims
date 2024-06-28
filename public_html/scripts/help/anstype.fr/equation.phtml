@@ -1,0 +1,18 @@
+<b>Équation numérique.</b> (nom: <span class="tt wims_code_words">equation</span>)<br/>
+
+La réponse va être évaluée en tant qu'équation et la comparaison est
+effectuée pour des valeurs de variable dans une zone définie par l'auteur,
+jusqu'à la précision définie par l'auteur.
+
+La réponse <span class="tt">a = 0</span> est traitée comme la réponse <span class="tt">a</span>.
+L'option
+<span class="tt wims_code_words">eqsign=yes</span> oblige à écrire <span class="tt">a = 0</span>.
+
+Si l'élève donne une réponse contenant des variables qui ne figurent pas dans l'équation solution,
+il lui est demandé de soumettre à nouveau sa réponse.
+Pour éviter cela, il est possible d'ajouter une suite de variables qui seront admises.
+
+Exemple :
+<pre>
+\answer{}{x+2*y=0,x,y,z}
+</pre>

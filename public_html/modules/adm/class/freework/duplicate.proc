@@ -1,0 +1,70 @@
+!! duplicate a freework
+
+!if $nbfreework>=$max_freeworks
+  error=bad_maxfreework
+  !reset job wims_ariane
+  !changeto var.proc
+!endif
+!bound freework between 1 and $nbfreework default $empty
+
+!if $freework=$empty
+  error=bad_freework
+  !reset job wims_ariane
+  !changeto var.proc
+!endif
+
+!! can duplicate only active freeworks (?)
+!if $activetest!=1 and $activetest!=2
+  !reset job wims_ariane
+  !changeto var.proc
+!endif
+
+nextfw=$[$nbfreework+1]
+
+!! need to check if .student* is really needed
+
+!sh cd $wims_home/log/classes/$wims_class/freeworks/\
+cp .freework$freework .freework$nextfw \
+cp .Wfreework$freework .Wfreework$nextfw \
+mkdir -p $wims_home/log/classes/$wims_class/freeworks/$nextfw \
+cp -p $wims_home/log/classes/$wims_class/freeworks/$freework/.teacher* $wims_home/log/classes/$wims_class/freeworks/$freework/.student* $wims_home/log/classes/$wims_class/freeworks/$nextfw/ \
+cp -ap $wims_home/log/classes/$wims_class/freeworks/$freework/* $wims_home/log/classes/$wims_class/freeworks/$nextfw/ 
+
+!! verify if other dirs/files are needed
+!! (freeworksdata is created when activating freework)
+
+tmp=!record $freework of wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !distribute line $tmp into activetest,expdate,title,desc,comment,type,deadline,soldate,sizelimitfile,scoring,seealltime,studentclose
+
+!for val in deadline,soldate
+  t=!replace internal . by , in $($val)
+  !distribute item $t into $val,time$val
+  !default $val=$today
+  !default time$val=00:00
+!next val
+!set activetest=0
+!set scoring=no
+
+update_content=$activetest\
+$class_expiration\
+$title\
+$desc\
+$comment\
+$type\
+$deadline.$timedeadline\
+$soldate.$timesoldate\
+$sizelimitfile\
+$scoring\
+$seealltime\
+$studentclose
+
+update_field=$nextfw
+update_nbline=$fw_nbline
+!read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freeworks
+
+
+nbfreework=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+freework=$nbfreework
+success=duplicateok
+!reset job wims_ariane
+!changeto var.proc

@@ -1,0 +1,193 @@
+!set lang_exists=yes
+wims_name_freework=Devoir libre
+name_info=Informations générales
+name_content=Contenu du devoir
+name_parametrage=Paramétrage du devoir
+name_listwork=Liste des devoirs rendus
+name_ltsolution=Devoirs corrigés (et date de dépôt)
+name_ltannotation=Date de correction
+name_solutiondeposit=Dépôt de correction
+name_correctedwork=Devoir corrigé
+name_studentglo=Nom et prénom
+name_givedate=Devoirs (et date de dépôt)
+name_mega=Mo
+name_studentname=!nosubst $lastname $firstname
+!let name_shinfo=!nosubst $wims_name_title,\
+Type,\
+$wims_name_Status,\
+Texte d'explication,\
+$wims_name_comment,\
+Date d'expiration,\
+Date de remise,\
+Date du corrigé,\
+Notation,\
+L'enseignant peut voir en permanence les devoirs des participants,\
+Les participants peuvent définir le devoir comme terminé avant la date de remise
+
+name_type_list=Diffusion,Diffusion et récupération,Réponse en ligne
+name_desc_title=!nosubst Limité à $title_limit caractères
+name_desc_type=Une fois le devoir créé, vous ne pourrez plus modifier son type.
+name_desc_desc=!nosubst Limité à $desc_limit caractères&nbsp;; Balises html admises
+name_desc_comment=Visible seulement par l'enseignant.
+name_desc_scoring=Permet d'attribuer une note manuelle à chaque participant
+name_desc_seealltime=Si cette case est cochée, l'enseignant pourra consulter les devoirs d'élèves avant la date limite de fin du devoir (cependant, il ne sera pas possible de les corriger).
+name_desc_studentclose=Un participant ne peut plus modifier son devoir une fois qu'il l'a défini comme terminé sans intervention de l'enseignant.
+name_mkfreework=Créer le devoir
+name_tmkfreework=!nosubst Création du devoir libre $freework
+name_managefreework=!nosubst Gestion du devoir libre $freework
+name_datasubject=Fichiers pour le sujet
+name_datasolution=Fichiers pour le corrigé
+name_desc_deadline=Date avant laquelle les participants doivent avoir terminé le devoir.
+name_desc_soldate=Date à partir de laquelle le corrigé sera disponible au téléchargement.
+name_nodeposit=Vous ne pouvez plus déposer de fichier car le contenu de la classe est très proche, ou a dépassé, la limite d'espace disque autorisé. Désolé.
+name_depos=Nouveau fichier&nbsp;
+name_limitestudent=Taille limite pour le fichier d'un participant
+name_available=Fichier(s) déjà téléchargé(s)
+name_erase=Fichier à effacer
+name_badstatut=Le statut du devoir libre ne permet pas d'ajouter des fichiers.
+name_subject=Sujet
+name_solution=Correction
+name_copie=Rendre son devoir
+name_solutiondate=La correction sera disponible au téléchargement le
+name_copie_type1=Votre devoir est à rendre directement à votre professeur avant le
+name_copie_type2=Vous pouvez déposer ou modifier votre devoir ci-dessous jusqu'au
+name_copie_type2bis=!nosubst Vous disposez de $[0.25*$sizelimitfile] Mo au maximum
+name_usedstorage=!nosubst Vous avez utilisé $[rint($used*100)/100] Mo
+name_copie_toolate2=Il est trop tard pour rendre ou modifier votre devoir
+name_copie_toolate=$name_copie_toolate2. Il fallait le rendre avant le
+name_desc_sizelimitfile=Permet de régler la taille limite de la zone de fichiers pour chaque participant.
+name_fortheclass=pour les participants de la classe
+name_oldwork=Fichier déposé
+name_the=le
+name_userperimemessage=Votre devoir corrigé (si vous l'avez déposé) n'est plus disponible au téléchargement.
+name_userperimemessage3=Votre travail n'est plus visualisable.
+name_desc_listwork2=Les élèves ont accès à leur devoir corrigé dès que la date de diffusion du corrigé général est dépassée et que tous les devoirs corrigés sont déposés.
+name_desc_listwork3=Les élèves peuvent déposer leur devoir.
+name_desc_listwork31=Vous pourrez les récupérer à la fin de la période de dépôt autorisée
+name_desc_listwork32=Vous pouvez les consulter, mais vous ne pouvez les corriger qu'après la date limite
+name_desc_listwork4=!nosubst Les élèves peuvent encore déposer et/ou modifier leur devoir jusqu'au $date
+name_desc_listwork5=!nosubst La correction n'est plus possible après la date de diffusion ($date)
+name_allworkcorrected=Tous les devoirs sont corrigés.
+name_worknotcorrecteds=!nosubst Il reste $notcorrected devoirs non corrigés.
+name_worknotcorrected=!nosubst Il reste $notcorrected devoir non corrigé.
+!! name_nbcopies=!nosubst $nbcopies participants ont déposé leur devoir.
+name_nbcopies=!nosubst $nbcopies participants ont travaillé sur ce devoir.
+!! name_nbcopie=!nosubst $nbcopies participant a déposé son devoir.
+name_nbcopie=!nosubst $nbcopies participant a travaillé sur ce devoir.
+name_datafile=Fichiers
+name_noscoring=Pas de notation
+name_usedscoring=Utilisation de la note manuelle
+name_none=Aucune
+name_score=Note
+name_workof=Devoir de
+name_remark=Remarque en cours de travail
+name_desc_remark=Remarques éventuelles à destination du participant (elles seront visibles immédiatement par le participant).
+name_finalremark=Appréciation finale
+name_desc_finalremark=Appréciation finale sur le devoir, elle ne sera visible qu'après la date de rendu du devoir.
+name_app=Appréciation
+
+name_zone=Zone
+name_titlezone=Titre de la zone
+name_desczone=Description de la zone
+name_zonepara_teacher=Construction de l'énoncé
+name_zonepara_student=Construction de la zone de réponse des participants
+name_zonetype=Type
+name_zonecontent=Contenu de la zone
+name_answerzone=Zone de réponse
+name_nbzone=Nombre de zones
+name_ztype=type de zone
+name_listofztype=GeoGebra,Texte,Fichier,Exercice Interactif,Fichiers tirés au hasard
+name_applet_geogebra=Option de paramétrage de l'applet,Copie le contenu de la zone enseignante numéro,Faire apparaître cette zone pour les élèves
+name_noone=Aucune
+name_noparameters=Aucun paramètre spécifique
+
+name_badstatutsubject=Il n'est plus possible d'ajouter ou modifier des fichiers pour le sujet.
+name_badstatutsolution=Il n'est plus possible d'ajouter ou modifier des fichiers pour la solution.
+name_warningseealltime=Votre enseignant peut voir à tout moment votre devoir.
+name_warning_fullclass=Cette classe est pleine, il n'est plus possible de déposer de fichier.\
+ Contactez votre enseignant&nbsp;!
+name_warning_fullzone=Vous avez dépassé la capacité de l'espace de dépôt qui vous a été attribuée par l'enseignant.
+name_noscore=non noté
+name_nomorecodownload=Votre devoir corrigé n'est plus disponible au téléchargement
+name_nouploaded=Vous n'avez pas rendu de devoir.
+
+name_textarealimit=!nosubst Le texte est limité à $textezone_tmplimit caractères (dernier enregistrement&nbsp;: $textezone_currlimit caractères)
+name_nofile=Aucun fichier
+name_depositzone=Zone de dépôt&nbsp;
+name_filedeposit=Chargement des fichiers
+name_archivefreework=Archivage du devoir
+name_desc_filearchive=Ce fichier contient les données des participants de la classe (copies et éventuelles corrections individuelles)
+name_warning_archive=!nosubst Vous êtes sur le point d'archiver le devoir libre numéro $freework.\
+ Cela supprimera du serveur les données des participants relatives à ce devoir libre\
+ (copies / corrections individuelles).\
+ Vous pouvez récupérer l'archive contenant l'ensemble de ces données ci-dessus (si disponible).\
+ Attention cette opération est irréversible. Une fois qu'elle sera terminée, \
+ <ul><li>vous n'aurez plus accès à ces informations sur le serveur&nbsp;;</li>.\
+ <li>il ne sera pas possible d'utiliser l'archive téléchargée pour remettre les informations sur le serveur.</li></ul>\
+ Êtes-vous certain de vouloir continuer&nbsp;?
+name_archivatedfreework=Ce devoir a été archivé, il n'est plus possible d'accéder aux copies des participants.
+
+name_msgstudenthavefile=Si vous déposez à nouveau un fichier, il viendra remplacer celui que vous avez déjà déposé.
+name_toomany_users=!nosubst Votre classe contient trop de participants (plus que $max_userforgrades), il n'est donc pas possible de modifier les notes de devoir libre sur cette page. Vous devez utiliser l'édition manuelle du fichier de note dans le module de gestion des&nbsp;:
+name_modulegrades=notes manuelles
+name_preview=Prévisualiser les textes
+name_outpreview=Prévisualisation
+
+name_exochoice=Choix des exercices
+name_nodeposit=Pas de dépôt
+name_wimsexo=Exercices
+name_nofiledeposit=Le dépôt de copie n'est pas activé pour ce devoir libre.
+name_insert=Vous voulez insérer une ressource du module
+name_parm=avec les paramètres d'exécution
+name_choose_exo=Cette ressource sera insérée comme un nouvel exercice du devoir libre.
+name_choose=Choisissez le devoir libre
+name_freeworkcheck=Vérifier le devoir libre
+name_end=!nosubst La ressource <span class="wims_mod_title">$title</span> a été insérée avec succès dans le devoir libre $pickfreework
+name_listexo=Liste des exercices
+name_listexo_desc=Pour ajouter un exercice à ce devoir, revenez à la page d'accueil de la classe pour trouver l'exercice, allez travailler dessus et utilisez le lien "insérer dans un devoir libre".
+name_num=No
+name_description=Description
+name_action=Action
+name_typequatre_desc=Vous devez résoudre les exercices proposés dans WIMS et obtenir la note maximale pour chaque exercice. Dans le cas contraire l'exercice doit être recommencé. Pour chaque exercice, il faudra rédiger la solution sur une copie et la remettre à votre enseignant ou la déposer sur le site (si l'enseignant a ouvert le dépôt). Vous pouvez consulter à tout moment les exercices faits que vous devez rédiger.
+name_done=Fait
+name_teacher_noreplyzone=La copie doit être remise directement à l'enseignant sans passer par l'interface WIMS.
+name_maxnumberoffile=Nombre maximum de fichiers
+name_maxfilelimit=La limite du nombre de fichiers est atteinte. Si vous souhaitez déposer un autre fichier, il faut effacer l'un des fichiers que vous avez déjà déposés.
+name_nowork=Le participant n'a pas encore commencé le devoir.
+name_correctedfile=Fichier(s) corrigé(s)
+name_textlimitsize=Nombre maximal de caractères
+name_textlimitsizedesc=!nosubst Ce nombre doit être compris entre 1 et $textezone_limit.
+name_minscoretosave=Score minimal
+name_desc_minscoretosave=Il s'agit du score minimal que le participant doit atteindre à un exercice pour qu'il puisse être enregistré (automatiquement ou manuellement).
+name_autoreg=Enregistrement automatique
+name_remarkinwork=Remarque(s) en cours de travail
+name_ltremark=Date de la remarque
+name_seeco=Correction vue
+name_closeco=Date de remise définitive
+name_co_para=Paramétrage pour la correction
+name_solutiongiven=Solution
+name_feedbackgiven=Feedback
+name_co_desc=Ces éléments seront ajoutés seulement lors de la lecture de la copie après la période de correction.
+name_detailact=Détails d'activité sur ce devoir libre
+name_close_alertpre1=Vous avez décidé de remettre votre travail maintenant. Votre réponse sera sauvegardée telle qu'elle apparaît ci-dessous. Vérifiez soigneusement vos réponses et cliquez sur le bouton
+name_close_alertpre2=en bas de la page.
+name_close_alertpost=Vous allez remettre votre travail. Une fois que vous aurez confirmé, vous ne pourrez plus modifier votre travail.
+name_close_confirm=Confirmer la remise
+name_close_closed=Vous avez remis votre travail, vous ne pouvez plus le modifier
+name_close_info=Si vous pensez avoir terminé, vous pouvez sauvegarder et remettre votre travail maintenant.
+name_close_doclose=Remettre maintenant
+name_reopen=Réouvrir
+
+!set name_showhidetitle=Affichage du devoir aux participants
+!let name_allowtype=visible pour tous,cachée pour tous,visible pour postes (et/ou heures) suivants,visibilité réglée par une variable technique
+!set name_desc_allowtechvar=Choix de la variable technique
+!set name_desctableval=Table de filtre en fonction de la valeur de la variable technique
+!set name_value=Valeur
+!set name_filtre=Filtre
+!set name_EMPTY=(aucune valeur)
+
+!set name_notyet=Ce devoir sera disponible à partir de
+!set name_at=à
+!set name_notavailable=Ce devoir n'est pas disponible.
+
+!set wims_name_studscores=Scores du particpant

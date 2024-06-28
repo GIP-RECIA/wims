@@ -1,0 +1,34 @@
+Résolution algébrique ou graphique
+
+??,2021
+1
+H4
+analysis
+functions,real_function,affine_function,equations,parabola,reference_function
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fonctions" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+
+:H4/analysis/OEFevalwimsgrph.fr
+exo=eqgrparabole1
+10
+1
+Équation et parabole
+Résoudre graphiquement une équation du style <strong>f(x)=c</strong>.
+
+:H4/analysis/OEFevalwimsgrph.fr
+exo=ineqgrpara1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Inéquation et parabole
+Résoudre graphiquement une inéquation du style <strong>f(x)&gt;c</strong>.
+
+:H5/analysis/oeffctLP.fr
+exo=freinurgent&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Fonction puissance
+Utiliser des fonctions de référence pour résoudre un <strong>problème concret</strong>. Freinage urgent.
+
+Exercice demandant de retrouver graphiquement la fonction donnant la distance d'arrêt en fonction de la vitesse, à partir d'un tableau de valeurs.

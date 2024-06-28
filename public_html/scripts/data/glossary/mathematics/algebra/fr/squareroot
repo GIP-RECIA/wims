@@ -1,0 +1,46 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=squareroot
+!set gl_title=Racine carrée
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème 1</h4>
+Soit \(a\) un nombre positif.<br>
+Il existe un unique nombre positif \(r\) tel que \(r^2=a\).
+</div>
+
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(a\) un nombre positif.<br>
+L'unique nombre positif \(r\) tel que \(r^2=a\) est appelé <strong>racine carrée
+</strong> de \(a\) et noté <span style="white-space:nowrap">\(\sqrt{a}\).</span>
+</div>
+
+<div class="wims_thm">
+<h4>Théorème 2</h4>
+Soit \(a\) un nombre strictement positif.<br>
+L'équation \(x^2=a\) admet deux solutions distinctes&nbsp;:
+\(-\sqrt{a}\) et  <span style="white-space:nowrap">\(\sqrt{a}\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème 3</h4>
+<ul>
+  <li>Pour tout nombre \(a\) positif,
+  <span style="white-space:nowrap">\(\left(\sqrt{a}\right)^2 = a\).</span>
+  </li>
+  <li>
+    Pour tous nombres \(a\) et \(b\) positifs,
+    <span style="white-space:nowrap">\(\sqrt{a} \times \sqrt{b}=\sqrt{a \times b}\).</span>
+  </li>
+  <li>Pour tout nombre \(a\) positif et tout nombre \(b\) strictement positif,
+    <span style="white-space:nowrap">\(\frac{\sqrt{a}}{\sqrt{b}}=\sqrt{\frac{a}{b}}\).</span>
+  </li>
+  <li>Pour tout nombre \(a\) positif et tout entier naturel \(n\) non nul,
+    <span style="white-space:nowrap">\(\left(\sqrt{a}\right)^n=\sqrt{a^n}\).</span>
+  </li>
+</ul>
+</div>

@@ -1,0 +1,72 @@
+!!if $iedit_activated=1
+!read js/external/tinymce.phtml .iEdit
+!!endif
+!read adm/css.phtml
+
+!set wims_html_header = !append line <style>\
+.freeworkdesczone{font-size: 10pt;color:#666;}\
+.list_zones{display:flex;flex-wrap:wrap}\
+.list_zones>.wims_widget_box{flex-grow:1}\
+</style>\
+to $wims_html_header
+
+!header1
+!read adm/class/classname.phtml $wims_classname\
+$wims_institutionname
+
+!read adm/title.phtml 1\
+$classname\
+$name_title $name_title2
+
+!if $error!=$empty
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+    !read msg.phtml
+    !reset error
+  </div>
+  !if $notallowed=1
+    !exit
+  !endif
+!else
+  !if $success!=$empty
+    <div class="wims_msg success">
+      !read msg.phtml $success
+      !reset success
+    </div>
+  !endif
+  !if $warning!=$empty
+    <div class="wims_msg warning">
+      !read msg.phtml $warning
+      !reset warning
+    </div>
+  !endif
+!endif
+
+!if $wims_user=supervisor and $activetest>=1 and $activetest<3
+  !if $job=configfw
+    !set wims_menu_items=!append line duplicatefw,1,module=$module&cmd=new&job=duplicate&+freework=$freework to $wims_menu_items
+    !set wims_menu_items=!append line participantview,1,module=$module&cmd=new&job=student&+freework=$freework to $wims_menu_items
+  !endif
+  !if $job isitemof viewuser3,student3
+    !set wims_name_sheetadmin=$name_managefreework
+      !set wims_menu_items=!append line sheetadmin,1,module=$module&cmd=new&job=configfw&+freework=$freework to $wims_menu_items
+  !endif
+  !if $job isitemof student1,student2,student3
+    !set wims_menu_items=!append line scores,1,module=adm/class/userscore&cmd=new to $wims_menu_items
+  !endif
+!endif
+
+!if $job isitemof viewuser3,student3 and $activetest>=1 and $activetest<3 and $userv!=$empty and $wims_user=supervisor
+    !set wims_menu_items=!append line studscores,1,module=adm/class/userscore&cmd=new&job=getuser&getuser=$userv to $wims_menu_items
+!endif
+
+!if $job isitemof viewuser3,student3 and $activetest>=1 and $activetest<3 and $wims_user!=supervisor
+    !set wims_menu_items=!append line myscore,1,module=adm/class/userscore&cmd=new&job=getuser&getuser=$userv to $wims_menu_items
+!endif
+
+
+!read $job.phtml
+
+!reset job back
+
+!tail

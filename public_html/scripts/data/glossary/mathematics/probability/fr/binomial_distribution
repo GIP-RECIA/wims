@@ -1,0 +1,30 @@
+!!abstract,main,interactif example,internal links,glossary other items,
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Loi binomiale
+!set gl_level=U1,U2,U3
+:
+:
+:tool/stat/table.fr
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soient \(n) un entier positif et \(p) un réel tel que
+\(0 \leq p \leq 1). La <strong>loi binomiale</strong>
+\(\mathcal{B}(n,p)) est la loi de
+ probabilité \(q = (q(0),...,q(n))) sur \(\{0,...,n\}) définie par
+
+<div class="wimscenter">
+ \( q(k) = \binom{n}{k} p^k (1 - p)^{n - k} )
+ </div>
+pour \(k) un entier vérifiant \(0 \leq k \leq n).
+</div>
+<table class="wimsborder wimscenter"><tr><th>Espérance</th>
+<th>Variance</th><th>Fonction génératrice</th></tr><tr>
+<td> \(n p)</td><td>\(n p(1 - p))</td><td>\((1 - p + p z)^n)</td></tr></table>
+<div class="wims_example">
+<h4>Exemple</h4>On dispose d'une pièce qui a une probabilité <span class="green">\(p)</span> de tomber
+ sur <span class="green">face</span> et <span class="red">\(1 - p)</span> de tomber sur <span class="red">pile</span>. Le nombre de fois où
+ la pièce tombe sur <span class="green">face</span> lorsqu'on la lance \(n) fois définit une
+ variable aléatoire \(X) dont la loi est la loi binomiale \(\mathcal{B})\((n,p)).
+</div>

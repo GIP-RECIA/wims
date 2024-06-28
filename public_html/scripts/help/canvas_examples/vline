@@ -1,0 +1,12 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+onclick
+vline 0,0,red
+onclick
+vline 1,0,orange
+onclick
+vline 2,0,blue
+onclick
+vline 3,0,green

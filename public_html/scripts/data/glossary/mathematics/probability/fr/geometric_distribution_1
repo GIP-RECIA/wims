@@ -1,0 +1,16 @@
+!set gl_type=dynamic
+!set gl_title=Loi géométrique (exemple)
+!set gl_author=Sophie, Lemaire
+
+!set gl_p=!randint 10,90
+!set gl_p=$[$gl_p/100]
+!set gl_n=$[ceil(2/$gl_p)]
+!set gl_v=!makelist x for x=0 to $gl_n
+!readproc slib/stat/geometricpdf [$gl_v],$gl_p
+
+!readproc slib/stat/histo [$(slib_out)],[$gl_v],xtics,ytics 3,stem,color blue,html
+
+Représentation graphique de la loi géométrique sur \(\ \NN\)
+de paramètre $gl_p restreint à l'intervalle \(\lbrack 0,$gl_n\rbrack\).
+
+<div class="wimscenter">$slib_out</div>

@@ -1,0 +1,8 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Typographie de réactions nucléaires à partir de formules en texte plat
+slib_parms=1\
+, La formule est écrite en texte plat. <ul><li>On peut écrire les nucléides comme U238 pourl'isotope 238 de l'uranium, ou H3^+ pour le noyau de tritium</li><li>Quelques symboles sont reconnus, comme 'n' pour neutron, 'neutrino' pour un neutrino électronique, 'e-', 'e+' pour des rayons bêta (respectivement la particule et l'antiparticule), 'energie', ...</li><li>Un signe plus entouré d'espaces a sa signification usuelle</li><li>On utilise le symbole « -> » comme signe de réaction.</li></ul>
+
+slib_out= La source Latex pour une typographie correcte, du texte entré « à plat ».
+slib_comment=Quelques particules ne sont pas encore implémentées.

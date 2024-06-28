@@ -1,0 +1,53 @@
+!set lang_exists=yes
+!set name_student=!nosubst $lastname$firstname
+
+!!!set name_title=¸öÈËµÄ×Ü»î¶¯
+!set name_noparticipant=Õâ¸ö°à¼¶»¹Ã»ÓĞ²Î¼ÓÕß.
+!set name_lastconnexion=×î½üÒ»´ÎÁ¬½Ó
+!set name_total=×ÜÊ±¼ä
+!set name_click=µã»÷Ãû×ÖÒÔÏÔÊ¾ËûµÄ¹¤×÷ÏêÇé
+!set name_nbsessions=»á»°Êı
+!set name_exo=¸öÁ·Ï°
+!set name_time=Ê±¼ä
+!set name_cnt_exo=Nb. exos
+
+!set name_showsheet=ÇëÑ¡È¡ÏÔÊ¾²Î¼ÓÕß»î¶¯µÄÒ³Ãæ
+set name_ylabel=# ex.
+
+!set name_expert0=Èç¹ûÄãÒªÑ¡ÔñÄ³Ğ©²Î¼ÓÕß, ÓĞ¶àÖÖ·½Ê½¿ÉÒÔÊ¹ÓÃ.\
+ÇëÑ¡ÖĞÄãÏëÒªµÄ·½·¨.
+
+!distribute items ×¨¼Ò²Ëµ¥,µÇÂ¼Ãû±í,Ñ¡È¡,\
+  Par participant,days, Montrer les graphiques, Tous les participants\
+into name_menu,name_loginlist,name_select,name_shiftpart,name_days,\
+ name_graphics, name_allpart
+
+!distribute lines Vous pourrez ensuite faire défiler les participants (méthode par défaut dans le cas où les graphiques sont demandés).\
+Le nombre de participants sélectionnés est limité à $limitpart, seuls les $limitpart premiers seront affichés\
+Dans le cas où les graphiques sont affichés, le nombre de participants affichés est limité à $limitpart\
+Uniquement dans le cas où les graphiques ne sont pas demandés.\
+dans le cas où les graphiques sont demandés\
+into name_help1,name_help2,name_help3,name_help0,name_help00
+
+!set name_min=min
+!set name_listdays=Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche
+!set name_workingtime=Evaluation du temps de connexion
+!set name_lgword=jusqu'à,entre,et,plus de,Pas d'activité
+!set name_studentname=!nosubst $lastname $firstname
+!set name_choose=Choisir le participant
+!set name_activityof=Activité de
+!set name_notsingleclass=!nosubst Cette classe fait partie d'une structure. Le temps d'activité présenté avant la date du $slib_out\
+                       est celui de l'activité dans l'ensemble de la structure. Après cette date, il s'agit de l'activité dans la classe.
+
+!if $job=cfwtime
+  !set name_titlecfwtime=Configuration de l'affichage du temps de connexion
+  !set name_config=Autoriser l'affichage du temps de connexion,\
+Nombre de subdivision,\
+Durée d'une subdivision,\
+Coloration
+  !set name_desc_config=,\
+Nombre de couleurs différentes utilisées dans le tableau,\
+Longueur d'une subdivision en minutes,\
+Vous pouvez choisir la couleur de chaque subdivision
+
+!endif

@@ -1,0 +1,126 @@
+!! read also by modules/adm/class/config
+
+!distribute line  Lo sentimos, este módulo no tiene ejercicios disponibles por ahora. Vuelva más tarde.\
+  Este módulo contiene en estos momentos solamente un ejercicio\
+  Pruébelo.\
+  Seleccione uno o varios ejercicios&nbsp;\
+  que contengan la(s) palabra(s)\
+  Una serie tendrá\
+  Nivel de severidad\
+  Tiempo límite\
+  segundos\
+  Número de alternativas mostradas en los ejercicios de opciones múltiples&nbsp;\
+  Dar una solución (si se encuentra disponible)&nbsp;\
+  Dar una retroalimentación\
+  Configuración simplificada\
+  Retorno a la configuración simplificada\
+  Configuración experta\
+  Mostrar solo ejercicios que contengan el término\
+  ejercicios\
+  Configuración\
+  Selección de ejercicios\
+  Configuración específica para ciertos ejercicios de este módulo\
+  Configuración de las series de ejercicios\
+  Configuración del análisis de respuestas\
+  Configuración de la entrega de ayuda\
+  Seleccionar todos los ejercicios que contienen\
+  función\
+into name_noexercise,name_oneexercise,name_tryit,name_chooseexo,name_exercisescontaining,name_oneserie,\
+    name_levelseverity,name_chrono,name_secondes,name_qcmanswer,name_solutiongiven,name_feedgiven,\
+    name_simplifiedmenu,name_simplifiedmenu_back,name_expertmenu,name_select,name_exercises,name_menu,name_general_parms,name_module_setup,\
+    name_general_setup,name_score_setup,name_help_setup,name_select_auto,name_select_placeholder
+
+!set name_qcmanswer_help=Cada pregunta mostrará a lo máximo este número de alternativas.
+
+!distribute lines Cálculo del puntaje de un ejercicio con varias preguntas\
+Sin penalización de errores, Leve penalización de errores, Fuerte penalización de errores\
+Cálculo de puntaje en una serie de ejercicios\
+Solo si usted escoge una serie de al menos dos ejercicios\
+Sin penalización de errores, Leve penalización de errores, Fuerte penalización de errores\
+Penalización por una mala respuesta\
+Algunas veces\
+into name_expower,name_prompt_expower, name_sepower,name_warning_pow,\
+name_prompt_sepower, name_precweight,name_sometimes
+
+!set name_warning_expower=Promedio de los puntajes obtenidos en cada pregunta, a la \
+  potencia del número seleccionado.
+
+!set name_warning_sepower=Promedio de -los puntajes obtenidos en cada pregunta a la \
+  potencia del número seleccionado-.
+
+!set name_datamodule=Este módulo necesita el módulo de datos <span class="tt">$module_data</span> \
+  que no está instalado en este servidor. Si usted desea utilizarlo, \
+  pídale al administrador del sitio que lo instale.
+
+!set name_choice=nunca,siempre,after activity expiration date
+!set name_qcm=Preguntas de opción múltiple (solo para cierto tipo de ejercicios)
+!set name_choice_check=En los ejercicios con opciones múltiples siempre mostrar una respuesta correcta como opción.,\
+  Penalización por una mala respuesta.,\
+  Mostrar la respuesta correcta.,\
+  Mostrar las pistas (cuando existan).,\
+  Show a calculator
+!set name_calc=$wims_name_no,basic,no basic
+
+!set name_aleaseries= Establecer el orden de los ejercicios de la serie.
+!set name_remarkintro1=Escoger uno o varios ejercicios y configurar los parámetros\
+(configuración simplificada o configuración experta). Luego haga clic en\
+ <a class="wims_button disabled inline" href="#oef_intro_launch">$wims_name_work</a>.<br>\
+Los ejercicios se tomarán aleatoriamente de la lista escogida\
+Si su elección es vacía, se utilizarán todos los ejercicios disponibles.
+!set name_defserie=Una serie de ejercicios corresponde al trabajo que se necesita realizar antes de\
+  obtener una nota.
+!distribute lines Máximo de intentos con la misma versión de la serie de ejercicios\
+  Número máximo de intentos contabilizados\
+into name_seedrepeat,name_exotrymax
+
+!set name_help_seedrepeat=Seleccionar un número n mayor o igual a 2 permite evitar\
+  que los datos aleatorios de la serie de ejercicios cambien al realizar un nuevo intento:\
+  estos datos cambiarán solo cuando se logre una buena respuesta o cuando se alcance en número de intentos n de esta serie.\
+ Para una serie de ejercicios cuyo orden esté fijado, seleccionar un número n mayor o igual a 1\
+  permite además conservar los mismos valores para las variables comunes a los diferentes ejercicios\
+  de la serie.
+
+!set name_help_givegood= Cuando el número máximo de intentos autorizados de una misma versión\
+  de la serie de ejercicios es mayor o igual a 2, la buena respuesta se muestra en el último intento\
+  de esta versión (salvo si <span class="tt">$(name_choice[1])</span> ha sido seleccionado).\
+  <br>Ciertos ejercicios permiten también proponer una indicación, una retroalimentación o una solución.\
+  La configuración para mostrarlos funciona de la misma manera.
+
+!set name_tries=o después del estudio de la versión, de la serie de ejercicios
+!set name_latex=A latex version of some of the exercises is accessible by\
+  the printable version.
+
+!if * isin $titlelist
+  !set name_remarkintro2= Los ejercicios marcados con un asterisco * son en general más difíciles que los demás.
+!endif
+!!leave on one line
+!set name_remarkintro3=Puede colocar dos números en el campo del límite de tiempo, separados por una\
+coma sin espacio, el segundo siendo más grande que el primero. El primer número representa\
+el tiempo (en segundos) a partir del cual comienza a disminuir el puntaje.\
+El segundo, por defecto igual al primero, representa el tiempo a partir del cual el puntaje será 0.
+
+!set name_remarkseverity= Tabla de correspondencia entre los niveles de severidad y las \
+diferentes configuraciones:
+
+!set name_remarkallexo=!nosubst Si usted usa el enlace\
+<span class="wims_button disabled inline">$wims_name_addallexo</span>,\
+la configuración le será propuesta posteriormente.
+
+!set name_remarkorder1=Por defecto, el orden de los ejercicios es aleatorio. \
+Marque más abajo para que el orden sea uno fijo.
+
+!set name_remarkorder2=Si el número de ejercicios seleccionados es igual al número de ejercicios de la serie,\
+se podrá elegir el orden al momento de insertar la serie en una hoja de trabajo.
+
+!set name_help_precweight=Mientras más pequeño es el número, más grande es la penalización.\
+Más precisamente, el puntaje de una respuesta numérica imprecisa se multiplica por este número\
+con respecto al de una buena respuesta.
+
+!set name_examplepenality=Ejemplo: tabla que entrega el cálculo del puntaje de un ejercicio compuesto de\
+ varias preguntas de igual importancia en función del número de respuestas incorrectas\
+ y de los pesos de penalización escogidos.
+
+!set name_example1=!nosubst Ejercicio de $tmp_n preguntas <br>Puntaje obtenido
+!set name_entete1=Coeficiente de penalización
+!set name_entete2=error(es)
+!set name_warning_levelseverity=Haga clic en <span class="wims_button disabled inline">$name_expertmenu</span> para obtener más detalles.

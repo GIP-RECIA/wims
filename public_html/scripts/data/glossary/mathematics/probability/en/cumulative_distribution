@@ -1,0 +1,24 @@
+!!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Fonction de répartition
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+La <strong>fonction de répartition</strong> d'une loi \(\mu) sur \(\RR) est la
+fonction définie sur \(\RR) par :
+
+<div class="wimscenter">
+\(t\mapsto\mu(\rbrack -\infty,t \rbrack))
+</div>
+</div>
+<p>
+Si \(X) est une variable aléatoire réelle, la fonction de répartition de \(X)
+en \(t) est la probabilité que \(X) prenne une valeur inférieure ou égale à \(t)
+(c'est-à-dire la probabilité de l'événement \(\{X\leq t\}\)).
+</p>
+
+:mathematics/probability/fr/cdf_1

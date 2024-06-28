@@ -1,0 +1,168 @@
+type=question first
+textarea="datatrue datafalse explain"
+iEdit="explain"
+asis="datatrue datafalse explain"
+
+:Un ejercicio de opciones múltiples con permutación aleatoria.
+
+Este es un modelo de pregunta de opciones múltiples. El orden de las opciones es aleatorio,
+así como las opciones si hay suficientes de definidas.
+Cuando hay varias opciones correctas, sólo hay que elegir una, no importa cuál.
+
+<p>El texto no es aleatorio. Otro modelo <b>Opción múltiple avanzada QCM </b>
+permite tener también un texto aleatorio.</p>
+
+<p class="wims_credits">Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Opciones múltiples}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Número de opciones a presentar. Como máximo 10
+Se recomienda que proporcione un gran número de respuestas posibles para el ejercicio, de lo contrario el ejercicio sólo mostrará lo que está disponible.
+\integer{tot=5}
+
+:Número de respuestas correctas en cada ejercicio. No debe exceder el total
+\integer{givetrue=2}
+
+:Número de respuestas incorrectas "obligatorias"
+Por ejemplo, si este número es 2, en el ejercicio generado siempre se presentarán las dos primeras respuestas incorrectas en la lista.
+<p> En caso de duda, ponga 0.</p>
+\integer{minfalse=0}
+
+:El enunciado del ejercicio
+$embraced_randitem
+\text{explain=Este es un modelo de pregunta de opciones múltiples. El orden de las opciones es aleatorio, así como las opciones si hay suficientes de definidas.
+Cambie los textos y tendrá su pregunta de opciones múltiples. <br/>
+Elija la opción correcta. <br/>
+Cuando hay varias opciones correctas, sólo hay que elegir una, no importa cuál.
+}
+
+:La(s) respuesta(s) correcta(s): escriba una por línea.
+Puede escribir varias aquí (una por línea) para escoger al azar.
+Evite oraciones muy largas! No se permiten puntos y coma en la oración.
+
+$embraced_randitem
+\matrix{datatrue=Opción correcta n°1
+Opción correcta n°2
+Opción correcta n°3
+Opción correcta n°4
+}
+
+:La(s) respuesta(s) incorrecta(s): escriba una por línea.
+Puede escribir varias aquí (una por línea) para escoger al azar.
+Evite oraciones muy largas! No se permiten puntos y coma en la oración.
+$embraced_randitem
+\matrix{datafalse=Opción incorrecta n°1
+Opción incorrecta n°2
+Opción incorrecta n°3
+Opción incorrecta n°4
+Opción incorrecta n°5
+Opción incorrecta n°6
+Opción incorrecta n°7
+Opción incorrecta n°8
+}
+
+:Opciones:  <span class="tt wims_code_words">checkbox</span>,  <span class="tt wims_code_words">split</span>
+Añadir la palabra <span class="tt wims_code_words">checkbox</span> si hay diversas opciones correctas y el estudiante tiene que escoger todas las opciones correctas (y no solo una).
+En este caso, también añadir la palabra <span class="tt wims_code_words">split</span> si permitimos una nota parcial cuando solo se escoge una parte de las respostas correctas.
+\text{option=}
+
+:Feedback general
+Este texto se mostrará después de la respuesta del alumno, sea correcta o incorrecta.
+\text{feedback_general=}
+
+:Feedback para una buena respuesta
+Este texto se mostrará después de la respuesta del alumno, sólo si es correcta.
+\text{feedback_good=}
+
+:Feedback para una respuesta equivocada
+Este texto aparecerá después de la respuesta del alumno, si ha elegido al menos una respuesta incorrecta.
+\text{feedback_bad=}
+
+:Indicación
+Un texto que puede ayudar a los estudiantes sobre cómo encontrar la respuesta correcta
+\text{exo_hint=}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+
+\text{empty=}
+\if{\feedback_general != \empty}{
+  \text{feedback_general=<p class="feedback">\feedback_general</p>}
+}
+\if{\feedback_good != \empty}{
+  \text{feedback_good=<p class="feedback good_answer">\feedback_good</p>}
+}
+\if{\feedback_bad != \empty}{
+  \text{feedback_bad=<p class="feedback bad_answer">\feedback_bad</p>}
+}
+\if{\exo_hint != \empty}{
+  \hint{\exo_hint}
+}
+
+\text{datatrue=wims(nonempty rows \datatrue)}
+\text{datafalse=wims(nonempty rows \datafalse)}
+\integer{truecnt=rows(\datatrue)}
+\integer{falsecnt=rows(\datafalse)}
+\integer{givetrue=\givetrue<1?1}
+\integer{givetrue=\givetrue>\truecnt?\truecnt}
+\integer{tot=\tot > \falsecnt+\givetrue?\falsecnt+\givetrue}
+\integer{givetrue=\givetrue>\tot-1?\tot-1}
+\integer{minfalse=\minfalse>\tot-\givetrue?\tot-\givetrue}
+\text{tsh=shuffle(\truecnt)}
+\text{true=row(\tsh,\datatrue)}
+\if{\minfalse>0}{
+ \text{false1=row(1..\minfalse,\datafalse);}
+ \text{false2=row(\minfalse+1..\falsecnt,\datafalse)}
+}{
+ \integer{minfalse=0}
+ \text{false1=}
+ \text{false2=\datafalse}
+}
+\text{fsh=shuffle(\falsecnt)}
+\text{false2=row(\fsh,\false2)}
+\text{pick=row(1..\givetrue,\true);\false1 row(1..\tot-\givetrue-\minfalse,\false2)}
+\text{ind=wims(makelist 1 for x=1 to \givetrue),wims(makelist 0 for x=1 to \tot-\givetrue)}
+
+\text{sh=shuffle(\tot)}
+\text{ind=item(\sh,\ind)}
+\text{pick=row(\sh,\pick)}
+\text{pick=\accolade=1 ? wims(embraced randitem \pick)}
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+\text{ans=positionof(1,\ind)}
+\text{list=item(1..\tot,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z)}
+\text{anstype=checkbox iswordof \option?checkbox:radio}
+
+:%%%%%%%%%%%%% Ahora el enunciado en formato HTML. %%%%%%%%%%%%%%%%%%%%
+
+::En general, no hay que modificar nada.
+
+\statement{
+  <div class="oef_explain">\explain</div>
+  \for{i=1 to \tot}
+  {<div class="oefreply">\embed{reply 1,\i, \list[\i] : \pick[\i;]}</div>}
+}
+
+:%%%%%%%%%%%%% Nada que modificar a continuación. %%%%%%%%%%%%%%%%%5
+
+\answer{Respuesta}{\ans;\list}{type=\anstype}{option=\option}
+
+\feedback{1=1}{\feedback_general}
+\feedback{\reply1 isitemof \list[\ans]}{\feedback_good}
+\feedback{\reply1 notitemof \list[\ans]}{\feedback_bad}

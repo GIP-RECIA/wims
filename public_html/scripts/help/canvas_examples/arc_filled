@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+opacity 255,60
+filled
+fillcolor green
+arc 0,0,4,4,10,135,red

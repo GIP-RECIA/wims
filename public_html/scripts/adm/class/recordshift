@@ -1,0 +1,20 @@
+!!
+!! move a field of a record to another position
+!!
+!! needed information :
+!! target_field : the position where the field be inserted after (next are translated).
+!! source_field : the position of the source field
+!! wims_read_parm : name of record
+
+ecnt_=!recordcnt $wims_read_parm
+!for e_=1 to $ecnt_
+  field_$e_=!record $e_ of $wims_read_parm
+!next e_
+list_=!values v for v=1 to $ecnt_
+list_=!replace item number $source_field by $empty in $list_
+list_=!replace item $target_field by $target_field,$source_field in $list_
+list_=!nonempty item $list_
+!writefile $wims_read_parm :$(field_$(list_[1]))
+!for e_=2 to $ecnt_
+  !appendfile $wims_read_parm :$(field_$(list_[$e_]))
+!next e_

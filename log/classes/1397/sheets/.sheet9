@@ -1,0 +1,51 @@
+Punti di riferimento
+giochi con i percorsi
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,spatial_skill,levelE2,levelE3
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:E3/geometry/oefspatial.fr
+exo=position1&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Posizione in classe
+Descrivi le posizioni dei bambini in classe.
+
+
+:E3/geometry/oefspatial.fr
+exo=positionclick1
+10
+1
+Punti di riferimento
+Individua le caselle sopra/sotto, a destra/a sinistra rispetto alla casella segnata.
+
+
+:E3/geometry/oefspatial.fr
+exo=positionclick2&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Punti di riferimento
+Individua la casella utilizzando le coordinate nord/sud/est/ovest.
+
+
+:E3/geometry/oefspatial.fr
+exo=position3&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Individua l'oggetto
+Riconosci gli oggetti e individua dove sono posizionati.
+
+
+:E3/geometry/oefspatial.fr
+exo=position5
+10
+1
+Metti nella posizione giusta
+Metti gli oggetti nell'armadio nel compartimento descritto.
+
+

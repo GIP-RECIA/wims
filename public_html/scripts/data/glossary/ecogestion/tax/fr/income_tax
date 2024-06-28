@@ -1,0 +1,23 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Impôt sur le revenu
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">L'<strong>impôt sur le revenu ou IR</strong> est l'impôt
+ auquel est assujettie toute <span class="wims_emph">personne physique</span>
+ sur l'ensemble de ses revenus (revenus salariaux, revenus fonciers,
+ revenus des capitaux mobiliers...).</div>
+
+<div class="spacer">L'impôt sur le revenu s'applique uniquement à des
+ personnes physiques. C'est la raison pour laquelle il est communément
+ appelé <span class="wims_emph">IRPP</span>
+ (impôt sur le revenu des personnes physiques).
+</div>
+
+
+</div>

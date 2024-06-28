@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fillcolor green
+drag xy
+centered
+obabel 0,0,smi,-:c1cFccc1cc,-xb none,-xB blue,-xi,-xt,-xa,-xX,-xP180,-h

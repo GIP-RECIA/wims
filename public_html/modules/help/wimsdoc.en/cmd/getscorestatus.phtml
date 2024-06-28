@@ -1,0 +1,13 @@
+!! +exec+ +score+ +subst+ +var+ +adm+
+tit:getscorestatus
+type:$type_both; $type_adm
+
+syntax:!getscorestatus ``[class=qclass]'' ``[user=quser]'' ``[sheet=qsheet]'' ``[work=qwork]''
+mean:return yes if score registering for the current sheet is open and no if not.\
+  The restrictions done in the .security of the class are taken in account.\
+  The same is true for the technical variables attached to quser in qclass.\
+  <ul><li>Default value for class is ``wims_class''.</li> \
+  <li>Default value for user is ``wims_user''.</li> \
+  </ul>\
+  The command can be used in non administrative module if no user and no class is specified.\
+  So it applies to the current ``wims_user'' and ``wims_class''.

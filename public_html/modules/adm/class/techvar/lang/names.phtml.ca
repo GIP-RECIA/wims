@@ -1,0 +1,38 @@
+!set lang_exists=yes
+
+!set name_notechvar=Cap variable tècnica definida.
+!set name_ltvalue=Valor(s)
+!!FIXME define also in adm/sheetexam.phtml
+!set name_value=Valor
+!set name_make=Crear
+!set name_listtechvarlocal=Llista de variables tècniques locals
+!set name_listtechvarglobal=Llista de variables tècniques globals
+!set name_listvar=Llista de variables tècniques
+!set name_addvar=Afegir una variable tècnica
+!set name_modifvar=Modificació d'una variable tècnica
+!set name_studentloc=!nosubst $user_firstname $user_lastname
+!set name_studentglo=!nosubst $wims_name_firstname $wims_name_lastname
+!set name_noyetparticipant=Aquesta classe encara no té alumnes.
+!set name_userprop=!nosubst Valors de les variables tècniques de $user_firstname $user_lastname
+!!FIXME define also in adm/sheetexam.phtml as name_EMPTY
+!set name_empty=(Cap valor)
+!set name_oldvar=Llista de variables tècniques antigues
+!set name_listmodify_co=Per a cada alumne, els valors no buits de la variable antiga\
+  substituiran els valors existents de la variable tècnica. La llista dels\
+  valors admissibles de la variable tècnica es modificarà si és necessari.
+!set name_listnew_co=Plena recuperació de la variable antiga (incloent-hi la\
+  construcció de la llista de valors). Aquesta operació és possible només \
+  quan no s'arriba al nombre màxim de variables tècniques. Atenció,\
+  la variable tècnica serà una variable tècnica local d'aquesta classe.
+!set name_listforbname1_co=El nom d'aquesta variable antiga no és utilitzable \
+  en aquest nivell perquè s'utilitza també per altres alumnes de l'estructura \
+  que no estan registrats a la classe.
+!set name_listforbname2_co=El nom de la variable antiga correspon a una variable\
+  tècnica global no modificable a aquest nivell o, aquest nom no és factible \
+  (nombre de caràcters) o la llista de valors és massa llarga.
+!set name_listforbname3_co=El nom no és factible (nombre de caràcters) \
+  o la llista de valors és massa llarga.
+!set name_descoldvar=A sota la llista de variables tècniques antigues detectades. \
+ Algunes accions de recuperació són possibles.
+ !set name_deletablevalues=Els valors següents es poden eliminar de la llista perquè no s'utilitzen 
+ !set name_indivsheetlist=Número(s) de full actiu afectat 

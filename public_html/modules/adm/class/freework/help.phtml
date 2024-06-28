@@ -1,0 +1,18 @@
+!if $wims_user=supervisor
+  !let listhelp=type,datedeadline,datetimesoldate,scoring,sizelimitfile
+!else
+  !! actually no help for user
+  !exit
+!endif
+!bound special_parm within $listhelp default $empty
+
+!if $special_parm=$empty
+  !for tmp in $listhelp
+    <div>
+    !read lang/help.phtml.$lang $tmp
+    </div>
+  !next
+  !exit
+!else
+  !changeto lang/help.phtml.$lang $special_parm
+!endif

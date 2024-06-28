@@ -1,0 +1,198 @@
+!! Modify informations on the exercises in a sheet
+!!
+!distribute lines $wims_read_parm into dir,parm_,require_,weight_,title_,desc_,dep_,comment_,feedback_,attribut_,indiv_
+!! !set orgtit_=!module title $dir
+!set wims_form_method=post
+!form reply
+!reset table_center
+<input type="hidden" name="modif" value="$ex_">
+<input type="hidden" name="job" value="modify">
+<fieldset class="property_fields blockcenter">
+  <legend>$wims_name_properties</legend>
+  <div class="field box">
+    !! if the sheet is active, the fields that may be changed are
+    !! title, description, comment, feedback, attribut
+    <label for="mod_title">$wims_name_title</label>
+    !!($name_oldtitle <em>$orgtit</em>)
+    <input size="50" name="mod_title" id="mod_title" value="$title_">
+  </div>
+  <div class="field box fullwidth">
+    <label for="mod_desc">$wims_name_Description</label>
+    <textarea name="mod_desc" id="mod_desc" class="iEdit" maxlength="$edesc_limit">$desc_</textarea>
+    <div class="formHelp">(&lt; $edesc_limit)</div>
+  </div>
+  <div class="field box">
+    !read adm/class/attribut.phtml
+  </div>
+  <div class="field box fullwidth">
+    <label for="mod_comment">$(name_shtab[7])</label>
+    <textarea name="mod_comment" id="mod_comment" class="iEdit" maxlength="$edesc_limit">$comment_</textarea>
+    <div class="formHelp">$name_desc_comment (&lt; $edesc_limit)</div>
+  </div>
+  !if $activetest <= 0
+
+!! require points
+    <div class="field box">
+      !let require_list=!values 10*v for v=0 to $require_limit
+      !if $indivtechvar=$empty
+        <label for="mod_require">$name_pointsasked</label>
+        !let mod_require=$require_
+        !formselect mod_require list $require_list
+      !else
+        <strong>$name_pointsasked</strong>
+        !! --------- in case of individual sheet activated by a technical variable
+        !let tmp=!row 2 to -1 of $require_
+        !let require_=!row 1 of $require_
+        !let require_1_=!column 1 of $tmp
+        !let require_2_=!column 2 of $tmp
+        $table_header
+          <thead>
+            <tr>
+              <th><label for="mod_weight">$name_default</label></th>
+              !for k in $listval
+                <th><label for="require$k">$k</label></th>
+              !next k
+            </tr>
+          </thead>
+          <tbody>
+            $table_tr
+              <td>
+                !let mod_require=$require_
+                !formselect mod_require list $require_list
+              </td>
+              !for k=1 to $nbtechvalue
+                <td>
+                  !let p=!positionof item $(listval[$k]) in $require_1_
+                  !if $p!=$empty
+                    !let require$k=!item $p of $require_2_
+                  !else
+                    !let require$k=$require_
+                  !endif
+                  !formselect require$k list $require_list
+                </td>
+              !next k
+            </tr>
+          </tbody>
+        $table_end
+      !endif
+    </div>
+
+!! exotrymax (maximum try with score for an exo)
+    !set mod_exotrymax=$get_exotrymax
+    <div class="field box">
+      <label for="exotrymax">$name_exotrymax</label>
+      <input size="2" maxlength="2" name="mod_exotrymax" value="$mod_exotrymax" id="exotrymax">
+      !set wims_ref_class=wims_button_help float_right
+      !href target=wims_mhelp cmd=help&special_parm=exotrymax $wims_name_help
+    </div>
+
+!! weight
+    <div class="field box">
+      !if $indivtechvar=$empty
+        <label for="mod_weight">$name_weight</label>
+        <input size="4" name="mod_weight" id="mod_weight" value="$weight_">
+        !set wims_ref_class=wims_button_help float_right
+        !href target=wims_mhelp cmd=help&special_parm=weightexo $wims_name_help
+      !else
+        !! --------- in case of individual sheet activated by a technical variable
+        <strong>$name_weight</strong>
+        !let tmp=!row 2 to -1 of $weight_
+        !let weight_=!row 1 of $weight_
+        !let weight_1_=!column 1 of $tmp
+        !let weight_2_=!column 2 of $tmp
+        $table_header
+          <thead>
+            <tr>
+              <th><label for="mod_weight">$name_default</label></th>
+              !for k in $listval
+                <th><label for="mod_weight$k">$k</label></th>
+              !next k
+            </tr>
+          </thead>
+          <tbody>
+            $table_tr
+              <td>
+                <input size="4" name="mod_weight" id="mod_weight" value="$weight_">
+              </td>
+              !for k=1 to $nbtechvalue
+                <td>
+                  !let p=!positionof item $(listval[$k]) in $weight_1_
+                  !if $p!=$empty
+                    !let v=!item $p of $weight_2_
+                  !else
+                    !let v=$weight_
+                  !endif
+                  <input size="4" name="weight$k" id="mod_weight$k" value="$v">
+                </td>
+              !next k
+            </tr>
+          </tbody>
+        $table_end
+      !endif
+    </div>
+
+!! dependancies
+    <div class="field box">
+      <label for="mod_dep">$(name_shtab[6])</label>
+      <input size="40" name="mod_dep" id="mod_dep" value="$dep_">
+      !set wims_ref_class=wims_button_help float_right
+      !href target=wims_mhelp cmd=help&special_parm=dependancies $wims_name_help
+      !reset mod_dep
+    </div>
+
+!! manage for indiv with techvar
+    !if $indivtechvar!=$empty
+      <div class="field box">
+        <label for="indiv">$name_individualisation</label>
+        !let mod_indiv=!listintersect $indiv_ and $listval
+        !formcheckbox mod_indiv list $listval
+        !set wims_ref_class=wims_button_help float_right
+        !href target=wims_mhelp cmd=help&special_parm=indivtechvar $wims_name_help
+        <div class="formHelp">$name_indiv_desc</div>
+      </div>
+    !endif
+  !endif
+  !set feedback__=!rows2lines $feedback_
+  <div class="field box">
+    <label for="mod_feedback">$(name_shtab[10])</label>
+    <textarea name="mod_feedback" id="mod_feedback" cols="60" class="nowrap">$feedback__</textarea>
+    !set wims_ref_class=wims_button_help float_right
+    !href target=wims_mhelp cmd=help&special_parm=feedback $wims_name_help
+  </div>
+
+  !if $activetest <= 0
+    !let oef=!defof category in wimshome/public_html/modules/$dir/INDEX
+    !default oef=!defof category in wimshome/public_html/modules/$dir/index
+    !if oef isitemof $oef
+      <div class="field box">
+        <strong>$(name_shtab[9])</strong>
+        !set parm__=$parm_
+        !let parm_=!replace internal & by ; in $parm_;
+        !let parm_=!replace internal scoredelay=; by scoredelay=0; in $parm_
+        !let parm_=!replace internal exo=; by exo=0; in $parm_
+        !let tmp_=!replace internal = by , in $parm_
+        !let tmp2_=!column 1 of $tmp_
+        !let tmp2_=!positionof item exo in $tmp2_
+        !let tmp_=!column 2 of $tmp_
+        !let tmp_=!item $tmp2_ of $tmp_
+        !let tmp_=!nospace $tmp_
+        !set wims_ref_class=wims_button float_right
+        !href cmd=intro&module=$dir&special_parm=&special_parm2=&special_parm3=exo=$tmp_;$parm_&special_parm4=$sheet,$modif $(seriesaction[1])
+        <pre>$dir
+$parm_</pre>
+      </div>
+
+      !read getparm $parm__ exo qnum random
+      !set exocnt_=!itemcnt $get_exo
+      !read adm/class/exo_order.phtml
+
+    !endif
+  !endif activetest
+</fieldset>
+
+<div class="wimscenter wimsform">
+  <input type="submit" value="$wims_name_tosave"> &nbsp;
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href cmd=resume $wims_name_giveup
+</div>
+!formend

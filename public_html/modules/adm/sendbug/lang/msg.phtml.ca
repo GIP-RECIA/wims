@@ -1,0 +1,13 @@
+!goto $err_
+
+:notallowed
+No esteu autoritzat a utilitzar aquest mòdul. No jugueu amb la barra d'adreces!
+!exit
+
+:confirm
+El missatge s'ha enviat a l'autor de l'exercici. Rebreu una còpia del missatge.
+!exit
+
+:no_comment
+No heu descrit l'error que s'ha trobat. Expliqueu-ho breument.
+!exit

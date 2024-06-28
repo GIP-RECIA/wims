@@ -1,0 +1,39 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=derivative,tangent
+!set gl_title=Approximation affine
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>Soit \(f\) une fonction numérique définie sur un intervalle
+\(I\) et soit \(a\) un réel de <span style="white-space:nowrap">\(I\).</span><br>
+\(f\) est dérivable en \(a\) s'il existe un nombre réel \(\displaystyle{\ell}\)
+et une fonction \(\displaystyle{\varepsilon}\) tels que&nbsp;:
+<ul>
+<li>
+Pour tout \(x \in I\), <span style="white-space:nowrap">
+\(f(x)=f(a)+(x-a)\ell + (x-a)\varepsilon(x)\) ;</span>
+</li><li>
+\(\displaystyle{\lim_{x\to a} \varepsilon(x) = 0 }\).
+</li>
+</ul>
+\(\displaystyle{\ell}\) est le nombre dérivé en \(a\) de \(f\), noté \(f^'(a)\).
+</div>
+
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(f\) une fonction définie sur un intervalle \(I\), dérivable en \(a\in I\)
+de nombre dérivé <span style="white-space:nowrap">\(f^'(a)\).</span>
+<br>On appelle <strong>fonction affine tangente</strong> à \(f\) en \(a\) la
+fonction \(t\) définie pour tout \(x \in I\) par <span style="white-space:nowrap">
+\(t(x)=f^'(a) \times (x-a) + f(a)\).</span>
+</div>
+<div class="wims_defn">On dit que la fonction affine tangente est, d'un certain
+point de vue, la &#171; meilleure approximation affine &#187; de \(f\) au
+voisinage de <span style="white-space:nowrap">\(a\).</span>
+<br>
+Sa représentation graphique est la tangente à la courbe représentative de \(f\)
+en son point d'abscisse <span style="white-space:nowrap">\(a \).</span>
+</div>

@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=matrix,linear_algebra
+!set gl_title=Matrice somme
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(n\) et \(m\) deux entiers naturels non nuls et \(A = (a_{i,j})\),
+   \(B = (b_{i,j})\) deux matrices de format
+   <span style="white-space:nowrap">\(n \times m\).</span>
+  <br>
+On appelle <strong>matrice somme</strong> de \(A\) et \(B\) la matrice
+\(A + B = (c_{i,j})\) de format \(n \times m\) telle que pour tous entiers
+naturels \(i\) et \(j\) vérifiant \(1 \leqslant i \leqslant n \) et
+<span style="white-space:nowrap">\(1 \leqslant j \leqslant m \),</span> on a&nbsp;:
+ <div class="wimscenter">
+  \(c_{i,j}=a_{i,j} + b_{i,j}\).
+ </div>
+</div>
+:mathematics/algebra/fr/matrix_sum_1

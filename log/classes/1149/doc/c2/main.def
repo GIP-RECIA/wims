@@ -1,0 +1,184 @@
+!set titb=Suites arithmétiques
+!set keyw=
+!set datm=20211007
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<p>Une suite numérique est un ensemble ordonné de nombres. On note souvent 
+!insmath u_0
+
+le terme initial, puis 
+!insmath u_1
+,  
+!insmath u_2
+,  
+!insmath u_3
+,
+… les termes suivants. La notion de suites numériques concerne souvent des phénomènes
+qui sont décrits d'étape en étape.
+</p><p>
+On peut aussi considérer qu'une suite est une fonction définie sur une partie de
+l'ensemble des entiers naturels qui à chaque entier 
+!insmath n
+ de
+son ensemble définition associe 
+!insmath u_n
+.</p>
+<h3 class="l2w_content defn">Définition</h3><div class="l2w_content defn">
+Si on passe d'un terme au suivant en ajoutant toujours le même nombre, on dit
+que la suite est arithmétique, et le nombre ajouté à chaque
+étape est appelé la raison.</div>
+<h3 class="l2w_content exemple">Exemple</h3><div class="l2w_content exemple">
+On considère la suite arithmétique 
+!insmath (u_n)
+ de raison 3 et de terme initial 
+!insmath u_0 = 5
+.
+On peut calculer les termes de proche en proche &#58;
+<div class="wimscenter">
+
+!insmath u_0=5\underset{u_1=u_0+3}{\overset{+3}{\longrightarrow}}  u_1 = 8 \underset{u_2=u_1+3}{\overset{+3}{\longrightarrow}} u_2 = 11 \underset{u_3=u_2+3}{\overset{+3}{\longrightarrow}} u_3 = 14\underset{u_4=u_3+3}{\overset{+3}{\longrightarrow}} u_4 = 17
+
+</div>
+<p>La formule 
+!insmath u_{n + 1} = u_n + 3
+ est la <strong>formule de récurrence</strong>
+de la suite 
+!insmath (u_n)
+.
+</p><p>
+Pour obtenir 
+!insmath u_4
+ on aura ajouté 4 fois 3 à 
+!insmath u_0
+ donc 
+!insmath u_4 = u_0 + 4 \times 3 = 5 + 12 = 17
+
+</p><p>
+Pour obtenir 
+!insmath u_n
+ on aura ajouté 
+!insmath n
+ fois 3 à 
+!insmath u_0
+ donc 
+!insmath u_n = u_0 + n \times 3
+ ainsi 
+!insmath u_n = 5 + 3 n
+
+</p><p>
+La formule 
+!insmath u_n = 5 + 3n
+ est la <strong>formule explicite</strong> (ou formule générale) de la suite 
+!insmath (u_n)
+.
+</p><p>
+Pour obtenir 
+!insmath u_10
+ on ajoutera 6 fois 3 à 
+!insmath u_4
+ et donc 
+!insmath u_10 = u_4 + (10 - 4) \times 3 = 17 + 6 \times 3 = 35
+.
+</p></div>
+<h3 class="l2w_content thm">Théorème</h3><div class="l2w_content thm">
+Si la suite 
+!insmath (u_n)
+ est <strong>arithmétique </strong>de raison 
+!insmath r
+, alors
+la suite 
+!insmath (u_n)
+ a pour <strong>formule de récurrence</strong>&#58;<br>
+ 
+!insmath u_{n + 1} = u_n + r
+<br>
+et la suite 
+!insmath (u_n)
+ a pour <strong>formule explicite</strong> &#58;<br>
+
+!insmath u_n = u_0 + r n
+. <br>
+Si 
+!insmath n
+ et 
+!insmath p
+ sont deux entiers positifs,<br>
+
+!insmath u_n = u_p + (n - p) r
+ en particulier 
+!insmath u_n = u_1 + (n - 1) r
+.
+</div>
+<h3 class="l2w_content thm">Théorème</h3><div class="l2w_content thm">
+Soit 
+!insmath (u_n)
+ une suite arithmétique de raison 
+!insmath r
+.
+<ul><li>Si la raison 
+!insmath r
+ est positive alors la suite 
+!insmath (u_n)
+ est croissante.</li>
+<li>Si la raison 
+!insmath r
+ est négative alors la suite 
+!insmath (u_n)
+ est décroissante.</li></ul>
+</div>
+<p>On représente les suites par des points dans un repère cartésien.
+Pour une suite arithmétique de raison 
+!insmath r
+, les points sont sur la droite
+de coefficient directeur 
+!insmath r
+ et d'ordonnée à l'origine 
+!insmath u_0
+, d'équation 
+!insmath y= r n + u_0
+.</p>
+<h3 class="l2w_content exemple">Exemple</h3><div class="l2w_content exemple">
+<ul class="inline wims_nopuce">
+<li><p>
+
+!insmath (u_n)
+ est une suite arithmétique de raison 3
+ et de terme initial 
+!insmath u_0=5
+,
+ 
+!insmath y = 3x + 5
+
+</p>
+
+!read primitives.phtml 1, draw, 400,300, alt y = 3x + 5	xrange -0.5,5.5	yrange -1,16.5	linewidth 1	parallel 0,0,0,19,1,0,9,black	parallel 0,0,6,0,0,1,22,black	linewidth 2	arrow 0,0,5.5,0,10,black	arrow 0,0,0,16.5,10,black		text black, -0.1,-0.1,large,"0"	text black, 0.9,-0.1,large,"1"	text black, 1.9,-0.1,large,"2"	text black, 2.9,-0.1,large,"3"	text black, 3.9,-0.1,large,"4"	text black, 4.9,-0.1,large,"5"	text black, 5.9,-0.1,large,"6"		text black, -0.3,0.8,large,"0"	text black, -0.3,5.8,large,"5"	text black, -0.3,10.8,large,"10"	text black, -0.3,15.8,large,"15"		segment 0,5,5,20, lightblue	crosshairs red,0,5,1,8,2,11,3,14,4,17	 
+
+</li><li><p>
+
+!insmath v_0 = 10
+ et pour tout entier naturel 
+!insmath n
+, 
+!insmath v_{n + 1} = v_n - 2
+,
+
+!insmath y = -2x + 10
+
+</p>
+
+!read primitives.phtml 2, draw, 400,300, alt y = -2x + 10	xrange -0.5,5.5	yrange -1,16.5	linewidth 1	parallel 0,0,0,19,1,0,9,black	parallel 0,0,6,0,0,1,22,black	linewidth 2	arrow 0,0,5.5,0,10,black	arrow 0,0,0,16.5,10,black		text black, -0.1,-0.1,large,"0"	text black, 0.9,-0.1,large,"1"	text black, 1.9,-0.1,large,"2"	text black, 2.9,-0.1,large,"3"	text black, 3.9,-0.1,large,"4"	text black, 4.9,-0.1,large,"5"	text black, 5.9,-0.1,large,"6"		text black, -0.3,0.8,large,"0"	text black, -0.3,5.8,large,"5"	text black, -0.3,10.8,large,"10"	text black, -0.3,15.8,large,"15"		segment 0,10,6,-2, lightblue	crosshairs red,0,10,1,8,2,6,3,4,4,2,5,0	 
+
+  </li>
+</ul>
+</div>
+

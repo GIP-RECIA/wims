@@ -1,0 +1,47 @@
+!if $special_parm!=$empty
+ !read help/$special_parm.phtml
+ !goto end
+!endif
+
+!if $login=$empty
+ <p>
+ Aquesta eina permet la creació i desenvolupament en línia de mòduls d'activitats WIMS ordinàries.
+ </p><p>
+ Un mòdul d'aquests pot ser un exercici de gran potència (en comparació amb els exercicis OEF que són més fàcils d'escriure però tenen capacitats limitades&nbsp;; vegeu
+ <a target="wims_help" href="wims.cgi?module=adm/createxo&+cmd=help&+special_parm=oef&+session=$wims_session">$wims_name_docoef</a>
+ ) o una eina de càlcul sofisticada. Ha d'estar escrit en el llenguatge interpretat de WIMS, tal com s'explica a
+ <a target="wims_help" href="wims.cgi?module=help/wimsdoc.en">$wims_name_doctec</a>
+.
+ </p><p>
+ Si esteu interessats, podeu demanar a
+ !mailurl $wims_site_manager gestor d'aquest lloc WIMS\
+WIMS Modtool id
+ una identificació login/contrasenya de desenvolupador que us permetrà utilitzar aquesta eina.
+ </p>
+ !exit
+!endif
+
+!if $mod=$empty
+ <p>
+ Per treballar en un mòdul, primer heu de crear-lo. Per crear un mòdul nou, feu clic als enllaços corresponents i, a continuació, ompliu els formularis que es presenten.
+ </p>
+!endif
+<p>
+Si us plau consultar
+ <a target="wims_help" href="wims.cgi?module=help/wimsdoc.en">$wims_name_doctec</a>
+ per tal de conèixer l'estructura d'un mòdul WIMS així com la sintaxi i el format del seu contingut.
+</p><p>
+Trobareu aquí la
+<a target="wims_help" href="wims.cgi?module=adm/createxo&+cmd=help&+special_parm=oef&+session=$wims_session">$wims_name_docoef</a>
+</p><p>
+Indicacions especials&nbsp;:
+</p><ol>
+<li>Per depurar un fitxer, podeu col·locar una línia
+<pre>
+$!debug ...
+</pre>
+en aquest fitxer, on ... pot ser qualsevol cadena de text. Quan proveu el vostre mòdul, l'execució s'aturarà en aquesta línia i el contingut de ... se us mostrarà. Si ... inclou variables, aquestes últimes se substitueixen segons les regles habituals de substitució de variables WIMS.
+
+</li></ol>
+
+:end

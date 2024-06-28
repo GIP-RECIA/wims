@@ -1,0 +1,51 @@
+!! expirefreework
+
+!! --- testing if freework is active
+!if $activetest!=1 and $activetest!=3
+  error=fwnotactive
+  job=configfw
+  !changeto $job.proc
+!endif
+
+!if $activetest=1
+  !!testing if all work are corrected (and deposit)
+  !if $type>=2 and $notcorrected>0
+    error=notallcorrected
+    job=configfw
+    !changeto $job.proc
+  !endif
+
+  !! testing if solutiondate pass (user can view solution)
+  !ifval $type>=2 and $displaysolution!=1
+    error=expire_nosoldisplay
+    job=configfw
+    !changeto $job.proc
+  !endif
+!endif
+
+!! change statut
+activetest=2
+update_content=2\
+$class_expiration\
+$title\
+$desc\
+$comment\
+$type\
+$deadline.$timedeadline\
+$soldate.$timesoldate\
+$sizelimitfile\
+$scoring\
+$seealltime\
+$studentclose
+
+update_field=$freework
+update_nbline=$fw_nbline
+!read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freeworks
+
+success=goodstatut
+!if $back=1
+  !restart module=home
+!else
+  job=configfw
+  !changeto $job.proc
+!endif

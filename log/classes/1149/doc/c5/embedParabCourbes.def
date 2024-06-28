@@ -1,0 +1,117 @@
+!set titb=Allure de la courbe et formules du trinôme
+!set keyw=
+!set datm=20210824
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+
+!readproc slib/function/tabsignes [[x,-Inf,,+Inf;f(x),,+,]] 
+!set tmp0=$slib_out
+!set m_tab1=$(tmp0)
+
+!readproc slib/function/tabsignes [[x,-Inf,,x_S,,+Inf;f(x),,+,0,+]] 
+!set tmp0=$slib_out
+!set m_tab2=$(tmp0)
+
+!readproc slib/function/tabsignes [[x,-Inf,,x_1,,x_2,,+Inf;f(x),,+,0,-,0,+]] 
+!set tmp0=$slib_out
+!set m_tab3=$(tmp0)
+
+!readproc slib/function/tabsignes [[x,-Inf,,+Inf;f(x),,-,]] 
+!set tmp0=$slib_out
+!set m_tab4=$(tmp0)
+
+!readproc slib/function/tabsignes [[x,-Inf,,x_S,,+Inf;f(x),,-,0,-]] 
+!set tmp0=$slib_out
+!set m_tab5=$(tmp0)
+
+!readproc slib/function/tabsignes [[x,-Inf,,x_2,,x_1,,+Inf;f(x),,-,0,+,0,-]] 
+!set tmp0=$slib_out
+!set m_tab6=$(tmp0)
+
+<p>Trinôme 
+!insmath f(x)=a*x^2+b*x+c
+ avec 
+!insmath a \ne 0
+,
+
+!insmath \Delta=b^2-4 a c
+,
+
+!insmath f(x) = a (x - x_S)^2 + y_S
+ avec 
+!insmath x_S=\frac{-b}{2a}
+ et 
+!insmath y_S=f(x_S)
+</p>
+<table class="wimscenter">
+<tr><td></td><td>
+!insmath \Delta \lt 0
+</td>
+<td>
+!insmath \Delta = 0
+</td><td>
+!insmath \Delta \gt 0
+</td></tr>
+<tr><td>
+!insmath a \gt 0
+</td>
+<td>
+!read primitives.phtml 1, draw, 200,200, xrange -2,8	yrange -2,8	arrow -2,0,8,0,8, black	arrow 0,-2,0,8,8, black	dline 0,1,3,1,red	dline 3,0,3,1,red	text red,2.9,-0.1 , large, x	text red,3.4,-0.5, small, S	text red,-1,1.5, large,y	text red,-0.5,1, small, S	plot black,(x-3)^2+1	text black,1.7,4.5, large, f	 
+
+<br>cas 1<br> $m_tab1
+ </td><td>
+
+!read primitives.phtml 2, draw, 200,200, xrange -2,8	yrange -2,8	arrow -2,0,8,0,8, black	text red,2.9,-0.1,large,x	text red,3.4,-0.5,small,S	plot black, (x-3)^2	text black1.7,4.5, large, f	 
+
+<br>cas 2<br>$m_tab2
+ </td><td>
+
+!read primitives.phtml 3, draw, 200,200, xrange -2,8	yrange -5,5	arrow -2,0,8,0,8, black	arrow 0,-5,0,5,8, black	dline 0,-2,3,-2,red	dline 3,0,3,-2,red	text red,2.9,1,large, x	text red,3.4,0.6,small, S	text red,1.1,-0.1,large, x	text red,1.6,-0.6,small, 1	text red,4.5,-0.1,large, x	text red,5,-0.6,small, 2	text red,-1,-1.5,large,y	text red,-0.5,-2,small, S	plot black, (x-3)^2-2	text black,1.7,1.5,large, f	 
+
+<br>cas 3<br>$m_tab3
+</td></tr>
+<tr><td>
+!insmath a \lt 0
+</td><td>
+
+!read primitives.phtml 4, draw, 200,200, xrange -2,8	yrange -8,2	arrow -2,0,8,0,8, black	arrow 0,-8,0,2,8, black	dline 0,-1,3,-1,red	dline 3,0,3,-1,red	text red,  2.9,1 , large, x	text red,  3.4,0.6, small, S	text red,  -1,-0.5, large,y	text red,  -0.5,-1, small, S	plot black, -(x-3)^2-1	text black,  1.7,-4.5, large, f	 
+<br>$m_tab4<br>cas 4
+ </td><td>
+
+!read primitives.phtml 5, draw, 200,200, xrange -2,8	yrange -8,2	arrow -2,0,8,0,8, black	text red,  2.9,1 , large, x	text red,  3.4,0.6, small, S	plot black, -(x-3)^2	text black,  1.7,-4.5, large, f	 
+
+<br>$m_tab5<br>cas 5
+ </td><td>
+
+!read primitives.phtml 6, draw, 200,200, xrange -2,8	yrange -5,5	arrow -2,0,8,0,8, black	arrow 0,-5,0,5,8, black	dline 0,2,3,2,red	dline 3,0,3,2,red	text red,  2.9,-0.1, large, x	text red,  3.4,-0.6, small, S	text red,  1.6,-0.1 , large, x	text red,  2.1,-0.6, small, 2	text red,  4,-0.1 , large, x	text red,  4.5,-0.6, small, 1	text red,  -1,2.5, large,y	text red,  -0.5,2, small, S	plot black, -(x-3)^2+2	text black,  1.7,-1.5, large, f	 
+
+<br>$m_tab6<br>cas 6
+</td>
+</tr>
+<tr><td>Racines<br>Solutions de<br>
+!insmath f(x) = 0
+</td><td>Pas de racine.</td><td>
+!insmath x_S = x_1 = x_2 = \frac{-b}{2 a}
+</td><td>
+!insmath x_1=\frac{-b-\sqrt{\Delta}}{2 a}
+ et 
+!insmath x_2=\frac{-b+\sqrt{\Delta}}{2 a}
+</td></tr>
+<tr><td>Factorisation</td><td>Pas de factorisation</td><td>
+!insmath f(x) = a (x - x_S)^2
+</td><td>
+!insmath f(x) = a (x - x_1) (x - x_2)
+</td></tr>
+</table>
+

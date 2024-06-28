@@ -1,0 +1,73 @@
+
+!if empty_data iswordof $wims_error
+  Äã·¢»ØµÄ´ğ°¸²»ÍêÕû, ÇëÍê³ÉËü.
+  !exit
+!endif
+
+!if double_reply iswordof $wims_error
+  ÄãÒÑ¾­ËÍÀ´¹ıÕâ¸öÁ·Ï°µÄ»Ø´ğ, ²¢ÒÑ±»·ÖÎöÓë¼ÍÂ¼.
+  ÖØ¸´»Ø´ğ½«²»±»¿¼ÂÇ. (²»ÒªÊ¹ÓÃä¯ÀÀÆ÷µÄ `Ë¢ĞÂ' °´Å¥ÖØ¸´»Ø´ğ!)
+  !exit
+!endif
+
+!if bad_data iswordof $wims_error
+  ÎÒÎŞ·¨¶ÔÄã·¢ËÍµÄÊı¾İ¹ÀÖµ. ÊÇ´ò×Ö´íÎóÂğ?
+  !exit
+!endif
+
+!if no_ldap_parameter iswordof $wims_error
+  ÄãÓ¦¸ÃÌîÂúÓÃĞÇºÅ±ê×¢µÄ¸ñ×Ó.
+  Îª´ËÇëÑ¯ÎÊÄãµÄ ldap Ãû²áµÄ¹ÜÀíÕß.
+  !exit
+!endif
+
+!if bad_class iswordof $wims_error
+  ÄãµÄ°à¼¶ÊÇÎŞĞ§µÄ.
+  !exit
+!endif
+
+!if bad_day iswordof $wims_error or day_dontexist iswordof $wims_error
+  ÊäÈëµÄÈÕÆÚÎŞĞ§.
+  !exit
+!endif
+
+
+!if not_supervisor iswordof $wims_error
+  ±§Ç¸, Äã²»ÔÊĞí×öÕâ¸ö²Ù×÷
+  !exit
+!endif
+
+!if nouser iswordof $wims_error or bad_user iswordof $wims_error \
+   or bad_usercls iswordof $wims_error
+  Ææ¹Ö! ÕâÎ»Ê¹ÓÃÕßºÃÏñÃ»ÓĞÔÚÄãµÄ°à¼¶×¢²á !
+  !exit
+!endif
+
+!if insert_fail iswordof $wims_error
+  Èí¼şÎŞ·¨½«ÄãµÄ×÷Òµ²åÈëÊı¾İ¿âÖĞ. Çë¼ìÑéÄãµÄÊı¾İ.
+  !exit
+!endif
+
+!if bad_pass iswordof $wims_error
+  ²»ºÃµÄÃÜÂë: ËüÖ»ÄÜÓÉÊı×Ö»òÓ¢ÎÄ×ÖÄ¸×é³É, º¬4ÖÁ16¸ö×Ö·û.
+  ÖØ¸´µÄÃÜÂë±ØĞëÓëµÚÒ»¸öÏàÍ¬! ÇëÔÙÊÔ.
+  !exit
+!endif
+
+!if bad_auth iswordof $wims_error
+  Éí·İÑéÖ¤´í. ÇëÖØÊÔ.
+  !exit
+!endif
+
+!if bad_login iswordof $wims_error
+  ÄãµÄµÇÂ¼Ãûº¬ÓĞ·Ç·¨×Ö·û.
+  µÇÂ¼ÃûÖ»ÄÜÓÉÊı×ÖÓëÓ¢ÎÄ×Ö·û×é³É, ¶øÇÒÖĞ¼ä²»ÄÜÓĞ¿Õ¸ñ.
+  !exit
+!endif
+
+!if closedmodexcls iswordof $wims_error
+  Ce module n'est pas accessible à partir d'une classe d'exemple.
+  !exit
+!endif
+
+´íÎóÀàĞÍ: $wims_error $wims_error_parm.

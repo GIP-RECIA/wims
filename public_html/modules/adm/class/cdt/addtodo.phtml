@@ -1,0 +1,50 @@
+
+!form reply
+<input type="hidden" name="job" value="addtodo">
+<input type="hidden" name="job2" value="save">
+<fieldset class="property_fields halfwidth blockcenter">
+  <legend>$name_worktodo</legend>
+  <div class="field box">
+    $name_session:
+      !default jdate=!char 1 to 8 of $wims_now
+      !read adm/datepickerform.phtml $jdate\
+jdate\
+"$class_creation","$jdate"
+  </div>
+  <div class="field box">
+    $name_nb_date:
+    <select  name="nbredevoir" onchange="submit()">
+    !for i=1 to $max_todo
+      !if $i=$nbredevoir
+        <option value="$i" selected="selected">$i</option>
+      !else
+        <option value="$i">$i</option>
+      !endif
+    !next i
+    </select>
+  </div>
+
+  !for i=1 to $nbredevoir
+    <div class="field box">
+      $name_workfor
+        !default ddate$i=$jdate
+        !read adm/datepickerform.phtml $(ddate$i)\
+ddate$i\
+"$class_creation","$class_expiration"
+      !set wims_ref_class=wims_button_help
+      !href target=wims_help cmd=renew&job=helplink&cible=ddesc$i $name_help_add
+      <br><textarea $(wims_id$[$i-1]) rows="6" cols="120" name="ddesc$i">
+        !if $error!=$empty
+          $(ddesc$i)
+        !else
+          !replace internal \( by &#92;( in $(ddesc$i)
+        !endif
+      </textarea>
+    </div>
+  !next i
+  <div class="wimscenter">
+    <input type="submit" value="$wims_name_tosave" $wims_on_click>
+  </div>
+</fieldset>
+
+!formend

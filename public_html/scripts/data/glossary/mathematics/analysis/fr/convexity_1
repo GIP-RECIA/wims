@@ -1,0 +1,40 @@
+!set gl_type=dynamic
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Convexité (interactif)
+
+
+!set gl_applet_command=setCoordSystem(-9,7,1,11.5);\
+  setAxesVisible(true, true);\
+  SetPerspective["G"];\
+  setFixed("O",true);\
+  setFixed("I",true);\
+  setFixed("J",true);\
+  evalCommand("f(x)=Function[1+3*(1+x)-3*(exp(1+x)),-6,1]");\
+  setLabelVisible("f",false);\
+  setColor("f",0,19,225);\
+  setFixed("f",true);\
+  setLineThickness("f",6);\
+  setVisible("a",false);\
+  A=Point[f];\
+  setLabelVisible("A",true);\
+  setLabelStyle("A",2);\
+  setFixed("A",false);\
+  setColor("A",50,150,0);\
+  setPointStyle("A",3);\
+  setPointSize("A",4);\
+  evalCommand("t=Tangent[A,f]");\
+  setColor("t",255,0,150);
+
+!set gl_option=enableRightClick=false;\
+  showToolBar=true;\
+  showAlgebraInput=false;\
+  useBrowserForJS=true;\
+  width=600;\
+  height=600;\
+  number=1;
+
+!readproc slib/geo2D/geogebra $gl_applet_command;$gl_option
+
+<div class="wimscenter">
+  $slib_out
+</div>

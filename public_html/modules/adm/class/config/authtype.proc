@@ -1,0 +1,43 @@
+!set authidp_method_list= ;,cas;, cas;ldap, ldap;ldap, cas;php, php;php
+
+!defread wimshome/log/classes/$wims_class/.def
+!for ld_ in authidp,cas_auth,php_auth,ldap_auth,ldap_port,ldap_version,ldap_base,ldap_branch,ldap_uid,ldap_login,\
+   ldap_regnum,ldap_photourl,ldap_email
+  !default up_$ld_=$(class_$ld_)
+!next
+
+!for ld_ in php_auth,ldap_auth,ldap_port,ldap_version,ldap_base,ldap_branch,ldap_uid,ldap_login,\
+   ldap_regnum,ldap_photourl,ldap_email
+  !default class_$ld_=!defof $ld_ in wimshome/log/wims.conf
+!next
+
+!set auth_cas_list=!defof cas_auth in wimshome/log/wims.conf
+!set auth_cas_list=!replace internal | by ; in $auth_cas_list
+!set auth_cas_url_list=$(auth_cas_list[;1])
+!if $auth_cas_url_list!=$empty
+  !set auth_cas_cnt=!itemcnt $auth_cas_url_list
+  !reset auth_cas_name_list
+  !for j=1 to $auth_cas_cnt
+    !set tmp=$(auth_cas_list[$j;2])
+    !default tmp=$(auth_cas_url_list[$j])
+    !set auth_cas_name_list=!append item $tmp to $auth_cas_name_list
+    !reset tmp
+  !next
+  # We set the first item as the default choice
+  !default class_cas_auth=$(auth_cas_url_list[1])
+!endif
+
+!if $save!=$empty
+  up_cas_auth=!listcomplement other in $up_cas_auth
+  !read scripts/setdefa.proc
+  !defread wimshome/log/classes/$wims_class/.def
+  wims_class_log=Modify class authentification by $wims_realuser
+
+  !! need to rebuild .index (for adm/raw)
+  !if $wims_superclass!=$empty
+    !sh $wims_home/log/classes/.build-index $wims_superclass
+  !else
+    !sh $wims_home/log/classes/.build-index $wims_class
+  !endif
+  !!read adm/du $wims_home/log/classes/$wims_class
+!endif

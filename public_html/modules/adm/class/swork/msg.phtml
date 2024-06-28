@@ -1,0 +1,19 @@
+!! manage of message
+!!
+!set list_err=toomanyuser notopen
+
+!if $wims_read_parm!=$empty
+  !set err_=!word 1 of $wims_read_parm
+  !set comp_=!word 2 to -1 of $wims_read_parm
+!else
+  !set err_=!word 1 of $error
+  !set comp_=!word 2 to -1 of $error
+!endif
+
+!set wims_module_log=error: $err_
+
+!if $err_ iswordof $list_err
+  !changeto lang/msg.phtml.$lang
+!else
+  !msg $err_
+!endif

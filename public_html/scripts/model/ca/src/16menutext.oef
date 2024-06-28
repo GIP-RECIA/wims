@@ -1,0 +1,109 @@
+type=gapfill first
+textarea="explain data"
+iEdit="explain"
+asis="explain"
+:Triar les respostes dels camps d'opció múltiple. Només es pot proposar un text.
+
+Aquest exercici presenta un text on s'insereixen diversos camps d'opció múltiple.
+<p>
+Per construir un exercici amb aquest model, simplement introduïu el text.
+Una sintaxi fàcil permet incorporar els camps d'opció múltiple en el text.
+<p class="wims_credits">
+Autor del model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓ      %%%%%%%%%%%%%%%%%%%%
+
+Elimineu la capçalera anterior si esborreu les etiquetes per al model!
+(Són les línies que comencen amb un ':'.)
+En cas contrari exercici pot no funcionar sota Createxo.
+
+:%%%%%%%% Exemples de paràmetres a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Camps d'opció múltiple en un text}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+:Consigne pour les apprenants
+
+\text{explain=Omplir}
+
+:Dades principals
+Les preguntes s'han de posar entre un parell de
+doble-interrogant "??": les diferents opcions s'han de separar
+per comes, l'opció correcta ha d'anar la primera.
+Poden haver fins a 20 preguntes en la mateixa frase.
+
+El text aquí és fixe. El model <b>Camps d'opció múltiple en un text</b> permet variar els textos.
+$embraced_randitem
+\text{data=Linux va ser creat el
+??1991,1995,1998,1986,1989,2001??
+per Linus Torvalds, estudiant
+??finès, suec, nord-americà, anglès, nòrdic??, mentre estava fent el seu
+aprenentatge en el sistema
+??Minix,Unix,Solaris?? en màquines d'arquitectura
+??Intel 386,Sun,Macintosh,Bull,Microsoft??. En un grup de notícies va publicat la primera versió
+del seu sistema, era la versió
+??0.02,0.00,0.01,0.12,1.00??.
+}
+
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Res a canviar abans de l'enunciat %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\text{data=wims(singlespace \data)}
+\text{data=\accolade=1 ? wims(embraced randitem \data)}
+\text{data=slib(text/cutchoice2 \data)}
+\integer{qs=min(20,floor(rows(\data)/2))}
+
+\text{good=}
+\text{field=}
+\for{i=1 to \qs}{
+ \text{f=\data[2*\i;]}
+ \text{g=\f[1]}
+ \text{f=wims(sort items \f)}
+ \text{g=positionof(\g,\f)}
+ \text{good=\good\g,}
+ \text{field=\field\f;}
+}
+
+\text{pre=\accolade=1 ? wims(embraced randitem \pre)}
+\text{post=\accolade=1 ? wims(embraced randitem \post)}
+\text{qlist=wims(makelist reply x for x=1 to \qs)}
+\steps{\qlist}
+
+:%%%%%%%%%%%%% Ara l'enunciat en format HTML. %%%%%%%%%%%%%%%%%%%%
+
+::Vostè no necessita canviar això en general.
+
+\statement{<div>\explain</div>
+  \data[1;]
+  \for{k=1 to \qs}{
+    \embed{r \k} \data[2*\k+1;]
+  }
+}
+
+:%%%%%%%%%%%%% Res a canviar per sota. %%%%%%%%%%%%%%%%%5
+
+\answer{Camp 1}{\good[1];\field[1;]}{type=menu}
+\answer{Camp 2}{\good[2];\field[2;]}{type=menu}
+\answer{Camp 3}{\good[3];\field[3;]}{type=menu}
+\answer{Camp 4}{\good[4];\field[4;]}{type=menu}
+\answer{Camp 5}{\good[5];\field[5;]}{type=menu}
+\answer{Camp 6}{\good[6];\field[6;]}{type=menu}
+\answer{Camp 7}{\good[7];\field[7;]}{type=menu}
+\answer{Camp 8}{\good[8];\field[8;]}{type=menu}
+\answer{Camp 9}{\good[9];\field[9;]}{type=menu}
+\answer{Camp 10}{\good[10];\field[10;]}{type=menu}
+\answer{Camp 11}{\good[11];\field[11;]}{type=menu}
+\answer{Camp 12}{\good[12];\field[12;]}{type=menu}
+\answer{Camp 13}{\good[13];\field[13;]}{type=menu}
+\answer{Camp 14}{\good[14];\field[14;]}{type=menu}
+\answer{Camp 15}{\good[15];\field[15;]}{type=menu}
+\answer{Camp 16}{\good[16];\field[16;]}{type=menu}
+\answer{Camp 17}{\good[17];\field[17;]}{type=menu}
+\answer{Camp 18}{\good[18];\field[18;]}{type=menu}
+\answer{Camp 19}{\good[19];\field[19;]}{type=menu}
+\answer{Camp 20}{\good[20];\field[20;]}{type=menu}

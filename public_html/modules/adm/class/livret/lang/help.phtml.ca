@@ -1,0 +1,69 @@
+!! to translate this help you just have to copy this file with correct extension (fr en de) and translate it !
+!!
+
+!let help_isread=yes
+
+!if $wims_read_parm!=$empty
+    !goto $wims_read_parm
+!endif
+!set wims_backslash_insmath=yes
+<p>
+L'Informe de competències permet obtenir una taula de lectura sintètica del conjunt
+del treball que es valora dels alumnes de la classe.
+L'Informe consta de competències (un màxim de $maxcomp) cadascuna de les seves competències
+pot posseir diversos nivells (fins a $maxpalier).
+</p><p>
+Per a cada nivell, el professor pot definir la llista de sèries d'exercicis de
+la classe que intervindrà en el càlcul de la nota de l'adquisició del nivell.
+</p><p>
+El professor de la classe pot decidir que les notes d'alguns fulls d'exercicis
+no comptin per calcular el grau d'adquisició dels nivells de l'Informe de competències
+(això permet conservar les dades pedagògiques d'un any a un altre
+alhora que permet començar a validar certes competències).
+</p>
+
+El càlcul del nivell d'adquisició es duu a terme de la següent manera:
+<div class="wimscenter">
+!insmath 10 \times \frac{\sum_{i=1}^{N} M(q_{L[i;1],L[i;2]})}{\sum_{i=1}^{N} \delta_{L[i;1]}}
+</div>
+on
+<ul>
+ <li> \(N\) és el nombre de sèries d'exercicis que intervenen en el nivell.</li>
+ <li> \(L\) és la llista de sèries d'exercicis que intervenen en el nivell.
+ Cada element de la llista conté el número de full (escrit L[i;1]) i
+ el número de la sèrie d'exercicis en el full (escrit L[i;2]).</li>
+ <li>
+  !insmath q_{i,j}
+  és la nota de qualitat de la sèrie d'exercicis \(j\) del full \(i\).
+ </li><li>
+  !insmath \delta_i
+  val 1 si el full \(i\) no està a la llista de fulls desactivats
+ i 0 si no.
+ </li><li>
+   \(M(a) val \(1\) si \(a\) és superior a la nota mínima per a considerar
+ que s'ha superat una sèrie i \(0\) si no (fixar la nota mínima a \(0\) neutralitza aquesta opció).
+ </li>
+</ul>
+<p>
+<b>Nota</b>: Si canvia l'estat d'un full d'exercicis
+(passar de "S'està preparant" al mode "Actiu"),
+els alumnes de la classe hauran de deixar l'Informe de competències
+perquè els canvis tinguin efecte.
+Els nivells d'adquisició que es mostraran des del moment que
+el professor canvia l'estat d'un full i el moment que
+l'alumne abandona l'informe no es correspondran amb res !!
+</p>
+!exit
+
+:color
+<p>
+Per a cada color es pot definir un text que es mostrarà a la llegenda
+acolorida al començament de cada taula de competències (per als alumnes i el professor).
+</p><p>
+Els colors sense text es mostren amb el rang de percentatge
+d'èxit a què corresponen.
+</p><p>
+En cas d'ús dels colors de la classe (i no els de l'Informe),
+la llegenda acolorida s'assigna automàticament a la gamma de percentatge de l'èxit corresponent.
+</p>
+!exit

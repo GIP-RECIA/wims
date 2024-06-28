@@ -1,0 +1,30 @@
+Schemas
+games in geometry
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,spatial_skill
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:E3/geometry/oefspatial.fr
+exo=reproduire1&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Reproduce the schema (level 1)
+Check the squares marked with a cross.
+:E3/geometry/oefspatial.fr
+exo=mreproduire1&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Reproduce the schema (level 2)
+More and more diffucult: check the squares marked with a cross, without looking!
+:E3/geometry/oefspatial.fr
+exo=mreproduire2&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Reproduce the schema (level 3)
+The more the squares, the more difficult. Without looking!
+

@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 1
+fillpattern grid
+ftriangle -6,6,8,6,5,1,blue
+translation 2,2
+ftriangle -6,6,8,6,5,1,red

@@ -1,0 +1,149 @@
+
+!read adm/title.phtml 1\
+$classname\
+$name_title_examcheck
+
+!if _check isin $session
+  !set error=bad_op
+!endif
+
+!if $error!=$empty
+  <div class="wims_msg alert">
+    !read lang/msg.phtml.$moduclass_lang
+  </div>
+!else
+  !if $checksessions=$empty
+    <p class="no_exampart">$name_no_exampart</p>
+  !else
+
+    !if $class_examscore_withoutip!=yes and $scorereducedbyip=1
+      <div class="wims_msg info">$name_msg_exam_withip</div>
+    !endif
+
+    <p class="exampart">$name_exampart</p>
+    $table_header
+    $table_hdtr<th rowspan="2">$name_Session</th><th rowspan="2">$name_Exam</th><th rowspan="2">$name_Score<span class="small">/$scoremax</span></th>
+    <th colspan="$maxexo">$name_Exercise </th>
+    <th rowspan="2">$name_Start</th>
+    <th rowspan="2">$name_Duration</th>
+    !if $wims_user=supervisor
+      <th rowspan="2">$wims_name_sendbug</th>
+    !endif
+    </tr>
+    $table_hdtr
+    !for i=1 to $maxexo
+      <th>$i</th>
+    !next i
+    </tr>
+    !for ses in $checksessions
+      !set pos_ses=!positionof item $ses in $checksessions
+      !for x in $(exam_$(pos_ses))
+        !set tmp=!record $x of wimshome/log/classes/$wims_class/exams/.exams
+        !! ------test if sheet is hidden for this user
+        !reset hidden_sheet
+        !if $wims_user!=supervisor
+          !set h_=!line 8 of $tmp
+          !if $h_!=$empty
+            !readproc adm/vfilter/ishiddensheet.proc $h_
+          !endif
+        !endif
+        !! -----end test
+        !if $hidden_sheet!=1
+          !!titre
+          !set tmp=!line 4 of $tmp
+          $table_tr<td class="small">$ses</td>
+          <td>$x: $tmp</td>
+          !reset tmp
+          !! ----- manage of examscorewithoutip or not
+          !if $class_examscore_withoutip=yes
+            !let tsco=$(score$(pos_ses)_$x)
+            !let star=$empty
+          !else
+            !let tsco=$(scoreip$(pos_ses)_$x)
+            !if $(score$(pos_ses)_$x)!=$(scoreip$(pos_ses)_$x)
+              !let realtsco=$[rint(10*$(score$(pos_ses)_$x)*$scoremax)/100]
+              !let star=<div class="wims_tooltip">&ast;<div class="wims_tooltiptext">$name_real_score</div></div>
+            !endif
+          !endif
+          !! ----
+          !read adm/class/colors $tsco
+          !let tsco=$[rint(10*$tsco*$scoremax)/100]
+          <td style=$style_note>$tsco$star</td>
+          !reset style_note
+          !let nbx=!recordcnt wimshome/log/classes/$wims_class/exams/.exam$x
+          !for i=1 to $nbx
+            !!calculate in adm/class/userscore1
+            !if $(Exam_$(x)_$(pos_ses)[$i])!=$empty
+              !set s=$(Exam_$(x)_$(pos_ses)[$i])
+              !set s_color=$[rint(10*$s/$scoremax)]
+              !if $s_color=0
+                !set s_color=1
+              !endif
+              !read adm/class/colors $s_color,htmlcolor
+            !else
+              !set s_color=""
+              !if $(duree$(pos_ses)_$x)=$empty
+                !set s=&dagger;
+              !else
+                !! ?? can ever be "exercice never tried" or just "exercice unfinished"
+                !set s=??
+              !endif
+            !endif
+            <td class="wims_sheet_score">
+              !if $i isitemof $(exo$(ses)$x)
+                <span style="border-color:$note_color">
+                !href target=wims_check module=$module&cmd=new&job=examcheck&checkuser=$checkuser&checksession=$ses&checkexo=$x.$i&checkstep=1 $s
+               	</span>
+              !endif
+              !reset note_color
+            </td>
+          !next i
+          !if $nbx<$maxexo
+            !for i=$[$nbx+1] to $maxexo
+              <td style="background-image:url(gifs/bg/crossgrey.gif)">&nbsp;</td>
+            !next i
+          !endif
+          <td class="small">
+          !read date.phtml $(start$(pos_ses)_$x)
+          </td>
+          <td class="small">
+          !if $(duree$(pos_ses)_$x)!=$empty
+            !set tmp=!exec pari divrem($(duree$(pos_ses)_$x),60)~
+            !item 1 of $tmp
+$ $
+            !char 1 to 3 of $name_minutes
+$ $
+            !item 2 of $tmp
+          !endif
+          </td>
+          !if $wims_user=supervisor
+            <td>
+             !! link for sendbug
+             !reset t
+             !for exo in $(exo$(ses)$x)
+               !let l=module=adm/sendbug&+logcheck=$x.$exo&+checkuser=$checkuser&+checksession=$ses&+logtype=exam $wims_name_Exercise $exo
+               !let t=!append line $l to $t
+             !next exo
+             !read js/dropdownbutton.phtml dropbutton_$(ses)_$x\
+$wims_name_sendbug\
+$t
+            </td>
+          !endif
+          </tr>
+        !endif
+      !next x
+    !next ses
+    $table_end
+  !endif
+!endif
+!if $wims_user!=supervisor
+  !set wims_menu_items=!append line myscore,1,cmd=reply&job=getuser&getuser=$checkuser\
+to $wims_menu_items
+!else
+  !set wims_menu_items=!append line scores,1,cmd=reply&job=getuser&getuser=$checkuser\
+to $wims_menu_items
+  !read adm/class/getnextuser $wims_class,$checkuser,examcheck,checkuser
+  !set wims_menu_items=!append line itemsep,0,\
+ part_list,1,cmd=resume\
+ to $wims_menu_items
+!endif

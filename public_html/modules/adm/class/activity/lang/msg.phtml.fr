@@ -1,0 +1,13 @@
+!goto $err_
+
+:nostat
+Les statistiques de connexion ont été désactivées par l'administrateur du serveur.
+!exit
+
+:noactivity
+Aucune activité enregistrée sur la dernière année écoulée.
+!exit
+
+:notopen
+  votre enseignant n'a pas ouvert cette fonctionnalité.
+!exit

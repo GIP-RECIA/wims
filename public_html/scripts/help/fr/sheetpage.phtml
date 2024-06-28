@@ -1,0 +1,88 @@
+!!class/
+<h3 class="wimscenter">Personnalisation de la présentation de la feuille de travail</h3>
+
+
+<p>
+Par défaut l'option est <span class="tt wims_fname">non</span>. Cela signifie que
+la présentation de la feuille est standard (en fonction du thème). <br>
+Si vous souhaitez personnaliser la présentation, sélectionnez <span class="tt wims_fname">oui</span>. Dans ce cas,
+un nouvel onglet apparaîtra (après sauvegarde) vous permettant de saisir la personnalisation de la page. Le langage utilisé
+est le même que les documents.
+</p>
+
+<p>
+Les liens sur les exercices individuels sont à définir en utilisant la commande
+<span class="tt wims_code_variable">\exercise</span>.
+Vous pouvez aussi utiliser les variables suivantes qui sont prédéfinies :
+</p><ul>
+ <li><span class="tt wims_code_variable">\scorerequire</span>
+   Liste du nombre de points requis pour chaque exercice de la feuille.
+ </li>
+ <li><span class="tt wims_code_variable">\scoregot</span>
+   Liste de l'indicateur i0 pour chaque exercice de la feuille.
+ </li>
+ <li><span class="tt wims_code_variable">\scoremean</span>
+   Liste de l'indicateur i1 pour chaque exercice de la feuille.
+ </li>
+ <li><span class="tt wims_code_variable">\scorebests</span>
+   Liste des sommes cumulatives des N meilleurs scores pour chaque exercice de la feuille (N est le nombre de points requis divisé par 10).
+ </li>
+ <li><span class="tt wims_code_variable">\scorelevels</span>
+   Liste de l'indicateur i2 pour chaque exercice de la feuille.
+ </li>
+ <li><span class="tt wims_code_variable">\scorealltries</span>
+   Liste du nombre de tentatives de chaque exercice de la feuille.
+ </li>
+ <li><span class="tt wims_code_variable">\expiration</span>
+   Date d'expiration de la feuille dans le format yyyymmdd (aaaammjj).
+ </li>
+ <li><span class="tt wims_code_variable">\today</span>
+   Date du jour dans le format yyyymmdd (aaaammjj).
+ </li>
+ <li><span class="tt wims_code_variable">\user_login</span>
+   l'identifiant du participant.
+ </li>
+ <li><span class="tt wims_code_variable">\user_firstname</span>
+   le prénom du participant.
+ </li>
+ <li><span class="tt wims_code_variable">\user_lastname</span>
+   le nom du participant.
+ </li>
+ <li><span class="tt wims_code_variable">\class_code</span>
+   le numéro de la classe.
+ </li>
+ <li><span class="tt wims_code_variable">\title</span>
+   le titre de la feuille.
+ </li>
+ <li><span class="tt wims_code_variable">\desc</span>
+   le descriptif de la feuille.
+ </li>
+ <li><span class="tt wims_code_variable">\nbexo</span>
+   le nombre d'exercices de la feuille.
+ </li>
+ <li><span class="tt wims_code_variable">\infoexo$$k</span>
+   les informations sur l'exercice k de la feuille.
+ </li>
+</ul>
+La valeur des variables de score est une liste de nombres, chacun des items
+correspond au nombre demandé pour un exercice de la feuille de même position.
+
+<p>
+<b>Un exemple</b> : vous êtes en train de créer la feuille d'exercices numéro 5.
+Écrivez par exemple
+<pre>
+\exercise{5/1} : Points à obtenir : \scorerequire[1]
+                 Points déjà obtenus : \scoregot[1]
+
+\exercise{5/2} : Points à obtenir : \scorerequire[2]
+                 Points déjà obtenus : \scoregot[2]
+
+\exercise{5/3}{Un autre titre} : Points à obtenir \scorerequire[3]
+                Points déjà obtenus : \scoregot[3]
+</pre>
+</p>
+<p>L'ancien système de personnalisation des feuilles en utilisant un document est toujours opérationnel pour des feuilles
+où il est déjà en place mais il ne peut plus être initié sur une feuille. Cependant, ce système n'est plus maintenu, il est
+donc conseillé de migrer vers le nouveau fonctionnement.
+</p>
+

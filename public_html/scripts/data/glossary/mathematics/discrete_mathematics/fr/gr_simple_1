@@ -1,0 +1,8 @@
+!set gl_type=dynamic
+!set gl_title=Graphe simple (exemple)
+!set gl_author=Bernadette, Perrin-Riou
+!readproc data/glossary/mathematics/discrete_mathematics/macro/gr_simple
+
+Le premier graphe représenté est simple, le second graphe n'est pas simple.
+
+<div class="wimscenter">$gl_out1 $gl_out2</div>

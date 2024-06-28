@@ -1,0 +1,48 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph
+!set gl_title=Chaîne d'un graphe
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définitions</h4>
+  Soit \(G\) un graphe.
+  <ul>
+    <li>
+      Une <strong>chaîne</strong> de \(G\) est une liste ordonnée de sommets de
+      \(G\) telle que chaque sommet de la liste soit adjacent au suivant.
+    </li><li>
+      La <strong>longueur</strong> d'une chaîne est le nombre d'arêtes qui la
+      composent.
+    </li><li>
+      La <strong>distance</strong> entre deux sommets de \(G\) est la plus petite
+      des longueurs des chaînes qui les relient.
+    </li><li>
+      Une chaîne est dite <strong>fermée</strong> lorsque le sommet de départ et
+      le sommet d'arrivée sont confondus.
+    </li><li>
+      Un <strong>cycle</strong> est une chaîne fermée composée d'arêtes toutes
+      distinctes.
+    </li>
+  </ul>
+</div>
+
+<div class="wims_thm"><h4>Propriété</h4>
+  Soit \(n\) un entier naturel non nul, soit \(G\) un graphe d'ordre \(n\) et
+  soit \(A\) la matrice associée à ce graphe.
+  <br>
+  Soit \(p\) un entier naturel non nul et \(a_{i,j}\) les coefficients de la
+  matrice <span style="white-space:nowrap">\(A^p\) ;</span>
+  <span style="white-space:nowrap">\(A^p=(a_{i,j})\).</span>
+  Alors, pour tous les entiers \(i\) et \(j\) tels que \(1\leqslant i\leqslant n\)
+  et <span style="white-space:nowrap">\(1\leqslant j\leqslant n),</span>
+  \(a_{i,j}\) est égal au nombre de chaînes de longueur \(p\) permettant d'aller
+  du sommet \(i\) au sommet <span style="white-space:nowrap">\(j\).</span>
+</div>
+<div class="wims_defn"><h4>Définition</h4>
+  Soit \(C\) l'ensemble des distances entre deux sommets quelconques d'un graphe
+  <span style="white-space:nowrap">\(G\).</span> Le <strong>diamètre</strong> de
+  \(G\) est le plus grand élément de <span style="white-space:nowrap">\(C\).</span>
+</div>

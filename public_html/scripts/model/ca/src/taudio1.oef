@@ -1,0 +1,68 @@
+type=imaudio
+textarea="instruction data"
+iEdit="instruction"
+
+:Triar entre les etiquetes la paraula que s'ha escoltat (s'han de proporcionar els àudios).
+
+Es proposa un àudio i s'ha de triar l'etiqueta del text. Els fitxers amb els àudios s'han de posar a la classe.
+<p>
+Per construir un exercici amb aquest model, simplement escriviu la llista de
+paraules, així com el nom del fitxer (que s'ha de carregar a la classe).
+</p><p>
+Per obtenir més possibilitats, utilitzeu Quicktool.
+</p><p class="wims_credits">
+Autor del model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+
+:\title{Escoltar i reconèixer II}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciat
+\text{instruction=Feu clic a la paraula que heu escoltat. Tingueu present
+que l'exercici només funcionarà quan hàgiu carregat l'àudio a l'exercici.}
+
+:Llista d'àudio i de paraules
+\text{data = nom_audio1,doctor
+nom_audio2,teacher
+nom_audio3,journalist}
+
+:Nombre de distractors
+\integer{cntpertub=3}
+
+:La mida vertical de les caixes en píxels
+\integer{sizev=200}
+
+:La mida horitzontal de les caixes de l'esquerra en píxels
+\integer{sizel=20}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+\text{cnt=rows(\data)}
+\text{N=shuffle(\cnt)}
+\text{mot=row(\N[1],\data)}
+\text{mot=wims(embraced randitem \mot)}
+\text{perturb=\N[2..\cntpertub+1]}
+\matrix{data=\data}
+\text{perturb=\data[\perturb;2]}
+\text{size=\sizev[]x\sizel[]}
+
+\statement{
+\instruction
+<div class="wimscenter">
+\audio{\imagedir/\mot[1]}
+</div>
+<div class="wimscenter">
+\embed{r1,\size}
+</div>
+}
+\answer{}{\mot[2];\perturb}{type=clickfill}

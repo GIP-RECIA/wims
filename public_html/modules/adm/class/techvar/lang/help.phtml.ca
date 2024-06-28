@@ -1,0 +1,71 @@
+!if $wims_read_parm!=$empty
+ !goto $wims_read_parm
+!else
+ No hi ha ajuda per a aquesta pàgina.
+ !exit
+!endif
+
+:listvar
+Aquest mòdul permet gestionar les variables tècniques:
+<ul>
+ <li>
+ Creació de variables tècniques (limitat a $MAXtechvar) ;
+ </li><li>
+ Modificació de la llista de valors possibles per a cada variable tècnica ;
+ </li><li>
+ Veure/canviar el valor de les variables tècniques per a cada alumne.
+ </li>
+</ul>
+<p>
+Les variables tècniques poden ser utilitzades per fer algunes accions
+sobre un grup d'alumnes de la classe (per exemple, limitar selectivament
+el periode d'obertura de fulls d'exercicis o d'exàmens, enviar un missatge a
+un grup d'alumnes o fer aparèixer un grup d'alumnes a la taula de resultats...).
+</p>
+Existeixen dos tipus de variables tècniques:
+<ul>
+ <li>
+ Variables tècniques locals: són les que es poden definir i modificar
+(el seu nombre es limita a $MAXtechvar).
+ </li><li>
+ Les variables tècniques globals: les de l'estructura
+(grup de classes o portal de centre) a la que la classe pertanyi.
+Aquestes variables no són editables (només ho són per l'administrador de l'estructura)
+ però podeu utilitzar-les per filtrar alumnes.
+ </li>
+</ul>
+<h3>
+ Creació d'una variable tècnica local
+</h3>
+Utilitzeu el menú <span class="tt wims_code_words">$name_addvar</span> per tal de definir
+el nom (només lletres minúscules; hi haurà una conversió automàtica)
+i els valors possibles per a aquesta variable (separats per comes).
+<h3>
+ Definició o modificació del valor d'una variable tècnica local d'un alumne
+</h3>
+Per definir o modificar el valor d'una variable tècnica local d'un alumne,
+simplement feu clic a l'enllaç <span class="tt wims_code_words">Llista d'alumnes</span>
+des de la pàgina<span class="tt wims_code_words">Gestió de les variables tècniques,</span>
+llavors feu clic al nom de l'alumne a la llista que apareix.
+<p>
+També és possible introduir els valors d'una variable tècnica
+per a tots els alumnes mitjançant un fitxer de full de càlcul
+(Veure pàgina d'ajuda <span class="tt wims_code_words">Enllaç full de càlcul</span>
+per a conèixer el format del fitxer de full de càlcul).
+</p>
+
+<h3>
+Variable tècnica local i individualització d'un full de treball
+</h3>
+<p>Una variable tècnica local es pot utilitzar per individualitzar un full de treball
+segons el valor de la variable tècnica (vegeu el mòdul de gestió de fulls
+de treball).
+</p>
+<p>
+Si s'utilitza aquesta opció, modificar el valor d'una variable tècnica
+per a un alumne pot canviar la configuració dels fulls de
+treball actius que gestiona així com les notes d'aquests fulls.
+</p>
+
+!exit
+

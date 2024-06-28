@@ -1,0 +1,45 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution,variance
+!set gl_title=Variance d'une loi de probabilité
+!set gl_level=H5
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définitions</h4>
+Soit &#937; l'univers associé à une expérience aléatoire.<br>
+On suppose &#937; fini&nbsp;; on note \(n\) le nombre d'éléments de &#937;
+(\(n\) entier naturel non nul).<br>
+On suppose de plus que les \(n\) issues \( x_1,x_2,\ldots,x_n \) sont des nombres
+réels et qu'une loi de probabilité est définie sur &#937;&nbsp;; pour tout entier
+naturel \(i\) compris entre 1 et <span style="white-space:nowrap">\(n\),</span>
+on note \( p_i \) la probabilité de l'événement élémentaire \( \{x_i\} \) et
+\( \mathbf{E} \) l'espérance de la loi de probabilité.
+<br>
+La <strong>variance</strong> de la loi de probabilité est le nombre
+\( \mathbf{V} \) défini par&nbsp;:
+<div class="wimscenter">
+\(\displaystyle{\mathbf{V} = p_1 (x_1 - \mathbf{E})^2 + p_2 (x_2 - \mathbf{E})^2
+ + \ldots + p_n (x_n - \mathbf{E})^2 }\).
+</div>
+<div class="wimscenter">
+\(\displaystyle{\mathbf{V} = \sum_{i=1}^n p_i (x_i - \mathbf{E})^2} \).
+</div>
+</div>
+<div class="wims_rem">
+<h4>Remarque</h4>
+La variance d'une loi de probabilité est un réel positif.
+</div>
+<div class="wims_thm">
+  <h4>Propriété</h4>
+La variance \(\mathbf{V}\) peut aussi être calculée à l'aide de la formule&nbsp;:
+<div class="wimscenter">
+\(\displaystyle{\mathbf{V} = p_1 x_1^2 + p_2 x_2^2 + \ldots + p_n x_n^2
+- \mathbf{E}^2}\).
+</div>
+<div class="wimscenter">
+\( \displaystyle{\mathbf{V} =  \sum_{i=1}^n p_i x_i^2 - \mathbf{E}^2 }\).
+</div>
+</div>

@@ -1,0 +1,19 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Marina, Cazzola
+!set gl_keywords=group_theory
+!set gl_title=Gruppo
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div>
+Un <strong>gruppo</strong> \(G\) è in insieme in cui sia definita una legge di
+composizione (o operazione) associativa, con unità e in cui ogni
+elemento ammette un inverso.
+</div>
+<div class="wims_example">
+<h4>Esempio</h4> L'insieme dei numeri interi relativi \(\ZZ\) è gruppo
+rispetto all'operazione di somma.
+</div>
+

@@ -1,0 +1,47 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=matrix,linear_algebra
+!set gl_title=Produit de deux matrices
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>
+    Définition
+  </h4>
+  Soit \(n\) un entier naturel non nul et
+  \(a_1, a_2, \cdots,a_n, b_1,b_2,\cdots, b_n \quad 2 n \) nombres réels.
+  <br>
+  On appelle <strong>produit</strong> de la matrice ligne
+  \(\begin{pmatrix}a_1& a_2& \cdots&a_n\end{pmatrix}\) par la matrice colonne
+  \(\begin{pmatrix}b_1\\ b_2\\ \vdots\\ n_n\end{pmatrix}\) le nombre réel défini
+   par&nbsp;:
+  <div class="wimscenter">
+  \(\displaystyle{\begin{pmatrix}a_1& a_2& \cdots&a_n\end{pmatrix}
+  \begin{pmatrix}b_1\\ b_2\\ \vdots\\ n_n\end{pmatrix} = \sum_{i=1}^n a_i b_i }\)
+  </div>
+  c'est-à-dire
+  <div class="wimscenter">
+  \(\begin{pmatrix}a_1& a_2& \cdots&a_n\end{pmatrix}
+  \begin{pmatrix}b_1\\ b_2\\ \vdots\\ b_n\end{pmatrix} = a_1 b_1 + a_2 b_2 + \cdots + a_n b_n\).
+  </div>
+</div>
+
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(m\), \(n\) et \(p\) trois entiers naturels non nuls et \(A=(a_{i,j})\),
+   \(B=(b_{i,j})\) deux matrices de dimensions respectives \((m,n)\) et
+   <span style="white-space:nowrap">\((n,p)\).</span>
+  <br>
+  On appelle <strong>matrice produit</strong> de \(A\) et \(B\) la matrice
+  \(A \times B = (c_{i,j})\) de dimensions \((m,p)\) telle que pour tous entiers
+   naturels \(i\) et \(j\) vérifiant \(1\leqslant i\leqslant m\) et
+   <span style="white-space:nowrap">\(1\leqslant j\leqslant p\),</span>
+   <span style="white-space:nowrap">
+   \(c_{i,j} = \begin{pmatrix}a_{i,1}& a_{i,2}& \cdots&a_{i,n}\end{pmatrix}
+   \begin{pmatrix}b_{1,j}\\ b_{2,j}\\ \vdots\\ b_{n,j}\end{pmatrix}\).</span>
+</div>
+
+:mathematics/algebra/fr/matrix_prod_1

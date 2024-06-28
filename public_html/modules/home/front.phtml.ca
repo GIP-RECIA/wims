@@ -1,0 +1,18 @@
+<div class="title_box"><h2 class="wims_title">Aquí, també podeu trobar&nbsp;:</h2></div>
+<ul class="wims_home_list box_content">
+  <li>
+    !href module=$module&cmd=new&search_category=D Cursos i documents interactius.
+  </li><li>
+    !href module=$module&cmd=new&search_category=T Calculadores i graficadors online
+    &nbsp;: nombres, funcions, matrius, corbes, superfícies, estadístiques, etc.
+  </li><li>
+    !href module=$module&cmd=new&search_category=X Exercicis interactius
+     de diferents estils i nivells.
+  </li><li>
+    !href module=$module&cmd=new&search_category=R Entreteniments matemàtics
+    &nbsp;: trencaclosques i jocs.
+  </li><li>
+    !href module=adm/tool/glossary&cmd=new Glossaris
+    (en construcció).
+  </li>
+</ul>

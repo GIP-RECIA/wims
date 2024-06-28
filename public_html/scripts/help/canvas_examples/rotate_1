@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fpoly yellow,0,0,4,3,2,5
+rotate 45
+fpoly violet,0,0,4,3,2,5
+killrotate
+rotate 90
+fpoly violet,0,0,4,3,2,5

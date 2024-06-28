@@ -1,0 +1,13 @@
+size 400,400
+xrange -5,5
+yrange -5,5
+opacity 165,150
+fillpattern grid
+circle -6,3,160,blue
+fillpattern dot
+circle -3,-3,160,red
+fillpattern hatch
+circle 0,3,160,green
+filpattern diamond
+circle 3,-3,160,cyan
+zoom red

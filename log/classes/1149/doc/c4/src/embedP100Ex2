@@ -1,0 +1,26 @@
+\def{integer x=randint(35..60)}
+\def{integer p=randint(11..14,16..19)}
+\def{integer n=\x*(100+\p)}
+\def{real y=0.01*\n}
+
+<div class="wims_question">
+<p>
+Un pantalon coûte \x &euro; HorsTaxe, la TVA est de \p % sur le prix Hors Taxe.<br>
+Quel est le prix Toute Taxe Comprise de ce pantalon ?
+</p>
+On peut bien sûr réaliser un tableau de proportionnalité et chercher les nombres qui manquent :
+<table class="wimscenter wimsborder">
+<caption>Tableau de proportionnalité</caption>
+<tr><td></td><th>Valeur</th><th>Pourcentage</th></tr>
+<tr><th>Prix initial</th><td>\x</td><td>100</td></tr>
+<tr><th>Augmentation</th><td></td><td>\p</td></tr>
+<tr><th>Prix final</th><td>\(y)</td><td></td></tr>
+</table>
+On peut remarquer que le prix final correspond à (100 + \p) % du prix initial.<br>
+Il suffit de résoudre l'équation \(\frac{y}{\x}=\frac{100+\p}{100})
+ou plus simplement de multiplier le prix initial \x par \(\frac{100+\p}{100}),
+c'est-à-dire par 1,\p.
+<p>
+Le prix T.T.C. de ce pantalon est \(1,\p \times \x = \y) &euro;.
+</p>
+</div>

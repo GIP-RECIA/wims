@@ -1,0 +1,81 @@
+!set titb=Utiliser une lettre ou résoudre une équation
+!set keyw=
+!set datm=20210827
+!set prev=embedParabCan
+!set next=embedParabIneq
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<div class="wims_columns">
+ <div class="medium_size text_col">
+Si un problème comporte plusieurs variables ou plusieurs inconnues,<br>
+on utilise une ou des relations entre elles pour les exprimer en fonction d'une seule<br>
+et étudier les variations ou résoudre l'équation.
+</div><div class="medium_size img_col">
+<img alt="Garçon du nom de Constantin Connu" src="$m_filedir/Inconnu2.png"/>
+</div></div>
+
+!read primitives.phtml 1, fold, \embed{ParabSys}, Exemple 
+
+</p>
+<p class="decal">
+Si on connaît la forme canonique du trinôme, on peut résoudre l'équation 
+!insmath f(x)=k
+<br>
+en l'écrivant sous la forme 
+!insmath (x-x_S)^2=-y_S/a
+ et en utilisant la résolution de 
+!insmath X^2=k
+ &#58;<ul>
+  <li>Si 
+!insmath k \gt 0
+ alors 
+!insmath X^2=k
+ équivaut à 
+!insmath X=-sqrt(X)
+ ou 
+!insmath X=sqrt(X)
+.</li>
+  <li>Si 
+!insmath k = 0
+ alors 
+!insmath X^2=0
+ équivaut à 
+!insmath X=0
+.</li>
+  <li>Si 
+!insmath k \lt 0
+ alors 
+!insmath X^2=k
+ n'a pas de solution dans 
+!insmath \,\RR
+.</li>
+</ul>
+</p>
+<p class="decal">
+Si on connaît la forme factorisée du trinôme, on pourra utiliser la propriété &#58;<br>
+"Un produit de facteurs est nul si et seulement si l'un ou l'autre des facteurs est nul."</p>
+<p class="decal">
+Si on ne dispose que de la forme développée 
+!insmath a*x^2+b*x+c
+, ou si on peut facilement la retrouver,<br>
+on peut alors utiliser directement les résultats de ce chapitre &#58;<br>
+calculer le discriminant 
+!insmath \Delta=b^2-4 a c
+ puis les solutions si 
+!insmath \Delta \ge 0
+ &#58;<br>
+
+!insmath x_1=\frac{-b-\sqrt{\Delta}}{2 a}
+ et 
+!insmath x_2=\frac{-b+\sqrt{\Delta}}{2 a}
+.
+</p>
+

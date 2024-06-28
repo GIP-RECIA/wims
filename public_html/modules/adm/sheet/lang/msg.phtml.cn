@@ -1,0 +1,26 @@
+
+!set wims_module_error=error: $error
+
+<span class="wims_warning">$wims_name_Error</span>.
+
+!if bad_sheet iswordof $error
+  无效的页名.
+  !exit
+!endif
+
+!if too_many_print iswordof $error
+  你对打印版本的请求过多了.
+  !href cmd=reply&job=read $wims_name_back2
+  !exit
+!endif
+
+!if sheet_hidden iswordof $error
+  Cette feuille de travail n'est pas accessible pour vous. Ne jouez pas avec la barre d'adresse !!
+  !href cmd=reply&job=read $wims_name_back2
+  !exit
+!endif
+
+!if bad_maxsheet=$error
+  页数不能超过 $max_sheets. 你不能再创建新页.
+  !exit
+!endif

@@ -1,0 +1,61 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=sequence,arithmetic_sequence,recurrence_relation
+!set gl_title=Suite arithmétique
+!set gl_level=H5 Générale&nbsp;et&nbsp;Technologique
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Une suite \((u_n)_{n\in \NN}\) est dite <strong>arithmétique</strong> si et
+seulement s'il existe un réel \(r\) tel que, pour tout
+<span style="white-space:nowrap">\(n\in \NN\),</span>
+<span style="white-space:nowrap">\(u_{n+1}= u_n + r\).</span><br>
+Le réel \(r\) est appelé <strong>raison</strong> de la suite
+<span style="white-space:nowrap">\((u_n)_{n\in \NN}\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Si \((u_n)_{n\in \NN}\) est une suite arithmétique de raison \(r\) alors&nbsp;:
+<ul>
+<li>
+Pour tout \(n \in \NN\) et pour tout \(p \in \NN\) tel que
+<span style="white-space:nowrap">\(p \leqslant n\),</span> on a
+<span style="white-space:nowrap">\(u_n = u_p + (n-p)r\) ;</span>
+</li>
+<li>
+pour tout \(n \in \NN\), \(u_n = u_0 + n r \).
+</li>
+</ul>
+</div>
+
+<div class="wims_thm">
+<h4>Théorème</h4>
+
+Soit \((u_n)_{n\in \NN}\) une suite arithmétique.
+<ul>
+<li>
+Pour tout entier naturel non nul \(n\),
+<span style="white-space:nowrap">\( 1+2+\ldots+n = \frac{n(n+1)}{2} \).</span>
+</li>
+<li>
+  Pour tout \(n \in \NN \) :
+<div class="wimscenter">
+  \(\displaystyle{\sum_{k=0}^n u_k} = u_0 + u_1 + \ldots + u_n \)
+</div>
+<div class="wimscenter">
+  \(\displaystyle{\sum_{k=0}^n u_k} = (n+1) \frac{u_0 + u_n}{2}\).
+</div>
+</li><li>
+  Pour tout \(n \in \NN\) et tout \(p \in \NN\) tels que
+  <span style="white-space:nowrap">\(p \leqslant n \) :</span>
+  <div class="wimscenter">
+    \(\displaystyle{\sum_{k=p}^n u_k} = u_p + u_{p+1} + \ldots + u_n \)
+  </div>
+  <div class="wimscenter">
+    \(\displaystyle{\sum_{k=p}^n u_k} = (n-p+1) \frac{u_p+u_n}{2}\).
+  </div>
+</li>
+</ul>
+</div>

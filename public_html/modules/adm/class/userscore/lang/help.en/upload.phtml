@@ -1,0 +1,57 @@
+
+!read adm/title.phtml 1\
+\
+Upload spreadsheet data
+
+To send data from your spreadsheet into the class, save the data in a text
+format (txt, csv, or tsv), then send the file to the server.
+<p>
+You can either send user information or grades to the class. To send user
+information, the data must not contain any grades.
+</p><p>
+If you add grade to the class, the latter must contain the corresponding
+column. So if the grade column does not exist yet, create it first before
+uploading data.
+</p>
+<h3>Authentification via WIMS</h3>
+The first row of the table should be the names of each column. Valid column
+names and their meanings are shown below. You may choose any combination of
+columns and place them in any order, with the only condition that the field
+<span class="tt wims_code_words">login</span> must be present (WIMS use this field to recognize individual
+participant). If you want the server to ignore some rows, put a character
+<span class="tt wims_code_words">#</span> into the <span class="tt wims_code_words">login</span> field.
+<p>
+You can use this method to add participants (many at once), but to do so,
+your table must contain enough valid data for each participant to be added (first
+name, last name, password).
+</p><p>
+An example of a valid file for registration:
+</p><pre>
+login,firstname,lastname,password
+toto,Claude,Toto,1234
+</pre>
+
+<h3>Case of external authentication</h3>
+<p>
+ The file format is the same, but you must replace the
+ <span class="tt wims_code_words">login</span> field
+ with the <span class="tt wims_code_words">external_auth</span> field
+ (the <span class="tt wims_code_words">login</span> field should not appear).
+</p><p>
+ You must complete with the first and last name, unless you have a link with a directory,
+ ldap for example (declared in the class configuration).
+ In this case, and in this case only, only the external identifier
+ (<span class="tt wims_code_words">external_auth</span>) must be put.
+</p>
+
+<p>Remember that it is totally inadvisable to change
+ the authentication procedure once participants are registered.
+</p>
+
+<p>An example of a valid file for registration:</p>
+<pre>
+external_auth,firstname,lastname
+Claude.Toto,Claude,Toto
+</pre>
+
+!read lang/help.$moduclass_lang/fieldtab.phtml

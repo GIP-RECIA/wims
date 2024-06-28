@@ -1,0 +1,7 @@
+<p>
+À partir d'un encadrement de la solution, il est possible de diviser par 2
+la taille de l'intervalle, en observant où se trouve la solution par rapport au milieu de l'encadrement.
+Trouver les algorithmes les plus efficaces est encore aujourd'hui un objet de recherche.
+L'algorithme de recherche d'une solution par dichotomie est un algorithme classique qu'il est bon de connaître
+ et de savoir programmer sur sa calculatrice ou son ordinateur.
+</p>

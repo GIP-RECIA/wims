@@ -1,0 +1,20 @@
+
+!mailto $sup_email\
+\
+Codi per a la configuració de la classe\
+\
+<p>\
+Has demanat configurar la teva classe virtual\
+$wims_classname on $httpd_HTTP_HOST,\
+però no has indicat els llocs segurs.\
+</p><p>\
+Aquest és el teu codi secret (vàlid immediatament i només una vegada) per\
+aquest ús: <strong>$code</strong>\
+</p><p>\
+Pots copiar aquest codi a l'eina de configuració per accedir-hi.\
+</p><p>\
+Si no entens el que és, el més probable és que la contrasenya d'administrador\
+de la teva classe s'ha perdut o te l'han robat. Si us plau canvia la contrasenya tan aviat com sigui possible.\
+</p>\
+<p style="text-align:right">$wims_site_manager</p>\
+

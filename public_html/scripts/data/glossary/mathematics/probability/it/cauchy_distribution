@@ -1,0 +1,33 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Distribuzione di Cauchy
+!set gl_level=U1,U2,U3
+:
+:
+:tool/stat/table.fr
+:
+<div class="wims_defn"><h4>Definition</h4>
+Siano \(lambda) e \(s) numeri reali  con \(s>0\).
+La <strong>distribuzione di Cauchy</strong> con
+parametri \(lambda) e \(s) (denotata da \(C(\lambda , s)))
+è una distribuzione continua su \(\RR) con funzione di densità:
+
+<div class="wimscenter">
+\(x\mapsto \frac{1}{\pi s}\frac{1}{1+(\frac{x-\lambda}{s})^2} )
+</div>
+</div>
+<p>
+Osservazioni: Sia \(X) una variabile aleatoria avente
+distribuzione di Cauchy
+\(C(0 , 1)). La variabile aleatoria
+\(Y=\lambda+s X) ha distribuzione di Cauchy  \(C(\lambda,s)).
+</p><p>
+La mediana di \(Y) è \(\lambda). Il primo e il terzo quartile sono \(\lambda \pm s).<br>
+Le distribuzioni di Cauchy  non hanno valore atteso.
+</p>
+<table class="wimsborder wimscenter">
+<tr><th>Valore atteso</th><th>Varianza</th><th>Funzione caratteristica</th></tr>
+<tr>
+<td>&nbsp;</td><td>&nbsp;</td><td>
+\(\exp(i t\lambda-s|t|))</td></tr></table>

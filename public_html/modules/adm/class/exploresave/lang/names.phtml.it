@@ -1,0 +1,37 @@
+!set lang_exists=yes
+!set name_title_restore=Ripristino di risorse a partire da un file di backup
+!set name_introsave=Selezionare il file di backup da ripristinare
+!set name_view=Visualizza
+!set name_comp_view=il contenuto dell'archivio di backup caricato per selezionare le risorse da ripristinare.
+!set name_comp_view2=di nuovo il contenuto del file di backup caricato per poter eventualmente ripristinare un'altra risorsa.
+!set name_gotoressources=Risorse importate
+!set name_comp_delete=e reimposta l'archivio, per poter selezionare un altro file di backup.
+!set name_classnumber=!nosubst Qui sotto l'elenco delle risorse contenute nel file di backup del corso $classnumber.
+!set name_number=Codice
+!set name_Exercices=Esercizi
+!set name_msgsheet=!nosubst Il corso al momento contiene $classsheetcnt test di autovalutazione per un massimo di $max_sheets.
+!set name_touchlimit=Raggiunto il limite di risorse del corso: non è possibile ripristinare ulteriori risorse di questo tipo.
+!set name_touchlimitdoc=Raggiunto il limite per alcune risorse del corso: non è possibile ripristinarle.
+!set name_msgexam=Gli esami non sono ancora ripristinabili con questo metodo.
+!set name_msgvote=I questionari non sono ancora ripristinabili con questo metodo.
+!set name_msgdoc=!nosubst Il corso al momento contiene $classdoccnt documenti originali (massimo possibile $max_doc) e $classdocpubliccnt link verso documenti pubblici (massimo possibile $max_linkdoc) .
+!set name_msgtool=!nosubst Il corso contiene $classtoolcnt strumenti su un massimo possibile di $max_tool.
+!set name_msgglossary=!nosubst Il corso contiene $classglossarycnt voci di glossario su un massimo possibile di $max_glossary.
+!set name_msgfreework=!nosubst Il corso al momento contiene $classfreeworkcnt compiti a risposta aperta su un massimo di $max_freeworks.
+!set name_importselected=Ripristina gli elementi selezionati
+!! be careful each line is a different msg
+!set name_sheeterrormsg=Non ripristinabile: contiene un esercizio non pubblico.\
+Non ripristinabile: il modulo cui fa riferimento non è installato su questo server.\
+Non ripristinabile: il test è stato personalizzato mediante variabile tecnica.
+!! ---
+!set name_alreadyinclass=Già disponibile nel corso
+!set name_prive=Locale
+!set name_public=Documento pubblico
+!set name_type=Tipo
+!set name_doclinksheet=Attenzione: collegamento al test non ripristinabile
+!set name_docpublicnomodule=Non ripristinabile: documento non installato su questo server.
+!set name_description=Con questa operazione di ripristino non è possibile in generale modificare una risorsa già disponibile nel corso. Per questa ragione non è possibile il ripristino di alcuni tipi di risorse.
+!set name_replace=Sostituisci
+!set name_sheet=Test
+!set name_limittouch=Limite raggiunto
+

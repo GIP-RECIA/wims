@@ -1,0 +1,12 @@
+ses=!replace internal _ by , in $wims_session
+ses=!item 1 of $ses
+!setdef wims_opentchat=$empty\
+wims_sharescreen=$empty in wimshome/sessions/$ses/var.stat
+!if $warning!=notopen
+  success=disconnected
+  !if $autoclose!=0
+    local_html_header=<script>window.close();</script>
+  !endif
+!endif
+
+

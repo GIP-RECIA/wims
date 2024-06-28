@@ -1,0 +1,101 @@
+Contare e misurare
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+combinatorics
+Marina, Cazzola
+wims@unimib.it
+
+
+:H6/set/oefset.fr
+exo=cardlang&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Insiemi e sottoinsiemi
+Determinare come si ripartisono gli elementi di un insieme in alcuni suoi sottoinsiemi.
+
+:H4/stat/stat-3.nl
+subject=13&level=0&total_exos=3&rounding=-1&usage=2&taal=it
+10
+1
+Quanti anagrammi? #1
+Determinare quanti sono gli anagrammi di una parola.
+
+:H4/stat/stat-3.nl
+subject=12&level=0&total_exos=3&rounding=-1&usage=2&taal=it
+10
+1
+Chi organizza cosa?
+Distribuire compiti tra un certo numero di persone.
+:H4/stat/stat-3.nl
+subject=15&level=0&total_exos=3&rounding=-1&usage=2&taal=it
+10
+1
+Questione di scelte #1
+Determinare in quanti modi è possibile compiere alcune scelte.
+
+:H4/stat/stat-3.nl
+subject=16&level=0&total_exos=3&rounding=-1&usage=2&taal=it
+10
+1
+Questione di scelte #2
+Determinare in quanti modi è possibile compiere alcune scelte.
+
+:H4/stat/stat-3.nl
+subject=17&level=0&total_exos=3&rounding=-1&usage=2&taal=it
+10
+1
+Questione di scelte #3
+Determinare in quanti modi è possibile compiere alcune scelte. 
+
+:H6/set/oefset.fr
+exo=ssensplan&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Quanti elementi? #1
+Determinare quanti sono gli elementi di un insieme.
+
+:H6/set/oefset.fr
+exo=ssensclassiq&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Quanti elementi? #2
+Determinare quanti sono gli elementi di un insieme.
+
+:H6/set/oefset.fr
+exo=ssensclassiq0&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Quanti elementi? #3
+Determinare quanti sono gli elementi di un insieme.
+
+:H6/arithmetic/oefnumeration.fr
+exo=entierbase&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Quanti numeri?
+Determinare quanti sono i possibili numeri scritti in una determinata base.
+
+:H6/set/oefset.fr
+exo=Manhattan&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Distanze a Manhattan
+Determinare il numero di spostamenti possibili su una griglia.
+
+:H6/arithmetic/oefnumeration.fr
+exo=immatriculation&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Targhe automobilistiche
+Determinare quante sono le possibili targhe automobilistiche.
+
+:H6/arithmetic/oefnumeration.fr
+exo=livre&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Impaginazione di un libro
+Alcuni problemi di conteggio collegati all'impaginazione di un libro.
+

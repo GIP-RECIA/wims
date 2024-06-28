@@ -1,0 +1,49 @@
+!! preparing variable in case of use document to make presentation page of a sheet
+
+
+!! --- in case of use of file of the document in the presentation page
+!if $sheet_docpage!=yes
+  !let m_filedir=$wims_ref_name?session=$wims_session&+cmd=getfile&+special_parm=doc
+  !let tmp=!replace internal / by , in $sheet_docpage
+  !sh if [ -d $wims_home/log/classes/$wims_class/doc/$(tmp[1])/files ]; then\
+         cd $wims_home/$wims_sesdir;\
+         mkdir -p getfile;\
+         cd getfile;\
+         rm -f doc;\
+         ln -s $wims_home/log/classes/$wims_class/doc/$(tmp[1])/files doc;\
+      fi
+!endif
+!let wims_prefix=$wims_prefix m
+!let wims_trustfile=$wims_trustfile primitives/target.phtml primitives.phtml
+!let wims_writable=$wims_writable serial prim parm1 parm2 parm3 parm4 parms anchor w gotcnt gotm p add eq sh_ ex_ l_ m_ p_ a_ b_ t_ d_ prompt n i nadd lmod lses lcmd l ll l1 l2 m_exotitle m_exodescription
+!let wims_readable=$wims_readable wims_session wims_read_parm serial prim parm1 parm2 parm3 parm4 parms anchor w gotcnt gotm p add eq sh_ ex_ l_ m_ p_ a_ b_ t_ d_ prompt n i nadd lmod lses lcmd l ll l1 l2 wims_class m_exotitle m_exodescription
+!! ------ TMP bugfix :
+!! bugfix some variable value not correctly assigned in presentation sheet and main page of class
+!! this is a temporary correctif (need to modify src/OefMsg2wims/msg2wims.c for a definitive correction (change
+!! tmp$k variable name to tmp_$k variable to use wims_prefix instead of wims_writable/wims_readable)
+!let t=!makelist tmp v for v=0 to 50
+!let t=!nospace $t
+!let t=!items2words $t
+!let wims_writable=$wims_writable tmp $t
+!let wims_readable=$wims_readable tmp $t
+!! end of TMP bugfix ------------
+
+m_user_login=$wims_user
+m_user_lastname=$wims_lastname
+m_user_firstname=$wims_firstname
+m_class_code=$wims_class
+m_scorerequire=!words2items $requires
+m_title=$sheet_title
+m_desc=$sheet_desc
+m_scoregot=!words2items $scores
+m_scoremean=!words2items $means
+m_scorebests=!words2items $bests
+m_scorelevels=!words2items $levels
+m_scorealltries=!words2items $alltries
+m_expiration=$sheet_expiration
+m_today=!char 1 to 8 of $wims_now
+
+m_nbexo=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sh
+!for k=1 to $m_nbexo
+  m_infoexo$k=!record $k of wimshome/log/classes/$wims_class/sheets/.sheet$sh
+!next k

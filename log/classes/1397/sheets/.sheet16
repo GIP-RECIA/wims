@@ -1,0 +1,46 @@
+Riordinare
+giochi di geometria
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,spatial_skill,levelE3,levelE4,levelE5
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:E3/geometry/oefgeo2D.fr
+exo=circle1&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Raccogli i punti con un cerchio 1
+Ti appariranno tanti punti. Devi trovare il modo di raccoglierli in un cerchio, seguendo attentamente le istruzioni date.
+
+:E3/geometry/oefgeo2D.fr
+exo=circle2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Raccogli i punti con un cerchio 2
+Ti appariranno tanti punti. Devi trovare il modo di raccoglierli in un cerchio, seguendo attentamente le istruzioni date. Ma questa volta ci vorrà un po' di iniziativa da parte tua.
+
+:E3/geometry/oefgeo2D.fr
+exo=line3&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Disegna una linea per riordinare i punti 1
+Ti appariranno tanti punti. Devi disegnare una linea dritta (cioè una "retta") seguendo attentamente le istruzioni. Conta i punti che stanno al di qua e quelli che stanno al di là della linea.
+
+:E3/geometry/oefgeo2D.fr
+exo=line4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Disegna una linea per riordinare i punti 2
+Ti appariranno tanti punti. Devi disegnare una linea dritta (cioè una "retta") seguendo attentamente le istruzioni e raccogliendo dalla stessa parte il numero di punti che ti viene indicato.
+
+:E3/geometry/oefgeo2D.fr
+exo=line5&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Disegna una linea per riordinare i punti 3
+Ti appariranno tanti punti. Devi disegnare una linea dritta (cioè una "retta") seguendo attentamente le istruzioni e raccogliendo dalla stessa parte il numero di punti che ti viene indicato. Ma questa volta ci vorrà un po' di iniziativa da parte tua.
+

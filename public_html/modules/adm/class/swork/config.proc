@@ -1,0 +1,22 @@
+name_title=$name_configuration
+!if $save!=$empty
+  !bound cf_refreshtiming between 1 and 1000 default $swork_refreshtiming
+  !bound cf_open within 1,0 default $swork_open
+  !bound cf_allowrefresh within 1,0 default $swork_refreshtiming
+  !bound cf_nbexo between 1 and 10 default $swork_nbexo
+  cf_excludesh=!nospace $cf_excludesh
+  swork_excludesh=!listintersection $cf_excludesh and $listsh
+  !bound cf_minscore between 0 and 10 default 0
+  !setdef !set swork_refreshtiming=$cf_refreshtiming\
+!set swork_open=$cf_open\
+!set swork_allowrefresh=$cf_allowrefresh\
+!set swork_nbexo=$cf_nbexo\
+!set swork_minscore=$cf_minscore\
+!set swork_excludesh=$swork_excludesh in wimshome/log/classes/$wims_class/swork/.def
+  swork_minscore=$cf_minscore
+  swork_open=$cf_open
+  swork_allowrefresh=$cf_allowrefresh
+  swork_refreshtiming=$cf_refreshtiming
+  swork_nbexo=$cf_nbexo
+!endif
+!reset save

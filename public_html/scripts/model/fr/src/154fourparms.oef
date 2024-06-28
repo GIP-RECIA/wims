@@ -1,0 +1,126 @@
+type=numbers gapfill
+textarea="explain"
+iEdit="explain"
+random="a b c d"
+computed="ans"
+asis="explain"
+
+:Une question numérique avec 4 paramètres aléatoires.
+
+<p>Modèle permettant de faire un exercice dont l'énoncé dépend de 4 paramètres \a, \b, \c et \d et  et dont la réponse demandée est un nombre.
+ A chaque fois que l'élève recommencera l'exercice, les valeurs des 4 paramètres seront tirées au hasard dans un intervalle ou parmi une liste de valeurs qui vous définirez.
+</p>
+Vous avez la possibilité de définir :
+<ul><li>les intervalles ou listes de valeurs parmi lesquels les valeurs \a, \b, \c, \d des paramètres seront tirés </li>
+<li> la formule pour la réponse qui pourra dépendre de \a, \b, \c et \d </li>
+<li>quelles sont les réponses acceptées :
+si la réponse demandée est un entier ou une fraction rationnelle, il est possible de n'accepter que la valeur exacte. 
+Dans les autres cas, vous pouvez définir une marge d'erreur absolue ou relative.  </li></ul>
+
+$oef_help
+
+<p class="wims_credits">
+  Auteur du modèle : <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Quatre paramètres}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Premier paramètre \a.
+\real{a=randint(-20..20)}
+
+:Deuxième paramètre \b.
+\real{b=randint(-20..20)}
+
+:Troisième paramètre \c.
+\real{c=randint(-20..20)}
+
+:Quatrième paramètre \d.
+\real{d=randint(-20..20)}
+
+:La bonne réponse calculée.
+Toutes les fonctions usuelles sont reconnues. On utilise \a, \b, \c, \d pour
+désigner les paramètres aléatoires définis en haut.
+\real{ans=(\a)*(\d) - (\b)*(\c)}
+:Marge d'erreur acceptée
+<p>
+Sélectionnez "aucune" si  seule la valeur exacte
+est acceptée (utile pour des réponses entières ou des fractions). </p><p>
+Sélectionnez "relative" (resp. "absolue") si vous acceptez des valeurs approchées à une précision relative (resp. absolue) que vous fixerez ensuite (voir l'aide du champ suivant).
+</p>
+\text{marge=item(2,1. aucune,2. relative,3. absolue)}
+
+:Valeur de cette marge d'erreur
+Notons <span class="tt">err</span> la valeur de cette marge d'erreur, <span class="tt">good</span>  la bonne réponse
+et <span class="tt">rep</span>  la réponse de l'élève. La réponse de l'élève sera considérée
+comme juste  si
+<ul><li>  <span class="tt">|good - rep| &le; err</span> dans le cas où vous avez sélectionné "absolue",</li>
+<li><span class="tt">|good - rep| &le;  err*|rep|</span>  dans le cas où vous avez sélectionné "relative",</li></ul>
+\real{erreur=0.001}
+
+:Consigne pour entrer la réponse
+Modifiez le texte pour l'adapter suivant en fonction de la marge d'erreur que vous avez choisie.
+\text{instruction=La valeur donnée sera considérée comme correcte si l'erreur relative est inférieure à 0.001.}
+
+:Le texte qui explique ce qu'il faut faire.
+
+$embraced_randitem
+\text{explain=
+Calculez le déterminant de la matrice \([\a,\b;\c,\d]\).
+}
+
+:Mise en aléatoire par des accolades emboitables
+$embraced_randitem
+\text{accolade=item(1,1. oui,
+2. non)}
+
+: Solution
+Texte qui apparait en dessous de l'analyse de la réponse envoyé par l'apprenant et
+(l'enseignant qui utilisera cet exercice peut décider ou non de faire apparaitre ce texte).
+\text{textsol=}
+
+:%% Calculs à ne pas modifier
+\text{accolade=wims(word 1 of \accolade)}
+\text{explain=\accolade=1. ?wims(embraced randitem \explain)}
+\text{marge=wims(word 1 of \marge)}
+\if{\marge=1.}
+  {\text{format=numexp}
+  }
+  {\text{format=range}
+   \if{\marge=2.}{\real{ecart=\erreur*\ans}}{\real{ecart=\erreur}}
+   \real{ansmin=\ans-\ecart}
+   \real{ansmax=\ans+\ecart}
+   \text{ans=\ansmin,\ansmax,\ans}
+   }
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+::Vous n'avez pas besoin de modifier ceci en général.
+
+\statement{\explain
+\if{\instruction notsametext}{<div class="wims_instruction">\instruction</div>}
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Réponse}{\ans}{type=\format}
+\if{\textsol notsametext}{
+\solution{\textsol}
+}
+\latex{
+\begin{statement}
+ \explain\newline
+ \textit{\instruction}
+\end{statement}
+\begin{solution}
+\textsol
+\end{solution}
+}

@@ -1,0 +1,14 @@
+<p>
+Voici un algorithme pour trouver une encadrement de la solution de \(x^3 = C) avec la précision \(P).<br>
+sachant que cette solution est comprise entre \(A) et \(B).</p>
+
+Donner les valeurs de \(A), \(B), \(C) et \(P)<br>
+Tant que  \(B - A \gt P) faire :
+<ul>
+<li>\(X \leftarrow (A + B)/2)</li>
+<li>\(Y \leftarrow X^3)</li>
+<li>Si \(Y \gt C) alors \(B \leftarrow X) sinon \(A \leftarrow X)</li>
+<li>Fin Tant que</li>
+</ul>
+Afficher \(A)<br>
+Afficher \(B)

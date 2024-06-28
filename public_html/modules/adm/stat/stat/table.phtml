@@ -1,0 +1,56 @@
+!! generate a table of user and class repartition in different level.
+!let test=!fileexists wimshome/log/stat/stat.user
+!if $test!=yes
+ !exit
+!endif
+
+!readproc adm/lang/levelname.phtml.$lang
+!let nb=!itemcnt $wims_listlevel
+!set user=!record -1 of wimshome/log/stat/stat.user
+!set cls=!record -1 of wimshome/log/stat/stat.class
+!set cls=!words2items $cls
+!set cpt=0
+!set k=1
+!while $cpt=0 and $k<=$nb
+  !let cpt=$[$cpt+$(cls[$k+1])]
+  !increase k
+!endwhile
+
+!if $cpt=0
+  !exit
+!endif
+
+$name_clssrep
+
+$table_header
+  <thead>
+    <tr>
+      <th>$name_level</th>
+      !for k=1 to $nb
+        !if $(cls[$k+1])!=0
+          <th>$(name_wims_listlevel[$k])</th>
+        !endif
+      !next k
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>$wims_name_Classes</th>
+      !for k=1 to $nb
+        !if $(cls[$k+1])!=0
+          <td>$(cls[$k+1])</td>
+        !endif
+      !next k
+    </tr>
+    <tr>
+      <th>$wims_name_student</th>
+      !for k=1 to $nb
+        !if $(cls[$k+1])!=0
+          <td>
+            !word $k+1 of $user
+          </td>
+        !endif
+      !next k
+    </tr>
+  </tbody>
+$table_end

@@ -1,0 +1,8 @@
+<ul>
+<li>
+Si \(k) > 0 alors l'équation \(x^2=k) a deux solutions \(-\sqrt{k}) et \(\sqrt{k}).
+</li><li>
+Si \(k) = 0 alors l'équation \(x^2=k) équivaut à \(x=0) (elle a une seule solution 0).
+</li><li>
+Si \(k) < 0 alors l'équation \(x^2=k) n'a pas de solution dans \(\,\RR).
+</li></ul>

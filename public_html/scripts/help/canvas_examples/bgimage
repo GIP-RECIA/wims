@@ -1,0 +1,4 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+bgimage https://wims.unice.fr/wims/gifs/en.gif

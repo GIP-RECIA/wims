@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_function,extremum
+!set gl_title=Extremum d'une fonction sur un intervalle
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(f\) une fonction définie sur un intervalle \(\mathrm{I}\) et soit
+  \(x_0\) un réel de <span style="white-space:nowrap">\(\mathrm{I} \).</span><br>
+  \(f\) admet un <strong>extremum</strong> en \(x_0\) si et seulement si \(f\)
+  admet un minimum ou un maximum en <span style="white-space:nowrap">\(x_0\).
+  </span><br>
+  Cet extremum est \(f(x_0)\).
+</div>

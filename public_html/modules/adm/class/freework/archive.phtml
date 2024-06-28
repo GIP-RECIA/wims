@@ -1,0 +1,22 @@
+
+!if $archive_error!=$empty
+  <div class="wims_msg alert">
+    <strong>$wims_name_Error:</strong>
+    !read msg.phtml $archive_error
+  </div>
+!else
+  $name_desc_filearchive
+  <p class="wimscenter">
+  !getfile $freework.tgz $freework.tgz
+  </p>
+!endif
+<div class="wims_warning">
+$name_warning_archive
+<p class="wimscenter">
+!href cmd=reply&module=$module&job=$job&job2=confirm_archive&freework=$freework&back=$back $wims_name_yes
+&nbsp;
+!href cmd=reply&module=$module&job=configfw&freework=$freework $wims_name_no
+</p>
+</div>
+
+!reset job2 archive_error

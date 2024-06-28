@@ -1,0 +1,24 @@
+
+/* WIMS Help Blocs */
+.wims_help_bloc{
+  padding: 0.3rem;
+  border: 1px solid rgba(10, 10, 10, .25);
+  margin: .5rem auto 1rem auto;
+}
+.wims_help_bloc>h2{
+  margin-top:-.3rem;
+  margin-left:-.3rem;
+  margin-right:-.3rem;
+  padding:.3rem;
+  background-color: rgba(87, 87, 87, .25);
+}
+
+/* WIMS Help Bloc (type info) */
+.wims_help_bloc.info{background-color: #def0fc;}
+
+/* WIMS Help Bloc (type option) */
+.wims_help_bloc.option{background-color: #F6F6F6;}
+
+/* WIMS Help Bloc (type example) */
+.wims_help_bloc.example{background-color: #eaf9fe;}
+

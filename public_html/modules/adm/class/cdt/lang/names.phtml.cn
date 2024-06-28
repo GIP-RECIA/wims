@@ -1,0 +1,99 @@
+!set lang_exists=yes
+
+!if $job=adddate
+  !set cdt_subtitle=Ìí¼Ó/ĞŞ¸ÄÈÕÆÚ
+  !goto common
+!endif
+
+!if $job=addtodo
+  !set cdt_subtitle=Ìí¼ÓÈÎÎñ
+  !goto common
+!endif
+
+!if $job=logfile
+  !set cdt_subtitle=¼ÇÂ¼ÎÄ¼ş
+  !set name_text=ÕâÀïÊÇ°à¼¶µÄ×÷ÒµÁ¬½ÓµÄ¼ÇÂ¼
+  !goto common
+!endif
+
+!if $job=config
+  !set cdt_subtitle=¼ÇÂ¼ÎÄ¼ş
+  !set name_link=Ö÷Ò³Á¬½ÓµÄÃû³Æ
+  !set name_intro=ÕâÀïÊÇÄã¿ÉÒÔĞŞ¸ÄµÄ²ÎÊı
+  !set name_see_logfile=²Î¿´ ¼ÇÊÂ±¾µÄÈÕÖ¾ÎÄ¼ş
+  !set name_reversedate=°´ÄæÊ±¼äË³ĞòÏÔÊ¾ĞÅÏ¢
+  !set name_showyear=Afficher l'année dans les tableaux
+  !set name_hide=Cacher le cahier de texte aux participants
+  !goto common
+!endif
+
+!if $job=addfile
+  !set cdt_subtitle=Uploaded files
+  !set name_erasedfile=!nosubst ÎÄ¼ş <b>$erase</b> ÒÑ±»É¾³ı
+  !set name_depos=Äã¿ÉÒÔ´æ·ÅÎÄ¼ş
+  !set name_available=¿ÉÓÃµÄÎÄ¼ş
+  !set name_erase=É¾³ıÎÄ¼ş
+  !set name_nodeposit=Äã²»ÄÜÔÙ´æ·ÅÎÄ¼ş, ÒòÎª·ÖÅä¸ø°à¼¶µÄÓ²ÅÌ¿Õ¼äÏŞ¶îÒÑ¾­½Ó½ü»ò³¬¹ı
+  !set name_explanation1=!nosubst ÕâĞ©ÎÄ¼ş¿ÉÒÔÀûÓÃ±äÁ¿
+  <span class="tt wims_code_variable">\filedir</span> ´æÈ¡. \
+  ÀıÈç,\
+  <p class="wimscenter">\
+ <span class="tt wims_address">&lt;a href="\filedir/$f1"&gt;$f1&lt;/a&gt;</span>\
+ </p>\
+ ¸ø³öµ½ÎÄ¼ş <a href="$m_filedir/$f1">$f1</a> µÄÁ´½Ó.\
+ ÄãÒ²¿ÉÒÔĞ´
+
+ !set name_explanation2=ÒÔ°üº¬Ò»¸öÍ¼ÏñÎÄ¼ş <span class="tt">myfile.jpg</span> µ½Ò³Ãæ.\
+ <p>Ö»ÓĞ°à¼¶µÄ²Î¼ÓÕß²ÅÄÜ´æÈ¡±»´æ·ÅµÄÎÄ¼ş.</p>
+  !goto common
+!endif
+
+!if $job=helplink
+  !set name_Add=ÎªÁËÌí¼ÓÒ»¸ö¶ÔÏó, Çëµã»÷ÏàÓ¦µÄÁ´½Ó.
+  !set name_exam=¿¼ÊÔ;
+  !goto common
+!endif
+
+:common
+!distribute line ÒÑ×ö¹¤×÷\
+Òª×öµÄ¹¤×÷\
+´Ó\
+µ½\
+Ìí¼Ó¿¼ÊÔ\
+Ìí¼Ó×÷ÒµÒ³\
+ÔÚÒÔÏÂÆÚ¼ä\
+Òª×öµÄ¹¤×÷\
+ÈÎÎñ\
+ÏÔÊ¾µÄÈÕÆÚÊı\
+Óû×öµÄ¹¤×÷\
+ÒÑ×ö¹¤×÷\
+»á»°\
+×Ö·û\
+Ã»ÓĞĞÅÏ¢\
+Ã»ÓĞÕâÒ»ÌìµÄĞÅÏ¢\
+Ã»ÓĞÕâÒ»½×¶ÎµÄĞÅÏ¢\
+ÈÕ\
+¿Î³Ì\
+°à¼¶\
+Ìá¹©\
+ÎŞÊÂ¿É×ö\
+²åÈë°à¼¶»î¶¯\
+le\
+into name_done,name_todo,name_between,name_and,name_addexam,name_addsheet,name_for,name_worktodo,\
+name_work,name_nb_date,name_todo2,name_workdone,name_session,\
+name_character,name_noinfo1,name_noinfo2,name_noinfo3,\
+name_Day,name_discipline,name_inclass,name_giventhe,name_nowork,\
+name_help_add,name_the
+
+!set name_workfor=$name_for$name_work
+
+!set name_warning1=Èç¹û²»Ìá¹©µÚ¶ş¸öÈÕÆÚ, \
+¾ÍÖ»ÄÜ°´µÚÒ»¸öÈÕÆÚ½øĞĞ.
+
+!set name_find2=Recherche
+!set name_find=Chercher
+
+!set name_hiddencdt1=Le cahier de texte a été desactivé par votre enseignant.
+!set name_hiddencdt2=Les données du cahier de texte relatives à certaines matières ne sont pas affichées (affichage désactivé par l'enseignant de la matière).
+!set name_nosupervise=Ce cahier de texte regroupe tous les cahiers de texte des cours de la classe. Il ne peut qu'être consulter. Pour effectuer des modifications ou des ajouts, il faut se rendre dans les cours correspondants.
+!set name_nosuperviseforuser=Ce cahier de texte regroupe les éléments des cahier de texte de tous les cours de la classe.

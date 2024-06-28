@@ -1,0 +1,203 @@
+!set titb=Exemples de démonstration de l'extremum dans un trinôme avec la forme canonique.
+!set keyw=
+!set datm=20210503
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randint 2, 5
+
+!set m_a=$[rint($(tmp0))]
+
+!set tmp0=!randint 6, 10
+
+!set m_xS=$[rint($(tmp0))]
+
+!set tmp0=!randint 11, 20
+
+!set m_yS=$[rint($(tmp0))]
+
+<p class="decal">
+L'expression d'un trinôme est sous la forme canonique si elle est écrite 
+!insmath a(x-x_S)^2+y_S
+ où 
+!insmath a \ne 0
+.<br>
+Nous allons démontrer que si 
+!insmath a \gt 0
+, 
+!insmath y_S
+ est le minimum du trinôme sur 
+!insmath \,\RR
+ et que<br>
+si 
+!insmath a \lt 0
+, 
+!insmath y_S
+ est le maximum du trinôme sur 
+!insmath \,\RR
+.<br>
+Nous effectuons cette démonstration sur des exemples, puis dans le cas général.</p>
+<table cellpadding=10 border=1><tr><td>
+Démontrons que $m_yS est le maximum de 
+!insmath -\a*(x-\xS)^2+\yS
+ sur 
+!insmath \,\RR
+.
+</td>
+<td>
+Démontrons que $m_yS est le minimum de 
+!insmath \a*(x-\xS)^2+\yS
+ sur 
+!insmath \,\RR
+.
+</td>
+</tr></tr>
+<td>
+ 
+!insmath (x-\xS)^2
+ est un carré donc est positif ou nul<br>
+donc 
+!insmath \a*(x-\xS)^2
+ est aussi positif ou nul.<br>
+Dans 
+!insmath -\a*(x-\xS)^2+\yS
+, on retranche un nombre positif ou nul à $m_yS<br>
+Le résultat est donc inférieur ou égal à $m_yS.<br>
+Par ailleurs, si 
+!insmath x=\xS
+ alors 
+!insmath -\a*(x-\xS)^2+\yS=\yS
+.<br>
+Cela achève de démontrer que &#58;<br>
+$m_yS est le maximum de 
+!insmath -\a*(x-\xS)^2+\yS
+ sur 
+!insmath \,\RR
+.
+</td><td>
+ 
+!insmath (x-\xS)^2
+ est un carré donc est positif ou nul<br>
+donc 
+!insmath \a*(x-\xS)^2
+ est aussi positif ou nul.<br>
+Dans 
+!insmath \a*(x-\xS)^2+\yS
+, on ajoute un nombre positif ou nul à $m_yS<br>
+Le résultat est donc supérieur ou égal à $m_yS.<br>
+Par ailleurs, si 
+!insmath x=\xS
+ alors 
+!insmath \a*(x-\xS)^2+\yS=\yS
+.<br>
+Cela achève de démontrer que &#58;<br>
+$m_yS est le minimum de 
+!insmath \a*(x-\xS)^2+\yS
+ sur 
+!insmath \,\RR
+.
+</td>
+<tr><td>
+Démontrons que<br>
+Si 
+!insmath a \lt 0
+ alors 
+!insmath y_S
+ est le maximum de 
+!insmath a*(x-x_S)^2+y_S
+ sur 
+!insmath \,\RR
+.
+</td><td>
+Démontrons que<br>
+Si 
+!insmath a \gt 0
+ alors 
+!insmath y_S
+ est le minimum de 
+!insmath a*(x-x_S)^2+y_S
+ sur 
+!insmath \,\RR
+.
+</td>
+</tr></tr>
+<td>
+On suppose ici que 
+!insmath a \lt 0
+<br>
+ 
+!insmath (x-x_S)^2
+ est un carré donc est positif ou nul,
+donc 
+!insmath a*(x-x_S)^2
+ est négatif ou nul.
+Dans 
+!insmath a*(x-x_S)^2+y_S
+, on ajoute un nombre négatif ou nul à 
+!insmath y_S
+.
+Le résultat est donc inférieur ou égal à 
+!insmath y_S
+.<br>
+Par ailleurs, si 
+!insmath x=x_S
+ alors 
+!insmath a*(x-x_S)^2+y_S=y_S
+.<br>
+Cela achève de démontrer que &#58;<br>
+
+!insmath y_S
+ est le maximum de 
+!insmath a*(x-x_S)^2+y_S
+ sur 
+!insmath \,\RR
+.
+</td><td>
+On suppose ici que 
+!insmath a \gt 0
+<br>
+ 
+!insmath (x-x_S)^2
+ est un carré donc est positif ou nul<br>
+donc 
+!insmath a*(x-x_S)^2
+ est aussi positif ou nul.<br>
+Dans 
+!insmath a*(x-x_S)^2+y_S
+, on ajoute un nombre positif ou nul à 
+!insmath y_S
+.
+Le résultat est donc supérieur ou égal à 
+!insmath y_S
+.
+Par ailleurs, si 
+!insmath x=x_S
+ alors 
+!insmath a*(x-x_S)^2+y_S=y_S
+.
+Cela achève de démontrer que &#58;<br>
+
+!insmath y_S
+ est le minimum de 
+!insmath a*(x-x_S)^2+y_S
+ sur 
+!insmath \,\RR
+.
+</td>
+</table>
+<p class="decal">
+Les démonstrations ci-dessus montrent que le point de coordonnées (x_S ; y_S)
+est le sommet de la parabole d'équation 
+!insmath y=a*(x-x_S)^2+y_S
+.</p>
+

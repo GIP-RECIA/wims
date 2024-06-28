@@ -1,0 +1,52 @@
+!! html for create a new empty class (in or not a structure)
+!if $step=$empty or $step=pre
+
+  !set wims_menu_items=!append line itemsep,0,$wims_name_Creation\
+    create_class,1,cmd=reply&step=0&cltype=0\
+    to $wims_menu_items
+
+  <div class="wims_content">
+    $name_choose
+
+    <ul class="wims_nopuce spacer">
+      <li class="menuitem">
+  !set wims_ref_class=create_class
+  !href cmd=reply&step=0&cltype=0 $wims_name_create_class
+      </li>
+      <li class="menuitem">
+  !if 2 isitemof $alltypes
+    !set wims_ref_class=create_superclass
+    !href cmd=reply&step=0&cltype=2 $wims_name_create_superclass
+    !set wims_menu_items=!append line create_superclass,1,cmd=reply&step=0&cltype=2\
+     to $wims_menu_items
+  !else
+    <strike class="text_icon create_superclass">$wims_name_create_superclass</strike> <em>($noright)</em>.
+  !endif
+     </li>
+     <li class="menuitem">
+  !if 4 isitemof $alltypes
+    !set wims_ref_class=create_portal
+    !href cmd=reply&step=0&cltype=4 $wims_name_create_portal
+    ($name_expert)
+    !set wims_menu_items=!append line create_portal,1,cmd=reply&step=0&cltype=4\
+    to $wims_menu_items
+  !else
+    <strike class="text_icon create_portal">$wims_name_create_portal</strike> <em>($noright)</em>.
+  !endif
+   </li>
+   <li class="menuitem">
+  !set wims_ref_class=cloneclass
+  !href cmd=reply&job=cloneexemple&step=-3 $wims_name_cloneclass
+  !set wims_menu_items=!append line cloneclass,1,cmd=reply&job=cloneexemple&step=-3\
+     to $wims_menu_items
+   </li>
+   </ul>
+    <div class="wims_msg info">
+      <strong>$wims_name_help</strong>
+  !read lang/help.phtml.$modu_lang 1
+    </div>
+    </div>
+  !exit
+!else
+  !changeto proc/newclass.phtml
+!endif

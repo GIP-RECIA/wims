@@ -1,0 +1,10 @@
+!set lang_exists=yes
+
+name_title=Informe d'un error en un exercici
+name_titlemail=Error en un exercici
+name_mailinfogene=Informacions generals
+name_mailcomment=Descripció del mal funcionament
+name_content=Aclariment del mal funcionament
+name_info=Al vostre missatge s'afegirà automàticament la informació següent&nbsp;
+name_rapportbug=Fitxer var
+name_to=to

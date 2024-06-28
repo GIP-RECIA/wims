@@ -1,0 +1,97 @@
+!! this process allow to generate a list (echoose) of series of exercices taken in active sheet
+!!
+!! to work this script need
+!! variables defined :
+!! asheets : list of active sheets
+!! echoose : list of actual series selected
+!! language variable to be defined
+!! name_All, name_selectsheet
+!! add to main.phtml before header
+!! !let js=!record 0 of js/chooselist.js
+!! !let wims_html_header=!append line $js to $wims_html_header
+!! in var.def echoose and ltsheets need to be define to any
+!!
+!! output
+!! variable echoose contain list of series selected format $sheet.$exo
+!!
+
+
+!let checked=$empty
+!set  select_option=style="width: 400px;" multiple="multiple" size="15"
+<table class="wimscenter wimstable">
+  <thead>
+    <tr>
+      <th>$name_Availables</th>
+      <th> </th>
+      <th>$name_Selected</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td style="vertical-align:top">
+
+      !! list of available sheets
+      <div>
+        <label for="ltsheets">$name_selectsheet</label>
+        <select id="ltsheets" name="ltsheets"  value="$ltsheets"
+                onchange="filterSelectExoSheet(this.form.elements['select_sheet1'], this.form.elements['ltsheets'])"
+                >
+          !let ltsheets=!listintersect $asheets and $ltsheets
+          !if $ltsheets=$empty
+            !let ltsheets=$asheets
+          !endif
+          !if $ltsheets=$asheets
+            <option value="$asheets" selected="selected">$name_All</option>
+          !else
+            <option value="$asheets">$name_All</option>
+          !endif
+          !for k in $asheets
+            !if $ltsheets=$k
+              <option value="$k" selected="selected">
+            !else
+              <option value="$k">
+            !endif
+            !let t=!record $k of wimshome/log/classes/$wims_class/sheets/.sheets
+            $k :
+            !line 3 of $t
+            </option>
+          !next k
+        </select>
+      </div>
+
+      !! Available exercices
+      <select $select_option name="select_sheet1" id="select_sheet1"
+              ondblclick="moveSelections(this.form.elements['select_sheet1'], this.form.elements['select_sheet2'], this.form.elements['echoose'], 'add')">
+      !for i in $asheets
+        !set t=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$i
+        !for j=1 to $t
+          !if $i.$j isitemof $echoose
+            !set r=!record $j of wimshome/log/classes/$wims_class/sheets/.sheet$i
+            !distribute line $r into r1,r2,r3,r4,r5,r6
+            !let checked=!append line <option value="$i.$j" data-sheetId="$i">$i.$j : $r5</option> to $checked
+          !else
+              !set r=!record $j of wimshome/log/classes/$wims_class/sheets/.sheet$i
+              !distribute line $r into r1,r2,r3,r4,r5,r6
+              <option value="$i.$j" data-sheetId="$i"
+              !if $i notitemof $ltsheets
+                style="display:none;"
+              !endif
+              >$i.$j : $r5</option>
+          !endif
+        !next j
+      !next i
+      </select>
+    </td>
+    <td>
+      <input class="wims_button" name="add" title="$wims_name_append" value=" &rarr; " type="button" onclick="moveSelections(this.form.elements['select_sheet1'], this.form.elements['select_sheet2'], this.form.elements['echoose'], 'add'); return false;">
+      <br>
+      <input class="wims_button" name="remove" title="$wims_name_Remove" value=" &larr; " type="button" onclick="moveSelections(this.form.elements['select_sheet1'], this.form.elements['select_sheet2'], this.form.elements['echoose'], 'remove'); return false;">
+    </td>
+    <td style="vertical-align:top">
+      !! Selected exercices
+      <select $select_option name="select_sheet2" ondblclick="moveSelections(this.form.elements['select_sheet1'], this.form.elements['select_sheet2'], this.form.elements['echoose'], 'remove')">$checked</select>
+      <select style="overflow: hidden; visibility: hidden; width: 1px; height: 0;" name="echoose" multiple="multiple" size="10">$checked</select>
+    </td>
+  </tr>
+  </tbody>
+</table>

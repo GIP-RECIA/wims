@@ -1,0 +1,9 @@
+!!
+!! test if tchat administrative module is allowed or not
+!!
+!!
+!if class/tchat notitemof $wims_allowed_optional_module or $class_type>1
+  !let wims_allowlink_tchat=no
+!else
+  !let wims_allowlink_tchat=yes
+!endif

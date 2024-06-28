@@ -1,0 +1,93 @@
+!!### score, mode (for mode=legend, score can be empty)
+
+!distribute items $wims_read_parm into t0_,tc_
+!! last color is for unfinished exercise
+
+!set colorhexa=#FF0000,#FF0000,#FF0000,#FF9922,#FF9922,#FF9922,#FFE338,#FFE338,#00B000,#008F00,#008F00,#FFFFFF
+!set class_scorecolor=!nonempty items $class_scorecolor
+!set class_scorecolorcnt=!itemcnt $class_scorecolor
+!!color unfinished
+!if $class_scorecolorcnt<12 and $class_scorecolorcnt>0
+  !set class_scorecolor=$class_scorecolor,#D3D3D3
+!endif
+!if $class_scorecolor=$empty
+  !set class_scorecolor=!defof class_scorecolor in wimshome/log/classes/$wims_class/.def
+  !set class_scorecolor=!nonempty items $class_scorecolor
+  !default class_scorecolor=$colorhexa
+!endif
+
+!set class_scorecolor=!replace internal white  by $(colorhexa[1])  in $class_scorecolor
+!set class_scorecolor=!replace internal red    by $(colorhexa[2])  in $class_scorecolor
+!set class_scorecolor=!replace internal orange by $(colorhexa[5])  in $class_scorecolor
+!set class_scorecolor=!replace internal yellow by $(colorhexa[8])  in $class_scorecolor
+!set class_scorecolor=!replace internal green  by $(colorhexa[10]) in $class_scorecolor
+
+!default tc_=background
+
+!if $t0_=$empty
+  !exit
+!endif
+
+!goto $tc_
+
+:background
+!set style_note="background-color:$(class_scorecolor[$t0_+1]);" class="wims_sheet_score"
+!exit
+
+:htmlcolor
+!set note_color=$(class_scorecolor[$t0_+1])
+!exit
+
+:color
+
+!set style_note="
+!if $(class_scorecolor[$t0_+1]) issametext #FFFFFF
+  !set style_note=$style_note;color:#666;
+!else
+  !set style_note=$style_note;color:$(class_scorecolor[$t0_+1]);
+!endif
+!set style_note=$style_note" class="wims_sheet_score
+
+!! Add Trophy icon fo scores >=8
+!if $t0_>=9.5
+  !set style_note=$style_note trophy3
+!endif
+!if $t0_>=9 and $t0_<9.5
+  !set style_note=$style_note trophy2
+!endif
+!if $t0_>=8 and $t0_<9
+  !set style_note=$style_note trophy1
+!endif
+!set style_note=$style_note"
+!exit
+:livret
+
+!let t_=!charcnt $t0_
+!if $t_>1 or ($t_=1 and $t0_>0)
+  !let t_=$t0_+0.0000001
+!else
+  !let t_=0
+!endif
+
+!set style_note="background-color:$(wims_scorecolor[$[ceil(min($t_,10))+1]]);"
+
+!! approximation of score in case of livret :
+!set value_note=$[rint(($t0_)*10^(max(0,$wims_scoreview)))/10^(max(0,$wims_scoreview))]
+!if $wims_scoreview>=0 and $t_>0
+  !set output_note=$value_note
+!else
+  !set output_note=&nbsp;
+!endif
+!if $t_=0
+ !set value_note=-1
+!endif
+!exit
+
+:legend
+!set output_legend=<fieldset class="wims_score_bar_legend">\
+  <legend>$wims_name_legend</legend><ul>\
+  <li style="background-color:$(class_scorecolor[12])">&nbsp;</li>
+!for j=0 to 10
+  !set output_legend=$output_legend<li style="background-color:$(class_scorecolor[$j+1])">$j</li>
+!next
+!set output_legend=$output_legend</ul></fieldset>

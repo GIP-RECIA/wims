@@ -1,0 +1,56 @@
+!! find participant personnal work for the freework wims_read_parm when type=4
+!! entry wims_read_parm :
+!! item 1 freework to search
+!! item 2 (optionnal) participant login
+!! if item 2 is not specified the process construct listlogin (list of user login in the class)
+!! data_$k contain data for user number $k in the list listlogin
+!! else search only file and data for the user specified stocked in data_0
+!! data user line is :
+!! login,workfilename,depositdate,deposittime,workcorrectionfilename,depositdate,deposittime
+
+fw_=!item 1 of $wims_read_parm
+user_=!item 2 of $wims_read_parm
+listing_=!sh cd $wims_home/log/classes/$wims_class/freeworksdata/$fw_/work;\
+for k in `ls *-work.*`; do stat --format="%n %y" $$k | awk -F"[ :]" '{a=$$1; b=$$2; sub (/\..*/,"",a); gsub(/\-/,"",b); print a","$$1","b","$$3":"$$4}' ; done
+listingco_=!sh cd $wims_home/log/classes/$wims_class/freeworksdata/$fw_/co;\
+for k in `ls`; do stat --format="%n %y" $$k | awk -F"[ :]" '{a=$$1; b=$$2; sub (/\..*/,"",a); gsub(/\-/,"",b); print a","$$1","b","$$3":"$$4}' ; done
+indexco_=!column 1 of $listingco_
+!if $user_=$empty
+  nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+  !reset $listlogin
+  !for k_=1 to $nbuser
+    dt_=!record $k_ of wimshome/log/classes/$wims_class/.userlist
+    listlogin=!append item $(dt_[3]) to $listlogin
+    !reset data_$(k_)
+  !next k_
+  nbfile_=!linecnt $listing_
+  !for k_=1 to $nbfile_
+    dt_=!line $k_ of $listing_
+    u_=!replace internal -work by $empty in $(dt_[1])
+    p_=!positionof item $u_ in $listlogin
+    !if $p_!=$empty
+      data_$(p_)=!item 2 to -1 of $dt_
+      !! check for work correction
+      q_=!positionof item $u_ in $indexco_
+      !if $q_!=$empty
+        dt_=!line $q_ of $listingco_
+        dt_=!item 2 to -1 of $dt_
+        data_$(p_)=!append item $dt_ to $(data_$(p_))
+      !endif
+    !endif
+  !next k_
+!else
+  key_=!column 1 of $listing_
+  p_=!positionof item $user_-work in $key_
+  !if $p_!=$empty
+    data_0=!line $p_ of $listing_
+    q_=!positionof item $user_ in $indexco_
+    !if $q_!=$empty
+      d_=!line $q_ of $listingco_
+      d_=!item 2 to -1 of $d_
+      data_0=!append item $d_ to $(data_0)
+    !endif
+  !else
+    data_0=$empty
+  !endif
+!endif

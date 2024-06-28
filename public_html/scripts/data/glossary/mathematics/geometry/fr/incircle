@@ -1,0 +1,26 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=circle,triangles,angle_bisector
+!set gl_title=Cercle inscrit dans un triangle
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème 1</h4>
+Les bissectrices d'un triangle sont concourantes.
+</div>
+<div class="wims_thm"><h4>Théorème 2</h4>
+Le point de concours des bissectrices d'un triangle est équidistant des côtés du
+triangle.</div>
+<div class="wims_thm">
+<h4>Théorème 3</h4>
+Soit ABC un triangle et \(I\) le point de concours des bissectrices.<br>
+Le cercle de centre \(I\) tangent à un côté du triangle est tangent aux deux
+autres côtés.
+</div>
+<div class="wims_defn"><h4>Définition</h4>
+Soit ABC un triangle et \(I\) le point de concours des bissectrices.<br>
+Le cercle de centre \(I\) tangent aux trois côtés du triangle ABC est appelé
+<strong>cercle inscrit</strong> dans le triangle ABC.</div>
+:mathematics/geometry/fr/incircle_1

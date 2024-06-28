@@ -1,0 +1,32 @@
+<div class="wims_columns">
+ <div class="medium_size text_col">
+Ce chapitre utilise astucieusement les transformations algébriques
+pour passer d'une des trois formes (développée, canonique ou factorisée) à une autre.
+
+La mise sous forme canonique en complétant un carré puis la factorisation
+éventuelle en est un exemple classique.
+Cela représente une certaine virtuosité.
+
+L'essentiel est d'être capable de passer d'une forme à une autre et de choisir
+la forme adaptée au problème.
+</div><div class="medium_size img_col">
+<img alt="Femme du nom de Chantal Gèbre" src="\filedir/algebre2.png"/>
+</div></div>
+<p><img alt="Schéma reliant les 3 formes" src="\filedir/schema.png"/></p>
+<table class="wimscenter wimsborder">
+<tr><td>Forme</td><td>Utile pour :</td><td>Éléments caractéristiques</td></tr>
+<tr><td>Développée<br>Forme standard<br>\(a*x^2+b*x+c)</td>
+<td>Addition des trinômes.<br>Égalité par identification des coefficients.<br>
+Image de 0, formules du trinômes : calcul de \(\Delta).</td>
+<td>\(a) : coefficient du carré.<br>\(b) : coefficient de la variable.<br>\(c) : terme constant.</td></tr>
+<tr><td>Canonique<br><i>outil à tout faire</i><br>\(a*(x-x_S)^2+y_S)</td>
+<td>Trouver les coordonnées du sommet.<br>Tracer rapidement la courbe.<br>
+Trouver et justifier les variations.<br>Résoudre.<br>Factoriser si c'est possible.</td>
+<td>\(a) : coefficient du carré, sens et ouverture de la parabole.<br>
+\(x_S) : abscisse du sommet.<br>\(y_S) : ordonnée du sommet.</td></tr>
+<tr><td>Factorisée<br>Forme spéciale qui n'existe pas toujours.<br>\(a*(x-x_1)*(x-x_2))<br>ou \((a'*x+b)*(c*x+d))</td>
+<td>Résoudre. Intersection avec l'axe des abscisses.<br>Étudier le signe.<br>
+Trouver un facteur commun avec un autre trinôme ou polynôme.</td>
+<td>\(a) : coefficient du carré, sens et ouverture de la parabole.<br>
+\(x_1) : première racine.<br>\(x_2) : deuxième racine.</td></tr>
+</table>

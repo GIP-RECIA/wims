@@ -1,0 +1,182 @@
+!set titb=Étude des variations d'un trinôme à l'aide de la forme canonique
+!set keyw=
+!set datm=20210501
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randitem -1,1
+
+!set tmp1=!randitem 2,3,4,5
+
+!set m_a=$[rint($(tmp0)*$(tmp1))]
+
+!set tmp0=!randitem 2,3,4,5
+
+!set m_x=$[rint($(tmp0))]
+
+!set tmp0=!randitem -1,1
+
+!set tmp1=!randitem 2,3,4,5
+
+!set m_y=$[rint($(tmp0)*$(tmp1))]
+
+!ifval $m_a>0 
+!set m_s1= > 
+
+!else
+!set m_s1= <
+
+!endif
+
+!ifval $m_a>0 
+!set m_s2= < 
+
+!else
+!set m_s2= >
+
+!endif
+
+!ifval $m_a>0 
+!set m_v1= décroissante 
+
+!else
+!set m_v1= croissante 
+
+!endif
+
+!ifval $m_a>0 
+!set m_v2= croissante  
+
+!else
+!set m_v2= décroissante 
+
+!endif
+
+<p align="center">Variations de 
+!insmath g(x) = \a*(x - \x)^2 + \y
+</p>
+<table align="center" border=1 cellpadding=10>
+<tr><td>Soient 
+!insmath x_1
+ et 
+!insmath x_2
+ deux nombres réels quelconques<br>
+de &#93 -$m_infty ; $m_x &#93 tels que 
+!insmath x_1 \lt x_2
+ alors &#58;<br>
+<p align="center">
+
+!insmath x_1  \lt x_2 \le \x
+<br>
+
+!insmath x_1 - \x \lt x_2 - \x \le 0
+<br>
+
+!insmath (x_1 - \x)^2  > (x_2 - \x)^2
+
+</p>
+car la fonction carré est strictement décroissante sur &#93 
+!insmath -\infty
+ ; 0 &#93<br>
+<p align="center">
+
+!insmath \a*(x_1 - \x)^2
+ $m_s1 
+!insmath \a*(x_2 - \x)^2
+<br>
+
+!insmath \a*(x_1 - \x)^2 + \y
+ $m_s1 
+!insmath \a*(x_2 - \x)^2 + \y
+<br>
+
+!insmath g(x_1)
+ $m_s1 
+!insmath g(x_2)
+</p>
+Pour tous les nombres réels 
+!insmath x_1
+ et 
+!insmath x_2
+ de &#93 -$m_infty ; $m_x &#93 tels<br>
+que 
+!insmath x_1 \lt x_2
+ on a 
+!insmath g(x_1)
+ $m_s1 
+!insmath g(x_2)
+ donc la fonction<br>
+
+!insmath g
+ est strictement $m_v1 sur &#93 -$m_infty ; $m_x &#93.<br>
+</td>
+<td>Soient 
+!insmath x_1
+ et 
+!insmath x_2
+ deux nombres réels quelconques<br>
+de &#91 $m_x ; + $m_infty &#91 tels que 
+!insmath x_1 \lt x_2
+ alors &#58;<br>
+<p align="center">
+
+!insmath \x \le x_1  \lt x_2
+<br>
+
+!insmath 0 \le x_1 - \x  \lt x_2 - \x
+<br>
+
+!insmath (x_1 - \x)^2  \lt (x_2 - \x)^2
+
+</p>
+car la fonction carré est strictement croissante sur &#91 0 ; + 
+!insmath \infty
+ &#91<br>
+<p align="center">
+
+!insmath \a*(x_1 - \x)^2
+ $m_s2 
+!insmath \a*(x_2 - \x)^2
+<br>
+
+!insmath \a*(x_1 - \x)^2 + \y
+ $m_s2 
+!insmath \a*(x_2 - \x)^2 + \y
+<br>
+
+!insmath g(x_1)
+ $m_s2 
+!insmath g(x_2)
+</p>
+Pour tous les nombres réels 
+!insmath x_1
+ et 
+!insmath x_2
+ de &#91 $m_x ; + 
+!insmath \infty
+ &#91 tels<br>
+que 
+!insmath x_1 \lt x_2
+ on a 
+!insmath g(x_1)
+ $m_s2 
+!insmath g(x_2)
+ donc la fonction<br>
+
+!insmath g
+ est strictement $m_v2 sur &#91 $m_x ; + 
+!insmath \infty
+ &#91.
+</td></tr>
+</table>
+

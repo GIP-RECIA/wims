@@ -1,0 +1,157 @@
+!nocache
+!read oef/default
+!read oef/testseedscore.phtml
+!read oef/get_presentgood.proc
+
+!if bad_exo iswordof $error
+  !exit
+!endif
+
+<div class="oefanswer">
+!read ./oef/$module_language/answer.phtml
+<div class="answer_analysis">
+<h2 class="legend oefanswername">$name_answeranalysis</h2>
+
+<div class="content">
+!if $ansorder!=$empty or $conditioncnt >0
+  <table class="float_left answeranalysis">
+!endif
+
+!distribute item 1,1 into cntr,cntc
+
+!set indgood   =<span class="oef_indgood">$indgood</span>
+!set indpartial=<span class="oef_indpartial">$indpartial</span>
+!set indprec   =<span class="oef_indprec">$indprec</span>
+!set indbad    =<span class="oef_indbad">$indbad</span>
+!set condgood  =<span class="oef_condgood">$condgood</span>
+!set condbad   =<span class="oef_condbad">$condbad</span>
+
+!for t in $ansorder
+  !set i=$(cnt$t)
+  !if $oefsteps=$empty or $t$i isitemof $gotsteps
+    !set tt=!word 1 of $(replygood$i)
+    !if noanalyzeprint notwordof $(replyoption$i) or ?analyze notin $(replygood$i)
+      !read oef/answer$t.phtml
+    !endif
+    !! # Here is a whitelist of answer types where color legend must be displayed.
+    !if noanalyzeprint iswordof $(replyoption$i)
+      !set display_noanalyze=yes
+    !else
+      !! could have been defined for another reply
+      !if $display_noanalyze!=yes
+        !if (($(replytype$i) iswordof radio checkbox mark flashcard numeric multipleclick\
+            chemclick and nolegend notwordof $(replyoption$i))\
+            or legend iswordof $(replyoption$i))\
+            and ?analyze notin $(replygood$i) and $wims_isexam<1
+          !if $(diareply$i)!=good or $(partialgood$i)=yes or $(precreply$i)=yes
+            !set display_oeflegend=yes
+            !if $(partialgood$i)=yes
+              !default display_partialgood=yes
+            !endif
+            !if $(precreply$i)=yes
+              !default display_precreply=yes
+            !endif
+            !if ($(replystyle$i)=mc or $(replytype$i) iswordof draw multipleclick chemclick) and $(replytype$i) notwordof radio
+              !default display_forget=yes
+            !endif
+          !endif
+        !endif
+      !endif
+    !endif
+  !endif
+  !advance cnt$t
+!next t
+
+!if $conditioncnt>0
+  !if $embedded_bracket!=$empty
+    <tr><td style="text-align:left" colspan="2" class="nowrap small">$embedded_bracket</td></tr>
+  !endif
+!endif
+
+!for i in $condlist
+  !if hide notwordof $(condoption$i)
+    <tr><td colspan="2" class="bold">$(condname$i):</td><td>
+    !item $(condtest$i)+1 of $condbad,$condgood
+    </td></tr>
+  !endif
+!next i
+
+!if $ansorder!=$empty or $conditioncnt >0
+  </table>
+!endif
+
+!if $display_oeflegend issametext yes
+  !read oef/color_legend.phtml
+!endif
+!set scorestat=!getscorestatus sheet=$wims_sheet
+!if $feedbackcnt>0 and \
+  ($givefeed=$empty or $givefeed=-1 or ($givefeed=1 and ($score=10 or $seedlastcnt>=$seedrepeat))\
+    or ($givefeed>=2 and $seedcnt>=$givefeed and ($score=10 or $seedlastcnt>=$seedrepeat))\
+    or ($givefeed>=1 and _exam isin $wims_session)\
+    or ($givefeed=-2 and $scorestat=no)\
+  )
+  <div class="oef_feedbacks" style="clear:left;">
+  !read $deffile feedback
+  </div>
+!endif
+<br class="spacer clearall">
+!if $status=$empty
+  <span class="oef_modulescore">
+    !if $qnum>1
+      $name_serie_score
+    !else
+      $name_exo_score
+    !endif
+  </span>
+  !ifval $module_score>9.8
+    <span class="oef_congratulations">$wims_name_Congratulations</span>
+  !endif
+  !if $toolate!=$empty and $score>$module_score
+    <span class="oef_penalty">$name_penalty</span>
+  !endif
+!endif
+!!end of .content
+</div>
+!!end of .answer_analysis
+</div>
+!!presentsol=1 deprecated
+!! givesol=1: always if $score=10 or at the last try of all versions
+!if $solution!=$empty and ($givesol=$empty or (($presentsol=1 and $score<10)\
+    or ($givesol=1 and ($score=10 or $seedlastcnt>=$seedrepeat))\
+    or ($givesol>=2 and $seedcnt>=$givesol and ($score=10 or $seedlastcnt>=$seedrepeat))\
+    or ($givesol>=1 and _exam isin $wims_session)\
+    or ($givesol=-1 and $scorestat=no)\
+    ))
+  <div class="wims_widget_box clearall">
+    <div class="title_box">
+      <input type="button" class="wims_button wims_secondary_button float_right small"
+             id="button_print" value="$name_sol_print"
+             onclick="printSolution()">
+      <script>
+        function printSolution() {
+          css_print = document.getElementById("css_print");
+          css_print.disabled=false;
+          window.print();
+          css_print.disabled=true;
+        }
+      </script>
+      <h2>$name_Solution</h2>
+    </div>
+    <div class="box_content">
+      !if $solution!=$executed_str or $oef2wims_version<3.10
+        $solution
+      !else
+        !read $deffile solution
+      !endif
+    </div>
+  </div>
+!endif
+
+!!reset seedlastcnt
+
+!if $m_reply_err != $empty
+  <pre class="wimswarning">$m_reply_err</pre>
+!endif
+  <br class="spacer clearall">
+</div>
+<!--END oef answer-->

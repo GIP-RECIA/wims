@@ -1,0 +1,9 @@
+!if ($wims_realuser=supervisor or $wims_realuser=SUPERVISOR) and $wims_realuser!=$wims_class_Supervisor
+  <div class="wims_msg alert">
+    !if $wims_realuser=SUPERVISOR
+      !line 2 of $wims_name_noteacherclass
+    !else
+      !line 1 of $wims_name_noteacherclass
+    !endif
+  </div>
+!!endif

@@ -1,0 +1,42 @@
+!set lang_exists=yes
+
+name_workinprogress=Ce module est un prototype en cours de développement.
+name_sworktitle=Suggestion d'exercices
+name_sworkdesc=Cette page vous suggère des activités de travail en comparant vos résultats avec ceux des autres participants de la classe.
+name_sworkdate=!nosubst Cette suggestion a été établie le $slib_out.
+name_changesuggest=Vous pouvez modifier la suggestion de travail.
+name_autochange=!nosubst Vous pourrez la modifier au bout de $swork_refreshtiming heure(s).,\
+Elle sera automatiquement modifiée au bout de $swork_refreshtiming heure(s).
+name_noexo=Aucun exercice disponible. Cela peut provenir du fait que les feuilles d'exercices ont été désactivées ou que vous avez la note maximale dans chacun des exercices sur lequel vous pouvez être noté.
+name_modtitle=Suggestion de travail
+name_exotitle=!nosubst Exercice $exnum_ de la feuille $sh_
+name_at=à
+name_studentloc=!nosubst $user_firstname $user_lastname
+name_studentglo=!nosubst $wims_name_firstname $wims_name_lastname
+name_date=Date de création
+name_userlistdesc=Ce tableau affiche la date et la suggestion de travail pour chacun des\
+  élèves de la classe. Lorsque la ligne est vide, c'est que l'élève ne s'est jamais connecté\
+   à ce module (pas de date affichée) ou qu'il n'y aucune suggestion pour cet élève.
+name_config=Proposer automatiquement les suggestions de travail aux élèves,\
+Temps de travail minimum par proposition,\
+Autoriser les participants à changer de proposition,\
+Nombre d'exercices par proposition,\
+Feuilles exclues,\
+Score moyen d'exclusion
+name_desc_config=empty,\
+Il s'agit du temps minimum (en heure) avant qu'une nouvelle proposition puisse apparaître,\
+Le participant peut décider lui-même de changer sa proposition de travail,\
+Il s'agit du nombre maximum d'exercices proposés dans une même proposition,\
+Les exercices des feuilles cochées seront exclus des suggestions de travail.,\
+Les exercices dont la moyenne de la classe est inférieure à cette valeur ne sont plus prioritaires.
+name_score=Score,Objectif
+name_forbiddenexo=Certains exercices ne sont pas accessibles suite à une modification de vos autorisations depuis la mise en place de cette suggestion.,\
+Vous pouvez modifier la suggestion pour obtenir de nouveaux exercices.,\
+Il vous faut attendre la fin de la période de travail sur cette suggestion pour qu'une autre vous soit automatiquement proposée. Vous pouvez également contacter votre enseignant pour qu'il change votre suggestion.,\
+Il vous faut attendre la fin de la période de travail sur cette suggestion pour pourvoir la renouveller. Vous pouvez également contacter votre enseignant pour qu'il change votre suggestion.
+name_legendtab=Objectif rempli,Exercice fermé,Objectif non rempli
+name_logwork=Pas d'activité.\
+Archives des activités suggérées.\
+Attention, seulement les 50 dernières activitées sont listées.
+wims_name_logwork=Archives
+name_logworktab=Début,Fin,Exercices,Gain

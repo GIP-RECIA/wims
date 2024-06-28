@@ -1,0 +1,52 @@
+#! /bin/sh
+
+LL="env LC_ALL=C LC_CTYPE=C LANG=C"
+if [ ! -d def ]; then exit; fi
+if [ -f "INDEX" ]; then
+  transl_lang=`grep -a translation_language INDEX | awk -F= '{print $2}'`;
+  module_lang=`grep -aw language INDEX | awk -F= '{print $2}'`;
+fi
+rm -f Exindex Extitles >/dev/null
+cd def
+list=`ls *.def 2>/dev/null | sed 's/\.def//g'`
+cd ..
+
+if [ -z "$list" ]; then exit; fi
+titlist=
+for lang in $transl_lang $module_lang ; do
+  rm -f Extitles_$lang;
+done
+for i in $list
+do
+  tit=`awk -F= 'NF>=2 {print $2; exit}' lang/$i.$module_lang | $LL tr ',\11' '; '`
+  echo "$i:$tit" >>Extitles
+  titlist="$titlist$tit
+"
+done
+
+echo "$titlist" >tmp1
+echo "$list" >tmp2
+llist=`$LL paste tmp1 tmp2 | $LL sort -t '	' -f -k 1,1`
+list1=`echo "$llist" | $LL awk -F'\11' 'length()>2 {print $2}' | $LL tr '\n' ' '`
+list=`echo "$llist" | $LL awk -F'\11' 'length()>2 {print $2}' | $LL tr '\n' ','`
+titlist=`echo "$llist" | $LL awk -F'\11' 'length()>2 {print $1}' | $LL tr '\n' ','`
+
+cat >Exindex <<@
+!set exolist  =!char 1 to -2 of $list
+!set exototal =!itemcnt \$exolist
+@
+
+for lang in $transl_lang $module_lang ; do
+  titlist=""
+  for i in $list1
+  do
+    titl=`grep -a "title" lang/$i.$lang | awk -F= '{print $2}'`;
+    echo "$i:$titl" >>"Extitles_$lang";
+    titlist="$titlist$titl,"
+  done
+  cat >>Exindex <<@
+!set titlelist_$lang=!char 1 to -2 of $titlist
+@
+done
+
+rm -f tmp1 tmp2

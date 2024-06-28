@@ -1,0 +1,73 @@
+!set methtit=Contraposición
+!set methparmtype=parm predicate nocomma >
+!set methparmrelax=1
+!set methhelp=Contraponer hipótesis y objetivo:\
+  reescribir A \(=>) B como no(A) \(=>) no(B)).\
+  <p>\
+ También podemos usar este método para probar\
+ por contradicción..</p>
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!if fixedgoal iswordof $m_options
+  !set error1=fixedgoal
+  !exit
+!endif
+
+!set n_=!linecnt $m_goal
+!if $n_>1
+  !set error1=¡Tienes múltiples objetivos en el estado actual!\
+   La contraposición debe hacerse con un solo propósito. Por favor, \
+   separe los objetivos primero.
+  !exit
+!endif
+!if $n_<1
+  !set error1=No tienes ningún objeto que contraponer.
+  !exit
+!endif
+
+!exit
+:form
+!set i_=!linecnt $mtobj1
+!if $i_>0
+  Contraponer la hipótesis
+  !set ch_optional=Aucune
+  !read deduc/methparm.phtml 1
+  et le but \($m_goal).
+  !set methremark=Escoja "hypothèse=Ninguna" para un razonamiento por\
+  contradicción.
+!else
+  Contraponer el objetivo \($m_goal): razonamiento por contradicción.
+!endif
+!exit
+:check
+!if contradiction notwordof $m_goal
+  newobject0=!exec mathexp not\
+$m_goal
+  oldobject=0
+!else
+  !reset newobject, newobject0
+!endif
+!if $methparm1=$empty or $methparm1<1
+  !if contradiction iswordof $m_goal
+    error=¡Contraponer una contradicción sin hipótesis no tiene sentido!
+    !exit
+  !endif
+  newgoal=contradiction
+  methexp=Contraponer
+!else
+  obj=!line $methparm1 of $mtobj1
+  d=!item 1 of $obj
+  l=!word 1 of $d
+  obj=!item 2 to -1 of $obj
+  m_context=!replace line number $l by $ in $m_context
+  m_context=!nonempty lines $m_context
+  newgoal=!exec mathexp not\
+$obj
+  methexp=Contraponer con \($obj)
+!endif
+m_goal=$newgoal
+!read deduc/objects.combine
+!exit

@@ -1,0 +1,54 @@
+Oltre i numeri interi
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+rational_number,fraction
+Marina, Cazzola
+wims@unimib.it
+
+
+:H1/algebra/addfig.en
+exo=pyramid1&exo=pyramid2&exo=pyramid1c&exo=pyramid1d&confparm1=9&confparm2=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Somma di frazioni #1
+Acquisire familiarità con la somma di frazioni.
+
+:H3/algebra/arithtable.en
+exo=partial2x3&exo=partial3x4&confparm1=11&confparm2=4&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Prodotto di frazioni
+Acquisire familiarità con il prodotto di frazioni.
+
+:E6/number/orderange.en
+exo=posfrac1&exo=posfrac2&exo=posfrac3&exo=posfrac4&exo=posfrac5&confparm1=4&confparm2=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Ordinamento di frazioni #1
+Acquisire familiarità con l'ordinamento naturale nell'insieme dei numeri razionali.
+
+:E6/number/orderange.en
+exo=relfrac1&exo=relfrac2&exo=relfrac3&exo=relfrac4&exo=relfrac5&confparm1=4&confparm2=1&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Ordinamento di frazioni #2
+Acquisire familiarità con l'ordinamento naturale nell'insieme dei numeri razionali.
+
+:H4/algebra/segfrac.en
+term=2&diff=2&integ=1
+10
+1
+Somma di frazioni #2
+Acquisire familiarità con la somma di frazioni.
+
+:U1/arithmetic/oefeuclide.fr
+exo=rationnel&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=0&intro_expow=&intro_sepow=&intro_precw=&intro_expert=yes
+10
+1
+Numeri razionali in base b
+Scrivere un numero razionale in base diversa da 10.
+
+

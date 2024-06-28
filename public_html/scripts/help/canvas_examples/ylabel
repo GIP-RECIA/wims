@@ -1,0 +1,10 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontsize 8
+axis
+axisnumbering
+precision 1
+xlabel x-axis
+ylabel y-axis
+grid 1,1,grey,2,2,2,red

@@ -1,0 +1,82 @@
+Calculer des aires et des volumes
+Conversion d'unités, aire et volume de solides
+??,2021
+1
+H4
+geometry
+elementary_geometry,3_shape,measurement,area,volume,conversion
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Géométrie" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+
+:H1/geometry/periairevolum.fr
+exo=convlong&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Conversions de longueurs
+Conversion <strong>d'unités</strong> tableau.
+
+
+:H1/geometry/periairevolum.fr
+exo=convaire&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Conversions d'aires
+Conversion <strong>d'unités</strong> tableau.
+
+
+:H1/geometry/periairevolum.fr
+exo=convvolum&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Conversions de volume
+Conversion <strong>d'unités</strong> tableau.
+
+
+:H1/geometry/OEFevalwimssolide.fr
+exo=oefconvconvol1&exo=oefconvconvol2&exo=oefconvconvol3&exo=oefconvconvol4&exo=oefconvconvol5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Conversions de volume 2
+Conversion <strong>d'unités</strong> de volumes (S.I.&lt;~&gt;pratique).
+
+
+:H1/geometry/periairevolum.fr
+exo=calaire5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calculs d'aires
+Calculer l'<strong>aire</strong> totale d'une surface.
+
+
+:H3/geometry/oefairevolcollege.fr
+exo=oefcalculvolume4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Calculer un volume
+Calculer le <strong>volume</strong> d'un solide usuel.
+
+
+:H1/geometry/periairevolum.fr
+exo=calaire5litt&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Aire latérale du prisme ou du cylindre (littéral et numérique)
+Calculer l'<strong>aire latérale</strong>.
+
+
+
+
+
+:H1/geometry/periairevolum.fr
+exo=calvolum5litt&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Volume du prisme ou du cylindre (littéral et numérique)
+Calculer le <strong>volume</strong> d'un prisme ou d'un cylindre.
+
+
+
+
+

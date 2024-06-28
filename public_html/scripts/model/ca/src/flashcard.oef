@@ -1,0 +1,115 @@
+type=select
+textarea="data instruction"
+iEdit="instruction"
+
+:Amagar certes paraules d'una frase (tipus flashcard).
+
+Es presenten les etiquetes. Es tracta d'amagar-ne algunes.
+<p class="wims_credits">
+Autor del model : <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+:\title{Amagar les etiquetes}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciat
+\text{instruction=Amagar els adjectius clicant damunt la seva etiqueta.}
+
+:Nombre de frases proposades (màxim 5)
+\text{N=2}
+
+:Nom del fitxer
+Ompliu-ho només si voleu transferir el codi d'aquest exercici a un compte de Modtool
+i utilitzeu un fitxer de dades (en un mòdul OEF)
+del tipus
+<pre>
+ &#58;El gat ??negre?? s'ha menjat el ratolí ??blanc.??
+ &#58;El gat ??blanc?? s'ha menjat el ratolí ??negre.??
+</pre>
+En aquest cas, les dades principals no es tindran en compte.
+En cas contrari, ompliu les dades principals.
+
+\text{file=}
+
+:Dades principals.
+Posar les frases envoltant amb ?? les paraules a amagar.
+\text{data=El gat ??negre?? s'ha menjat el ratolí ??blanc.??
+La casa ??verda?? està situada al turó.
+Al jardí, hi ha flors ??blanques?? i ??vermelles.??}
+
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+
+\integer{N=min(\N,5)}
+\if{\file notsametext}{
+  \integer{datacnt=wims(recordcnt \file)}
+  \integer{N=min(\N,\datacnt)}
+  \text{choix=shuffle(\datacnt)}
+  \text{choix=\choix[1..\N]}
+  \text{data=}
+  \for{s in \choix}{
+    \text{data=\data
+wims(record \s of \file)}
+   }
+  }{
+  \integer{M=rows(\data)}
+  \integer{N=min(\N,\M)}
+  \integer{N=min(\N,10)}
+  \text{liste=shuffle(\M)}
+  \text{liste=\liste[1..\N]}
+  \matrix{data=\data}
+  \matrix{data=\data[\liste;]}
+}
+\text{Numero=}
+\text{Texte=}
+\text{cnt=}
+\text{data=\accolade=1 ?wims(embraced randitem \data)}
+\text{data=wims(replace internal ' by &#146; in \data)}
+\for{u=1 to \N}{
+  \matrix{texte=slib(text/markgroup \data[\u;])}
+  \matrix{numero=\texte[1..-4;]}
+  \text{cnt_mot = rows(\numero)}
+  \text{numero = wims(rows2lines \numero)}
+  \text{numero = wims(lines2items \numero)}
+  \text{Numero = wims(append line \numero to \Numero)}
+  \text{texte = \texte[-3;]}
+  \text{cc=items(\texte)}
+  \text{cnt = wims(append item  \cc to \cnt)}
+  \text{Texte=wims(append line \texte to \Texte)}
+}
+\matrix{Texte=\Texte}
+\matrix{Numero=\Numero}
+\text{STEP=wims(makelist r x for x=1 to \N)}
+\steps{\STEP}
+\statement{\instruction
+\if{\N=1}{<div class="emptyline"> </div>
+<div class="wimscenter">\for{j=1 to \cnt}{
+   \embed{r 1,\j}
+ }</div>
+}{
+ \for{ss=1 to \N}{<p> \ss :</p>
+ <div class="wimscenter">\for{j=1 to \cnt[\ss]}{
+   \embed{r \ss,\j}
+ }</div>
+ }
+}
+}
+\answer{1}{\Numero[1;];\Texte[1;];&nbsp;}{type=flashcard}{option=show noanalyzeprint}
+\answer{2}{\Numero[2;];\Texte[2;];&nbsp;}{type=flashcard}{option=show noanalyzeprint}
+\answer{3}{\Numero[3;];\Texte[3;];&nbsp;}{type=flashcard}{option=show noanalyzeprint}
+\answer{4}{\Numero[4;];\Texte[4;];&nbsp;}{type=flashcard}{option=show noanalyzeprint}
+\answer{5}{\Numero[5;];\Texte[5;];&nbsp;}{type=flashcard}{option=show noanalyzeprint}
+

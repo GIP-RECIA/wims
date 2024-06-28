@@ -1,0 +1,162 @@
+!! Level 3 happens when an exercice file has been submitted
+
+<div class="wims_msg success">$name_success.</div>
+!set rr=$[$replycnt+$choicecnt]
+$table_header
+<caption>$name_techanalysis</caption>
+$table_tr<th width="50%" scope="row">$wims_name_title</th><td>$title</td></tr>
+$table_tr<th scope="row">$name_parameter_cnt</th><td>$varcnt</td></tr>
+$table_tr<th scope="row">$name_answer_cnt</th><td>$rr</td></tr>
+$table_end
+
+!! if exercice has not been saved yet, inform user :
+!if $success!=1 and $regout!=fail
+  <p>$name_pending_save</p>
+!endif
+
+!read menu_items.proc
+
+<ul class="flex_box grid-x small-up-1 medium-up-3 large-up-4">
+  <li class="card cell">
+    <div class="card-section">
+      !set wims_ref_class=text_icon testexo
+      !href cmd=resume&realtest=yes&retest=again $wims_name_testexo
+    </div>
+  </li>
+  !if $mode!=file
+    <li class="card cell">
+      <div class="card-section">
+        !!!!!!!!!!!!! début de modifs JY pour le module confia2qcm !!!!!!!!!!!!!
+        !if $to_ia_qcm=-1
+          !href module=adm/auth/confia2qcm&cmd=new&chexo=2&exo=1&to_ia_qcm=1 $wims_name_backconfia2qcm
+        !endif
+        !if $to_ia_qcm=-2
+          !href module=adm/auth/createqcm&cmd=new&chexo=2&exo=1&to_ia_qcm=2 $wims_name_backcreateqcm
+        !endif
+        !if ($to_ia_qcm!=-2 and $to_ia_qcm!=-1)
+          !set wims_ref_class=text_icon exomodify
+          !href cmd=reply&level=2 $wims_name_exomodify
+        !endif
+        !!!!!!!!!!!!! fin de modifs JY pour le module confia2qcm !!!!!!!!!!!!!
+      </div>
+    </li>
+  !else
+    !set wims_form_method=file
+    <li class="card cell">
+      <div class="card-section">
+        !form reply
+          <input type="hidden" name="level" value="3">
+
+          <label for="wims_deposit">$name_modify</label>
+          <input type="file" name="wims_deposit" id="wims_deposit">
+          <input type="submit" value="$name_sendagain">
+        !formend
+      </div>
+    </li><li class="card cell">
+      <div class="card-section">
+        !set wims_ref_class=text_icon back
+        !href cmd=reply&level=1&mode=raw $name_menuback
+      </div>
+    </li>
+  !endif
+
+  !if $wims_user!=$empty
+    <li class="card cell">
+      <div class="card-section">
+        !set wims_ref_class=text_icon upload
+        !href cmd=reply&level=6 $name_deposit
+      </div>
+    </li>
+    !set wims_menu_items=!append line downloadbinary,1,cmd=reply&level=6\
+      to $wims_menu_items
+  !endif
+
+  !if $wims_developer!=$empty
+    <li class="card cell">
+      <div class="card-section">
+        !if $existing=$empty
+          !set wims_ref_class=text_icon save
+        !else
+          !set wims_ref_class=text_icon newversion
+        !endif
+
+        !href cmd=reply&level=7 $name_developer
+        !if $existing!=$empty
+          $name_new
+        !endif
+      </div>
+    </li>
+  !endif
+
+  !if $wims_user!=$empty or $existing!=$empty
+    !if $success!=1 and $regout!=fail
+      <li class="card cell">
+        <div class="card-section">
+          !set wims_ref_class=text_icon save_ex
+          !if $existing!=$empty
+            !if ..devel/ notin ..$catmodule
+              !if $catmodule=$empty
+                $name_putinclass
+                !href cmd=reply&level=4 $name_replace
+                $wims_name_or
+                !set wims_ref_class=text_icon newversion
+                !href cmd=reply&level=4&newone=1 $name_new
+                !set wims_menu_items=!append line replace,1,cmd=reply&level=4\
+  newversion,1,cmd=reply&level=4&newone=1\
+  to $wims_menu_items
+              !else
+                !href cmd=reply&level=4 $name_putinclass
+                !reset catmodule
+              !endif
+            !else
+              !href cmd=reply&level=4 $name_developer
+              $name_replace (<span class="tt wims_fname">$catmodule/src/$existing.oef</span>)
+              !set wims_menu_items=!append line putmodtool,1,cmd=reply&level=4\
+              to $wims_menu_items
+            !endif
+          !else
+            !href cmd=reply&level=4 $name_putinclass
+            !set wims_menu_items=!append line putclass,1,cmd=reply&level=4\
+              to $wims_menu_items
+          !endif
+        </div>
+      </li>
+    !endif
+    !reset success
+  !endif
+
+  !if $mode!=file
+    <li class="card cell">
+      <div class="card-section">
+        !set wims_ref_class=text_icon download
+        !getfile submit.oef $name_savesource
+        $name_download
+      </div>
+    </li>
+  !endif
+</ul>
+
+!! if anonymous user :
+!if $wims_user=$empty and $wims_developer=$empty
+  <p>$name_better_in_a_class</p>
+!endif
+
+!if $to_ia_qcm=-1
+  !set wims_menu_items=!append line backconfia2qcm,1,module=adm/auth/confia2qcm&cmd=new&chexo=2&exo=1&to_ia_qcm=1\
+  to $wims_menu_items
+!endif
+
+!if $to_ia_qcm=-2
+  !set wims_menu_items=!append line backcreateqcm,1,module=adm/auth/createqcm&cmd=new&chexo=2&exo=1&to_ia_qcm=2\
+  to $wims_menu_items
+!endif
+
+!if ($to_ia_qcm!=-2 and $to_ia_qcm!=-1)
+  !set wims_menu_items=!append line exomodify,1,cmd=reply&level=2\
+  to $wims_menu_items
+!endif
+
+!! what was this for exactly ??
+!!if $wims_version_theme=0 or $wims_version_theme=
+!!  !reset wims_menu_items
+!!!endif

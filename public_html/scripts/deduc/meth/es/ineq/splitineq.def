@@ -1,0 +1,30 @@
+!set methtit=Separar los casos según una desigualdad
+!set methenv=ZZ QQ RR
+!set methparmtype=function, choice 4, function
+!set methhelp=Este método separa la situación en dos casos,
+  según la veracidad de una desigualdad. La desigualdad y su inversa
+  se sumarán en las hipótesis de los dos casos respectivamente.
+
+!if $wims_read_parm iswordof form check
+ !goto $wims_read_parm
+!endif
+
+!exit
+:form
+ Separar los casos según la verdad de la desigualdad <br>
+ !read deduc/methparm.phtml 1,10
+ !formselect methparm2 from 1 to 4 prompt <,>,<=,>=
+ !read deduc/methparm.phtml 3,10
+!exit
+:check
+ sign1=!item $methparm2 of <,>,<=,>=
+ sign2=!item $methparm2 of >=,<=,>,<
+
+ casesplit=$methparm1 $sign1 $methparm3\
+$methparm1 $sign2 $methparm3
+ mt1=$methparm1 $sign1 $methparm3
+ mt2=$methparm1 $sign2 $methparm3
+ methexp=Separar los casos \($mt1) y \($mt2)
+
+!exit
+

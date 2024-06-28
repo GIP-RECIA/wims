@@ -1,0 +1,10 @@
+Click
+:onclick
+copy -5,5,70,70,150,150,testfig.gif
+onclick
+copy 5,5,70,70,150,150,testfig.gif
+onclick
+copyresized 70,70,150,150,-5,0,0,-10,testfig.gif
+onclick
+copy 5,-5,70,70,150,150,testfig.gif
+:fine:fine

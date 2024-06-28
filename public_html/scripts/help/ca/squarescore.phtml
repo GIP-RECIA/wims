@@ -1,0 +1,20 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!else
+  !exit
+!endif
+
+:square
+<h2>Que représentent les petits carrés ?</h2>
+  Le travail effectué sur un exercice lorsque les scores sont enregistrés est
+présenté schématiquement par une suite de carrés de couleur : un carré par essai ;
+sa couleur est fonction du score obtenu (la première couleur est utilisée pour un essai non terminé).
+!exit
+
+:seed
+<div>Si plusieurs carrés apparaissent sur une même colonne, cela correspond à des essais
+effectués sur un même énoncé. 
+</div><div>Si votre enseignant a choisi de limiter
+ le nombre d'essais comptabilisés, les essais effectués une fois le nombre maximum d'essais 
+comptabilisés atteint ne sont pas représentés.
+</div> 

@@ -1,0 +1,3 @@
+## you can here limit access to some ressources for the whole site.
+## first, change the name of this file to "wims.conf.access"
+## for the syntax, see "public_html/scripts/help/fr/accessconf.phtml" for example

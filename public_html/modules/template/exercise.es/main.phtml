@@ -1,0 +1,42 @@
+!read language lang/names
+!header
+
+!! La presentación del ejercicio.
+!read present.phtml
+
+<hr />
+
+!if $status=waiting
+  !if $error!=$empty
+    <div class="wims_msg warning">
+    !read msg.phtml
+    </div>
+  !endif
+  !! El formulario de respuesta
+  !read form.phtml
+  <p>
+  !set wims_ref_class=wims_button wims_secondary_button
+  !href exo_Renew
+  </p>
+!else
+  !if $error!=$empty
+    <div class="wims_msg warning">
+    !read msg.phtml
+    </div>
+  !endif
+  !! El análisis de la respuesta
+  !read answer.phtml
+  <p>
+  !set wims_ref_class=wims_button
+  !href exo_Again
+
+  !if $worksheet=$empty
+    &nbsp;
+    !set wims_ref_class=wims_button
+    !href exo_Intro
+  !endif
+  </p>
+!endif
+
+:end
+!tail

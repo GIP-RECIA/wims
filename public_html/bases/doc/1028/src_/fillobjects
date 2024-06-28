@@ -1,0 +1,44 @@
+Filled Objects
+:ellipse+fill
+ellipse 0,0,8,5,green
+ellipse 5,0,8,5,blue
+fill 0.2,0.2,red
+:ellipse+fill
+ellipse 0,0,8,5,green
+ellipse 5,0,8,5,blue
+fill 0.1,0.1,red
+:ellipse+diamondfill
+ellipse 0,0,8,5,green
+diamondfill 1,1,5,5,red
+:ellipse+diamondfill
+ellipse 0,0,8,5,green
+diamondfill 1,1,1,1,red
+:ellipse+filltoborder x,y,[color1],[color2]
+ellipse 5,0,8,5,blue
+ellipse 0,0,8,5,green
+filltoborder 1,1,green,red
+:fcircle
+fcircle 0,0,100,red
+:filled circle (fillcolor not supported in flydraw)
+filled
+fillcolor yellow
+circle 0,0,100,red
+:fellipse x,y,w,h,[color]
+fellipse 0,0,8,5,blue
+:ellipse+dotfill
+ellipse 0,0,8,5,green
+ellipse 5,0,8,5,blue
+dotfill 1,1,4,4,red
+:gridfill x,y,nx,ny,[color]
+ellipse 0,0,8,5,green
+ellipse 5,0,8,5,blue
+gridfill 0.1,0.1,4,4,red
+:hatchfill x,y,nx,ny,[color]
+ellipse 0,0,8,5,green
+ellipse 5,0,8,5,blue
+hatchfill 0.1,0.1,4,4,red
+:hatchfill:units
+ellipse 0,0,8,5,green
+ellipse 5,0,8,5,blue
+hatchfill 0.1,0.1,10,10,red
+:fine:fine

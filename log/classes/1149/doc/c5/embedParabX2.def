@@ -1,0 +1,60 @@
+!set titb=Fonction carré
+!set keyw=
+!set datm=20210821
+!set prev=embedParabVar
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+<div class="wims_columns">
+<div class="medium_size img_col">
+Signe &#58;
+Le carré d'un nombre réel est toujours <strong>positif ou nul</strong>.
+<br>
+
+!read primitives.phtml 1, draw, 168,300, alt=Courbe	xrange -4.2,4.2	yrange -1,14	parallel -4,-2,-4,14,1,0, 9, lightblue	parallel -4,-2,4,-2,0,1, 17, lightblue	arrow -4,0,4,0,8, black	arrow 0,-2,0,14,8, black	text black, 0,-0.1 , small, 0	text black, 1,-0.1 , small, 1	text black, 2,-0.1 , small, 2	text black, 3,-0.1 , small, 3	text black, -1.1,-0.1 , small, -1	text black, -2.1,-0.1 , small, -2	text black, -3.1,-0.1 , small, -3	text black, 3.4,-0.1 , large, x		text black, -0.5,0.4, small, 0	text black, -0.5,1.4, small, 1	text black, -0.5,2.4, small, 2	text black, -0.5,3.4, small, 3	text black, -0.5,4.4, small, 4	text black, -0.5,5.4, small, 5	text black, -0.5,6.4, small, 6	text black, -0.5,7.4, small, 7	text black, -0.5,8.4, small, 8	text black, -0.5,9.4, small, 9	text black, -0.5,10.4, small,10	text black, -0.5,11.4, small,11	text black, -0.5,12.4, small,12	text black, -0.5,13.4, small,13	text black, -0.8,14, large,y		plot red, x^2	text red, 1.2,4.5, large, x	text red, 1.5,4.8, small, 2	 
+
+</div><div class="medium_size text_col">
+<table class="wims_center wimsnoborder tab_var">
+<tr>
+  <th style="width&#58;15%;">
+!insmath x
+</th>
+      <td style="width&#58;8%;text-align&#58;left">
+!insmath -\infty
+</td>
+      <td style="width&#58;8%;"></td>
+      <td style="width&#58;15%;">0</td>
+      <td style="width&#58;8%;"></td>
+      <td style="width&#58;8%;text-align&#58;right">
+!insmath +\infty
+</td>
+</tr><tr>
+  <th valign="middle" style="width&#58;15%;height&#58;5em;">
+!insmath x^2
+</th>
+     <td style="width&#58;8%;text-align&#58;left" valign="top">
+!insmath +\infty
+</td>
+     <td style="width&#58;8%;font-size&#58;200%;">
+!insmath \searrow 
+</td>
+     <td style="width&#58;15%;" valign="bottom">0</td>
+     <td style="width&#58;8%;font-size&#58;200%;"> 
+!insmath \nearrow
+</td>
+     <td style="width&#58;8%;text-align&#58;right" valign="top">
+!insmath +\infty
+</td>
+      </tr>
+</table>
+</div></div>
+

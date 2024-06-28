@@ -1,0 +1,49 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=angle_bissector,angles,measurement,triangles
+!set gl_title=Bissectrice d'un angle
+!set gl_level=
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(\O\), \(A\) et \(B\) trois points.<br>
+La <strong>bissectrice</strong> de l'angle \(\widehat{AOB}\)
+est la droite qui passe par le sommet \(O\) et qui partage l'angle
+\(\widehat{AOB}\) en deux angles de même mesure.</div>
+:mathematics/geometry/fr/angle_bisector_1
+:
+<div class="wims_thm">
+<h4>Propriétés caractéristiques</h4>
+<div>
+Soit \(O\), \(A\) et \(B\) trois points non alignés. On note \(C\) et \(D\) les
+symétriques respectifs de \(A\) et de \(B\) par rapport à \(O\).</div>
+<ul><li>
+La bissectrice de l'angle \(\widehat{AOB}\)
+est l'ensemble des points des secteurs angulaires \(\widehat{AOB}\)
+et \(\widehat{COD}\) équidistants des droites \((OA)\) et \((OB)\).</li>
+<li>La bissectrice de l'angle \(\widehat{AOB}\) est l'axe de symétrie des
+demi-droites [OA) et [OB).
+</li>
+</ul>
+</div>
+:mathematics/geometry/fr/angle_bisector_2
+:
+<div class="wims_thm">
+<h4>Théorème 1</h4>
+Etant donné deux droites \(d\) et \(d'\) sécantes en \(O\), l'ensemble des points
+équidistants de \(d\) et \(d'\) est la réunion de deux droites perpendiculaires
+passant par \(O\), appelées bissectrices du couple de droites \(d\) et \(d'\).
+</div>
+<div class="wims_rem">
+<h4>Remarque</h4>
+Selon le contexte, on utilise les termes « bissectrice intérieure » et
+« bissectrice extérieure ».
+</div>
+:mathematics/geometry/fr/angle_bisector_3
+:
+<div class="wims_thm"><h4>Théorème 2</h4>
+Les bissectrices des trois angles d'un triangle sont concourantes.<br>
+Leur point de concours est équidistant des trois côtés du triangle.</div>
+:mathematics/geometry/fr/angle_bisector_4

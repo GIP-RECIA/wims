@@ -1,0 +1,23 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Agrégrat
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<p>Un <strong>agrégat économique</strong> est une <span class="wims_emph">grandeur économique mesurée à l'échelle d'un pays où d'un ensemble de pays</span>.</p>
+<div class="wims_rem"><h4>Exemples :</h4>
+<ul class="spacer">
+<li>le PIB (produit intérieur brut) est l'agrégat permettant de mesurer la production
+à l'échelle d'un pays ;</li>
+<li>la FBCF (formation brute de capital fixe) est l'agrégat permettant de mesurer
+l'investissement à l'échelle de la France ;</li>
+<li>M1 est un agrégat monétaire permettant de mesurer l'ensemble le plus liquide
+de la masse monétaire ; ensemble composé des pièces, des billets et des dépôts à vue.</li>
+</ul>
+</div>
+</div>
+

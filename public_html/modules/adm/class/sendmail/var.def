@@ -1,0 +1,4 @@
+reply:loginlist msg subject select_user varfilter varfilterclear selfsend sendotherteacher
+any:job method step target
+deny:error nb_user nb_teacher nbw_user nbw_teacher list_user list_teacher supervisormail supervisorname supervisortype sending_mail save_selfsend save_sendotherteacher
+deny:sendername sendermail recipientmail recipientname save_msg save_subject

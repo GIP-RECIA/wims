@@ -1,0 +1,11 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+onclick
+copy -5,5,-1,-1,-1,-1,gifs/fr.gif
+onclick
+copy 5,5,-1,-1,-1,-1,gifs/en.gif
+onclick
+copy 5,-5,-1,-1,-1,-1,gifs/it.gif
+onclick
+copy -5,-5,-1,-1,-1,-1,gifs/cn.gif

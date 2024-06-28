@@ -1,0 +1,82 @@
+
+:H5/probability/oefprobaLP.fr
+exo=probarbre2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Arbre et probabilités1
+Probabilité de tirer 2 boules <strong>avec remise</strong>
+
+
+:H5/probability/oefprobaLP.fr
+exo=probarbre3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Arbre et probabilités 2
+Probabilité de tirer 2 boules <strong>sans remise</strong>
+
+
+:H6/probability/oefprobatree.fr
+exo=chemin
+10
+1
+Arbre et probabilité 3
+Calculer une probabilité à partir d'un arbre
+
+
+:H6/probability/oefprobatree.fr
+exo=potpourri2x2&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=1&intro_sol=1&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1
+10
+1
+Pot-pourri : deux événements
+Probabilités. Probabilités <strong>conditionnelles</strong> (arbre).
+
+
+:H5/probability/oefprobaLP.fr
+exo=lapin&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Les lapins
+<strong>Évènements indépendants</strong>. Calcul de probabilités.
+
+
+:H5/probability/oefprobaLP.fr
+exo=vaccin&qnum=1&scoredelay=0&seedrepeat=0&qcmlevel=1
+10
+1
+Indépendance (vaccin)
+Notion de <strong>dépendance et d'indépendance</strong> d'évènements à travers un exemple classique. Réunion d'évènements.
+
+
+:U1/proba/oefbases.fr
+exo=ind&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Évènements indépendants
+Probabilités <strong>conditionnelles</strong> sur des évènements <strong>indépendants</strong>.
+
+
+:H6/probability/OEFprobaTS.fr
+exo=conddef1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Probabilité conditionnelle : définition 1
+Probabilités <strong>conditionnelles</strong>. Évènements <strong>dépendants ou indépendants</strong>?
+
+
+:H6/probability/OEFprobaTS.fr
+exo=conddef2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Probabilité conditionnelle : définition 2
+Probabilités <strong>conditionnelles</strong>. Évènements <strong>dépendants ou indépendants</strong>?
+
+
+:H5/probability/oefprobaLP.fr
+exo=test&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Le test antigénique
+Problème de <strong>probabilités conditionnelles</strong> en deux étapes.
+
+
+

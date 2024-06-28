@@ -1,0 +1,54 @@
+
+parent=gateway
+thiscode=$level
+!if $cancel!=$empty or $level=$empty
+  :back
+  job=first
+  !changeto jobs/$job.proc
+!endif
+
+levelhome=$classdir1/$level
+!readdef $levelhome/.def
+!if $class_defined!=yes
+  !goto back
+!endif
+
+!if $confirm=$empty
+  :normal
+  classes=!record 0 of $levelhome/classes
+  programs=!record 0 of $levelhome/programs
+  classes=!nonempty lines $classes
+  programs=!nonempty lines $programs
+  classcnt=!linecnt $classes
+  progcnt=!linecnt $programs
+  pass=$class_password
+  passs=!defof user_password in $levelhome/supervisor
+  !exit
+!endif
+
+title=!trim $title
+title=!replace internal , by &#44; in $title
+!if $title=$empty
+  error=empty_data
+  !exit
+!endif
+
+modclass_list=description,supervisor,Supervisor,password,secure,email
+cadd_description=$title
+cadd_Supervisor=$sup
+modclass_slist=password,email
+cadd_level=$alevel
+sadd_password=$passs
+cadd_password=$pass
+cadd_secure=$sechost
+
+!read adm/gateway/modclass $level
+
+!if $error!=$empty
+  !exit
+!endif
+
+!read adm/gateway/mkindex
+!reset confirm,title,sup,passs,alevel,pass
+!readdef $levelhome/.def
+!goto normal

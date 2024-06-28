@@ -1,0 +1,29 @@
+!set gl_n=!randint 0,5
+!set gl_p=!randint 0,5
+!set gl_q=!randint 0,5
+
+!if $[$gl_n+$gl_p+$gl_q]=0
+  !set gl_nb=5400
+!else
+  !set gl_nb=$[(2^$gl_n)*(3^$gl_p)*(5^$gl_q)]
+!endif
+
+!set gl_listdiv=2,3,4,5,9
+
+!readproc slib/numeration/ecriturenombre $gl_nb,tex
+!set gl_nbaff=$slib_out
+
+!set gl_aff=
+!for gl_k=1 to 5
+  !set gl_ligne=
+  !if $[$gl_nb%$(gl_listdiv[$gl_k])]=0
+    !set gl_temp=$[$gl_nb/$(gl_listdiv[$gl_k])]
+    !readproc slib/numeration/ecriturenombre $gl_temp,tex
+    !set gl_tempaff=$slib_out
+    !set gl_ligne=!append item $(gl_listdiv[$gl_k]),$gl_tempaff to $gl_ligne
+    !set gl_aff=$gl_aff $ \
+    $gl_ligne
+  !endif
+!next $gl_k
+
+!set gl_nbmess=!itemcnt $gl_aff

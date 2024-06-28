@@ -1,0 +1,36 @@
+
+!read adm/css.phtml
+!read adm/class/classname.phtml $wims_classname\
+$wims_institutionname
+!default wims_title_title=$(module_title_$lang)
+!default wims_title_title=$module_title
+!default wims_title_title=$name_title
+
+!header1
+
+!read adm/title.phtml 2\
+$wims_title_title\
+$classname
+
+!if $error!=$empty
+  <div class="wims_msg alert">
+    !read lang/msg.phtml.$moduclass_lang
+  </div>
+  <div class="wimscenter">
+    !set wims_ref_class=text_icon back
+    !href module=$dir $wims_name_moduback
+  </div>
+!else
+  !read $job.phtml
+!endif
+!if $dir=adm/tool/glossary and $iniparm!=$empty
+  !set wims_menu_items=!append line moduback,1,module=$dir&$iniparm\
+to $wims_menu_items
+!else
+  !set wims_menu_items=!append line moduback,1,module=$dir\
+to $wims_menu_items
+!endif
+
+!tail
+
+!reset job

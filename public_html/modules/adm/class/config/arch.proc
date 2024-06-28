@@ -1,0 +1,52 @@
+!if $wims_supertype!=0 and $class_typename isitemof portal,group,level
+  noarch=yes
+  !exit
+!endif
+
+reclist=user,exo,sheet,exam,doc,sup,def,neighbor,log,\
+  forum,score,manual,cdt,vote,livret,seq,motd,userphoto,tool,freework
+!! test of sharing ressources
+!if $class_typename!=program
+  test_sharing=!defof sharable_all in wimshome/log/classes/$wims_class/neighbors
+!endif
+
+!! ------- system limit configuration read
+tmp=!defof MAX_SHEETS\
+MAX_EXAM\
+MAX_VOTES\
+MAX_FREEWORKS in wimshome/public_html/bases/sys/define.conf
+!distribute line $tmp into max_sheet,max_exam,max_vote,max_freework
+max_user=!defof class_limit in wimshome/log/classes/$wims_class/.def
+
+
+!if $test_sharing!=$empty
+  !bound job2 within first,download default first
+!else
+  !bound job2 within first,upload,download,restore default first
+!endif
+
+!! restriction of restore ressource in portal
+!if $job2 iswordof restore upload and $wims_supertype=4
+  reclist_portal=sup,neighbor,log,def
+  reclist_program=$(reclist_portal),exo,sheet,exam,doc,vote,livret,seq,freework
+  reclist_class=$(reclist_portal),user,motd
+  !! program test
+  !if /0/// isin $(wims_class)///
+    reclist_course=exo,sheet,doc,tool,seq
+  !else
+    reclist_course=$(reclist_portal),score,manual,cdt,exo,sheet,exam,doc,vote,motd,tool
+  !endif
+  reclist=$(reclist_$(wims_typename))
+!endif
+
+!if $job2=upload and $wims_deposit=$empty
+  job2=first
+!endif
+
+!if $job2!=first
+  !read arch/$job2.proc
+!endif
+
+!if $job2 iswordof upload restore and $error!=$empty
+  job2=first
+!endif

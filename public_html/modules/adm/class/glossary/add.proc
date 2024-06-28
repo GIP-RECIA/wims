@@ -1,0 +1,66 @@
+!! add glose in a glossary
+max_glossary=!defof MAX_SHEETS in wimshome/public_html/bases/sys/define.conf
+title_limit=50
+desc_limit=25
+!if $cmd=new or $cmd=resume
+  glossary=
+  !for i=1 to $glossarytot
+    gl=!record $i of wimshome/log/classes/$wims_class/tool/.glossaryindex
+    !distribute lines $gl into a_,t_
+    glossarys=!append line $i,$t_ to $glossarys
+  !next i
+!endif
+!if $cmd=reply
+  !if $pickglossary=$empty
+    error=no_pick
+    !exit
+  !endif
+  !if $iniparm=$empty
+    error=no_parm
+    !exit
+  !endif
+  pickglossary=$[floor($pickglossary)]
+  !if $pickglossary=NaN or $pickglossary<1 or $pickglossary>min($max_glossary,$glossarytot+1)
+    error=bad_glossary
+    !exit
+  !endif
+  ititle=!singlespace $title
+  ititle=!char 1 to $title_limit of $ititle
+  tmp=!checkallpar $ititle
+  !if $tmp=no
+    ititle=!translate internal (){}[] to ------ in $ititle
+  !endif
+  !if $pickglossary=$[$glossarytot+1]
+    !set iglosstitle=!singlespace $new_glossary
+    !set idesc=!singlespace $new_glossarydesc
+    !appendfile $gloss_dir/.glossary$pickglossary :$iniparm\
+$ititle
+    !appendfile $gloss_dir/.glossaryindex :0\
+$iglosstitle\
+$idesc
+  !else
+  !!!! FIXME mettre dans l'ordre alphabetique des titres. Cela évitera
+  !!!! de proposer de changer l'ordre !
+  !!! on peut supposer qu'ils le sont quand on en ajoute un
+  !!! mais pas quand on modifie
+    sh=!record $pickglossary of wimshome/log/classes/$wims_class/tool/.glossaryindex
+    glosscnt=!recordcnt $gloss_dir/.glossary$pickglossary
+    !if $glosscnt>=$max_glossary
+      error=too_many_gloss
+      !exit
+    !endif
+    !for i=1 to $glosscnt
+      e=!record $i of $gloss_dir/.glossary$pickglossary
+      !distribute lines $e into wdi,win
+      !if $iniparm=$wdi
+        test=$pickglossary
+        error=already_exist
+        !exit
+      !endif
+    !next i
+    !appendfile $gloss_dir/.glossary$pickglossary :$iniparm\
+$ititle
+  !endif
+
+  wims_module_log=class $class: add No$glosscnt to glossary $pickglossary
+!endif

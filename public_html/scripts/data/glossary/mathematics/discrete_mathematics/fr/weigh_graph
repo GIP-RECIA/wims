@@ -1,0 +1,29 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph
+!set gl_title=Graphe pondéré
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définitions</h4>
+  <ul>
+    <li>
+      Un <strong>graphe étiqueté</strong> est un graphe où chaque arête est
+      affectée soit d'une chaîne de caractères, soit d'un nombre.
+    </li><li>
+      Un <strong>graphe pondéré</strong> est un graphe étiqueté où chaque arête
+      est affectée d'un nombre réel positif, appelé <strong>poids</strong> de
+      cette arête.
+    </li><li>
+      Le <strong>poids d'une chaîne</strong> est la somme des poids des arêtes
+      qui la composent.
+    </li><li>
+      Une <strong>plus courte chaîne</strong> entre deux sommets est, parmi les
+      chaînes qui les relient, une chaîne de poids minimum.
+    </li>
+  </ul>
+</div>
+:mathematics/discrete_mathematics/fr/weigh_graph_1

@@ -1,0 +1,30 @@
+
+!set wims_form_method=post
+!form reply
+  <input type="hidden" name="job" value="prpage">
+  <fieldset class="property_fields blockcenter">
+  <legend>
+    $name_prpageedition
+  </legend>
+  $name_prpagedesc
+  !set wims_ref_class=wims_button_help float_right
+  !href target=wims_mhelp cmd=help&special_parm=sheetpage $wims_name_help
+  <div id="textDiv" class="field box fullwidth">
+    <label for="sheet_content">$n_content</label>
+    <textarea cols="70" rows="15" class="nowrap" name="wims_deposit" id="sheet_content">
+      !sh sed 's/\&/\&amp;/g;s/</\&lt;/g' < $wims_home/log/classes/$wims_class/sheets/sheet$(sheet).src
+    </textarea>
+    <script>
+    /*<![CDATA[*/
+      markdown_toolbar = new Control.TextArea.ToolBar.Markdown('doc_content');
+      markdown_toolbar.toolbar.container.id = 'markdown_toolbar';
+    /*]]>*/
+    </script>
+  </div>
+  </fieldset>
+
+  <div class="wimscenter">
+    <input type="submit" name="save" value="$wims_name_tosave">
+    <input type="submit" name="abandon" value="$wims_name_giveup" class="wims_secondary_button">
+  </div>
+!formend

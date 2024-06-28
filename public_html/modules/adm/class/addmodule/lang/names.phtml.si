@@ -1,0 +1,50 @@
+!set lang_exists=yes
+
+!set wims_name_sheetcheck=Preglej delovni list
+
+!set name_choose= Izberite delovni list, v katerega ¾elite vstaviti izbrani element
+!!set name_title=Vstavite modul v delovni list
+
+!set name_insert=®elite vstaviti element
+!set name_parm=z zaèetnimi parametri
+!set name_modifytitle=Spremenite lahko tudi ime in opis elementa.
+
+!set name_required=©tevilo toèk, ki jih zahtevate od uporabnika pri tej vaji
+!set name_repeat=popolnoma pravilna re¹itev prinese 10 toèk, zato zahtevajte veè kot 10 toèk,\
+  èe ¾elite, da uporabnik vajo veèkrat ponovi
+
+!set name_weight=Ute¾ za toèke, pridobljene pri tej vaji
+!set name_weight_hint=za izraèun povpreèij
+!set name_exotrymax=Maximum number of trials counted
+!set name_exotrymax_hint=Parameter allowing to fix a maximum number <span class="tt">n</span>\
+  of recorded trials in the calculation of the scores during the periods\
+  when recording of scores is open\
+  (the work on the exercise is always possible once this number is exceeded).\
+  Work on a series of exercises is considered a trial,\
+  whether or not a response has been given and\
+  whether the recording of scores has been activated or not.\
+  Score calculation only takes into$ account the scores of the first\
+  <span class="tt">n</span> trials where the recording of scores has been activated.\
+  By default, all record-enabled trials are counted.\
+  Check the compatibility with the number of required points if you put a positive number.
+
+!set name_end=!nosubst Element <span class="wims_mod_title">$title</span> je bil uspe¹no vstavljen v delovni list
+!set name_endallexo=!nosubst a series of exercises was successfully inserted\
+ into$ the <span class="wims_mod_title">$title</span> sheet with the parameters
+!set name_endallexos=!nosubst $addexo series of exercises have been inserted successfully\
+ into$ the <span class="wims_mod_title">$title</span> sheet with the parameters
+!set name_endallexo2s=!nosubst The following $notadd teaching material could not be inserted because they already exist:
+!set name_endallexo2=!nosubst The following resource could not be inserted because it already exists:
+
+!set name_choose_exo=This resource will be inserted as a new series of sheet exercises.
+!set name_choose_helpexo=This resource will be inserted as a help for one of \
+  the sheet exercise sets when the score is between, and
+!set name_choose_series=Click on the name of the series of exercises to which to add help
+!set name_actualhelp=Current help
+!set name_series=Exercise series
+!set name_exo_order=Order of exercises
+!set name_replace_add=Replace,Add
+
+!if $job=addallexo
+  !read oef/si/intronames
+!endif

@@ -1,0 +1,33 @@
+!set methtit=Intercambiar los dos lados de una desigualdad
+!set methenv=ZZ QQ RR
+!set methparmtype=parm inequality
+!set methhelp=Este método reescribe la desigualdad \(a < b) como \(b > a),\
+  o viceversa.
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!exit
+:form
+Intercambiar ambos lados de la desigualdad
+!read deduc/methparm.phtml 1
+
+!exit
+:check
+!distribute items $methparmobj1 into data,left,sign,right
+methexp=Intercambia los dos lados de \($left $sign $right)
+
+newsign=!translate internal <> to >< in $sign
+newobject1=$right $newsign $left
+oldobject=1
+
+contextlist=$ct_Always,\
+	$ct_Onlywhen ambos lados son positivos,\
+	$ct_Onlywhen ambos lados tienen el mismo signo,\
+	$ct_Onlywhen la desigualdad es estricta
+
+resultlist=$newobject1,\
+ $right $sign $left
+
+!exit

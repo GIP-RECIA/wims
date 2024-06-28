@@ -1,0 +1,76 @@
+!read lang/names.phtml.$modu_lang intro
+
+!form reply
+ !set s_day=$name_day
+ !set s_week=$name_week
+ !set s_month=$name_month
+ !set s_year=$name_year
+ !read adm/date.phtml date,$start_year,$start_month,$start_day
+ !set s_beginning=$name_beginning $c_date_out
+<fieldset class="property_fields">
+ <legend>$wims_name_setup</legend>
+ <div class="field box">$(name_choose[1])
+ <label for="cnt">$(name_choose[2])</label>
+ <select name="cnt" id="cnt">
+ !for i=1 to 15
+  <option value="$i"
+  !if $i=$cnt
+   selected="selected"
+  !endif
+  >$i</option>
+ !next i
+ </select><select name="style">
+ !for i in day,week,month,year,beginning
+  <option value="$i"
+  !if $i=$style or ($i=month and $style=$empty)
+   selected="selected"
+  !endif
+  >$(s_$i)</option>
+ !next i
+ </select>. </div>
+ <div class="field box">
+ $name_listlink
+ !set i_site=$name_site1,
+ !set i_stem=$name_stem,
+ !set i_uniq=$name_uniq
+ !for i in site,stem,uniq
+  <input type="radio" name="type" id="type$i"value="$i"
+  !if $type=$i
+   checked="checked"
+  !endif
+  > <label for="type$i">$(i_$i)</label>
+ !next i
+ $(name_limited[1])
+ </div><div class="field box">
+ $(name_limited[2]) <select name="reflim" id="reflim">
+ !for i in 10,20,30,50,70,100,150,200
+  <option value="$i"
+  !if $i=$reflim
+   selected="selected"
+  !endif
+  >$i</option>
+ !next i
+ </select>
+ <label for="reflim">$(name_searchengine[1])</label>
+ </div><div class="field box">
+ $(name_searchengine[2]) <input type="radio" name="search" id="search1" value="yes"
+ !if $search=yes
+  checked="checked"
+ !endif
+ > <label for="search1">$name_included</label> $wims_name_or
+ <input type="radio" name="search" id="search2" value="no"
+ !if $search=no
+  checked="checked"
+ !endif
+ > <label for="search2">$name_excluded</label>.
+ </div><div class="field box">
+ $(name_option[1]) <label for="key">$(name_option[2])</label>
+ <input size="15" name="key" value="$key" id="key">
+ </div>
+  </fieldset>
+ <p class="wimscenter"><input type="submit" value="$wims_name_Show"></p>
+
+!formend
+
+!set key=
+

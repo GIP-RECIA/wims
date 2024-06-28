@@ -1,0 +1,44 @@
+!set lang_exists=yes
+
+!set name_sequence=Séquence
+!set name_title=Ajouter/Modifier la séquence
+!set name_addseq= Mettez des numéros correspondant à l'ordre des ressources que vous désirez insérer.\
+Si vous désirez effacer un numéro, écrivez 0.
+
+!set name_show1=Vous pouvez créer une séquence pédagogique
+!set name_show1c=. Elle sera alors avec le statut "En préparation"\
+  et donc non visible par les participants. Pour que la présentation en séquences remplace la présentation proposée par\
+  défaut par le serveur, vous devez l'indiquer à l'aide du menu Configurer. Chaque séquence pourra être ensuite rendue\
+  visible ou cachée à un groupe de participants pendant une plage horaire choisie indépendamment du statut des autres séquences.
+
+!set name_show2=!nosubst (cliquer sur le lien Ajouter une séquence) ou modifier les séquences déjà créées.\
+  Pour que la présentation en séquences remplace la présentation proposée par défaut par le serveur, vous devez\
+  l'avoir indiqué à l'aide du menu Configurer. Chaque séquence pourra être ensuite rendue visible ou cachée\
+  à un groupe de participants pendant une plage horaire choisie indépendamment du statut des autres séquences.
+
+!set name_show3=Si vous ajoutez une ressource dans votre classe, vous devez l'ajouter dans une séquence pour qu'elle puisse être rendue visible aux participants.
+
+!set name_config_reverse=Les séquences sont présentées par défaut par ordre chronologique,\
+  de la plus ancienne à la plus récente. Les présenter dans l'ordre inverse
+!set name_config_generic=Mot générique pour "$name_sequence"
+
+!set name_config_status=Utilisation des séquences dans la page d'accueil des participants
+!set wims_name_sequence=!defof sequence_Title in wimshome/log/classes/$wims_class/seq/.def
+!set name_info=Informations générales
+!set name_content=Contenu de la séquence
+
+!set name_desc_title=!nosubst limité à $title_limit caractères
+!set name_desc_desc=!nosubst limité à $desc_limit caractères; les tags et liens html sont admis
+!!set name_showdate=Date d'activation automatique de la séquence
+!!set name_hidedate=Date de fermeture automatique de la séquence
+!!set name_desc_showdate=A cette date, la séquence sera automatiquement montrée.
+!!set name_desc_hidedate=A cette date, la séquence sera automatiquement cachée.
+
+!set name_showhidetitle=Affichage de la séquence aux participants
+!let name_allowtype=visible pour tous,cachée pour tous,visible pour postes (et/ou heures) suivants,visibilité réglée par une variable technique
+!set name_desc_allowtechvar=Choix de la variable technique
+!set name_desctableval=Table de filtre en fonction de la valeur de la variable technique
+!set name_value=Valeur
+!set name_filtre=Filtre
+!set name_EMPTY=(aucune valeur)
+!set name_allowshare=pour toutes les classes en partage :

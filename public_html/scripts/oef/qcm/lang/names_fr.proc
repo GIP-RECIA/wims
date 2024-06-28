@@ -1,0 +1,23 @@
+
+name_exo_type=Type d&rsquo;exercice 
+
+name_exo_type_prompt=Questions dans l&rsquo;ordre,Questions al&eacute;atoires
+
+name_questions_bank=Banque de questions 
+name_difficult_bank=Les banques marqu&eacute;es par un <strong>*</strong> sont en g&eacute;n&eacute;ral plus difficiles que les autres.
+name_Remark=Remarque 
+name_display_auto_bank=N&rsquo;afficher que les banques contenant 
+name_bank_containing=Banque(s) contenant
+name_select_auto_bank=S&eacute;lectionner automatiquement les banques contenant 
+name_nb_pages=Nombre de page(s) 
+name_nb_pages_help=Une page affiche des questions appartenant &agrave; une m&ecirc;me banque.
+
+name_remark_shuffle_bank=Le module piochera une banque au hasard parmi toutes celles selectionn&eacute;es\
+ (ou parmi toutes, si aucune n'est selectionn&eacute;e)
+
+name_questions_per_page=Nombre de questions par page 
+name_questions_per_page_help=Maxi : $max_questions (ou le nombre de questions de la banque choisie)
+
+name_df_record_cnt_help=Les crochets &agrave; la fin de chaque banque indiquent le nombre de questions.
+
+

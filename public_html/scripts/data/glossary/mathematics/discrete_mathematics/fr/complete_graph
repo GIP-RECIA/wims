@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph
+!set gl_title=Graphe complet
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(G\) un graphe simple non orienté.<br>
+  Le graphe \(G\) est <strong>complet</strong> si tout couple de sommets
+  distincts est lié par une arête, c'est-à-dire si tous les sommets sont adjacents.
+</div>
+
+<div class="wims_thm"><h4>Théorème</h4>
+Pour tout entier naturel non nul \(n\), on note \(K_n\) le graphe complet d'ordre
+<span style="white-space:nowrap">\(n\).</span>
+  <br>
+Le nombre d'arêtes du graphe complet \(K_n\) est égal à
+<span style="white-space:nowrap">\(\frac{n(n-1)}{2}\).</span>
+  </div>
+
+:mathematics/discrete_mathematics/fr/complete_graph_1

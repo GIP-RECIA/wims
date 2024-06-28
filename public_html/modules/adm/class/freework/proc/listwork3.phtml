@@ -1,0 +1,166 @@
+!! display list of user with own deposit work
+
+!reset table_center
+!! ---- preparing data
+!!readproc proc/findfile3.proc $freework
+
+!! ------ manage ask for technical variable selection. NOT YET ACTIVATED
+!!if $tv_listtechvar!=$empty
+!!  !form reply
+!!    !read adm/vfilter/varfilter html
+!!  !formend
+!!endif
+
+!! some of these variables are reset
+!set tmp=!record $freework of wimshome/log/classes/$wims_class/freeworks/.freeworks
+!distribute line $tmp into activetest,expdate,title,desc,comment,type,deadline,soldate,sizelimitfile,scoring,seealltime,studentclose
+
+!if $now>=$d1
+  !if $notcorrected>0
+    !if $notcorrected=1
+      $name_worknotcorrected
+    !else
+      $name_worknotcorrecteds
+    !endif
+  !else
+    $name_allworkcorrected
+  !endif
+  <div class="formHelp">$name_desc_listwork2</div>
+!else
+  !if $nbcopies=1
+      $name_nbcopie
+  !else
+      $name_nbcopies
+  !endif
+  <div class="formHelp">
+    !readproc adm/date.phtml $deadline
+    !let lname=!replace internal : by H in $timedeadline
+    $name_desc_listwork3
+    !if $seealltime=1
+      $name_desc_listwork32
+    !else
+      $name_desc_listwork31
+    !endif
+    ($l_date_out $wims_name_at $lname).
+  </div>
+!endif
+
+!! ----- displaying table of participant
+!set table_id=TABLE_userlist
+!set table_class=sortable
+$table_header
+<thead>
+  $table_hdtr
+    <th scope="col">$name_studentglo</th>
+    <th scope="col">$name_givedate</th>
+    !if $scoring>0
+      <th scope="col">$name_score (/$maxscore)</th>
+    !endif
+    <th scope="col">
+!!      !if $now<$d1 and $seealltime=1
+!!        $name_ltremark
+!!      !else
+        $name_ltannotation
+!!      !endif
+    </th>
+    !if $codownload=1
+      <th scope="col">$name_seeco</th>
+    !endif
+    !if $studentclose=1
+      <th scope="col">$name_closeco</th>
+    !endif
+  </tr>
+</thead>
+<tbody>
+  !for i=1 to $nbuser
+!!    !set data=!record $i of wimshome/log/classes/$wims_class/.userlist
+!!    !distribute item $data into lastname,firstname,uu
+!! no techvar manage for the moment
+!!    !if $varfilter_!=$empty
+!!      !read adm/vfilter/testfilter $(ulist[$i])\
+!!$varfilter_
+!!    !endif
+    !if $(var_filter_test)=1 or $varfilter_=$empty
+      $table_tr
+      !reset css_connected
+      !if $(ulist[$i]) isitemof $wims_connectedlogin
+        !set css_connected=class="wims_connected"
+        !set wims_ref_title=connected
+      !endif
+      <td $css_connected>
+        !distribute item $(llist[$i]),$(flist[$i]) into lastname,firstname
+	$name_studentname
+!!        !if $loadwork=1
+!!          !href session=$wims_session&+module=$module&+job=viewuser3&+freework=$freework&+userv=$(ulist[$i]) $name_studentname
+!!        !else
+!!          $name_studentname 
+!!        !endif
+      </td>
+      <td>
+      !readproc proc/findfile3.proc $freework,$(ulist[$i])
+      !if $(output)!=0
+        !readproc adm/date.phtml $(output[1])
+        !let lname=$l_date_out $wims_name_at $(output[2])
+        !if $loadwork=1
+          !href session=$wims_session&+module=$module&+job=viewuser3&+freework=$freework&+userv=$(ulist[$i]) $lname
+        !else
+          $lname
+        !endif
+      !endif
+      </td>
+      !if $scoring>0
+        !let k_=!positionof item $(ulist[$i]) in $uulist
+        <td style="text-align:right">
+          !if $k_!=$empty
+            !let t_=!record $[$k_+1] of wimshome/log/classes/$wims_class/.grades
+            !item $[$scoring+2] of $t_
+          !endif
+        </td>
+      !endif
+      <td>
+      !if $output!=0
+        !let da_=!sh if [ -e "$wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$(ulist[$i])" ]; then stat --format="%y" $wims_home/log/classes/$wims_class/freeworksdata/$freework/co/$(ulist[$i]); fi;
+        !if $da_!=$empty
+          !let d_=!char 1 to 10 of $da_
+          !let d_=!text select 0123456789 in $d_
+          !let h_=!char 12 to 13 of $da_
+          !let m_=!char 15 to 16 of $da_
+          !if $now<$d1 or $d_$h_$m_>$d1
+            !readproc adm/date.phtml $d_
+            $l_date_out $wims_name_at $(h_)H$(m_)
+          !endif
+        !endif
+      !endif
+      </td>
+      !if $codownload=1
+        <td>
+          !if $(freework_seeco_$(ulist[$i]))!=$empty
+            &#x2705;
+          !endif
+        </td>
+      !endif
+      !if $studentclose=1
+        <td>
+          !if $(freework_closeco_$(ulist[$i]))!=$empty
+            !if $now<$d1
+              !form reply
+              $(freework_closeco_$(ulist[$i]))
+              <input type="hidden" name="job" value="$job" >
+              <input type="hidden" name="freework" value="$freework" >
+              <input type="hidden" name="job2" value="reopen" >
+              <input type="hidden" name="quser" value="$(ulist[$i])">
+              <input type="submit" value="$name_reopen" >
+              !formend
+            !else
+              $(freework_closeco_$(ulist[$i]))
+            !endif
+          !endif
+        </td>
+      !endif
+      </tr>
+    !endif
+  !next i
+</tbody>
+$table_end
+!read tablesort.phtml
+!reset score

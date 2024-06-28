@@ -1,0 +1,5 @@
+init:data_dir gloss_dir Gloss_dir
+any:Listfile job glossary_self gl_lang gl_domain gloss_lang gloss_domain gl
+any:seq gl_title listlang gloss_zone Listfile2
+deny:status
+

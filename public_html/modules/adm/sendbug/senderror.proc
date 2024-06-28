@@ -1,0 +1,125 @@
+!read tabletheme
+
+DEBUG_MODULE=!defof DEBUG_MODULE in wimshome/public_html/bases/sys/define.conf
+!if $data=$empty
+  !! -------test for an old exologfile (in the class)
+  !if $logtype=exam
+    test=!fileexists wimshome/log/classes/$wims_class/examlog/$checkuser/$checksession/$logcheck
+    !if $test=yes
+      exologfile=log/classes/$wims_class/examlog/$checkuser/$checksession/$logcheck
+    !endif
+  !else
+    !if $logcheck!=$empty
+      test=!fileexists wimshome/log/classes/$wims_class/exolog/$checkuser/$logcheck
+      !if $test=yes
+        exologfile=log/classes/$wims_class/exolog/$checkuser/$logcheck
+      !endif
+    !endif
+  !endif
+  !if $exologfile!=$empty
+    dt1=!getdef w_author\
+w_email\
+w_module\
+w_wims_seed\
+w_deffile in wimshome/$exologfile
+    vardata=!sh cat $wims_home/$exologfile;
+  !else
+    !! ------- if not use the actual exologfile
+    parent=!replace internal $wims_subsession by $empty in $wims_session
+    dt1=!getdef w_author\
+w_email\
+w_module\
+w_wims_seed\
+w_deffile\
+w_worksheet\
+w_wims_exo in wimshome/sessions/$parent/var
+    !if $(dt1[3;])=adm/class/exam
+      !! detect supervisor call sendbug from an exercice in an exam
+      parent=$(parent)_new
+      dt1=!getdef w_author\
+w_email\
+w_module\
+w_wims_seed\
+w_deffile\
+w_worksheet\
+w_wims_exo in wimshome/sessions/$parent/var
+
+    !endif
+    !if $(dt1[6;])!=$empty and $(dt1[7;])!=$empty
+      test=!fileexists wimshome/sessions/$parent/exolog.$(dt1[6;]).$(dt1[7;])
+    !else
+      test=no
+    !endif
+    !if $test=yes
+       exologfile=sessions/$parent/exolog.$(dt1[6;]).$(dt1[7;])
+    !else
+      exologfile=sessions/$parent/exolog
+    !endif
+    vardata=!sh sed 's#$parent#BUGSESSION#gi' $wims_home/$exologfile;
+  !endif
+  modulefile=!nospace wimshome/public_html/modules/$(dt1[3;])/INDEX
+  dt2=!getdef category\
+author\
+address\
+maintainer_address\
+version in $modulefile
+  t_email2=!replace internal xiao@unice.fr by $DEBUG_MODULE in $(dt2[3;])
+
+  data=module=$(dt1[3;])\
+module_author=$(dt2[2;])\
+module_version=$(dt2[5;])\
+module_mail=$t_email2\
+module_maintainer_mail=$(dt2[4;])
+  local_email=$t_email2,$(dt2[4;])
+    tmp=!nospace $(dt2[1;])
+    !if oef isitemof $tmp
+      t_email1=!replace internal xiao@unice.fr by $DEBUG_MODULE in $(dt1[2;])
+      tmp=!replace internal def/ by $empty in $(dt1[5;])
+      tmp=!replace internal .def by $empty in $tmp
+      data=$data\
+\
+OEF_exo=$tmp\
+OEF_author=$(dt1[1;])\
+OEF_email=$t_email1
+      local_email=!append item $t_email1 to $local_email
+    !endif
+  data=$data\
+\
+Server=$httpd_HTTP_HOST\
+Server_version=$wims_version\
+Server_seed=$(dt1[4;])\
+Server_time=$wims_now\
+\
+Sender=$wims_firstname $wims_lastname\
+Sender_mail=$wims_email
+
+!endif
+listaddr=$wims_email,$local_email,$DEBUG_MODULE
+listaddr=!nonempty item $listaddr
+listaddr=!listuniq $listaddr
+!if $save!=$empty
+  !if $source!=$empty
+    !set tmp=!replace internal module= by in $(data[1;])
+    !set tmp=!replace internal . by , in $tmp
+    source=!char 1 to 1000 of $source
+    listaddr=!items2words $listaddr
+    vardata=!replace internal $\
+$ by <br> in $vardata
+!mailto $listaddr\
+$wims_email\
+[WIMS] $name_titlemail  $(tmp[1])\
+<h2>$name_mailcomment</h2>\
+<p>$source</p>\
+<h2>$name_mailinfogene</h2>\
+<pre>$data</pre>\
+\
+var file\
+$vardata
+    !reset tmp
+    success=confirm
+  !else
+    error=no_comment
+  !endif
+!endif
+
+!reset save

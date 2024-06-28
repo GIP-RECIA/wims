@@ -1,0 +1,16 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Angles supplémentaires
+!set gl_keywords=angles,measurement
+!set gl_level=H1 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>
+    Définition
+  </h4>
+  Deux angles sont dits <strong>supplémentaires</strong> lorsque la somme de
+  leurs mesures est égale à 180°.
+</div>

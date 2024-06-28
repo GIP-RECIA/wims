@@ -1,0 +1,37 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Hhypergeometric distribution
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Let \(N), \(K) and \(n) be positive integers satisfying
+ <div class="wimscenter">
+\(0 \leq n \leq N) et \(0 \leq K \leq N).
+</div>
+ The <strong>hypergeometric distribution</strong>
+ with parameters \(N), \(K), \(n) is the probability \(q) over
+ \(\{\max(0,n-(N-K)),..., \min(n,K)\}) defined by
+<div class="wimscenter">
+\( q(k) =\frac{C_K^k \binom{N-K}{n-k}}{C_N^n} )
+</div>
+for any integer \(k) such that
+<div class="wimscenter">
+\(\max(0,n-(N-K))\leq k\leq \min(n,K)).
+</div>
+</div>
+
+<table class="wimsborder wimscenter"><tr><th>Expectation</th><th>Variance</th><th>Probability generating function
+</th></tr><tr>
+<td>\(\frac{n K}{N})</td><td>\(n\frac{K}{N}(1-\frac{K}{N})\frac{N-n}{N-1}\)</td></tr></table>
+
+<div class="wims_example">
+<h4>Exemple</h4> Consider a population of \(N) elements divided into
+two classes, \(K) elements of type 1 and \(N-K) elements of type 2. A group of
+\(n) elements is chosen at random in this population. The number of
+type 1 elements in the chosen group is a random variable; it has the
+hypergeometric distribution with parameters \(N, K, n).
+</div>

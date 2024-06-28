@@ -1,0 +1,39 @@
+!set p_=!trim $wims_read_parm
+!set l_=$(p_[2;])
+!if $l_!=$empty
+  !set l_=&search_level=$l_
+!endif
+!set p_=$(p_[1;])
+!if $p_=$empty or ($wims_user!=$empty and $wims_user!=supervisor)
+  !exit
+!endif
+!read lang/names.phtml.$lang
+!if $lang_script_exists!=yes
+  !read lang/names.phtml.en
+!endif
+
+!set cat_=!listintersect $module_category and exercise,tool,recreation
+!for c in $cat_
+  <div>
+  !if $l_!=$empty
+    $name_prompt_related_l
+  !else
+    $name_prompt_related
+  !endif
+  <ul class="inline wims_nopuce">
+  !for t in $p_
+    !reset sup
+    !set t=!declosing $t
+    !set t_=!lookup $(t[1]) in bases/sys/domain/domain.$lang
+    !default t_=$t
+    !if $(t[2..-1])!=$empty
+      !set sup=&$(t[2..-1])
+    !endif
+    !set wims_ref_class=wims_label
+    <li>
+    !href module=home&search_category=$c&search_keywords=$t_$sup$l_ $t_
+    </li>
+  !next t
+  </ul>
+  </div>
+!next c

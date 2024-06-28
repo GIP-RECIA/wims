@@ -1,0 +1,18 @@
+
+any:job freework back infoshow1 infoshow2 userv back job2
+init: statutfreework nbuser ulist flist llist max_zone zonelistlabel zonelistlabelstudent zonelistlabelteacher conf_nofile min_zonestudent min_zoneteacher
+reply: save title type desc comment seealltime
+reply: studentclose confirm giveup consigne quser
+reply: wims_deposit namefile timedeadline deadline timesoldate soldate sizelimitfile student scoring score score[MAX_USERFORGRADES]
+reply: nbrezonestudent nbrezoneteacher ztypestudent[3] ztypeteacher[3] paramstudent[15] paramteacher[15] stype zone remark finalremark freepar_applet[5]
+deny: sfreework activetest module_cat
+reply: cf_preview source pickfreework new_desc copara
+any: exolog logcheck checkstep checkuser dir iniparm exonum
+reply:begindscore[MAX_TECHVARVAL]
+reply:begintscore[MAX_TECHVARVAL]
+reply:enddscore[MAX_TECHVARVAL]
+reply:endtscore[MAX_TECHVARVAL]
+reply:IPscore[MAX_TECHVARVAL]
+reply:datecheck[MAX_TECHVARVAL]
+reply: begindscore0 begintscore0 endtscore0 enddscore0 datecheck0
+reply: allowtype begindscore begintscore enddscore endtscore IPscore allowshare allowtechvar datecheck

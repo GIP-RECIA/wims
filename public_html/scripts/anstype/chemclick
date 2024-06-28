@@ -1,0 +1,142 @@
+ans_molecule=$(reply$i)
+test_empty=!line 1 of $(reply$i)
+test_empty=$(test_empty[1;1])
+!if $test_empty=$empty
+  test=NaN chemclick_empty_data
+  error=chemclick_empty_data
+  !exit
+!endif
+
+!set oef_answer_option$i=!replace internal $	$ by $\
+$ in $(oef_answer_option$i)
+!set oef_answer_option$i=!replace internal ; by $\
+$ in $(oef_answer_option$i)
+!set oef_answer_option$i=!nonempty lines $(oef_answer_option$i)
+!set Inputsize=!line 1 of $(oef_answer_option$i)
+!distribute items $Inputsize into xsize,ysize
+!set oef_answer_option$i=!line 2 to -1 of $(oef_answer_option$i)
+!set ans_image=!getopt image in $(replyoption$i)
+
+!set ans_show_hydrogen=!getopt show_hydrogen in $oef_applet_option
+!set ans_keep_hydrogen=!getopt keep_hydrogen in $oef_applet_option
+
+!bound ans_show_hydrogen within yes, no default yes
+!bound ans_keep_hydrogen within yes,no,hetero default yes
+
+ans_list_feedback=!getopt feedback in $(replyoption$i)
+ans_list_feedback=!words2items $ans_list_feedback
+
+good_select=$(replygood$i[1;])
+!for u_ in bonds, atoms
+  good_select=!replace internal $u_: by $\
+$u_, in $good_select
+!next
+!set good_atoms_select=!select $good_select where column 1=atoms
+!set good_atoms_select=!item 2 to -1 of $good_atoms_select
+!set good_atoms_select=!nonempty items $good_atoms_select
+!set good_bonds_select=!select $good_select where column 1=bonds
+!set good_bonds_select=!item 2 to -1 of $good_bonds_select
+!set good_bonds_select=!nonempty items $good_bonds_select
+!distribute line $ans_molecule into ans_select
+ans_molecule=!line 2 to -1 of $ans_molecule
+!!set ans_atoms_select=$(ans_select[1;])
+!!set ans_bonds_select=$(ans_select[2;])
+
+!!! hack should modify the data to put data as a list of atoms
+!set tmp=$(ans_select[;1,2,3])
+!set ans_atoms_cnt=!rowcnt $tmp
+!set ans_atoms_select=
+!for se=1 to $ans_atoms_cnt
+  !if $(tmp[$se;1]) issametext unMarkAtom
+    !set ans_atoms_select=!listcomplement $(tmp[$se;2]) in $ans_atoms_select
+  !else
+    !if $(tmp[$se;1]) issametext MarkAtom
+      !set ans_atoms_select=!listuniq $(tmp[$se;2]),$ans_atoms_select
+    !else
+      !if $(tmp[$se;1]) issametext unMarkBond
+        !set ans_bonds_select=!listcomplement $(tmp[$se;3]) in $ans_bonds_select
+      !else
+        !if $(tmp[$se;1]) issametext MarkBond
+          !set ans_bonds_select=!listuniq $(tmp[$se;3]),$ans_bonds_select
+        !endif
+      !endif
+    !endif
+  !endif
+!next
+!!!!
+!!!set ans_newtime=$(wims_nowseconds)_$i
+!!!set replyfichier=r_$ans_newtime.mol
+!!!readproc oef/togetfile.proc $replyfichier new\
+!!$ans_molecule
+!!!set replyfile=$wims_ref_name?session=$session&+cmd=getfile&+special_parm=$replyfichier
+
+!if $wims_read_parm=nocompare
+  !goto end
+!endif
+
+:good
+!set score_bonds=1
+!set score_atoms=1
+!if $good_atoms_select!=
+  ans_atoms_test1=!listcomplement $ans_atoms_select in $good_atoms_select
+  ans_atoms_test2=!listcomplement $good_atoms_select in $ans_atoms_select
+  ans_atoms_test3=!listintersect $good_atoms_select and $ans_atoms_select
+  ans_atoms_total=!nonempty items $ans_atoms_select,$good_atoms_select
+  ans_atoms_total=!listuniq $ans_atoms_total
+  ans_atoms_total=!sort numeric items $ans_atoms_total
+  !if $ans_atoms_test1= and $ans_atoms_test2=
+    score_atoms=1
+  !else
+    score_atoms=0
+  !endif
+!else
+  ans_atoms_test2=$ans_atoms_select
+  ans_atoms_total=!sort numeric items $ans_atoms_test2
+  !if $ans_atoms_total notsametext
+    score_atoms=0
+  !endif
+!endif
+!if $good_bonds_select!=
+  ans_bonds_test1=!listcomplement $ans_bonds_select in $good_bonds_select
+  ans_bonds_test2=!listcomplement $good_bonds_select in $ans_bonds_select
+  ans_bonds_test3=!listintersect $good_bonds_select and $ans_bonds_select
+  ans_bonds_total=!nonempty items $ans_bonds_select,$good_bonds_select
+  ans_bonds_total=!listuniq $ans_bonds_total
+  ans_bonds_total=!sort numeric items $ans_bonds_total
+  !if $ans_bonds_test1= and $ans_bonds_test2=
+    score_bonds=1
+  !else
+    score_bonds=0
+  !endif
+!else
+  ans_bonds_test2=$ans_bonds_select
+  ans_bonds_total=!sort numeric items $ans_bonds_test2
+  !if $ans_bonds_total notsametext
+    score_bonds=0
+  !endif
+!endif
+!if $score_bonds=1 and $score_atoms=1
+  diareply$i=good
+  !advance freegot
+  ans_image=
+!else
+  diareply$i=bad
+!endif
+
+:end
+!default xsize=320
+!default ysize=240
+!reset ans_atoms_colors
+
+!read anstype/chemclickjsme.inc
+
+reply_$i=$(rep$i)
+reply__$i=&nbsp;
+!reset m_reply$i
+!if $ans_atoms_select!=$empty
+  m_reply$i=atoms:$ans_atoms_select
+!endif
+!if $ans_bonds_select!=$empty
+  m_reply$i=$(m_reply$i) bonds:$ans_bonds_select
+!endif
+replyGood$i=

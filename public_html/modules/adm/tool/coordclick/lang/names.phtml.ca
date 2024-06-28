@@ -1,0 +1,161 @@
+!set lang_exists=yes
+
+!set name_intro=!nosubst L'eina <span class="wims_mod_title">$module_title</span> està destinada \
+a crear ràpidament exercicis en els que heu d'etiquetar certs elements o clicar a \
+certes àrees d'una imatge. Al principi, se us convidarà \
+a col·locar a la imatge els punts o les fletxes que indiquin els llocs que cal etiquetar. \
+En un segon pas, es proposaran models d'exercicis a $wims_name_createxo,\
+vegeu la llista a
+
+!set name_help1=Primer carregueu la imatge i indiqueu si voleu fer clic a un punt o \
+a dos punts (traçar una fletxa) per a cada etiqueta. El nom del fitxer d'imatge \
+només pot tenir caràcters alfanumèrics sense accents ni espais i les extensions habituals: \
+<span class="tt">jpg</span>, <span class="tt">png</span>,<span class="tt">gif</span>. La imatge ha de tenir una mida raonable \
+(màxim 500 píxels) i ocupar menys de 200K, en cas contrari l'exercici serà molt lent.
+
+!set name_help2=Indiqueu la mida de la imatge fent clic a l'extrem inferior dret.
+!set name_help01=Introduïu l'etiqueta del punt escollit i feu clic en aquest punt.
+!set name_help11=Introduïu l'etiqueta del punt escollit i feu clic al començament de la fletxa.
+!set name_help21=Indiqueu l'etiqueta del punt escollit. Trieu el tipus d'àrea a delimitar i, a continuació, feu clic a un punt de l'àrea que seleccionareu a continuació.
+!set name_help12=Feu clic al final de la fletxa.
+!set name_help22=Delimiteu la zona amb el ratolí (el punt que heu seleccionat ha de ser a l'interior).
+!set name_help31=Escriure l'etiqueta.
+!set name_help32=Traçar la línia trencada.
+!set name_legend= Etiqueta
+!set name_name_type=Tipus de traces
+!set name_noimage=No heu triat cap imatge.
+!set name_nosize=No heu fet clic a l'extrem inferior dret per indicar la mida de la imatge.
+!set name_nolegend= Has oblidat indicar l'etiqueta.
+!set name_noclick= Has oblidat fer clic en un punt de la imatge.
+!set name_point11=Clicar sobre el primer punt.
+!set name_point12=Clicar sobre el segon punt.
+!set name_point01=Clicar sobre el punt.
+!set name_point21=Clicar en un punt al centre de la zona que seleccionareu.
+!set name_point22=Traçar la zona amb el ratolí.
+!set name_point32=Traçar la línia trencada.
+!set name_empty=Tornar a commençar
+!set name_erase=esborrar la darrera línia.
+!set name_limit= Has arribat al límit del nombre de punts.
+!set name_copy=Podeu mantenir les coordenades dels punts per a utilitzar-les en un exercici.
+!set name_list_curve=cercle, rectangle, línia poligonal, línia trencada
+!set wims_name_manager1=!lowercase $wims_name_manager
+
+!set name_bad_image=El fitxer especificat no s'ha reconegut com una imatge.
+
+!set name_help=Aquests són alguns models d'exercici. Aneu amb compte, no tots els models que s'ofereixen \
+s'adapten necessàriament a la vostra imatge.
+
+!set name_warning=Haureu de tornar a carregar la imatge a l'exercici.
+!set name_createxo=Podeu posar l'exercici a
+!set name_createxo2=Tindreu l'opció de canviar algunes configuracions i, a continuació, \
+guardar-les a la vostra classe.
+
+!distribute item punt, fletxa, zona, línia trencada into name_0, name_1,name_2,name_3
+!set name_already=Recuperar una imatge ja carregada
+!set name_else=També pots
+!set name_end=o acabar d'utilitzar l'exercici
+
+!!description of the exercises
+
+!distribute items Ordre,Nom del fitxer d'imatge,Dades principals,\
+ Nombre de preguntes,Mida de l'etiqueta,Color de les fletxes,Color de farciment,\
+ Amplada màxima de la imatge, Nombre màxim de disruptors, \
+ Liste d'intrus, Nombre maximum d'intrus\
+into name_instruction,name_image,name_data,\
+ name_qu_cnt,name_labelsize,name_color1,name_color2,\
+ name_width,name_distractor,name_intrus,name_nbintrus
+
+!set name_help_format1=Format del tipus de resposta \
+Els tipus de respostes possibles aquí són <span class="tt">dragfill</span> o <span class="tt">clickfill</span>.
+
+!set name_help_format2=Format del tipus de resposta\
+Els tipus de respostes possibles aquí són <span class="tt">case</span> o <span class="tt">nocase</span>\
+depenent de si voleu que la resposta sigui acceptada de manera exacta o aproximada \
+(no es trenquen, els guions es descuiden, ...)
+
+
+!set name_help_data=La primera línia és la mida de la imatge en píxels.\
+Les següents línies estan formades per l'etiqueta seguida de les coordenades del punt on clicar \
+o la fletxa a traçaar en píxels d'acord amb els exercicis.
+
+!!! put the title on the first line and the description on the following lines.
+
+!set name_description01=Etiquetes a una imatge\
+Les etiquetes es col·loquen (centre de l'etiqueta sobre el punt) i s'han d'omplir \
+amb les etiquetes proposades arrossegant i deixant anar o clicant amb el rayolí.
+
+!set name_instruction01=Poseu les etiquetes al seu lloc.
+
+!set name_description02=Clicar sobre un punt d'una imatge \
+Es demana que cliqueu al punt corresponent a la llegenda indicada.
+
+!set name_instruction02=Cliqueu a
+
+!set name_description03=!nosubst Zona Acolorida (escriure)\
+La zona indicada per un dels punts es mostra en color i es demana que escribiu la llegenda \
+associada a aquesta zona. \
+<span class="wims_warning">Nota</span>. Aquest model només s'hauria d'utilitzar si la zona està \
+molt ben delimitada per una línia contínua (com per exemple en un mapa geogràfic).
+
+!set name_instruction03=Escriu el nom de la zona acolorida
+
+!set name_description04=!nosubst Zona Acolorida (clickfill)\
+La zona indicada per un dels punts es mostra en color i es demana que cliqueu a la llegenda \
+associada a aquest punt entre diverses etiquetes proposades.\
+<span class="wims_warning">Nota</span>. Aquest model només s'hauria d'utilitzar si la zona està \
+molt ben delimitada per una línia contínua (com per exemple en un mapa geogràfic).
+
+!set name_instruction04=Clicar sobre el nom de la zona acolorida
+
+!set name_description05=!nosubst Cliqueu sobre una zona ben definida de la imatge \
+Es demana que cliqueu a una zona molt ben delimitada de la imatge.\
+<span class="wims_warning">Nota</span>. Aquest model només s'hauria d'utilitzar si la zona està \
+molt ben delimitada per una línia contínua (com per exemple en un mapa geogràfic).
+
+!set name_instruction05=Clicar sobre la zona  ...
+
+!set name_description06=!nosubst Cliqueu a diverses zones ben definides de la imatge \
+Es demana que cliqueu a diverses zones molt ben delimitades de la imatge.\
+<span class="wims_warning">Nota</span>. Aquest model només s'hauria d'utilitzar si la zona està \
+molt ben delimitada per una línia contínua (com per exemple en un mapa geogràfic).\
+Les zones a agrupar han de tenir exactament la mateixa llegenda.
+
+!set name_instruction06=Clicar sobre les zones  ...
+
+!set name_description07=!nosubst Omplir els quadres de text\
+
+!set name_instruction07=Omplir les caselles
+
+!set name_description11=Etiquetes amb fletxes \
+Les etiquetes es col·loquen (el seu extrem interior a l'inici de les fletxes segons si estan a la dreta \
+o a l'esquerra de la imatge) i s'han d'omplir amb les etiquetes \
+proposades arrossegant i deixant anar o clicant.
+
+!set name_instruction11=Cliquant a les etiquetes, poseu-les al seu lloc.
+
+!set name_description12=Escrire el nom de l'objecte indicat amb una fletxa \
+Hi ha dibuixada una fletxa al dibuix i es demana que s'escrigui la llegenda corresponent a aquesta fletxa.
+
+!set name_instruction12=Escriure el nom indicat per la fletxa.
+
+!set name_description13=Omplir els quadres de text (amb fletxes)
+!set name_instruction13=Omplir les caselles
+
+!set name_description21=Clicar a l'interior d'una zona dibuixada. \
+Hi ha d'haver una imatge en què es dibuixaran les zones. \
+Podeu utilitzar l'eina $module_title amb l'opció $name_2.
+
+!set name_instruction21=Clicar a la zona ...
+
+!set name_description22=Clicar a l'interior de zones dibuixades. \
+Es demana que cliqueu a diverses zones de la imatge.\
+Les zones a agrupar han de tenir exactament la mateixa llegenda o estar en la mateixa línia.\
+Hi ha d'haver una imatge en què es dibuixaran les zones. \
+Podeu utilitzar l'eina $module_title amb l'opció $name_2.
+
+!set name_instruction22=Clicar a les zones ...
+
+!set name_description31=Línia trencada \
+Es demana connectar punts numerats amb una línia trencada
+
+!set name_instruction31=Connectar els punts amb una línia respectant l'ordre

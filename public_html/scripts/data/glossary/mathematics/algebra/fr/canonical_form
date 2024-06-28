@@ -1,0 +1,30 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=canonical_form,roots,equation,trinomial,polynomials,factorization
+!set gl_title=Forme canonique
+!set gl_level=H5 Générale
+:
+:
+:
+:
+<div class="wims_thm">
+    <h4>Théorème</h4>
+    Soit \(a \in \RR^\ast\), \(b\in\RR) et \(f\) la fonction polynôme du second
+     degré définie pour tout \(x\in\RR\) par <span style="white-space:nowrap">
+     \(f(x)=a x^2+ b x +c\).</span>
+    <br>
+    Pour tout \(x\in\RR\),
+    \(f(x)= a\left( \left( x+\frac{b}{2a}\right)^2 - \frac{b^2-4 a c}{4a^2}\right)\).
+</div>
+<div class="wims_defn">
+    <h4>Définition</h4>
+    Cette écriture de \(f\) est appelée <strong>forme canonique</strong> de \(f\).
+</div>
+<div class="wims_rem">
+  <h4>Remarque</h4>
+  On a également, pour tout \(x \in \RR)&nbsp;: <span style="white-space:nowrap">
+  \(f(x) = a\left(x+\frac{b}{2a}\right)^2 - \frac{b^2-4 a c}{4a}\).</span>
+  <br>
+  Cette écriture est aussi appelée forme canonique de \(f\).
+</div>
+:mathematics/algebra/fr/canonical_form_1

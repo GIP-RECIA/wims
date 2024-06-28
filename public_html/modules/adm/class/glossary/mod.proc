@@ -1,0 +1,75 @@
+
+!! modifiy glossary items
+max_glossary=!defof MAX_SHEETS in wimshome/public_html/bases/sys/define.conf
+title_limit=50
+desc_limit=255
+!if $cmd=new or $cmd=resume
+  glossarys=
+  !for i=1 to $glossarytot
+    glo=!record $i of $gloss_dir/.glossaryindex
+    !distribute lines $glo into a_,t_,d_
+    glossarys=!append line $i,$t_,$a_,[$d_] to $glossarys
+  !next i
+  glossarytot=!linecnt $glossarys
+  !ifval $glossarytot=0
+    error=no_glossary
+    !exit
+  !endif
+  !set glo=!line $gl of $(glossarys)
+  !distribute item $glo into d,ti,st,di
+  !set di=!declosing $di
+  !exit
+!endif
+!if $cmd=reply
+  !if $gl=$empty
+    error=no_pick
+    !exit
+  !endif
+  gl=$[floor($gl)]
+  !if $gl=NaN or $gl<1 or $gl>min($max_glossary,$glossarytot)
+    error=bad_glossary
+    !exit
+  !endif
+  !set glocnt=!recordcnt $gloss_dir/.glossary$gl
+  !for j=1 to $glocnt
+    !set glocontent=!record $j of $gloss_dir/.glossary$gl
+    ititle=!singlespace $(title$j)
+    idesc=!singlespace $(desc$j)
+    !set glocontent=!record $j of $gloss_dir/.glossary$gl
+    !set sglo=!replace line number 2 by $ititle in $glocontent
+    !set sglo=!replace line number 3 by $idesc in $sglo
+    !if $sglo!=$glocontent
+      !read proc/updatefield.proc $gloss_dir/.glossary$gl\
+$j\
+\
+$sglo
+    !endif
+  !next
+  !for j=1 to $glocnt
+    !if $(delete$j)=1
+      !read proc/updatefield.proc $gloss_dir/.glossary$gl\
+$j\
+delete
+    !endif
+  !next
+  !read proc/updatefield.proc $gloss_dir/.glossary$gl\
+2\
+sort
+
+  glo=!record $gl of $gloss_dir/.glossaryindex
+  ititle=!singlespace $title
+  idesc=!singlespace $desc
+  !set glo=$glo\
+\
+
+  !set sglo=!replace line number 2 by $ititle in $glo
+  !set sglo=!replace line number 3 by $idesc in $sglo
+  !read proc/updatefield.proc $gloss_dir/.glossaryindex\
+$gl\
+\
+$sglo
+
+!endif
+
+  !!wims_module_log=class $wims_class: add No$glosscnt to glossary $gl
+!endif

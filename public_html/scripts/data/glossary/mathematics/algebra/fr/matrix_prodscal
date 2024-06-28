@@ -1,0 +1,20 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=matrix,linear_algebra
+!set gl_title=Produit d'une matrice par un un nombre réel
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+   Soit \(n\) et \(m\) deux entiers naturels non nuls et \(A = (a_{i,j})\) une
+   matrice de format \(n \times m\) et \(k\) un nombre réel.
+  <br>
+  On appelle <strong>produit de la matrice \(A\) par le nombre réel \(k\)
+  </strong> la matrice
+  <span style="white-space:nowrap">\(k A =(k a_{i,j} )\).</span>
+</div>
+
+:mathematics/algebra/fr/matrix_prodscal_1

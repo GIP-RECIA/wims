@@ -1,0 +1,189 @@
+!! -------- check user
+user=$wims_user
+clsfile=wimshome/log/classes/$wims_class/swork/averagescore
+Clsfile=$wims_home/log/classes/$wims_class/swork/averagescore
+ufile=wimshome/log/classes/$wims_class/swork/averagescore.$user
+Ufile=$wims_home/log/classes/$wims_class/swork/averagescore.$user
+time1=!record 0 of $ufile
+time1=!line 1 of $time1
+!distribute word $time1 into time1,majdate,bl
+!default time1=0
+test=!fileexists $ufile
+!if $test=yes and ($[$wims_nowseconds-$time1]<3600*$swork_refreshtiming or ($swork_allowrefresh=1 and $refresh!=1))
+  !exit
+!endif
+!readproc proc/loguserwork.proc $user
+time2=!record 0 of $clsfile
+time2=!word 1 of $time2
+!default time2=0
+!if $[$wims_nowseconds-$time2]<3600
+  userlist=$user
+!else
+  !reset userlist
+  !for k=1 to $nbuser
+    d=!record $k of wimshome/log/classes/$wims_class/.userlist
+    userlist=!append item $(d[3]) to $userlist
+  !next k
+  !writefile $clsfile $wims_nowseconds $wims_now
+  !! generation indice de difficulte of each exercise
+  !sh export exostat_dirbase exostat_types exostat_classes\
+    exostat_dirbase=$wims_home/log/classes\
+    exostat_types="score"\
+    exostat_classes="$wims_class"\
+    ../bin/exostat >$wims_home/log/classes/$wims_class/exostat
+  !reset indice
+  t=!recordcnt wimshome/log/classes/$wims_class/exostat
+  ms=1
+  me=0
+  max=0
+  !for k=1 to $t
+    dt=!record $k of wimshome/log/classes/$wims_class/exostat
+    !distribute word $dt into bl,s,e,bl,bl,bl,bl,bl,bl,bl,bl,bl,bl,bl,bl,i
+    !if $s>$ms
+      ne=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$ms
+      me=!itemcnt $ligne
+      !ifval $me<$ne
+        !for j=1 to $[$ne-$me]
+          ligne=!append item - to $ligne
+        !next j
+      !endif
+      indice=!append line $ligne to $indice
+      !reset ligne
+      ms=$s
+      me=0
+    !endif
+    !ifval $e>$me+1
+      !for j=1 to $[$e-$me-1]
+        ligne=!append item - to $ligne
+      !next j
+    !endif
+    !if $i>0
+      ligne=!append item $i to $ligne
+      max=$[max($max,$i)]
+    !else
+      ligne=!append item - to $ligne
+    !endif
+    me=$e
+  !next k
+  time2=yes
+  !! ------ fin de generation
+  indice=!replace internal - by $max in $indice
+!endif
+time1=$wims_nowseconds
+!writefile $ufile $wims_nowseconds $wims_now 10000000
+majdate=$wims_now
+nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+!for sh=1 to $nbsheet
+  dtsh=!record $sh of wimshome/log/classes/$wims_class/sheets/.sheets
+  stat=!line 1 of $dtsh
+  !if $stat!=0
+    nbexo=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheet$sh
+    average=!values 0 for v=1 to $nbexo
+    count=$average
+    max=$average
+    average2=$average
+    lsev=!line $[$sh+1] of $severity
+    !distribute word $lsev into swei,rule,indic
+    formula=!item $rule of $formulas
+    wei=!getscoreweight user=$user sheet=$sh
+    wei=!words2items $wei
+    totwei=!replace internal , by + in $wei
+    totwei=$[$totwei]
+    !reset useraverage
+    !for dtu in $userlist
+      lq=!getscoremean user=$dtu sheet=$sh
+      !if $indic=0
+        li=!getscore user=$dtu sheet=$sh
+        re=!getscorerequire user=$dtu sheet=$sh
+      !else
+        !if $indic=1
+          li=!getscorebest user=$dtu sheet=$sh
+          re=!getscorerequire user=$dtu sheet=$sh
+        !else
+          li=!getscorelevel user=$dtu sheet=$sh
+          re=!values 1 for v=1 to $nbexo
+          re=!items2words $re
+        !endif
+      !endif
+      !!calcul du score pour chaque exo
+      !reset lave lmax lcount lave2
+      !for k=1 to $nbexo
+        ewei=!word $k of $wei
+        elq=!word $k of $lq
+        eli=!word $k of $li
+        rei=!word $k of $re
+        !if $rei!=0
+          ave=!replace internal I by $[$eli/10/$rei] in $formula
+        !else
+          ave=!replace internal I by 1 in $formula
+        !endif
+        ave=!replace internal Q by $[$elq/10] in $ave
+        ave=$[rint($ave*1000)]
+        !if $dtu=$user
+          useraverage=!append item $ave to $useraverage
+        !endif
+        try=!getscoretry user=$dtu sheet=$sh work=$k
+        !if $try>0          
+          cnt=$[$(count[$k])+1]
+          lcount=!append item $cnt to $lcount
+        !else
+          lcount=!append item $(count[$k]) to $lcount
+        !endif
+        lmax=!append item $[max($ave,$(max[$k]))] to $lmax
+        ave=$[$(ave)+$(average[$k])]
+        lave=!append item $ave to $lave
+      !next k
+      count=$lcount
+      average=$lave
+      max=$lmax
+    !next dtu
+    !reset tmp tmp2
+    !if $time2!=yes
+      tmp=!record $sh of $clsfile
+    !endif
+    !for k=1 to $nbexo
+      !if $time2=yes
+        ave=$[rint($(average[$k])/$nbuser)]
+        !if $(count[$k])!=0
+          ave2=$[rint($(average[$k])/$(count[$k]))]
+        !else
+          ave2=0
+        !endif
+        m=$[rint($(max[$k]))]
+        ind=$(indice[$sh;$k])
+        tmp=!append line $sh $k $ave $m $ave2 $ind to $tmp
+      !else
+        ave=!line $k of $tmp
+        m=!word 4 of $ave
+        ave2=!word 5 of $ave
+        ind=!word 6 of $ave
+        !default ind=1
+        ave=!word 3 of $ave
+      !endif
+      !if $(wei[$k])!=0 and $swei!=0
+        val=$[rint(100*($ave - $(useraverage[$k])) *$swei * $(wei[$k])/($totwei*$ind))]
+        !if $val<=0
+          val=-1000
+        !endif
+      !else
+        !if $swei!=0
+          val=$[-10000*$swei]
+        !else
+          val=-10000
+        !endif
+      !endif
+      m2=$[rint(100*($m - $(useraverage[$k])) *$swei * $(wei[$k])/($totwei*$ind))]
+      !appendfile $ufile :$sh $k $val $m2 $ave $m $ave2
+    !next k
+    !if $time2=yes
+      !appendfile $clsfile :$tmp
+    !endif
+  !else
+    !if $time2=yes
+      !appendfile $clsfile : 
+    !endif
+  !endif
+!next sh
+
+!sh sort -n -r -k 3 -k 4 $Ufile > $wims_home/sessions/$wimss_session/tmp.swork;\
+    mv -f $wims_home/sessions/$wimss_session/tmp.swork $Ufile

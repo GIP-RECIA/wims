@@ -1,0 +1,336 @@
+Trasformazioni geometriche
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+similarities,isometries,translation,tranformation_group,symmetry,frieze
+Marina, Cazzola
+wims@unimib.it
+
+
+:U2/geometry/oefgeoprim.it
+exo=rifl_orizz&exo=rifl_vert&qnum=2&qcmlevel=1&scoredelay=&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+20
+1
+Riflessioni #1
+Individuare le immagini di poligoni rispetto a una isometria data (utilizzando la carta a quadretti).
+
+
+
+:U2/geometry/oefgeoprim.it
+exo=rifl_obl&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+20
+1
+Riflessioni #2
+Individuare le immagini di poligoni rispetto a una isometria data (utilizzando la carta a quadretti).
+
+Riflessioni rispetto ad assi obliqui
+
+:U2/geometry/oefgeoprim.it
+exo=rifl_obl_d&exo=rifl_orizz_d&exo=rifl_vert_d&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+30
+1
+Riflessioni #3
+Individuare le immagini di poligoni rispetto a una isometria data (utilizzando la carta a quadretti).
+
+Inserita difficoltà di figure che intersecano l'asse di riflessione
+
+:U2/geometry/oefgeoprim.it
+exo=rotazione&qnum=2&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+30
+1
+Rotazioni
+Individuare le immagini di poligoni rispetto a una isometria data (utilizzando la carta a quadretti).
+
+
+
+:U2/geometry/oefisometrie.it
+exo=traslazione_punti&qnum=2&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+30
+1
+Traslazioni
+Individuare le immagini di punti rispetto a una isometria data (utilizzando la carta a quadretti).
+
+
+
+:U2/geometry/oefisometrie.it
+exo=glissorifl_punti&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+40
+1
+Glissoriflessioni
+Individuare le immagini di punti rispetto a una isometria data (utilizzando la carta a quadretti).
+
+
+
+:H3/geometry/rotshoot.en
+level=1&shoots=3
+20
+1
+Spara sul centro di rotazione
+Individuare il centro di una rotazione.
+
+
+
+:U1/geometry/oefgeo2D.it
+exo=prop3&qnum=3&scoredelay=&qcmlevel=1
+40
+1
+Proprietà delle isometrie
+Individuare le proprietà dei diversi tipi di isometrie.
+
+
+
+:U1/geometry/oefgeo2D.it
+exo=droiteinvariante&qnum=1&scoredelay=&qcmlevel=1
+40
+1
+Proprietà delle isometrie: rette invarianti
+Individuare le proprietà dei diversi tipi di isometrie.
+
+
+
+:U1/geometry/oefgeo2D.it
+exo=dynamic&qnum=2&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+40
+1
+Tipo di isometria
+Individuare il tipo di isometria.
+
+
+
+:U1/geometry/oefgeo2D.it
+exo=nature&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+40
+1
+Composizione di isometrie #1
+Che tipo di isometria si può ottenere componendo due isometrie date?
+
+
+
+:U2/geometry/oefisometrie.it
+exo=composiz_1&exo=composiz_2&exo=composiz_3&exo=composiz_4&qnum=2&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1
+40
+1
+Composizione di isometrie #2
+Individuare il tipo di isometria ottenuto componendo due isometrie date.
+
+
+
+:U2/geometry/oefisometrie.it
+exo=poligiso_all&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+60
+1
+Isometrie e poligoni
+Isometrie del piano applicate a poligoni.
+
+
+
+:E6/geometry/oefsymmetry.fr
+exo=sym1&exo=sym11&exo=sym2&exo=sym3&exo=sym0&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it&confparm1=2&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+50
+1
+Simmetria #1
+Costruire schemi con una data simmetria (gruppi finiti)
+
+TODO: inserire rotazioni di 90 gradi
+
+:U2/geometry/oefrosoni.it
+exo=rosoniqq3&exo=rosoniqq4&qnum=1&scoredelay=&seedrepeat=5&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=-1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+50
+1
+Costruisci un rosone
+Costruisci un rosone con un certo tipo di simmetria.
+
+
+
+:U2/geometry/oefrosoni.it
+exo=centro2&qnum=1&scoredelay=&lang_choice=it&qcmlevel=1
+40
+1
+Centro di simmetria
+Individuare il centro di simmetria di una figura.
+
+
+
+:U2/geometry/oefrosoni.it
+exo=rotazioni2&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+40
+1
+Rotazioni #1
+Analisi di figure che ammettono rotazioni nel loro gruppo di simmetria.
+
+:U2/geometry/oefrosoni.it
+exo=rotazioni3&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+40
+1
+Rotazioni #2
+Analisi di figure che ammettono rotazioni nel loro gruppo di simmetria.
+
+:U2/geometry/oefrosoni.it
+exo=rotazioni4&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+40
+1
+Rotazioni #3
+Analisi di figure che ammettono rotazioni nel loro gruppo di simmetria.
+
+:U2/geometry/oefrosoni.it
+exo=rotazioni1&qnum=1&scoredelay=&seedrepeat=3&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=-1&intro_qcmpresent=4&intro_check=1&intro_check=2
+60
+1
+Rotazioni #4
+Analisi di figure che ammettono rotazioni nel loro gruppo di simmetria.
+
+:U2/geometry/oefrosoni.it
+exo=assi1&qnum=1&scoredelay=&lang_choice=it&qcmlevel=1
+40
+1
+Assi di simmetria #1
+Individuare gli assi di simmetria di una figura.
+
+
+
+:U2/geometry/oefrosoni.it
+exo=assi2&qnum=1&scoredelay=&lang_choice=it&qcmlevel=1
+40
+1
+Assi di simmetria #2
+Individuare gli assi di simmetria di una figura.
+
+
+
+:U2/geometry/oefrosoni.it
+exo=assi3&qnum=1&scoredelay=&lang_choice=it&qcmlevel=1
+40
+1
+Assi di simmetria #3
+Individuare gli assi di simmetria di una figura.
+
+
+
+:U2/geometry/oefrosoni.it
+exo=assi4&qnum=1&scoredelay=&intro_expert=yes&intro_presentsol=0&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_qcmpresent=4
+40
+1
+Assi di simmetria #4
+Individuare gli assi di simmetria di una figura.
+
+
+
+:U1/geometry/oefgeo2D.it
+exo=groupe&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+30
+1
+Gruppi di simmetria finiti
+Analizzare il gruppo di simmetria di una figura data.
+
+
+
+:U1/geometry/oefgeo2D.it
+exo=nb_isometry&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+40
+1
+Quante isometrie?
+Individuare in quanti modi diversi si può &#147;mandare una figura nell'altra&#148;
+
+
+
+:H2/geometry/oeffrieze.fr
+exo=frise1&exo=frise2&exo=frise3&exo=frise4&exo=frise5&exo=frise6&exo=frise7&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+40
+1
+Simmetria #2
+Costruire schemi con una data simmetria (gruppi dei fregi).
+
+Il modulo H2/geometry/oeffrieze.fr contiene altri esempi.
+
+:U2/geometry/oefgeoprim.it
+exo=omotetia_punti&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+10
+1
+Omotetie #1
+Individuare le immagini di figure rispetto a una omotetia.
+
+
+
+:U2/geometry/oefgeoprim.it
+exo=omotetia_triangolo&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+10
+1
+Omotetie #2
+Individuare le immagini di figure rispetto a una omotetia.
+
+
+
+:U2/geometry/oefgeoprim.it
+exo=omotetia_inversi&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+10
+1
+Omotetia #3
+Individuare le immagini di figure rispetto a una omotetia.
+
+
+
+:H5/geometry/homothshoot.en
+level=1&shoots=3
+20
+1
+Centro di omotetia #1
+Individua il centro di una omotetia.
+
+
+
+:H5/geometry/homothshoot.en
+level=3&shoots=3
+20
+1
+Centro di omotetia #2
+Individua il centro di una omotetia.
+
+
+
+:U2/geometry/oefgeoprim.it
+exo=Figuresimili1&qnum=2&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+30
+1
+Figure simili #1
+Individuare figure simili.
+
+
+
+:U2/geometry/oefgeoprim.it
+exo=Figuresimili2&qnum=3&qcmlevel=1&scoredelay=&lang_choice=it&confparm1=1&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+40
+1
+Figure simili #2
+Individuare figure simili
+
+
+
+:U2/geometry/oefgeoprim.it
+exo=proporzionalita_passi&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+20
+1
+Similitudini e proporzionalità
+Come si può utilizzare la similitudine per velocizzare alcuni calcoli?
+
+
+
+:U2/geometry/oefgeoprim.it
+exo=rappscala0&qnum=2&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=2&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1
+10
+1
+Rappresentazioni in scala #1
+Leggere le informazioni contenute in una cartina geografica.
+
+
+
+:U2/geometry/oefgeoprim.it
+exo=scale&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=2&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=2
+10
+1
+Rappresentazioni in scala #2
+Determinare la scala di una piantina.
+
+
+

@@ -1,0 +1,9 @@
+!!!!WARNING If you have to put "into" in the translation, write into$  ...
+
+!set lang_exists=yes
+
+!set name_main=General index
+!set name_wimsdoc_title=Technical documentation for developers
+!set name_browse=Browse this site
+!set name_question=Q.
+!set name_answer=A.

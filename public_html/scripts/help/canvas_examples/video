@@ -1,0 +1,6 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+opacity 200,100
+frect -9,9,6,-6,green
+video -5,5,200,200,http://techslides.com/demos/sample-videos/small.mp4

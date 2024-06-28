@@ -1,0 +1,26 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=matrix,linear_algebra
+!set gl_title=Matrice puissance
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(A\) une matrice carrée et soit \(n\) un entier naturel non nul.<br>
+  La <strong>puissance \(n\)-ième</strong> de la matrice \(A\) notée
+  \(A^n\) est définie par&nbsp;:
+  <ul>
+  <li>
+  \(A^1\ = A \)
+   </li><li>
+   si \(n \geqslant 2\) alors
+  \(A^n\) est égal au produit de \(n\) matrices toutes égales à
+  <span style="white-space:nowrap">\(A\).</span>
+   </li>
+  </ul>
+</div>
+
+:mathematics/algebra/fr/matrix_power_1

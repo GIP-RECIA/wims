@@ -1,0 +1,43 @@
+!! make title and logfile for a session
+!! input (wims_read_parm) session
+!! output :
+!! - output_title : title of the session work
+!! - logfile : adress of exercise file of the session.
+
+!reset logfile output_title
+!if exam isin $wims_read_parm
+  !! case of exercise in an exam
+  userbasesession=!replace _ by , in $wims_read_parm
+  userbasesession=!item 1 of $userbasesession
+  tmp=!replace internal $(userbasesession)_examt by $empty in $wims_read_parm
+  tmp=!replace t by . in $tmp
+  logfile=wimshome/log/classes/$wims_class/examlog/$user/$userbasesession/$tmp
+  output_title=$name_Examen $tmp
+  !exit
+!endif
+
+!! case of an exercise in a sheet
+tmp=!defof w_wims_exo,w_wims_sheet,w_module in wimshome/sessions/$wims_read_parm/var
+!distribute item $tmp into userexo,usersheet,exomod
+!if $usersheet!=$empty and $userexo!=$empty
+  output_title=$name_Sheet $usersheet.$userexo
+  logfile=wimshome/sessions/$userses/exolog.$usersheet.$userexo
+  !exit
+!endif
+
+!! case of a exercise (not in a sheet for exemple in a document)
+category=!defof category in wimshome/public_html/modules/$exomod/INDEX
+!if exercise isin $category
+  output_title=$name_Exercise
+  logfile=wimshome/sessions/$userses/exolog
+  !exit
+!endif
+
+!if document isin $category
+  output_title=$name_Doc
+  logfile=$empty
+  !exit
+!endif
+
+
+output_title=$name_page

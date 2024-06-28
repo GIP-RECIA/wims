@@ -1,0 +1,32 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=homothety,vectors
+!set gl_title=Homothétie
+!set gl_level=H4 (Approfondissement), H6 STI2D&nbsp;Spécialité
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(I\) un point du plan ou de l'espace et \(k\) un nombre réel non nul.
+L'<strong>homothétie</strong> de centre \(I\) et de rapport \(k\) est la
+transformation (du plan ou de l'espace) par laquelle tout point \(M\) a pour image
+le point \(M'\) tel que <span style="white-space:nowrap">
+\(\overrightarrow{I M'}=k \overrightarrow{I M}\).</span>
+</div>
+ <div class="wims_rem">
+ <h4>Cas particuliers</h4>
+<ul>
+<li>Une homothétie de rapport 1 est l'identité, tout point est invariant.</li>
+<li>Une homothétie de rapport \(-1\) est une symétrie centrale.</li>
+</ul>
+</div>
+<div class="wims_thm"><h4>Théorème</h4>
+Si \(h\) est une homothétie de rapport \(k\) et si
+\(M, N, M', N'\) sont quatre points du plan ou de l'espace tels que
+\(h(M)=M'\) et <span style="white-space:nowrap">\(h(M)=M'\),</span> alors
+<span style="white-space:nowrap">\(\overrightarrow{M' N'}=k \overrightarrow{M N}\)
+.</span>
+</div>
+
+:mathematics/geometry/fr/homothety_1

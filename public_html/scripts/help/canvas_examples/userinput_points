@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+# adding 2 inputfields for x and y
+userinput inputfield
+userdraw points,blue

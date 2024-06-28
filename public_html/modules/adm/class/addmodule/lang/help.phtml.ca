@@ -1,0 +1,15 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:series
+<p>
+En general, els exercicis d’una sèrie s’escullen a l’atzar
+i es proposa almenys un exercici per a cada tipus si la quantitat
+demanada ho permet.
+</p><p>
+Heu triat a la configuració de l’exercici que l'ordre no sigui
+aleatori,
+podeu canviar aquí l’ordre dels exercicis de la sèrie.
+</p>
+!exit

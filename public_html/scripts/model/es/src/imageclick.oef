@@ -1,0 +1,105 @@
+type=imaudio
+textarea="data instruction"
+iEdit="instruction"
+
+:Escoger una imagen de una lista.
+<p>
+Para construir un ejercicio con este modelo, simplemente escriba la lista de imágenes y
+su caracterización. Esta caracterización se puede poner en el enunciado
+de la forma <span class="tt wims_code_variable">\name</span>.
+Si quiere poner una imagen que parezca disruptiva sin definición,
+no ponga ninguna caracterización. Varias imágenes pueden tener la misma caracterización.
+</p>
+<p class="wims_credits">
+Autor del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Escoger la imagen correcta}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Datos
+Las imágenes pueden estar en el ejercicio (simplemente coloque el nombre de
+la imagen, no se olvide de cargarlas en el ejercicio),
+en un módulo de datos de imagenes
+(ver el ejemplo).
+\text{data=modules/data/images/imgschool.fr/images/abeille.png,abeja
+modules/data/images/imgschool.fr/images/ange.png,ángel
+modules/data/images/imgschool.fr/images/araignee.png,araña
+modules/data/images/imgschool.fr/images/aubergine.png,berenjena
+modules/data/images/imgschool.fr/images/ananas.png,piña
+}
+
+:Número de imágenes presentadas.
+
+\integer{cnt=4}
+
+:El tamaño vertical de las imágenes en píxeles
+
+\text{sizev=100}
+
+:%%%%%%%%%%%%%%
+ne pas mettre de ; dans sizeh
+\if{\sizev notsametext }{
+  \text{sizev= style="height:wims(nospace \sizev px)"}
+}
+\text{data=wims(embraced randitem \data)}
+\text{tot=rows(\data)}
+\text{name=}
+\while{\name issametext }{
+ \text{mot = randrow(\data)}
+ \text{name=\mot[2]}
+ }
+\text{image=\mot[1]}
+\text{ext=item(2,wims(replace internal . by , in wims(lowercase \image)))}
+
+:Enunciado
+Aquí \name representa el segundo elemento de la imagen en la que se hará clic.
+\text{instruction=Haga clic en \name.}
+
+:%%%%%%%%%%%%%%
+\css{<style>
+table.ans_multipleclick1 {margin-left:auto;margin-right:auto}
+</style>
+}
+\text{liste=column(1,\data)}
+\text{listename=column(2,\data)}
+\text{rep=position(\name,\listename)}
+\text{perturb=wims(makelist x for x=1 to \tot)}
+\text{perturb=shuffle(\perturb)}
+\text{perturb=\perturb[1..\cnt]}
+\text{inter=wims(listintersection \rep and \perturb)}
+\if{\inter=}{
+  \integer{repcnt=items(\rep)}
+  \text{rep= \repcnt >1 ? randitem(\rep)}
+  \text{perturb=\rep,\perturb[1..\cnt-1]}
+  \text{perturb=shuffle(\perturb)}
+}
+\matrix{data=\data}
+\text{liste=\data[\perturb;1]}
+\text{listename=\data[\perturb;2]}
+\text{cnt=items(\liste)}
+\text{Image=}
+\for{j=1 to \cnt}{
+  \text{Image=/ isin \liste[\j] ? wims(append item \liste[\j] to \Image):
+  wims(append item \imagedir/\liste[\j] to \Image)}
+}
+\text{liste=wims(makelist imgrename(x \sizev) for x in \Image)}
+\text{rep=position(\name,\listename)}
+\statement{
+<div class="instruction">
+ \instruction
+</div>
+<br class="spacer">
+ \embed{r1}
+}
+\answer{}{\rep;\liste}{type=multipleclick}{option=shuffle}

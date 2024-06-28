@@ -1,0 +1,17 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 1,1,grey
+rotationcenter 0,0
+# slider is active for all following objects until 'killslider'
+slider -10,10,300,40,angle degree,Rotate
+drag xy
+# after dragging the object must be clicked to re-activate the slider
+linewidth 4
+arrow 0,0,6,0,9,blue
+
+# reset rotation center to the first (x,y) of the next object/arrow...
+killrotate
+drag xy
+# after dragging the object must be clicked to re-activate the slider
+arrow 0,0,6,1,9,red

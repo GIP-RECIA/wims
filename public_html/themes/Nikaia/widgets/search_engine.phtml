@@ -1,0 +1,117 @@
+!! --------- fichier copié depuis scripts/adm/search_engine. ---------
+!! --------- a mettre ailleurs ? ---------
+
+!read adm/search_engine/completion.phtml
+
+!set wims_ref_anchor=#searchform
+
+<div class="search_box wims_widget_box medium_size float_left" id="searchform">
+  !set wims_form_method=post
+  !form new
+    <input type="hidden" name="module" value="home">
+
+    !if $wims_accessright!=$empty
+      !read adm/search_engine/search_accessright.phtml
+    !endif
+
+    <div class="title_box">
+      <h2 class="wims_title">$name_search_all</h2>
+      <div class="aide_recherche">
+       !set wims_ref_class=wims_button_help
+       !href module=adm/light&phtml=search_engine.phtml.$lang $wims_name_help
+      </div>
+      <br class="clearall">
+    </div>
+
+    <div class="box_content">
+      <div class="input-group">
+        <label class="show-for-sr" id="keywords_label" for="search_keywords">$name_search_all</label>
+        <input type="search"
+               size="16"
+               name="search_keywords"
+               value="$search_keywords"
+               class="wims_home_form multicomplete input-group-field"
+               placeholder="$name_keywords_enter"
+               autosave="search_keywords"
+               results="5"
+               aria-labelledby="keywords_label">
+        <div class="input-group-button">
+          <button class="wims_button icon_button" type="submit">
+            <span class="Searching">$N_Search</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="float_right">
+        !set wims_ref_class=text_icon browse
+        !href module=adm/browse $wims_name_browse
+      </div>
+
+      !if $jquery_defined=yes
+        <script>
+          jQuery(function($$){
+            // Get in sessionStorage if affined_search was previously uncollapsed
+            var affined_search_state = sessionStorage.getItem("affined_search_state");
+            //console.log("affined_search_state="+affined_search_state);
+            affined_search_state = !affined_search_state ? false : Number(affined_search_state);
+            // Display all affined search fields in a collapsible way
+            $$("#affined_search").accordion({
+              collapsible: true,
+              active: affined_search_state,
+              heightStyle: "content",
+              activate : function( event, ui ) {
+                  affined_search_state = $$("#affined_search").accordion("option", "active");
+                  sessionStorage.setItem("affined_search_state", affined_search_state);
+                  //console.log("affined_search_state="+affined_search_state);
+              }
+            });
+          } );
+        </script>
+      !endif
+
+      <fieldset id="affined_search">
+        <legend>$name_search_filters</legend>
+
+        <div class="accordion-content">
+          <div class="input-group">
+            !!-- search type -->
+            <label class="input-group-label" for="search_category">$wims_name_Type</label>
+            !formselect search_category list $slist prompt $plist
+          </div>
+          <div class="input-group">
+            !!-- search lang -->
+            <label class="input-group-label" for="search_lang">$wims_name_Language</label>
+            !default search_lang=$lang
+            !set L_language=!words2items $wims_site_languages
+            !formselect search_lang list $L_language
+          </div>
+          <div class="input-group">
+            !!-- search method -->
+            <label class="input-group-label" for="search_and">$name_search_method</label>
+            !default search_and=no
+            !formselect search_and list yes,no prompt $name_search_and
+          </div>
+
+          <div class="wimscenter">
+            <strong>$wims_name_level</strong>
+            !if $jquery_defined=yes
+              !read adm/search_engine/level_form.phtml
+            !else
+              <div class="search_level_list">
+                !formcheckbox search_level list $listlevel prompt $Listlevel
+              </div>
+            !endif
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  !formend
+
+  <script src="scripts/js/interface/search_engine.js"></script>
+
+  !set srchl=$search_keywords
+  !reset search_category, search_keywords
+
+</div>
+
+

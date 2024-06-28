@@ -1,0 +1,54 @@
+
+!set wims_ref_class=wims_button_help float_right
+!href target=wims_mhelp cmd=help $wims_name_help
+<div class="wims_content">
+  !form reply
+     <input type="hidden" name="job" value="config" >
+     <fieldset class="property_fields halfwidth blockcenter">
+     <legend>$wims_name_config</legend>
+     <div class="field box">
+        <label for="cf_open">$(name_config[1])</label>
+        !set wims_ref_class=wims_formradio
+        !default cf_open=$swork_open
+        !formradio cf_open list 1,0 prompt $wims_name_yes,$wims_name_no
+    </div>
+     <div class="field box">
+        <label for="cf_refreshtiming">$(name_config[2])</label><br>
+        <input type="number" min="1" max="1000" size="3" name="cf_refreshtiming" value="$swork_refreshtiming" id="cf_refreshtiming" >
+        <div class="formHelp">$(name_desc_config[2])</div>
+     </div>
+     <div class="field box">
+        <label for="cf_allowrefresh">$(name_config[3])</label><br>
+        !set wims_ref_class=wims_formradio
+        !default cf_allowrefresh=$swork_allowrefresh
+        !set wims_ref_id=cf_allowrefresh
+        !formradio cf_allowrefresh list 1,0 prompt $wims_name_yes,$wims_name_no
+        <div class="formHelp">$(name_desc_config[3])</div>
+     </div>
+     <div class="field box">
+        <label for="cf_nbexo">$(name_config[4])</label><br>
+        <input type="number" min="1" max="10" size="2" name="cf_nbexo" value="$swork_nbexo" id="cf_nbexo" >
+        <div class="formHelp">$(name_desc_config[4])</div>
+     </div>
+     <div class="field box">
+        <label for="cf_excludesh">$(name_config[5])</label><br>
+        !set wims_ref_id=cf_excludesh
+        !set cf_excludesh=$swork_excludesh
+        !formcheckbox cf_excludesh list $listsh
+        <div class="formHelp">$(name_desc_config[5])</div>
+     </div>
+     <div class="field box">
+        <label for="cf_minscore">$(name_config[6])</label><br>
+        <input type="number" min="0" max="10" size="2" name="cf_minscore" value="$swork_minscore" id="cf_minscore" >
+        <div class="formHelp">$(name_desc_config[6])</div>
+     </div>
+
+  </fieldset>
+  <div class="wimscenter">
+    <input type="submit" name="save" value="$wims_name_tosave" >
+    !set wims_ref_class= wims_button wims_secondary_button
+    !href module=$module&+job=$empty $wims_name_giveup
+  </div>
+  !formend
+</div>
+!reset save cf_excludesh

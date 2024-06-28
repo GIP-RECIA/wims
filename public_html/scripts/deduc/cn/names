@@ -1,0 +1,113 @@
+!set lang_exists=yes
+
+!set name_form1_1=Çé¿ö,ÒÑ¾­½áÊø
+!set name_form1_2=Ê£ÏÂ,\
+  ÕâÊÇÄãµÄ
+!set name_form1_3=Ê£ÏÂ,ÄãÓĞ,ÖÖÇé¿ö, ÓĞ´ı´¦Àí. Ä¿Ç°µÄÇé¿ö:
+!set name_form1_4=Äã±ØĞëÒ»²½Ò»²½µØ×öÕâ¸öÁ·Ï°, \
+  ²¢Ê¹ÓÃ²Ëµ¥ÉÏÏÔÊ¾µÄ²½Öè.
+!set name_form1_5=µÚÒ»²½µÄ·½·¨£º,\
+  µÚ ²½µÄ·½·
+!set name_form1_erasehyp=É¾³ıÎŞÓÃµÄ½âÊÍ
+
+!set name_form3_1=Ó¦ÓÃ±¾·½·¨µÄÌõ¼şÊÇÊ²Ã´
+!set name_form3_2=±¾·½·¨ÄÜµÃµ½Ê²Ã´
+
+!set name_formnewcase_1=²Ù×÷´íÎó: Ö»Ê£ÏÂÒ»ÖÖÇé¿ö.
+!set name_formnewcase_2=!nosubst ÄãÓĞÒÔÏÂµÄ $[$casecnt-1] ÖÖÇé¿ö´ı´¦Àí.\
+  µã»÷ÆäÖĞÖ®Ò».
+!set name_current_case=Ä¿Ç°µÄÇé¿ö
+
+!set name_answer1=²»! Äã×öÁË´íÎóµÄ²Ù×÷, Ê¹µÃÁ·Ï°µÄÖ¤Ã÷ÎŞ·¨¼ÌĞø.\
+  ´ËÁ·Ï°ÒÑ¾­Ê§°Ü, µÃ·Ö=0.
+!set name_answer2=   ²»! ÄãÒÑ¾­³¬¹ıÁËÔÊĞíµÄ²½ÖèÊı.\
+  ²Ù×÷Ê§°Ü. µÃ·Ö=0.
+!set name_answerprompt=ÖÕÓÚ, àÅ, »¹ĞĞ, ºÃ, ºÜºÃ, ×£ºØÄã
+!set name_solve=!nosubst ÄãÔÚµÚ $ctstep ²½½â¾öÁËÎÊÌâ.
+!set name_shouldbe=!nosubst ¿ÉÒÔÔÚ $m_minsteps ²½ÄÚÍê³É.
+!set name_scoreend=µÃ·Ö,¸ö¶àÓàµÄ²½Öè, ÓÉÓÚÑÏÖØ´íÎóµÄ¿Û·ÖÊÇ
+
+!set name_intro=±¾Ä£¿éÊÇÒ»×éÁ·Ï°. ÄãÃ»ÓĞÖ¸³öÏë×öÄÄ¸ö¿ÉÓÃµÄÁ·Ï°.\
+  Õâ»òÕßÊÇÓÉÓÚÄãµã»÷ÁËÒ»¸ö´íÎóµÄÁ¬½Ó, »òÕßÊÇÈí¼şµÄÂ©¶´.
+
+!set name_tryagain=ÊÔÊÔÖØĞÂ¿ªÊ¼
+
+!set name_introprompt=´Ó²»,¸ù¾İÁ·Ï°,×ÜÊÇ
+!set name_intro1=±§Ç¸, ´ËÄ£¿éÄ¿Ç°Ã»ÓĞ¿ÉÓÃµÄÁ·Ï°. ÇëÒÔºóÔÙÀ´!\
+   ÊÔÊÔ¿´.
+!set name_introone=±¾Ä£¿éÄ¿Ç°Ö»º¬Ò»¸öÁ·Ï°,\
+  Try it
+!set name_intro2=Á·Ï°ÖĞ°üº¬,\
+  Ñ¡ÔñÁ·Ï°,\
+  ÄÑ¶È,\
+  µÄÌõ¼ş,\
+  Ñ¯ÎÊ·½·¨ µÄ½á¹û
+!set name_intro3=Ñ¡È¡°üº¬ÄãÊäÈëµÄ´ÊµÄ±êÌâ
+!set name_intro_remark1=<b>×¢</b>. ½«´ÓÄãÑ¡È¡µÄ·¶Î§ÀïËæ»úÉú³ÉÁ·Ï°\
+  (Èç¹ûÄãÃ»ÓĞÑ¡È¡, ½«´ÓËùÓĞ¿ÉÄÜµÄÁ·Ï°ÖĞ³éÈ¡).
+
+!set name_intro_remark2=Ò»°ãËµÀ´, ±êÓĞĞÇºÅ * µÄÁ·Ï°ÊÇ½ÏÄÑµÄÁ·Ï°.
+
+!distribute item -- choose --, I have no idea,\
+	precise if necessary\
+	the good reply is, the good replies are\
+	into ch_choose, ch_noidea, ch_optional
+
+!set name_badsize=Your answer does not even have a correct size.
+!set name_exo=Exercise.
+
+!distribute item It is always applicable,\
+	Only when\
+  into ct_Always, ct_Onlywhen
+
+!distribute item ³õÊ¼¼ÙÉè,\
+  ĞÂ¼ÙÉè,\
+  ÏÖÔÚÄãÓĞ,\
+   ĞèÒªÖ¤Ã÷\
+into name_status_hyp,name_status_newhyp,name_status_now,name_toprove
+
+!distribute item È¡Ïû,ÖØ×ö,Ä¿±ê Ä±ä,²»¼Æ·Ö\
+into name_undo,name_redo, name_change,name_noaccount
+
+!distribute item ²½ÖèµÄÀúÊ·¼ÍÂ¼,µÚ ²½.,µÚ ÖĞÇé¿ö,½á¹û,·½·¨,×¢, ·½·¨ \
+  into name_hist,name_step, name_case,name_result,name_method,name_remarks,name_methods
+
+!distribute item Á·Ï°½øÕ¹×´¿ö,¸Ä±ä·½·¨\
+  into name_state, name_methchange
+
+!set name_continue=¼ÌĞø
+
+!set name_nohint=±§Ç¸, ±¾Á·Ï°Ã»ÓĞ¿ÉÓÃµÄÌáÊ¾.
+
+!set name_otherhelp=ÆäËü°ïÖúÖ÷Ìâ
+!set name_nosuphelp=Õâ¸ö·½·¨Ã»ÓĞ¸ü¶àµÄ°ïÖú.
+!set name_noparthelp=±¾Á·Ï°Ã»ÓĞÌØ±ğµÄ°ïÖú.
+!set name_subjecthelp=°ïÖúÖ÷Ìâ
+
+!set name_methodtitle=±¾Á·Ï°ÔÊĞíÊ¹ÓÃµÄ·½·¨
+
+!set name_titlestate=±¾Á·Ï°Ä¿Ç°µÄ×´¿ö
+!set name_hypusable=¿ÉÓÃµÄ¼ÙÉè
+!set name_totransform=±ä»»µÄ¶ÔÏó
+!set name_remaintoprove=ÈÔÈ»ÒªÖ¤
+!set name_statushelp_1=!nosubst ÎªµÃµ½×î¸ß·Ö, ÄãÓ¦¸ÃÔÚ \
+  $m_minsteps ²½ÄÚ½â¾öÎÊÌâ.
+!set name_statushelp_2=!nosubst ±¾Á·Ï°¿ÉÔÚ $m_minsteps ²½ÄÚ½â¾ö,\
+  µ«ÔÚÄ¿Ç°×´¿öÏÂÄã¿ÉÒÔ×öµ½ $[$m_minsteps+$tolerance] ²½ÈÔÄÜµÃµ½×î¸ß·Ö.
+
+!set name_statushelp_3=ÏÖÔÚÄãÊÇµÚ ²½.
+!set name_statushelp_4=!nosubst ÄãÔÚµÚ $[$currstep-1] ²½ºóÍê³ÉÁË.
+!set name_statushelp_5=!nosubst Äã»¹ÓĞ $[$casecnt-1] ÖÖÇé¿ö´ı´¦Àí. \
+  Ä¿Ç°µÄÇé¿ö:
+!set name_statushelp_6=ÕâÊÇÄãÒª´¦ÀíµÄ×îºóÒ»ÖÖÇé¿ö
+
+!set name_author=±¾Á·Ï°µÄ×÷Õß
+!distribute lines ±¾Á·Ï°¼È°üº¬´øÓĞ½âÊÍµÄ½â, Ò²°üº¬ÌáÊ¾.\
+  ±¾Á·Ï°°üº¬´øÓĞ½âÊÍµÄ½â, µ«Ã»ÓĞÌáÊ¾.\
+  ±¾Á·Ï°ÓĞÌáÊ¾, µ«Ã»ÓĞ´øÓĞ½âÊÍµÄ½â.\
+  ±¾Á·Ï°¼ÈÃ»ÓĞ´øÓĞ½âÊÍµÄ½â, Ò²Ã»ÓĞÌáÊ¾.\
+  ¹ØÓÚ±¾×éÁ·Ï°µÄĞÅÏ¢.\
+into name_expl1,name_expl2,name_explhint,name_nohint,name_information
+
+!set name_copyright=±¾Á·Ï°µÄ°æÈ¨ÊôÓÚËüµÄ×÷Õß.\
+  °ÑÁ·Ï°µÄÔ´²ÄÁÏ°²×°ÔÚ·şÎñÆ÷ÉÏÓ¦µÃµ½×÷ÕßµÄÍ¬Òâ.

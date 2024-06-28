@@ -1,0 +1,34 @@
+20221115 [r17322] use month name from adm/date.phtml instead of local define (FG)
+20221009 [r17153] job=workingtime empty month don't display in table (FG)
+20221009 [r17153] add a configuration panel for workingtime (FG)
+20221009 [r17153] default colors are blue (FG)
+------------- version 2.02 
+20220707 [r16903] add job=workingtime to display connection time of each participant (FG)
+20220707 [r16903] add a complet process for error/success/alert message (FG)
+ ------------ version 2.01 
+20190128 [r13568] the link to userscore was not always good.
+20180614 [r13005] lastname and firstname are not found in a superclass (bpr)
+20180614 [r12950] add job=useractivity to show to the user his own activity stat (FG)
+20180613 [r12947] structuration of the module for multijob (FG)
+20180403 [r12485] use of tablesort.js in job=activity when graphics!=1 (FG)
+20160629: transfert of some lang variable in html/names.phtml.$lang
+20160628 [10462] varfilter interface appear only when one technical variable exists (FG)
+20160512 [10069] delete the line graphs and replace by stick;
+   add the number of non terminated exercices by sheet.
+   (bpr)
+
+20160411 [r9999] use new technical variable (FG)
+20160217 user common file for varfilter (FG)
+20150926 varfilter is saving in session for all module use it (FG)
+2015-08-12:
+   add graphic statistics
+
+2011-03-19: kill warnings in perl script
+
+2010-02: Version 2.00
+  This module replaces several previously existing module adm/class/activity.fr.
+
+2010-01-19: Version 1.10
+  create the lang directory.
+
+2007-12-25: First version 1.00

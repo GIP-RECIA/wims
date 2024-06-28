@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,random_variable
+!set gl_title=Variable aléatoire
+!set gl_level=H5 Générale
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+
+Soit &#937; l'univers associé à une expérience aléatoire. On suppose qu'une loi
+de probabilité est définie sur &#937;.<br>
+On appelle <strong>variable aléatoire</strong> toute fonction de &#937; dans
+<span style="white-space:nowrap">\(\displaystyle{\RR}\).</span>
+</div>

@@ -1,0 +1,15 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Matrice associée à un graphe (exemple)
+!readproc data/glossary/mathematics/discrete_mathematics/macro/graphdraw
+
+<div>
+Le graphe non orienté représenté ci-dessous admet pour matrice
+<span style="white-space:nowrap">\([$gl_A2]\).</span>
+</div>
+<div class="wimscenter"> $gl_out2</div>
+<div>
+Le graphe orienté représenté ci-dessous admet pour matrice
+<span style="white-space:nowrap">\([$gl_A1]\).</span>
+</div>
+<div class="wimscenter"> $gl_out1</div>

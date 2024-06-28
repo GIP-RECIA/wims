@@ -1,0 +1,30 @@
+title=Free Work
+description=Free work management
+author=Fabrice, Guerimand
+address=fwguerima@free.fr
+copyright=&copy; 2019
+version=1.02
+# minimal version of wims server under which the module may run
+wims_version=4.25b
+language=$lang
+maintainer=Fabrice, Guerimand
+maintainer_address=fwguerima@free.fr
+
+# Possible categories: exercise, tool, dictionary, course, recreation.
+category=adm
+
+# Anything you like.
+keywords=
+help=popup
+
+title_fr=Devoir libre
+description_fr=gestionnaire de devoir libre.
+
+title_it=Compiti a risposta aperta
+description_it=gestione dei compiti a risposta aperta.
+
+title_ca=Tasca lliure
+description_ca=gestor de tasca lliure.
+
+# if module is optional
+optional_module=yes

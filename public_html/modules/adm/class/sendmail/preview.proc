@@ -1,0 +1,74 @@
+
+!! ------ check method
+!bound method within all,select,login,filter default all
+!bound selfsend within 0,1 default 0
+!bound sendotherteacher within 0,1 default 0
+
+save_selfsend=$selfsend
+save_sendotherteacher=$sendotherteacher
+save_subject=!char 1 to 100 of $subject
+save_subject=!detag $save_subject
+!!  -------- for the moment use detag
+!!  script_data_input=!char 1 to 1000 of $msg
+!!!readproc adm/partialdetag.proc variable
+!! save_subject=$script_data_output
+save_msg=!char 1 to 1000 of $msg
+save_msg=!detag $save_msg
+
+all_list=!values v for v=1 to $nb_user
+!if $method=all
+  sending_mail=$all_list
+!endif
+
+!if $method=select
+  sending_mail=!listintersect $all_list and $select_user
+!endif
+
+!if $method=filter
+  !reset sending_mail sending_nomail
+  !for lu=1 to $nb_user
+    us=!record $lu of wimshome/sessions/$wims_session/.userlist_mail
+    !distribute item $us_ into l_name_,f_name_,login
+    !read adm/vfilter/testfilter $(us[3])\
+$varfilter_
+    !if $var_filter_test=1
+      sending_mail=!append item $lu to $sending_mail
+    !endif
+  !next lu
+  nbbad=0
+  !if $nbw_user>0
+    !for lu=1 to $nbw_user
+      us=!record $lu of wimshome/sessions/$wims_session/.userlist_nomail
+      !distribute item $us_ into l_name_,f_name_,login
+      !read adm/vfilter/testfilter $(us[3])\
+$varfilter_
+      !if $var_filter_test=1
+        sending_nomail=!append item $lu to $sending_nomail
+        !increase nbbad
+      !endif
+    !next lu
+  !endif
+!endif
+
+!if $method=login
+  !reset sending_mail valid_login
+  !for lu=1 to $nb_user
+    us=!record $lu of wimshome/sessions/$wims_session/.userlist_mail
+    !distribute item $us into l_name_,f_name_,login
+    !if $login isitemof $loginlist
+      sending_mail=!append item $lu to $sending_mail
+      valid_login=!append item $login to $valid_login
+    !endif
+  !next lu
+  bad_list=!listcomplement $valid_login in $loginlist
+  nbbad=!itemcnt $bad_list
+!endif
+
+nbsend=!itemcnt $sending_mail
+!if $nbsend=0
+  error=nousermail
+  !reset job
+  !exit
+!endif
+nbteacher=!recordcnt wimshome/sessions/$wims_session/.teacherlist_mail
+

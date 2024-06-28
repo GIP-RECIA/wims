@@ -1,0 +1,11 @@
+!if $wims_user!=$empty and $wims_user!=supervisor
+  !set seedlastcnt=!getseedlastcnt sheet=$wims_sheet work=$wims_exo
+  !! find the number of distinct seeds (faire une fonction dans score.c ??)
+  !set seedcnt=!getseedscores sheet=$wims_sheet work=$wims_exo
+  !set seedcnt=!declosing $seedcnt
+  !set seedcnt=!listuniq $(seedcnt[;1])
+  !set seedcnt=!itemcnt $seedcnt
+!else
+  !set seedcnt=$wims_seedcnt
+  !set seedlastcnt=$wims_seedlastcnt
+!endif

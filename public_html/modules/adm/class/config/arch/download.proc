@@ -1,0 +1,65 @@
+!bound format within zip,tgz,tar.gz default zip
+
+!set max_upload_size=500
+
+sel=!listintersect $selection and $reclist
+!default sel=$reclist
+!! deleted : don't need to uncheck score and forum by default
+!! select=!listcomplement score,forum in $sel
+
+!! -- generate list of data (with dependancy) really in the backup (not just the selected)
+selw=!items2words $sel
+!if $check_dependency!=no
+  dictionary=$module_dir/arch/recdep
+  dep=!exec translator $selw
+!endif
+select=$selw $dep
+select=!words2items $select
+select=!listuniq $select
+
+!! --
+dictionary=$module_dir/arch/recdir
+dirs=!exec translator $selw $dep
+dirs=!words2items $dirs
+dirs=!listuniq $dirs
+dirs=!items2words $dirs
+!if def isitemof $select
+  dirs=!append word .def to $dirs
+!endif
+
+
+dictionary=$module_dir/lang/recnames.$moduclass_lang
+tot=!replace , by , $ in $reclist
+tot=!exec translator $tot
+fname=!translate internal / to ~ in $wims_class
+!if $class_typename=course
+  tmpnum_class=!char 1 to -5 of $wims_class
+!else
+  tmpnum_class=$wims_class
+!endif
+
+fsize=!mexec arch/pack.sh
+
+!! file size creation is limited by wims.c (var rlimit_fsize)
+!! ulimit -f return the system limit to file size creation
+!set max_arch_size=!sh ulimit -f
+!! ulimit is defined in blocks (1 block = 512B)
+!! So, N blocks = N*512/1024 = N/2 Ko
+!! nb: there seems to be a bug in MacOS X causing !exec commands reseting ulimit to "unlimited"
+!! On Linux systems, it's working as expected.
+!if $max_arch_size!=unlimited
+  max_arch_size=$[ceil($max_arch_size/2)]
+!endif
+
+!if $wims_exec_error!=$empty
+  !if File too large isin $wims_exec_error or Filesize limit exceeded isin $wims_exec_error
+    error=file_too_large
+  !endif
+!else
+  wims_class_log=Backup created by $wims_realuser
+!endif
+
+!if $fsize!=$empty
+  fsize=$[ceil($fsize/1024)]
+  !setdef !set class_backup=$today in wimshome/log/classes/$wims_class/.def
+!endif

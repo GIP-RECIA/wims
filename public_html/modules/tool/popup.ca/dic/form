@@ -1,0 +1,256 @@
+1d data:probstat/stat/data1d
+2d curve:geom/analy/polarcurv geom/analy/implot2d geom/analy/parmcurv elem/precalc/plot
+2d data:probstat/stat/data2d
+2d data plot:probstat/stat/data2d
+add:elem/precalc/eval
+algebra:alg/complex/complex elem/num/gcd alg/solveeq alg/polynom1 adv/arith/factor elem/num/factor alg/solvenum adv/arith/mod adv/arith/randprime alg/factor alg/expand adv/arith/ratapprox alg/complex/sqrt elem/num/numsimply elem/num/denom elem/num/lcm alg/complex/roots elem/num/baseconv alg/complex/cbrt adv/arith/allprime elem/num/gcdlcm
+algebraic geometry:geom/analy/impli3dc geom/analy/impli3d geom/analy/impli2d
+altitude:geom/analy/triangle geom/elem/triangle
+analytic geometry:geom/analy/impli3dc geom/analy/circleq geom/analy/lineplot geom/analy/line2pts geom/analy/triangle geom/analy/impli2d geom/analy/impli3d
+angle:geom/elem/triangle geom/elem/angleconv geom/analy/triangle
+angle convert:geom/elem/angleconv
+antiderivative:calcu/int
+approximation fraction:adv/arith/ratapprox
+approximation rational:adv/arith/ratapprox
+area:geom/elem/triangle geom/analy/triangle geom/elem/circle
+argument:alg/complex/complex
+arithmetic:adv/arith/randprime adv/arith/factor elem/num/gcd elem/num/lcm adv/arith/ratapprox elem/num/factor adv/arith/allprime adv/arith/mod elem/num/gcdlcm
+arithmetic mean:probstat/stat/data1dw probstat/stat/data1d
+basis convert:elem/num/baseconv
+binary:elem/num/baseconv
+calculus:calcu/defint calcu/ifouriertr calcu/impderiv calcu/limpar calcu/fouriertr calcu/laplacetr calcu/ilaplacetr calcu/deriv calcu/lim calcu/int
+character polynomial:alg/lin/matrix
+circle:geom/analy/circleq geom/elem/circle
+circle equation:geom/analy/circleq
+circumcircle:geom/analy/triangle geom/elem/triangle
+circumference:geom/elem/circle
+combinatoric:combi/factorial
+common denominator:elem/num/denom
+common divisor:elem/num/gcdlcm elem/num/gcd
+common factor:elem/num/gcd elem/num/gcdlcm
+common multiple:elem/num/lcm elem/num/gcdlcm
+complex:alg/complex/complex alg/complex/sqrt alg/complex/roots alg/complex/cbrt
+complex cubic root:alg/complex/cbrt
+complex number:alg/complex/sqrt alg/complex/cbrt alg/complex/complex alg/complex/roots
+complex root:alg/complex/cbrt alg/complex/roots alg/complex/sqrt
+compose:elem/precalc/subst
+compose function:elem/precalc/subst
+convert:elem/num/baseconv
+convert angle:geom/elem/angleconv
+convert basis:elem/num/baseconv
+convert number:elem/num/numconv
+correlation:probstat/stat/data2d
+correlation coefficient:probstat/stat/data2d
+cos:elem/precalc/eval elem/precalc/plot
+covariance:probstat/stat/data2d
+cubic:alg/complex/roots alg/complex/cbrt
+cubic root:alg/complex/cbrt alg/complex/roots
+curve:geom/analy/polarcurv geom/analy/parmcurv elem/precalc/plot geom/analy/impli2d geom/analy/implot2d geom/analy/impli3dc
+curve 2d:geom/analy/implot2d geom/analy/parmcurv elem/precalc/plot geom/analy/polarcurv
+curve function:elem/precalc/plot
+data:probstat/stat/data1d probstat/stat/data2d
+data 1d:probstat/stat/data1d
+data 2d:probstat/stat/data2d
+data plot:probstat/stat/data2d
+data product:probstat/stat/data1d
+data range:probstat/stat/data1d
+data sum:probstat/stat/data1d
+decimal:elem/num/baseconv elem/num/numconv
+definite integral:calcu/defint
+degree:geom/elem/angleconv
+denominator:elem/num/denom
+derivative:calcu/deriv calcu/impderiv
+derivative implicit:calcu/impderiv
+derivative implicit function:calcu/impderiv
+determinant:alg/lin/matrix
+deviation:probstat/stat/data1dw probstat/stat/data1d
+diameter:geom/elem/circle
+divide:elem/precalc/eval
+elementary algebra:alg/expand alg/polynom1 alg/solveeq alg/solvenum alg/factor
+elementary geometry:geom/elem/triangle geom/elem/circle geom/elem/angleconv
+equation:geom/analy/impli3dc alg/solveeq geom/analy/impli3d geom/analy/impli2d
+equation circle:geom/analy/circleq
+equation line:geom/analy/line2pts
+equation line 2 point:geom/analy/line2pts
+equation solve:alg/solveeq
+euclid geometry:geom/elem/circle geom/elem/triangle geom/elem/angleconv
+evaluate:elem/num/numsimply elem/precalc/eval elem/precalc/subst
+exp:elem/precalc/plot elem/precalc/eval
+expand:alg/polynom1 alg/expand
+explicit curve:elem/precalc/plot
+expression:alg/expand alg/factor
+factor:alg/polynom1 elem/num/factor alg/factor adv/arith/factor
+factor integer:adv/arith/factor
+factor number:adv/arith/factor
+factor polynomial:adv/arith/factor
+factorial:combi/factorial
+fourier:calcu/ifouriertr calcu/fouriertr
+fourier transform:calcu/fouriertr calcu/ifouriertr
+fraction:elem/num/denom elem/num/numconv
+fractional approximation:adv/arith/ratapprox
+frequency plot:probstat/stat/data1d
+function:elem/precalc/subst calcu/defint calcu/deriv elem/precalc/plot calcu/fouriertr calcu/ifouriertr calcu/ilaplacetr elem/precalc/eval calcu/laplacetr calcu/limpar calcu/lim calcu/int
+function curve:elem/precalc/plot
+function plot:elem/precalc/plot
+gamma function:combi/factorial
+gcd:elem/num/gcd elem/num/gcdlcm
+geometry:geom/analy/lineplot geom/analy/line2pts geom/analy/impli3dc geom/analy/triangle geom/analy/circleq geom/analy/impli2d geom/elem/angleconv geom/analy/impli3d geom/elem/circle geom/elem/triangle geom/analy/implot2d geom/analy/polarcurv geom/analy/parmcurv elem/precalc/plot
+geometry mean:probstat/stat/data1dw probstat/stat/data1d
+graph:geom/analy/implot2d geom/analy/parmcurv elem/precalc/plot geom/analy/lineplot geom/analy/polarcurv
+greatest common divisor:elem/num/gcd elem/num/gcdlcm
+greatest common factor:elem/num/gcdlcm elem/num/gcd
+harmonic mean:probstat/stat/data1d
+hexadecimal:elem/num/baseconv
+imaginary:alg/complex/complex
+imaginary part:alg/complex/complex
+implicit:geom/analy/impli3d geom/analy/implot2d geom/analy/impli2d geom/analy/impli3dc calcu/impderiv
+implicit curve:geom/analy/impli3dc geom/analy/implot2d geom/analy/impli2d
+implicit curve 2d:geom/analy/implot2d
+implicit derivative:calcu/impderiv
+implicit equation:geom/analy/impli2d geom/analy/impli3dc geom/analy/impli3d
+implicit function:calcu/impderiv
+implicit plane curve:geom/analy/impli2d
+implicit space curve:geom/analy/impli3dc
+implicit surface:geom/analy/impli3d
+incircle:geom/analy/triangle geom/elem/triangle
+integer:elem/num/factor elem/num/lcm alg/factor elem/num/gcdlcm elem/num/gcd
+integer factor:adv/arith/factor
+integral:calcu/int calcu/defint
+inverse fourier transform:calcu/ifouriertr
+inverse laplace transform:calcu/ilaplacetr
+inverse matrix:alg/lin/matrix
+inverse transform fourier:calcu/ifouriertr
+inverse transform laplace:calcu/ilaplacetr
+laplace:calcu/ilaplacetr calcu/laplacetr
+laplace transform:calcu/laplacetr calcu/ilaplacetr
+lcm:elem/num/gcdlcm elem/num/lcm
+least common multiple:elem/num/gcdlcm elem/num/lcm
+lim:calcu/lim calcu/limpar
+line:geom/analy/lineplot geom/analy/line2pts
+line 2 point:geom/analy/line2pts
+line define equation:geom/analy/lineplot
+line equation:geom/analy/lineplot geom/analy/line2pts
+line plot:geom/analy/lineplot
+linear algebra:alg/lin/solvsys alg/lin/matrix
+linear correlation:probstat/stat/data2d
+linear equation:geom/analy/lineplot
+linear equation plot:geom/analy/lineplot
+linear regression:probstat/stat/data2d
+linear solve:alg/lin/solvsys
+linear system:alg/lin/solvsys
+linear system solve:alg/lin/solvsys
+list prime:adv/arith/allprime
+ln:elem/precalc/eval
+logarithm:elem/precalc/eval elem/precalc/plot
+matrix:alg/lin/matrix
+matrix inverse:alg/lin/matrix
+mean:probstat/stat/data1d
+mod:adv/arith/mod
+modular:adv/arith/mod
+modular arithmetic:adv/arith/mod
+modular evaluate:adv/arith/mod
+modulus:alg/complex/complex
+multiplication:elem/precalc/eval
+newton:alg/solvenum
+number:elem/num/factor elem/num/baseconv combi/factorial elem/num/denom elem/num/gcdlcm elem/num/lcm elem/num/percent elem/num/numconv elem/num/gcd
+number basis:elem/num/baseconv
+number convert:elem/num/numconv
+number system:elem/num/baseconv
+numeric simplify:elem/num/numsimply
+numeric solve:alg/solvenum
+octal:elem/num/baseconv
+parametric:geom/analy/impli3d geom/analy/impli2d geom/analy/impli3dc
+parametric curve:geom/analy/impli3dc geom/analy/parmcurv geom/analy/impli2d
+parametric curve plot:geom/analy/parmcurv
+parametric equation:geom/analy/impli2d geom/analy/impli3dc geom/analy/impli3d
+parametric plane curve:geom/analy/impli2d
+parametric space curve:geom/analy/impli3dc
+parametric space surface:geom/analy/impli3d
+parametric surface:geom/analy/impli3d
+partial lim:calcu/limpar
+percent:elem/num/percent elem/num/numconv
+plane curve:geom/analy/impli2d
+plane implicit curve:geom/analy/implot2d
+plot:geom/analy/polarcurv elem/precalc/plot geom/analy/implot2d geom/analy/parmcurv geom/analy/lineplot
+plot data:probstat/stat/data2d
+plot function:elem/precalc/plot
+plot implicit curve:geom/analy/implot2d
+plot line:geom/analy/lineplot
+plot linear equation:geom/analy/lineplot
+plot parametric curve:geom/analy/parmcurv
+plot polar curve:geom/analy/polarcurv
+polar:geom/analy/polarcurv
+polar coordinate:geom/analy/polarcurv
+polar curve:geom/analy/polarcurv
+polar curve plot:geom/analy/polarcurv
+polar system:geom/analy/polarcurv
+polynomial:alg/polynom1 adv/arith/factor alg/expand alg/factor
+polynomial factor:adv/arith/factor
+pre algebra:elem/num/lcm elem/num/numconv elem/num/denom elem/num/numsimply elem/num/factor elem/num/percent elem/num/gcd elem/num/gcdlcm
+pre calculus:elem/precalc/subst elem/precalc/eval elem/precalc/plot
+prealgebra:elem/num/gcdlcm elem/num/numsimply elem/num/percent elem/num/denom elem/num/lcm elem/num/numconv elem/num/gcd elem/num/factor
+precalculus:elem/precalc/subst elem/precalc/plot elem/precalc/eval
+prime:adv/arith/allprime adv/arith/randprime elem/num/factor
+prime factor:elem/num/factor
+prime list:adv/arith/allprime
+primitive:calcu/int
+product:probstat/stat/data1d
+quadratic mean:probstat/stat/data1d
+quadratic regression:probstat/stat/data2d
+quartic:alg/complex/roots
+quartic root:alg/complex/roots
+quintic:alg/complex/roots
+quintic root:alg/complex/roots
+radian:geom/elem/angleconv
+radius:geom/elem/circle geom/elem/triangle geom/analy/triangle
+random prime:adv/arith/randprime
+range:probstat/stat/data1d
+rational:adv/arith/ratapprox
+rational approximation:adv/arith/ratapprox
+rational number:adv/arith/ratapprox
+real:adv/arith/ratapprox alg/complex/complex
+real number:adv/arith/ratapprox
+real part:alg/complex/complex
+regression:probstat/stat/data2d
+root:alg/complex/cbrt alg/complex/sqrt alg/complex/roots alg/polynom1
+root complex number:alg/complex/cbrt alg/complex/roots alg/complex/sqrt
+scatter plot:probstat/stat/data2d
+sided lim:calcu/limpar
+simplify:elem/num/numsimply
+simplify numeric:elem/num/numsimply
+sin:elem/precalc/plot elem/precalc/eval
+solve:alg/solvenum alg/solveeq
+solve equation:alg/solveeq
+solve linear system:alg/lin/solvsys
+solve system:alg/lin/solvsys
+space curve:geom/analy/impli3dc
+space surface:geom/analy/impli3d
+square:alg/complex/roots alg/complex/sqrt
+square root:alg/complex/sqrt alg/complex/roots
+standard deviation:probstat/stat/data1d
+statistic:probstat/stat/data1d probstat/stat/data1dw probstat/stat/data2d
+substitute:elem/precalc/subst
+subtract:elem/precalc/eval
+sum:probstat/stat/data1d
+surface:geom/analy/impli3d
+trace:alg/lin/matrix
+transform:calcu/ifouriertr calcu/laplacetr calcu/ilaplacetr calcu/fouriertr
+transform fourier:calcu/ifouriertr calcu/fouriertr
+transform laplace:calcu/laplacetr calcu/ilaplacetr
+triangle:geom/analy/triangle geom/elem/triangle
+variable:elem/precalc/subst elem/precalc/eval
+variance:probstat/stat/data2d
+vertice:geom/analy/triangle
+weighted arithmetic mean:probstat/stat/data1dw
+weighted data:probstat/stat/data1dw
+weighted data deviation:probstat/stat/data1dw
+weighted data mean:probstat/stat/data1dw
+weighted data product:probstat/stat/data1dw
+weighted data standard deviation:probstat/stat/data1dw
+weighted data sum:probstat/stat/data1dw
+weighted deviation:probstat/stat/data1dw
+weighted frequency plot:probstat/stat/data1dw
+weighted geometry mean:probstat/stat/data1dw
+weighted product:probstat/stat/data1dw
+weighted standard deviation:probstat/stat/data1dw
+weighted sum:probstat/stat/data1dw

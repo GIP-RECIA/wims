@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+opacity 255,255
+fcircle 5,5,40,blue
+linear 0.2,0,0,0.2
+fcircle 5,5,40,green

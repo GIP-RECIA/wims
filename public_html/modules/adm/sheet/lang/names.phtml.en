@@ -1,0 +1,41 @@
+!set lang_exists=yes
+
+!read adm/lang/sheetexam.phtml.$lang
+!set name_from=from
+!set name_student1=!nosubst You can work on this worksheet up to $expday $expmon $expyear.
+!set name_student2=This worksheet has expired. You can still\
+ work on it, but your scores will no longer be registered.
+!set name_student3= You have no right to consult the content of this worksheet for the time being.\
+  Please contact your supervisor.
+!set name_student5=Score registration has been closed by your supervisor.\
+You can still work on the sheet.
+
+!set name_score=!nosubst $[$got] out of $[$require] points obtained, quality
+!set name_score2=!nosubst $[$require] points required
+
+!set name_scoreopen=Score registration is open.
+!set name_scoreclose=Score registration is closed.
+!set name_scoreclosesup=You cannot close the score registration.
+
+!set name_textsource=Here is the source code of the worksheet. You may import it into \
+your class by cutting and pasting.
+!set name_answer_i=Answer to exercise
+
+!set name_title=!nosubst $wims_name_sheet $wims_name_number$sh
+!set name_exo=!defof name_exo in wimshome/public_html/scripts/oef/$modu_lang/names.proc
+!set name_noprint=!defof name_noprint in oef/$modu_lang/names.proc
+!set name_answers=!defof name_answers in oef/$modu_lang/names.proc
+
+!distribute items level,duration \
+into name_level,name_duration
+
+!set name_skillbullet=Compétence(s) du livret concernée(s)
+!set name_indivsupervisor=Cette feuille est individualisée à l'aide d'une variable technique.\
+ Vous pouvez voir les différentes formes de la feuille en fonction des valeurs possibles de la variable en utilisant le menu déroulant ci-dessous.
+!set name_choosevalue=Valeur affichée
+!set name_novalue=Sans valeur
+!set name_msgusergroup=!nosubst Cette feuille dépend de votre groupe de travail. Vous êtes dans le groupe $uservartechvalue.
+!set name_msgusergroupempty=!nosubst Cette feuille dépend de votre groupe de travail. Vous n'êtes dans aucun groupe.
+
+!distribute items Last Name,First Name,Classe into name_lastname,name_firstname,name_class
+!set wims_name_latexuser=Version latex individualisée de la feuille

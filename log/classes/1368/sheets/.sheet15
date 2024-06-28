@@ -1,0 +1,216 @@
+Tra numeri e forme
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+elementary_geometry,thales,line_equation
+Marina, Cazzola
+wims@unimib.it
+
+
+:U2/geometry/oefgeoprim.it
+exo=Areeriep&qnum=2&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+40
+1
+Aree sulla carta a quadretti
+Valutare l'area di figure disegnate sulla carta a quadretti.
+
+:E4/geometry/oefpolyqq.it
+exo=quadriarea&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Area di un quadrilatero
+Tracciare un quadrilatero e determinane l'area.
+
+:U1/geometry/oefgeo2D.it
+exo=geopion4&qnum=1&scoredelay=&qcmlevel=1
+30
+1
+Teorema di Pitagora e distanze #1
+Quadretti e ... pedine, attraverso il teorema di Pitagora.
+
+:U1/geometry/oefgeo2D.it
+exo=geopion1&exo=geopion2&qnum=1&scoredelay=&intro_expert=yes&intro_presentsol=0&intro_expow=1&intro_sepow=1&intro_precw=0.9&seedrepeat=0&intro_qcmpresent=4&intro_check=1
+30
+1
+Teorema di Pitagora e distanze #2
+Quadretti e ... pedine, attraverso il teorema di Pitagora.
+
+:U1/geometry/oefgeo2D.it
+exo=geopion3&qnum=1&scoredelay=&intro_expert=yes&intro_presentsol=0&intro_expow=1&intro_sepow=1&intro_precw=0.9&seedrepeat=0&intro_qcmpresent=4&intro_check=1
+20
+1
+Teorema di Pitagora e distanze #3
+Quadretti e ... pedine, attraverso il teorema di Pitagora.
+
+:U2/geometry/oefgeoprim.it
+exo=punti&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it
+10
+1
+Punti (coordinate e carta a quadretti)
+Individuare punti nel piano a partire dalle loro coordinate.
+
+:E4/geometry/oefpolyqq.it
+exo=quapar2ABC&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2 
+10
+1
+Vertice di un parallelogramma
+Individuare il quarto vertice di un parallelogramma.
+
+:E4/geometry/oefpolyqq.it
+exo=triisoABsk&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo isoscele
+Tracciare un triangolo isoscele sfruttando le proprietà della carta a quadretti.
+
+:E4/geometry/oefpolyqq.it
+exo=trirettABsk&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo rettangolo
+Tracciare un triangolo rettangolo sfruttando le proprietà della carta a quadretti.
+
+:E4/geometry/oefpolyqq.it
+exo=triisorettABsk&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo rettangolo isoscele
+Tracciare un triangolo rettangolo isoscele sfruttando le proprietà della carta a quadretti.
+
+:E4/geometry/oefpolyqq.it
+exo=triisonorettABsk&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo isoscele non rettangolo
+Tracciare un triangolo isoscele non rettangolo sfruttando le proprietà della carta a quadretti.
+
+:E4/geometry/oefpolyqq.it
+exo=trirettnoisoABsk&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Triangolo rettangolo non isoscele
+Tracciare un triangolo rettangolo non isoscele sfruttando le proprietà della carta a quadretti.
+
+:E4/geometry/oefpolyqq.it
+exo=duerettsk&exo=quadripar1sk&exo=onerectsk&exo=qduelatisk&exo=quadripar3sk&exo=duerett2sk&exo=quadripar2sk&exo=rectanglesk&exo=qequilsk&exo=quadripar4sk&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+50
+1
+Quadrilateri #1
+Tracciare quadrilateri con determinate proprietà.
+
+:E4/geometry/oefpolyqq.it
+exo=quadril1&exo=quadril2&exo=quadril3&exo=quadril4&exo=quadril5&exo=quadril6&exo=quadril7&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+50
+1
+Quadrilateri #2
+Tracciare quadrilateri con determinate proprietà.
+
+:E4/geometry/oefpolyqq.it
+exo=duerettABC&exo=quapar1ABC&exo=quapar3ABC&exo=duerett2ABC&exo=quapar2ABC&exo=qdiagperpABC&qnum=1&scoredelay=&seedrepeat=0&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=0&intro_sol=0&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=1&intro_check=2
+50
+1
+Quadrilateri #3
+Tracciare quadrilateri con determinate proprietà.
+
+
+:U2/geometry/oefgeoprim.it
+exo=allineamenti&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it
+20
+1
+Rette (carta a quadretti)
+Individuare allineamenti sulla carta a quadretti.
+
+:U2/geometry/oefgeoprim.it
+exo=isonline&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_check=2&intro_expert=yes
+10
+1
+Punti e rette
+Capire se un punto appartiene a una retta.
+
+:H3/analysis/oefaffif.it
+exo=CORfonct3&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_check=2&intro_expert=yes
+30
+1
+Corrispondeza funzione-grafico
+Associare il grafico di ogni retta con la corrispondente equazione.
+
+:H3/analysis/oefaffif.it
+exo=qcmequa&qnum=1&qcmlevel=1&scoredelay=&intro_presentsol=0&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+20
+1
+Qual è l'equazione?
+Individuare l'equazione della retta di cui viene mostrato il grafico.
+
+:U2/geometry/oefgeoprim.it
+exo=parall&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=1&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+10
+1
+Coordinate 3D - parallelepipedo
+Visualizzare la posizione di un punto in un sistema di coordinate cartesiane 3D.
+
+:U2/geometry/oefgeoprim.it
+exo=tetra&qnum=1&qcmlevel=1&scoredelay=&lang_choice=it&intro_presentsol=2&intro_qcmpresent=4&intro_check=1&intro_expert=yes
+10
+1
+Coordinate 3D - tetraedro
+Visualizzare la posizione di un punto in un sistema di coordinate cartesiane 3D.
+
+:H3/geometry/oefthales2.it
+exo=triangle-mod&confparm2=1&confparm3=1&qnum=1&scoredelay=&intro_expert=yes&intro_presentsol=0&intro_expow=1&intro_sepow=1&intro_precw=0.9&seedrepeat=0&intro_qcmpresent=4&intro_check=1
+10
+1
+Triangoli simili
+Proprietà dei triangoli simili e lunghezza di segmenti (l'esercizio fa riferimento al "Teorema di Talete", potete utilizzare sia la proprietà 15.2 che la proprietà 15.4 del libro di testo).
+
+:H3/geometry/oefthales2.it
+exo=raplong3-mod&confparm2=1&confparm3=1&qnum=1&scoredelay=&intro_expert=yes&intro_presentsol=0&intro_expow=1&intro_sepow=1&intro_precw=0.9&seedrepeat=0&intro_qcmpresent=4&intro_check=1
+10
+1
+Triangoli simili #2
+Proprietà dei triangoli simili e lunghezza di segmenti (l'esercizio fa riferimento al "Teorema di Talete", potete utilizzare sia la proprietà 15.2 che la proprietà 15.4 del libro di testo).
+
+:H3/geometry/oefthales2.it
+exo=triangle2-mod&confparm2=1&confparm3=1&qnum=1&scoredelay=&intro_expert=yes&intro_presentsol=0&intro_expow=1&intro_sepow=1&intro_precw=0.9&seedrepeat=0&intro_qcmpresent=4&intro_check=1
+10
+1
+Triangoli simili #3
+Proprietà dei triangoli simili e lunghezza di segmenti (l'esercizio fa riferimento al "Teorema di Talete", potete utilizzare sia la proprietà 15.2 che la proprietà 15.4 del libro di testo).
+
+:E3/geometry/oefspatial.fr
+exo=case01&exo=case02&exo=click1&exo=click2&exo=case1&exo=case2&qnum=1&scoredelay=&lang_choice=it&intro_expert=yes&intro_presentsol=0&intro_expow=1&intro_sepow=1&intro_precw=0.9&seedrepeat=0&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Spunti didattici #1
+Coordinate (esercizi proponibili a livello di scuola primaria).
+
+:E3/geometry/oefspatial.fr
+exo=deplacement1&exo=deplacement2&exo=deplacement3&exo=deplacement4&exo=deplacement5&exo=deplacement6&exo=deplacement7&qnum=1&scoredelay=&lang_choice=it&intro_expert=yes&intro_presentsol=0&intro_expow=1&intro_sepow=1&intro_precw=0.9&seedrepeat=0&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Spunti didattici #2
+Itinerari e sistemi di riferimento relativi (esercizi proponibili a livello di scuola primaria).
+
+:E3/geometry/oefspatial.fr
+exo=positionclick1&exo=positionclick2&exo=positionclick3&exo=positionclick4&qnum=1&scoredelay=&lang_choice=it&intro_expert=yes&intro_presentsol=0&intro_expow=1&intro_sepow=1&intro_precw=0.9&seedrepeat=0&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Spunti didattici #3
+Posizione (esercizi proponibili a livello di scuola primaria).
+
+:E3/geometry/oefspatial.fr
+exo=reproduire1&exo=reproduire2&exo=reproduire3&exo=mreproduire1&exo=mreproduire2&exo=mreproduire3&qnum=1&scoredelay=&lang_choice=it&intro_expert=yes&intro_presentsol=1&intro_expow=1&intro_sepow=1&intro_precw=0.9&seedrepeat=0&intro_qcmpresent=4&intro_check=1&intro_check=2
+10
+1
+Spunti didattici #4
+Memorizzzazione e riproduzione di un modello (esercizi proponibili a livello di scuola primaria).
+
+:U2/geometry/oefgeoprim.it
+exo=tangente&qnum=1&qcmlevel=1&scoredelay=
+0
+1
+Tangente
+Dalla carta a quadretti alle funzioni trigonometriche. Con questo esercizio potete verificare quanto valgono effettivamente (in gradi) gli angoli dei triangoli disegnati sulla carta a quadretti.
+
+

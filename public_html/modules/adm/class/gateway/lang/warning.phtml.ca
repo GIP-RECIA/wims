@@ -1,0 +1,82 @@
+!goto $wims_read_parm
+
+:dellevel
+<div class="wims_msg warning">
+<span class="wims_warning">$wims_name_warning</span>. Aquesta operació és irreversible&nbsp;!
+I <span class="wims_warning">TOT</span>
+en aquest nivell seran <span class="wims_warning">DEFINITIVAMENT</span>
+esborrats&nbsp;: classes, programes, cursos, comptes d'alumnes, activitats, notes&nbsp;!
+</div><p>
+Estàs segur que vols suprimir aquest nivell&nbsp;?
+</p>
+
+!exit
+
+:delclass
+
+<div class="wims_msg warning"><span class="wims_warning">$wims_name_warning</span>. Aquesta operació és irreversible&nbsp;!
+I <span class="wims_warning">TOT</span>
+en aquesta classe seran <span class="wims_warning">DEFINITIVAMENT</span>
+esborrata&nbsp;: cursos, comptes d'alumnes, activitats, notes&nbsp;!
+</div><p>
+Estàs segur que vols suprimir aquesta classe&nbsp;?
+</p>
+!exit
+
+:delprog
+<div class="wims_msg warning"><span class="wims_warning">$wims_name_warning</span>. Aquesta operació és irreversible&nbsp;!
+I <span class="wims_warning">TOT</span>
+en aquest programa serà <span class="wims_warning">DEFINITIVAMENT</span>
+esborrat&nbsp;: cursos, activitats, notes&nbsp;!
+</div><p>
+Estàs segur que vols suprimir aquest programa&nbsp;?
+</p>
+
+!exit
+
+:delcourse
+<div class="wims_msg warning"><span class="wims_warning">$wims_name_warning</span>. Aquesta operació és irreversible&nbsp;!
+I <span class="wims_warning">TOT</span>
+en aquest cours serà <span class="wims_warning">DEFINITIVAMENT</span>
+esborrat&nbsp;: comptes d'alumnes, activitats, notes&nbsp;!
+</div><p>
+Estàs segur que vols suprimir aquest curs&nbsp;?
+</p>
+!exit
+
+:delteacher
+<div class="wims_msg warning"><span class="wims_warning">$wims_name_warning</span>. Aquesta operació és
+irreversible&nbsp;!
+</div><p>
+Estàs segur que vols suprimir el compte de professor <span class="tt">$del</span>
+($user_firstname $user_lastname)&nbsp;?
+</p>
+!exit
+
+:deltest
+<div class="wims_msg warning">
+<span class="wims_warning">$wims_name_warning</span>. Aquesta operació és irreversible&nbsp;!
+I <span class="wims_warning">TOT</span>
+en aquesta zona de test serà <span class="wims_warning">DEFINITIVAMENT</span>
+esborrat&nbsp;!
+</div><p>
+Estàs segur que vols suprimir la zona de test&nbsp;?
+</p>
+!exit
+
+:progshare
+Compartir els recursos d'un altre programa
+
+El teu programa va a compartir tots els recursos didàctics
+(exercicis, fulls, exàmens, documents, qüestionaris) amb el programa
+<em>$other_description</em> del nivell <em>$other_level</em>. Això significa que
+qualsevol canvi en els recursos en un sol programa es reflectiran automàticament
+a l'altre programa.
+
+<div class="wims_msg warning"><span class="wims_warning">$wims_name_warning</span>. Aquesta operació experimental esborrarà els 
+recursos educatius existents al teu programa, i és <span class="wims_warning">IRREVERSIBLE</span>!
+No es pot deixar de compartir i els programes que comparteixen els
+recursos no poden ser esborrats&nbsp;!
+</div>
+<p>Estàs segur que vols continuar?</p>
+!exit

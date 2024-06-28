@@ -1,0 +1,4 @@
+!set lang_exists=yes
+
+Planes para el futuro: WIMS le permitirá crear sus propias herramientas
+en línea (de cálculo o gráficas) directamente en el navegador web.

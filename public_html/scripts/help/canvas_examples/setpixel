@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+setpixel 1,1,red
+pixelsize 2
+setpixel 2,2,green
+pixelsize 3
+setpixel 3,3,blue

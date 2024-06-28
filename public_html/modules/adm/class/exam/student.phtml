@@ -1,0 +1,249 @@
+<!-- adm/class/exam student.phtml START -->
+
+!! <!--There is no help for student yet. this will hide the "help button"-->
+!!FIXME this should be used in oef modules where the help is sometimes inside the
+!! statement or after.
+!set module_has_help = no
+
+!read adm/class/classname.phtml $wims_classname\
+$wims_institutionname
+
+!read adm/title.phtml 1\
+$classname\
+$title
+
+!if $wims_user=supervisor
+  <div class="wimscenter">($name_presentation)</div>
+!else
+  !! -------- testing if another exam is begin
+  !let other=!record 0 of wimshome/log/classes/$wims_class/.parmreg/$wims_user.exam
+!! 1 : IP 2 : session 3 : time 4 : exam
+  !distribute word $other into IP,ses,time,other
+!!  !let other=!word 4 of $other
+  !if $other!=$empty and $other!=$exam
+    !let error=other_exam $other
+  !else
+    !reset other
+  !endif
+!endif
+
+!if $desc!=$empty and $other=$empty
+  <h2>$name_instructions:</h2>
+  <div class="exam_instructions" id="exam_desc">$desc</div>
+!endif
+
+!if $error!=$empty
+  <div class="wims_msg alert">
+  !read lang/msg.phtml.$moduclass_lang
+  </div>
+  !href module=home $wims_name_back2
+  !tail
+  !exit
+!endif
+
+!if $registered<0 or ($registered>0 and $wims_exam_remain<=0)
+  !changeto score.phtml
+!endif
+
+!if $exam_mode>0
+  !!<div class="wims_msg info">
+  !!  !line $exam_mode of $name_modedesc
+  !!</div>
+  !distribute item 0,0,0 into cntexo,flag_course,coursefalse
+  <h2>$name_progress</h2>
+  !readproc examprogressbar.proc $progressbar
+  $wims_progressbar
+  !bound directexo between 1 and $exocnt default $empty
+  !if $directexo!=$empty
+    <script>
+      window.open("$wims_ref_name?wims_window=new&session=$(wims_session)_exam&+cmd=new&worksheet=$exam.$directexo",'wims_exam','status=no,toolbar=no,location=no,menubar=no,scrollbars=yes,resizable=yes');
+    </script>
+    !reset directexo
+  !endif
+!endif
+
+!if $exocnt=0
+  $name_empty
+!else
+  <h2>$name_content</h2>
+  !set activeexo=0
+  !if $start_ip!=$empty and $start_ip!=$httpd_REMOTE_ADDR
+    <div class="wims_msg info">$name_warning_notstartip</div>
+  !endif
+  <ol class="wims_exam">
+  !for i in $(wims_exrandomlist[1;])
+    !increase cntexo
+!! ---- debut de la ligne correspondant a un exercice de l'examen
+    !set ex=!record $i of wimshome/log/classes/$wims_class/exams/.exam$exam
+    !distribute lines $ex into we,li,ti,de,op
+    !set de=!trim $de
+    !if $t_=yes and ($allowtype=simulation or $tryremain>0 or \
+      ($tryremain=0 and $registered!=$empty))
+      !!!if $exam_mode>0 and $(got$i)!=$empty
+      !!  !let flag_course=$[$flag_course+$(got$i)]
+      !!!endif
+      !if $(replied$i)>0
+        <li class="exo_item">
+        <span class="exo_name">$ti</span>
+        !if $exam_mode=0 or $(got$i)=10
+          - <span class="exo_done">$name_done</span>
+        !else
+          - <span>&#x274c;</span>
+          !set coursefalse=$cntexo
+        !endif
+        &nbsp;<span class="weight">($name_weight: $we)</span>
+        </li>
+      !else $(replied$i)=0
+        !if $de!=$empty
+          !set dt=!examdep $exam $de
+        !else
+          !set dt=yes
+        !endif
+        !if $dt=yes
+          !advance activeexo
+          <li class="exo_item">
+          <span class="exo_link">
+          !let rd=!randint 111111,999999
+          !href target=wims_exam cmd=new&+randomizer=$rd&+worksheet=$exam.$i $ti
+          </span>&nbsp;
+          <span class="weight">($name_weight: $we)</span>
+          !if autogen iswordof $op and $wims_exam_remain!=$empty
+            !set ss=$(wims_session)t$(exam)t$i
+            !set test=!defof w_cmd in wimshome/sessions/$ss/var
+            !if $test=$empty
+              !set test=$wims_ref_name?wims_window=new&+session=$(wims_session)_exam&+cmd=new&+worksheet=$exam.$i
+              <img src="$test" style="height:1px; width:1px">
+            !endif
+          !endif
+          </li>
+          !if $exam_mode>0
+            !goto endli
+          !endif
+        !else
+          !if $exam_mode=0
+            <li class="exo_item">$ti
+            <span>
+            !href cmd=reply&job=student $name_depend
+            </span>
+            </li>
+          !endif
+        !endif
+      !endif
+    !else
+      <span>$ti.</span>&nbsp;<span class="weight">($name_weight: $we)</span>
+    !endif
+!! -------fin d'affichage de la ligne correspondant a un exercice
+  !next i
+:endli
+  </ol>
+  <br class="spacer clearall">
+  !! variables
+  !! $stries: number of tries
+  !! $tryremain: number of remaining tries
+  !! registered: if non empty, the exam session has begun
+  !! exhausted: if yes, no more available sessions
+  !if $exam_mode>0
+    !if $dt=no
+      <div class="wims_msg alert">
+      $name_courseend
+      </div>
+    !endif
+  !endif
+
+  !! closed exam
+  !if $t_=no
+    <p class="examclosed">$name_examclosed</p>
+    !set wims_menu_items=!append line refresh,1,cmd=reply&job=student to $wims_menu_items
+  !else
+    !if $wims_exam_remain!=$empty and ($exam_mode=0 or $dt=yes)
+      <p>$wims_name_examremain <span id="exam_clock"> </span></p>
+!!     !if $time_end!=$empty
+!!        <div class="wims_msg warning">
+!!        $name_exam11
+!!        </div>
+!!     !endif
+    !endif
+    !if $tryremain < $stries
+      <p class="exam_score"><strong>$name_bestscore</strong></p>
+    !endif
+    <div class="exam_instructions wims_msg info" id="exam_status">
+    !! open exam or in simulation
+    <p class="tries">
+    !if $stries=1
+      $name_exam1
+    !else
+      $name_exam2 $name_bestscore2
+    !endif
+    </p>
+    !if $tryremain<0 or ($tryremain=0 and ($registered=$empty or $allowtype=simulation))
+      <p>
+      !if $trcut=0
+        $name_exam3
+      !else
+        $name_exam4
+      !endif
+      $name_exam6bis
+      !if $stry>1
+        $name_exam5
+      !endif
+      !set exhausted=yes
+      </p>
+    !endif
+    !if $registered=$empty and $exhausted!=yes
+      <div>
+      !if $stries>1
+        $name_exam9.
+      !else
+        $name_exam9bis.
+      !endif
+      !if $time_end!=$empty
+        <div class="wims_msg warning">
+        $name_exam11
+        </div>
+      !endif
+      </div><p>
+      $name_exam10
+      !if $allowtype!=simulation and $stries>1
+        $name_exam7
+      !else only one session or simulation
+        $name_exam8
+      !endif
+      </p>
+    !else
+      !if $allowtype!=simulation and $tryremain=0 and $exhausted!=yes and $tries>1
+        <p class="lasttry">$name_lasttry</p>
+      !endif
+    !endif
+    !if $tryremain>0 and $stries>1
+      <p class="tryremain">$name_exam6</p>
+    !endif
+    </div>
+    !if $exhausted!=yes
+      !set wims_menu_items=!append line refresh,1,cmd=reply&job=student\
+scoreexam,1,cmd=reply&job=score \
+to $wims_menu_items
+      !if $wims_exam_remain!=$empty
+        !set wims_menu_items=!append line endexam,1,cmd=reply&job=scorereg\
+to $wims_menu_items
+      !endif
+    !endif exhausted!=yes
+  !endif t_=no
+
+!endif exocnt=0
+
+!if $t_=yes
+  !if $allowtype=simulation
+    <p class="wims_msg info simulation">$name_simulation</p>
+  !endif
+!endif
+
+!if $wims_user=supervisor
+  !set wims_menu_items=!append line itemsep,0,\
+backteacher,1,cmd=resume\
+to $wims_menu_items
+!endif
+
+<!-- adm/class/exam/student.phtml END -->
+!tail
+
+!reset job

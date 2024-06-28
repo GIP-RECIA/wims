@@ -1,0 +1,33 @@
+# Variable calculations should be done in this file.
+# It is read and interpreted by wims for all valid calls to the module.
+!read adm/class/classlang names.phtml
+
+wims_prefix=class user tmp n sharing sharable
+
+!if $wims_user!=supervisor
+  error=not_supervisor
+  !exit
+!endif
+
+!bound method within column,user,list,raw,percent default list
+
+maxuser=!defof MAX_USERFORGRADES in wimshome/public_html/bases/sys/define.conf
+limit=!defof class_limit in wimshome/log/classes/$wims_class/.def
+maxcol=32
+wims_form_method=post
+
+!if $limit>$maxuser
+  error=too_many_users
+  !exit
+!endif
+
+joker=--
+
+!if $gcnt<=0 and $method=raw
+  method=list
+!endif
+
+!read var.proc.$method
+
+!read tabletheme
+

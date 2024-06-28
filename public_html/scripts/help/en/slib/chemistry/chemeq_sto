@@ -1,0 +1,8 @@
+slib_lang_exists_tmp=yes
+
+slib_title=stoechiometric coefficients
+slib_parms=1\
+ , a chemical reaction
+
+slib_out= stoechiometric coefficients
+slib_comment=The chemical reaction must be specified in a syntax accepted by chemeq.

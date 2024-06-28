@@ -1,0 +1,4 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+line 0,1,2,-1,green

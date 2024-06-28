@@ -1,0 +1,11 @@
+!if $moveup>1 and $moveup<=$seq_cnt
+  x_=!record 1 of wimshome/log/classes/$wims_class/seq/.sequence$[$moveup-1]
+  y_=!record 1 of wimshome/log/classes/$wims_class/seq/.sequence$moveup
+  !writefile wimshome/log/classes/$wims_class/seq/.sequence$[$moveup-1] :$y_
+  !writefile wimshome/log/classes/$wims_class/seq/.sequence$[$moveup] :$x_
+  !sh mv $wims_home/log/classes/$wims_class/.S$[$moveup-1] $wims_home/log/classes/$wims_class/.Stmp;\
+    mv $wims_home/log/classes/$wims_class/.S$moveup $wims_home/log/classes/$wims_class/.S$[$moveup-1];\
+    mv $wims_home/log/classes/$wims_class/.Stmp $wims_home/log/classes/$wims_class/.S$moveup;
+!endif
+
+job=show

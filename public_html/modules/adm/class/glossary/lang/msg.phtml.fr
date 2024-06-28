@@ -1,0 +1,32 @@
+!set wims_module_log=error: $error
+
+!if no_pick=$error
+  Veuillez
+  !href cmd=resume choisir un glossaire
+  avant de cliquer sur le bouton  <span class="wims_button disabled">$wims_name_Insert</span>.
+  !exit
+!endif
+
+!if not_supervisor=$error
+  Désolé, mais l'opération de modification d'un glossaire
+  est réservée à l'enseignant enregistré d'une classe.
+  !exit
+!endif
+
+!if bad_sheet=$error
+  Mauvais numéro de glossaire.
+  !exit
+!endif
+
+!if too_many_exos=$error
+  Le glossaire $picksheet contient déjà le maximum de $max_exos
+  objets. Effacez-en quelques uns avant d'en insérer d'autres.
+  !exit
+!endif
+
+!if already_exist=$error
+  Le glose que vous voulez insérer existe déjà dans le glossaire $test.
+  !exit
+!endif
+
+!msg $error

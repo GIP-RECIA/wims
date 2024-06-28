@@ -1,0 +1,133 @@
+:H2/number/OEFevalwimscalc.fr
+exo=champadd1&exo=champadd3&exo=champadd4&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Vocabulaire des additions
+Savoir le vocabulaire associé à une addition
+
+:H1/number/OEFevalwimsope.fr
+exo=oefposer2&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Poser une addition 1
+Savoir poser une addition, difficulté 1
+
+:H1/number/OEFevalwimsope.fr
+exo=oefposer4&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Poser une addition 2
+Savoir poser une addition, difficulté 2
+
+:H1/number/OEFevalwimsope.fr
+exo=oefgrandeuradd4&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Ordre de grandeur addition
+savoir vérifier la vraisemblance du résultat à l'aide des ordres de grandeur
+
+:H2/number/OEFevalwimscalc.fr
+exo=champadd2&exo=champadd5&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Vocabulaire des soustractions
+Savoir le vocabulaire associé à une soustraction
+
+:H1/number/OEFevalwimsope.fr
+exo=oefposer3&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Poser une soustraction 1
+Savoir poser une soustraction, difficulté 1
+
+:H1/number/OEFevalwimsope.fr
+exo=oefposer5&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Poser une soustraction 2
+Savoir poser une soustraction, difficulté 2
+
+:H1/number/OEFevalwimsope.fr
+exo=oefgrandeurdiff5&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Ordre de grandeur d'une soustraction
+Savoir vérifier la vraisemblance du résultat à l'aide des ordres de grandeur
+
+:H1/algebra/OEFprobleme.fr
+exo=probleme101&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Problème 1
+Savoir repérer un problème que l'on résout avec une opération
+
+:H1/algebra/OEFprobleme.fr
+exo=probleme102&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Problème 2
+Savoir repérer un problème que l'on résout avec une opération
+
+:H1/algebra/OEFprobleme.fr
+exo=probleme103&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Problème 3
+Savoir repérer un problème que l'on résout avec une opération
+
+:H1/algebra/OEFprobleme.fr
+exo=probleme107&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Problème 5
+Savoir repérer un problème que l'on résout avec plusieurs opérations
+
+:E6/number/fractions.fr
+exo=reconnaitrefractionschema&exo=reconnaitrefractionschema2&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Reconnaître une fractions -pavage
+Fraction d'un pavage d'un rectangle
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oeffractlectgrad1&exo=oeffractlectgrad2&exo=oeffractlectgrad3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Fractions lecture graphique sur un axe gradué
+Savoir lire l'abscisse d'un point sur une demi-droite graduée (sous forme de fraction)
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oeffractlectplac1&exo=oeffractlectplac2&exo=oeffractlectplac3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Placer une fraction sur un axe gradué
+Savoir placer un point sur une demi-droite graduée dont l'abscisse est une fraction
+
+:E6/number/division.fr
+exo=probleme_division2&qnum=1&qcmlevel=3&scoredelay=&confparm1=3&confparm2=2&confparm3=2&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Problème  6
+Savoir utiliser une division décimale
+
+
+:H1/number/OEFevalwimsdiv.fr
+exo=oefmachdiv1&exo=oefmachdiv2&exo=oefmachdiv3&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Utilisation calculatrice division 1-3
+Savoir écrire le résultat d'une division décimale, difficulté 1 à  3 aléatoirement
+
+:H1/number/OEFevalwimsdiv.fr
+exo=oefmachdiv3&exo=oefmachdiv4&exo=oefmachdiv5&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Utilisation calculatrice division 3-5
+Savoir écrire le résultat d'une division décimale, difficulté 1 à  3 aléatoirement
+
+:H1/number/oefmultdiv.fr
+exo=division&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Poser une division
+collection d'exercices de multiplication et division, opération posée.

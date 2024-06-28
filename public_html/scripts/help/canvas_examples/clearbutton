@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+filled
+fillcolor lightblue
+opacity 255,50
+userdraw circles,red
+clearbutton Remove All

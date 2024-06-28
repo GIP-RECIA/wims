@@ -1,0 +1,12 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontfamily Italic 22px Helvetica
+axis
+axisnumbering
+precision 0
+grid 2,2,grey,1,1,5,black
+multicolors red,green,blue
+fontcolor orange
+multilinewidth 1,2,3
+multidraw text,function,function,function,line

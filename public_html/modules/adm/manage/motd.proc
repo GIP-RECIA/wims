@@ -1,0 +1,21 @@
+!! change motd supervisor and server in log directory
+max_motdchar=4000
+
+!bound motd_type within 1,2 default 1
+list_lang=!words2items $wims_site_languages
+!bound motd_lang within $list_lang default $(list_lang[1])
+!let listfile=motd.phtml,manager_msg.phtml
+motdfile=$(listfile[$motd_type]).$motd_lang
+
+!if $save!=$empty
+  motd_desc=!word 1 to $max_motdchar of $motd_desc
+  !if $motd_desc=$empty
+    !sh rm $wims_home/log/$motdfile
+  !else
+    !writefile wimshome/log/$motdfile $motd_desc
+  !endif
+  !reset save,motd_desc
+!endif
+
+!!!bound motd_option within 1,2 default 1
+!reset save

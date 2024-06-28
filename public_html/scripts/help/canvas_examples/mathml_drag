@@ -1,0 +1,10 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+drag xy
+strokecolor red
+mathml -5,5,<span style="font-size:1em;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mstyle id="wims_mathml366290"><mrow><mo stretchy="true">[</mo><mtable rowspacing="0.5ex" columnalign=" left " columnlines=" none " rowlines=" none "><mtr><mtd><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="true"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&sdot;</mo><msup><mi>x</mi> <mn>2</mn></msup></mtd></mtr> <mtr><mtd><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msqrt><mstyle displaystyle="true"><mfrac><mn>1</mn><mrow><msup><mi>x</mi> <mn>2</mn></msup></mrow></mfrac></mstyle></msqrt></mtd></mtr></mtable><mo stretchy="true">]</mo></mrow></mstyle></math></span>
+drag xy
+strokecolor blue
+mathml 5,5,<span style="font-size:1em;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mstyle id="wims_mathml580175" ><mrow><mo stretchy="true">[</mo><mtable rowspacing="0.5ex" columnalign=" left " columnlines=" none " rowlines=" none "><mtr><mtd><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="true"><mfrac><mn>1</mn><mrow><mi>sin</mi><mrow><mo stretchy="true">(</mo><msup><mi>x</mi> <mn>2</mn></msup><mo stretchy="true">)</mo></mrow></mrow></mfrac></mstyle></mtd></mtr> <mtr><mtd><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msqrt><mrow><mi>sin</mi><mrow><mo stretchy="true">(</mo><msup><mi>x</mi> <mn>2</mn></msup><mo stretchy="true">)</mo></mrow></mrow></msqrt></mtd></mtr></mtable><mo stretchy="true">]</mo></mrow></mstyle></math></span>
+#click left top corner...then drag...

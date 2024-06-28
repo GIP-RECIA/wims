@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=combinatorics,binomial
+!set gl_title=Formule du binôme dans \(\displaystyle{\CC}\)
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_thm">
+  <h4>Théorème</h4>
+
+  Pour tous nombres complexes \(a\) et \(b\) et pour tout entier naturel \(n\)&nbsp;:
+    <p class="wimscenter">
+     \(\displaystyle{(a+b)^n= \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}}\).
+    </p>
+</div>

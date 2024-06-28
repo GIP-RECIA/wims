@@ -1,0 +1,27 @@
+<p>
+Dans le paragraphe précédent, on montre que si \(a \gt) 0, on peut définir une fonction qui
+à tout nombre rationnel \(r) associe le nombre réel \(a^r) (qui sera strictement positif).
+
+Si \(a \gt 1\), cette fonction est strictement croissante et si \(a \lt 1\),
+elle est strictement décroissante.
+</p><p>
+Tout nombre réel non rationnel \(x) peut être encadré par des nombres
+  décimaux de plus en plus rapprochés
+ et dont la différence est aussi petite que l'on veut ;
+ l'écart entre les images par cette fonction pourra être aussi rendu aussi petit que l'on veut, ce qui permet
+ de définir \(a^x) comme la limite commune des images des bornes inférieures
+ et supérieures de \(x)
+ lorsque les écarts tendent vers 0.
+</p><p>
+Par exemple, pour avoir un encadrement suffisamment précis de \(2^\pi),
+ il suffit d'avoir un encadrement assez précis de \(\,\pi) :
+\(3,14 \lt \pi \lt 3,15 \) donc \(2^{3,14} \lt 2^\pi \lt 2^{3,15}).
+</p><p>
+La fonction \(x \mapsto 2^x) est ainsi définie de
+ \(\RR= \rbrack -\infty ; +\infty\lbrack\) dans \(\rbrack 0 ; +\infty\lbrack\)
+ et elle est strictement croissante sur \(\rbrack -\infty ; +\infty\lbrack\).
+Il en est de même pour \(x \mapsto \pi^x).
+</p><p>
+Par contre, la fonction \(x \mapsto 0,5^x) est définie et strictement décroissante
+de \(\,\RR) dans \(\rbrack  0 ; +\infty\lbrack\).
+</p>

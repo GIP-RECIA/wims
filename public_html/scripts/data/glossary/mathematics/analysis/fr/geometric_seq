@@ -1,0 +1,61 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=sequence,geometric_sequence,recurrence_relation
+!set gl_title=Suite géométrique
+!set gl_level=H5 Générale&nbsp;et&nbsp;Technologique
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Une suite \((u_n)_{n\in \NN}\) est dite <strong>géométrique</strong> si et
+seulement s'il existe un réel \(q\) tel que, pour tout
+<span style="white-space:nowrap">\(n\in \NN\),</span>
+<span style="white-space:nowrap">\(u_{n+1}= q u_n\).</span><br>
+Le réel \(q\) est appelé <strong>raison</strong> de la suite
+<span style="white-space:nowrap">\((u_n)_{n\in \NN}\).</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Si \((u_n)_{n\in \NN}\) est une suite géométrique de raison \(q\) alors&nbsp;:
+<ul>
+<li>
+pour tout \(n \in \NN\) et pour tout \(p \in \NN\) tel que
+<span style="white-space:nowrap">\(p \leqslant n\),</span> on a
+<span style="white-space:nowrap">\(u_n = u_p \times q^{n-p}\) ;</span>
+</li>
+<li>
+pour tout \(n \in \NN\), <span style="white-space:nowrap">
+\(u_n = u_0 \times q^n\).</span>
+</li>
+</ul>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+Soit \(q\) un réel différent de \(1\) et \((u_n)_{n\in \NN}\) une suite
+géométrique de raison <span style="white-space:nowrap">\(q\).</span>
+<ul><li>Pour tout \(n \in \NN \) :
+  <div class="wimscenter">
+  \(1 + q + q^2 + \ldots + q^n = \frac{1-q^{n+1}}{1-q}\).
+  </div>
+</li><li>
+  Pour tout \(n \in \NN\) :
+  <div class="wimscenter">
+  \(\displaystyle{\sum_{k=0}^n u_k} = u_0 + u_1 + \ldots + u_n \)
+  </div>
+  <div class="wimscenter">
+  \(\displaystyle{\sum_{k=0}^n u_k} = u_0 \frac{1-q^{n+1}}{1-q}\).
+  </div>
+</li><li>
+  Pour tout \(n \in \NN\) et tout \(p \in \NN\) tels que
+  <span style="white-space:nowrap">\(p \leqslant n\) :</span>
+  <div class="wimscenter">
+  \(\displaystyle{\sum_{k=p}^n u_k} = u_p + u_{p+1} + \ldots + u_n \)
+  </div>
+  <div class="wimscenter">
+  \(\displaystyle{\sum_{k=p}^n u_k} = u_p \frac{1-q^{n-p+1}}{1-q}\).
+  </div>
+</li>
+</ul>
+</div>

@@ -1,0 +1,274 @@
+option:color=" " eqweight split default="empty"
+
+!set listtotal=points,circles,segments,arrows,lines,triangles,polys,rects,\
+  closedpoly, parallelogram,text,images,curvedarrows,curvedarrows2
+
+!!first line of reply$i is sometext to be sure that the empty lines
+!! are not deleted at the beginning
+!!!!line 1 = points_x+";"+points_y+" "
+!!!!line 2 = circles_x+";"+circles_y+";"+multi_radius+" "
+!!!!line 3 = segments_x+";"+segments_y+" "
+!!!!line 4 = arrows_x+";"+arrows_y+" "
+!!!!line 5 = lines_x+";"+lines_y+" "
+!!!!line 6 = triangles_x+";"+triangles_y+" "
+!!!!line 7 = polys[3-9]_x+";"+polys[3-9]_y+" "
+!!!!line 8 = rects_x +";"+rects_y+" "
+!!!!line 9 = closedpoly_x+";"+closedpoly_y+" "
+!!!!line 10 = parallelogram_x+";"+parallelogram_y" "
+!!!!line 11 = text_x+";"+text_y+";"+text" "
+!!!!line 12 = image_x+";"+image_y+";"+image_id
+!!!!line 13 = curvedarrows_x +";"+ curvedarrows_y +" "
+!!!!line 14 = curvedarrows2_x +";"+ curvedarrows2_y +" "
+!!!!line 15 = userdraw_x +";"+userdraw_y + " " note: this is for single 'userdraw object,color' and 'replyformat 29'
+!!!!line 16 = userdraw_x +";"+userdraw_y +";"+userdraw_radius + " " note: this is for single 'userdraw object,color' and 'replyformat 29'
+
+!! how to get value of "precision" from canvas code?
+!set precision=!getopt precision in $(replyoption$i)
+!default precision=1000
+!set xysize=!line 1 of $(oef_answer_option$i)
+!set replygood$i=!lines2rows $(replygood$i)
+!set replygood$i=!nonempty rows in $(replygood$i)
+!set replygood$i=!replace internal images_ by in $(replygood$i)
+!set parm3=!line 1 to -2 of $(oef_answer_option$i)
+!set parmg=$parm3
+
+!set listtype1=segments arrows2 arrows rects circles points crosshairs \
+  curvedarrows curvedarrows2 images string text math
+!set listtype2=lines demilines
+
+!set listtype3=polyline closedpoly poly3 poly4 poly5 poly6 poly7 poly8 poly9
+!set listtype=$listtype1 $listtype2
+!set color=black
+!if $wims_read_parm=nocompare
+  !set typelist=!line -1 of $(oef_answer_option$i)
+  !set color=black
+!else
+  !set typelist=$(replygood$i[2..-1;1])
+  !set typelist=!replace internal polygon by closedpoly in $typelist
+!endif
+!reset Replist
+!set typelistcnt=!itemcnt $typelist
+!distribute items 0,0,0,0 into goodr_cntglob,badr_cntglob,missr_cntglob,g_cnt2glob
+!for tt=1 to $typelistcnt
+  !reset glist
+  !set type=$(typelist[$tt])
+  !set type_number=!positionof item $type in $listtotal
+  !if $type iswordof poly3 poly4 poly5 poly6 poly7 poly8 poly9 polys3 polys4 polys5 polys6 polys7 polys8 polys9
+    !set type_number=7
+  !endif
+  !if $type iswordof math
+    !set type_number=!positionof item images in $listtotal
+  !endif
+  !set typereply=!line $type_number+1 of $(reply$i)
+  !if $type=math
+    !!hack
+    !for tmp=0 to 20
+      !set typereply=!replace internal placed_$(tmp)_ by in $typereply
+    !next
+  !endif
+  !set typereply=!replace internal $(type)_ by in $typereply
+  !if $type iswordof text
+    !set type=string
+  !endif
+  !if $type iswordof $listtype $listtype3
+    !set type_cnt=4
+    !if $type iswordof circles images string text math
+      !set type_cnt=3
+    !endif
+    !if $type iswordof points crosshairs $listtype3
+      !set type_cnt=2
+    !endif
+    !if $type iswordof curvedarrows curvedarrows2
+      !set type_cnt=6
+    !endif
+  !endif
+  !set type_cnt2=$type_cnt
+  !if $type iswordof $listtype3
+    !set type_cnt2=4
+  !endif
+  !if $typereply notsametext $empty
+    !!transform the reply from listx:listy to x,y,x,y,...
+    !set tmp=!itemcnt $(typereply[1;])
+    !for jj=1 to $tmp
+      !set typereply_tmp=!append line $(typereply[;$jj]) to $typereply_tmp
+    !next
+    !set typereply=!lines2rows $typereply_tmp
+    !reset typereply_tmp
+    !set typereply=!replace internal ; by , in $typereply
+  !endif
+  !set replist=$typereply
+  !set Replist=!append line $type,$replist to $Replist
+  !if $type iswordof poly3 poly4 poly5 poly6 poly7 poly8 poly9
+    !set type=closedpoly
+  !endif
+  !set rlist=!sort lines $replist
+  !set good=$(replygood$i[1+$tt;2..-1])
+  !if $type iswordof images math
+    !set $(type)_list=!declosing $(good[1])
+    !set good=$(good[2..-1])
+  !endif
+  !if $type iswordof polygon closedpoly
+    !set good=$good,$(good[1]),$(good[2])
+  !endif
+  !set good_cnt=!itemcnt $good
+  !reset option
+  !if $type iswordof arrows arrows2
+    !set arrow_head=!getopt arrow_head in $(replyoption$i)
+    !default arrow_head=10
+    option=$arrow_head,
+  !endif
+  !if $[$good_cnt%$type_cnt]!=0
+    Test=bad $i
+    !exit
+  !endif
+  !reset g_cnt2 glist
+  !for s=1 to $[$good_cnt/$type_cnt]
+    rg=$[($s-1)*$type_cnt]
+    !if $rg+$type_cnt2 <= $good_cnt
+      !increase g_cnt2
+      glist=!append line $s,$(good[$rg+1 ..$rg+$type_cnt2]) to $glist
+      !if $type iswordof segments arrows2 rects
+        glist=!append line $s,$(good[$rg+3,$rg+4,$rg+1,$rg+2]) to $glist
+      !endif
+      !if $type iswordof curvedarrows2
+        glist=!append line $s,$(good[$rg+3,$rg+4,$rg+1,$rg+2,$rg+5,$rg+6]) to $glist
+      !endif
+    !endif
+  !next
+  !set g_cnt=$[$good_cnt/$type_cnt]
+  !set g_cnt1=$g_cnt
+  !if $type iswordof segments arrows2 curvedarrows2
+    g_cnt1=$[2*$g_cnt]
+  !endif
+  !set r_cnt=!itemcnt $rlist
+  !reset Rlist
+  !for s=1 to $r_cnt
+    Rlist=!append line $(rlist[($s-1)*$type_cnt+1 ..($s-1)*$type_cnt+$type_cnt2]) to $Rlist
+  !next
+  !if $type iswordof $listtype3
+    !if $type=polyline
+      Rlist=!line 1 to -2 of $Rlist
+    !else
+      Rlist=$Rlist,$(rlist[1]),$(rlist[2])
+    !endif
+  !else
+    glist=!sort lines $glist
+  !endif
+  rlist=!sort lines $Rlist
+  r_cnt=!linecnt $rlist
+  !!g_cnt=!linecnt $glist
+  rlist=!lines2rows $rlist
+  glist=!lines2rows $glist
+  !if $type notwordof images string math
+    !!glist=!exec pari [$glist]
+  !endif
+  !reset goodrg goodrr
+  !read anstype/draw.inc
+  goodrg=!listuniq $goodrg
+  totalr=!makelist x for x=1 to $r_cnt
+  totalg=!makelist x for x=1 to $g_cnt2
+  !!problem dans les approximations ...
+  badr=!listcomplement $goodrr in $totalr
+  missr=!listcomplement $goodrg in $totalg
+  goodr_cnt=!itemcnt $goodrr
+  badr_cnt=$[$r_cnt - $goodr_cnt]
+  missr_cnt=!itemcnt $missr
+  !if $badr!=$empty
+    !for u in $badr
+      !set color=red
+      parm3=!append line strokecolor $color to $parm3
+      !if $type iswordof images math
+        parm3=!append line centered to $parm3
+        !if $type iswordof images
+          !set image=!replace internal $(type)_ by in $(rlist[$u;3])
+          parm3=!append line copy $(rlist[$u;1,2]),-1,-1,-1,-1,$(images_list[$image]) to $parm3
+        !else
+          !set image=$(rlist[$u;3])
+          !set parm3=!append line $type $(rlist[$u;1,2]),$(math_list[$image]) to $parm3
+        !endif
+      !else
+        !if $type iswordof curvedarrows curvedarrows2
+          parm3=!append line $type $color,$option$(rlist[$u;1,2,5,6,3,4]) to $parm3
+        !else
+          parm3=!append line $type $color,$option$(rlist[$u;1..$type_cnt2]) to $parm3
+        !endif
+      !endif
+    !next
+  !endif
+  !reset color
+  !for u_=1 to $g_cnt1
+    l_tmp=$(glist[$u_;2..-1])
+    !if $type iswordof images math
+      !set parmg=!append line centered to $parmg
+      !set image=!replace internal $(type)_ by in $(l_tmp[3])
+      !if $type iswordof images
+        !set parmg=!append line copy $(l_tmp[1,2]),-1,-1,-1,-1,$(images_list[$image]) to $parmg
+      !else
+        !set parmg=!append line $type $(l_tmp[1,2]),$(math_list[$image]) to $parmg
+      !endif
+    !else
+      !if $type iswordof curvedarrows curvedarrows2
+        parmg=!append line $type black,$option$(l_tmp[1,2,5,6,3,4]) to $parmg
+      !else
+        !if $option$(l_tmp[1..$type_cnt2])!=
+          parmg=!append line $type black,$option$(l_tmp[1..$type_cnt2]) to $parmg
+        !endif
+      !endif
+    !endif
+  !next
+  goodr_cntglob=$[$goodr_cnt + $goodr_cntglob]
+  badr_cntglob=$[$badr_cnt + $badr_cntglob]
+  missr_cntglob=$[$missr_cnt + $missr_cntglob]
+  g_cnt2glob=$[$g_cnt2+$g_cnt2glob]
+!next type
+
+!set parmg=!replace internal closedpoly by polygon in $parmg
+!set parm3=!replace internal closedpoly by polygon in $parm3
+Replist=!replace internal string, by text, in $Replist
+
+!for tt in math
+  Replist=!replace internal $(tt)_placed, by  in $Replist
+!next
+m_reply$i=!lines2rows $Replist
+!set parm3=!nonempty lines $parm3
+!read oef/canvasdraw.phtml $xysize\
+$parm3
+
+reply_$i=$canvasdraw_out
+!if $wims_read_parm=nocompare
+  !exit
+!endif
+!if split iswordof $(replyoption$i) or partialscore iswordof $(replyoption$i) or eqweight iswordof $(replyoption$i)
+  !if eqweight iswordof $(replyoption$i)
+    coeff=0.5
+  !else
+    coeff=1
+  !endif
+!else
+  coeff=0
+!endif
+!if $coeff=0
+  !if $goodr_cntglob=$g_cnt2glob and $badr_cntglob=0 and $missr_cntglob=0
+    score=1
+  !else
+    score=0
+  !endif
+!else
+  score=$[max(0,min(1,($goodr_cntglob-$coeff*(max($badr_cntglob,$missr_cntglob)))/$g_cnt2glob))]
+!endif
+!if $score=1
+  diareply$i=good
+  !increase freegot
+!else
+  !if $score>0.1
+    partialgood$i=yes
+    diareply$i=good
+    freegot=$[$freegot+$score]
+  !else
+    diareply$i=bad
+  !endif
+!endif
+!read oef/canvasdraw.phtml $xysize\
+$parmg
+replyGood$i=$canvasdraw_out
+noshow$i=yes

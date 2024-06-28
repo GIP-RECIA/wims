@@ -1,0 +1,49 @@
+!read adm/class/classlang names.phtml
+
+!! disconnect for example class
+!if $wims_superclass=$empty
+  sclass=$wims_class
+!else
+  sclass=$wims_superclass
+!endif
+!if $sclass<10000
+  error=closedmodexcls
+  !exit
+!endif
+
+!if $wims_user!=supervisor
+  job=oneuser
+  !if $error=$empty
+    !changeto $job.proc
+  !endif
+!endif
+
+!if $error isitemof notsupervisor,noclass,nosupervisoremail,sendmailteacherclose
+  !reset job
+  !exit
+!endif
+
+!if $nb_user=0 and $wims_user=supervisor
+  error=nouser
+  !reset job
+  !exit
+!endif
+
+
+!if $cmd!=reply and $job=sendmail
+  !reset job
+!endif
+
+!if $cmd=new
+  !distribute item 1,1 into selfsend,sendotherteacher
+!endif
+
+!bound job within edit,preview,sendmail default edit
+
+!readproc adm/vfilter/listvarfilter.proc
+!if $varfilterclear!=$empty
+  job=edit
+!endif
+!readproc adm/vfilter/varfilter proc
+
+!read $job.proc

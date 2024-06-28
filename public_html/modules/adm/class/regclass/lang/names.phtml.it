@@ -1,0 +1,121 @@
+!set lang_exists=yes
+
+!set name_passsup=password di amministrazione
+!set name_password_check=Password security check
+!set name_listclass=corso,modulo,coordinamento di corsi,corso,portale di sede
+
+!default Cltype=$cltype
+!if $wims_supertype = 2
+  !default Cltype=$[$wims_supertype-1]
+!endif
+!if $Cltype iswordof 2 4
+  !if $Cltype=2
+    !set name_classe=$(name_listclass[$Cltype+1])
+    !set name_sup=docente coordinatore
+  !else
+    !set name_classe=$(name_listclass[$Cltype+1])
+    !set name_sup=docente supervisore
+  !endif
+  !set name_classes= il $name_classe
+  !set name_classess= un $name_classe
+  !set name_classesss= del $name_classe
+  !set name_classessss= Il $name_classe
+!else
+  !set name_classe=!nosubst $(name_listclass[$Cltype+1])
+  !set name_classes=!nosubst il $name_classe
+  !set name_classess=!nosubst un $name_classe
+  !set name_classesss=!nosubst del $name_classe
+  !set name_classessss=!nosubst Il $name_classe
+  !set name_sup=docente
+!endif
+
+# the name_cgu second item is the text link for the Terms of use.
+!set name_cgu=Ho preso visione delle condizioni generali di utilizzo,\
+  (leggi le CGU),\
+  e le accetto.,\
+  Per accettare è necessario leggere le CGU.
+!set name_supcgu=Avete già accettato le condizioni generali di utilizzo
+
+# Do not insert line break in noagreecgu_msg to keep JS working
+!set noagreecgu_msg=Per creare un corso è necessario leggere e accettare le Condizioni Generali di Utilizzo (CGU).
+
+!distribute lines Continua\
+  Ricomincia da capo\
+  Creazione di una struttura\
+  Nome dell'istituzione\
+al più \
+almeno\
+  Per utenti esperti\
+  caratteri\
+  Ricomincia da capo.\
+  Scegli il tipo di corso che vuoi creare.\
+almeno 4 e non più di 16 caratteri, numeri o lettere non accentate\
+ into name_continue,name_again,title,name_Name_portal,name_atmost,name_atleast,name_expert,\
+   name_characters,name_comeback,name_choose,name_warningpass
+
+!if $regpolicy=file
+  !set noright=Non hai i privilegi per farlo.
+ !else
+  !set noright=Solo il responsabile del server può farlo.
+ !endif
+
+!set name_regpolicy=!nosubst La creazione $name_classesss può essere completata solo se si\
+  dispone di un indirizzo di posta elettronica funzionante.
+
+!set name_help1=Questa password permette di accedere alla gestione del $name_classe come $name_sup.\
+  Non va resa nota ad altri.
+
+!set name_help2=La password $name_classesss è necessaria per l'iscrizione degli studenti. \
+  Va comunicata a tutti gli studenti che devono accedere al $name_classe.
+
+!set name_help3=La password $name_classesss è necessaria per l'iscrizione dei docenti.\
+   Va comunicata ai docenti $name_classesss; ma non agli studenti.
+
+!distribute lines Cioè la data in cui $name_classes sarà automaticamente chiuso e archiviato.\
+Numero limite di partecipanti al $name_classe\
+Accesso da IP sicuro\
+Opzionale\
+Questo codice serve solo in questa occasione. Non può essere utilizzato per accedere al $name_classe!\
+Codice di attivazione\
+Server CAS per autenticazione esterna\
+  into name_help_date,name_help_limit,name_secure,name_optional,name_warning_code,name_code,name_cas
+
+!set name_host=!nosubst Nome (o IP) dei pc da cui si effettueranno operazioni \
+ di gestione del $name_classe. Se non si mette nulla, ogni volta che \
+ effeettuerete una operazione sensibile vi sarà inviata una mail (opzione \
+ consigliata). Se si mette la parola <span class="tt wims_code_words">all</span> \
+ questo controllo di sicurezza viene disattivato.
+
+!set name_cas_help=Compilare questo campo se si desidera utilizzare una autenticazione esterna di tipo CAS (fornita dalla vostra struttura)
+
+!set name_cpexempleintro=!nosubst State creando una copia del corso <span class="tt wims_code_words">$source_title</span>
+!set name_choosemode=Scegliete il tipo di copia
+!distribute item Completa,Parziale into name_btcpexemplemeth0,name_btcpexemplemeth1
+
+!set name_cpexemplemeth0=Tutte le risorse saranno copiate. In un secondo momento potrete disattivare le risorse, per eliminarle o adattarle alle vostre necessità.
+!set name_cpexemplemeth1=non vengono copiati gli esami. Le altre risorse sono automaticamente disattivate. Potete quindi decidere cosa tenere o eliminare o adattare.
+!set name_cpexemplecomment=In ogni caso, le date di termine sono modificate nella data di termine del $name_classe creato.
+!set name_research1=Ci sono troppi corsi virtuali su questo sito. Inserire parte del nome del corso o del nome del docente per effettuare una ricerca.
+!set name_research2=Ci sono ancora troppi corsi corrispndenti alla ricerca. Provate a dare una descrizione più precisa.
+!set name_searchclass=Cerca un corso
+!set name_nofound=Non ci sono corsi corrispondenti alla ricerca.
+
+!distribute items Disponibile, Protetto, Non autorizzato, Copiabile, \
+Cliccare sul corso che si vuole copiare\
+into name_free,name_protected,name_disallowed,name_cloning,name_clickclone
+
+!set name_getcloningpwd=!nosubst State per creare una copia del corso \
+<span class="tt wims_code_words">$source_title</span>. \
+Per farlo avete bisogno della password di copia che \
+il docente del corso vi ha comunicato.
+!set name_subclass=Modulo di
+!set name_clonebyclass=Copiando un corso presente su questo server
+!set name_clonebytgz=Copiando da un file di backup di un corso,\
+Caricamento di un file di backup,\
+Scegliete il file di backup da utilizzare,\
+Questo corso sarà creato a partire dal contenuto del file di backup selezionato.
+
+!distribute lines Luogo (città, nazione)\
+Compilando questo campo autorizzate il server a indicare che WIMS è utilizzato nella vostra città (nessun dato del corso sarà pubblicato)\
+Coordinate GPS\
+into name_location,name_location_help,name_geoloc

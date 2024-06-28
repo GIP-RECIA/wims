@@ -1,0 +1,130 @@
+type=chemistry
+textarea="data file atom scriptinput scriptoutput post"
+iEdit="post"
+
+:Seleccionar alguns àtoms d'una molècula
+
+Es presenta una molècula a la miniaplicació de Jmol i es demana seleccionar
+alguns àtoms
+<p>
+Per construir un exercici amb aquest model, simplement s'ha de donar el fitxer
+d'estructura i indicar els àtoms a seleccionar.
+
+<p>
+Autors del model: <a href="mailto:yves.noel@sorbonne-universite.fr">Yves Noël et Bernadette Perrin-Riou</a>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Seleccionar a l'espai}
+:\author{Yves, Noël ; Bernadette, Perrin-Riou}
+:\email{yves.noel@upmc.fr}
+:\credits{}
+
+:Fitxer MDMol
+\text{file=xxx
+Jmol version 11.7.31  2009-03-28 16:42
+EXTRACT: visible
+ 24 25  0  0  0
+ -3.380413 -1.127236 0.5733036 H
+ 0.9668296 -1.073742 -0.819822 N
+ 0.0567293 0.8527195 0.3923156 C
+ -1.375174 -1.021224 -0.057055 N
+ -1.261501 0.2590713 0.5234135 C
+ -0.306833 -1.683633 -0.716934 C
+ 1.1394234 0.1874122 -0.27009  C
+ 0.5602627 2.0839095 0.8251589 N
+ -0.492679 -2.818055 -1.209473 O
+ -2.632807 -1.730396 -0.006095 C
+ -2.230133 0.7988624 1.089973  O
+ 2.549699  2.9734976 0.6229589 H
+ 2.0527434 -1.736088 -1.493128 C
+ -2.480771 -2.726952 0.4882631 H
+ -3.008904 -1.902525 -1.049802 H
+ 2.9176102 -1.848151 -0.785786 H
+ 2.378786  -1.121191 -2.374365 H
+ 1.7189878 -2.748991 -1.843920 H
+ -0.151845 3.0970047 1.5348347 C
+ 1.8934095 2.1181242 0.4193193 C
+ 2.2861252 0.9968439 -0.244029 N
+ -0.168702 4.043655  0.9301094 H
+ 0.3535322 3.297906  2.5177748 H
+ -1.207449 2.7537594 1.7203048 H
+ 24 19  1
+ 22 19  1
+ 20 21  1
+ 20 12  1
+ 19 23  1
+ 19  8  1
+ 18 13  1
+ 15 10  1
+ 13 17  1
+ 13 16  1
+ 11  5  1
+ 10 14  1
+ 10  4  1
+  9  6  1
+  8 20  1
+  7 21  1
+  6  2  1
+  5  3  1
+  4  6  1
+  4  5  1
+  3  7  1
+  3  8  1
+  2 13  1
+  2  7  1
+  1 10  1
+}
+
+:La mida de l'applet, en píxels, amplada x alçada.
+\text{size1=200x200}
+
+:Text abans de l'applet
+\text{pre=Seleccionar tots els àtoms}
+
+:Àtoms sobre els que fer clic (es triarà una de les línies aleatòriament)
+\matrix{atom=_N
+_O
+_C}
+
+:El text de la instrucció específica de cada línia anterior
+\matrix{instruction=de nitrogen.
+d'oxigen.
+de carboni.}
+
+:Text després de l'applet
+\text{post=<i>Comproveu que el zoom del navegador estigui a la mida normal.</i>}
+
+:la seqüència de comandaments Jmol a realitzar al presentar l'exercici.
+\text{scriptinput=select all;color atoms yellow; select none;}
+
+:la seqüència de comandaments Jmol a realitzar al presentar la resposta
+\text{scriptoutput=}
+
+
+
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+
+\text{cnt=\atom[;1]}
+\integer{cnt=items(\cnt)}
+\text{sel=randint(1..\cnt)}
+\text{atom=\atom[\sel;]}
+\statement{\pre \instruction[\sel;]
+<p class="wimscenter">
+\embed{reply 1, \size1
+
+\scriptinput
+\scriptoutput}
+</p>
+\post
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{}{\atom;\file}{type=jmolclick}

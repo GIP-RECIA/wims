@@ -1,0 +1,114 @@
+!set lang_exists=yes
+
+!set name_form1_1=Le cas,est terminé
+!set name_form1_2=Il vous reste le dernier cas à traiter&nbsp;,\
+  C'est votre dernier cas à traiter&nbsp;
+!set name_form1_3=Il vous reste,Vous avez,cas,à traiter. Cas actuel&nbsp;
+!set name_form1_4=Vous devez résoudre cet exercice étape par étape, \
+  avec les méthodes d'étape présentées dans le menu.
+!set name_form1_5=Méthode pour la première étape&nbsp;,\
+  Méthode pour l'étape
+!set name_form1_erasehyp=Effacer des hypothèses inutiles
+
+!set name_form3_1=Quelle est la condition d'application de cette méthode&nbsp;
+!set name_form3_2=Que donne la méthode&nbsp;
+
+!set name_formnewcase_1=Erreur de manipulation : Il n'y a qu'un seul cas qui reste.
+!set name_formnewcase_2=!nosubst Vous avez les $[$casecnt-1] \
+  cas suivants à traiter. Cliquez sur un pour y aller.
+!set name_current_case=cas actuel
+
+!set name_answer1=Non ! Vous avez fait de mauvaises manipulations \
+  qui vous ont conduit à une situation où la démonstration de l'exercice \
+  n'est plus possible. L'exercice est donc avorté, score=0.
+!set name_answer2=Non ! Vous avez dépassé la limite d'étapes autorisées. \
+  L'opération est avortée, score=0.
+!set name_answerprompt=Enfin,Voilà, Oui, Bien, Bravo, Félicitations
+!set name_solve=!nosubst Vous avez résolu l'exercice en $ctstep étapes.
+!set name_shouldbe=!nosubst Cela peut se faire en $m_minsteps étapes.
+!set name_scoreend=Score,étapes égarées,pénalités pour erreurs graves
+
+!set name_intro=Ce module est un groupement d'exercices. Vous l'avez visiblement demandé\
+  sans préciser un exercice valable que vous voulez faire. C'est soit parce que\
+  avez cliqué sur un lien incorrect, soit à cause d'une erreur du logiciel.
+!set name_tryagain=Essayez de refaire votre opération
+
+!set name_introprompt=jamais, selon les exercices, toujours
+!set name_intro1=Désolé, aucun exercice n'est disponible sous ce module pour l'instant.\
+  Revenez plus tard!
+!set name_introone=Ce module contient en ce moment un seul exercice,\
+  Essayez-le
+!set name_intro2=Exercices contenant,\
+  Choisissez les exercices&nbsp;,\
+  Niveau de sévérité,\
+  Demander les conditions d'application des méthodes,\
+  Demander le résultat des méthodes
+!set name_intro3=Sélectionner les titres avec le mot
+!set name_intro_remark1=<b>Remarques</b>. Les exercices proposés seront pris \
+  aléatoirement parmi vos choix (ou parmi tous \
+  les exercices disponibles si votre choix est vide).
+!set name_intro_remark2=Les exercices marqués par un * sont en général plus difficiles que les autres.
+
+!distribute item -- choisissez --, je n'ai aucune idée,\
+	précisez si nécessaire\
+	into ch_choose, ch_noidea, ch_optional
+
+!set name_badsize=Votre réponse n'a même pas la bonne taille.
+!set name_exo=Exercice.
+
+!distribute item Elle est toujours applicable,\
+	Uniquement quand\
+  into ct_Always, ct_Onlywhen
+
+!distribute item Hypothèses de départ&nbsp;,\
+  Nouvelle hypothèse&nbsp;,\
+  Vous avez maintenant,\
+  Reste à prouver&nbsp;\
+into name_status_hyp,name_status_newhyp,name_status_now,name_toprove
+
+!distribute item défaire,refaire,Changement du but,Non comptée pour le score\
+into name_undo,name_redo, name_change,name_noaccount
+
+!distribute item Historique des étapes,Étape,Cas,Résultat,Méthode,Remarques,Méthodes \
+  into name_hist,name_step, name_case,name_result,name_method,name_remarks,name_methods
+
+!distribute item État de l'exercice,Changer la méthode\
+  into name_state, name_methchange
+
+!set name_continue=Continuer
+
+!set name_nohint=Désolé, l'indication n'est pas disponible sur cet exercice.
+
+!set name_otherhelp=Autres sujets d'aide
+!set name_nosuphelp=Il n'y a pas d'aide supplémentaire pour cette méthode.
+!set name_noparthelp=Cet exercice n'a pas d'aide particulière.
+!set name_subjecthelp=Sujets d'aide&nbsp;
+
+!set name_titlestate=État actuel de l'exercice
+!set name_hypusable=Hypothèses utilisables&nbsp;
+!set name_totransform=Objets à transformer&nbsp;
+!set name_remaintoprove=Reste à prouver&nbsp;
+!set name_statushelp_1=!nosubst Vous devez résoudre cet exercice en \
+  $m_minsteps étapes pour avoir un score maximal.
+!set name_statushelp_2=!nosubst Cet exercice peut se résoudre en $m_minsteps étapes, \
+  mais dans son niveau actuel vous pouvez faire jusqu'à \
+  $[$m_minsteps+$tolerance] étapes et avoir un score maximal.
+!set name_statushelp_3=Vous êtes actuellement sur l'étape numéro
+!set name_statushelp_4=!nosubst Vous avez terminé au bout de $[$currstep-1] étapes.
+!set name_statushelp_5=!nosubst Vous avez encore $[$casecnt-1] cas à traiter. \
+  Cas actuel&nbsp;
+!set name_statushelp_6=Ceci est votre dernier cas à traiter&nbsp;
+
+!set name_methodtitle=Méthodes autorisées dans cet exercice
+
+!set name_author=Auteur de cet exercice&nbsp;
+!distribute lines Cet exercice contient à la fois une solution expliquée et une indication.\
+  Cet exercice contient une solution expliquée mais pas d'indication.\
+  Cet exercice contient une indication mais pas de solution expliquée.\
+  Cet exercice ne contient ni solution expliquée ni indication.\
+  Information concernant cette collection d'exercices.\
+  into name_expl1,name_expl2,name_explhint,name_nohint,name_information
+
+!set name_copyright=Les droits d'auteurs des exercices appartiennent à leurs auteurs respectifs.\
+  Toute installation des sources des exercices sur un\
+  serveur nécessite l'autorisation expresse des auteurs.

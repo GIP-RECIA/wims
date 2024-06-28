@@ -1,0 +1,77 @@
+!set lang_exists=yes
+
+<p>
+Lavorando in WIMS capiterà spesso di dover inserire formule o espressioni
+matematiche.
+</p>
+Le formule matematiche possono essere inserite nel modo usuale:
+<ul>
+  <li>
+    <code>3*x+5</code> per
+    !insmath 3x+5
+  </li><li>
+    <code>sin(pi*x)</code> per
+    !insmath sin(pi*x)
+  </li><li>
+    <code>y^3+1</code> per
+    !insmath y^3+1
+  </li><li>
+    <code>(x+1)/(y-1)</code> per
+    !insmath {x+1 \over y-1}
+  </li><li>e così via.</li>
+</ul>
+
+<p>
+Oltre a ciò, WIMS contiene un sistema di analisi che permette di correggere
+``errori'' comuni nelle espressioni matematiche. Per esempio,
+  <span class="tt">3x+5</span>
+viene automaticamente trasformato in <span class="tt">3*x+5</span>, <span class="tt">sin x</span> viene trasformato in
+  <span class="tt">sin(x)</span>, e così via. Naturalmente raccomandiamo di non
+affidarsi ciecamente a questa correzione automatica, perché a volte
+le scritture possono essere ambigue. È opportuno vercare sempre di
+introdurre le formule matematiche in maniera ``corretta'', anche se a volte
+può sembrare inutile.
+</p><p>
+Segue una lista di funzioni matematiche con indicazione del modo (corretto) per inserirle.
+Queste funzioni sono automaticamente riconosciute da WIMS nei contesti
+in cui hanno senso. (Alcuni moduli possono accettare altre funzioni:
+verificare le pagine di help relative al singolo modulo.)
+</p><p>
+  !set x=<i class="wims_mathfont">x</i>
+  !set y=<i class="wims_mathfont">y</i>
+  L'espressione $x può essere sostituita con una qualsiasi delle espressioni
+  contenute nella tabella seguente.
+</p>
+
+!set table_th = Funzione, Descrizione, Cosa digitare
+
+!set table_descs=la ben nota costante\
+base del logaritmo naturale\
+valore assoluto di $x\
+segno di $x\
+radice quadrata di $x\
+intero più vicino a $x\
+il più grande intero\
+il più piccolo intero\
+esponenziale\
+logaritmo naturale\
+logaritmo in base 10\
+funzione trigonometrica seno\
+funzione trigonometrica coseno\
+funzione trigonometrica tangente\
+funzione trigonometrica cotangente\
+funzione inversa del seno\
+funzione inversa del coseno\
+funzione inversa della tangente\
+seno iperbolico\
+coseno iperbolico\
+tangente iperbolica\
+inversa del seno iperbolico\
+inversa del coseno iperbolico\
+inversa della tangente iperbolica\
+maggiore intero tra $x e $y\
+minore intero tra $x e $y\
+MCD (Massimo Comune Divisore)\
+mcm (minimo comune multiplo)\
+
+!read 1/math.phtml.common

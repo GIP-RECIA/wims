@@ -1,0 +1,129 @@
+type=order
+textarea="instruction data"
+iEdit="instruction"
+
+:On présente plusieurs mots dont les lettres ont été mélangées
+
+<p>L'apprenant doit ensuite reformer les mots.</p>
+<p>Attention : assurez-vous que les mots que vous proposez n'ont pas d'anagrammes possibles
+  ou alors indiquez un indice qui ne permet aucune équivoque.</p>
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Enlevez l'en-tête ci-dessus si vous détruisez les balises pour le modèle !
+(Ce sont les lignes qui commencent par un ':'.)
+Sinon l'exercice risque de ne pas pouvoir repasser sous Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Combinaisons de lettres}
+:\author{Olivier, Bado}
+:\email{bado@unice.fr}
+:\credits{}
+Les crédits vous permettent d'indiquer des sources si par exemple l'exercice contient des images.
+
+:Consigne de l'exercice
+\text{instruction=Voici plusieurs verbes de la langue française dont les lettres ont été mélangées.
+<p>À vous de les retrouver !</p>}
+
+:Liste des mots à mélanger
+Placer un mot par ligne, sans aucun espace.
+éventuellement, vous pouvez placer un indice pour chaque mot en le séparant avec une virgule.
+\text{data=manger,à table
+finir,tout a une fin
+courir
+mettre,placer
+}
+
+:Rétro-action (feedback)
+Un texte qui s'affiche une fois que l'apprenant a répondu.
+\text{feedback=}
+
+:Nombre de mots à présenter.
+Maximum 20
+\integer{nb_words=2}
+
+:Taille du champ à taper.
+Il faut prévoir suffisamment de place pour la propriété la plus longue.
+\integer{size=20}
+
+:Type d'analyse de réponse.
+Les types <span class="tt">case</span> et <span class="tt">nocase</span> sont surtout adaptés
+ pour les applications linguistiques. Dans les autres cas, préférez <span class="tt">atext</span>.
+\text{atype=item(1,case (aucune tolérance d'erreur),
+  nocase (tolère minuscule/majuscule),
+  atext (ignore pluriel/singulier et articles))}
+
+:Styles personalisés
+Ici vous pouvez utiliser du code CSS pour personaliser votre exercice.<br>
+Exemple : tapez <code>.name {color: #599}</code> pour colorer les mots à trouver en bleu pastel.
+\text{styles=}
+
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+
+\text{melanges=}
+\matrix{reponses=}
+\matrix{indices=}
+\text{data=wims(nonempty rows \data)}
+\integer{datacnt=rows(\data)}
+\integer{nb_words=min(\nb_words,\datacnt)}
+\integer{nb_words=min(20,\nb_words)}
+
+\text{order=shuffle(\datacnt)}
+\text{data=row(\order,\data)}
+
+\for{i=1 to \nb_words}{
+  \text{mot=\data[\i;1]}
+  \text{indice=\data[\i;2]}
+  \if{\indice issametext }{
+    # pour éviter que wims fasse sauter la ligne vide
+    \text{indice=##**##}
+  }
+  \text{mot=wims(nospace \mot)}
+  \integer{nbletter=wims(charcnt \mot)}
+  \text{order=shuffle(\nbletter)}
+  \text{melange=wims(char \order of \mot)}
+  \text{melanges=wims(append item \melange to \melanges)}
+  \matrix{reponses=wims(append line \mot to \reponses)}
+  \matrix{indices=wims(append line \indice to \indices)}
+}
+
+# on ne prend en compte que les \nb_words premiers answers
+\text{qlist=wims(makelist reply x for x=1 to \nb_words)}
+\steps{\qlist}
+
+\css{<style>.big_bullet>li{font-size:1.4em;margin-bottom:.5em}.indice{color:#999}</style>}
+\text{styles=wims(nospace \styles)}
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+\statement{
+\if{\styles notsametext }{<style>\styles</style>}
+
+<div class="instruction">\instruction</div>
+<ul class="big_bullet">
+  \for{k=1 to \nb_words}{
+    <li class="oef_input">
+      <label for="reply\k" class="name">\melanges[\k] :</label>
+      \embed{r \k,\size
+        autocomplete="off"}
+      \if{\indices[\k;] notsametext ##**##}{
+        <span class="indice">(\indices[\k;])</span>
+      }
+    </li>
+  }
+</ul>
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Champ 1}{\reponses[1;]}{type=\atype}{}
+\answer{Champ 2}{\reponses[2;]}{type=\atype}{}
+\answer{Champ 3}{\reponses[3;]}{type=\atype}{}
+\answer{Champ 4}{\reponses[4;]}{type=\atype}{}
+\answer{Champ 5}{\reponses[5;]}{type=\atype}{}
+\answer{Champ 6}{\reponses[6;]}{type=\atype}{}
+\answer{Champ 7}{\reponses[7;]}{type=\atype}{}
+\answer{Champ 8}{\reponses[8;]}{type=\atype}{}
+\answer{Champ 9}{\reponses[9;]}{type=\atype}{}
+\answer{Champ 10}{\reponses[10;]}{type=\atype}{}
+
+\feedback{1=1}{\feedback}

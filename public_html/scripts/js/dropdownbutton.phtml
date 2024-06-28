@@ -1,0 +1,100 @@
+!! put a dropdown button with list of link in a menu
+!! wims_read_parm is :
+!! line 1 name of the button
+!! line 2 id of the button
+!! each other line is an item of the dropdown button with format word1 link ; word2 linkname
+
+!if $js_numberdropdownbutton_=$empty
+  !let js_numberdropdownbutton_=0
+  <style>
+    .grid_container{
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+    .grid_container>span{
+      padding: 2px;
+    }
+    .dropdown.wims_secondary_button:after{
+      border-color: #000 transparent transparent;
+      top: 0;
+    }
+
+    /**
+     * Foundation for Sites
+     * Dropdown button
+     */
+    button.dropdown:after {
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0.4em;
+      content: '';
+      border-bottom-width: 0;
+      border-color: #fefefe transparent transparent;
+      position: relative;
+      top: 0.4em;
+      display: inline-block;
+      float: right;
+      margin-left: 1em;
+    }
+
+    /**
+     * Foundation for Sites
+     * Version 6.7.4
+     * https://get.foundation
+     * Licensed under MIT Open Source
+     */
+    /* Dropdown styles */
+    .dropdown-pane {
+      position: absolute;
+      z-index: 10;
+      display: none;
+      width: 300px;
+      padding: 1rem;
+      visibility: hidden;
+      border: 1px solid #cacaca;
+      border-radius: 0;
+      background-color: #fefefe;
+      font-size: 1rem;
+    }
+    .dropdown-pane.is-opening {
+      display: block; }
+    .dropdown-pane.is-open {
+      display: block;
+      visibility: visible; }
+
+    .dropdown-pane.tiny  {width: 100px;}
+    .dropdown-pane.small {width: 200px;}
+    .dropdown-pane.large {width: 400px;}
+
+</style>
+
+!endif
+
+!increase js_numberdropdownbutton_
+!let keyid_=!line 1 of $wims_read_parm
+!let keyname_=!line 2 of $wims_read_parm
+!let nb_=!linecnt $wims_read_parm
+
+!! @See https://get.foundation/sites/docs/dropdown.html for data-options
+<button class="wims_button wims_secondary_button small dropdown" type="button"
+        data-toggle="dropdown$keyid_">
+  $keyname_
+</button>
+<div class="dropdown-pane" id="dropdown$keyid_"
+     data-dropdown data-auto-focus="true"
+     data-position="bottom" data-alignment="right"
+     data-close-on-click="true" >
+  <div class="grid_container">
+  !for k_=3 to $nb_
+    !let l_=!line $k_ of $wims_read_parm
+    !let link_=!word 1 of $l_
+    !let name_=!word 2 to -1 of $l_
+    <span>
+      !href $link_ $name_
+    </span>
+  !next k_
+  </div>
+</div>
+

@@ -1,0 +1,131 @@
+!set wims_module_log=error: $error
+
+<b>$wims_name_Error</b>.
+
+!if $error = doc_not_exist
+ El document que heu sol·licitat ja no existeix.
+ !exit
+!endif
+
+!if $error = abuse
+ El document té un títol estrany! Esteu segur que voleu crear un
+document amb aquest nom?
+<p><b>Atenció</b> Els autors de cap abús sobre el servidor se'ls negarà l'accès.</p>
+ !exit
+!endif
+
+!if $error = quota
+ Ja no es pot modificar aquest document perquè el seu contingut ha superat
+ el límit d'espai permès al disc.
+ !exit
+!endif
+
+!if $error = quota_file
+ S'ha refusat el dipòsit del fitxer perquè no hi ha prou espai lliure al
+ disc pel document.
+ !exit
+!endif
+
+!if $error = no_tit
+ Cal donar un títol al document.
+ !exit
+!endif
+
+!if $error = no_author
+ Encara no heu definit l'autor del document.
+ !exit
+!endif
+
+!if $error = bad_email
+ L'adreça de correu electrònic no sembla correcta. Si us plau comprova-la.
+ !exit
+!endif
+
+!if $error = bad_code
+ <p>El codi secret no és correcte. No es pot llegir ni modificar
+ el document sol·licitat.
+ </p>
+ Si us plau
+ !mailurl $wims_site_manager escriviu a l'administrador del lloc\
+ Codi de document oblidat
+ si heu oblidat el codi secret del vostre document.
+ !exit
+!endif
+
+!if $error = unauthorized
+ No teniu dret a llegir ni editar el document sol·licitat.
+ !exit
+!endif
+
+!if $error = bad_data
+ Algunes de les seves definicions no són correctes. Si us plau corregiu-les.
+ !exit
+!endif
+
+!if $error = class_no_right
+ Ho sento, però no es permet la sol·licitud. Consulteu amb
+  el professor d'aquesta classe.
+ !exit
+!endif
+
+!if $error = small_code
+ El codi secret és massa curt.
+ !exit
+!endif
+
+!if $error = big_code
+ El codi secret és massa llarg.
+ !exit
+!endif
+
+!if $error = code_discord
+ <b>Atenció</b>. Heu escrit dos codis secrets diferents en dues ocasions.
+ Proveu un altre cop.
+ !exit
+!endif
+
+!if $error = bad_newcode
+ El seu codi secret conté caràcters prohibits. Si us plau,
+ utilitzi només caràcters alfanumèrics
+ !exit
+!endif
+
+!if $error = bad_oldcode
+ No ha introduït el codi secret antic correcte. Intenteu-ho novament.
+ !exit
+!endif
+
+!if $error = deposit_fail
+ Ho sento, però no s'ha rebut un fitxer vàlid. Comproveu el nom de l'arxiu.
+ !exit
+!endif
+
+!if $error = deposit_binary
+ Ha enviat un arxiu binari <span class="tt">$wims_deposit</span>&nbsp;!
+ Si us plau enviï un arxiu de text.
+ !exit
+!endif
+
+!if $error = src_too_long
+ El seu bloc <span class="tt">$block</span> no es pot acceptar perquè ha superat
+ la longitud límit ($max_blocklen octets). Vostè pot dividir en diversos blocs.
+ !exit
+!endif
+
+!if $error = file_too_long
+ El vostre fitxer LaTeX no es pot acceptar perqué ha sobrepassat el límit de
+ longitud ($max_texlen octets).
+ Però vostè pot organitzar-lo
+ en parts i enviar-los un per un en diferents blocs.
+ !exit
+!endif
+
+!if $error = no_latex2html
+ Ho sento, però en aquest servidor no es poden enviar arxius de LaTeX
+perquè el programari LaTeX2HTML no està instal·lat en el servidor.
+ Si us plau, executeu LaTeX2HTML al vostre ordinador local, llavors
+presenteu l'arxiu html resultant.
+ !exit
+!endif
+
+!msg $error

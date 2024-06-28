@@ -1,0 +1,16 @@
+<p>Pour trouver l'équation d'une courbe ou la formule d'une fonction, il est souvent intéressant
+de partir de la courbe d'une fonction de référence et d'obtenir la courbe par
+<strong>symétrie par rapport à l'axe horizontal</strong>, par
+<strong>dilatation selon un axe vertical</strong> ou <strong>par translation</strong>,
+ce qui correspond à composer la fonction de référence avec une fonction affine.
+</p><p>
+Pour modéliser des fonctions représentées par des paraboles d'axe vertical ou horizontal,
+nous n'utiliserons que les fonctions de référence carré \(x \mapsto x^2) et
+racine carrée \(x \mapsto \sqrt{x}).
+</p>
+<ol>
+ <li>\fold{\embed{FoncAssX2}}{<strong>Fonctions associées à \(r) : \(x \mapsto x^2)
+ de courbe \(C_r) dans un repère \((O, \vec{i},\vec{j}))</strong>}</li>
+<li>\fold{\embed{FoncAssR}}{<strong>Fonction de référence
+ \(x \mapsto r(x)) de courbe \(C_r) dans un repère \((O, \vec{i},\vec{j}))</strong>}</li>
+</ol>

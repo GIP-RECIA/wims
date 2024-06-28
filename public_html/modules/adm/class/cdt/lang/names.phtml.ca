@@ -1,0 +1,99 @@
+!set lang_exists=yes
+
+!if $job=adddate
+  !set cdt_subtitle=Afegir/Modificar una data
+  !goto common
+!endif
+
+!if $job=addtodo
+  !set cdt_subtitle=Afegir feines
+  !goto common
+!endif
+
+!if $job=logfile
+  !set cdt_subtitle=Llista de connexions
+  !set name_text=Aquí teniu la llista de connexions a l'agenda de la classe
+  !goto common
+!endif
+
+!if $job=config
+  !set cdt_subtitle=Paràmetres
+  !set name_link=Nom de l'enllaç a la pàgina d'inici
+  !set name_intro=Aquests són els paràmetres que podeu canviar
+  !set name_see_logfile=Veure el fitxer de connexió a l'agenda de la classe
+  !set name_reversedate=Visualització de la informació en l'ordre invers al de la data
+  !set name_showyear=Mostrar l'any a les taules
+  !set name_hide=Amaga l'agenda a l'alumnat
+  !goto common
+!endif
+
+!if $job=addfile
+  !set cdt_subtitle=Fitxers carregats
+  !set name_erasedfile=!nosubst El fitxer <b>$erase</b> s'ha eliminat.
+  !set name_depos=Podeu enviar un fitxer&nbsp;
+  !set name_available=Fitxers disponibles
+  !set name_erase=Esborrar un fitxer
+  !set name_nodeposit=No podeu enviar el fitxer perquè el seu contingut supera l'espai\
+   màxim de disc permés. Ho sento.
+  !set name_explanation1=!nosubst Aquests fitxers són accessibles amb l'ajuda de la variable\
+  <span class="tt wims_code_variable">\filedir</span>. \
+  Per exemple,\
+  <p class="wimscenter">\
+ <span class="tt wims_address">&lt;a href="\filedir/$f1"&gt;$f1&lt;/a&gt;</span>\
+ </p>\
+ crea un enllaç al fitxer <a href="$m_filedir/$f1">$f1</a>.\
+ També podeu escriure
+
+  !set name_explanation2=per incloure el fitxer d'imatge <span class="tt">myfile.jpg</span> a la pàgina.\
+  <br>Els fitxers carregats només estan disponibles per a l'alumnat de la classe.
+  !goto common
+!endif
+
+!if $job=helplink
+  !set name_Add=Per afegir un element, cliqueu a l'enllaç corresponent.
+  !goto common
+!endif
+
+:common
+!distribute line Feina feta\
+Deures\
+entre el\
+i el\
+Afegir un examen\
+Afegir un full d'exercicis\
+pel \
+Deures\
+Feines\
+Nombre de dates a mostrar\
+Deures per al\
+Feina feta\
+Sessió del\
+caràcters\
+Cap informació\
+Cap informació fins ara\
+Cap informació per a aquest període\
+Dia\
+Contingut\
+A classe\
+Tenint en compte la\
+No hi ha deures per al\
+Inserir un recurs de la classe\
+el\
+into name_done,name_todo,name_between,name_and,name_addexam,name_addsheet,name_for,name_worktodo,\
+name_work,name_nb_date,name_todo2,name_workdone,name_session,\
+name_character,name_noinfo1,name_noinfo2,name_noinfo3,\
+name_Day,name_discipline,name_inclass,name_giventhe,name_nowork,\
+name_help_add,name_the
+
+!set name_workfor=$name_work $name_for
+
+!set name_warning1=Si no introduïu una segona data, s'efectuarà \
+la recerca sobre la primera data.
+
+!set name_find2=Recerca
+!set name_find=Cercar
+
+!set name_hiddencdt1=L'agenda ha estat desactivada pel professorat.
+!set name_hiddencdt2=Les dades de l'agenda relatives a determinats temes no es mostren (ho ha desactivat el professorat).
+!set name_nosupervise=Aquesta agenda recull totes les agendes de la classe. Només es pot consultar. Per fer canvis o addicions, heu d'anar als cursos corresponents.
+!set name_nosuperviseforuser=Aquesta agenda agrupa els elements de les agendes de tots els cursos de la classe.

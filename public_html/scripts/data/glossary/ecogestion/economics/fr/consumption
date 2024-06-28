@@ -1,0 +1,26 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Consommation
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+La <strong>consommation</strong> est l'opération par laquelle un agent économique
+<span class="wims_emph">détruit un bien ou un service</span> en vue de satisfaire
+un besoin économique. Notons que la destruction du bien ou du service concerné
+peut se faire de manière instantanée ou étalée dans le temps selon le caractère
+non durable ou durable du bien ou du service consommé.
+</div>
+
+<div class="wims_rem"><h4>Précisions</h4>
+En économie, il est d'usage de distinguer la <span class="wims_emph">consommation finale</span>
+de la <span class="wims_emph">consommation intermédiaire</span>.
+<br>
+La consommation finale correspond à la consommation effectuée par les
+ <span class="wims_emph">ménages</span> alors que la consommation intermédiaire
+correspond à l'ensemble des biens et services utilisés par les
+<span class="wims_emph">entreprises</span> dans leur activité de production.
+</div>

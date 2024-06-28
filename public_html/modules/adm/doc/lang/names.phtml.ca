@@ -1,0 +1,89 @@
+!set lang_exists=yes
+!if $wims_read_parm=$empty
+ !exit
+!endif
+
+!goto $wims_read_parm
+
+:file
+
+<div>
+  Fitxers disponibles al document&nbsp;:
+  <ul class="inline">
+  !for f in $flist
+    <li>
+      !set wims_getfile_fname=$f
+      !set wims_ref_class=text_icon file
+      !getfile doc/$f $f
+    </li>
+  !next f
+  </ul>
+</div>
+
+!form reply
+ <input type="hidden" name="job2" value="erase">
+ <fieldset>
+   <legend>Esborrar un fitxer&nbsp;:</legend>
+   !formselect job2 list $flist
+   <input type="submit" class="wims_warning" value="$wims_name_erase">
+  </fieldset>
+!formend
+
+<p>
+ Aquests fitxers estan disponibles en el document utilitzant la variable
+ <span class="tt wims_code_variable">\filedir</span>.
+</p><p>
+  Per exemple,
+  <code class="wims_address">&lt;a href="\filedir/$f1" download="$f1"&gt;$f1&lt;/a&gt;</code>
+<br>
+(<b>còpia aquest text després de carregar el fitxer</b>)
+ crea un enllaç al fitxer <a href="$m_filedir/$f1">$f1</a>.
+</p><p>
+ També pots escriure
+  <code class="wims_address">&lt;img src="\filedir/myfile.jpg" alt="descripció de la imatge"&gt;</code>
+per incloure el fitxer d'imatge <span class="tt wims_fname">myfile.jpg</span> a la pàgina.
+</p>
+ Els fitxers emmagatzemats en aquest document estan disponibles només per a aquells
+  que tenen dret a llegir el document.
+</p>
+<div>
+  Un nou comandament <span class="tt wims_code_words">\href{}{}</span> està en test.
+  Per obtenir un enllaç al fitxer, pots escriure
+  <p class="wimscenter">
+    <code class="wims_code_words">\href{$f1}</code> o <code class="wims_code_words">\href{$f1}{lien}</code>.
+  </p>
+</div>
+!exit
+
+:readauth
+ Si ets autor del document, recorda que necessites
+ l'approbació del
+ !mailurl $wims_site_manager gestor del lloc\
+Demanar obrir el document WIMS $doc
+ per fer el document llegible pel públic.
+!exit
+
+:erase1
+Per raons de seguretat, només l'administrador del lloc pot esborrar
+  documents públics.
+ <p>
+ Si us plau
+ !mailurl $wims_site_manager demanar a l'administrador del lloc
+  esborrar el teu document per tu.
+ </p>
+!exit
+
+:erase2
+<div class="wims_msg warning"><span class="wims_warning">ATENCIÓ</span>.
+Un document eliminat no pot ser recuperat&nbsp;!
+<p>
+Estàs segur que vols eliminar el document <span class="tt wims_fname">$tit</span>&nbsp;?
+</p>
+!exit
+
+:public
+ <b>Observació</b>. Has de demanar l'aprovació del
+ !mailurl $wims_site_manager gestor del lloc\
+Demanar publicar el document WIMS $doc
+ per fer-lo accessible al públic.
+!exit

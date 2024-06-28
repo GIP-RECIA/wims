@@ -1,0 +1,79 @@
+
+!!INDEX
+!! Erase the above line to hide your page from wims search engine.
+!! Line starting with double exclamations are comment lines.
+!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!
+!! Indexing definitions. You should modify them according to your case.
+!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!! Put every definition in ONE LINE!!
+!let module_author	=WIMSDEV
+!let module_address	=wimsdev@groupes.renater.fr
+!let module_title	=!nosubst $wims_name_cgu
+!let module_description	=
+!let module_language	=$lang
+
+!!Your copyright policy.
+!!Your page will be included in wims distribution if the word `GNU'
+!! appears in the following definition.
+!let module_copyright =&copy; 2011 (<a href="COPYING">GNU GPL</a>)
+
+!header
+!set sitemanager=!defof site_manager in wimshome/log/wims.conf
+!set sitedpd=!defof site_dpd in wimshome/log/wims.conf
+!if $sitedpd=$empty
+  !set sitedpd=$sitemanager
+!endif
+!set backup_delete=!defof backup_delete in wimshome/log/wims.conf
+!default backup_delete=!defof backup_delete in wimshome/public_html/bases/sys/define.conf
+
+!set general_log_limit=!defof general_log_limit in wimshome/log/wims.conf
+!default general_log_limit=!defof DF_general_log_limit in wimshome/public_html/bases/sys/defaults.conf
+!set old_log_files=!defof old_log_files in wimshome/log/wims.conf
+!default old_log_files=!defof DF_old_log_files in wimshome/public_html/bases/sys/defaults.conf
+!set log_delete=!defof log_delete in wimshome/log/wims.conf
+!default log_delete=!defof DF_log_delete in wimshome/public_html/bases/sys/defaults.conf
+
+!set size=$[$general_log_limit*$old_log_files]
+
+!set local_cgu=!fileexists wimshome/public_html/html/rgpd.phtml.local
+
+<div id="js-legals">
+  <ul>
+    <li><a href="#cgu">$wims_name_cgu</a></li>
+    <li><a href="#rgpd">$wims_name_privacy</a></li>
+    !if $local_cgu notsametext no
+      <li><a href="#rgpd-local">$wims_name_local_privacy</a></li>
+    !endif
+  </ul>
+  <div id="cgu">
+    !read wimshome/public_html/html/cgu.phtml.$lang $sitemanager
+  </div>
+  <div id="rgpd">
+    !if $lang isitemof it,fr,ca,es
+      !read wimshome/public_html/html/rgpd.phtml.$lang $sitedpd,$backup_delete,$log_delete,$size,$wims_protocol,$wims_usecookie
+    !else
+      !read wimshome/public_html/html/rgpd.phtml.en $sitedpd,$backup_delete,$size,$wims_protocol,$wims_usecookie
+    !endif
+  </div>
+  !if $local_cgu notsametext no
+    <div id="rgpd-local">
+      !read wimshome/public_html/html/rgpd.phtml.local $sitedpd
+    </div>
+  !endif
+</div>
+
+!if $jquery_defined=yes
+  <script>
+    /*<![CDATA[*/
+    jQuery(function($$) {
+        $$("#js-legals").tabs();
+      });
+    /*]]>*/
+  </script>
+!endif
+
+!tail

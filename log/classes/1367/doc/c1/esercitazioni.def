@@ -1,0 +1,121 @@
+!set titb=Esercitazioni
+!set keyw=
+!set datm=20230530
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+!exit
+
+:content
+<div class="wims_msg info">Le esercitazioni sono l'occasione per rivedere e ridiscutere, a piccoli gruppi e sotto la guida di un docente, gli
+argomenti visti a lezione. Per ogni esercitazione è disponibile un &ldquo;foglio di lavoro&rdquo;, cioè una raccolta di esercizi e
+problemi tipici sull'argomento affrontato (verosimilmente problemi che saranno oggetto d'esame).</div>
+<div class="wims_msg info">Per trarre beneficio dalle esercitazioni è importante che ogni studente prenda visione di tali raccolte e cominci
+a affrontare tali esercizi prima di recarsi alle esercitazioni (e allo stesso tempo è importante che ogni studente riveda le parti dei libri
+di testo o degli appunti delle lezioni che affrontano gli argomenti oggetto d'esercitazione). Se disponibile, si consiglia anche di
+affrontare la versione a correzione automatica di tali esercizi, indicata nei fogli di lavoro e disponibile sul sito WIMS.</div>
+<p>Di seguito i testi delle esercitazioni, che costituiscono una ricca fonte di esercizi significativi da affrontare in preparazione per
+  l'esame. Per alcuni di questi esercizi nello spazio WIMS del corso è disponibile una versione interattiva.</p>
+<dl>
+  <dt class="bold">Formule</dt>
+  <dd>
+    <ul>
+      <li>Riferimenti bibliografici relativi a questa parte&#58;
+  <ul>
+    <li>capitolo 2 &ldquo;Griglie e reticolati&rdquo; del libro di
+    testo <em>Per non perdere la bussola</em>
+    </li>
+  </ul></li>
+      <li><a href="$m_filedir/ex-formule.pdf" target="_blank">Testo dell'esercitazione</a></li>
+<li>
+!read primitives.phtml 1, adm, module=adm/sheet&+sh=1, Esercizi interattivi 
+</li>
+      </ul>
+</dd>
+  <dt class="bold">Isometrie del piano</dt>
+  <dd>
+    <ul>
+      <li>  Riferimenti bibliografici relativi a questa parte&#58;
+  <ul>
+    <li>per le isometrie si veda il capitolo 1 &ldquo;Isometrie&rdquo; del libro di testo <em>Galleria di metamorfosi</em> (p. 7-44)</li>
+    <li>per le costruzioni sulla carta a quadretti si veda il capitolo 2 &ldquo;Griglie e reticolati&rdquo; del libro di testo <em>Per non perdere la bussola</em> (in particolare il ragionamento che porta agli esempi di p. 71-79).</li>
+  </ul></li>
+      <li><a href="$m_filedir/ex-isometrie.pdf" target="_blank">Testo dell'esercitazione</a></li>
+<li>
+!read primitives.phtml 2, adm, module=adm/sheet&+sh=2, Esercizi interattivi 
+</li>
+</ul>
+</dd>
+  <dt class="bold">Simmetrie di una figura</dt>
+  <dd>
+    <ul>
+            <li>    Riferimenti bibliografici relativi a questa parte&#58;
+  <ul>
+    <li>capitolo 1 &ldquo;Isometrie&rdquo; del libro di testo <em>Galleria di metamorfosi</em> (p. 44-63)</li>
+  </ul></li>
+<li><a href="$m_filedir/ex-simmetrie.pdf" target="_blank">Testo
+      dell'esercitazione</a>
+<li>
+!read primitives.phtml 3, adm, module=adm/sheet&+sh=3, Esercizi interattivi 
+</li>
+</li>
+</ul>
+</dd>
+  <dt  class="bold">Omotetie, similitudini e figure simili</dt>
+  <dd>
+    <ul>
+            <li>  Riferimenti bibliografici relativi a questa parte&#58;
+<ul>
+  <li>capitolo 2 &ldquo;Oltre le isometrie&rdquo; del libro di testo <em>Galleria di metamorfosi</em> (p. 89-123)</li>
+  <li>la parte sulla similitudine di triangoli rettangoli del libro di testo <em>Per non perdere la bussola</em> (p. 59-60)</li>
+</ul></li>
+      <li><a href="$m_filedir/ex-simil.pdf" target="_blank">Testo dell'esercitazione</a></li>
+<li>
+!read primitives.phtml 4, adm, module=adm/sheet&+sh=4, Esercizi interattivi 
+</li>
+</ul>
+</dd>
+  <dt class="bold">Rappresentazioni in scala</dt>
+  <dd>
+    <ul>
+            <li>  Riferimenti bibliografici relativi a questa parte&#58;
+<ul>
+  <li>capitolo 2 &ldquo;Oltre le isometrie&rdquo; del libro di testo <em>Galleria di metamorfosi</em>, in particolare il paragrafo &ldquo;Grandi e piccoli&rdquo; (p. 94-95)</li>
+</ul></li>
+      <li><a href="$m_filedir/ex-rappscala.pdf" target="_blank">Testo dell'esercitazione</a></li>
+<li>
+!read primitives.phtml 5, adm, module=adm/sheet&+sh=5, Esercizi interattivi 
+</li>
+</ul>
+</dd>
+  <dt class="bold">Definizioni</dt>
+  <dd>
+    <ul>
+      <li><a href="$m_filedir/ex-definizioni.pdf" target="_blank">Testo dell'esercitazione</a></li>
+<li>
+!read primitives.phtml 6, adm, module=adm/sheet&+sh=6, Esercizi interattivi 
+</li>
+      </ul>
+</dd>
+  <dt  class="bold">Coordinate cartesiane e carta a quadretti</dt>
+  <dd>
+    <ul>
+            <li>Riferimenti bibliografici relativi a questa parte&#58;
+  <ul>
+    <li>Capitolo 1 e 2 del libro di testo <em>Per non perdere la bussola</em>
+    </li>
+  </ul></li>
+      <li><a href="$m_filedir/ex-cartes.pdf" target="_blank">Testo dell'esercitazione</a></li>
+<li>
+!read primitives.phtml 7, adm, module=adm/sheet&+sh=7, Esercizi interattivi 
+</li>
+</ul>
+</dd>
+</dl>

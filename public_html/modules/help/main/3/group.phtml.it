@@ -1,0 +1,64 @@
+!set lang_exists=yes
+
+<p>Un coordinamento di corsi è un insieme di corsi virtuali (chiamati anche
+  moduli o <em>sottocorsi</em>) accessibili da un unica pagina (chiamata
+  Home page del coordinamento).
+</p><p>
+ Il docente che crea il coordinamento ha una funzione diversa da quella dei
+ docenti dei singoli moduli: si stratta del <em>Docente coordinatore</em>
+ (che può accedere alle funzioni di gestione del coordinamento tramite una
+ password apposita).
+</p>
+<h2 class="wimscenter">Particolarità</h2>
+ Le particolarità di un coordinamento di corsi rispetto a un insieme di corsi
+ singoli sono le seguenti:
+<ul><li>
+ Uno studente può accedere a più corsi con le stesse credenziali di accesso
+ (mentre in generale ogni corso singolo richiede particolari credenziali
+ di accesso).
+</li><li>
+Un modulo all'interno di un coordinamento può avere più docenti (cioè più
+utenti con funzione di docente).
+</li><li>
+ Nella Home page del coordinamento è disponibile un forum (configurato dal
+ docente coordinatore) visibile a tutti gli studenti registrati in uno
+ qualsiasi dei moduli. Il coordinatore ha la possibilità di creare un
+ <em>Messaggio del giorno</em> visibile nella Home page del coordinamento per
+ tutti gli studenti iscritti a uno qualsiasi dei moduli.
+</li><li>
+ La condivisione delle risorse è possibile solo tra i moduli di uno stesso
+ coordinamento (è sempre possibile importare risorse dai corsi aperti).
+</li></ul>
+Tutte le funzionalità di un corso <em>semplice</em> sono disponibili all'interno di ogni modulo di un coordinamento di corsi.
+Non è possibile effettuare backup a livello di coordinamento: il salvataggio
+dei materiali didattici deve essere effettuato all'interno di ciascun modulo
+da parte del docente responsabile del modulo.
+
+<h2 class="wimscenter">Configrazione di un coordinamento</h2>
+Salvo configurazioni specifiche di singoli server, in generale al momento
+della creazione del coordinamento, il docente coordinatore sceglie una
+password che permetterà ai docenti di registrarsi come docenti del coordinamento
+(password quindi che non va comunicata agli studenti, ma solo ai docenti
+dei moduli). Gli utenti effettuano l'autenticazione a livello di coordinamento
+e dalla Home page del coordinamento possono accedere ai singoli moduli (a
+cui sono iscritti). Il coordinatore può iscrivere al coordinamento di corsi
+docenti e studenti manualmente oppure utilizzando un file csv.
+Il coordinatore può creare lui stesso i singoli moduli (e in questo caso
+sarà il docenti di questi moduli) oppure lasciare che i docenti registrati
+creino i loro moduli. In ogni caso il docente coordinatore ha accesso come
+docente a tutti i moduli del coordinamento.
+
+<h2 class="wimscenter">I docenti dei moduli</h2>
+Ogni docente che crea un moduli diventa il docente responsabile di quel
+modulo e ha acesso a tutte le funzioni di amministraizone del modulo. Rispetto
+agli altri docenti può anche dare accesso al corso come docente a altri
+docenti del coordinamento. 
+<h2 class="wimscenter">Iscrizione di uno studente a un modulo</h2>
+Ogni docente di un modulo può inserire gli studenti nel suo modulo. In questo
+modo lo studente viene automaticamente registrato anche nel coordinamento,
+nel caso non lo fosse già.
+<p>
+Ogni modolo ha una password di iscrizione, analoga a quella dei corsi singoli,
+e questo permette agli studenti di effettuare da soli la registrazione
+al modulo.
+</p>

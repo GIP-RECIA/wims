@@ -1,0 +1,115 @@
+Fonction polynôme de degré 2
+Sélection d'exercices correspondant à une partie du paragraphe "Fonctions polynômes de degré 2" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+analysis
+equations,inequations,functions,polynomials,trinomial,real_function
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Fonctions polynômes de degré 2" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H5/analysis/oefsecdeg.fr
+exo=coefficients
+10
+1
+Coefficients 1
+Identifier les <strong>coefficients a, b, c</strong> d'un trinôme du 2nd degré.
+
+
+
+
+:H5/analysis/oefsecdeg.fr
+exo=trouveq&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Coefficients 2
+Déterminer le trinôme correspondant à 3 coefficients.
+
+
+
+
+
+:H5/analysis/oefsecdeg.fr
+exo=identcourbe
+10
+1
+Parabole
+Identifier une parabole à partir de son équation.
+
+
+
+
+
+:H5/analysis/oefsecdeg.fr
+exo=parabole&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Fonctions et courbes
+Classer les fonctions par courbe : <strong>parabole; droite ou autre</strong>.
+
+
+
+
+
+:H5/analysis/oefsecdeg.fr
+exo=signedea&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Extremum 1
+Déterminer en fonction du signe de <strong>a</strong> s'il existe un <strong>maximum</strong> ou un <strong>minimum</strong>
+
+
+
+
+
+:H5/analysis/oefsecdeg.fr
+exo=sommet&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Extremum 2
+Déterminer les <strong>coordonnées</strong> de l'extrémum.
+
+
+
+
+:H5/analysis/oefsecdeg.fr
+exo=minmax&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Extrémum 3
+Déterminer les <strong>coordonnées</strong> de l'extrémum, Préciser s'il s'agit d'un <strong>maximum</strong> ou d'un <strong>minimum</strong>.
+
+
+
+
+:H5/analysis/oefsecdeg.fr
+exo=tabvar&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau de variations
+Déterminer les <strong>éléments caractéristiques</strong> d'une fonction du 2nd degré. Compléter son <strong>tableau de variations</strong>.
+
+
+
+
+:H6/analysis/oefsignes.fr
+exo=trinome&qnum=1&qcmlevel=3&scoredelay=
+10
+1
+Signe d'un trinôme de degré 2
+Déterminer le <strong>nombre de solutions</strong> de f(x)=0. En déduire le <strong>signe</strong> du trinôme
+
+
+
+
+:H5/analysis/oeffctLP.fr
+exo=freinurgent&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Freinage urgent (fct puissance)
+Problème concret: Déterminer la distance d'arrêt en fonction de la vitesse.
+
+activité utilisant Geogebra
+
+

@@ -1,0 +1,19 @@
+ ------------ version 1.01 
+20220510 [r16680] optimization of error message for sheet (FG)
+20220509 [r16680] disallow importation of sheet with technical variable individualisation (FG)
+20220509 [r16680] job=import delete reference to a technical variable to hide sheet (FG)
+20220509 [r16680] job=import delete reference to document for presentation in sheet (FG)
+------------------  version 1.00
+20211022 [r16098] can import freework (FG)
+20210210 can import glossary (FG)
+20210208 can import tool (FG)
+20210209 bugfix : when module name in a .sheet$i have space in end line (FG)
+20210107 new job=replace : can replace desactivated sheet by one in the arch (FG)
+20210105 ajout d'une master checkbox "import all" (FG)
+20201113 job=import & job=list : document and doclink to public document can be import (FG)
+------------------  version 0.10
+20201030 job=import & job=list : ressources already in class cannot be imported (FG)
+20201030 job=import & job=list : can import several ressources at the same time (FG)
+20201019 add job=import : only for sheet (for the moment) (FG)
+20201013 add job=list : list the ressources of the arch and make some analysis of it (FG)
+20201013 add job=upload : upload a class arch (FG)

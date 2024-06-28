@@ -1,0 +1,16 @@
+!default choice=all
+!default graphics=0
+!if $choice=all
+  !reset loginlist
+!endif
+
+!readproc script/listsheet.proc
+
+usercnt=!recordcnt wimshome/log/classes/$wims_class/.userlist
+
+!if $choice iswordof login filter first all
+  !reset select_user
+!endif
+!if $choice iswordof select filter first all
+  !reset loginlist
+!endif

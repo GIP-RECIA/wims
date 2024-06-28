@@ -1,0 +1,6 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+drag xy
+arrows red,8,0,0,4,3,0,0,2,4,0,0,-2,4,0,0,-3,-4,0,0,3,-2

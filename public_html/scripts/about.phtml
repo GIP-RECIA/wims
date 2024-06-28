@@ -1,0 +1,89 @@
+!if $module=home or $module=
+  !goto home
+!else
+  $module_about
+!endif
+!if $module_require=$empty
+  !goto end
+!endif
+
+!set wims_multiexec=
+!read lang/names.phtml.$lang
+!if $lang_script_exists!=yes
+  !read lang/names.phtml.en
+!endif
+
+<p>$name_prompt_about</p>
+<ul>
+!for s in $module_require
+  !if $s iswordof pari maxima povray m2 octave coq graphviz yacas gnuplot
+    <li>
+      !exec $s about
+.
+    </li>
+  !endif
+!next s
+</ul>
+:end
+!changeto NEWS.phtml
+
+:home
+
+$module_about
+
+<h2>$E_manager</h2>
+<div>
+  $name_wimsabout1 $E_manager
+  !mailurl $wims_site_manager $wims_site_manager\
+  [WIMS] $httpd_HTTP_HOST
+  $name_wimsabout2
+</div>
+
+<h2>$wims_name_Version</h2>
+<div><span class="tt">WIMS-$wims_version</span> $E_comp $wims_version_date.</div>
+<p>
+  $name_wims_licence &mdash;
+  !href target=wims_lightpopup module=adm/light&phtml=download.phtml.$lang $wims_name_download
+</p>
+$wims_manager
+
+<h2>$E_software</h2>
+!set wims_multiexec=
+<ul>
+!for s in pari, maxima, octave, graphviz, yacas, m2
+  <li>
+  !if $wims_ismanager!=0
+    !exec $s about
+  !else
+    $s
+  !endif
+ </li>
+!next s
+</ul>
+
+<h2>$wims_name_Change_log</h2>
+!!FIXME 700
+<pre style="max-height:400px;">
+!sh head -n 700 html/Changelog
+</pre>
+
+!if $wims_theme_icon!=$empty
+  <h2>$wims_name_About_icons</h2>
+  !set icon_about=!defof title,author,description,address,version,copyright in wimshome/public_html/gifs/themes/$wims_theme_icon/INDEX
+  $table_header
+    <caption><span class="text_icon about">[Information Pictos]</span></caption>
+    $table_tr<th>$wims_name_title</th><td>$(icon_about[1])</td></tr>
+    $table_tr<th>$wims_name_Author</th><td>
+      !mailurl $(icon_about[4]) $(icon_about[2])\
+[WIMS ICONS] $httpd_HTTP_HOST
+
+    </td></tr>
+    $table_tr<th>$wims_name_Description</th><td>$(icon_about[3])</td></tr>
+    $table_tr<th>$wims_name_Version</th><td>$(icon_about[5])</td></tr>
+    $table_tr<th>$wims_name_Copyright</th><td>$(icon_about[6])</td></tr>
+  $table_end
+!endif
+
+!if $wims_forum_limit<=1
+ !href target=wims_lightpopup module=adm/forum/mboard&forum=1001&lightpopup=yes Historical forum
+!endif

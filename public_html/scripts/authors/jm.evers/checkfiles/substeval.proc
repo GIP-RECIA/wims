@@ -1,0 +1,213 @@
+# reply$n zijn vergelijkingen iets als x^2-4y+z=123 of y=x^2-4y+z,y=x^3-2y+z
+# var1=varlist substitutes
+# e.g. varlist=x,y,z ...daar hoort bij: var1=123,sqrt(3),sin(pi/3)
+# x+3*y-z^2 = 23 --> $[ (123)+3*(sqrt(3))-(sin(pi/3))^2 -(23)]
+# answer$n=list met vergelijkingen x+3*y-z^2 - 23,4*x+2*y-z - 3,...
+# arglist is optional : dx/dt=4*t^2-56 of zet arglist=$empty als in de vraag het argument al is gegeven, zoals  f(x) = < input field >
+# als arglist een getal is ...geef dan iets als arglist=@ en dus bij bij answer$n x^2+y^2=123 
+# aantal subs-vergelijkingen niet beperkt
+
+goback=0
+errortext=$empty
+n=$counter
+math=0
+extra=$empty
+
+!if $(reply$n)=?
+ reply$n=$dontknow
+ remark$n=$NOK
+ goback=0
+ maxscore=0
+ !exit
+!endif
+testvar2=!itemcnt $(reply$n)
+testvar1=!itemcnt $(answer$n)
+wims_rawmath_variables=$varlist
+rep_list=$empty
+
+!for p=1 to $testvar2
+ org=!item $p of $(reply$n)
+ rep=!tolower $org
+ rep=!nospace $rep
+ rep=!rawmath $rep
+ rep=!replace internal = by , in $rep
+ chk=!itemcnt $rep
+ !if $arglist != $empty
+ # dus het antwoord moet iets zijn als H=t^44-3*t
+  !if $chk != 2
+   errortext=!record 33 of $remarkdir/commonremarks.$taal
+   goback=1
+   maxscore=$[$P1*$maxscore]
+   !exit
+  !endif
+  a1=!item 1 of $rep
+  a2=!item 2 of $rep
+  !if $a1 isin $arglist
+    rep=$a2
+  !else
+   !if $a2 isin $arglist
+    rep=$a1
+   !else
+    # het argument is een getal
+    rep=$a2 - ($a1)
+   !endif
+  !endif
+ !else
+ # we hebben geen arglist gedefinieerd
+  !if $chk != 1
+   # maar de leerling heeft wel een '=' teken gebruikt...
+   a2=!item -1 of $rep
+   a1=!item 1 of $rep
+   found=0
+   !for v in $varlist
+    !if $found=0
+     !if $v isin $a2
+      rep=$a2
+      found=2
+     !else
+      !if $v isin $a1
+       rep=$a1
+       found=1
+      !endif
+     !endif
+    !endif
+   !next v
+   !if $found=0
+    testvar=$a1 = $a2
+    errortext=!record 55 of $remarkdir/commonremarks.$taal
+    goback=1
+    !exit
+   !else
+    rep=$(a$found)
+    extra=!append word $ <strike> $a1 = $a2 </strike> <br /> $youranswer:<em> $org </em> $ to $extra
+   !endif
+  !endif
+ !endif
+ !for f in sqrt,pi,acos,asin,atan,cos,sin,tan,log,ln,sec,abs,e
+  F=!toupper $f
+  rep=!replace internal $f by $F in $rep
+ !next f
+ i=1
+ !for v in $varlist
+  rep=!replace internal $v by ($(var1[$i])) in $rep
+  !increase i
+ !next v
+ rep=!replace [a-z] by $empty in $rep
+ rep=!tolower $rep
+ rep=$[$rep]
+ !if NaN notin $rep
+  rep_list=!append item $rep to $rep_list
+ !else
+  ex=!record 39 of $remarkdir/commonremarks.$taal
+  extra=!append word $ <span style="color:red">$ex</span><br /> $ to $extra
+ !endif
+!next p
+
+!if $rep_list=$empty or NaN isin $rep_list
+ ex=!record 39 of $remarkdir/commonremarks.$taal
+ goback=0
+ maxscore=0
+ remark$n=$NOK <br />$ex
+!endif
+
+ans_list=$empty
+!for p=1 to $testvar1
+ rep=!item $p of $(answer$n)
+ !if $arglist != $empty
+  rep=!replace internal = by , in $rep
+  a1=!item 1 of $rep
+  a2=!item 2 of $rep
+  !if $a1 isin $arglist
+    rep=$a2
+  !else
+   !if $a2 isin $arglist
+    rep=$a1
+   !else
+     rep=$a2 - ($a1)
+   !endif
+  !endif
+ !endif
+ !for f in sqrt,pi,acos,asin,atan,cos,sin,tan,log,ln,sec,abs,e
+  F=!toupper $f
+  rep=!replace internal $f by $F in $rep
+ !next f
+ i=1
+ !for v in $varlist
+  rep=!replace internal $v by ($(var1[$i])) in $rep
+  !increase i
+ !next v
+ rep=!replace [a-z] by $empty in $rep
+ rep=!tolower $rep
+ rep=$[$rep]
+ !if NaN notin $rep
+  ans_list=!append item $rep to $ans_list
+ !else
+  fck=!item $p of $(answer$n)
+  errortext=Module ERROR<br />checkfile substeval.proc:<br />there is a problem with the correct answer $p: $fck = $rep
+  goback=1
+  !exit
+ !endif
+!next p
+
+!if $rounding=0
+ lim2=10^(-6)
+!else
+ lim2=$[0.5/$rounding]
+!endif
+your_ans=$empty
+testvar1=!itemcnt $ans_list
+testvar2=!itemcnt $rep_list
+
+!if $testvar1 != $testvar2
+ ex=!record 50 of remarkdir/commonremarks.$taal
+ #je hebt $testvar2 antwoord(en) ingeleverd in plaats van $testvar1
+ extra=!append word $ <span style="color:red">$ex</span><br /> $ to $extra
+ maxscore=$[$P3*$maxscore]
+!endif
+found=$empty
+this=0
+!for p=1 to $testvar2
+ rep=!item $p of $rep_list
+ fun=!item $p of $(reply$n)
+ this=0
+ !for s=1 to $testvar1
+  !if $p notitemof $found
+   ans=!item $s of $ans_list
+   absval=$[abs($ans-$rep)] 
+   !if $absval < 10^(-15)
+    !increase score
+    this=1
+    found=!append item $p to $found
+    your_ans=!append word $ <span style="color:green">$fun</span><br /> $ to $your_ans
+   !else
+     !if $absval < $lim2
+      score=$[$P5+$score]
+      this=1
+      found=!append item $p to $found
+      your_ans=!append word $ <span style="color:orange">$fun</span><br /> $ to $your_ans
+     !endif
+   !endif
+  !endif
+ !next s
+ !if $this=0
+  your_ans=!append word $ <span style="color:red">$fun</span><br /> $ to $your_ans
+ !endif
+!next p
+maxscore=$[$maxscore*$score/$testvar2]
+modulescore=$[$modulescore + $maxscore]
+
+reply$n=!append word $ <br />$your_ans  $ to $(reply$n)
+
+!if $maxscore>0.9
+ remark$n=$OK 
+!else
+ !if $maxscore >0.45
+  remark$n=$BOK 
+ !else
+  remark$n=$NOK 
+ !endif
+!endif
+!if $extra != $empty
+ remark$n=!append line $ $extra $ to $(remark$n)
+!endif
+!exit

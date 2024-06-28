@@ -1,0 +1,157 @@
+!if $wims_user!=supervisor
+  !bound user within $wims_user,$livingfile default $wims_user
+!else
+  !bound user within $ulist,$livingfile default $empty
+!endif
+!if $user=$empty
+  !reset job
+  !changeto var.proc
+!endif
+
+!bound job2 within newmsg,$empty default $empty
+!if $cf_preview!=$empty
+  job2=newmsg
+!endif
+
+ltfile=!sh cd $wims_home/log/classes/$wims_class/tchat; if [ -e $user.old1 ]; then ls $user.old*; fi;
+nbfile=!linecnt $ltfile
+
+!if $save!=$empty and $desc!=$empty and $cf_preview=$empty
+  desc=!detag $desc
+  desc=!char 1 to $msg_limit of $desc
+  dt=!char 1 to 14 of $wims_now
+  rcnt=!recordcnt wimshome/log/classes/$wims_class/tchat/$user
+  !if $rcnt>=$msg_recordlimit
+    !increase nbfile
+    !sh mv $wims_home/log/classes/$wims_class/tchat/$user $wims_home/log/classes/$wims_class/tchat/$(user).old$nbfile;
+  !endif
+  !appendfile wimshome/log/classes/$wims_class/tchat/$user :$wims_user $dt\
+$desc
+  !reset job2 desc save
+!endif
+
+!if $nbfile=0
+  lastmsg=!recordcnt wimshome/log/classes/$wims_class/tchat/$user
+  nbmsg=$[min($msg_numberlimit,$lastmsg)]
+!else
+  nbmsg=$msg_numberlimit
+!endif
+!if $wims_user=supervisor
+  !if . isin $user
+    n=!text select 0123456789 in $user
+    name_title=!nosubst $(livingname_$n)
+  !else
+    po=!positionof item $user in $ulist
+    username=$(nlist[$po])
+    name_title=$name_tchatwith $username
+  !endif
+!else
+  username=Participant
+  !if . isin $user
+    n=!text select 0123456789 in $user
+    name_title=!nosubst $(livingname_$n)
+  !else
+    name_title=$name_ownliving
+  !endif
+  otherliving=!listcomplement $user in $livingfile,$wims_user
+!endif
+ses=!replace internal _ by , in $wims_session
+ses=!item 1 of $ses
+!setdef wims_opentchat=$user in wimshome/sessions/$ses/var.stat
+
+!! ------- build of userpage supervisor can look
+!! userpage can't be view in living (only in individual tchat) : todo ?
+!if $wims_user=supervisor and $user isitemof $wims_connectedlogin and . notin $user
+   !readproc script/getsession.proc $user
+!endif
+
+!! ------ build of list of users
+!if . isin $user
+  living=!text select 0123456789 in $user
+  !if $(livingusers_$living)!=all
+    listnameusers=$empty
+    !for u in $(livingusers_$living)
+      po=!positionof item $u in $ulist
+      !if $u!=supervisor and $u!=$wims_user and $po!=$empty
+        listnameusers=!append item $(nlist[$po]) to $listnameusers
+      !endif
+    !next u
+    !if $listnameusers!=$empty
+      listnameusers=, $name_yourself $name_and $listnameusers
+    !else
+      listnameusers=$name_and $name_yourself
+    !endif
+  !endif
+!else
+  !if $wims_user=supervisor
+    po=!positionof item $user in $ulist
+    listnameusers=$name_and $(nlist[$po])
+  !else
+    listnameusers=$name_and $name_yourself
+  !endif
+!endif
+
+!! ------- manage of autorefresh
+!if $job2!=newmsg
+  !if $wims_user=supervisor
+    autorefresh=yes
+  !else
+    !! variable autorefresh is the status of autorefresh yes on ; no : off
+    !! variable mautorefresh is the type of autorefresh user want.
+    !! if mautorefresh is empty then autorefresh is automatically fixed. Two case
+    !!           in personnal living : to yes if last message is user and no if last message is supervisor
+    !!                                 in case of mautorefresh give same status as autorefresh, mautorefresh 
+    !!                                 is reset to come back to automatically manage
+    !!           other : always yes
+    !! if mautorefresh=0 then autorefresh is fixed to no
+    !! if mautorefresh=1 then autorefresh is fixed to yes
+    !bound mautorefresh within yes,no default $empty
+    lastauth=!record -1 of wimshome/log/classes/$wims_class/tchat/$user
+    lastauth=!line 1 of $lastauth
+    lastauth=!word 1 of $lastauth
+    !if $lastauth=$wims_user or $user!=$wims_user
+      wautorefresh=yes
+    !else
+      wautorefresh=no
+    !endif
+    !if $wautorefresh=$mautorefresh
+      !reset mautorefresh
+    !endif
+    !if $mautorefresh=$empty
+      autorefresh=$wautorefresh
+    !else
+      autorefresh=$mautorefresh
+    !endif
+  !endif
+  !if $autorefresh=yes
+    !let rd=!randint 111111,999999
+    local_html_header=<META HTTP-EQUIV="Refresh" CONTENT="$(tchat_refreshtiming);wims.cgi?session=$wims_session&+module=adm/class/tchat&+serial=$rd&+job=$job&+user=$user&+mautorefresh=$mautorefresh">
+  !endif
+!endif
+
+
+!! ------------ search for tmp user file
+!if . notin $user
+  !if $wims_user=supervisor
+    nb=!linecnt $list_tmpfile
+    cmdsh=$empty
+    !if $nb>0
+      !for k=1 to $nb
+        cmdsh=!append line ln -s $wims_home/sessions/$(list_tmpfile[$k;1])_tchat/getfile/tchat/$(list_tmpfile[$k;2]) $(list_tmpfile[$k;2]); to $cmdsh
+      !next k
+      !sh rm -rf $wims_home/sessions/$wims_session/getfile/tchat/$user;\
+          mkdir -p $wims_home/sessions/$wims_session/getfile/tchat/$user;\
+          cd $wims_home/sessions/$wims_session/getfile/tchat/$user;\
+          $cmdsh
+    !endif
+  !else
+    usertmpfile=!sh if [ -d $wims_home/sessions/$wims_session/getfile/tchat/ ]; then \
+               cd $wims_home/sessions/$wims_session/getfile/tchat/;\
+               dir -1 $user.*;\
+             fi;
+    !if $usertmpfile!=$empty
+      usertmpfile=!replace internal / by , in $usertmpfile
+      usertmpfile=!item -1 of $usertmpfile
+    !endif
+  !endif
+!endif

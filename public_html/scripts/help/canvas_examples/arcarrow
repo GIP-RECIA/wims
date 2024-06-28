@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+noreset
+onclick
+arcarrow 0,0,7,7,50,275,blue,3
+arcarrow 0,0,8,8,50,275,red,2
+arcarrow 0,0,9,9,50,275,green,1

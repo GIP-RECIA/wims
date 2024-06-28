@@ -1,0 +1,51 @@
+Repérage de points
+games with paths
+??, 2019
+1
+E3
+elementary_mathematics
+levelE3,elementary_geometry,spatial_skill
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:E3/geometry/oefspatial.fr
+exo=position1&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Positions dans la classe
+Décrivez les positions des élèves dans la classe.
+
+
+:E3/geometry/oefspatial.fr
+exo=positionclick1
+10
+1
+Repérage #1
+Trouver des boîtes selon les indications au-dessus/au-dessous/gauche/droite.
+
+
+:E3/geometry/oefspatial.fr
+exo=positionclick2&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Repérage #2
+Localiser le carré selon les indications Nord/Sud/Est/Ouest
+
+
+:E3/geometry/oefspatial.fr
+exo=position3&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Trouver l'objet caché
+Reconnaitre des objets et donner leur position
+
+
+:E3/geometry/oefspatial.fr
+exo=position5
+10
+1
+Mettre dans la bonne position
+Mettre l'objet sur l'étagère dans la position donnée
+
+

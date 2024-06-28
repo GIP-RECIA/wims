@@ -1,0 +1,14 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=triangles,median_line
+!set gl_title=Centre de gravité d'un triangle
+!set gl_level=H5 Générale
+:
+:
+:
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Les trois médianes d'un triangle sont concourantes.</div>
+<div class="wims_defn"><h4>Définition</h4>Le point de concours des trois médianes
+d'un triangle est appelé <strong>centre de gravité</strong> du triangle.</div>
+:mathematics/geometry/fr/gravity_center_1

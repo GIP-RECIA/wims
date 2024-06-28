@@ -1,0 +1,23 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Barycentre (exemple associativité)
+
+!readproc data/glossary/mathematics/geometry/macro/barycenter
+Le dessin suivant illustre l'associativité du barycentre.
+$gloss_out
+<p>Soit \(G\) le barycentre des points pondérés
+  <span class="nowrap">\(\left\lbrace (A, $(gl_coeff[1])), (B, $(gl_coeff[2])), (C, $(gl_coeff[3])) \right\rbrace\).</span>
+</p>
+<ul><li>
+  \(G_1\) est le barycentre de \((B,$(gl_coeff[2]))\) et de \((C,$(gl_coeff[3]))\)
+  et \(G\) est le barycentre de \((G_1, $[$(gl_coeff[2])+$(gl_coeff[3])])\)
+  et de <span class="nowrap">\((A,$(gl_coeff[1]))\).</span>
+</li><li>
+ \(G_2\) est le barycentre de \((A,$(gl_coeff[1]))\) et de \((C,$(gl_coeff[3]))\)
+  et \(G\) est le barycentre de \((G_2, $[$(gl_coeff[1])+$(gl_coeff[3])])\)
+  et de <span class="nowrap">\((B,$(gl_coeff[2]))\).</span>
+</li><li>
+  \(G_3\) est le barycentre de \((A,$(gl_coeff[1]))\) et de \((B,$(gl_coeff[2]))\)
+  et \(G\) est le barycentre de \((G_3, $[$(gl_coeff[1])+$(gl_coeff[2])])\)
+  et de <span class="nowrap">\((C,$(gl_coeff[3]))\).</span>
+</li></ul>

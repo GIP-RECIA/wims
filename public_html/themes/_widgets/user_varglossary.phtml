@@ -1,0 +1,10 @@
+!set gcnt=!recordcnt wimshome/log/classes/$wims_class/tool/.glossaryindex
+!reset gt_list
+!for i=1 to $gcnt
+  !set g__=!record $i of wimshome/log/classes/$wims_class/tool/.glossaryindex
+  !distribute lines $g__ into o_,ti_
+  !if $o_>0
+    !set gt_list=!append line $ti_ to $gt_list
+  !endif
+!next i
+!set gcnt=!linecnt $gt_list

@@ -1,0 +1,146 @@
+!set titb=Ce qu'il faut modifier
+!set keyw=
+!set datm=20210913
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<p>
+Le signe de &#91; 
+!insmath f(b) - f(a)
+ &#93; indique les variations de 
+!insmath f
+ si elle est monotone sur &#91; 
+!insmath a
+ ; 
+!insmath b
+ &#93;,
+et celui de &#91; 
+!insmath f(x)-C
+ &#93; indique la position de 
+!insmath f(x)
+ par rapport à la valeur cible 
+!insmath C
+ donc
+l'intervalle &#91; 
+!insmath a
+ ; 
+!insmath x
+ &#93; ou &#91; 
+!insmath x
+ ; 
+!insmath b
+ &#93; à retenir.<br>
+Si &#91; 
+!insmath f(x)-C
+ &#93; &#91; 
+!insmath f(b) - f(a)
+ &#93; 
+!insmath \ge
+ 0, il faut retenir &#91; 
+!insmath a
+ ; 
+!insmath x
+ &#93;, on affecte 
+!insmath x
+ à 
+!insmath b
+.<br>
+Si &#91; 
+!insmath f(x)-C
+ &#93; &#91; 
+!insmath f(b) - f(a)
+ &#93; 
+!insmath \le
+ 0, il faut retenir &#91; 
+!insmath x
+ ; 
+!insmath b
+ &#93;, on affecte 
+!insmath x
+ à 
+!insmath a
+.
+</p><p>
+Dans le cas où 
+!insmath f(x)=C
+, on a trouvé la solution de l'équation (en fait avec la précision de la calculatrice ou de l'ordinateur),
+ et en affectant à la fois 
+!insmath x
+ à 
+!insmath b
+ et 
+!insmath x
+ à 
+!insmath a
+, l'intervalle devient &#91; 
+!insmath a
+ ;
+!insmath  b
+ &#93; avec 
+!insmath a=b=x
+.
+S'il y a un test d'arrêt dès que la différence 
+!insmath (b-a)
+ est assez petite alors la boucle s'arrête parce que 
+!insmath b-a=0
+.
+</p><p>
+Dans l'algorithme précédent on remplacera l'instruction <b>Si 
+!insmath Y \gt C
+ alors 
+!insmath B \leftarrow X
+ sinon  
+!insmath A \leftarrow X
+</b>
+ par les deux instructions &#58;<br>
+Si &#91;
+!insmath Y-C
+&#93; * &#91;
+!insmath V-U
+ &#93
+!insmath \ge
+ 0 alors 
+!insmath B \leftarrow X
+ et 
+!insmath V \leftarrow Y
+<br>
+Si &#91;
+!insmath Y-C
+&#93; * &#91;
+!insmath V-U
+ &#93
+!insmath \le
+ 0 alors 
+!insmath A \leftarrow X
+ et 
+!insmath U \leftarrow Y
+<br>
+et avant le début de la boucle il faudra affecter 
+!insmath f(a)
+ à 
+!insmath U
+ et 
+!insmath f(b)
+ à 
+!insmath V
+ ; les valeurs de 
+!insmath U
+ et 
+!insmath V
+ seront actualisées
+ à chaque boucle grâce aux deux instructions précédentes.
+</p><p>
+Avec une calculatrice, on peut mettre en mémoire la formule de 
+!insmath f(x)
+ dans le registre Y1 pour l'utiliser dans ce programme
+ sans avoir à écrire la formule de la fonction trois fois à l'intérieur du programme.</p>
+

@@ -1,0 +1,257 @@
+option:help image=" " match=" " svg allH onlyheteroH
+!set name_instead=au lieu de
+!set Hoption=0
+!if allH iswordof $(replyoption$i)
+  Hoption=2
+!endif
+!if onlyheteroH iswordof $(replyoption$i)
+  Hoption=1
+!endif
+
+!set style=.chemdraw_rep{\
+  display:inline-block;\
+  border-width:3px;\
+  border-style:solid;\
+  vertical-align:middle;\
+}
+
+!if $style notin $oef_anstype_css
+  !set oef_anstype_css=!append line $style to $oef_anstype_css
+!endif
+
+!set name_Hshown=Vous avez oublié un ou plusieurs H sur un ou des atomes de carbone.;\
+  N'oubliez pas les éventuels atomes d'hydrogène H liés aux hétéroatomes.;\
+  Respectez les conventions d'écriture des formules topologiques.
+
+!if svg iswordof $(replyoption$i)
+  !distribute items $(reply$i) into ans_svg, ans_molecule
+  ans_svg=!declosing $ans_svg
+!else
+  ans_molecule=$(reply$i)
+!endif
+
+test_empty=!line 3 of $ans_molecule
+
+test_empty=!word 1 of $(test_empty[1;1])
+!if $test_empty=0
+  test=NaN chemdraw_empty_data
+  error=chemdraw_empty_data
+  !exit
+!endif
+!!ans_brut_r=!line 1 of $ans_molecule
+ans_molecule=!line 2 to -1 of $ans_molecule
+
+lang__=$lang
+!if $lang notwordof en fr nl
+  lang__=en
+!endif
+!reset ans_show_hydrogen ans_keep_hydrogen ans_show_valence ans_reaction ans_tooltemplate
+
+!set oef_applet_option=!replace internal $	$ by $\
+$ in $inputsize
+!set oef_applet_option=!replace internal ; by $\
+$ in $oef_applet_option
+!set oef_applet_option=!nonempty lines $oef_applet_option
+!set oef_applet_option=!line 2 to -1 of $oef_applet_option
+!set ans_image=!getopt image in $(replyoption$i)
+!set oef_applet_option= $(oef_answer_option$i)
+!set match=!getopt match in $(replyoption$i)
+!set match=!text select srgGaid in $match
+!set match=!nospace $match
+
+!set ans_show_hydrogen=!getopt show_hydrogen in $oef_applet_option
+!set ans_keep_hydrogen=!getopt keep_hydrogen in $oef_applet_option
+!set ans_show_valence=!getopt show_valence in $oef_applet_option
+!set ans_reaction=!getopt reaction in $oef_applet_option
+!set ans_tool_template=!getopt tool_template in $oef_applet_option
+
+!bound ans_show_hydrogen within yes, no default yes
+!bound ans_show_valence within yes,no,0,1 default no
+!bound ans_keep_hydrogen within yes,no,hetero default yes
+!bound ans_reaction within yes,no,0,1 default no
+!bound ans_tool_template within yes,no,0,1 default no
+
+ans_list_feedback=!getopt feedback in $(replyoption$i)
+ans_list_feedback=!words2items $ans_list_feedback
+
+!if V2000 isin $(replygood$i)
+  !set ans_mol_1=!replace internal $	$ by $\
+$ in $(replygood$i)
+  !set replygood_cnt=1
+!else
+  !set replygood_=!replace internal | by , in $(replygood$i)
+  !set replygood_cnt=!itemcnt $replygood_
+  !for ss_ = 1 to $replygood_cnt
+    !set file=!item $ss_ of $(replygood_)
+    !set ans_mol_$ss_=!record 0 of $file
+  !next
+!endif
+
+!for ss_ = 1 to $replygood_cnt
+  !set ans_mol_$ss_=!replace internal &#33; by ! in $(ans_mol_$ss_)
+  !set ans_brut_g_$ss_=!line 1 of $(ans_mol_$ss_)
+  !set goodfichier_$ss_=g_$(ss_)_$wims_nowseconds.mol
+  !set goodfile_$ss_=$wims_ref_name?session=$session&+cmd=getfile&+special_parm=$(goodfichier_$ss_)
+  !readproc oef/togetfile.proc $(goodfichier_$ss_) new\
+  $(ans_mol_$ss_)
+!next ss_
+
+!set ans_newtime=$(wims_nowseconds)_$i
+!set replyfichier=r_$ans_newtime.mol
+!readproc oef/togetfile.proc $replyfichier new\
+$ans_molecule
+
+ans_brut_r=!exec chembrut.pl $wims_home/$wims_sesdir/getfile/$replyfichier
+
+!set replyfile$i=$wims_ref_name?session=$session&+cmd=getfile&+special_parm=$replyfichier
+
+!if $wims_read_parm=nocompare
+  ans_checkmol_r=!exec checkmol -X $wims_home/$wims_sesdir/getfile/$replyfichier
+  ans_checkmol_func_r=!exec checkmol -c $wims_home/$wims_sesdir/getfile/$replyfichier
+  ans_checkmol_func_r=!replace internal ; by , in $ans_checkmol_func_r
+  ans_checkmol_func_r=!nonempty items $ans_checkmol_func_r
+  ans_image=
+  m_reply$i=$ans_checkmol_r;$ans_checkmol_func_r;$ans_brut_r;
+  !goto end
+!endif
+!for ss_ = 1 to $replygood_cnt
+  ans_is_matching=!exec matchmol -xs$match $wims_home/$wims_sesdir/getfile/$replyfichier $wims_home/$wims_sesdir/getfile/$(goodfichier_$ss_)
+  !if invalid isin $ans_is_matching or unknown file format isin $ans_is_matching
+    error=bad_exo
+    !exit
+  !endif
+
+  ans_diag=!replace internal : by , in $ans_is_matching
+  ans_diag=!replace internal T by 1 in $ans_diag
+  ans_diag=!replace internal F by 0 in $ans_diag
+  ans_diag=$(ans_diag[2])
+  !if $ans_diag=1
+    !goto continue
+  !endif
+!next ss_
+ans_checkmol_r=!exec checkmol -X $wims_home/$wims_sesdir/getfile/$replyfichier
+
+!if $ans_diag < 1
+  !! Comparaison avec le premier fichier bonne réponse
+  ans_checkmol_g=!exec checkmol -X $wims_home/$wims_sesdir/getfile/$(goodfichier_1)
+  ans_cnt_=!itemcnt $ans_checkmol_g
+  ans_diff=
+  !for s_ = 1 to $ans_cnt_
+    !ifval $($ans_checkmol_g[$s_])!=$($ans_checkmol_r[$s_])
+      ans_diff=!append item $s_ to $ans_diff
+    !endif
+  !next
+  !if $ans_list_feedback!=
+    ans_diff=!listintersect $ans_diff and $ans_list_feedback
+  !endif
+  ans_cntdiff=!itemcnt $ans_diff
+  !for j=1 to $ans_cntdiff
+    s_=$(ans_diff[$j])
+    l_=!record $s_ of anstype/chemdraw.$lang__
+    l_ = $l_ ($(ans_checkmol_r[$s_]) $name_instead $(ans_checkmol_g[$s_]))
+    ans_feedback=!append line $l_ to $ans_feedback
+  !next
+!endif
+ans_feedback=!lines2rows $ans_feedback
+
+:continue
+ans_H=1
+!reset ans_feedbackH
+!if $Hoption iswordof 1 2
+  !distribute item $ans_brut_r into bidon,Hg,Hr
+  Hg=!declosing $Hg
+  Hr=!declosing $Hr
+  !! H on heteroatom
+  HgN=!select $Hg where column2 notwordof C H
+  HrN=!select $Hr where column2 notwordof C H
+  !if $(HrN[;3])!=$(HgN[;3])
+    !! H on heteroatom are not correct
+    ans_feedbackH=$(name_Hshown[2;])
+    ans_H=0
+  !endif
+  !! H on C
+  HrC=!select $Hr where column2 iswordof C
+  HgC=!select $Hg where column2 iswordof C
+  HrCtot=!replace internal , by + in $(HrC[;3])
+  !if $Hoption=1 and $[$HrCtot]>0
+    ans_feedbackH=$(name_Hshown[3;])
+    ans_H=0.5
+    !if $(HrC[;3])!=$(HgC[;3])
+      !! There are H on C (even if it is not asked)
+      !! Check that the number of H is good if it is not 0 in reply
+      tmp=!itemcnt of $(HrC[;3])
+      !for tt=1 to $tmp
+        !if $(HrC[$tt;3])>0 and $(HrC[$tt;3])!=$(HgC[$tt;3])
+          !! Some H on C are there and are not correct
+          ans_H=0
+        !endif
+      !next
+    !endif
+  !endif
+  !if $Hoption=2 and $HrC!=$HgC
+    !! All H are asked and some are not good on C
+    ans_H=0.5
+    ans_feedbackH=$ans_feedbackH; $(name_Hshown[1;])
+  !endif
+!endif
+:diag
+!if $ans_diag=1 and $ans_H>0
+  !if $ans_H=1
+    diareply$i=good
+    !advance freegot
+  !else
+    partialgood$i=yes
+    diareply$i=good
+    freegot=$[$freegot + $ans_H]
+  !endif
+  m_sc_reply$i=$ans_H
+  ans_image=
+!else
+  diareply$i=bad
+  !if $ans_image notsametext
+    !set height=!getopt height in $(replyoption$i)
+    !default height=200
+    !if /datamodule/ isin /$ans_image/
+      !set ans_image=!replace internal datamodule by modules/data in $ans_image
+      !set ans_image=<img src="$ans_image" style="height:$(height)px" alt="">
+    !else
+      !set ans_image=<img src="$imagedir/$ans_image" style="height:$(height)px" alt="">
+    !endif
+  !endif
+!endif
+
+ans_checkmol_func_g=!exec checkmol -c $wims_home/$wims_sesdir/getfile/$goodfichier
+ans_checkmol_func_r=!exec checkmol -c $wims_home/$wims_sesdir/getfile/$replyfichier
+ans_checkmol_func_g=!replace internal ; by , in $ans_checkmol_func_g
+ans_checkmol_func_r=!replace internal ; by , in $ans_checkmol_func_r
+ans_checkmol_func_r=!nonempty items $ans_checkmol_func_r
+ans_checkmol_func_g=!nonempty items $ans_checkmol_func_g
+
+!if $ans_diag<1
+  m_reply$i=$ans_checkmol_r;$ans_checkmol_func_r;$ans_brut_r;$ans_checkmol_g;$ans_checkmol_func_g;$ans_brut_g;$ans_diff;$ans_feedback
+!else
+  m_reply$i=$ans_checkmol_r;$ans_checkmol_func_r;$ans_brut_r;;;;;$ans_feedbackH
+!endif
+:end
+
+!set xsize=320
+!set ysize=240
+!if svg iswordof $(replyoption$i)
+  rep$i=<div class="inline" style="min-width:100px;min-height:100px">$ans_svg</div>
+!else
+  !read anstype/chemjsme.inc
+!endif
+reply_$i=<div class="chemdraw_rep">$(rep$i)</div>
+
+!if $ans_diag<1 and $ans_image notsametext $empty
+    reply_$i=$(reply_$i)\
+    <div class="oef_indgood chemdraw_rep">$ans_image</div>
+  !endif
+!endif
+
+!! pour l'instant on ne peut mettre qu'une seule applet dans une page web. Il faut
+!! mettre tout dans jsmeOnLoad() (une seule fonction possible)
+!!reply__$i=!replace internal jsmeApplet by jsmeApplet_rep in $(rep$i)
+!!reply__$i=!replace internal jsme_container by jsme_container_rep in $(reply__$i)
+noshow$i=yes
+replyGood$i=$ans_image

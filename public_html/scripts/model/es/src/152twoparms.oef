@@ -1,0 +1,68 @@
+type=gapfill first
+textarea="explain"
+iEdit="explain"
+random="x y"
+computed="ans"
+asis="explain"
+
+:Una pregunta numérica con dos parámetros aleatorios.
+
+El modelo elige aleatoriamente dos parámetros entre los valores
+fijados por el diseñador del ejercicio.
+El diseñador también puede modificar la fórmula que combina estos parámetros,
+  correspondiente al cálculo que debe realizar el usuario.
+
+$oef_help
+
+<p>Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Quite el encabezado anterior si destruye las etiquetas del modelo, es decir,
+ (las líneas que comienzan con un ':').
+De lo contrario, el ejercicio podría no ser reconocido por Createxo.
+
+:%%%%%%%% Example parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Dos parámetros}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Primer parámetro \x
+\real{x=randint(5..20)*20}
+
+:Segundo parámetro \y
+\real{y=randitem(20,25,30,35,40,60)}
+
+:Como hay que calcular la respuesta correcta
+Se reconocen todas las funciones habituales. Se utilizan \x y \y para
+ designar los parámetros aleatorios definidos anteriormente.
+\real{ans=\x*(100-\y)/100}
+
+:El enunciado del ejercicio
+$embraced_randitem
+\text{explain=
+Un artículo de moda en una tienda de ropa cuesta \x euros. Durante la época de
+rebajas, la tienda ofrece un descuento del \y % en el artículo.
+¿Cuál es el precio reducido (en euros)?
+}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%% No modificar
+\text{accolade=wims(word 1 of \accolade)}
+\text{explain=\accolade=1 ?wims(embraced randitem \explain)}
+
+:%%%%%%%%%%%%% Now the statement in html. %%%%%%%%%%%%%%%%%%%%
+
+::You don't need to modify this in general.
+
+\statement{\explain}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%5
+
+\answer{Mi respuesta}{\ans}{type=number}

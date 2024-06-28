@@ -1,0 +1,23 @@
+!! this script restore data in list key from .def in arch to .def in class.
+!! only configuration class
+listkey=password,supervisor,description,lang,email,\
+limit,topscores,level,secure,bgcolor,bgimg,scorecolor,actcolor,css,logo,\
+refcolor,ref_menucolor,ref_button_bgcolor,ref_button_help_color,\
+ref_button_help_bgcolor,theme,theme_icon,exolog,anonymtopscores,\
+authscoresuspend,supconnectshowed,exotitleform,examlog,examscore_withoutip,\
+examshow,option,connections,lock,homepage,ent,sendmailteacher,allowcloning,cloninpwd,\
+showlivret
+
+!if / notin $wims_class
+  !! this data not be modify in case of subclasses of a groupement or a portal
+  listkey=$listkey,expiration,institution,location,geoloc
+!endif
+
+!reset data_
+!sh cp $wims_home/log/classes/$wims_class/.def $wims_home/log/classes/$wims_class/.def.bak
+!for k in $listkey
+  t_=!getdef class_$k in wimshome/sessions/$wims_session/upload/class/.def
+  data_=!append line !set class_$k=$t_ to $data_
+!next k
+
+!setdef $data_ in wimshome/log/classes/$wims_class/.def

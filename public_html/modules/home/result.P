@@ -1,0 +1,6 @@
+
+!if $gotcnt=0 and $srch=$empty
+  !changeto $module_P.$p_lang/welcome.phtml
+!else
+  !changeto $module_P.$p_lang/search.phtml
+!endif

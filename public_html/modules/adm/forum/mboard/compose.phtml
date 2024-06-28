@@ -1,0 +1,82 @@
+
+!if +$error iswordof +no_send_right
+  !exit
+!endif
+
+!if $c_prec!=$empty
+  <p class="newfollow">
+    $n_newfollow
+    !href cmd=reply&job=read <b>$m_subject</b>
+    $n_by
+    !if $m_email!=$empty
+      <i><a href="mailto:$m_email">$m_from</a></i>
+    !else
+      <i>$m_from</i>
+    !endif
+  </p>
+!endif
+
+!form reply
+  <fieldset class="property_fields blockcenter">
+    <legend>$n_compose</legend>
+    <div class="field box halfwidth">
+      <label for="c_sender">$n_yourname:</label>
+      !if $forumuser=$empty
+        <input size="15" id="c_sender" name="c_sender" value="$c_sender">
+      !else
+        <span class="tt">$c_sender</span>&nbsp;
+      !endif
+    </div>
+    <div class="field box halfwidth">
+      <label for="c_smail">$n_email:</label>&nbsp;<input size="30" type="email"
+       name="c_smail" id="c_smail" value="$c_smail"
+      !if $send_right<2
+        required="required">
+        <p class="formHelp">$n_cautious</p>
+      !else
+        >
+      !endif
+    </div>
+
+    <div class="field box fullwidth">
+      <label for="c_subject">$n_subject:</label>
+      <input size="55" name="c_subject" id="c_subject" value="$c_subject" required="required">
+    </div>
+    <div class="field box">
+      <label for="wims_deposit">$n_content:</label>
+      <textarea cols="70" rows="18" name="wims_deposit" id="wims_deposit" class="iEdit">
+        !if $c_quote>0 and $c_prec!=$empty
+          !mexec scripts/quote.sh
+        !endif
+        !if $c_quote=0
+          !mexec scripts/msgsrc.sh
+        !endif
+      </textarea>
+      !endif
+      !set c_quote=0
+    </div>
+  </fieldset>
+  <p class="wimscenter wimsform">
+    <input type="submit" class="wims_secondary_button" name="c_preview" value="$n_preview">
+    <input type="submit" name="c_send" value="$n_send0">
+    !set wims_ref_class=wims_button wims_secondary_button
+    !href module=$module $wims_name_giveup
+    !!<input type="submit" name="c_list" class="wims_secondary_button" value="$wims_name_giveup">
+  </p>
+!formend
+
+!set wims_ref_class=wims_button_help
+!href cmd=help $wims_name_help
+ $n_mathhelp
+
+!if $c_prec!=$empty
+  <hr>
+  <div class="wims_forum_intro">
+    !href cmd=reply&job=read $m_subject $n_origin
+    $n_by <i>$m_from</i>:
+  </div>
+  <div class="wims_forum_msg">
+    !read $forumdir/$c_prec html
+  </div>
+  <hr>
+!endif

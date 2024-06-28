@@ -1,0 +1,21 @@
+!! display list of participant in the class
+
+!readproc adm/vfilter/listvarfilter.proc
+usercnt=!recordcnt wimshome/log/classes/$wims_class/.userlist
+nblisttechvar=!linecnt $tv_listtechvar
+lttechvarid=$empty
+!for k=1 to $nblisttechvar
+  don=!line $k of $tv_listtechvar
+  !distribute item $don into bl,cl,num
+  tmp=!item $k of $tv_listcode
+  lttechvarid=!append item user_techvar_$(tmp) to $lttechvarid
+!next k
+
+# varfilter proc
+!readproc adm/vfilter/varfilter proc
+!readproc adm/whoconnect
+exocnt=!recordcnt wimshome/log/classes/$wims_class/exams/.exam$exam
+emptyprogress=!values -1 for v=1 to $exocnt
+rd=!randint 111111,999999
+local_html_header=<META HTTP-EQUIV="Refresh" CONTENT="5;wims.cgi?session=$wims_session&+module=adm/class/exam&exam=$exam&+serial=$rd&+job=coursewatch">
+

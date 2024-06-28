@@ -1,0 +1,15 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+precision 0
+axis
+axisnumbering
+grid 2,2,grey,2,2,5,gray
+recision 100
+css color:blue;
+linewidth 4
+crosshairsize 8
+trace_jscurve 5*sin(0.1*x^2)
+linewidth 1
+jsplot red,5*sin(0.1*x^2)
+#only one curve can be traced

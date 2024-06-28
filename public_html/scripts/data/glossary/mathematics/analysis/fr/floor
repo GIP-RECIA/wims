@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_number,number_writing
+!set gl_title=Partie entière d'un nombre
+!set gl_level=
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(x\) un nombre.<br>
+  On appelle <strong>partie entière</strong> de \(x\) le nombre entier \(n\) tel
+  que <span style="white-space:nowrap">\(n\leqslant x \lt n+1\).</span>
+<br>
+  La partie entière de \(x\) est généralement notée
+  <span style="white-space:nowrap">\(E(x)\).</span>
+</div>
+<div class="wims_thm">
+  <h4>Propriété</h4>
+  Un nombre \(x\) est entier si et seulement s'il est égal à sa partie entière.
+</div>
+<div class="wims_rem">
+  <h4>Remarque</h4>
+  Soit \(x\) un nombre. La partie entière de \(x\) est le plus grand entier
+  inférieur où égal à <span style="white-space:nowrap">\(x\).</span>
+</div>

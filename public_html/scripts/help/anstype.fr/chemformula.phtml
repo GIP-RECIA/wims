@@ -1,0 +1,45 @@
+<b>Formule brute d'une molécule</b> (nom : <span class="tt wims_code_words">chemformula</span>)
+permet de vérifier une formule brute. Elle est partiellement bonne si elle n'est pas
+écrite dans l'ordre correspondant à l'option <span class="tt wims_code_words">order</span>.
+
+La bonne réponse doit être de la forme <span class="tt wims_code_words">C7H4Cl2O2</span>.
+
+L'option <span class="tt wims_code_words">order</span> peut être
+<ul><li>
+  vide : l'ordre est celui donné dans la bonne réponse (dans ce cas, plusieurs bonnes réponses
+  peuvent être données, séparées par des <span class="tt wims_code_words">|</span>).
+</li><li>
+  <span class="tt wims_code_words">no</span> : l'ordre des atomes n'est pas pris en compte.
+</li><li>
+  une liste d'atomes (par exemple <span class="tt wims_code_words">[C,N,H,O])</span> :
+   l'ordre des atomes intervenant dans la formule doit être celui de la liste,
+   puis l'ordre alphabétique (pour les atomes qui ne se trouvent pas dans la liste).
+</li><li>
+  <span class="tt wims_code_words">hill</span>
+  (voir <a target="wims_external" href="https://en.wikipedia.org/wiki/Chemical_formula#Condensed_formula">wikipedia</a>)
+  <cite>
+  The Hill system (or Hill notation) is a system of writing empirical chemical formulas,
+  molecular chemical formulas and components of a condensed formula such that the number
+  of carbon atoms in a molecule is indicated first, the number of hydrogen atoms next,
+  and then the number of all other chemical elements subsequently, in alphabetical order
+  of the chemical symbols. When the formula contains no carbon, all the elements,
+  including hydrogen, are listed alphabetically.
+  </cite>
+</li>
+</ul>
+La variable <span class="tt wims_code_variable">reply</span>i contient sur
+la première ligne la réponse. Dans le cas où aucune bonne réponse n'est donnée,
+la deuxième ligne et les suivantes contient la réponse formatée sous la forme
+<pre>C,7
+H,4
+Cl,2
+O,2
+</pre>
+dans l'ordre donné par la réponse.
+La variable <span class="tt wims_code_variable">sc_reply</span>i vaut 0.5 si la réponse
+est correcte à l'ordre près des éléments si l'on a demandé un ordre précis.
+<pre>
+\answer{}{H2SO4}{type=chemformula}{option=order=no}
+\answer{}{H2SO4}{type=chemformula}{option=order=hill}
+\answer{}{H2SO4}{type=chemformula}{option=order=[C,N,H,S,O,Cu,Al]}
+</pre>

@@ -1,0 +1,96 @@
+!if $wims_user=supervisor
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">$(name_choose)</h2>
+  </div>
+  <div class="box_content">
+    !for k=1 to $nbuser
+      !set wims_ref_class=wims_button
+      !distribute item $(llist[$k]),$(flist[$k]) into lastname,fistname
+      !href cmd=reply&+module=adm/class/activity&+user=$(ulist[$k]) $name_studentname
+    !next k
+  </div>
+</div>
+!endif
+
+!if $user=$empty
+  !exit
+!endif
+<div class="box_content">
+!if $wims_user=supervisor
+  <div class="title_box">
+    !let k=!positionof item $user in $ulist
+    !distribute item $(llist[$k]),$(flist[$k]) into lastname,fistname
+    <h2 class="wims_title">$(name_activityof) $name_studentname</h2>
+  </div>
+!endif
+!if $lt_month=$empty
+  <div class="wims_msg info">
+    !!<strong>$wims_name_Error:</strong>
+    !read msg.phtml noactivity
+  </div>
+  !exit
+!endif
+!if $wims_class!=$statclass
+  !readproc date.phtml $newccsum,notime noprint
+  <div class="wims_msg info">
+    $name_notsingleclass
+  </div>
+!endif
+<div class="table-scroll">
+<table class="wimstable border">
+  <head>
+    <tr>
+      <th></th>
+      !let nb=!linecnt $lt_month
+      !for k=1 to $nb
+        !let dl=!line $k of $lt_month
+        !distribute item $dl into wnum,m,yy
+        <th colspan="$wnum">$(months[$[$m]]) $yy</th>
+      !next k
+    </tr>
+  </head>
+  <body>
+      !for k=1 to 7
+        <tr>
+          <th>$(name_listdays[$k])</th>
+          !for j=1 to $nb_dtl
+            <td>
+              !let tmp=$(data[$j;$k])
+              !if $tmp!=.
+                !distribute word $tmp into col,date,activity
+                !readproc date.phtml $date,notime
+                !if $col!=1
+                  !let activity=$activity $name_min
+                !endif
+                <div class="wims_seed_item" style="background-color:$(wtime_ltcolor[$col])" title="$slib_out : $activity"></div>
+              !endif
+            </td>
+          !next j
+        </tr>
+      !next k
+  </body>
+</table>
+</div>
+</div>
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">$wims_name_legend</h2>
+  </div>
+<div class="wims_score_bar">
+  <div class="inline wims_score_column">
+    <div class="inline wims_seed_item" style="background-color:$(wtime_ltcolor[1])" title=""></div>$(name_lgword[5])
+  </div>
+  <div class="inline wims_score_column">
+    <div class="inline wims_seed_item" style="background-color:$(wtime_ltcolor[2])" title=""> </div>$(name_lgword[1]) $(wtime_subval) $name_min
+  </div>
+  !for k=2 to $wtime_nbsub-1
+    <div class="inline wims_score_column">
+      <div class="inline wims_seed_item" style="background-color:$(wtime_ltcolor[$k+1])" title=""> </div>$(name_lgword[2]) $[$wtime_subval*($k-1)] $name_min $(name_lgword[3]) $[$k*$wtime_subval] $name_min
+    </div>
+  !next k
+  <div class="inline wims_score_column">
+    <div class="inline wims_seed_item" style="background-color:$(wtime_ltcolor[$wtime_nbsub+1])" title=""> </div>$(name_lgword[4]) $[($wtime_nbsub-1)*$wtime_subval] $name_min
+  </div>
+</div>
+</div>

@@ -1,0 +1,28 @@
+!set gl_author=Bernadette, Perrin-Riou
+
+!set gl_n=!randint 7,10
+!set gl_s=!randint 4,$[$gl_n-3]
+
+!readproc slib/graph/randomconnex $gl_n
+!set gl_mat=$slib_out
+!set gl_color=red
+!set gl_color2=black
+!set gl_sub=!shuffle $gl_n
+!set gl_sub=!sort item $(gl_sub[1..$gl_s])
+!for gl_i in $gl_sub
+  !for gl_j in $gl_sub
+    !if $(gl_mat[$gl_i;$gl_j])!=0
+      !set gl_subcolor=!append line $gl_i,$gl_j, $gl_color to $gl_subcolor
+    !endif
+  !next
+!next
+!for gl_i=1 to $gl_n
+  !if $gl_i isitemof $gl_sub
+    !set gl_col=$gl_color
+  !else
+    !set gl_col=$gl_color2
+  !endif
+  !set gl_subcolor=!append line $gl_i,$gl_col to $gl_subcolor
+!next
+!set gl_subcolor=!lines2rows $gl_subcolor
+!readproc slib/graph/draw [$gl_mat],$gl_color2,$gl_color2,,[$gl_subcolor],html

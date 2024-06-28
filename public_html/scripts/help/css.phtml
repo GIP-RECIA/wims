@@ -1,0 +1,53 @@
+<h2 class="wimscenter">CSS</h2>
+
+!set a=!record 0 of wimshome/public_html/bases/sys/css_classes
+!set a=!nonempty lines $a
+!set acnt=!linecnt $a
+
+<table class="wimsborder wimscenter">
+!for j = 1 to $acnt
+  !set aa=!line $j of $a
+  !if $(aa[1])!=$empty and $(aa[2])!=$empty
+    <tr><th>$(aa[1])</th><td>$(aa[2..-1])</td></tr>
+  !endif
+!next
+<tr><th><span class="wims_color1">wims_color1</span></th><td>theme style for menu</td></tr>
+<tr><th><span class="wims_color2">wims_color2</span></th><td>theme style for button</td></tr>
+<tr><th><span class="wims_color3">wims_color3</span></th><td>theme style for help button</td></tr>
+</table>
+
+One can also use the var() CSS functions instead of any part of a value of another property
+  to insert their values.
+<pre>
+  --wims_bgcolor
+  --wims_link_color
+  --wims_vlink_color
+  --wims_hlink_color
+  --wims_ref_menucolor
+  --wims_ref_bgcolor
+  --wims_ref_button_color
+  --wims_ref_button_bgcolor
+</pre>
+<pre>
+&lt;style> .mystyle {
+  padding:1em;border-left:solid;
+  border-left-width:.2em;
+  border-left-color:var(--wims_ref_bgcolor);
+  }
+&lt;/style>
+</pre>
+<style>
+.mystyle {padding:1em;
+  border-left:solid;
+  border-left-width:.2em;
+  border-left-color:var(--wims_ref_bgcolor);
+  }
+</style>
+
+Another example which can be useful:
+<pre>
+&lt;div class="wims_columns">
+  &lt;div class="medium_size img_col">image&lt;/div>
+  &lt;div class="medium_size text_col">text&lt;/div>
+&lt;/div>
+</pre>

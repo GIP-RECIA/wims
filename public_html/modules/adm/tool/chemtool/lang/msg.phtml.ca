@@ -1,0 +1,29 @@
+
+!if no_auth iswordof $error
+  Us heu d'autenticar per accedir a aquest mòdul.
+ !exit
+!endif
+
+!if no_module iswordof $error
+ No heu triat un mòdul en desenvolupament.
+!exit
+!endif
+
+!if accountempty iswordof $error
+  No teniu un mòdul OEF en desenvolupament al vostre compte de Modtool. Comenceu per crear-ne un.
+!exit
+!endif
+
+!if notype iswordof $error
+  Heu de seleccionar un mètode.
+  !exit
+!endif
+
+!if noname iswordof $error
+  Trieu un fitxer de descripció d'estructura de molècules al vostre ordinador.
+  !exit
+!endif
+
+!msg $error
+
+!!empty_data bad_data

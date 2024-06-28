@@ -1,0 +1,66 @@
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">Avaluació d'activitats individuals</h2>
+  </div>
+La taula mostra
+<ul><li>
+ la data del darrer exercici realitzat,
+</li><li>
+ el nombre de sessions diferents,
+</li><li>
+ el nombre d'exercicis acabats i el nombre d'exercicis sense acabar
+ (de tots els fulls),
+</li><li>
+per a cada full el nombre (comptat amb repetició) d'exercicis acabats
+(havent obtingut una nota), el nombre d'exercicis sense acabar i el temps dedicat.
+</li></ul>
+<p>
+Es tenen en compte <span class="bold">tots els exercicis</span>, tant si l'alumne
+ha desactivat la puntuació com si no, al contrari del que apareix en el balanç de situació
+de les avaluacions de les notes.
+</p><p>
+Els diversos gràfics donen una representació dels
+<span class="wims_emph">períodes de treball</span>
+en un conjunt de fulls i en cadascun d'aquests fulls
+o, si es selecciona un sol full,
+en aquest full i en cadascun dels seus exercicis
+Si hi ha un període de més de 14 dies sense activitat, una banda
+grisa de 7 graduacions reuneix les setmanes inactives.
+</p>
+Per a cada data,
+<ul><li>
+una barra vertical té l'alçada del número d'exercicis
+acabats (amb les notes) ;
+</li><li>
+les creus indiquen la posició dels exercicis amb èxit:
+per exemple, una creu a l'ordenada 10 de la barra vol dir que
+la desena vegada que es va fer l'exercici, va ser un èxit
+(nota > 9) ;
+</li><li>
+una barra taronja representa el nombre d'exercicis sense acabar.
+</li></ul>
+</div>
+
+<div class="box_content">
+  <div class="title_box">
+      <h2 class="wims_title">Temps de connexió</h2>
+  </div>
+  Aquest és el temps de connexió a la classe sigui quina sigui l'activitat: mirant les seves notes, el quadern personal,\
+       fer exercicis, treballar en un document, etc... Contràriament a les dades que presenten les taules d'activitats
+       individuals que només afecten al treball sobre exercicis d'un full o d'un examen.
+<ul>
+  <li>Les dades s'actualitzen cada nit durant el manteniment del servidor.</li>
+  <li>L'interval de dates comença quan es crea la classe (o com a màxim un any abans del dia actual) i acaba el dia anterior al dia actual.</li>
+  !if $class_type=1 or $class_type=3
+    <li>En un grup de classes o un portal de centre, les estadístiques d'activitat es relacionen amb l'activitat global de l'estructura
+     (totes les classes combinades).
+</li>
+  !endif
+  !if $wims_user=supervisor
+    <li>La unitat de temps utilitzada per ajustar l'escala de color es pot modificar al tauler de configuració de classe.</li>
+    !if $wims_show_stat!=yes
+      <li>Les estadístiques de connexió han estat desactivades per l'administrador del servidor.</li>
+    !endif
+  !endif
+</ul>
+</div>

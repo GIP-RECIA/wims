@@ -1,0 +1,48 @@
+!set methtit=Añadir una expresión a ambos lados de una ecuación
+!set methparmtype=function,parm equation
+!set methhelp=Este método transforma una ecuación \(a = b)\
+ en la ecuación equivalente \(a + f = b + f), donde \(f) es una expresión\
+ algebraica.
+
+!if $wims_read_parm iswordof form check
+  !goto $wims_read_parm
+!endif
+
+!exit
+:form
+ Añadir la expresión
+ !read deduc/methparm.phtml 1,15
+en ambos lados de la ecuación
+ !read deduc/methparm.phtml 2
+
+!exit
+:check
+!distribute items $methparmobj2 into data,left,sign,right
+methexp=Añadir \($methparm1) en ambos lados de la ecuación \($left $sign $right)
+
+!read deduc/sub/simplify $left + ($methparm1)\
+	$right + ($methparm1)
+!distribute lines $out into newleft,newright
+!if $newleft=$empty or $newright=$empty
+  error=bad_data
+  !exit
+!endif
+newsign=$sign
+newobject2=$newleft $newsign $newright
+oldobject=2
+
+contextlist=$ct_Always,\
+	$ct_Onlywhen el término agregado tiene un signo constante,\
+	$ct_Onlywhen el término agregado es positivo
+
+!if $askresult>1
+  !read deduc/sub/simplify $left - ($methparm1)\
+	$right - ($methparm1)
+  !distribute lines $out into badleft, badright
+
+  resultlist=$newobject2,\
+	$newleft $newsign $badright,\
+	$badleft $newsign $newright
+!endif
+
+!exit

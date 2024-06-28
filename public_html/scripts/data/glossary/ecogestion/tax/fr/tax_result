@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Résultat fiscal
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">Le <strong>résultat fiscal</strong> représente le <strong>bénéfice
+imposable</strong> réalisé par une entreprise tel qu'il doit être soumis à imposition
+ dans le cadre soit de l'impôt sur le revenu, soit de l'impôt sur les sociétés.</div>
+<div class="spacer">D'un point de vue théorique, le résultat fiscal se définit comme
+ la différence entre des <span class="wims_emph">produits imposables</span> et des
+ <span class="wims_emph">charges déductibles</span>.</div>
+<div class="spacer">Cependant dans la pratique, un résultat fiscal se détermine en partant du résultat comptable que l'on corrige d'une part des
+ <span class="wims_emph">charges non déductibles</span> par voie de
+ <span class="wims_emph">réintégrations extra-comptables</span>, d'autre
+ part des <span class="wims_emph">produits non imposables</span> par voie de 
+<span class="wims_emph">déductions extra-comptables</span>.
+</div>
+<div>On précise qu'un bénéfice comptable doit être porté en réintégration
+alors qu'un déficit comptable doit être porté en déduction.
+</div>
+</div>
+:ecogestion/tax/fr/tax_result_1

@@ -1,0 +1,129 @@
+!if $special_parm!=$empty
+ !changeto help/$module_language/$special_parm.phtml
+!endif
+
+!if $wims_user!=supervisor
+ Ho sentim, no hi ha ajuda per als participants.
+ !tail
+ !exit
+!endif
+
+!if $wims_read_parm=$empty
+El contingut d'un qüestionari pot ser un text html, reforçat amb els mateixos
+elements que els missatges dels fòrums. A més es poden utilitzar les següents
+ordres: <dl>
+ <dt><span class="tt wims_code_variable">\menu{Sí,No}</span>
+	<dd>Elecció mitjançant un menú desplegable.
+    </dd>
+ <dt><span class="tt wims_code_variable">\list{A,B,C,D}</span>
+	<dd>Elecció mitjançant botons en una llista vertical.
+    </dd>
+ <dt><span class="tt wims_code_variable">\radio{molt malament, bastant malament, bastant bé, molt bé}</span>
+	<dd>Una elecció amb botons horitzontals.
+	</dd>
+ <dt><span class="tt wims_code_variable">\checkbox{A,B,C,D}</span>
+	<dd>Diverses eleccions possibles amb botons horitzontals.
+	</dd>
+ <dt><span class="tt wims_code_variable">\uservar{vname,val0,val1,...}</span>
+	<dd>Gravar l'elecció immediatament precedent en una variable
+        individual per al participant, de nom <span class="tt">vname</span>. Aquesta
+        variable tindrà el valor <span class="tt">val0</span> per defecte, <span class="tt">val1</span> si
+	el participant escull la primera opció, etc. <br>
+	Aquesta variable pot posteriorment utilitzar-se per definir accessos
+        individualitzats als fulls de treball o als exàmens, afegint
+        la paraula <span class="tt wims_code_variable">\vname</span> entre les restriccions del full o examen.
+        En aquest cas, es pot fixar el nombre màxim de participants que poden triar una opció.
+        Per a això, cadascuna de les opcions ha de començar pel nombre màxim de participants que la     poden triar
+        seguida de <span class="tt wims_code_words">:</span>
+	Per exemple,
+<pre>
+\list{46:Sessió 1 a partir de les 8 hrs,
+46:Sessió 2 a partir de les 10 hrs,
+40:Sessió 3 a partir de les 13 hrs}
+</pre>
+  No obstant això, vagi amb compte, l'ús de la mateixa variable tècnica en diversos qüestionaris / registres pot generar conflictes.
+  </dd>
+<dt><span class="tt wims_code_variable">\textarea</span>
+ <dd>Es pot usar una zona de text lliure només quan el vot o resposta és anònima. </dd>
+<dt><span class="tt wims_code_variable">\inputfield</span>
+  <dd>Une zone de texte libre mais limitée à une ligne, utilisable uniquement
+    lorsque le vote est anonyme. Les résultats sont classés à des espaces près
+    (en développement).</dd>
+</dl>
+
+Una enquesta o qüestionari pot contenir fins $max_parms camps d'elecció.
+!tail
+!exit
+!endif
+
+!if generalinfo iswordof $wims_read_parm
+<ul>
+ <li><b>$wims_name_title</b> : el títol de l'enquesta / qüestionari.</li>
+ <li><b>$wims_name_Type</b> :
+  <ul>
+   <li><b>$name_anonymous</b> : qüestionari anònim, ningú coneix les respostes lliurades
+    (és impossible conèixer la seva pròpia resposta una vegada que ja l'ha enviat)</li>
+   <li><b>$name_trace</b> : qüestionari anònim que segueix els mateixos criteris precedents.
+    No obstant això, és possible conèixer les respostes lliurades per un participant,
+    sense poder identificar-lo.</li>
+   <li><b>$name_nominative</b> : les respostes de cada participant poden ser
+    consultades (no es poden usar zones de respostes
+    lliures en aquest tipus de qüestionari / enquesta)</li>
+  </ul>
+ </li>
+ <li><b>$wims_name_Status</b> : un dels estats següents:
+     <ul>
+      <li><b>$name_0</b> : el qüestionari és modificable, els participants no poden veure'l.</li>
+      <li><b>$name_1</b> : el qüestionari ja no és modificable, els participants
+       poden respondre el qüestionari.</li>
+      <li><b>$name_2</b> : el qüestionari ja no és modificable, els participants
+       ja no poden respondre el qüestionari.</li>
+      <li><b>$name_3</b> : el qüestionari ja no és modificable, els participants
+       ja no veuen el qüestionari.</li>
+     </ul>
+ </li>
+ <li><b>$name_result</b> : si els resultats són $(name_publish)s, els participants poden consultar-los
+  (una vegada que hagin respost/votat). En cas contrari, només el professor de la classe té accés als resultats.</li>
+ <li><b>$name_whovote</b> : si la llista de votants és $name_publish2, llavors el professor
+  i els participants poden consultar-la (amb la condició que hi hagi un nombre suficient de votants
+  o que el vot sigui nominal).
+  En cas contrari, ningú pot saber qui ha votat.</li>
+</ul>
+ !goto guidedmode
+!tail
+!exit
+!endif
+
+!if guidedmode iswordof $wims_read_parm
+:guidedmode
+Diversos modes són possibles:
+<ul><li>
+  <b>$name_free</b> : pot crear
+   un qüestionari usant lliurement les ordres que apareixen en l'ajuda.
+  </li><li>
+  !readproc adm/lang/sheetexam.phtml.$lang
+  <b>$name_accessvar</b> : amb aquest formulari, pot permetre inscripcions en intervals de temps.
+   La variable tècnica creada li permetrà per exemple, definir un accés individualitzat
+   als fulls o als exàmens. Per això, només cal que seleccioni
+  <span class="tt wims_code_words">$(name_allowtype[4])</span>.
+  </li><li>
+  <b>$name_group</b> : vostè podria formar grups. Se li demanarà un nom de variable
+   (diguem que vostè l'ha anomenat <span class="tt wims_code_variable">ma_variable</span>. Amb l'ajuda
+   d'ella, podrà enviar correus electrònics o formar un directori de fotos segons el grup,
+   classificar els arxius csv obtinguts a la classe, segons grup (amb la condició <b> en aquest últim cas </b>
+   d'haver demanat la variable <span class="tt wims_code_variable">var_ma_variable</span>).
+  Es preveuen altres usos.
+  </li>
+  <li>No obstant això, vagi amb compte, l'ús de la mateixa variable tècnica en diversos qüestionaris/enquestes pot generar conflictes.</li>
+  </ul>
+
+El nom de les variables ha de ser diferent dels noms d'altres variables ja utilitzades per WIMS (per exemple,
+no utilitzeu
+<span class="tt wims_code_variable">exam1</span>, ... , <span class="tt wims_code_variable">sheet1</span>, ...,
+<span class="tt wims_code_variable">manual1</span>, ...).
+<br>
+Els models <span class="tt wims_code_words">$name_free</span> i <span class="tt wims_code_words">$name_group</span> no estan disponibles quan els qüestionaris són compartits amb una altra classe.
+!tail
+!exit
+!endif
+!tail

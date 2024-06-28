@@ -1,0 +1,95 @@
+Angles et cercle trigonométrique
+Sélection d'exercices correspondant au paragraphe "Trigonométrie" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+geometry
+trigonometry,trigonometric_circle,angles
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant au paragraphe "Trigonométrie" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+:H5/analysis/cercletrigo.fr
+exo=lireangle1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Lire un angle 1
+Lire un angle en <strong>radian</strong> (exemple: pi/2).
+
+
+:H5/analysis/cercletrigo.fr
+exo=lireangle2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Lire un angle 2
+Lire un angle en <strong>radian</strong>.
+
+
+:H5/analysis/cercletrigo.fr
+exo=placerangle1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Placer un angle 1
+Construire un angle en <strong>radian</strong>.
+
+
+:H5/analysis/cercletrigo.fr
+exo=placerangle2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Placer un angle 2
+Construire un angle en <strong>radian</strong>.
+
+
+:H5/analysis/cercletrigo.fr
+exo=placerangle3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Placer un angle 3
+Construire un angle en <strong>radian</strong>.
+
+
+:H5/analysis/cercletrigo.fr
+exo=placersincos&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Placer un angle donné par son sinus et cosinus
+Construire un angle.
+
+
+:H4/geometry/anglesCercleTrigo.fr
+exo=def_point_angle&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Construire un angle
+Construire un angle.
+
+
+
+
+
+:H4/geometry/anglesCercleTrigo.fr
+exo=def_cos_sin&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Cosinus et sinus d'un angle sur le cercle trigonométrique
+Lire la valeur du cosinus d'un angle sur le graphique.
+
+
+:H4/geometry/radialen-1.nl
+subject=1&level=0&total_exos=1&rounding=-1&usage=2&taal=fr
+10
+1
+Conversion 1
+Convertir de degré en radian.
+
+
+:H4/geometry/radialen-1.nl
+subject=3&level=0&total_exos=1&rounding=-1&usage=2&taal=fr
+10
+1
+Conversion 2
+Convertir de radian en degré.
+
+
+
+

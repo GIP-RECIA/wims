@@ -1,0 +1,230 @@
+type=classify
+textarea="data instruction"
+iEdit="instruction"
+
+:Classificare oggetti selezionando le proprietà in una tabella.
+
+Viene presentata una lista di oggetti e una lista di attributi (proprietà). Si
+deve compilare la tabella selezionando le proprietà che sono soddisfatte dagli
+oggetti.
+<p>
+Per costruire un esercizio utilizzando questo modello è sufficiente
+inserire la lista degli attributi e una lista di oggetti, nella quale
+è indicato se gli oggetti verificano o meno le proprietà (prese nell'ordine
+in cui sono state indicate, contrassegnando i caso con uno 0 o un 1)
+</p><p>
+Se questo esercizio viene inserito in un modulo OEF i dati possono essere
+raccolti in un file ausiliario. In questo caso è sufficiente definire
+la variabile \text{file=} con il nome del file
+(questo va fatto nel momento in cui si inserisce l'esercizio in un modulo
+OEF in Modtool).
+</p><p class="wims_credits">
+  Autore del modello: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENZIONE      %%%%%%%%%%%%%%%%%%%%
+
+Se si rimuovono le indicazioni del modulo modelli (le righe che
+cominciano con ':') è necessario rimuovere tutta questa parte
+introduttiva del file. Altrimenti Createxo potrebbe non accettare il
+codice dell'esercizio.
+
+:%%%%%%%% Parametri che possono essere ridefiniti %%%%%%%%%%%%%%%%%
+
+:\title{Completa la tabella (checkbox)}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Istruzioni
+\text{instruction=Completa la tabella.}
+
+:Numero di oggetti da mostrare
+\integer{N=3}
+
+:Nome del file
+Compilare solo se si desidera inserire questo esercizio in un modulo OEF
+in Modtool e utilizzare un file di dati
+\text{file=}
+di tipo
+<pre>
+ peli, piume, quattro arti, ali
+:gazza,0,1,0,1
+:manzo,1,0,1,0
+</pre>
+In questo caso le righe seguenti non saranno prese in considerazione.
+Altrimenti compilare anche tutto il resto.
+
+
+:Elenco delle proprietà
+\text{attribut=peli, piume, quattro arti,ali}
+
+:Dati
+una riga per ogni elemento.
+\text{data=gazza,0,1,0,1
+bovino,1,0,1,0
+gatto,1,0,1,0
+zanzara,0,0,0,1}
+
+:Testi o immagini per indicare la risposta corretta o sbagliata
+questo testo viene mostrato nell'analisi della risposta. Di default appaiono
+immagini.
+\text{nonoui=}
+
+:%%%%%%%%%%%%%% Nulla da modificare fino all'enunciato %%%%%%%%%%%%%%%%
+
+\text{size=50,50}
+\integer{w=\size[1]+10}
+\css{<style>
+  .big_check{text-align: center}
+  .cross{color:black; font-size:20pt;}
+  @supports (zoom:2){
+    .big_check>input{zoom: 1.4;}
+  }
+  @supports not (zoom:2){
+    .big_check>input{transform: scale(1.4);}
+  }
+  .big_check>label{color:transparent;width:1px;height:1px;position: absolute;}
+
+ </style>}
+\text{nonoui=\nonoui issametext ? <img src="scripts/authors/jm.evers/gifs/ok.gif" width="15">,<img src="scripts/authors/jm.evers/gifs/nok.gif" width="15">}
+\if{\file notsametext}{
+  \text{file=randitem(\file)}
+  \text{attribut=wims(record 0 of \file)}
+  \integer{datacnt=wims(recordcnt \file)}
+  \integer{N=min(\N,\datacnt)}
+  \text{choix=shuffle(\datacnt)}
+  \text{choix=\choix[1..\N]}
+  \text{data=}
+  \for{s in \choix}{
+    \text{data=\data
+wims(record \s of \file)}
+  }
+  \matrix{data=\data}
+  \text{data=wims(replace internal ;; by ; in \data)}
+}{
+  \text{objet_cnt=rows(\data)}
+  \integer{N=min(\N,\objet_cnt)}
+  \text{bat=shuffle(\objet_cnt)}
+  \text{bat=\bat[1..\N]}
+  \matrix{data=\data}
+  \matrix{data=\data[\bat;]}
+}
+\integer{attribut_cnt=items(\attribut)}
+\text{Data=}
+\text{R=}
+\for{u=1 to \N}{
+  \for{v=2 to \attribut_cnt+1}{
+    \integer{uu=(\u-1)*\attribut_cnt + \v -1}
+    \text{Data=\data[\u;\v]=1? wims(append item \uu to \Data)}
+  }
+}
+\text{C=wims(makelist x for x=1 to \N*\attribut_cnt)}
+\text{C1=wims(makelist x for x=1 to \N*\attribut_cnt)}
+\text{nstep=r1}
+\nextstep{\nstep}
+\text{tab=wims(makelist c for x=1 to \attribut_cnt+1)}
+\text{tab=wims(replace internal , by | in |\tab|)}
+\text{latexsrc=\begin{tabular}{\tab}\hline}
+\for{lk=1 to \attribut_cnt}{
+  \text{latexsrc=\latexsrc&\attribut[\lk]}
+}
+\text{latexsrc=\latexsrc \\\hline}
+\text{latexsol=\latexsrc}
+\for{jl=1 to \N}{
+  \text{latexsrc=\latexsrc
+  \data[\jl;1]}
+  \text{latexsol=\latexsol
+  \data[\jl;1]}
+  \for{kl=1 to \attribut_cnt}{
+    \integer{lkk=(\jl-1)*\attribut_cnt + \kl}
+    \text{latexsrc=\latexsrc &}
+    \text{latexsol=\latexsol &}
+    \if{\lkk isitemof  \Data}{\text{latexsol=\latexsol \(\times\) }}
+  }
+  \text{latexsrc=\latexsrc \\\hline}
+  \text{latexsol=\latexsol \\\hline}
+}
+\text{latexsrc=\latexsrc
+\end{tabular}}
+\text{latexsol=\latexsol
+\end{tabular}}
+
+\text{givegood=slib(oef/env givegood)}
+\text{givegood=\givegood issametext ? 1}
+
+\statement{
+  <div class="instruction">\instruction</div>
+  <table class="wimstable">
+    <thead>
+    <tr>
+      <td></td>
+      \for{k=1 to \attribut_cnt}{<th scope="col">\attribut[\k]</th>}
+    </tr>
+    </thead>
+    <tbody>
+    \for{j=1 to \N}{
+      <tr>
+        <th scope="row">\data[\j;1]</th>
+        \for{k=1 to \attribut_cnt}{
+          \if{\step=1}{
+            <td class="big_check">\embed{r1,\C[(\attribut_cnt)*(\j-1)+\k]}</td>
+          }{
+            <td class="big_check">\C[(\attribut_cnt)*(\j-1)+\k]</td>
+          }
+        }
+      </tr>
+    }
+    </tbody>
+  </table>
+}
+
+\answer{}{\Data;\C1}{type=checkbox}{option=split noanalyzeprint nonstop}
+\text{nstep=}
+\text{C=}
+\if{\givegood=0}{
+  \text{feedbackbon=}
+  \text{feedbackfaux=}
+}
+{
+  \text{feedbackbon=<span class="oef_indgood">\nonoui[1]</span>}
+  \text{feedbackfaux=<span class="oef_indbad">\nonoui[2]</span>}
+}
+\text{croix=<span class="cross">&#9745;</span>}
+\text{nocroix=<span class="cross">&#9744;</span>}
+\text{lignef=}
+\for{u=1 to \N}{
+  \for{v=2 to \attribut_cnt+1}{
+    \integer{uu=(\u-1)*\attribut_cnt + \v -1}
+    \text{C=\uu isitemof \reply1 and \uu isitemof \Data ? wims(append item  \croix \feedbackbon  to \C)}
+    \if{\uu isitemof \reply1 and \uu notitemof \Data}{
+      \text{C= wims(append item \croix \feedbackfaux  to \C)}
+      \text{lignef=wims(append item \u to \lignef)}
+      }
+      {\if{\uu notitemof \reply1 and \uu isitemof \Data}{
+         \text{C= wims(append item \nocroix \feedbackfaux  to \C)}
+         \text{lignef=wims(append item \u to \lignef)}
+         }
+      }
+    \text{C=\uu notitemof \reply1 and \uu notitemof \Data ? wims(append item \nocroix \feedbackbon to \C)}
+  }
+}
+
+\feedback{\givegood>0}{\nonoui[1]: risposta corretta, \nonoui[2]: risposta errata.
+}
+\integer{nblignef=items(\lignef)}
+\feedback{\givegood=0 and \nblignef>0}{<div class="feedback oef_indbad">\if{\nblignef=1}{
+La riga \lignef della tabella non è riempita correttamente.}{Le righe \lignef[1..-2] e \lignef[-1] della tabella non sono compilate correttamente.}</div>}
+
+
+\latex{
+\begin{statement}
+\instruction
+\newline
+\latexsrc
+\end{statement}
+\begin{solution}\
+\begin{center}
+\latexsol
+\end{center}
+\end{solution}
+}

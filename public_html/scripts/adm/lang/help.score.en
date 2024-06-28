@@ -1,0 +1,99 @@
+!read adm/title.phtml 1\
+\
+Severity levels of worksheets
+
+!set wims_backslash_insmath=yes
+
+!if $wims_user=supervisor
+<p>
+The server computes some averages for each sheet of each participant on each
+sheet: the  percentage I0 of points obtained with respect to the number 10*n of points
+required, the average I1 of the n best scores, the minimum I2 of the n best scores
+together with the quality Q of points obtained on the exercises of the worksheet.
+</p><p>
+ Here are the formulas for the computation of the grades, according
+ to the teacher choice (severity level and indicator I).
+</p>
+
+!reset table_center
+$table_header
+$table_hdtr<th>Level</th><th>Formula</th><th>Explanation</th></tr>
+$table_tr<td>0</td><td>$scoremax max(x,y)
+ </td><td>Very lenient: maximum between percentage and quality.</td></tr>
+$table_tr<td>1</td><td>$scoremax x
+ </td><td>Quality is not taken into account. You get maximum of grade
+ once all the required work is done.</td></tr>
+$table_tr<td>2</td><td>$scoremax x y<sup>0.3</sup>
+ </td><td>Quality has only slight effect over the grade.
+$table_tr<td>3</td><td>$scoremax x y<sup>0.5</sup>
+ </td><td>More effect of quality.</td></tr>
+$table_tr<td>4</td><td>$scoremax x y
+ </td><td>To have a grade of $scoremax, you must gather all required points
+  (100%) without making any error (quality=10).</td></tr>
+$table_tr<td>5</td><td>$scoremax x<sup>2</sup> y
+ </td><td>Unfinished work is over-punished.</td></tr>
+$table_tr<td>6</td><td>$scoremax x<sup>2</sup> y<sup>2</sup>
+ </td><td>Any mistake is over-punished.</td></tr>
+$table_end
+
+Remark : For level 0 and 1, if the quality of points is less than 1 for an
+exercise, the percentage of points obtained
+become 0% for this exercise when x is computed ; if the quality of points is betwwen 1 and 2,
+the percentage of points obtained for this exercise is divided by 2
+when I is computed.
+!read help/sheetscore.phtml
+!else
+Pour cette feuille, votre enseignant a choisi le mode de calcul suivant
+de la note.
+Pour chacun des indicateurs suivants, on calcule la moyenne pour votre travail pour :
+<ul>
+<li>
+!if $help_sw=0
+  \(i\) : la somme des scores plafonnée à \(10n\)
+que l'on divise par \(10n\) (indicateur de cumul)
+!endif
+!if $help_sw=1
+ la moyenne \(i\) des \(n\) meilleurs scores divisé par 10 (niveau de réussite) :
+ si vos scores sont \(y_1\geq y_2\geq ... \geq y_p \) ordonnés par ordre
+décroissant :
+ \(i = (y_1+...+y_n)/(10n)\) si le nombre \(p\) de scores obtenus est supérieur à \(n\)
+ et
+ \(i = (y_1+...+y_p)/(10n)) si le nombre \(p\) de scores obtenus est inférieur à \(n\).
+!endif
+!if $help_sw=2
+ le minimum \(i\) des \(n\) meilleures notes divisé par 10 (niveau d'acquisition) :
+ si vos scores sont \(y_1\geq y_2\geq ... \geq y_p \) ordonnés par ordre
+décroissant :
+  \(i = 0\) tant que le nombre \(p\) de scores obtenus est inférieur à \(n) et
+ et ensuite
+ \(i = y_n/10).
+!endif
+</li>
+!if $help_level>0
+<li>
+la qualité \(q\) des points obtenus sur les exercices qui est
+une moyenne pondérée, les derniers scores ayant un poids plus important que
+les premiers. Attention, si vous renouvelez l'exercice sans le terminer un nombre trop
+important de fois par rapport au nombre de fois où vous avez terminé l'exercice,
+la note de qualité diminuera.
+</li>
+!endif
+</ul>
+La note de la feuille est calculée à partir des moyennes pondérées
+\(I) et \(Q) des \(i) et de \(q) de chaque exercice.
+
+!if $help_level>0
+Si la note de qualité est inférieure à 1 pour un exercice,
+l'indicateur \(i\) est mis à 0 pour cet exercice ;
+si la note de qualité est comprise entre 1 et 2,
+l'indicateur \(i\) est divisé par 2.
+!else
+ Cependant, si vous avez eu trop d'échecs ou si vous avez
+ essayé trop de fois l'exercice sans le terminer, cette note peut diminuer.
+ Demandez à votre enseignant.
+!endif
+<p>
+ La note de la feuille est calculée comme
+<span class="bold">$scoremax $(list[$help_level+1;])</span>.
+</p>
+!endif

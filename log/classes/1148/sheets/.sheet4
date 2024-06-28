@@ -1,0 +1,60 @@
+Probabilités et fréquences conditionnelles
+Sélection d'exercices correspondant à une partie du paragraphe "Probabilités" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+??,2021
+1
+H5
+probability
+events,conditional_probability
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Probabilités" du programme de première professionnelle (B.O. spécial n° 1 du 6 février 2020)
+
+:H5/probability/oefprobaLP.fr
+exo=probarbre2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tirage avec remise
+Construire un <strong>arbre</strong>, en déduire une probabilité.
+
+:H5/probability/oefprobaLP.fr
+exo=probarbre3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tirage sans remise
+Construire un <strong>arbre</strong>, en déduire une probabilité.
+
+:H5/probability/OEFproba1S.fr
+exo=tableau2
+10
+1
+Tableau croisé 1
+Compléter un <strong>tableau</strong> à double entrées. En déduire un <strong>tableau marginal</strong> en %. Notion de probabilités conditionnelles
+
+:H5/probability/OEFproba1S.fr
+exo=tableau4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Tableau croisé 2
+Compléter un <strong>tableau</strong> à double entrées. En déduire un <strong>tableau marginal</strong> en %. Notion de probabilités conditionnelles.
+
+:H5/probability/OEFproba1S.fr
+exo=arbre1&qnum=1&qcmlevel=3&scoredelay=
+10
+1
+Arbre 1
+Compléter un <strong>arbre</strong> d'après un tableau.
+
+:H5/probability/OEFproba1S.fr
+exo=arbre2
+10
+1
+Arbre 2
+Compléter un <strong>arbre</strong> d'après un tableau.
+
+:H6/probability/oefprobacondit.fr
+exo=jetonsac&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Des jetons dans des sacs
+Exercice complexe en 2 étapes. Conseil : Faire un <strong>arbre</strong>.
+

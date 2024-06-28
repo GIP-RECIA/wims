@@ -1,0 +1,13 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Writing a number with grouping the numbers by three.
+slib_parms=2\
+, the number
+, option word (<span class="tt">comma tex html</span>).
+slib_out=The number written with spaces. If the number has already a comma,\
+  it must be in brackets [ ]. With option <span class="tt">comma</span>,\
+  output has comma as decimal separetor. With option <span class="tt">tex</span>,\
+  output has to be inserted in a mathematical formula.\
+  With option <span class="tt">html</span>, the space is a html space.\
+  The <span class="tt">html</span> et <span class="tt">tex</span> options must not\
+  be used simultaneously.

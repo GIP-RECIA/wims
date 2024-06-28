@@ -1,0 +1,16 @@
+!let lang_exists=yes
+!let name_link_introduce=Diversos enllaços a la vostra $name_classe
+!let name_link_link=L'enllaç
+!let name_link_supervisor=porta a la pàgina de manteniment $name_classesss (preparació dels fulls de treball, l'alumnat i la seva progressió, etc.).
+!let name_link_user=permet a l'alumnat inscriure's a la classe (o us permet inscriure'ls)
+!let name_link_grpclass=quan tingueu creades les classes de $name_classe
+!let name_link_withpwd=Necessitaran la contrasenya de la classe per a registrar-se
+!let name_link_user2=Els fulls d'exercicis que prepareu seran accessibles des d'aquesta pàgina 
+!let name_link_teacher=permet al professorat entrar al portal
+!let name_link_regsup=permet al professorat inscriure's a la vostra $name_classe (o us permet inscriure'ls)
+!let name_link_important=Important
+!let name_link_important=Podeu desar aquests enllaços en el vostre navegador per a aconseguir accés directe a la classe
+!let name_link_importantmes2=També els podeu trobar a l'àrea de configuració de la classe (si canvieu el tipus d'autenticació, aquests enllaços podrien canviar).
+!let name_link_classnumber=També és aconsellable desar el número de classe que apareix aquí
+!let name_link_enterall=redirigirà tots els usuaris a la pàgina principal de la classe ($name_link_withpwd).
+!let name_link_regsuperv=!nosubst permet al professorat registrar-se a $wims_name_group.

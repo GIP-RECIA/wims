@@ -1,0 +1,37 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=descriptive_statistics,quantile
+!set gl_title=Quantile
+!set gl_level=H5
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(\mathrm{S}=\{a_i\}_{1 \leqslant i \leqslant n}\) une série statistique à
+une variable quantitative discrète de taille \( n\in\NN^* \) ordonnée dans
+l'ordre croissant.<br>
+La fonction <strong>quantile</strong> \(\mathrm{Q}\) est la fonction définie sur
+<span style="white-space:nowrap">\(\left\lbrack \frac{1}{n} ; 1 \right\rbrack\),
+</span> qui, à tout réel <span style="white-space:nowrap">
+\(x \in \left\lbrack \frac{1}{n} ; 1 \right\rbrack\),</span> associe le terme
+\(a_i\) de \(\mathrm{S}\) dont l'indice \(i\) est le plus petit entier supérieur
+ou égal à <span style="white-space:nowrap">\(n x\).</span></div>
+<div class="wims_rem"><h4>Exemples</h4>
+<ul>
+<li>Les trois <strong>quartiles</strong> d'une série \(\mathrm{S}\) comprenant au
+moins 4 termes sont donnés respectivement par <span style="white-space:nowrap">
+\(\mathrm{Q}(0,25)\),</span> \(\mathrm{Q}(0,5)\) et
+<span style="white-space:nowrap">\(\mathrm{Q}(0,75)\) ;</span></li>
+<li>
+les neuf <strong>déciles</strong> d'une série \(\mathrm{S}\) comprenant au moins
+10 termes sont donnés par \(\mathrm{Q}\left(\frac{i}{10}\right)\)
+où <span style="white-space:nowrap">\(i \in \{1;2;\ldots;9\}\) ;</span>
+</li>
+<li>
+les 99 <strong>centiles</strong> d'une série comprenant au moins 100 termes sont
+donnés par \(\mathrm{Q}\left(\frac{i}{100}\right)\)
+où <span style="white-space:nowrap">\(i \in \{1;2;\ldots;99\}\).</span>
+</li>
+</ul>
+</div>

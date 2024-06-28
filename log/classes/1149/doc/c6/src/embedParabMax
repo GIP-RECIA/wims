@@ -1,0 +1,63 @@
+\def{integer a=randint(2..5)}
+\def{integer xS=randint(6..10)}
+\def{integer yS=randint(11..20)}
+<p class="decal">
+L'expression d'un trinôme est sous la forme canonique si elle est écrite \(a(x-x_S)^2+y_S) où \(a \ne 0).<br>
+Nous allons démontrer que si \(a \gt 0), \(y_S) est le minimum du trinôme sur \(\,\RR) et que<br>
+si \(a \lt 0), \(y_S) est le maximum du trinôme sur \(\,\RR).<br>
+Nous effectuons cette démonstration sur des exemples, puis dans le cas général.</p>
+<table cellpadding=10 border=1><tr><td>
+Démontrons que \yS est le maximum de \(-\a*(x-\xS)^2+\yS) sur \(\,\RR).
+</td>
+<td>
+Démontrons que \yS est le minimum de \(\a*(x-\xS)^2+\yS) sur \(\,\RR).
+</td>
+</tr></tr>
+<td>
+ \((x-\xS)^2) est un carré donc est positif ou nul<br>
+donc \(\a*(x-\xS)^2) est aussi positif ou nul.<br>
+Dans \(-\a*(x-\xS)^2+\yS), on retranche un nombre positif ou nul à \yS<br>
+Le résultat est donc inférieur ou égal à \yS.<br>
+Par ailleurs, si \(x=\xS) alors \(-\a*(x-\xS)^2+\yS=\yS).<br>
+Cela achève de démontrer que :<br>
+\yS est le maximum de \(-\a*(x-\xS)^2+\yS) sur \(\,\RR).
+</td><td>
+ \((x-\xS)^2) est un carré donc est positif ou nul<br>
+donc \(\a*(x-\xS)^2) est aussi positif ou nul.<br>
+Dans \(\a*(x-\xS)^2+\yS), on ajoute un nombre positif ou nul à \yS<br>
+Le résultat est donc supérieur ou égal à \yS.<br>
+Par ailleurs, si \(x=\xS) alors \(\a*(x-\xS)^2+\yS=\yS).<br>
+Cela achève de démontrer que :<br>
+\yS est le minimum de \(\a*(x-\xS)^2+\yS) sur \(\,\RR).
+</td>
+<tr><td>
+Démontrons que<br>
+Si \(a \lt 0) alors \(y_S) est le maximum de \(a*(x-x_S)^2+y_S) sur \(\,\RR).
+</td><td>
+Démontrons que<br>
+Si \(a \gt 0) alors \(y_S) est le minimum de \(a*(x-x_S)^2+y_S) sur \(\,\RR).
+</td>
+</tr></tr>
+<td>
+On suppose ici que \(a \lt 0)<br>
+ \((x-x_S)^2) est un carré donc est positif ou nul,
+donc \(a*(x-x_S)^2) est négatif ou nul.
+Dans \(a*(x-x_S)^2+y_S), on ajoute un nombre négatif ou nul à \(y_S).
+Le résultat est donc inférieur ou égal à \(y_S).<br>
+Par ailleurs, si \(x=x_S) alors \(a*(x-x_S)^2+y_S=y_S).<br>
+Cela achève de démontrer que :<br>
+\(y_S) est le maximum de \(a*(x-x_S)^2+y_S) sur \(\,\RR).
+</td><td>
+On suppose ici que \(a \gt 0)<br>
+ \((x-x_S)^2) est un carré donc est positif ou nul<br>
+donc \(a*(x-x_S)^2) est aussi positif ou nul.<br>
+Dans \(a*(x-x_S)^2+y_S), on ajoute un nombre positif ou nul à \(y_S).
+Le résultat est donc supérieur ou égal à \(y_S).
+Par ailleurs, si \(x=x_S) alors \(a*(x-x_S)^2+y_S=y_S).
+Cela achève de démontrer que :<br>
+\(y_S) est le minimum de \(a*(x-x_S)^2+y_S) sur \(\,\RR).
+</td>
+</table>
+<p class="decal">
+Les démonstrations ci-dessus montrent que le point de coordonnées \((x_S ; y_S)
+est le sommet de la parabole d'équation \(y=a*(x-x_S)^2+y_S).</p>

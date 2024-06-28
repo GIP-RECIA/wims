@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=set_theory
+!set gl_title=Réunion de deux ensembles
+!set gl_level=H4
+:
+:
+:H6/set/graphset.fr,atype=3&style=u1&repeat=1, Réunion
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(E_1\) et \(E_2\) deux ensembles.<br>
+La <strong>réunion</strong> de \(E_1\) et \(E_2\), notée
+<span style="white-space:nowrap">\(E_1\cup E_2\),</span> est l'ensemble des
+éléments qui appartiennent à au moins l'un des deux ensembles \(E_1\) et
+<span style="white-space:nowrap">\(E_2\).</span>
+</div>
+<div class="wims_rem">
+    <h4>Remarque</h4>
+  En probabilité, si \(E_1\) et \(E_2\) sont deux événements d'un même univers
+   &#937;, alors \(E_1\cup E_2\) est l'événement "\(E_1\) ou \(E_2\)", formé des
+   issues appartenant à au moins l'un des deux événements \(E_1\) et \(E_2\)
+    c'est-à-dire appartenant à \(E_1\) et pas à \(E_2\) ou bien à \(E_2\) et pas
+    à \(E_1\) ou bien à la fois à \(E_1\) et
+    <span style="white-space:nowrap">\(E_2\).</span>
+</div>
+
+:mathematics/general/fr/union_1

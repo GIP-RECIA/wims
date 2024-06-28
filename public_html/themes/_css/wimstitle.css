@@ -1,0 +1,52 @@
+/************************
+   WIMS TITLES
+*************************/
+.wims_docu_title,
+.wims_sheet_title,
+.wims_title,
+.wimscenter {
+   text-align: center;
+   justify-content:  center;
+}
+
+h2.wims_subtitle {
+   text-align: center;
+   display: block;
+   font-weight: normal;
+   margin-top: 0;
+   font-style: italic;
+}
+
+#wims_modu_title1>.wims_title,
+.title_box>.wims_title{
+   margin-top: 0;
+}
+
+#wims_modu_title2>.wims_title {
+    margin-bottom: 0;
+}
+
+#wims_modu_title2>.wims_subtitle {
+   font-size: small;
+   margin: 12px;
+   margin-top: 0;
+}
+
+#wims_modu_title3>.wims_subtitle {
+   display: block;
+   text-align: center;
+   font-weight: bold;
+}
+/* add mdash around wims_subtitle */
+#wims_modu_title3>.wims_subtitle:before,
+#wims_modu_title3>.wims_subtitle:after {
+   content: "\2014";
+   padding: 0 .5em;
+}
+
+#wims_modu_title3 .wims_title_close {padding: 10px;}
+
+h1.oeftitle {
+   text-align: center;
+}
+/* ****** END OF TITLES ******** */

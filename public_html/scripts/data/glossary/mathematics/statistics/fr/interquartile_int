@@ -1,0 +1,14 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=descriptive_statistics,quartile
+!set gl_title=Intervalle interquartile
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>Soit S une série statistique
+quantitative discrète à une variable de premier quartile \(Q_1\) et troisième
+quartile \(Q_3\).<br>
+L'<strong>intervalle interquartile</strong> de S est l'intervalle
+\(\lbrack Q_1 ; Q_3 \rbrack\).</div>

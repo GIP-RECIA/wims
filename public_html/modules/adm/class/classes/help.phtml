@@ -1,0 +1,15 @@
+!!!if $special_parm!=$empty
+!!  !read help/$special_parm.phtml
+!!  !exit
+!!!endif
+
+!set sitemanager=!defof site_manager in wimshome/log/wims.conf
+!set class_expiration=!defof class_expiration in wimshome/log/classes/$class/.def
+!read wimshome/public_html/html/cgu.phtml.$lang $sitemanager
+
+!! help_isread is never defined ??
+!if $help_isread!=yes and $lang notwordof ca cn en fr it nl
+  !read wimshome/public_html/html/cgu.phtml.en $sitemanager
+!endif
+
+!reset help_isread

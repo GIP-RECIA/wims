@@ -1,0 +1,31 @@
+Sommes #4
+jeux de sommes
+??, 2019
+1
+E3
+elementary_mathematics
+levelE3,number,operation
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:H1/algebra/addfig.en
+exo=grill&exo=house&exo=bigsquare&exo=threesqr&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Niveau 8
+Vous avez 8 nombres à placer dans les diagrammes.
+
+:H1/algebra/addfig.en
+exo=foursqr&exo=M&exo=pizza4&exo=pyramid1d&exo=pyramid2b&exo=diag&exo=W&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Niveau 9
+Maintenant, vous avez 9 nombres à placer dans les diagrammes.
+
+:H1/algebra/addfig.en
+exo=pentagon&exo=pentagram&exo=pyramid3&confparm1=1&confparm2=0&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Niveau 10
+Et finalement, maintenant vous avez 10 nombres à placer dans les diagrammes.

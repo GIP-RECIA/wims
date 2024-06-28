@@ -1,0 +1,26 @@
+
+:H6/analysis/oefintegrale.fr
+exo=integrale0&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Calcul d'une intégrale_0
+<strong>Calculer</strong> une intégrale
+
+variante de l'exercice integrale.oef évitant les primitives de (ax+b)²
+:H6/analysis/oefintegrale.fr
+exo=integrale&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Calcul d'une intégrale
+<strong>Calculer</strong> une intégrale
+
+intégrale de divers polynômes parmi lesquels peut apparaître un carré (ax+b)²
+:H6/analysis/oefintegrale.fr
+exo=aire1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Aire entre une courbe et l'axe des x
+<strong>Calculer</strong> une intégrale
+
+
+

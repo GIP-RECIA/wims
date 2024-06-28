@@ -1,0 +1,28 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Gamma distribution
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Let \(a) and \(b) be two positive numbers. The <strong>Gamma distribution</strong>
+  with parameters \(a) and \(b) (denoted by \(Gamma(a,b))) is a continuous distribution over
+  \(\RR_+) with density function
+
+<div class="wimscenter">
+ \(x\mapsto\frac{b^a e^{-b x}x^{a-1}}{\Gamma(a) }1_{x>0})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Expectation</th><th>Variance</th><th>Characteristic function</th></tr>
+<td>\(\frac{a}{b})</td><td>\(\frac{a}{b^2})</td><td>\((1-\frac{i t}{b})^{-a})</td></tr></table>
+
+<p>
+If \(a) is a positive integer, \(Gamma(a,b)) is the distribution of the sum of \(a)
+independent random variables exponentially distributed with parameter \(b).
+</p>
+
+

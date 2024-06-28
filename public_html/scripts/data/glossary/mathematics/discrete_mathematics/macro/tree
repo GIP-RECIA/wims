@@ -1,0 +1,8 @@
+
+!set gl_a=!randint 50,60
+!set gl_b=!randint 2,5
+!set gl_c=!randint 6,20
+
+!readproc slib/graph/randtree $gl_a,$gl_b,$gl_c,,html
+
+!set gloss_out=$(slib_out)

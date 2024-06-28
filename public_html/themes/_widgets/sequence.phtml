@@ -1,0 +1,78 @@
+<!-- _widgets/sequence.phtml -->
+
+!if $wims_user=supervisor and $wims_sequence_withtechvar=1
+<div class="wims alert">Fabrice test</div>
+!endif
+<div id="widget_sequence">
+  !if $seq_cnt >1 and $seq=$empty
+    !if $jquery_defined=yes
+      !read adm/tabscript sequence
+    !endif
+    !set seq_reverse=!defof sequence_reverse in wimshome/log/classes/$wims_class/seq/.def
+    <ul id="wims_seq_summary">
+    !reset list_seq
+    !for i=1 to $seq_cnt
+      !if $seq_reverse=yes
+        !set u=$[$seq_cnt+1-$i]
+      !else
+        !set u=$i
+      !endif
+      !set seq_=!record 1 of wimshome/log/classes/$wims_class/seq/.sequence$u
+      !distribute line $seq_ into tis_,cos_,obj_,o_
+      !readproc adm/class/checkuserscorecondition S$u
+      !if $o_>0 and $output=yes
+        !set list_seq=!append item $u to $list_seq
+        !if $tis_!=$empty
+          <li><a href="#wims_seq_$u">$tis_</a></li>
+        !else
+          <li><a href="#wims_seq_$u">$wims_name_sequence $u</a></li>
+         !endif
+      !endif
+    !next i
+    !read themes/_widgets/user_varfreework.phtml
+    !if $fwcnt>0
+      <li><a href="#wims_user_freework">$wims_name_Freeworks</a></li>
+    !endif
+    </ul>
+  !endif
+
+  !if $wims_user=supervisor and $sequence_withtechvar=1
+    <div class="wims_msg warning">$name_sequence_withtechvar_warning</div>
+  !endif
+
+  !if $seq>0
+    !read ./sequence.phtml $seq
+    !reset seq
+  !else
+    !if $seq_cnt=1
+      !set seq_=!record 1 of wimshome/log/classes/$wims_class/seq/.sequence1
+      !distribute line $seq_ into tis_,cos_,obj_,o_
+      !readproc adm/class/checkuserscorecondition S1
+      !if $output=yes and $o_>0
+        !let list_seq=1
+      !endif
+    !endif
+    !for i=1 to $seq_cnt
+      !if $seq_reverse=yes
+        !set u=$[$seq_cnt+1-$i]
+      !else
+        !set u=$i
+      !endif
+      !if $u isitemof $list_seq
+        !read ./sequence.phtml $u
+      !endif
+    !next i
+    !if $fwcnt>0
+      !read themes/_widgets/userfreework.phtml
+    !endif
+  !endif
+</div>
+
+!read adm/class/seq_legend.phtml
+
+!if $seq_cnt>0
+  !read themes/_widgets/user_varsheet.phtml
+  !read themes/_widgets/user_varexam.phtml
+!endif
+
+<!--end  _widgets/sequence.phtml -->

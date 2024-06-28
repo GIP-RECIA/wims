@@ -1,0 +1,40 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=vectors,analytic_geometry,line_equation,normal_vector
+!set gl_title=Vecteur normal à une droite du plan
+!set gl_level=H5 Générale
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(\mathcal{D}\) une droite du plan.<br>
+On appelle <strong>vecteur normal</strong> à \(\mathcal{D}\) tout vecteur
+directeur d'une droite perpendiculaire à <span style="white-space:nowrap">
+\(\mathcal{D}\).</span></div>
+<div class="wims_thm"><h4>Théorème 1</h4>
+Soit \(\mathrm{A}\) un point et \(\overrightarrow{v}\) un vecteur non nul du
+plan.<br>
+La droite \(\mathcal{D}\) passant par \(\mathrm{A}\) et de vecteur normal
+\(\overrightarrow{v}\) est l'ensemble des points \(\mathrm{M}\) du plan tels que
+les vecteurs \(\overrightarrow{AM}\) et \(\overrightarrow{v}\) soient
+orthogonaux.</div>
+<div class="wims_thm"><h4>Théorème 2</h4>
+Deux droites du plan de vecteurs normaux respectifs
+\(\overrightarrow{u}\) et \(\overrightarrow{v}\) sont parallèles si et seulement
+si les vecteurs \(\overrightarrow{u}\) et \(\overrightarrow{v}\) sont colinéaires.
+</div>
+<div  class="wims_thm"><h4>Théorème 3</h4>
+Le plan est muni d'un repère <strong>orthonormé</strong>.<br>
+ Si \(a x + b y +c = 0\) est une équation cartésienne de la droite
+ \(\mathcal{D}\), alors le vecteur de coordonnées \((a\,;b)\)
+  est un vecteur normal à la droite <span style="white-space:nowrap">
+  \(\mathcal{D}\).</span>
+</div>
+<div  class="wims_thm"><h4>Théorème 4</h4>
+Le plan est muni d'un repère <strong>orthonormé</strong>.<br>
+Si \(\mathcal{D}\) est une droite dont un vecteur normal a pour coordonnées
+\((a \,;b)\), alors il existe un réel \(c\) tel que
+  \(a x + b y +c = 0\) soit une équation cartésienne de
+ <span style="white-space:nowrap">\(\mathcal{D}\).</span>
+</div>

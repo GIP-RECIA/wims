@@ -1,0 +1,37 @@
+<b>Scelte multiple configurabili</b>: (nomi : <span class="tt wims_code_words">checkbox</span>,
+<span class="tt wims_code_words">click</span>, <span class="tt wims_code_words">menu</span>,
+<span class="tt wims_code_words">radio</span>, <span class="tt wims_code_words">mark</span>,
+<span class="tt wims_code_words">flashcard</span>, <span class="tt wims_code_words">multipleclick</span>)
+<br>
+
+Questi tipi di risposta sono utilizzabili per sostituire la presentazione standard di scelte multiple (<span class="tt wims_code_words">\choice</span>), dando la possibilità di un migliore controllo dell'aspetto.
+La sintassi generale è la seguente (dove <span class="tt wims_code_words">Tipo</span> è uno dei tipi elencati sopra:
+<pre>
+\answer{Commento}{numeri_scelte_corrette;Lista_scelte_possibili}{type=Tipo}{option=}
+</pre>
+!read help/anstype.it/multembed.phtml
+
+La presentazione della correzione segue le seguenti convenzioni (quando pertinenti):
+<ul>
+  <li>le scelte corrette sono in verde,</li>
+  <li>le scelte sbagliate sono in rosso,</li>
+  <li>le scelte dimenticate sono blu.</li>
+</ul>
+L'opzione <span class="tt wims_code_words">nolegend</span> permette di disattivare la legenda dei colori).
+
+Descrizione dettagliata dei diversi tipi:
+<ul>
+  <li>
+    !read help/anstype.it/radiocheckbox.phtml
+  </li><li>
+    !read help/anstype.it/menu.phtml
+  </li><li>
+    !read help/anstype.it/mark.phtml
+  </li><li>
+    !read help/anstype.it/click.phtml
+  </li><li>
+    !read help/anstype.it/multipleclick.phtml
+  </li><li>
+    !read help/anstype.it/flashcard.phtml
+  </li>
+</ul>

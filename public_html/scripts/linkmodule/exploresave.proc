@@ -1,0 +1,27 @@
+!!
+!! test if exploresave administrative module is allowed or not
+!!
+!!
+!if $wims_user!=supervisor or $wims_class=$empty
+ !let wims_allowlink_exploresave=no
+ !exit
+!endif
+
+!! exploresave allow only in :
+!! individual class  		: $wims_supertype=0
+!! class in a groupement	: $wims_supertype=2 and $wims_typename=class
+!! program in a portail		: $wims_supertype=4 and $wims_typename=program
+!if $wims_supertype=0 or ($wims_supertype=2 and $wims_typename=class) or ($wims_supertype=4 and $wims_typename=program)
+  !let wims_allowlink_exploresave=yes
+  !exit
+!endif
+
+!! open access to testzone of a portail
+!if $wims_supertype=4 and $wims_typename=course
+  !let t_=!replace internal / by , in $wims_class
+  !if $(t_[-1])=0
+    !let wims_allowlink_exploresave=yes
+    !exit
+  !endif
+!endif
+!let wims_allowlink_exploresave=no

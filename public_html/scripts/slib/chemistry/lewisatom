@@ -1,0 +1,85 @@
+!if $wims_read_parm!=slib_header
+  !goto proc
+!endif
+
+slib_author=
+slib_parms=6\
+,directions des lacunes et/ou des electrons entre crochets\
+,coordonnées de l'atome entre crochets\
+,symbole de l'atome (défaut vide)\
+0,1 si on affiche le symbole de l'atome\
+black,couleur
+
+slib_title=
+
+slib_out=ligne d'instruction du code latex du dessin de l'atome \
+  avec les objets positionnés autour à utiliser avec la command latex
+
+slib_example=[N,-1;E,2;O,1],[134.7,23.5],C,0\
+  [N,-1;E,2;O,1],[134.7,23.5],C,1\
+  [E,-1],[5.0,-2.0],C,0\
+  [N,2;O,2;S,2],[11,-2],O,0
+
+!exit
+
+:proc
+
+!reset slib_out slib_line slib_lew[10]
+
+!distribute items $wims_read_parm into slib_deco, slib_atomxy, slib_symbol,slib_printsymbol,slib_color
+!default slib_symbol=
+!default slib_printsymbol=0
+!default slib_color=black
+!default slib_atomxy=NULL
+!set slib_deco=!declosing $slib_deco
+!set slib_deco=!replace internal ; by , in $slib_deco
+!set slib_decocnt=!itemcnt $slib_deco
+!set slib_atomxy=!declosing $slib_atomxy
+!! HTML symbol
+slib_out=!append semicolon strokecolor $slib_color to $slib_out
+!for slib_dec=1 to $slib_decocnt step 2
+  !! -1=lacune, number>0=electrons, 2=doublets
+  !set slib_numb=$(slib_deco[$[$slib_dec+1]])
+  !set slib_deco_=!position item $(slib_deco[$slib_dec]) in O,N,E,S
+  !set slib_lew_n=slib_lew$[2*$slib_deco_],slib_lew$[2*$slib_deco_+1]
+  !if $slib_numb=-1
+    !if $(slib_deco[$slib_dec]) iswordof O E
+      !distribute item \vrectangle into $(slib_lew_n[2])
+    !else
+      !distribute item \hrectangle into $(slib_lew_n[2])
+    !endif
+  !else
+    !if $slib_numb=1
+      !distribute item \bullet into $(slib_lew_n[1])
+    !else
+      !distribute item \bullet,\bullet into $(slib_lew_n[1]),$(slib_lew_n[2])
+    !endif
+  !endif
+!next
+!if $(slib_lew4)$(slib_lew5)=$empty
+  slib_lew4=\phantom{\bullet}
+  slib_lew5=\phantom{\bullet}
+!endif
+!if $(slib_lew2)$(slib_lew3)=$empty
+  slib_lew2=\phantom{\bullet}
+  slib_lew3=\phantom{\bullet}
+!endif
+!if $(slib_lew6)$(slib_lew7)=$empty
+  slib_lew6=\phantom{\bullet}
+  slib_lew7=\phantom{\bullet}
+!endif
+!if $(slib_lew8)$(slib_lew9)=$empty
+  slib_lew8=\phantom{\bullet}
+  slib_lew9=\phantom{\bullet}
+!endif
+
+!set slib_lew1=$slib_symbol
+!if $slib_printsymbol == 0
+  !set slib_lew1=\phantom{$slib_lew1}
+!endif
+!if $slib_atomxy!=NULL
+  slib_out=centered\
+latex $slib_atomxy,\lewis{$slib_lew1}{$slib_lew2}{$slib_lew3}{$slib_lew4}{$slib_lew5}{$slib_lew6}{$slib_lew7}{$slib_lew8}{$slib_lew9}
+!else
+  slib_out=\lewis{$slib_lew1}{$slib_lew2}{$slib_lew3}{$slib_lew4}{$slib_lew5}{$slib_lew6}{$slib_lew7}{$slib_lew8}{$slib_lew9}
+!endif

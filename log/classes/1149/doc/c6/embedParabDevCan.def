@@ -1,0 +1,72 @@
+!set titb=Obtenir la forme canonique à partir de la forme développée
+!set keyw=
+!set datm=20210501
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+
+!set tmp0=!randitem -1,1
+
+!set tmp1=!randitem 2,3,4,5
+
+!set m_a=$[rint($(tmp0)*$(tmp1))]
+
+!set tmp0=!randitem -1,1
+
+!set tmp1=!randitem 2,3,4,5
+
+!set m_b=$[rint($(tmp0)*$(tmp1))]
+
+!set tmp0=!randitem -1,1
+
+!set tmp1=!randitem 2,3,4,5
+
+!set m_c=$[rint($(tmp0)*$(tmp1))]
+
+!set t_=!rawmath $m_b/$m_a 
+!set m_b1=!exec pari print($t_)
+
+!set t_=!rawmath $m_b1/2 
+!set m_b2=!exec pari print($t_)
+
+!set t_=!rawmath $m_b2*$m_b2 
+!set m_b3=!exec pari print($t_)
+
+!set t_=!rawmath $m_c-$m_a*$m_b3 
+!set m_c1=!exec pari print($t_)
+
+<p class="wimscenter">
+
+!insmath f(x) = \a*x^2 + \b*x + \c
+<br>
+
+!insmath f(x) = \a*(x^2 + \b1*x) + \c
+<br>
+
+!insmath f(x) = \a*(x^2 + 2*(\b2*x)) + \c
+
+</p>
+Or 
+!insmath x^2 + 2*(\b2*x)
+ est le début du développement de 
+!insmath (x + \b2)^2 = x^2 + 2*(\b2*x) + \b3
+.
+On introduit donc $m_b3 pour compléter l'expression en l'ajoutant et en le retranchant &#58;
+<p class="wimscenter">
+
+!insmath \begin{matrix} f(x) &=& \a*(x^2 + 2*(\b2*x) + \b3 - \b3) + \c\\ f(x) &=& \a*(x^2 + 2*(\b2*x) + \b3) - \a*\b3 + \c\\ f(x) &=& \a*(x + \b2)^2 + \c1 \end{matrix}
+
+</p>
+On a ainsi obtenu la forme canonique de 
+!insmath f(x)
+.
+

@@ -1,0 +1,15 @@
+!goto $wims_read_parm
+
+:bad_class
+Vous n'êtes pas dans une classe.
+!exit
+
+:no_seq
+Aucune séquence pédagogique définie.
+!exit
+
+:badallowshare
+  La variable technique que vous souhaitez utiliser n'est pas disponible dans toutes les classes en partage de ressources avec votre
+  classe. 
+  Vous ne pouvez donc pas propager ces réglages aux autres classes en partage.
+!exit

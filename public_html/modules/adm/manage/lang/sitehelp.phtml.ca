@@ -1,0 +1,13 @@
+<p>
+La definició de les estacions de treball pot fer-se mitjançant el nom de servidor o 
+mitjançant la IP. Però recomanem vivament que feu servir nombres IP sempre que 
+sigui possible, els noms de servidor no són tan segurs.
+<p>
+També pot definir servidors de la forma global habitual:  <span class="tt">127.0.0.</span>
+(no <span class="tt">127.0.0</span>) val per 127.0.0.1 a 127.0.0.255, i
+<span class="tt">.unice.fr</span> (però no <span class="tt">unice.fr</span>) ccorrespon a 
+qualsevol màquina del domini  <em>unice.fr</em>.
+També pot definir diversos servidors separant les definicions amb espais en blanc.
+<p>
+Finalment, la paraula <span class="tt">all</span> (tots) correspon a qualsevol màquina de 
+el món. Això és extremadament insegur; si ho escull, serà el seu problema.

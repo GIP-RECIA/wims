@@ -1,0 +1,70 @@
+!!! Rg$iii contains the data for questions embeddings of
+!!! exercise $iii (one line for each question)
+!!! ans_$iii contains the data for the answer
+!set prompt_empty=.............
+
+!advance prcnt
+!if $prcnt>6 and $wims_user!=supervisor
+  error=too_many_print
+  printing=yes
+  !exit
+!endif
+
+printmax=40
+!reset savedrawcnt print
+printing=yes
+exo=!listintersect $exo and $exolist
+!default exo=$defaultlist
+wims_intro_parm=$exo
+!default exo=$exolist
+exo_cnt=!itemcnt $exo
+!!at least 1 exercise of each type
+!if $random=0
+  exo_=!makelist x for x=1 to $exo_cnt
+!else
+  exo_=!shuffle $exo_cnt
+!endif
+qnum1=$[$qnum-$exo_cnt]
+!if $qnum1 >= 1
+  exo__=!randint 1,$exo_cnt repeat $qnum1
+  exo_=$exo_,$exo__
+!endif
+exo=$(exo[$(exo_)])
+exo=!item 1 to $printmax of $exo
+n=!itemcnt $exo
+
+!if $n<1
+  !exit
+!endif
+
+M=0
+m_step=1
+test_print=0
+!if $wims_developer!= or $wims_user=supervisor
+  latex_exists=0
+  !readproc oef/latex.proc begin
+  !readproc oef/latex.proc header
+!else
+  latex_exists=-1
+!endif
+
+!for iii=1 to $n
+  question_$iii=
+  e_=!item $iii of $exo
+  name_$iii=$e_
+  !if $lang_choice!=$empty
+    title_$iii=!defof title_$lang_choice in $(class_header)def/$e_.def
+  !else
+    title_$iii=!defof title_$lang in $(class_header)def/$e_.def
+  !endif
+  !if $(title_$iii)=$empty
+    title_$iii=!defof title in $(class_header)def/$e_.def
+  !endif
+  !reset question testcondition format
+  thisexo=$e_
+  !readproc oef/imagedir.proc
+  !readproc oef/printanalysis.proc
+!next
+!if $latex_exists>=1
+  !readproc oef/latex.proc end
+!endif

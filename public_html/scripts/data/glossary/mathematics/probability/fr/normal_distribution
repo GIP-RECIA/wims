@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Loi normale
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soient \(m) et \(\ \sigma) deux réels avec \(\sigma > 0).
+La <strong>loi normale</strong> d'espérance \(m) et d'écart-type
+\(\ \sigma\), notée \(\mathcal{N}(m,\sigma^2)),
+est la loi continue sur \(\RR) de densité :
+
+<div class="wimscenter">
+\(x\mapsto\frac{1}{\sigma\sqrt{2\pi}}\exp(-\frac{(x-m)^2}{2\sigma^2}))
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Espérance</th><th>Variance</th><th>Fonction caractéristique</th></tr>
+<tr><td>\(\m)</td><td>\(\sigma^2)</td><td>\(\exp(i m t-\frac{1}{2}\sigma^2 t^2))</td></tr></table>
+
+<p>
+Si \(X) suit la loi \(\mathcal{N}(0,1)), alors \(Y=m + \sigma X)
+suit la loi \(\mathcal{N}(m,\sigma^2)).
+</p>

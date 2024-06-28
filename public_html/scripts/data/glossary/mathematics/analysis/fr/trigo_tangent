@@ -1,0 +1,31 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_title=Tangente d'un angle aigu
+!set gl_keywords=trigonometry,triangles
+!set gl_level=H3 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit  \(ABC\) un triangle rectangle en \(\mathrm{A}\).<br>
+  La <strong>tangente</strong> de l'angle \(\widehat{ABC}\), notée
+  \(tan\left(\widehat{ABC}\right)\), est définie par
+  <span style="white-space:nowrap">
+  \(tan\left(\widehat{ABC}\right) = \frac{AC}{AB}\).</span>
+</div>
+<div class="wims_rem">
+<h4>Remarque</h4>
+\(AC\) est la longueur du côté opposé à l'angle \(\widehat{ABC}\) et \(AB\) est
+la longueur du côté adjacent à l'angle \(\widehat{ABC}\) dans le triangle \(ABC\)
+rectangle en <span style="white-space:nowrap">\(\mathrm{A}\).</span>
+</div>
+<div class="wims_thm">
+  <h4>Théorème</h4>
+  Soit \(ABC\) un triangle rectangle en \(\mathrm{A}\).
+<div class="wimscenter">
+  \(tan\left(\widehat{ABC}\right) =
+  \frac{sin\left(\widehat{ABC}\right)}{cos\left(\widehat{ABC}\right)}\).
+</div>
+</div>

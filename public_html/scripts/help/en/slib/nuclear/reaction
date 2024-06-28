@@ -1,0 +1,8 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Typesetting nuclear reactions from plain text formulas
+slib_parms=1\
+, The formula is written in plain text. <ul><li>Nucleides can be written like U238 for the isotope 238 of uranium, or H3^+ for the tritum kernel</li><li>Some symbols are recognized, le 'n' for neutron, 'neutrino' for electronic neutrino, 'e-', 'e+' for beta rays (respectively the particule and antiparticule), 'energy', ...</li><li>The plus sign surrounded by spaces has its usual meaning</li><li>The symbol '->' is used for the reaction sign.</li></ul>
+
+slib_out= The LaTeX source to typeset properly the nuclear data given as plain text.
+slib_comment=Some particules are not yet implemented.

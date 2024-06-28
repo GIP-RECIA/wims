@@ -1,0 +1,12 @@
+size 400,400
+xrange -1,10
+yrange -2,14
+legend legend Z:legend A:this is B:C:D:E:F:G:H:X
+legendcolors green:red:orange:lightblue:cyan:gold:purple:darkred:yellow:lightgreen
+xaxis 0:Z:1:A:2:B:3:C:4:D:5:E:6:F:7:G:8:H:9:X
+noyaxis
+precision 1
+fontfamily bold 15px Arial
+grid 1,1,white
+barchart 0:5.5:green:2:5.5:red:4:6.5:orange:6:8:lightblue:8:11:cyan:1:5.5:gold:3:9:purple:5:4:darkred:7:7:yellow:9:1:lightgreen
+mouse red,14

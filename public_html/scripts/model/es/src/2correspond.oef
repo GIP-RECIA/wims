@@ -1,0 +1,138 @@
+type=classify
+textarea="data explain"
+iEdit="explain"
+
+:Establecer la correspondencia entre pares de objetos.
+
+Se presentan pares de objetos en una tabla con dos columnas. se pide
+establecer la correspondencia correcta entre cada par de objetos,
+con la ayuda del ratón.
+<p>
+Para construir un ejercicio con este modelo, simplemente escriba la lista de
+pares de objetos.
+</p><p>
+Con una ligera modificación, una variante de este ejercicio puede incluir objetos de
+tipo imagen.
+</p>
+<p class="wims_credits">Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Quite el encabezado anterior si destruye las etiquetas del modelo, es decir,
+las líneas que comienzan con ':'.
+De lo contrario, el ejercicio podría no ser reconocido por Createxo.
+
+:%%%%%%%% Ejemplo de parámetros a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Correspondencia}
+:\author{Gang, Xiao}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Número de (pares de) elementos que se han de asociar
+\integer{tot=6}
+
+:El tamaño vertical de las etiquetas en píxeles
+Piense en las personas que tienen que aumentar el tamaño de la fuente de sus navegadores para ver bien!
+No haga que las etiquetas sean demasiado pequeñas.
+\integer{sizev=50}
+
+:El tamaño horizontal de las etiquetas de la izquierda en píxeles
+\integer{sizel=250}
+
+:El tamaño horizontal de las etiquetas de la derecha en píxeles
+\integer{sizer=250}
+
+:Feedback displayed in all cases after the learner's response.
+\text{feedback_general=}
+
+:El enunciado del ejercicio
+$embraced_randitem
+\text{explain=Empareja los países y sus capitales.}
+
+:Datos principales
+Escriba un par de elementos correspondientes por línea, separados por una coma.
+$embraced_randitem
+\matrix{data=
+Alemania, Berlín
+Australia, Canberra
+Canadá, Ottawa
+China, Pekín
+España, Madrid
+Estados Unidos, Washington
+Francia, París
+Gran Bretaña, Londres
+India, Nueva Delhi
+Indonesia, Jacarta
+Italia, Roma
+Japon, Tokio
+Rusia, Moscú
+}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Nada que modificar antes del enunciado %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\integer{datacnt=rows(\data)}
+\integer{tot=\tot>\datacnt?\datacnt}
+
+\text{shuf=item(1..\tot,shuffle(\datacnt))}
+\text{data=row(\shuf,\data)}
+\text{data=\accolade=1? wims(embraced randitem \data)}
+\text{datal=column(1,\data)}
+\text{datar=column(2,\data)}
+\text{size=\sizev[]x\sizel[]x\sizer}
+\text{explain=\accolade=1? wims(embraced randitem \explain)}
+
+# For Latex version
+\text{shuf2=shuffle(\tot)}
+\text{latexdatar=\datar[\shuf2]}
+\real{latexsizel=max(1,min(floor(\sizel/5)/10,6))}
+\real{latexsizer=max(1,min(floor(\sizer/5)/10,6))}
+\text{latexsrc=\begin{tabular}{p{\latexsizel cm}lp{1cm}lp{\latexsizer cm}}}
+\for{lk=1 to \tot}{
+  \text{latexsrc=\latexsrc \datal[\lk] &\(\bullet\) &&\(\bullet\) & \latexdatar[\lk]\\ [1.5ex]  }
+}
+\text{latexsrc=\latexsrc \\
+\end{tabular}}
+\text{latexsol=\begin{tabular}{p{\latexsizel cm}lp{\latexsizer cm}}}
+\for{lk=1 to \tot}{
+  \text{latexsol=\latexsol \datal[\lk] &\(\longleftrightarrow \)& \datar[\lk]\\ [1.5ex] }
+}
+\text{latexsol=\latexsol\\
+\end{tabular}}
+
+:%%%%%%%%%%%%% Ahora el enunciado en HTML. %%%%%%%%%%%%%%%%%%%%
+
+::No es necesario modificar esto en general.
+
+El comando para mostrar la tabla de correspondencia, es \embed{reply 1,\size}
+
+\statement{<div class="instructions">\explain</div>
+<div class="wimscenter">
+\embed{reply 1,\size}
+</div>
+}
+
+:%%%%%%%%%%%%% Nada que modificar después. %%%%%%%%%%%%%%%%%5
+\answer{Respuesta}{\datal;\datar}{type=correspond}
+\feedback{\feedback_general notsametext }{<p class="feedback">\feedback_general</p>}
+
+# Latex version
+\latex{
+\begin{statement}
+\explain
+\begin{center}
+\latexsrc
+\end{center}
+\end{statement}
+\begin{solution}\
+\begin{center}
+\latexsol
+\end{center}
+\end{solution}
+}

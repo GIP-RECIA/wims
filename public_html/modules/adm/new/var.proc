@@ -1,0 +1,20 @@
+!read adm/language lang/names.phtml
+
+wims_prefix=class user tmp
+!if robot isin $session
+  job=
+  !exit
+!endif
+
+limit=300
+syslimit=400
+joblist=new,modif,sys,depr,resume
+!bound job within $joblist default resume
+!read tabletheme
+!set w_=!replace internal /wims.cgi by in $wims_ref_name
+!set w_=!replace internal /wims.html by in $w_
+!set w_=!replace internal http: by feed: in $w_
+!set w_=!replace internal https: by feed: in $w_
+!read $job.proc
+
+wims_module_log=$cmd: $job

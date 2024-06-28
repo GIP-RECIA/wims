@@ -1,0 +1,8 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fillcolor red
+linewidth 2
+lattice -10,-10,0,1,1,1,10,10,red
+fillcolor blue
+lattice 10,-10,0,1,-1,1,10,10,blue

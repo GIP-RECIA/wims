@@ -1,0 +1,71 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=complex_number,exponential
+!set gl_title=Forme exponentielle d'un nombre complexe non nul
+!set gl_level=H6 Générale&nbsp;Experte, H6 STI2D&nbsp;Spécialité
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition 1</h4>
+  Soit \(\displaystyle{\theta}\) un nombre réel. On pose&nbsp;:
+<div class="wimscenter">
+\(\mathrm{e}^{\mathrm{i} \theta}=cos \theta +\mathrm{i}\, sin \theta\).
+</div>
+</div>
+
+<div class="wims_thm"><h4>Théorème 1</h4>
+Soit \(\theta_1\) et \(\theta_2\) deux nombres réels. Alors&nbsp;:
+<div class="wimscenter">
+\(\mathrm{e}^{\mathrm{i} (\theta_1+\theta_2)}=\mathrm{e}^{\mathrm{i} \theta_1}
+\mathrm{e}^{\mathrm{i} \theta_2}\).
+</div>
+</div>
+
+<div class="wims_defn"> <h4>Définition 2</h4>
+Soit \(r\) un nombre réel strictement positif et \(\displaystyle{\theta}\) un
+ nombre réel.
+<br>
+Soit \(z\) le nombre complexe de module \(r\) et d'argument \(\displaystyle{\theta}\).
+<br>
+Une <strong>forme exponentielle</strong> de \(z\) est
+\(r\mathrm{e}^{\mathrm{i} \theta}\).
+</div>
+
+<div class="wims_thm"> <h4>Théorème 2</h4>
+Un complexe non nul \(z\) possède une infinité de formes exponentielles.<br>
+Si \(r\mathrm{e}^{\mathrm{i} \theta}\) et \(r^'\mathrm{e}^{\mathrm{i} \theta^'}\)
+ sont deux formes exponentielles de <span style="white-space:nowrap">\(z\),</span>
+  alors \(r=r^'\) et il existe un entier relatif \(k\) tel que
+   <span style="white-space:nowrap">\(\theta^'=\theta +2k\pi\).</span>
+</div>
+
+ <div class="wims_thm"> <h4>Théorème 3</h4>
+  Soit \(z\), \(z_1\) et \(z_2\)  trois nombres complexes non nuls de formes
+   exponentielles respectives
+    <span style="white-space:nowrap">\(r\mathrm{e}^{\mathrm{i} \theta}\),</span>
+     \(r_1\mathrm{e}^{\mathrm{i} \theta_1}\) et
+      <span style="white-space:nowrap">\(r_2\mathrm{e}^{\mathrm{i} \theta_2}\).</span>
+       Alors&nbsp;:
+ <ul>
+  <li>
+  \(\frac{1}{z}=\frac{1}{r} \mathrm{e}^{-\mathrm{i} \theta}\)
+  </li>
+  <li>
+  \(z_1 z_2 = r_1 r_2\mathrm{e}^{\mathrm{i} (\theta_1+\theta_2)}\)
+  </li>
+  <li>
+  \(\frac{z_1}{z_2}=\frac{r_1}{r_2}\mathrm{e}^{\mathrm{i} (\theta_1-\theta_2)}\)
+  </li>
+  <li>
+  pour tout entier relatif \(n\), \(z^n=r^n\mathrm{e}^{\mathrm{i} n \theta}\)
+  </li>
+  <li>
+  \(\bar z = r\mathrm{e}^{\mathrm{i} -\theta}\)
+  </li>
+  <li>
+  \(-z=r\mathrm{e}^{\mathrm{i} (\theta+\pi)}\)
+  </li>
+</ul>
+</div>

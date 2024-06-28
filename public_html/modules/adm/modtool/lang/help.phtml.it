@@ -1,0 +1,59 @@
+!if $special_parm!=$empty
+ !read help/$special_parm.phtml
+ !goto end
+!endif
+
+!if $login=$empty
+ <p>
+ Questo strumento permette la creazione e lo sviluppo di moduli WIMS.
+ </p><p>
+ È cioè possibile progettare esercizi sfruttando appieno le 
+ potenzialità del linguaggio di programmazione di WIMS (in confronto gli 
+ gli esercizi OEF sono più facili da scrivere ma hanno limiti, si veda 
+ per esempio la documentazione in
+ <a target="wims_help" href="wims.cgi?module=adm/createxo&+cmd=help&+special_parm=oef&+session=$wims_session">$wims_name_docoef</a>
+ ) o creare sofisticati strumenti di calcolo. Vanno creati utilizzando
+ il linguaggio WIMS, in particolare la struttura e i comandi descritti nella
+ <a target="wims_help" href="wims.cgi?module=help/wimsdoc.en">$wims_name_doctec</a>
+.
+ </p><p>
+ Se siete interessati, scrivete al 
+ !mailurl $wims_site_manager responsabile di questo server WIMS \
+WIMS Modtool id
+ chiedendo un account specifico per lavorare con questo strumento.
+ </p>
+ !exit
+!endif
+
+!if $mod=$empty
+<p>
+ Per lavorare su un modulo occorre come prima cosa crearlo. Per creare un
+ nuovo modolo, cliccate sul link corrispondente e inserite i dati 
+ richiesti.
+ </p>
+!endif
+<p>
+Prima di procedere consultate la 
+ <a target="wims_help" href="wims.cgi?module=help/wimsdoc.en">$wims_name_doctec</a>
+ in cui è descritta la struttura di un modulo WIMS e la sintassi dei comandi 
+ utilizzabili.
+</p><p>
+A questo link è invece disponibile la 
+<a target="wims_help" href="wims.cgi?module=adm/createxo&+cmd=help&+special_parm=oef&+session=$wims_session">$wims_name_docoef</a>
+</p><p>
+Alcuni consigli:
+</p>
+<ol>
+<li>In order to debug a file, you can place a line
+<pre>
+$!debug ...
+</pre>
+in that file, where ... can be any text string. When you test your module, the
+execution will stop at this line, with the content of ... shown to you. If
+... includes variables, the latter will be substituted according to the usual
+WIMS variable substitution rules.
+
+</li></ol>
+
+:end
+

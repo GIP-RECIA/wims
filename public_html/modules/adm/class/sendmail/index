@@ -1,0 +1,22 @@
+title=Send mails
+description=
+author=Bernadette, Perrin-Riou
+address=bpr@math.u-psud.fr
+copyright=&copy; 2009- (<a href="COPYING">GNU GPL</a>) 2009
+version=2.03
+wims_version=4.23c
+language=$lang
+category=adm
+level=
+help=popup
+
+maintainer=WIMSDEV
+maintainer_address=wimsdev@groupes.renater.fr
+
+title_fr=Messagerie
+title_nl=Verstuur Email
+title_en=Send Email
+title_es=Envío de correos electrónicos agrupados
+title_it=Invia email
+title_cn=·¢µçÓÊ
+title_ca=Enviar correu electrònic

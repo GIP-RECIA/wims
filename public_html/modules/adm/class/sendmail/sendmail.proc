@@ -1,0 +1,109 @@
+
+cnt_user=!itemcnt $sending_mail
+!reset username teachername login teachername
+
+!! don't send supervisor mail in case of wims_mail_hidden=yes
+!if $wims_mail_hidden=yes
+  sender=$empty
+  !if $wims_superclass=$empty
+    localclass=$wims_class
+  !else
+    localclass=$wims_superclass
+  !endif
+  localtype=authparticipant
+  noreply1=\
+\
+$name_noreply
+  !if $wims_realuser=supervisor
+    localtype=authsupervisor
+    noreply2=\
+\
+$name_noreply
+  !else
+    noreply2=$noreply1
+  !endif
+!else
+  sender=$supervisormail
+  noreply1=$empty
+  noreply2=$empty
+!endif
+
+!for l_ =1 to $cnt_user
+  u=!record $l_ of wimshome/sessions/$wims_session/.userlist_mail
+  username=!append item $(u[1]) $(u[2]) to $username
+  login=!append item $(u[3]) to $login
+!mailto $(u[4])\
+$sender\
+[WIMS $wims_classname] $save_subject\
+***\
+$name_sendby ($(name_suptype[$supervisortype]))\
+***\
+$save_msg\
+$noreply1\
+
+  !reset u
+!next l_
+
+
+!! --------- preparing msg for teacher and supervisor
+nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+!if $nbuser>$cnt
+  msgmod=$save_msg\
+<br>\
+#######<br>\
+$(name_sendto[1]) : $username<br>\
+#######<br>\
+<br>
+
+!else
+  msgmod=$save_msg
+!endif
+
+!if $save_sendotherteacher=1
+  !! ----------- send copie msg to teacher of the class
+  cnt_teacher=!recordcnt wimshome/sessions/$wims_session/.userteacher_mail
+  !for l_ =1 to $cnt_teacher
+    u=!record $l_ of wimshome/sessions/$wims_session/.userteacher_mail
+    login=!append item $(u[3]) to $login
+    teachername=!append item $(u[1]) $(u[2]) to $teachername
+    !mailto $(u[4])\
+$sender\
+[WIMS $wims_classname] $save_subject\
+***\
+$name_sendby ($(name_suptype[$supervisortype]))\
+***\
+$msgmod\
+$noreply1\
+
+
+    !reset u
+  !next l_
+!endif
+
+!if $save_selfsend=1
+  !! ----------- send copie msg to supervisor of the class
+  !if $cnt_teacher>0 and $save_sendotherteacher=1
+    msgmod=$save_msg\
+<br><br>\
+#######<br>\
+$(name_sendto[2]) : $teachername<br>\
+#######<br>
+
+  !endif
+  login=!append item supervisor to $login
+    !mailto $supervisormail\
+$sender\
+[WIMS $wims_classname] $save_subject\
+***\
+$name_sendby ($(name_suptype[$supervisortype]))\
+***\
+$msgmod\
+$noreply2\
+
+!endif
+
+!set wims_module_log=class $class: sendmail
+date=!translate : to . in $wims_now
+!appendfile wimshome/log/classes/$wims_class/.log $date $httpd_REMOTE_ADDR	$supervisormail send mail to $login
+
+!reset sending_mail method select_user loginlist

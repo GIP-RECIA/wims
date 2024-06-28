@@ -1,0 +1,72 @@
+!set wims_backslash_insmath=yes
+<h2 class="wimscenter">Calcolo del punteggio di un esercizio</h2>
+<p>
+Il punteggio assegnato a ogni esercizio è un numero tra 0 e 10. Questo calcolo viene effettuato solamente
+al momento dell'analisi della riposta dell'esercizio. au moment de l'analyse des réponses de l'exercice. Questo calcolo utilizza sia i pesi 
+attribuiti a ciascun comando <span class="tt wims_code_words">\answer</span>
+ e <span class="tt wims_code_words">\condition</span> ma anche il livello 
+di severità scelto dal docnete al momento della configurazione dell'esercizio.
+</p>  
+<p>
+Consideriamo un esercizio che ha più campi di risposta analizzate con certe
+condizioni ma non ha passi, cioè non utilizza i comandi
+<span class="tt wims_code_words">\steps</span> e
+<span class="tt wims_code_words">\conditions</span>
+</p>
+Allora indicando con 
+<ul><li>
+\(I\) l'insieme dei numeri delle riposte analizzate automaticamente presenti
+nell'enunciato
+</li><li>
+ \(C\)  l'insieme dei numeri delle condizioni utilizzate per valutare
+ la correttezza delle rispostse (cioè i numero dichiarati con
+ il comando <span class="tt wims_code_words">\conditions</span>, in mancanza
+ del quale i numeri di tutte le condizioni)
+</li><li> \(w_i\) il peso associato al campo di risposta \(i\) oppure alla condizione
+\(i\) utilizando l'opzione <span class="tt wims_code_words">weight</span> 
+(di default, \(w_i=1\) se l'opzione <span class="tt wims_code_words">weight</span> 
+non è presente).
+</li><li>\(x_i\) il punteggio ottenuto relativo al campo di risposta \(i\) 
+(0 se la risposta è errata, 1 se corretta, un numero tra 0 e 1 se la
+risposta è parzialmente corretta).
+</li></ul>
+Il punteggio finale per l'esercizio è calcolato mediante la formula seguente
+  \(10(\frac{\mbox{scoregot}}{scoreshould})^\mbox{puis}\) dove: 
+<ul><li>
+  \(\mbox{scoreshould} =\sum_{i\in I}w_i+\sum_{c\in C}w_c\) 
+</li><li>
+ \(\mbox{scoregot} =\sum_{i\in I}w_i x_i+\sum_{c\in C}w_c x_c\)
+</li><li>
+ \(\mbox{puis}\in\{1, 1.5,...,4.5, 5\}\) in base al livello di severità scelto
+(\(\mbox{puis} = 1\) se il livello di severità è 1)
+</li></ul>
+Il numero ottenuto è arrotondato in modo da avere al massimo una cifra decimale.
+ 
+<h3>Caso di una risposta analizzata unicamente tramite condizioni</h3>  
+Se si sceglie di non definire una risposta corretta predefinita per il comando 
+<span class="tt wims_code_words">\answer</span> in modo che l'analisi della riposta
+ sia effettuata totalmente tramite condizioni, allora il punteggo per questa
+istruzione <span class="tt wims_code_words">\answer</span> è 0; solo i pesi
+ delle condizioni definite per l'analisi della correttezza della risposta saranno presi in considerazione.
+
+<h3>Caso di un esercizio che utilizza i comandi
+<span class="tt wims_code_words">\steps</span> o 
+<span class="tt wims_code_words">\nextstep</span></h3>  
+In questo caso il numero di comandi <span class="tt wims_code_words">\answer</span> definiti
+ nell'esercizio può essere maggiore del numero di campi di risposte
+ effettivamente inseriti nell'enunciato.
+<ul><li>
+In un esercizio che utilizza il comando <span class="tt wims_code_words">\steps</span>,
+ l'insieme \(I\) contiene allora i numeri \(i\) per i quali 
+<span class="tt wims_code_words">replyi</span> è dichiarato in 
+<span class="tt wims_code_words">\steps.</span>
+</li><li>
+In un esercizio a passi che utilizza il comando
+<span class="tt wims_code_words">\nextstep</span>, 
+l'insieme \(I\) contiene esclusivamente i numeri dei dei campi delle riposte effettivamente
+ mostrati allo studente prima del termine dell'esercizio (in altre parole, i
+ numeri \(i\) per i quali <span class="tt wims_code_words">replyi</span> è
+ incluso in una istruzione <span class="tt wims_code_words">\nexstep</span> fino al termine
+ dell'esercizio.
+</li></ul> Analogamente l'insieme \(C\) include le condizioni
+effettivamente considerate per il calcolo del punteggio dell'esercizio.

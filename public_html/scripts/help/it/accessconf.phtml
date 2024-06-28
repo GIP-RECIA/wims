@@ -1,0 +1,110 @@
+<h2 class="wimscenter">Restrizioni accesso</h2>
+
+<p>
+È possibile restringere l'accesso a alcuni elementi del corso con istruzioni
+che vengono eseguite riga per riga nell'ordine indicato.
+Le restrizioni riguardano solo i moduli pedagogici e non i moduli
+amministrativi.
+Le righe che comincaino con <span class="tt wims_code_words">#</span> sono commenti.
+</p><p>
+Ogni riga di istruzioni ha come formato
+</p>
+<pre>
+<span class="tt wims_code_words">risorsa: condizioni postazione/orario</span>
+</pre>
+oppure
+<pre>
+<span class="tt wims_code_words">risorsa:! condizioni postazione/orario</span>
+</pre>
+<p>
+Come risorsa si può indicare una lista di parole chiave. Le possibili parole
+chiave sono elencate nella tabella seguente.
+Se la parola chiave è preceduta da
+<span class="tt wims_code_words">non</span> allora se ne inverte il
+significato.
+</p>
+$table_header
+$table_tr<th>parola chiave<th>significato</th></tr>
+$table_tr<td class="tt wims_code_words">class</td><td>Richiesta per la risorsa all'interno di un corso virtuale.</td></tr>
+$table_tr<td class="tt wims_code_words">com</td><td>Il modulo richiesto si trova sotto com/.</td></tr>
+$table_tr<td class="tt wims_code_words">document</td><td>Il modulo richiesto è un documento.</td></tr>
+$table_tr<td class="tt wims_code_words">exercise</td><td>Il modulo richiesto è un esercizio.</td></tr>
+$table_tr<td class="tt wims_code_words">hint</td><td>La risorsa è un suggerimento in un esercizio.</td></tr>
+$table_tr<td class="tt wims_code_words">local</td><td>Il modulo richiesto è nello spazio local/.</td></tr>
+$table_tr<td class="tt wims_code_words">recreation</td><td>Il modulo richiesto è un gioco.</td></tr>
+$table_tr<td class="tt wims_code_words">tool</td><td>Il modulo richiesto è uno strumento.</td></tr>
+$table_end
+
+!set date=!char 1 to 8 of $wims_now
+!set year=!char 1 to 4 of $wims_now
+<div>
+Le condizioni sulle postazioni possono essere in una qualsiasi forma ammessa per un indirizzo http.
+Le condizioni sull'orario devono essere nella forma
+<code>&gt;aaaammdd.hh:mm</code> e/o <code>&lt;aaaammdd.hh:mm</code>,
+per esempio
+<pre>&gt;$date.00:00 &lt;$date.12:59</pre>
+È possibile utilizzare un carattere jolly (<span class="tt wims_code_words">*</span>)
+in una qualsiasi delle cifre della data.
+L'accesso è impedito (se le condizioni su postazioni e/o orario sono precedute da
+  <span class="tt wims_code_words">!</span>) o permesso (senza
+  <span class="tt wims_code_words">!</span>)
+  secondo la prima riga che soddisfa tutti i criteri:
+</div>
+<ul><li>
+  l'IP della postazione, se presente;
+</li><li>
+  l'orario, se presente;
+</li><li>
+  ogni condizione sulla risorsa (corrispondente a un modulo non amministrativo)
+  non precedura da <span class="tt wims_code_words">non</span>
+  deve essere tra le proprietà dell'attività;
+</li><li>
+  ogni condizione sulla risorsa (corrispondente a un modulo non amministrativo)
+  preceduto da <span class="tt">non</span>
+  non deve essere tra le proprietà dell'attività.
+</li></ul>
+!!Si le premier caractère des conditions d'hôtes ou de temps est
+!!<span class="tt wims_code_words">!</span>,
+!!l'hôte ou le temps remplissant ces conditions se verra refusé l'accès
+!!(pour les ressources remplissant ces conditions).
+!!Sinon, l'accès n'est autorisé que sous les conditions données
+!!et les lignes suivantes dans la définition des
+!!restrictions seront ignorées pour celles remplissant les conditions.
+
+<hr>
+
+!read help/hosts.phtml
+
+<hr>
+
+Alcuni esempi.
+<div>
+# Impedire l'accesso agli strumenti dalle postazioni 134.59.102.*
+<pre>
+<span class="tt wims_code_words">tool:! 134.59.102.</span>
+</pre></div><div>
+# Impedire la visualizzazione dei suggermienti a partire da localhost.
+<pre>
+<span class="tt wims_code_words">hint:! 127.0.0.1</span>
+</pre></div><div>
+# Chi si collega da wanadoo.fr con un accesso anonimo non può accedere ai giochi.
+<pre>
+<span class="tt wims_code_words">nonclass recreation:! .wanadoo.fr</span>
+</pre></div><div>
+# Il lavoro nel corso è impedito da localhost nella giornata di capodanno del $year.
+<pre>
+<span class="tt wims_code_words">class:! 127.0.0.1 &gt;$(year)0101.00:00 &lt;$(year)0101.23:59</span>
+</pre>
+</div><div>
+# Il lavoro nel corso è impedito dalle ore 22 alle ore 6 di tutti i mesi di ottobre.
+<pre>
+<span class="tt wims_code_words">class:! &gt;****10**.22:00 &lt;****10**.23:59</span>
+<span class="tt wims_code_words">class:! &gt;****10**.00:00 &lt;****10**.06:00</span>
+</pre>
+# Il lavoro nel corso è impedito dalle ore 22 alle ore 6 di tutti i mesi di ottobre.
+(scrittura alternativa).
+<pre>
+<span class="tt wims_code_words">class:&gt;****10**.06:00 &lt;****10**.22:00</span>
+<span class="tt wims_code_words">class:! &gt;****10**.00:00 &lt;****10**.23:59</span>
+</pre>
+</div>

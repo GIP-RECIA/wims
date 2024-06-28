@@ -1,0 +1,26 @@
+Relazioni
+
+??, 2018
+1
+U1
+mathematics, elementary_mathematics
+order,congruence
+Marina, Cazzola
+wims@unimib.it
+
+
+:U1/graph/graphmod.fr
+exo=3&niv=1
+10
+1
+Relazione divisore/multiplo
+Costruisci il diagramma della relazione di divisibilità (cfr. esempio 5.4)
+
+
+module=adm/doc&doc=c1&+block=ex6_13&cmd=new&job=read,10,0
+:U1/arithmetic/modarith.en
+exo=classes&confparm1=1&confparm2=3&confparm3=2&qnum=1&scoredelay=&seedrepeat=2&intro_expert=yes&intro_expow=1&intro_sepow=1&intro_precw=0.9&intro_good=2&intro_sol=2&intro_feed=1&intro_hint=1&intro_qcmpresent=4&intro_check=2
+10
+1
+Congruenza modulo n
+Individuare la classe di equivalenza, secondo la congruenza modulo n, di numeri interi.

@@ -1,0 +1,79 @@
+!set lang_exists=yes
+
+wims_name_newmsg=Nou missatge
+name_viewpage=Pàgina/es visible/s del participant
+name_partnotconnected=Aquest participant no està connectat al xat.
+name_nopagetoview=No es pot mostrar cap de les pàgines del participant.
+name_nosharingscreen=El participant ha desactivat la compartició de pantalla.
+name_nomsg=Cap missatge.
+name_userlist=Llista de l'alumnat
+name_noparticipant=No hi ha cap participant a la classe.
+name_tchatwith=Xatejar amb
+name_warninguser=Quan esteu connectat al xat, el professorat pot veure\
+   (quan també estigui connectat) una còpia de les vostres pàgines de navegació.\
+   L'objectiu és poder discutir els exercicis que esteu resolent en aquell moment.
+name_tchatopen=Xat obert
+name_answer=Respondre
+name_page=Pàgina
+name_living=Saló
+name_ownliving=Saló personal
+name_changeliving=Canviar de saló
+name_open=Obert
+name_opening=Obrir
+name_close=Tancat
+name_closing=Tancar
+name_regusers=Inscrits
+name_all=Tots
+name_configliving=Configuració del saló
+name_mkliving=Crear
+name_title=Nom del saló
+name_desc_title=!nosubst Nom del saló (limitat a $title_limit caràcters)
+name_statut=Estat
+wims_name_listliving=Configurar els salons
+wims_name_addliving=Afegir un saló
+name_confliving=Configurar un saló
+wims_name_userlistliving=Monitorització dels salons
+name_listall=tot l'alumnat de la classe
+name_teacher=el professorat
+name_yourself=tu mateix
+name_and=i
+name_opentchat=Obrir el xat per aquesta classe
+name_timing=Temps d'actualització de les pàgines
+name_desc_refreshtiming=!nosubst Un enter com a mínim igual a $msg_min_timing
+name_configuration=Paràmetres
+name_onlynonempty=Mostrar només els salons ocupats
+name_desc_onlynonempty=Permet mostrar només els salons amb almenys un participant connectat a la pàgina de monitorització
+name_onlynonemptyliving=Només es mostren els salons ocupats o el darrer missatge d'un participant.
+name_preview=Previsualitzar
+name_Message=Missatge
+name_autorefreshon=L'actualització automàtica de la pàgina està activada.\
+  Desactiveu-la si no esteu esperant un missatge.
+name_autorefreshon1=això pot pertorbar la càrrega d'altres pàgines de wims.
+name_autorefreshoff=L'actualització automàtica de la pàgina està desactivada.
+name_sharescreen=Compartir pantalla
+name_autorefresh=Actualitzar
+name_active=Actiu
+name_desactive=Desactivat
+
+!!For titles of links: has to be checked, if too long, there is a bug in the link.
+!! may change !!
+!set wims_name_title_living_activeshare=Si ho activeu, el professorat podrà veure algunes \
+   pàgines en què treballes i et podran ajudar.
+!set wims_name_title_living_stopshare=Actualment el professorat pot veure algunes \
+   pàgines on treballeu per ajudar-vos.
+!set wims_name_title_living_activerefresh=$name_autorefreshoff Podeu reactivar-ho.
+!set wims_name_title_living_stoprefresh=$name_autorefreshon
+
+
+name_depos=Dipòsit d'un fitxer temporal 
+name_depos2=Fitxer(s) temporal(s) penjat(s) per l'alumnat 
+name_actualfile=Fitxer actual 
+name_usertmpfiledesc=!nosubst El fitxer no es conserva quan tanqueu la sessió. Si pengeu un fitxer nou, s'esborra l'antic. La mida del fitxer ha de ser inferior a $[$tchat_configfilesize*0.25] Mb.
+name_configfilesize=Permetre a l'alumnat penjar un fitxer temporal
+name_desc_configfilesize=Permet a l'alumnat penjar un fitxer que no es conservi després de tancar la sessió; es pot configurar la mida màxima del fitxer.
+name_disable_configfilesize=Aquesta opció ha estat desactivada per l'administrador del servidor.
+
+name_Sheet=Full
+name_Examen=Examen
+name_Doc=Document
+name_Exercise=Exercici

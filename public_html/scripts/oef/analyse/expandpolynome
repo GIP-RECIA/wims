@@ -1,0 +1,83 @@
+!! this file is an annexe for anstype litexp (or other)
+!! it look if wims_read_parm is a developped and reducted polynome of Z[X]
+!! no bracket
+!! each terme should have to be simplify using power of variable (x*x not accepted for x^2)
+!! each coefficient have to be calculate (3*5*x^2 not accepted)
+!! only for polynome with one variable and coefficient in Z
+!! 
+!! error checked :
+!! - notreduced termealgsimp : x*x instead of x^2
+!! - notreduced termesamepower : several terme with same power of variable
+!! - notreduced termenumsimp : numerical coefficient of a terme is not calculated
+!! - notreduced parenthesis : use of parenthesis
+!! - usedivide : use of / symbol
+
+nb_=!charcnt $wims_read_parm
+nbt=0
+!reset terme ltermes wrong checkd_ 
+k_=1
+!while ($k_<=$nb_ and $wrong=$empty) or $terme!=$empty
+  c_=!char $k_ of $wims_read_parm
+  !if ($c_=+ or $c_=-) or $k_>$nb_
+    !if $terme!=$empty
+      !! analyse du terme
+      t_=!replace internal * by , in $terme
+      !distribute item 0,0 into flag_var,flag_num
+      !distribute item 1,0 into kk_,p_
+      nb2_=!itemcnt $t_
+      !while $kk_<=$nb2_ and $wrong=$empty
+        tt_=!item $kk_ of $t_
+        ttt_=$[$tt_*1]
+        !if $ttt_=NaN
+          !if $flag_var=1
+            !! check of produce of variable (not use of puissance)
+            wrong=badform notreduced termealgsimp $terme
+          !else
+            flag_var=1
+            !!puissance check
+            ttt_=!replace internal ^ by , in $tt_
+            ttt_=!item 2 of $ttt_
+            !if $ttt_!=$empty and $ttt_<=1
+              wrong=badform notreduced power0 $terme
+            !endif
+            !default ttt_=1
+            p_=$[$p_+$ttt_]
+          !endif
+        !else
+          !if $flag_num=1
+            wrong=badform notreduced termenumsimp $terme
+          !endif
+          !if $flag_var=1
+            wrong=badform notreduced constantbefore $terme
+          !endif
+          flag_num=1
+        !endif
+        !increase kk_
+      !endwhile
+      !increase nbt
+      pp_=!positionof item $p_ in $checkd_
+      !if $pp_!=$empty and $wrong=$empty
+        wrong=badform notreduced termesamepower $(ltermes[$pp_]),$terme
+      !else
+        checkd_=!append item $p_ to $checkd_
+      !endif
+      ltermes=!append item $terme to $ltermes
+      !if $k_>$nb_ or $c_=+
+        !reset terme
+      !else
+        terme=-
+      !endif
+    !endif
+  !else
+    !if $c_ isin ()
+      wrong=badform notreduced parenthesis
+    !else
+      !if $c_=/
+        wrong=badform usedivide
+      !else
+        terme=$terme$c_
+      !endif
+    !endif
+  !endif
+  !increase k_
+!endwhile

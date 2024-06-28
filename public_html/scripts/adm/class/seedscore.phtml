@@ -1,0 +1,38 @@
+!reset tmp_class mp_sscnt tmp_color tmp_draw xx
+!set tmp_sr=$(wims_read_parm[2])
+!default tmp_sr=0
+!read adm/class/colors
+!set tmp_sev=!declosing $(wims_read_parm[1])
+!set tmp_sevcnt=!itemcnt $(tmp_sev[;1])
+!if $tmp_sevcnt>0
+  !set tmp_seedold=0
+  <div class="wims_score_bar">
+    !for tmp_j=1 to $tmp_sevcnt
+      !set tmp_seed=$(tmp_sev[$tmp_j;1])
+      !if $tmp_seed!=$tmp_seedold
+        !set tmp_draw=$tmp_draw<div class="inline wims_score_column">
+        !set Seed=!select $tmp_sev where column 1=$tmp_seed
+        !set Seed=!select $Seed where column 2 > -2
+        !set tmp_Sc=$(Seed[;2])
+        !set tmp_Sccnt=!itemcnt $tmp_Sc
+        !for t=1 to $tmp_Sccnt
+          !reset tmp_color
+          !if $(tmp_Sc[$tmp_Sccnt-$t+1])<0
+            !!unfinished
+            !set tmp_color=$(class_scorecolor[12])
+            !set tmp_title=$(wims_name_thsheet[15])
+          !else
+            !set tmp_color=$(class_scorecolor[round($(tmp_Sc[$tmp_Sccnt-$t+1])+1)])
+            !set tmp_title=$(tmp_Sc[$tmp_Sccnt-$t+1])
+          !endif
+          !set tmp_draw=!append line <div class="wims_seed_item" style="background-color:$tmp_color" title="$tmp_title"></div>\
+    to $tmp_draw
+        !next
+        !set tmp_draw=$tmp_draw</div>
+        !set tmp_seedold=$tmp_seed
+      !endif
+    !next
+    $tmp_draw
+  </div>
+!!$canvasdraw_idclass
+!endif

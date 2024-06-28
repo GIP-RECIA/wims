@@ -1,0 +1,630 @@
+type=question
+textarea="data1 data2 data3 data4 data5 data6 data7 data8 data9 data10 instruction"
+asis="data1 data2 data3 data4 data5 data6 data7 data8 data9 data10 instruction"
+iEdit="instruction"
+
+:Several questions on the same screen
+
+<p>This exercise presents several multiple choice questions.</p>
+<p>The number of questions is limited to 10.
+ You can chose the number of questions to be presented for each exercise,
+ and if these questions will be taken randomly or not.</p>
+<p>Author of the model: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.) Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Sample parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Several multiple choices}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{Image from Pfly [CC BY-SA 2.5], via Wikimedia Commons}
+
+:Global Instruction
+A global instruction displayed before questions.
+$embraced_randitem
+\text{instruction=Répondez à chaque question d'une première série, validez, puis répondez aux questions de la seconde série.}
+
+:Random order
+Choose "yes" to display questions in a random order, "no" otherwise.
+\text{alea=item(1, yes, no)}
+
+:Maximum questions by step
+WIMS will automatically separate your exercise into steps
+based on the total number of questions and the number of questions by steps.
+\text{N=3}
+
+:Maximum steps
+Maximum amount of steps to produce
+\text{MAX=2}
+
+:Text for "Your response" feedback
+
+\text{qcm_prompt1=Your response:}
+
+:Text for "The good responses were..." feedback
+
+\text{qcm_prompt2=The good responses were... :}
+
+:Text for "Good response!" feedback
+
+\text{good_answer_text=Good response!}
+
+:Text for "Bad response!" feedback
+
+\text{bad_answer_text=Bad response!}
+
+:Text for "Incomplete response!" feedback
+
+\text{incomplete_answer_text=Incomplete response...}
+
+:CSS for questions
+
+\text{style_question=background-color: #F2F9FC;}
+
+:CSS for responses
+
+\text{style_reponse=color:#555;font-size:90%;}
+
+:Percentage of success required to proceed to the next step (if Maximum steps> 1)
+
+\text{percent=0}
+
+:Embraced Randitem
+$embraced_randitem
+\text{accolade=item(2, yes, no)}
+
+:Display response analysis
+Let us assume that the exercise is used with the setting
+"Never post the right answers."
+<ul><li>If you choose "yes" then, after each question, it will be
+be indicated whether the selected choices are right or wrong.
+<li></li>
+If you choose "no" then, after each question, the selected choices
+ will be displayed without any indication.
+</li></ul>
+In other cases, after each question, it will be indicated whether
+the selected choices are right or wrong and in case of error,
+the list of correct choices will be displayed.
+
+\text{answer_given=item(1, yes, no)}
+
+:Questions
+<p>Enter here the question to ask, according to the following format:</p>
+<ol>
+  <li>The first line contains the statement of the question.</li>
+  <li>The second line represents feedback, which will be displayed
+      after validation of the answers (can be left empty).</li>
+  <li>Enter on the 3rd line the list of correct answer numbers, separated by commas.
+      (The numbers represent the order in which the proposals are written below)</li>
+  <li>Each following line represents the different response proposals.</li></ol>
+<div style="border-left:2px solid orange;width:45em;background-color:white;padding:1em .5em;">Example : <br>
+<pre>Statement of question #1
+Feedback displayed if wrong answer to question #1
+Number(s) of the correct answer(s)
+Choice #1
+Choice #2
+Choice #3</pre></div>
+<p class="oef_indbad"><strong>Warning:</strong> Semicolons are forbidden here</p>
+<hr>
+<p><em>Optional:</em> You can optionally add a first line that will contain variables to insert a title, an image, sound.
+ (nb: you must be in a class or module to transfer these files).<br>
+ In this case, it will be the second line (and not the first) that will represent the statement, the third one the feedback, and so on ....
+</p>
+Possible variables are:
+<ul>
+  <li><code>Qtitle</code> : display a title at the beginning of the question. (for example to indicate the theme)</li>
+  <li><code>Qimage</code> : if an image file is specified, it will be displayed at the beginning of the question.
+    (only works in a module or class)</li>
+  <li><code>Qaudio</code> : if a sound file is indicated, it will be displayed at the beginning of the question.
+    (only works in a module or class, known bugs with Safari)</li>
+</ul>
+<div style="border-left:2px solid orange;width:45em;background-color:white;padding:1em .5em;">Exemple : <br>
+  <pre>Qtitle="Title of the question #2" Qimage="image.jpg" Qaudio="sound.mp3"
+Statement of question #2
+Feedback displayed if wrong answer to question #2
+Number(s) of the correct answer(s)
+Choice #1
+Choice #2
+Choice #3</pre>
+</div>
+\text{data1=asis(In what year was the filament bulb invented?
+It was invented in 1879 by the Englishman Joseph Swan before being improved by the work of the American Thomas Edison.
+1
+1879
+1959
+1919
+1859)}
+
+:Question 2
+
+\text{data2=asis(In 2016, what was the most populous city in the world?
+It is Tokyo, the capital of Japan (38.14 million inhabitants), far ahead of the others (which have between 20 and 24 million inhabitants). <p class="right">Source<a href="https://www.infoplease.com/world/population-statistics/most-populous-cities-world" target="_blank">infoplease.com</a></p>
+7
+Beijing
+Karachi
+Manille
+Mexico
+New York
+Shanghaï
+Tokyo)}
+
+:Question 3
+
+\text{data3=asis(What's the name of this river? <div><img src="http://upload.wikimedia.org/wikipedia/commons/e/e4/Mekong_River_watershed.png"></div>
+About 70 million people live directly in the Mekong watershed.
+1
+The Mekong
+The Yangzi Jiang
+The Volga
+The Danube)}
+
+:Question 4
+
+\text{data4=asis(Qtitle="Painting"
+Among these different painters, which are part of the Impressionist movement?
+Ingres is associated with the Romantic current, and Raphael with the Renaissance.
+1,3
+Edgar Degas
+Dominique Ingres
+Claude Monet
+Raphael)}
+
+:Question 5
+
+\text{data5=asis(Qtitle="ANIMALS"
+What is the cry of the camel?
+The braying is the cry of the donkey, the bleating: that of sheep and goats.
+1
+The blatter
+The braying
+The bleating)}
+
+:Question 6
+
+\text{data6=asis(Qtitle="Chemistry"
+What is the chemical formula of testosterone?
+C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub> is caffeine, C<sub>3</sub>H<sub>5</sub>N<sub>3</sub>O<sub>9</sub> the nitroglycerin, and C<sub>17</sub>H<sub>19</sub>NO<sub>3</sub> the morphine
+4
+C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub>
+C<sub>3</sub>H<sub>5</sub>N<sub>3</sub>O<sub>9</sub>
+C<sub>17</sub>H<sub>19</sub>NO<sub>3</sub>
+C<sub>19</sub>H<sub>28</sub>O<sub>2</sub>)}
+
+:Question 7
+
+\text{data7=asis(From which day is "Beaujolais Nouveau" available for sale in France?
+The "Beaujolais Nouveau" is a wine of primeur, that is to say a wine of the same year, whose marketing is allowed immediately after the end of the vinification.
+3
+the first Thursday of November
+the second Thursday of November
+the third Thursday of November
+the fourth Thursday of November
+)}
+
+:Question 8
+
+\text{data8=asis(In the movie <i>"Rain Man"</i>, which actor has an autistic gifted brother?
+<i>Rain Man</i> is an American film directed by Barry Levinson.
+2
+Bruce Willis
+Tom Cruise
+Woody Allen)}
+
+:Question 9
+
+\text{data9=asis(Water skiing has been an Olympic discipline since 1976.
+The appearance of water skiing at the Olympic Games dates back to 2004. However, it had been a demonstration sport in 1972.
+2
+True
+False)}
+
+:Question 10
+
+\text{data10=asis(Qtitle="Music"
+What is the first ballet written by Tchaikovsky?
+Swan Lake was written in 1875 and Nutcracker in 1891.
+1
+Swan Lake
+Nutcracker)}
+
+:Answer type
+Choose "checkbox" to let a user select several choices.<br>
+Choose "radio" if only one of the choices has to be selected.
+\text{format=item(1, checkbox, radio)}
+
+:
+\language{en}
+\computeanswer{no}
+\format{html}
+
+\text{paste=yes}
+
+\text{option=}
+
+:%%%%%%%%%%%%%% Nothing to modify until statement %%%%%%%%%%%%%%%%
+\text{givegood=slib(oef/env givegood)}
+\text{givegood=\givegood issametext ? 1}
+\text{answer_given=\givegood>0? yes}
+\text{data_q=\data1!= ? 1:}
+\text{data_q=\data2!= ? wims(append item 2 to \data_q)}
+\text{data_q=\data3!= ? wims(append item 3 to \data_q)}
+\text{data_q=\data4!= ? wims(append item 4 to \data_q)}
+\text{data_q=\data5!= ? wims(append item 5 to \data_q)}
+\text{data_q=\data6!= ? wims(append item 6 to \data_q)}
+\text{data_q=\data7!= ? wims(append item 7 to \data_q)}
+\text{data_q=\data8!= ? wims(append item 8 to \data_q)}
+\text{data_q=\data9!= ? wims(append item 9 to \data_q)}
+\text{data_q=\data10!= ? wims(append item 10 to \data_q)}
+
+\text{instruction=\accolade issametext yes ? wims(embraced randitem \instruction):\instruction}
+
+\integer{cnt_question=items(\data_q)}
+
+\text{nopaste=\paste issametext no ? slib(utilities/nopaste )}
+
+\text{style = <style>
+ .enonce{margin-bottom:0}
+ .qcm_prompt2{margin-top:.5em}
+ img{vertical-align:middle;}
+ .q_num, .panel .wims_title{
+ font-size:120%;font-family:Impact, Charcoal, sans-serif;
+ color:#717171;
+ }
+ .feedback{border:1px dashed grey;padding:.5em;margin-top:.5em;}
+ .reponse {
+   margin: 0 1em;
+   padding: .5em;
+   border-radius:5px;
+   \style_reponse
+ }
+ .panel{
+    padding:.5em 1em .5em 1em;
+    margin:.5em 0;
+    border:1px solid #d8d8d8;
+    border-radius:5px;
+ }
+ .panel.callout{
+    border-color:#c5e5f3;
+    border-width:2px;
+    \style_question
+ }
+ .callout .q_num, .callout .wims_title{color:black;}
+
+ .panel .wims_title, .panel .wimscenter{margin-top:-1.2em;}
+ ol li{margin-bottom: .5em;list-style:upper-alpha;}
+ input[type='checkbox'] { font-size:120%; }
+ .strike{text-decoration:line-through;}
+ .oef_indpartial{color:navy;}
+ </style>
+}
+
+\integer{N = min(\cnt_question,\N)}
+\integer{MAX=min(\N*\MAX,\cnt_question)}
+\text{battage=\alea issametext yes ? shuffle(\data_q,,) :\data_q}
+\text{battage=wims(nonempty items \battage)}
+
+\text{option=\option noanalyzeprint}
+\matrix{question=}
+\matrix{explication=xxx}
+\matrix{rep=}
+\text{CNT_choix= }
+\matrix{CHOIX=}
+\text{PRELIMINAIRE=}
+
+\for{i= 1 to \MAX}{
+ \matrix{QUEST=\battage[\i]=1? \data1}
+ \matrix{QUEST=\battage[\i]=2? \data2}
+ \matrix{QUEST=\battage[\i]=3? \data3}
+ \matrix{QUEST=\battage[\i]=4? \data4}
+ \matrix{QUEST=\battage[\i]=5? \data5}
+ \matrix{QUEST=\battage[\i]=6? \data6}
+ \matrix{QUEST=\battage[\i]=7? \data7}
+ \matrix{QUEST=\battage[\i]=8? \data8}
+ \matrix{QUEST=\battage[\i]=9? \data9}
+ \matrix{QUEST=\battage[\i]=10? \data10}
+
+ \text{preliminaire_test=\QUEST}
+ \text{preliminaire_test=row(1,\preliminaire_test)}
+ \text{inst_audio=wims(getopt Qaudio in \preliminaire_test)}
+ \text{inst_image=wims(getopt Qimage in \preliminaire_test)}
+ \text{inst_title=wims(getopt Qtitle in \preliminaire_test)}
+
+ \text{rab_inst=}
+ \text{rab_inst=\inst_title notsametext ?\rab_inst <h2 class="wims_title">\inst_title</h2>}
+ \text{rab_inst=\inst_image notsametext ?\rab_inst <div class="wimscenter"><img src="\imagedir/\inst_image" alt=""></div>}
+ \if{\inst_audio notsametext }{
+     \text{rab_inst1= . isin \inst_audio ?
+       <audio controls>
+        <source src="\imagedir/\inst_audio" type="audio/mpeg">
+        Sorry, your browser can't play audio files.
+       </audio>}
+     \text{rab_inst=\rab_inst <div class="wimscenter audio">\rab_inst1[1;1]</div>}
+ }
+
+ \integer{test_inst=\inst_audio\inst_image\inst_title notsametext ? 1 : 0}
+ \text{preliminaire=\test_inst=1 ? \rab_inst:&nbsp;}
+ \matrix{QUEST=\test_inst=1 ? \QUEST[2..-1;]}
+ \matrix{QUEST=\accolade issametext yes ?wims(embraced randitem \QUEST):\QUEST}
+ \matrix{question = \question
+\QUEST[1;]}
+ \matrix{PRELIMINAIRE=\PRELIMINAIRE
+\preliminaire}
+
+ \text{expl=\QUEST[2;]}
+ \text{ligne=wims(upper \expl)}
+ \text{ligne=wims(text select ABCDEFGHIJKLMNOPQRSTUVWXYZ in \ligne)}
+ \if{\ligne issametext and \expl notsametext }{
+  \matrix{explication = \explication;}
+  \integer{debut = 2}
+ }
+ \if{\ligne issametext and \expl issametext }{
+  \matrix{explication = \explication;}
+  \integer{debut = 3}
+  }
+  \if{\ligne notsametext}{
+     \matrix{explication = \explication;\expl}
+  \integer{debut = 3}
+ }
+  \integer{cnt_choix=rows(\QUEST)-\debut}
+  \text{CNT_choix=\CNT_choix,\cnt_choix}
+   \text{Choix=}
+   \text{mix=shuffle(\cnt_choix)}
+   \for{j=\debut+1 to \cnt_choix + \debut+1}{
+     \text{choix= \QUEST[\j;]}
+     \text{choix=wims(replace internal , by  &#44; in \choix)}
+     \matrix{Choix = \Choix, \choix[1;]}
+   }
+   \text{Choix=wims(nonempty items \Choix)}
+   \text{Choix= \Choix[\mix]}
+   \matrix{CHOIX=\CHOIX
+     \Choix}
+   \text{H = wims(nospace \QUEST[\debut;])}
+   \text{cnt_c=items(\H)}
+   \text{Rep = }
+   \for{ k = 1 to \cnt_c}{
+     \text{Rep = \Rep, position(\H[\k],\mix)}
+   }
+   \text{Rep = wims(sort items wims(nonempty items \Rep))}
+   \matrix{rep = \rep
+    \Rep}
+}
+
+\text{CNT_choix=wims(nonempty items \CNT_choix)}
+
+\text{U = pari(divrem(\MAX,\N)~)}
+\integer{cnt_step = \U[1] + 1}
+\matrix{STEPS = }
+\matrix{CNT = }
+\text{CONDSTEP=}
+\for{ u = 1 to \cnt_step -1}{
+   \matrix{STEPS =\STEPS
+wims(makelist r x for x = \N*\u -\N+1 to \N*\u)}
+   \matrix{CNT =\CNT
+wims(makelist x for x = \N*\u -\N+1 to \N*\u)}
+   \text{condstep= wims(values \u+1 for x = (\u-1)*\N +1 to \u*\N)}
+   \text{CONDSTEP= wims(append item \condstep to \CONDSTEP)}
+}
+ \matrix{STEPS = \STEPS
+ wims(makelist r x for x = \N*\cnt_step-\N+1 to \MAX)
+}
+\matrix{CNT = \CNT
+ wims(makelist x for x = \N*\cnt_step-\N+1 to \MAX)
+}
+\text{CONDSTEP=\CONDSTEP, wims(values \cnt_step+1 for x = \N*\cnt_step-\N+1 to \MAX)}
+
+\text{nstep=\STEPS[1;]}
+\text{TEST=}
+\text{explication=\explication[2..-1;]}
+
+text{testexp=wims(rows2lines \explication)}
+text{testexp=wims(lines2items \testexp)}
+text{testexp=wims(items2words \testexp)}
+text{testexp=wims(nospace \testexp)}
+\nextstep{\nstep}
+\text{REP=}
+\text{etape=wims(values x * \N for x = 1 to \cnt_step+1)}
+\text{CONDITION = wims(makelist x for x = 1 to 2*\MAX)}
+\text{CONDITION =wims(items2words \CONDITION)}
+\conditions{\CONDITION}
+\integer{cnt_juste=0}
+\real{v = 10}
+\integer{questioncnt=items(\question[;1])}
+\text{latexsrc=}
+\text{latexsol=}
+\for{hh=1 to \questioncnt}{
+  \text{prel=\PRELIMINAIRE[\hh;]!= and \PRELIMINAIRE[\hh;] notsametext &nbsp;? \PRELIMINAIRE[\hh;]
+\newline:}
+  \text{latexsrc=\latexsrc \item \prel \question[\hh;]
+\begin{\format}}
+  \for{ss=1 to \CNT_choix[\hh]}{\text{latexsrc=\latexsrc\item \CHOIX[\hh;\ss]}}
+  \text{listsol=\CHOIX[\hh;\rep[\hh;]]}
+  \text{latexsol=\latexsol \item \listsol}
+  \text{latexsrc=\latexsrc
+\end{\format}}
+}
+
+\statement{\nopaste
+  \style
+  <div class="instruction">\instruction</div>
+
+  \for{h=1 to \etape[\step]}{
+
+    \if{\question[\h;] notsametext }{
+      \if{\h <= \etape[\step] - \N}
+        {<fieldset class="panel">}
+        {\if{r \h isitemof \nstep}{<fieldset class="panel callout">}}
+      }
+
+   \if{(\h <= \etape[\step] - \N or r \h isitemof \nstep) and \question[\h;] notsametext }{
+     <div class="enonce">
+       \if{\cnt_step > 1 and \MAX > 1}{<span class="q_num">\h. </span>}
+       \if{\PRELIMINAIRE[\h;] notsametext and \PRELIMINAIRE[\h;] notsametext &nbsp;}
+       {<div class="preliminaire">\PRELIMINAIRE[\h;]</div>}
+        <span class="question">\question[\h;]</span>
+     </div>
+   }
+
+   \if{\h <= \etape[\step] - \N and \question[\h;] notsametext}{
+    <div class="reponse">
+      <span class="qcm_prompt1">\qcm_prompt1</span>
+       \for{ a in \REP[\h;]}{
+         \if{\answer_given=yes}{
+           \if{ \a isitemof \CHOIX[\h;\rep[\h;]]}{
+             \if{\TEST[\h;2]>0 and \TEST[\h;3]=0}{
+                 <span class="oef_indpartial">\a</span>}
+                {<span class="oef_indgood">\a</span>}
+                }{
+                 <span class="oef_indbad strike">\a</span>} - }
+             {<span class="oef_indneutral">\a</span> -}
+           }
+         \if{\answer_given=yes}{
+           \if{\TEST[\h;2]>0 and \TEST[\h;3]=0}
+              {\incomplete_answer_text
+               \if{\givegood>0}{<br> <span class="prompt">\qcm_prompt2</span>
+                  <span class="oef_indgood">\CHOIX[\h;\rep[\h;]]</span>}
+              }
+           \if{\TEST[\h;3]>0}
+             {\bad_answer_text
+              \if{\givegood>0}{
+                 <br> <span class="prompt">\qcm_prompt2</span>
+                 <span class="oef_indgood">\CHOIX[\h;\rep[\h;]]</span>}
+             }
+           \if{\TEST[\h;3]=0 and \TEST[\h;2]=0}
+             {\good_answer_text}
+            }
+           \if{\givegood>0}{
+             \if{\explication[\h;] notsametext }{<div class="feedback">\explication[\h;]</div>}
+             }
+     </div>
+     }{
+      \if{ r \h isitemof \nstep}{
+      <div class="question">
+        <ol>
+          \for{s=1 to \CNT_choix[\h]}{ <li>\embed{reply \h , \s}</li> }
+        </ol>
+      </div>
+      }
+   }
+   \if{\question[\h;] notsametext
+    and (\h <= \etape[\step] - \N or r \h isitemof \nstep)}{</fieldset>}
+  }
+ }
+\answer{}{\REP1;\CHOIX[1;]}{type=\format}{option=\option}
+\answer{}{\REP2;\CHOIX[2;]}{type=\format}{option=\option}
+\answer{}{\REP3;\CHOIX[3;]}{type=\format}{option=\option}
+\answer{}{\REP4;\CHOIX[4;]}{type=\format}{option=\option}
+\answer{}{\REP5;\CHOIX[5;]}{type=\format}{option=\option}
+\answer{}{\REP6;\CHOIX[6;]}{type=\format}{option=\option}
+\answer{}{\REP7;\CHOIX[7;]}{type=\format}{option=\option}
+\answer{}{\REP8;\CHOIX[8;]}{type=\format}{option=\option}
+\answer{}{\REP9;\CHOIX[9;]}{type=\format}{option=\option}
+\answer{}{\REP10;\CHOIX[10;]}{type=\format}{option=\option}
+
+\matrix{REP = \REP1
+\REP2
+\REP3
+\REP4
+\REP5
+\REP6
+\REP7
+\REP8
+\REP9
+\REP10}
+\if{\format=radio}{
+  \text{REP=wims(replace internal , by &#44; in \REP)}
+}
+\matrix{explication2 = \explication2}
+
+\for{u = 1 to \N}{
+   \text{H = \CNT[\step-1;\u]}
+   \text{test1 = wims(listuniq \REP[\H;],\CHOIX[\H;\rep[\H;]])}
+   \integer{test1 = items(\test1)-items(\CHOIX[\H;\rep[\H;]])}
+   \text{test2 = wims(listcomplement \REP[\H;] in \CHOIX[\H;\rep[\H;]])}
+   \text{test3 = wims(listcomplement \CHOIX[\H;\rep[\H;]] in \REP[\H;])}
+  %%% \integer{test4=items(\REP[\H;]) - items(\CHOIX[\H;])}
+   \text{test_cnt=\test1, items(\test2),items(\test3)}
+   \integer{cnt_juste= \test_cnt[1]+\test_cnt[2]+\test_cnt[3] =0 ? \cnt_juste + 1}
+   \matrix{TEST=\TEST
+   \test_cnt}
+}
+
+# test1 = 0 rep < juste
+# test2  number of answers said to be right and in fact false
+# test3  number of false and actually just answers
+
+# totally right: test1=0, test2=0 test3=0
+# partially right :
+
+\real{v=\cnt_juste/\CNT[\step-1;\N]}
+
+\text{nstep = \v >= \percent ? \STEPS[\step;]:}
+
+\condition{Question 1 : \REP1}{\TEST[1;3]=0}{option=hide}
+\condition{Question 1 : \REP1}{\TEST[1;1]=0 and \TEST[1;2]=0 and \TEST[1;3]=0}{option=hide}
+\condition{Question 2 : \REP2}{\TEST[2;3]=0 and \step >=\CONDSTEP[2]}{option=hide}
+\condition{Question 2 : \REP2}{\TEST[2;1]=0 and \TEST[2;2]=0 and \TEST[2;3]=0 and \step >=\CONDSTEP[2]}{option=hide}
+\condition{Question 3 : \REP3}{\TEST[3;3]=0 and \step >=\CONDSTEP[3]}{option=hide}
+\condition{Question 3 : \REP3}{\TEST[3;1]=0 and \TEST[3;2]=0 and \TEST[3;3]=0 and \step >=\CONDSTEP[3]}{option=hide}
+\condition{Question 4 : \REP4}{\TEST[4;3]=0 and \step >=\CONDSTEP[4]}{option=hide}
+\condition{Question 4 : \REP4}{\TEST[4;1]=0 and \TEST[4;2]=0 and \TEST[4;3]=0 and \step >=\CONDSTEP[4]}{option=hide}
+\condition{Question 5 : \REP5}{\TEST[5;3]=0 and \step >=\CONDSTEP[5]}{option=hide}
+\condition{Question 5 : \REP5}{\TEST[5;1]=0 and \TEST[5;2]=0 and \TEST[5;3]=0 and \step >=\CONDSTEP[5]}{option=hide}
+\condition{Question 6 : \REP6}{\TEST[6;3]=0 and \step >=\CONDSTEP[6]}{option=hide}
+\condition{Question 6 : \REP6}{\TEST[6;1]=0 and \TEST[6;2]=0 and \TEST[6;3]=0 and \step >=\CONDSTEP[6]}{option=hide}
+\condition{Question 7 : \REP7}{\TEST[7;3]=0 and \step >=\CONDSTEP[7]}{option=hide}
+\condition{Question 7 : \REP7}{\TEST[7;1]=0 and \TEST[7;2]=0 and \TEST[7;3]=0 and \step >=\CONDSTEP[7]}{option=hide}
+\condition{Question 8 : \REP8}{\TEST[8;3]=0 and \step >=\CONDSTEP[8]}{option=hide}
+\condition{Question 8 : \REP8}{\TEST[8;1]=0 and \TEST[8;2]=0 and \TEST[8;3]=0 and \step >=\CONDSTEP[8]}{option=hide}
+\condition{Question 9 : \REP9}{\TEST[9;3]=0 and \step >=\CONDSTEP[9]}{option=hide}
+\condition{Question 9 : \REP9}{\TEST[9;1]=0 and \TEST[9;2]=0 and \TEST[9;3]=0 and \step >=\CONDSTEP[9]}{option=hide}
+\condition{Question 10 : \REP10}{\TEST[10;3]=0 and \step >=\CONDSTEP[10]}{option=hide}
+\condition{Question 10 : \REP10}{\TEST[10;1]=0 and \TEST[10;2]=0 and \TEST[10;3]=0 and \step >=\CONDSTEP[10]}{option=hide}
+
+
+\text{test=wims(rows2lines \explication)}
+\text{test=wims(lines2items \test)}
+\text{test=wims(items2words \test)}
+\text{test=wims(nospace \test)}
+feedback{1=1}{\explication
+   \if{\test notsametext}{
+     <div class="reponse"><ol>
+      \for{w = 1 to \MAX}{
+        \if{\explication[\w;] notsametext }
+         {<li style="list-style:decimal;" value="\w">\explication[\w;] </li>}
+     }
+     </ol>
+    </div>
+  }
+}
+{<ol>
+  \for{ t = 1 to \N}{
+    \if{\CNT[\step;\t] != }{
+  <li style="list-style:decimal;" value="\CNT[\step;\t]"> <b>\question[\N*(\step-1) + \t;]</b>
+  <div class="question"><ol>
+   \for{s=1 to \CNT_choix[\N*(\step-1) + \t]}{
+   <li>\embed{\STEPS[\step;\t] , \s }</li>
+    }
+   </ol>
+   </div>
+   </li>}
+ }
+</ol>
+}
+
+\latex{
+\begin{statement}
+\instruction
+\begin{enumerate}
+\latexsrc
+\end{enumerate}
+\end{statement}
+\begin{solution}\
+\begin{enumerate}
+\latexsol
+\end{enumerate}
+\end{solution}
+}

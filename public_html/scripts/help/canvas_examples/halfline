@@ -1,0 +1,5 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+halfline -5,5,0,0,red
+halfline -5,-5,0,0,blue

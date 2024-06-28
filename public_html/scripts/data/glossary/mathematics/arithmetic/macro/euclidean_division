@@ -1,0 +1,7 @@
+!set gl_r=!randint 0,10
+!set gl_q=!randint 5,10
+!set gl_b=!randint $[max($gl_r+1,3)],$[max($[2*$gl_r],4)]
+!if $gl_b=$gl_q
+  !set gl_b=!randitem $[$gl_b-1],$[$gl_b+1]
+!endif
+!set gl_a=$[$gl_b*$gl_q + $gl_r]

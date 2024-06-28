@@ -1,0 +1,45 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=coordinates,vectors,analytic_geometry,solid_geometry
+!set gl_title=Coordonnées d'un point de l'espace
+!set gl_level=H6 Générale&nbsp;Spécialité
+:
+:
+:
+:
+L'espace est supposé muni d'un repère
+\((O;\overrightarrow {i},\overrightarrow {j},\overrightarrow {k})\).
+<div class="wims_thm"><h4>Théorème</h4>
+Soit \(\mathrm{M}\) un point de l'espace. <br>
+Il existe un unique triplet \((x;y;z)\) de nombres réels tel que&nbsp;:
+<span style="white-space:nowrap">
+\(\overrightarrow{OM}=x\overrightarrow{i}+y\overrightarrow{j}+z\overrightarrow{k}\)
+.</span>
+</div>
+<div class="wims_defn">
+<h4>Définitions</h4>
+Soit \(\mathrm{M}\) un point de l'espace. <br>
+Les réels uniques \(x\), \(y\) et \(z\) tels que
+\(\overrightarrow{OM}=x\overrightarrow{i}+y\overrightarrow{j}+z\overrightarrow{k}\)
+sont les <strong>coordonnées</strong> du point \(\mathrm{M}\) dans le repère
+<span style="white-space:nowrap">
+\((O;\overrightarrow {i},\overrightarrow {j},\overrightarrow {k})\).</span><br>
+\(x\) est l'<strong>abscisse</strong>, \(y\) est l'<strong>ordonnée</strong>,
+\(z\) est la <strong>cote</strong> du point \(\mathrm{M}\) dans le repère
+  <span style="white-space:nowrap">
+\((O;\overrightarrow {i},\overrightarrow {j},\overrightarrow {k})\).</span>
+<br>On note \(\mathrm{M} (x;y;z)\) dans le repère
+<span style="white-space:nowrap">
+\((O;\overrightarrow {i},\overrightarrow {j},\overrightarrow {k})\).</span>
+</div>
+<div class="wims_thm">
+<h4>Propriété</h4>
+Si \(\mathrm{A}\) et \(\mathrm{B}\) sont deux points distincts de coordonnées
+respectives \((x_\mathrm{A}; y_\mathrm{A}; z_\mathrm{A})\) et
+\((x_\mathrm{B}; y_\mathrm{B}; z_\mathrm{B})\) alors le milieu du segment
+\(\lbrack\mathrm{AB}\rbrack\) a pour coordonnées
+<span style="white-space:nowrap">
+\(\left(\frac{x_\mathrm{A}+x_\mathrm{B}}{2};
+\frac{y_\mathrm{A}+y_\mathrm{B}}{2};\frac{z_\mathrm{A}+z_\mathrm{B}}{2}\right)\)
+.</span>
+</div>

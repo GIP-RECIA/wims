@@ -1,0 +1,106 @@
+type=imaudio
+textarea="data explain"
+iEdit="explain"
+
+:Establecer la correspondencia entre pares de objetos (con audios de la base de datos).
+
+Los pares de objetos se presentan en una matriz de dos columnas. Hay que
+establecer la correspondencia correcta en los pares cambiando la columna de la
+derecha, arrastrando y soltando o haciendo clic con el ratón.
+Los objetos de la izquierda son necesariamente audio tomado de la base shtooka de WIMS. Para 
+comprobar si existen, utilice la herramienta Swac (en el motor de búsqueda
+buscar <span class="tt">swac</span>).
+<p>
+Para construir un ejercicio con este modelo, simplemente escriba la lista de
+pares de objetos. Para más posibilidades, utilice Quicktool.
+</p>
+<p>
+Autora del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Quite el encabezado anterior si destruye las etiquetas de modelo!
+(Las líneas que comienzan con un ':'.)
+De lo contrario el ejercicio podría no funcionar en Createxo.
+
+:%%%%%%%% Parámetros de ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Correspondencia con audio pregrabado}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Número de (pares) de objetos a corresponder
+\integer{tot=3}
+
+:El tamaño vertical de las cajas en píxeles
+Piense en los usuarios que aumentan el tamaño de fuente de sus navegadores!
+No ponga las cajas demasiado pequeñas.
+\integer{sizev=50}
+
+:El tamaño horizontal de las cajas de la izquierda en píxeles
+\integer{sizel=250}
+
+:El tamaño horizontal de las cajas de la derecha en píxeles
+\integer{sizer=250}
+
+:Idioma del audio: las opciones posibles son <span class="tt">fra</span>,  <span class="tt">eng</span>,  <span class="tt">dut</span> (y otros con menos posibilidades <span class="tt">pol</span>,  <span class="tt">wol</span>,  <span class="tt">deu</span>,  <span class="tt">swe</span>.)
+\text{lang=fra}
+:Datos principales
+Definir un par de objetos correspondientes por línea, separados por una coma
+$embraced_randitem
+\matrix{data=
+village,ville
+maison,immeuble
+père,mère
+rue,autoroute
+bleu,vert
+}
+
+:El enunciado del ejercicio
+$embraced_randitem
+\text{explain=Establecer la correspondencia de significado entre palabras escritas y habladas.}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\integer{datacnt=rows(\data)}
+\integer{tot=\tot>\datacnt?\datacnt}
+
+\text{shuf=item(1..\tot,shuffle(\datacnt))}
+\text{data=row(\shuf,\data)}
+\text{data=\accolade=1 ? wims(embraced randitem \data)}
+\text{datal=column(1,\data)}
+\text{datar1=column(2,\data)}
+\text{datar=}
+\for{k =1 to \tot}{
+  \text{audio=\datar1[\k]}
+  \text{audio=slib(lang/swac \audio,\lang)}
+  \text{audio=\audio[1;1]}
+  \text{datar=wims(append item \audio to \datar)}
+}
+\text{size=\sizev[]x\sizel[]x\sizer}
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+
+:%%%%%%%%%%%%% Ahora el enunciado en formato HTML. %%%%%%%%%%%%%%%%%%%%
+
+::No es necesario modificar esto en general.
+
+El comando para mostrar la tabla de correspondencia,
+es \embed{reply 1,\size}
+
+\statement{\explain
+
+<div class="wimscenter">
+\embed{reply 1,\size}
+</div>
+
+}
+
+:%%%%%%%%%%%%% Nada que modificar después. %%%%%%%%%%%%%%%%%5
+
+\answer{Respuesta}{\datal;\datar}{type=correspond}

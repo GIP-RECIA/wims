@@ -1,0 +1,8 @@
+!if $wims_read_parm!=$empty
+  !set parms=$wims_read_parm
+!else
+  !if $parms=$empty
+    !exit
+  !endif
+!endif
+!read docu/primitives/glossary.phtml $parms

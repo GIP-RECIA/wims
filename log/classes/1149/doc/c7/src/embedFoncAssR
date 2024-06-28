@@ -1,0 +1,152 @@
+<p>
+De façon générale, si \(r) est une fonction dont la courbe \(C_r) est connue et \(f) une fonction de courbe \(C_f),
+on peut connaître la relation entre les courbes \(C_f) et \(C_r),
+ou bien connaissant cette relation déduire la formule de \(f) grâce aux propriétés suivantes.
+</p>
+<ul class="wims_nopuce"
+<li><div class="wims_columns"><div class="medium_size"><p>
+Si \(f) est définie par \(f(x)=-r(x)), alors
+\(C_f) est l'image de \(C_r) par la symétrie orthogonale par rapport à
+l'axe horizontal \((O ; \vec{i})).
+</p>
+Exemple : \(r(x)=\sqrt{x}) et \(f(x)=-\sqrt{x})
+</div><div class="medium_size">
+\draw{160,160}{alt r(x)=sqrt{x}, f(x)=-sqrt{x}
+xrange = -1,7
+yrange=-4,4
+arrow -7,0,7,0,10,black
+arrow 0,-8,0,8,10,black
+text red,2,2.5,large,r
+text green,2,-2,large,f
+plot red,sqrt(x)
+plot green,-sqrt(x)
+}
+</div></div></li><li><div class="wims_columns"><div class="medium_size">
+  <p>
+  Si \(f) est définie par \(f(x)=a r(x)), alors
+  \(C_f) est l'image de \(C_r) par une dilatation verticale de coefficient \(a),
+  autrement dit les ordonnées sont multipliées par \(a).
+  </p>
+Exemple : \(r(x)=\sqrt{x}) et \(f(x)=a \sqrt{x}).
+</div><div class="medium_size">
+\draw{160,160}{alt r(x)=sqrt{x} et f(x)=a sqrt{x}
+xrange = -1,7
+yrange=-2,6
+arrow -1,0,7,0,10,black
+arrow 0,-2,0,6,10,black
+text red,2.5,1,large,r
+text green,2.5,4.5,large,f
+plot red,sqrt(x)
+plot green,3*sqrt(x)
+dline 1,0,1,3, black
+dline 0,3,1,3, black
+text black,-1,3,medium,a
+text black,1,-0.1,medium,1
+}
+</div></div></li><li><div class="wims_columns"><div class="medium_size">
+  <p>
+Si \(f) est définie par \(f(x) = r(x) + m), alors
+\(C_f) est l'image de \(C_r) par la translation de vecteur \(m \vec{j}).
+</p>
+Exemple : \(r(x)=\sqrt{x}) et \(f(x)=\sqrt{x}+m).
+</div><div class="medium_size">
+\draw{160,160}{alt r(x)=sqrt{x}, f(x)=sqrt{x}+m
+xrange = -2,6
+yrange=-2,6
+arrow -7,0,7,0,10,black
+arrow 0,-2,0,12,10,black
+text red,2.5,1,large,r
+text green,2.5,5,large,f
+plot red,sqrt(x)
+plot green,sqrt(x)+2
+
+text black,-1,2.5,medium,m
+}
+</div></div></li><li><div class="wims_columns"><div class="medium_size">
+  <p>Si \(f) est définie par \(f(x) = r(x + m)), alors
+\(C_f) est l'image de \(C_r) par la translation de vecteur \(-m) \(\vec{i}).
+</p>
+Exemple : \(r(x)=\sqrt{x}) et \(f(x)=\sqrt{x+m}) .
+</div><div class="medium_size">
+\draw{160,160}{alt r(x)=sqrt{x}, f(x)=sqrt{x+m}
+xrange = -4,4
+yrange=-2,6
+arrow -4,0,4,0,10,black
+arrow 0,-2,0,6,10,black
+text red,2.5,1,large,r
+text green,-2,2,large,f
+plot red,sqrt(x)
+text black,-3.5,-0.1,large,-m
+plot green,sqrt(x+3)
+}
+</div></div></li><li><div class="wims_columns"><div class="medium_size">
+<p>
+Si \(f) est définie par \(f(x) = r(x - m)), alors
+\(C_f) est l'image de \(C_r) par la translation de vecteur \(m) \(\vec{i}).
+</p>
+Exemple : \(r(x)=\sqrt{x}) et \(f(x)=\sqrt{x-m}) .
+</div><div class="medium_size">
+\draw{160,140}{alt r(x)=sqrt{x}, f(x)=sqrt{x-m}
+xrange = -2,6
+yrange=-2,5
+arrow -5,0,9,0,10,black
+arrow 0,-2,0,12,10,black
+text red,1,2,large,r
+text green,5,1,large,f
+plot red,sqrt(x)
+text black,3,0,large,m
+
+plot green,sqrt(x-3)
+}
+</div></div></li><li><div class="wims_columns"><div class="medium_size">
+  <p>
+  Si \(f) est définie par \(f(x) = r(x - m) + k), alors
+\(C_f) est l'image de \(C_r) par la translation de vecteur \(m) \(\vec{i} +) \(k) \(\vec{j}).
+</p>
+Exemple : \(r(x)=\sqrt{x}) et \(f(x)=\sqrt{x-m}+k).
+</div><div class="medium_size">
+\draw{160,160}{alt r(x)=sqrt{x}, f(x)=sqrt{x-m}+k
+xrange = -1,9
+yrange=-2,6
+arrow -1,0,9,0,10,black
+arrow 0,-2,0,6,10,black
+text red,1,2,large,r
+text green,6,5.5,large,f
+plot red,sqrt(x)
+dline 0,3,4,3,black
+dline 4,0,4,3,black
+
+text black,4,0,large,m
+text black,-1,4,large,k
+
+plot green,sqrt(x-4)+3
+}
+</div></div></li><li><div class="wims_columns"><div class="medium_size"><p>
+Si \(f) est définie par \(f(x) = r(a x)), alors
+\(C_f) est l'image de \(C_r) par une dilatation horizontale de coefficient \(1/a),
+autrement dit les abscisses sont divisées par \(a).
+</p>
+Exemple : \(r(x)=\sqrt{x}) et \(f(x)=\sqrt{a x}) .
+</div><div class="medium_size">
+\draw{150,150}{alt r(x)=sqrt{x}, f(x)=sqrt{a x}
+xrange = -1,2
+yrange=-1,2
+arrow -1,0,2,0,10,black
+arrow 0,-1,0,2,10,black
+
+dline 1,0,1,1,black
+dline 0,1,1,1,black
+dline 0.5,0,0.5,1,black
+
+text black,1,-0.1,large,1
+text black,-0.5,1,large,1
+text black,0.2,-0.1,large,1/a
+
+plot red,sqrt(x)
+text red,4,1,large,r
+
+plot green,sqrt(2*x)
+text green,2,3,large,f
+
+}
+</div></div></li></ul>

@@ -1,0 +1,8 @@
+init:exo random style level
+reply:ans	badstep
+
+wims_intro_parm	deny
+deny:deffile status title author amail translator tmail format shufflelist\
+  presentation traps remarks picked step substep stepcnt step_reason \
+  step_test	step_remark	bad_reasons bad_rnames bad_steps scorecnt\
+  bad_[12] good	r[20]

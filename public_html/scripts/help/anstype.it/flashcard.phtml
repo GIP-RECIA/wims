@@ -1,0 +1,36 @@
+
+<b>Selezionare carte</b> (nome: <span class="tt wims_code_words">flashcard</span>)
+<br>
+
+Il tipo <span class="tt wims_code_words">flashcard</span> analizza
+la carta o le carte selezionate dallo studente e le confronta con le riposte corrette.
+Viene assegnato un voto 0 ogni volta che la risposta non coincide esattamente con la risposta corretta.
+<br>
+La sintassi generale di questo tipo di risposte è:
+<pre>
+\answer{Commento}{1,4;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3}{type=flashcard}
+\answer{question 2}{1,4;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3}{type=flashcard}{option=shuffle}
+\answer{question 3}{1,4,7;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3,corretta3}{type=flashcard}{option=shuffle show}
+</pre>
+Lo studente può selezionare una o più risposte. Le opzioni possibili sono:
+<ul><li><span class="tt wims_code_words">shuffle</span>:
+Ordine casuale delle scelte;
+</li><li><span class="tt wims_code_words">sort</span>:
+Scelte in ordine alfabetico;
+</li><li> <span class="tt wims_code_words">show</span>:
+Le carte sono voltate e lo studente deve girare le risposte corrette.
+Il numero di click su ogni carta è dato come seconda riga nella variabile
+<span class="tt wims_code_words">\reply</span>n.
+</li></ul>
+Il tipo di risposta <span class="tt wims_code_words">flashcard</span>
+deve necessariamente essere inserito nell'enunciato tramite
+<span class="tt wims_code_words">\embed</span>.
+In tale comando, come seconda e terza riga si possono precisare gli stili
+css delle carte (saranno inseriti con un tag div).
+Per esempio,
+<pre>
+\embed{r1,4
+style="display:inline-block;min-width:30px;min-height:30px;padding-top:10px;padding-bottom:5px;background-color:red;"
+style="display:inline-block;min-width:30px;min-height:30px;padding-top:10px;padding-bottom:5px;background-color:blue;"
+}
+</pre>

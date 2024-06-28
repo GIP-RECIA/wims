@@ -1,0 +1,124 @@
+scoremax=!record 0 of wimshome/log/classes/$wims_class/sheets/.severity
+scoremax=!line 1 of $scoremax
+!default scoremax=10
+
+!for e=1 to $exocnt
+  got$e=0
+  gotip$e=0
+  replied$e=0
+  ip$e=$empty
+!next e
+
+p=!recordcnt wimshome/$wims_sesdir/examscore.$exam
+reg=!record 0 of wimshome/$wims_sesdir/examreg.$exam
+
+!if $allowtype=simulation or $wims_user=supervisor
+  class_examscore_withoutip=yes
+!else
+  class_examscore_withoutip=!defof class_examscore_withoutip in wimshome/log/classes/$wims_class/.def
+!endif
+!if $class_examscore_withoutip!=yes
+  start_ip=!sh awk '{if ($$6=="$wims_session" && $$2=="00") print $$5;}' $wims_home/log/classes/$wims_class/score/$wims_user.exam
+!endif
+
+replycnt=0
+!reset scorereducedbyip
+progressbar=!values -1 for v=1 to $exocnt
+!for i=1 to $p
+  l=!record $i of wimshome/$wims_sesdir/examscore.$exam
+  !distribute words $l into a_,b_,c_,d_,e_,f_,g_,i_
+  !if $c_=score and $(replied$b_)=0
+    got$b_=$d_
+    ip$b_=$e_
+    !if $class_examscore_withoutip!=yes and $start_ip!=$e_
+      gotip$b_=0
+      scorereducedbyip=1
+    !else
+      gotip$b_=$d_
+    !endif
+    replied$b_=1
+    !advance replycnt
+    !let pos_=!positionof item $b_ in $(wims_exrandomlist[1;])
+    progressbar=!replace item number $pos_ by $d_ in $progressbar
+  !endif
+!next i
+
+totgot=0
+totgotip=0
+totweight=0
+!for e=1 to $exocnt
+  l=!record $e of wimshome/log/classes/$wims_class/exams/.exam$exam
+  w=!word 1 of $l
+  weight$e=$w
+  totweight=$[$totweight+$w]
+  totgot=$[$totgot+$w*$(got$e)]
+  totgotip=$[$totgotip+$w*$(gotip$e)]
+  dd=!append line $w $totgot to $dd
+!next e
+
+!if $totweight>0
+  score=$[rint((100-10*$sprime)*$totgot/$totweight+100*$sprime)/100]
+  scoreip=$[rint((100-10*$sprime)*$totgotip/$totweight+100*$sprime)/100]
+!else
+  score=$sprime
+!endif
+
+!writefile wimshome/$wims_sesdir/examdata.$exam $sdure $sprime
+registered=!record 0 of wimshome/$wims_sesdir/examreg.$exam
+wims_exam_remain=$[60*$sdure-($wims_nowseconds-$registered)]
+!! TODO il faudrait une commande c qui calcule tout seul cette date....
+!! le temps restant affiche ne peut pas aller au dela de la limitation fixee par la limitation de feuille.
+!set expir_user=!record 0 of wimshome/log/classes/$wims_class/.E$exam
+!set cle=!word 1 of $expir_user
+!! process for technical variable definition (replace expir_user by value given by the technical variable)
+!if \ isin $cle
+  !set idtechvar=!line 1 of $expir_user
+  !set idtechvar=!char 2 to -1 of $idtechvar
+  !readproc adm/class/userdef ,$wims_class,$wims_user
+  !set val=!defof user_techvar_$(idtechvar) in $userdef
+  !default val=EMPTY
+  !reset expir_user
+  !set expir_user=!defof techvar_$val in wimshome/log/classes/$wims_class/.E$exam
+  !default expir_user=none
+!endif
+!! end process technical variable
+!if $expir_user!=none
+  expir_user=!words2items $expir_user
+  nb=!itemcnt $expir_user
+  fin=$empty
+  c=<
+  !for k=1 to $nb
+    !if $c isin $(expir_user[$k])
+      fin=!char 2 to -1 of $(expir_user[$k])
+      fin=!text select 0123456789.: in $fin
+    !endif
+  !next k
+  !if $fin!=$empty
+    date=!char 1 to 8 of $fin
+    time=!char 10 to 14 of $fin
+    !read date.phtml $date.$time,noprint
+    time_end=$slib_out
+    left=!sh date -d"$date $time" +%s
+    left=$[max(0,$left-$wims_nowseconds)]
+    wims_exam_remain=$[min($left,$wims_exam_remain)]
+  !endif
+!endif
+!! fin des modifications qui decoule de la limitation fixee par la feuille
+!if $registered=$empty
+  !reset wims_exam_remain
+!endif
+
+l=!examscore
+lastscore=!word $exam of $l
+!default lastscore=0
+tr=!line $exam+1 of $l
+!distribute words $tr into tr1, tried, trcut
+!if $tried=0
+  trcut=1
+!endif
+tryremain=$[$stries-$tried]
+!if $trcut=0
+  tryremain=0
+!endif
+
+t_=!getscorestatus sheet=$exam exam=yes

@@ -1,0 +1,26 @@
+
+!set wims_module_error=error: $error
+
+<span class="wims_warning">$wims_name_Error</span>.
+
+!if bad_sheet iswordof $error
+  Nom de full incorrecte.
+  !exit
+!endif
+
+!if too_many_print iswordof $error
+  La versió impresa que es sol·licita és excessiva.
+  !href cmd=reply&job=read $wims_name_back2
+  !exit
+!endif
+
+!if sheet_hidden iswordof $error
+  Aquest full de treball no el teniu disponible. No jugueu amb la barra d'adreces!!
+  !href cmd=reply&job=read $wims_name_back2
+  !exit
+!endif
+
+!if bad_maxsheet=$error
+  El número de fulls està limitat a $max_sheets. No pots crear-ne cap més.
+  !exit
+!endif

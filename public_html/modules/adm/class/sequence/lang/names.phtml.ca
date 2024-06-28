@@ -1,0 +1,41 @@
+!set lang_exists=yes
+
+!set name_sequence=Seqüència
+!set name_title=Afegir/Modificar la seqüència
+!set name_addseq= Poseu números per ordenar els recursos que voleu inserir.\
+Per eliminar un recurs, escriviu 0.
+
+!set name_show1=Podeu crear una nova seqüència pedagògica
+
+!set name_show1c=. Aleshores tindrà l'estat "En preparació"\
+  i per tant no visible per als participants. Per tal que la presentació en seqüències substitueixi la presentació proposada\
+  per defecte pel servidor, heu d'especificar-ho mitjançant el menú Configurar. Cada seqüència es pot renderitzar\
+  visible o amagat per a un grup de participants durant una franja horària escollida, independentment de l'estat d'altres seqüències.
+
+!set name_show2=!nosubst o modificar les seqüències ja existents (clicar a l'enllaç <span class="wims_button disabled">$wims_name_add_sequence</span>).\
+Perquè siguin visibles pels alumnes,\
+s'ha d'indicar a l'opció del costat <span class="wims_button disabled">$wims_name_config</span>, i a continuació, seleccionar les opcions corresponents.\
+Si traus o canvies l'ordre dels recursos de la classe, has de comprovar les seqüències.
+
+!set name_show3=Si afegiu un recurs a la vostra classe, l'heu d'afegir a una seqüència perquè es pugui fer visible per als participants.  
+
+!set name_config_reverse=Per defecte, les seqüències es mostren en ordre cronològic,\
+de la més antiga a la més recent. </br> Vols presentar-les en ordre invers?
+!set name_config_generic=Paraula genèrica per "$name_sequence"
+
+!set name_config_status=Vols utilitzar seqüències a la pàgina principal dels alumnes?
+!set wims_name_sequence=!defof sequence_Title in wimshome/log/classes/$wims_class/seq/.def
+!set name_info=Informacions generals
+!set name_content=Contingut de la seqüència
+
+!set name_desc_title=!nosubst limitat a $title_limit caràcters
+!set name_desc_desc=!nosubst limitat a $desc_limit caràcters; s'admeten etiquetes HTML i enllaços
+
+!set name_showhidetitle=Condició per ocultar la seqüència a l'alumnat 
+!let name_allowtype=visible per a tothom, ocult per a tothom, visible per als llocs següents (i/o hores), visibilitat establerta per una variable tècnica 
+!set name_desc_allowtechvar=Tria de la variable tècnica 
+!set name_desctableval=Taula de filtres segons el valor de la variable tècnica
+!set name_value=Valor
+!set name_filtre=Filtre
+!set name_EMPTY=(cap valor)
+!set name_allowshare=per a totes les classes que comparteixen el full

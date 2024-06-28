@@ -1,0 +1,138 @@
+!set lang_exists=yes
+
+!set name_remark_numstud=Podeu introduir 0 a la segona columna per indicar que no hi ha límit.
+!set name_introtext_group=Introduïu la mida (número) de cada grup, i un comentari (si s'escau).
+!set name_cardinal=Número
+
+!set name_0=en preparació
+!set name_1=obert
+!set name_2=tancat
+!set name_3=ocult
+!set name_publish=públic
+!set name_publish2=pública
+!set name_hide=ocult
+!set name_hide2=oculta
+!set name_nominative=nominal
+!set name_anonymous=anònim
+!set name_trace=anònim i traçat
+!set name_choice=Opció
+!set name_question=Pregunta
+!set name_data=dades
+!set name_global=globals
+!set name_detail=per votant
+!set name_yourchoice=La seva opció&nbsp;:
+!set title_data=Dades dels qüestionaris per al full de càlcul
+!set title_nominative=registre
+!set title_vote=Qüestionari
+!set title_anonymous=vot
+!set name_choose=-- Trieu --
+!set wims_name_vote=Llista de qüestionaris
+!set name_result=Resultat del qüestionari&nbsp;
+!set name_content=Contingut
+!set name_creation= Creació d'un qüestionari o registre
+!set name_edition=Edició d'un qüestionari o registre
+!set name_remaining=places restants
+!set name_untitled=Sense títol
+!set name_showresult=Taules de resultats
+!set name_nowritable=Qüestionari actiu, no es pot modificar el seu contingut. Aquí està el codi font:
+!set name_novotant=Cap vot
+!set name_notenough=No hi ha prou votants per publicar la llista
+!set name_showlist=Resultats per pregunta
+!set name_showglobal=Resultats globals
+!set name_showlistbystudent=Resultats per votant
+!set name_showstudentbyitem=Llista per opció
+
+!distribute lines La vostra classe encara no té cap qüestionari.\
+Consulteu el vostre professor.\
+No hi ha cap qüestionari actiu.\
+Aquí teniu els qüestionaris/registres de la vostra classe.\
+Nombre de vots\
+into name_novote,name_novotecheck,name_noactivevote,name_class_vote,\
+name_cnt_votes
+
+!distribute line Aquest qüestionari és anònim.\
+   Aquest qüestionari és $name_trace.\
+   Aquest registre és $name_nominative.\
+   Està tancat.\
+   Respostes\
+   Gràcies per votar.\
+   Ja heu expressat la vostra opció, però encara podeu canviar d'opinió.\
+   Trieu la vostra opció&nbsp;\
+   Detall dels registres\
+   Textos dels comentaris\
+   Si teniu comentaris, escriviu-los al fòrum.\
+into name_thisvote_anomymous,name_thisvote_trace,name_thisvote_nominatif,\
+   name_thisvote_closed,name_thisvote_answer,name_thisvote_already1,\
+   name_thisvote_already2,name_give_your_choice,name_details,\
+   name_comments,name_textarea
+
+!set name_textarea_limit=!nosubst limitat a $limit_textarea caràcters
+!set name_whovote=Llista de votants
+!set name_whodontvote=Llista dels que no han votat
+
+!set name_csv1=Aquí teniu el fitxer que podeu descarregar i obrir al vostre programari \
+ de full de càlcul favorit&nbsp;
+
+!set name_csv2=!nosubst Voleu descarregar les dades del qüestionari número $vote &nbsp;
+!set name_format=format
+
+!set name_option=Opcions
+!set name_value=Valors
+
+!! guided mode
+
+!set name_optionclosed=tancat, s'obrirà només quan altres opcions estiguin plenes
+
+!distribute lines Nombre de sessions\
+Nombre de grups\
+com a màxim\
+Nom de la variable tècnica\
+Host IP predeterminat\
+es pot canviar a la pàgina següent\
+Text introductori\
+per exemple, instruccions generals\
+Nombre d'estudiants per sessió\
+Data de la sessió\
+Hora d'inici de la sessió\
+Hora d'acabament de la sessió\
+Host IP\
+Informació addicional\
+Cancelació del registre\
+into name_howmany,name_howmanygroups,name_atmost,name_namevar,name_textconnip,\
+  name_textconnip2, name_introtext,name_introtext2,name_numstud,name_sessiondate,\
+  name_begintime,name_endtime,name_connip,name_extra,\
+  name_cancellation
+
+!set name_numsess=!nosubst $numsess sessions són possibles.
+!set name_session_select =!nosubst Seleccioneu la data i l'hora de les $numsess sessions.
+
+!set name_describesource=!nosubst Aquí teniu el codi font del qüestionari. Comproveu les dades \
+i feu clic a <span class="wims_button disabled">$wims_name_tosave</span>.
+
+!if $vote_mode!=free
+ !readproc adm/lang/sheetexam.phtml.$lang
+!endif
+
+!set name_yourvariable=!nosubst El nom de la variable que vau triar per a \
+  aquest qüestionari és <span class="tt wims_code_variable">$namevar</span>
+!set name_accessvar_instr=!nosubst <strong>Ús a un examen o a un full</strong>: \
+a un full o a un examen actiu, a <span class="tt wims_code_words">$(name_shinfo[6])</span>, seleccioneu \
+ <span class="tt wims_code_words">$(name_allowtype[4])</span> i trieu aquesta variable tècnica utilitzant el menú proposat.
+
+!set name_group_instr=!nosubst <strong>Ús a la clase</strong>: podeu filtrar \
+els participants segons aquesta variable per a determinades activitats de la classe.
+
+!set name_group_help= permet seleccionar els participants \
+segons els grups (correu i orla per ara).
+
+!set name_accessvar_help=permet individualitzar l'accés dels participants \
+a un full o a un examen.
+
+!distribute items Mode lliure,Accés individualitzat,Constitució de grups,Grups into name_free,name_accessvar, name_group,name_group1
+
+!set name_model=Model
+!set name_nextstep=Etapa següent
+
+!set name_getsource=Aquí teniu el codi font. Podeu copiar aquest codi \
+(entre las dues línies de '*') en un fitxer, \
+i el podreu reutilitzar més endavant.

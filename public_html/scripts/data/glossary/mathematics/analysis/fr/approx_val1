@@ -1,0 +1,25 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=real_number,inequalities
+!set gl_title=Valeur approchée par défaut, valeur approchée par excès (lycée)
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définitions</h4>
+Soit \(x\) et \(a\) deux nombres réels, et \(p\) un nombre réel strictement
+positif.
+<ul><li>
+Le nombre \(a\) est une <strong>valeur approchée par défaut</strong> de \(x\) à
+\(p\) près ou à la précision \(p\) si et seulement si \(a\) est une valeur
+approchée de \(x\) à \(p\) près inférieure à \(x\) c'est-à-dire si et seulement
+si <span style="white-space:nowrap">\(a\leqslant x\leqslant a + p\) ;</span>
+ </li><li>
+le nombre \(a\) est une <strong>valeur approchée par excès</strong> de \(x\) à
+\(p\) près ou à la précision \(p\) si et seulement si \(a\) est une valeur
+approchée de \(x\) à \(p\) près supérieure à \(x\) c'est-à-dire si et seulement
+si <span style="white-space:nowrap">\(a-p\leqslant x\leqslant a\).</span>
+</li></ul>
+</div>

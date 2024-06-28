@@ -1,0 +1,32 @@
+!set wims_backslash_insmath=yes
+!set wims_multiexec=pari maxima
+
+!if $gl=0 or $gl=$empty
+  !set tmp=config
+!else
+  !set tmp=new
+!endif
+!if $listfile=$empty
+  !set tmp=new
+!endif
+!if $seq!=
+  !set wims_sequence=$seq
+!endif
+!if $wims_class=$empty or ($wims_class!=$empty and $seq$wims_sequence=$empty)
+  !if $gl>0
+    !set wims_ariane=!append line Glossary $gl,1,module=adm/tool/glossary&gl=$gl&cmd=new\
+to $wims_ariane
+  !else
+    !if $wims_class=$empty or $wims_user=supervisor
+      !set wims_ariane=!append line Glossary,1,module=adm/tool/glossary&gl=$gl&cmd=$tmp\
+to $wims_ariane
+    !endif
+  !endif
+!endif
+!reset tmp
+!set wims_ariane_self=no
+# how to detect the need to compute?
+!if $cmd=reply or $special_parm!=$empty
+  error=
+  compute=yes
+!endif

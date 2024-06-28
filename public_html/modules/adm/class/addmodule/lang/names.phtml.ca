@@ -1,0 +1,53 @@
+!set lang_exists=yes
+
+!set wims_name_sheetcheck=Comprovar el full
+
+!set name_choose=Tria el full&nbsp;
+!!in file index
+!!set name_title=Inserir en un full
+
+!set name_insert=Vols inserir el recurs
+!set name_parm=amb els paràmetres inicials
+!set name_modifytitle=També pots modificar el títol i la descripció.
+
+!set name_required=Nombre de punts que cada alumne ha d'obtenir
+!set name_repeat=Cada resposta correcta a l'exercici dóna 10 punts; així que has de posar\
+ aquí mes de 10 punts si vols que l'usuari repeteixi l'exercici.
+
+!set name_weight=Pes dels punts obtinguts en aquest treball
+!set name_weight_hint=S'utilitza tant per calcular els indicadors de treball del full \
+  com per al càlcul de la nota de qualitat de full. \
+   Poseu el pes 0 si no voleu que es comptabilitzin les notes obtingudes en aquest exercici.
+!set name_exotrymax=Nombre màxim d'intents comptabilitzats
+!set name_exotrymax_hint=Paràmetre que permet establir un nombre màxim <span class="tt">n</span>\
+  d'intents comptabilitzats en el càlcul de les notes durant els períodes on l'enregistrament de notes\
+  està activat (és possible continuar treballant a l'exercici\
+  un cop superat aquest número).\
+ El treball en una sèrie d'exercicis es considera com un intent,\
+ en el que s'ha donat una resposta o no i\
+ que el registre de les notes ha estat activat o no.\
+ El càlcul de les notes només té en compte les notes dels <span class="tt">n</span> \
+  primers intents un cop es va activar el registre de les notes.\
+ Per defecte, tots els intents amb registre de notes activat són comptats.\
+ Comprova la compatibilitat amb el nombre de punts necessaris si es posa un número positiu.
+!set name_end=!nosubst El recurs <span class="wims_mod_title">$title</span> s'ha inserit correctament al full
+!set name_endallexo=!nosubst s'ha inserit correctament una sèrie d'exercicis \
+  al full <span class="wims_mod_title">$title</span> amb els paràmetres
+!set name_endallexos=!nosubst $addexo sèries d'exercicis s'han inserit correctament\
+  al full <span class="wims_mod_title">$title</span> amb els paràmetres
+!set name_endallexo2s=!nosubst Els $notadd recursos següents no s'han pogut inserir perquè ja existien:
+!set name_endallexo2=!nosubst El recurs següent no s'ha pogut inserir perquè ja existeix:
+
+!set name_choose_exo=Aquest recurs serà inserit com una nova sèrie d'exercicis del full.
+!set name_choose_allexo=!nosubst Cadascun dels $exocnt exercicis del mòdul s'inserirà com una nova sèrie d'exercicis del full.
+!set name_choose_helpexo=Aquest recurs s'inserirà com a ajuda per a una de les sèries \
+  d'exercicis del full quan la nota està entre, i
+!set name_choose_series=Feu clic al nom de la sèrie d'exercicis a la qual li voleu afegir l'ajuda
+!set name_actualhelp=Ajuda actual
+!set name_series=Sèrie d'exercicis
+!set name_exo_order=Ordre dels exercicis de la sèrie
+!set name_replace_add=Substituir, Afegir
+
+!if $job=addallexo
+  !read oef/ca/intronames
+!endif

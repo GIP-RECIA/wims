@@ -1,0 +1,69 @@
+# DelUser
+# Supprime l'utilisateur $quser de la classe $qclass
+
+# Verifie que la classe $qclass existe
+!read scripts/check.class
+!if $error!=$empty
+  !exit
+!endif
+
+# un utilisateur n'existe pas dans une sous-classe, toujours dans sa superclasse.
+!if $class_superclass != $empty
+  userdir=$wims_home/log/classes/$class_superclass/.users
+!else
+  userdir=$wims_home/log/classes/$qclass/.users
+!endif
+
+folder_list=!defof USER_DIR_LIST in wimshome/public_html/bases/sys/define.conf
+
+!if del_from_trash != $option
+  # Verifie que $quser existe dans $qclass
+  !read scripts/check.user
+  !if $error!=$empty
+    !exit
+  !endif
+
+  !sh cd $userdir\
+  mv $quser .$quser
+  # Remove all data (score, logs...) related to this user
+  !for folder in $folder_list
+    !sh cd $wims_home/log/classes/$qclass/$folder\
+        mv $quser .$quser
+    # Look for every $quser.* file ($quser.bin, $quser.exam,...)
+    !if $folder issametext score
+      !sh cd $wims_home/log/classes/$qclass/$folder\
+          mv $quser.bin .$quser.bin\
+          mv $quser.exam .$quser.exam
+    !endif
+  !next
+
+  !read adm/class/mkuserlist $qclass
+  !read adm/class/stat
+!else
+  test=!defof user_exists in wimshome/log/classes/$qclass/.users/.$quser
+  !if $test==$empty
+    error=User not found in trash. Don't use 'del_from_trash' option if you want to delete an active user.
+    !exit
+  !else
+    !sh cd $userdir\
+        rm .$quser
+    # Delete all data (score, logs...) related to this user
+    !for folder in $folder_list
+      !if $folder notsametext examlog
+        !sh cd $wims_home/log/classes/$qclass/$folder\
+          rm .$quser
+
+        !if $folder issametext score
+          !sh cd $wims_home/log/classes/$qclass/$folder\
+            rm .$quser.bin\
+            rm .$quser.exam
+        !endif
+
+      !else
+        !sh cd $wims_home/log/classes/$qclass/$folder\
+          rm -r .$quser
+      !endif
+
+    !next
+  !endif
+!endif

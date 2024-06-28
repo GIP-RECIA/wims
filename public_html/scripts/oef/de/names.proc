@@ -1,0 +1,100 @@
+!set lang_exists=yes
+!distribute item suchen Sie aus!, keine Ahnung,keine dieser Antworten,\
+	die richtige Antwort ist, die richtigen Antworten sind\
+	into ch_choose, ch_noidea, ch_none, ch_good1, ch_goodn
+
+!set name_badsize=(Your answer is not the correct size.)
+!set name_empty=Ergänzen Sie bevor Sie die Antwort verschicken!
+!set name_exo=Übung
+!set name_sorry= Schade!
+!set name_noprint=Nicht ausdruckbar
+!set name_print=Print-Version
+!set name_send=Verschicken
+!set name_sendanswer=Antwort verschicken
+!set name_enterreply=Antwort eingeben
+!set name_correctreply=Antwort <b>verbessern</b>
+!set name_step=Schritt
+!set name_remark=<b>Anmerkung</b> Suchen Sie aus  '$ch_none', wenn Sie denken, dass die richtige Anwort nicht vorgestellt ist
+!set name_answeranalysis=Antwortanalyse
+!set name_Hint= Hinweis
+!set name_answers=Antworten
+!set name_answer_i=Antworten zur Übung
+!set name_Solution=Lösung
+!set name_sol_print=Print the solution
+!set name_Contribute=Contributors:
+
+!set name_lastname=Visitor
+!set name_firstname=Anonymous
+
+!!!!
+
+!set name_emptytitle=This module is a grouping of exercises.\
+ You have obviously asked for it without specifying the exercise in the module you want to do.\
+ You may have clicked on an incorrect link unless it was a software error.
+
+!distribute line Try to do your manipulation again\
+  Diese Serie wird chronometriert.\
+  Diese Übung wird chronometriert.\
+  Übung wiederholen\
+  Serie wiederholen\
+  nächste Übung der Serie\
+  bis zum Ende der Serie weitermachen, um eine Note zu bekommen\
+  (Sie haben die Zeit überschritten und bekommen Punkte abgezogen)\
+  Development mode\
+  Die richtigen Antworten werden automatisch in die Antwortfelder eingegeben.\
+  richtige Antworten in die Antwortfelder eingeben\
+  Clicking on $$wims_name_giveup brings up a new statement from the same exercise; the work already done on this exercise is then lost.\
+  Do you confirm?\
+  Do you confirm?\
+Exercice not entirely completed. Are you sure you want to submit?\
+into name_restart,name_serie_limit,name_exo_limit,name_exo_renew,name_serie_renew,\
+  name_serie_nextexo,name_serie_new2,name_penalty,\
+  name_devel_mode,name_devel_warning,name_devel_insert,name_exo_giveup,name_giveup_confirm,name_are_you_sure,name_exo_form_check
+
+!set name_serie_giveup=The series of exercises is not finished; you have to finish it \
+  to obtain a score. If you confirm that you wish to to abandon, \
+  the work already made on the series will then be lost and there will be a new statement \
+  for the same series of exercises.
+!set name_serie_exo=!nosubst This is the exercise $[$reply_cnt + 1] of a series that has $qnum.
+!set name_serie_exo2=!nosubst This is the exercise $[$reply_cnt] of a series that has $qnum.
+!set name_serie_score=!nosubst You have completed a series of $qnum exercises,\
+ with a grade of $module_score out of 10.
+!set name_exo_score=!nosubst Sie haben $module_score von 10 Punkten erzielt.
+
+!!!!
+!if $cmd=intro
+  !read oef/de/intronames
+!endif
+
+
+!distribute line Sorry, this exercise has no help.\
+Sorry, no indications are available for this exercise.\
+into name_warning_help, name_warning_hint
+
+!if $special_parm=about
+  !distribute line Vous travaillez actuellement sur un exercice de type\
+  This exercise contains both an explained solution and a hint.\
+  This exercise contains an explained solution but no hint.\
+  This exercise contains a hint but no solution explained.\
+  This exercise does not contain an explained solution or hint.\
+  This exercise is taken from a collection of exercises (module), of which the following information is:\
+  The copyright of the exercises belongs to their respective authors.\
+  Link for\
+  Observation\
+into name_about1,name_hint1,name_hint2,name_hint3,name_hint4,\
+ name_collection,name_copyr,name_linkfor,name_Observation
+
+!endif
+
+!if $latexuser=yes
+  !set name_latexprint=individualized latex source of some exercises.
+!else
+  !set name_latexprint=latex source of some exercises.
+!endif
+!set wims_name_printlatex=Latex version
+
+!set name_tryagain=You may resubmit responses to this version of the exercise.
+!set name_tryagain2=!nosubst You may resubmit responses to this version of the \
+  series of $qnum exercises.
+!set name_authordesc=Description de l'auteur
+!set name_authordesc_desc=Ce message d'explication n'est pas affiché aux élèves.

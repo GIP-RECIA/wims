@@ -1,0 +1,3 @@
+!set ans_warning1=Heu de seleccionar-ne un
+!set ans_warning2=Heu de seleccionar-ne només un
+!set ans_warning3=!nosubst Heu de seleccionar-ne $nbsel\nalors que heu seleccionat $ $

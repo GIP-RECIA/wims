@@ -1,0 +1,12 @@
+ ------------ version 2.02 
+20220617 [r16821] user can send a internal message to supervisor when log en exercice if class_mexolog=yes (FG)
+ ------------ version 2.01 
+2022-01-18
+   use module adm/sendbug to report a bug to a registered exercise (FG)
+2012-09-30
+   fix the following bug : renamed-images had the name of the link - so the exercise was not visible 
+   once the session was killed. (bpr)
+2010-02 : Version 2.00
+  This module replaces several previously existing language dependent modules adm/class/exolog.xx
+  of Gang Xiao. It has been constructed by localization of these modules, keeping a single 
+  computation core and adding dictionaries.

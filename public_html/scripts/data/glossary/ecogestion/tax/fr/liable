@@ -1,0 +1,19 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=tax
+!set gl_title=Redevable
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+<div class="spacer">Un <strong>redevable</strong> désigne
+ en principe une <span class="wims_emph">personne assujettie à un impôt</span>
+ qui se trouve dans l'<span class="wims_emph">obligation de devoir acquitter
+ l'impôt</span>.</div>
+ 
+<div class="spacer">En effet, il faut préciser que tout <i>assujetti</i> n'est
+ pas nécessairement <i>redevable</i> du fait des mesures d'exonérations éventuelles.</div>
+
+</div>

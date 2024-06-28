@@ -1,0 +1,27 @@
+title=Glossary
+title_fr=Glossaire
+title_it=Glossario
+description=Glossary
+author=Bernadette, Perrin-Riou
+address=bernadette.perrin-riou@u-psud.fr
+copyright=&copy; 2004- (<a href="COPYING">GNU GPL</a>)
+translator=
+translator_address=
+version=1.01
+# minimal version of wims server under which the module may run
+wims_version=4.15c
+language=fr
+
+# Possible categories: exercise, tool, dictionary, course, recreation.
+category=tool
+domain=
+
+# Anything you like.
+keywords=glossary
+
+# Software packages required to run the module
+require=
+
+# Does the module have scoring system?
+scoring=no
+

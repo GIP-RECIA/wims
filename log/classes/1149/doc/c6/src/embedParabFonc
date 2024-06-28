@@ -1,0 +1,44 @@
+\def{integer aa=randint(2..3)}
+\def{integer a=-\aa}
+\def{integer x=randint(4..6)}
+\def{integer y=randint(1,7,8,9)}
+<div class="wims_columns">
+ <div class="medium_size text_col">
+Pour modéliser un phénomène d'après sa courbe, il est utile de repérer
+ la fonction de référence qui a une courbe de même forme.<br>
+ Une parabole d'axe verticale fait référence à la fonction carré,
+ cependant "l'ouverture" de la parabole pourra être différente.<br>
+ Pour obtenir la même courbe par translation que la courbe de
+\(x \mapsto a x^2 + b x + c) ou \(x \mapsto a (x - x_S)^2 + y_S) avec \(a \ne 0),<br>
+il faudra prendre pour référence \(x \mapsto a x^2).
+</div><div class="medium_size img_col">
+<img alt="Femme nommée Phonk Siona" src="\filedir/phonk3.png" />
+</div></div>
+<p class="decal">
+D'une façon générale, une composition de fonction correspond à une transformation de la courbe.
+</p>
+<h3 class="l2w_content exemple">Exemple</h3>
+  <div class="l2w_content exemple">
+ \(f(x)=\a*(x-\x)^2+\y) et \(r(t)=\a*t^2).</p>
+<table class="wimscenter wimsnoborder">
+<tr>
+ <td align="right">\(x \mapsto x - \x =)</td>
+ <td align="left">\(t)</td><td align="center">\(\longrightarrow)</td>
+ <td align="right"> \(\a*t^2=)</td>
+ <td>\(m \mapsto m + \y = - \aa t^2 + \y = \a (x-\x)^2+\y)</td>
+<tr><td align="right">\(x \mapsto x - \x =)</td>
+ <td>\(t \mapsto t^2 = )</td>
+ <td>\(k \mapsto -k = - t^2 =)</td>
+ <td>\(u \mapsto \aa u = \a t^2 =)</td>
+ <td>\(m \mapsto m + \y = - \aa t^2 + \y = \a (x-\x)^2+\y)</td></tr>
+<tr>
+<td>Changement de variable<br>Translation horizontale<br>de \x unités vers la droite.</td>
+<td>Fonction <br>carré </td>
+<td>Opposé<br>Symétrie /(Ox)</td>
+<td>Fonction linéaire<br>Dilatation verticale<br>ordonnées \times \aa</td>
+<td>Ajout d'une constante<br>Translation verticale<br>de \y unités vers le haut</td>
+</tr>
+</table>
+<p class="decal">
+Dans le tableau ci-dessus, on a décomposé \(f) en utilisant \(r), puis on a décomposé \(r).
+</div>

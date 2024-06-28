@@ -1,0 +1,161 @@
+type=select
+textarea="data pre post"
+iEdit="pre post"
+
+:Haga clic en las palabras para resaltarlas en un texto.
+
+El ejercicio presenta un texto donde las palabras son "marcables" con el mouse. Hay que
+seleccionar algunas de acuerdo con las instrucciones del ejercicio.
+<p>
+Para construir un ejercicio con este modelo, solo ingrese los textos.
+</p><p class="wims_credits">
+Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Seleccionar palabras en un texto}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Cantidad mínima de palabras a marcar en cada ejercicio. Al menos 1.
+\integer{minmark=1}
+
+:Cantidad máxima de palabras a marcar en cada ejercicio.
+\integer{maxmark=8}
+
+:Datos principales
+Escribir una pregunta por línea y separar las líneas
+por punto y coma. Por tanto los textos en sí no pueden contener
+punto y coma.
+<p>Los campos a marcar deben colocarse entre un par de dobles
+signos de interrogación "??". Cada campo contiene una lista de elementos separados
+por comas.</p>
+El primer elemento antes de la coma es
+<ul><li>una palabra errónea,</li><li> una lista de palabras erróneas
+puestas entre llaves</li><li>o puede dejarse vacío.
+</li></ul>
+El segundo elemento es la palabra correcta.
+<pre>
+El gato ??comes,come?? ratón.
+El gato ??{comen,comme},come?? ratón.
+El gato ??,come?? ratón.
+</pre>
+
+Estas palabras se escogerán al azar antes de la visualización de
+la frase.
+<p>
+Hasta cien puntos de marcado
+se puede poner en cada oración.</p>
+$embraced_randitem
+
+\text{data=
+{Jack,Jean,Louis,Michel,Pierre} ??está,es?? extranjero, el
+??{ten,tenga},tiene?? ??uno,un?? cabaña de tiro ??a,al?? blanco.
+Se ??encontramos,encuentran??  ??cabaña,cabañas?? de tiro al blanco en
+??todos,todas?? las ferias. ??Las gentes,La gente?? ??llegan,llega??,
+??dan,da?? ??,dinero??
+y ??recibo,recibe?? ??,un rifle de municiones?? para tirar sobre
+??,figuras?? {colocada,puesta},colocadas?? sobre estantes.
+;
+
+??{Quel,Quels,Quelles},Quelle??
+idée ??est-je,ai-je??
+??{d'acheté,d'achetée,d'achetés},d'acheter?? ??{cept,cette,ces,ce},cet??
+oiseau ? L'oiselier me dit : "??{S'est,Cet},C'est?? un ??{mal,malle},mâle??.
+??Attender,Attendez?? une ??,semaine?? qu'il
+??{s'abitue,s'abituent,s'habituent},s'habitue??, ??est,et?? il chantera".
+??Hors,Or??, l'oiseau ??sobstine,s'obstine?? ??a,à?? ??ce,se??
+??tait,taire?? et il ??fais,fait?? ??tous,tout?? de ??{traver,travert},travers??.
+;
+
+Les ??désert,déserts?? de ??sables,sable?? ??occupe,occupent?? de
+??large,larges?? parties {de la planète,du monde,de la Terre}.
+Il n'y ??{pleu,pleus,pleuvent},pleut??
+presque ??,pas??. Très ??peut,peu?? de plantes et ??,d'animaux?? y
+??vit,vivent??. Les ??,dunes?? ??son,sont?? des collines de
+??,sable?? que le vent ??à,a??
+??{construit,construits,construite},construites??. Les
+??grains,graines?? de ??{certain,certaine,certains},certaines??
+plantes ??reste,restent?? sous le ??sole,sol?? du désert pendant
+des années. ??{Ils,Elle},Elles?? ??ce,se?? ??met,mettent??
+??a,à?? ??{poussées,poussée,poussés},pousser?? dès qu'il y a
+??une,un?? orage.
+;
+
+}
+
+:Texto mostrado antes de la pregunta. Etiquetas HTML permitidas. Puede estar vacío.
+$embraced_randitem
+\text{pre=
+Marquez les fautes d'orthographe dans la phrase ci-dessous.
+}
+
+:Texto que se muestra después de la pregunta. Etiquetas HTML permitidas. Puede estar vacío.
+\text{post=}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:Opciones.
+Agregue la palabra  <span class="tt wims_code_words">split</span> a la definición si desea dar una nota parcial
+para respuestas parcialmente correctas.
+\text{option=split}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+
+\text{accolade=wims(word 1 of \accolade)}
+\text{data=wims(singlespace \data)}
+\text{data=wims(nonempty rows \data)}
+\text{data=randomrow(\data)}
+\text{data=\accolade=1 ? wims(embraced randitem \data)}
+\text{data=slib(text/cutchoice2 \data)}
+\integer{qs=floor(rows(\data)/2)}
+\text{list=}
+\text{ind=}
+\for{i=1 to \qs}{
+ \text{d=\data[2*\i;]}
+ \text{list=\list \d;}
+ \if{\d[1] issametext }{\text{ind=\ind[]2,}}{\text{ind=\ind[]1,}}
+}
+
+\text{can=positionof(1,\ind)}
+\text{cancnt=items(\can)}
+\integer{tomark=randint(min(\minmark,\cancnt)..min(\maxmark,\cancnt))}
+\text{can=\cancnt>1?shuffle(\can)}
+\text{good=item(1..\tomark,\can)}
+\text{good=wims(sort numeric items \good)}
+
+\text{show=}
+\for{i=1 to \qs}{
+ \text{d=\i isitemof \good?\list[\i;1]:\list[\i;2]}
+ \text{show=\show[]\d,}
+}
+
+\text{pre=\accolade=1 ? wims(embraced randitem \pre)}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+::Vous n'avez pas besoin de modifier ceci en général.
+
+\statement{<div>
+\pre
+</div>
+\data[1;]
+\for{k=1 to \qs}{
+\embed{r1,\k} \data[2*\k+1;]
+}
+\post
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%
+
+\answer{Champ 1}{\good;\show}{type=mark}{option=\option}

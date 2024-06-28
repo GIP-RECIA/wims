@@ -1,0 +1,16 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+axis
+axisnumbering
+xlabel x-axis
+ylabel y-axis
+precision 1
+grid 2,2,grey,2,2,6,grey
+precision 1000
+curve red,4*sqrt(x)
+curve green,2*sqrt(abs(x)
+curve blue,3*1/sqrt(x)
+curve orange,4*sin(4/x)
+dashed
+curve red,4*cos(x)

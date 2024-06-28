@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=vectors,analytic_geometry,coordinates,distance
+!set gl_title=Norme d'un vecteur du plan
+!set gl_level=H4
+:
+:
+:
+:
+Le plan est muni d'un repère <strong>orthonormé</strong>
+\(\left(O;\overrightarrow{i},\overrightarrow{j}\right)\).
+<div class="wims_thm"><h4>Théorème</h4>
+Si \(\overrightarrow {v}\) est un vecteur de coordonnées
+\(\left( \begin{array}{c}
+x \\
+y
+\end{array} \right)\)
+alors <strong>la norme</strong> du vecteur <span style="white-space:nowrap">
+\(\overrightarrow {v}\),</span> notée <span style="white-space:nowrap">
+ \(\left\||\overrightarrow{v}\right\||\),</span> est donnée par&nbsp;:
+<div class="wimscenter">
+  \(\left\||\overrightarrow{v}\right\|| = \sqrt{x^2 + y^2}\).
+</div>
+</div>

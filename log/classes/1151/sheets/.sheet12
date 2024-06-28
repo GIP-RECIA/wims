@@ -1,0 +1,34 @@
+
+:H5/analysis/cercletrigo.fr
+exo=enroulement&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Placer un point sur le cercle trigonométrique
+<strong>Placer</strong> un angle sur le <strong>cercle trigonométrique</strong>.
+
+L'angle est compris entre \(-pi\) et \(\pi\)
+:H5/analysis/cercletrigo.fr
+exo=liresincos&confparm2=1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lire les valeurs de cos et sin sur l
+<strong>Lire</strong> un angle sur le cercle <strong>trigonométrique.</strong>
+
+L'angle est compris entre \(-pi) et \(pi)
+
+:H5/geometry/oefangles1S.fr
+exo=anginterv&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Équation trigonométrique I
+<strong>Résoudre</strong> une équation du type <strong>cos(x)=a</strong> ou <strong>sin(x)=b</strong> sur un intervalle donné.
+
+
+:H5/algebra/trigo.fr
+exo=equtrig&qnum=1&qcmlevel=3&scoredelay=
+10
+1
+Équation trigonométrique II
+<strong>Résoudre</strong> une équation du type <strong>cos(x)=a</strong> ou <strong>sin(x)=b</strong> sur un intervalle donné.
+
+

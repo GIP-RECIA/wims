@@ -1,0 +1,25 @@
+!reset methremark
+!form reply
+$name_step $currstep.
+
+!read deduc/meth/$modu_lang/$meth.def form
+
+<input type="submit" value="OK">
+<p>
+!set wims_ref_class=wims_button_help
+!href cmd=help&help_subject=meth&method=$meth $wims_name_help
+</p>
+!set random1=!randint 1,10^6
+!set random2=!randint 1,10^6
+!set random=$random1.$random2
+!set wims_ref_class=wims_button
+!href cmd=help&help_subject=status&special_parm=$random $name_state
+!set wims_ref_class=wims_button
+!href cmd=reply&opt=newstep&gotostep=$currstep $name_methchange
+
+!formend
+!if $methremark!=$empty
+  <p>
+  <b>$name_remarks</b>. $methremark
+  </p>
+!endif

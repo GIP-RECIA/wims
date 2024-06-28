@@ -1,0 +1,57 @@
+type=order
+textarea="instruction data"
+iEdit="instruction"
+
+:Reconstruir una imagen (tipo rompecabezas).
+
+Una imagen se corta en pedazos y los pedazos se ponen desordenados.
+Se trata de reconstruir la imagen.
+En cada acción solo podemos intercambiar dos pedazos: por eso,
+haga clic en el primero y luego en el segundo.
+
+<p class="wims_credits">
+Autor del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+:\title{Rompecabezas de imagenes}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciado
+\text{instruction=Pon la imagen en orden.
+Para intercambiar dos cartas, haz clic en la primera y luego en la segunda.}
+
+:Datos principales
+Cada línea corresponde a una imagen. El primer elemento es el nombre de la imagen
+que debería cargarse en la carpeta de imágenes del ejercicio una vez que se haya guardado el ejercicio.
+El segundo elemento es el tamaño de la imagen.
+El tercer elemento indica los pedazos.
+El cuarto elemento es opcional y puede ser una indicación o el nombre de la imagen.
+\text{data=photos/bird.gif,320x240,4 x 3,il se trata de un ave.
+photos/bloom.gif,320x240,3 x 4
+}
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+
+\text{data=randrow(\data)}
+
+\text{v=wims(replace internal x by , in \data[3])}
+\integer{taille=80*\v[1]}
+
+\statement{
+  <div style="padding:10px;">
+    <div class="instruction">\instruction</div>
+    \if{\data[4] !=}{
+      <strong>\data[4]</strong>
+    }
+  </div>
+  <div class="wimscenter">\embed{r 1, \data[2]}</div>
+}
+
+\answer{1}{\data[1];\data[3] x 80}{type=puzzle}{option=nonstop}

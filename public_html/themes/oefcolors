@@ -1,0 +1,7 @@
+!set oef_indgood=#008000
+!set oef_condgood=#008000
+!set oef_indbad=#b50000
+!set oef_condbad=#b50000
+!set oef_indforget=#135d8f
+!set oef_indpartial=#996F00
+!set oef_indprec=#996F00

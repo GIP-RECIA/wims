@@ -1,0 +1,146 @@
+!set lang_exists=yes
+
+<p>
+WIMS è progettato per essere tradotto in più lingue. Sono già disponibili
+versioni in diverse lingue, in particolare inglese, francese, olandese, cinese e molte
+altre.
+</p><p>
+Sono stati fatti (e si stanno ancora facendo) sforzi per facilitare l'opera
+di traduzione anche a persone che non siano programmatori esperti. Ma
+l'immenso numero di informazioni contenute nel sistema e il suo
+continuo sviluppo rende la traduzione di WIMS in una nuova lingua un
+grosso lavoro.
+</p><p>
+D'altro canto, la mancanza di una traduzione può rendere impossibile
+l'utilizzo effettivo di WIMS, e quindi cimentarsi nell'impresa di tradurlo
+può costituire un servizio per le future generazioni del proprio paese.
+</p><p>
+Se sei interessato a tradurre WIMS nella tua lingua, contatta il team
+di sviluppo di WIMS all'indirizzo
+!mailurl translation@wimsedu.info translation@wimsedu.info
+.</p>
+
+<p>
+Sarà necessario concordare l'estensione di due lettere che rappresenterà la
+lingua (come "en" per l'inglese, "fr" per il francese, "it" per l'italiano, ecc.).
+Sarà anche necessario avere una piccola immagine della bandiera nazionale per richiamare la traduzione.
+</p><p>
+Sarà infine necessario scegliere la codifica delle pagine html (che deve essere
+inserita nel codice sorgente di WIMS, in particolare nel file src/wims.h).
+Sfortunatamente al momento non è possibile utilizzare la codifica unicode.
+Ad esempio, attualmente <span class="tt">en</span>, <span class="tt">fr</span>,
+<span class="tt">es</span>, <span class="tt">de</span>, <span class="tt">it</span>,
+<span class="tt">nl</span> sono dichiarati <span class="tt">iso-8859-1</span>,
+<span class="tt">si</span> è dichiarato <span class="tt">iso-8859-2</span>,
+<span class="tt">ru</span> può essere dichiarato <span class="tt">iso-8859-5</span>.
+</p><p>
+Se chiamiamo la nuova lingua <span class="tt">xx</span>.
+</p><p>
+I primi moduli da tradurre sono <span class="tt">public_html/modules/home</span>,
+ <span class="tt">public_html/html</span> e <span class="tt">public_html/msg</span>.
+In ciascuno di questi moduli è necessario creare i file corrispondenti a quelli con estensione 
+<span class="tt">.en</span> questa volta con l'estensione <span class="tt">.xx</span> scelta.
+Al momento si tratta dei file seguenti:
+</p>
+<ul><li>
+nella directory <span class="tt">public_html/html/</span>, i file
+<span class="tt">href.xx ,mirrors.xx, msg.phtml.xx, name.phtml.xx, robot.phtml.xx</span> (quest'ultimo
+deve esistere per forza, ma può essere semplicemente copiato senza tradurlo);
+</li><li>
+nella directory <span class="tt">public_html/modules/home/</span>, i file
+<span class="tt">front.phtml.xx, names.xx</span> ;
+</li><li>
+nella directory <span class="tt">public_html/msg/</span>, i file
+<span class="tt">module_error.msg.xx, user_error.phtml.xx, warn_rawmath.phtml.xx, warn_rawmatrix.phtml.xx</span>.
+</li>
+</ul>
+
+<p>
+ Nella directory <span class="tt">public_html/modules/</span>, devono essere create directory <span class="tt">template/doc.xx,
+  template/exercise.xx, template/oef.xx, template/tool.xx, classes/xx</span>.
+</p><p>
+La cosa migliore è cominciare dalla traduzione dei moduli nella directory <span class="tt">public_html/modules/adm</span>.
+Per ciascuno di questi, i file da tradurre si trovano nella directory 
+<span class="tt">lang</span>. Copiare tutti i file che hanno estensione <span class="tt">.en</span>
+dando alle copie l'estensione <span class="tt">.xx</span> e traducendo queste copie.
+In questo modo, per quello che non viene tradotto viene visualizzata la versione inglese.
+Per facilitare eventuali modifiche, non copiare il file <span class="tt">names.phtml.xx</span>
+finché non è stato tradotto. D'altra parte, non appena questo file esiste, è necessario anche creare gli altri file della directory <span class="tt">lang</span>con l'estensione <span class="tt">.xx</span>.
+</p><p>
+Questa è la lista aggiornata di tali moduli (omettendo la parte <span class="tt">public_html/adm/</span> del nome delle directory)
+</p>
+<pre>browse
+class/activity
+class/adddoc
+class/addmodule
+class/cdt
+class/classes
+class/config
+class/exam
+class/exolog
+class/gateway
+class/grades
+class/livret
+class/motd
+class/passwd
+class/photoboard
+class/regclass
+class/reguser
+class/sendmail
+class/sequence
+class/sheet
+class/stat
+class/userlist
+createxo
+doc
+forum/forum
+forum/mboard
+forum/regforum
+forum/reguser
+latex2wims
+manage
+modtool
+new
+publish
+quicktool
+sheet
+stat/referer
+stat/stat
+vote
+</pre>
+<p>
+Nella directory <span class="tt">public_html/scripts/</span>, creare nuove directory <span class="tt">
+oef/xx, docu/xx</span> e <span class="tt">help/xx</span>, nonché (anche se meno essenziale)
+<span class="tt">scenario/xx, dialog/xx</span> e <span class="tt">deduc/xx</span>.
+</p><p>
+Se non traducete subito tutti i file in <span class="tt">help/xx</span>, è consigliato di creare comunque questi file, in modo che la prima riga sia 
+</p>
+<pre>!changeto help/en/yyy.phtml</pre>
+<p>
+se <span class="tt">yyy.phtml</span> è il nome del file. In questo modo, fino a traduzione completata, le istruzioni saranno mostrate nella versione inglese.
+</p><p>
+Il file <span class="tt">public_html/scripts/adm/lang/date.phtml.xx</span>
+ permette di scegliere il formato della data. Altre traduzioni necessarie sono nella directory <span class="tt">public_html/scripts/lang</span>.
+</p><p>
+Si consiglia di creare
+</p>
+<pre>public_html/scripts/help/anstype.xx</pre>
+a meno che non siano ancora stati tradotti i file <span class="tt">public_html/scripts/help/xx/reply.phtml
+</span>. Anche in questo caso, è possibile semplicemente scrivere
+<pre>!changeto help/anstype/yyy.phtml</pre>
+per visualizzare la versione inglese.
+<p>
+Ci sono infine alcuni file multilingua da modificare (ma non è indispensabile):
+</p>
+<pre>public_html/modules/home/askcookie.phtml</pre>
+
+<p>E, naturalmente, è auspicabile la traduzione dei moduli pedagogici di vostro interesse.</p>
+
+<p>Per quel che riguarda la traduzione
+!! del <em>core system</em>
+di WIMS in italiano potete contattare
+!mailurl wims@unimib.it WIMS@unimib
+.
+!! ...., per la traduzione di singoli moduli ....
+!! inserire indirizzo della mailing list.
+</p>

@@ -1,0 +1,24 @@
+!distribute lines La risposta è da considerarsi sbagliata a causa di questa richiesta non valida.\
+  Non hai abbastanza informazioni per risolvere il problema! Pertanto la risposta non è valida ed è considerata sbagliata.\
+  Le seguenti informazioni sono inutili (o ricavabili dalle altre informazioni già acquisite)\
+  Quando pensi di avere abbastanza informazioni per risolvere il problema puoi\
+  È il momento di\
+  dare la risposta\
+  Scegli la domanda\
+  fare domande\
+  Per risolvere il problema puoi\
+  Ora puoi continuare a\
+  a proposito\
+  Problema\
+into name_illegal3,name_speculate,name_useless,name_enough_information,\
+ name_enough_information2,name_giveanswer,name_choosequestion,name_askquestion,\
+ name_tosolve,name_continue,name_about,name_problem
+
+!set name_illegal1=!nosubst La richiesta per `$badname' non è valida
+!set name_illegal2=!nosubst La richiesta per `$badname' non è valida perché non ha senso.
+!set name_minasks=!nosubst Avresti potuto risolvere il problema facendo solo $minask domanda/e.
+!set name_minask=!nosubst Avresti potuto risolvere il problema facendo solo $minask domanda.
+!set name_warning_score=Il voto finale dipende dal numero di domande fatte. \
+  Ti verranno tolti punti se farai domande irrilevanti o inutili.
+
+!read oef/$lang/names.proc

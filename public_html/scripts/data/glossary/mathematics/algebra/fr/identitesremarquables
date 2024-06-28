@@ -1,0 +1,18 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=factorization,power,literal_calculation
+!set gl_title=Identités remarquables
+!set gl_level=H4
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Pour tous nombres réels \(a\) et \(b\) :
+<ul>
+<li>\((a+b)^2=a^2+2 a b + b^2\) ; </li>
+<li>\((a-b)^2=a^2-2 a b + b^2\) ; </li>
+<li>\((a+b)(a-b)=a^2 - b^2\).</li>
+</ul>
+</div>

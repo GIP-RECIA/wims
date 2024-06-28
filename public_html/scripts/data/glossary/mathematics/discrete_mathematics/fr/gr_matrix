@@ -1,0 +1,48 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph,matrix
+!set gl_title=Matrice associée à un graphe
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(n\in\NN^*\) et \(G\) un graphe non orienté d'ordre \(n\).
+  <br>
+  On appelle <strong>matrice associée</strong> à \(G\) la matrice carrée
+  \(A=(a_{i,j})\) de dimension \(n\) telle que&nbsp;:
+  <ul>
+    <li>
+      \(a_{i,j}=1\)
+      s'il existe une arête d'extrémités \(i\) et \(j\) ;
+    </li>
+    <li>
+      \(a_{i,j}=0\) sinon.
+    </li>
+  </ul>
+</div>
+<div class="wims_rem">
+  <h4>Remarque</h4>
+  La matrice associée à un graphe non orienté est symétrique, c'est-à-dire que,
+  pour tous entiers \(i\) et \(j\) tels que \(1 \leqslant i \leqslant n\) et
+  <span style="white-space:nowrap">\(1 \leqslant j \leqslant n\),</span> on
+  a&nbsp;: <span style="white-space:nowrap">\(a_{j,i}=a_{i,j}\).</span>
+</div>
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(n \in \NN^*\) et \(G\) un graphe orienté d'ordre \(n\).
+  <br>
+  On appelle <strong>matrice associée</strong> à \(G\) la matrice carrée
+  \(A=(a_{i,j})\) de dimension \(n\) telle que&nbsp;:
+  <ul>
+    <li>
+      \(a_{i,j}=1\) s'il existe une arête d'origine \(i\) et d'extrémité \(j\) ;
+    </li>
+    <li>
+      \(a_{i,j}=0\) sinon.
+    </li>
+  </ul>
+</div>
+:mathematics/discrete_mathematics/fr/graphdraw_1

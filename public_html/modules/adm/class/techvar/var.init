@@ -1,0 +1,7 @@
+#max number of techvar (in each level)
+MAXtechvar=!defof max_techvar in wimshome/log/wims.conf
+!default MAXtechvar=!defof DF_max_techvar in wimshome/public_html/bases/sys/defaults.conf
+MAXcharname=10
+MAXnbvalue=!defof MAX_TECHVARVAL in wimshome/public_html/bases/sys/define.conf
+
+!readproc adm/sheet/usedtechvar

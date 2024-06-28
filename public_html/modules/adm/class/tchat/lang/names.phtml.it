@@ -1,0 +1,80 @@
+!set lang_exists=yes
+
+wims_name_newmsg=Nuovo messaggio
+name_viewpage=Pagina/e dello studente visibile/i
+name_partnotconnected=Questo studente non è connesso alla Chat \
+  o nessuna delle sue pagine è visibile.
+name_nopagetoview=Nessuna pagina studente è visualizzabile.
+name_nosharingscreen=Lo studente ha disattivato la condivisione dello schermo.
+name_nomsg=Nessun messaggio.
+name_userlist=Elenco degli studenti
+name_noparticipant=Non ci sono iscritti al corso.
+name_tchatwith=Chat con
+name_warninguser=Quando vi collegate alla Chat, il docente può visionare \
+  (quando è connesso) una copia delle pagine WIMS che state visionando. \
+  Questo per permettere di scambiare messaggi relativi a un esercizio proprio mentre lo state risolvendo.
+name_tchatopen=Connesso
+name_answer=Rispondi
+name_page=Finestra
+name_living=Sala
+name_ownliving=Sala personale
+name_changeliving=Cambia sala
+name_open=Aperta
+name_opening=Apri
+name_close=Chiusa
+name_closing=Chiudi
+name_regusers=Iscritti
+name_all=tutti
+name_configliving=Configurazione della sala
+name_mkliving=Crea
+name_title=Nome della sala
+name_desc_title=!nosubst Nome della sala (massimo $title_limit caratteri)
+name_statut=Stato
+wims_name_listliving=Configurazione sale
+wims_name_addliving=Aggiungi una sala
+name_confliving=Configura una sala
+wims_name_userlistliving=Monitoraggio sale
+name_listall=tutti gli iscritti al corso
+name_teacher=il docente
+name_yourself=tu
+name_and=e
+name_opentchat=Apri la Chat per questa classe
+name_timing=Intervallo di aggiornamento delle pagine
+name_desc_refreshtiming=!nosubst Un intero minore o uguale a $msg_min_timing
+name_configuration=Parametri
+name_onlynonempty=Mostra solo le sale attive
+name_desc_onlynonempty=Permette di mostrare nella pagina di monitoraggio sale solo le sale con almeno uno studente connesso
+name_onlynonemptyliving=Sono mostrate solo le sale attive o con un messaggio senza risposta di qualche studente.
+name_preview=Visualizza anteprima
+name_Message=Messaggio
+name_autorefreshon=L'aggiornamento automatico delle pagine è attivo. \
+  Sconsigliata a meno che non siate in attesa di un messaggio.
+name_autorefreshon1=Questo può disturbare il caricamento di altre pagine.
+name_autorefreshoff=L'aggiornamento automatico delle pagine non è attivo.
+name_sharescreen=Condivisione schermo
+name_autorefresh=Aggiornamento
+name_active=Attivo
+name_desactive=Disattivo
+
+!!For titles of links: has to be checked, if too long, there is a bug in the link.
+
+!set wims_name_title_living_activeshare=Se attivo, il docente può \
+   visionare le pagine su cui state lavorando.
+!set wims_name_title_living_stopshare=Il docente può visionare la pagina \
+   su cui stai lavorando.
+!set wims_name_title_living_activerefresh=$name_autorefreshoff Potete attivarlo.
+!set wims_name_title_living_stoprefresh=$name_autorefreshon
+
+
+name_depos=Carica un file temporaneo
+name_depos2=File temporaneo/i depositato/i dallo studente
+name_actualfile=File corrente
+name_usertmpfiledesc=!nosubst Il file viene eleminato dal termine della sessione. Se si carica un nuovo file il precedente viene cancellato. La dimensione massima del file è $[$tchat_configfilesize*0.25] Mega.
+name_configfilesize=Autorizza il caricamento temporaneo di file da parte degli studenti
+name_desc_configfilesize=Permette agli studenti di caricare un file che viene poi eliminato al termine della sessione; la dimensione massima del file è configurabile.
+name_disable_configfilesize=Questa opzione è stata disattivata dal responsabile del server.
+
+name_Sheet=Test
+name_Examen=Esame
+name_Doc=Documento
+name_Exercise=Esercizio

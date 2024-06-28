@@ -1,0 +1,7 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+fontsize 18
+legend legend 1:legend 2:legend 3
+legendcolors red:green:blue
+grid 1,1,grey

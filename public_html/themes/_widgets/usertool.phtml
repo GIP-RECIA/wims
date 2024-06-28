@@ -1,0 +1,33 @@
+!read themes/_widgets/user_vartool.phtml
+!read themes/_widgets/user_varglossary.phtml
+
+!if $tcnt+$gcnt>0
+ <!-- _widgets/usertool.phtml -->
+<div class="wims_seq" id="wims_user_tool">
+ !!<div class="wims_title_seq wims_tool_item">$wims_name_tools</div>
+ <ul class="wims_work_list">
+  !if $tcnt>0
+    !for i=1 to $tcnt
+      !set s_=!line $i of $ts_list
+      !set t_=!line $i of $ti_list
+      !set w_=!line $i of $tdw_list
+      !set tt_=!line $i of $tt_list
+      <li class="wims_tool_item">
+      !!<span class="wims_user_tool_type">$wims_name_tool</span>
+      !href module=$s_&$tt_ $t_
+      </li>
+    !next i
+  !endif
+  !if $gcnt>0
+    !for i=1 to $gcnt
+      !set t_=!line $i of $gt_list
+      <li class="wims_glossary_item">
+      !!<span class="wims_user_glossary_type">$wims_name_tool</span>
+      !href module=adm/tool/glossary&gl=$i $t_
+      </li>
+    !next i
+  !endif
+ </ul>
+</div>
+ <!-- end _widgets/usertool.phtml -->
+!endif

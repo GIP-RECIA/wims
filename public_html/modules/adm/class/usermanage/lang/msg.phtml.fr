@@ -1,0 +1,43 @@
+!set wims_module_log=error: $error
+
+<span class="wims_warning">$wims_name_Error</span>.
+
+!if no_reccourse=$error
+  Le transfert de ces activités n'est pas possible.
+  !exit
+!endif
+
+!if not_supervisor=$error
+  Désolé, mais l'opération de préparation / modification d'une feuille de
+  travail est réservée aux enseignants enregistrés d'une classe.
+  !exit
+!endif
+
+!if bad_classpass=$error
+  Désolé mais vous n'avez pas fourni le bon mot de passe d'inscription de
+  participant à la classe. Vous n'avez pas le droit de changer les informations
+  qui suivent sans ce mot de passe.
+  !exit
+!endif
+
+!if bad_user=$error
+  Erreur d'appel : le participant <span class="tt wims_login">$checkuser</span> n'existe pas.
+  !exit
+!endif
+
+!if badimgformat=$error
+  Le fichier que vous avez envoyé n'est pas une image.
+  !exit
+!endif
+
+!if filetoobig=$error
+  Le fichier que vous avez envoyé dépasse la capacité maximale autorisé après conversion de l'image. Veuillez envoyer une image moins volumineuse.
+  !exit
+!endif
+
+!if quota_file=$error
+  La capacité maximale de stockage de la classe est atteinte. Il n'est pas possible de sauvegarder votre image.
+  !exit
+!endif
+
+!msg $error

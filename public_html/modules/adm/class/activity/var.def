@@ -1,0 +1,4 @@
+any:getuser	getraw job user status
+reply:show types share showsheet varfilter choice loginlist select_user graphics varfilterclear cf_open cf_color[10] cf_color0 cf_subval cf_nbsub save
+init:moduclass_lang
+deny:ulist llist flist nbuser

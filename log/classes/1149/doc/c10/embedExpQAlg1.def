@@ -1,0 +1,23 @@
+!set titb=Présentation
+!set keyw=
+!set datm=20210912
+!set prev=
+!set next=embedExpQAlg2
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<p>
+À partir d'un encadrement de la solution, il est possible de diviser par 2
+la taille de l'intervalle, en observant où se trouve la solution par rapport au milieu de l'encadrement.
+Trouver les algorithmes les plus efficaces est encore aujourd'hui un objet de recherche.
+L'algorithme de recherche d'une solution par dichotomie est un algorithme classique qu'il est bon de connaître
+ et de savoir programmer sur sa calculatrice ou son ordinateur.
+</p>
+

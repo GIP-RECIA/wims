@@ -1,0 +1,125 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Applet GeoGebra (html5)
+slib_parms=1\
+,opzioni e/o comandi javascript, uno per line o separati da "punto e virgola"
+slib_out=L'applet GeoGebra in formato html5
+slib_comment=I parametri possono contenere \
+al massimo uno dei tre metodi qui elencati:\
+<div>\
+<ul><li><span class="tt wims_code_words">file=</span> nome del file ggb (che deve essere messo nella directory images).</li>\
+<li><span class="tt wims_code_words">ggbBase64=</span> codice corrispondente all'applet che si può ottenere digitando Ctrl+shift+B una volta aperto il file ggb.<br> Nel caso di dati come stringa di caratteri, scrivere <span class="tt wims_code_words">ggbBase64=stringa_di_caratteri</span> senza spazi e obbligatoriamente come prima riga.</li>\
+<li><span class="tt wims_code_words">material_id=</span> id di una figura pubblicata su GeoGebraTube che si può ottenere nel momento in cui si imposta la condivisione della figura su GeogebraTube<br> (sconsigliato nel caso di utilizzo all'interno di un esercizio)</li></ul>\
+Gli altri parametri accettati e qui elencati sono documentati <a target="wims_external" href="https://wiki.geogebra.org/it/Riferimenti:Parametri_delle_applet_GeoGebra">\
+in questa pagina.</a>\
+<ul><li><span class="tt wims_code_words">height=</span> default <span class="tt wims_code_words">300</span></li>\
+<li><span class="tt wims_code_words">width=</span> default <span class="tt wims_code_words">300</span></li>\
+<li><span class="tt wims_code_words">showToolBar=</span> default <span class="tt wims_code_words">false</span></li>\
+<li><span class="tt wims_code_words">customToolBar=</span> default la barra completa di tutti gli strumenti GeoGebra. Attenzione: non utilizzare virgole come sepraatori.\
+<br>La liste dei possibili strumenti è disponibile qui: <a target="wims_external" href="https://wiki.geogebra.org/it/Riferimenti:Barra_degli_strumenti">Valori per la barra degli strumenti</a>.\
+<br>Se volete raggruppare più strumenti, utilizzare una chiocciola <span class="tt wims_code_words">@</span>. Per separare i diversi strumenti utilizzare la barra verticale <span class="tt wims_code_words">|</span>.</li>\
+<li><span class="tt wims_code_words">showMenuBar=</span> default <span class="tt wims_code_words">false</span></li>\
+<li><span class="tt wims_code_words">showAlgebraInput=</span> default <span class="tt wims_code_words">false</span></li>\
+<li><span class="tt wims_code_words">algebraInputPosition=</span> default <span class="tt wims_code_words">vide</span>. La posizione si adatta a seconda del file.</li>\
+<li> <span class="tt wims_code_words">algebra</span> posiziona la barra di input nella finestra dell'algebra.</li>\
+<li><span class="tt wims_code_words">top</span> posiziona la barra in alto.</li>\
+<li><span class="tt wims_code_words">bottom</span> posiziona la barra in basso.</li>\
+<li><span class="tt wims_code_words">showResetIcon=</span> default <span class="tt wims_code_words">false</span> (Attenzione: questa opzione rende possibile il reavvio dell'applet, ma senza che la costruzione venga rifatta in WIMS)</li>\
+<li><span class="tt wims_code_words">showToolBarHelp=</span> default <span class="tt wims_code_words">true</span></li>\
+<li><span class="tt wims_code_words">enableRightClick=</span> default <span class="tt wims_code_words">true</span> (Attenzione: cliccando sul tasto destro del mouse lo studente può modificare tutti gli oggetti della costruzione!)</li>\
+<li><span class="tt wims_code_words">language=</span> default <span class="tt wims_code_words">la lingua del modulo</span></li>\
+<li><span class="tt wims_code_words">enableLabelDrags=</span> default <span class="tt wims_code_words">true</span></li>\
+<li><span class="tt wims_code_words">enableShiftDragZoom=</span> default <span class="tt wims_code_words">true</span></li>\
+<li><span class="tt wims_code_words">init=</span> default <span class="tt wims_code_words">0</span> nessun del pulsante di ripristino.\
+<br> Se il parametro è <span class="tt wims_code_words">1</span>, l'initialisation fonctionne quelle que soit la figure. Par contre elle ne prend pas en compte l'initialisation du script effectué dans ggb par l'intermédiaire de ggbOnInit.\
+<br> Se il parametro è <span class="tt wims_code_words">2</span>, l'initialisation prend en compte uniquement les commandes tapées en mode texte dans la slib ou le anstype. L'esecuzione in questo modo è più rapida.</li>\
+<li><span class="tt wims_code_words">useBrowserForJS=</span> default <span class="tt wims_code_words">true</span>\
+<br>Si on met l'option à false, on charge le javascript présent dans la fonction ggbOnInit de ggb.</li>\
+<li><span class="tt wims_code_words">debug=</span> default <span class="tt wims_code_words">false</span></li>\
+<li><span class="tt wims_code_words">number=</span> numero dell'applet all'interno della pagina html (default <span class="tt wims_code_words">1</span>).</li>\
+</ul>\
+</div>\
+Les méhodes javascript \
+(<a target="wims_external" href="https://wiki.geogebra.org/s/it/index.php?title=Riferimenti:JavaScript">GeoGebra_JavaScript_Methods</a>)\
+ et les commandes (<a target="wims_external" href="https://www.geogebra.org/wiki/s/en/index.php?title=Category:Commands&pageuntil=IsInRegion+Command#mw-pages">Command</a>)\
+peuvent être utilisées.\
+<ul><li><span class="tt wims_code_words">SetPerspective</span> : A mettre avant tout autre paramètre pour afficher une feuille de calcul.<br> Pour plus de détail, suivre le lien :\
+ <a target="wims_external" href="https://www.geogebra.org/manual/en/SetPerspective_Command">SetPerspective_Command</a> \
+<br><strong>Exemples :</strong> SetPerspective["S"] feuille de calcul\
+<br>SetPerspective["G"] Géométrie pure</li>\
+<li><span class="tt wims_code_words">SetValue</span> : Donner une valeur à un objet.\
+<br><strong>Exemple :</strong> SetValue[a,5]</li>\
+<li><span class="tt wims_code_words">SetCoords</span> : Attribuer les coordonnées à un point.\
+<br><strong>Exemple :</strong> SetCoords[A,xA,yA]</li>\
+<li><span class="tt wims_code_words">SetColor</span> : Définir la couleur d'un objet.\
+<br><strong>Exemple :</strong> SetColor[a,red]</li>\
+<li><span class="tt wims_code_words">SetVisibleInView</span> : Régler la visibilité d'un objet dans la fenêtre 1 ou 2.\
+<br><strong>Exemple :</strong> SetVisibleInView[A,1,false]</li>\
+<li><span class="tt wims_code_words">ShowLabel</span> : Cacher ou montrer l'étiquette.\
+<br><strong>Exemple :</strong> ShowLabel[f, true]</li>\
+<li><span class="tt wims_code_words">SetLabelMode</span> : Régler l'étiquette d'un objet. 0 pour le nom, 1 pour le nom et la valeur, 2 pour la valeur, 3 pour la légende.\
+<br><strong>Exemple :</strong>SetLabelMode[A,1]</li>\
+<li><span class="tt wims_code_words">SetLayer</span> : Attribuer le calque n°1 à l'objet.\
+<br><strong>Exemple :</strong> SetLayer[d,1] </li>\
+<li><span class="tt wims_code_words">HideLayer ShowLayer</span> : Indiquer que le calque n°2 est caché. Les objets sont default sur le calque n° 0.\
+<br><strong>Exemple :</strong> HideLayer[2]</li>\
+<li><span class="tt wims_code_words">SetFixed</span> : Fixer l'objet.\
+<br><strong>Exemple :</strong> SetFixed[A,true]</li>\
+<li><span class="tt wims_code_words">SetTrace</span> : Activer la trace du point.\
+<br><strong>Exemple :</strong> SetTrace[A,true]</li>\
+<li><span class="tt wims_code_words">SetPointStyle</span> : Définir le style du point. ­1 défaut, 0 cercle plein, 1 cercle, 2 croix, 3 plus, 4 diamant plein, 5 diamant vide, 6 triangle (nord), 7 triangle (sud),\
+<br> 8 triangle (est), 9 triangle (ouest).\
+<br><strong>Exemple :</strong> SetPointStyle(A,1)</li>\
+<li><span class="tt wims_code_words">SetPointSize</span> : Définir la taille d'un point entre 1 et 9. Si 0 point invisible.\
+<br><strong>Exemple :</strong> SetPointSize(a,9)</li>\
+<li><span class="tt wims_code_words">SetLineStyle</span> : Définir le style de courbe. La valeur varie de 0 à 4 .\
+<br><strong>Exemple :</strong> SetLineStyle[d,2]</li>\
+<li><span class="tt wims_code_words">SetLineThickness</span> : Définir l'épaisseur du trait de 1 à 13 avec une valeur default de ­1. Elle fonctionne pour les droites, fonctions et curseur.\
+<br><strong>Exemple :</strong> SetLineThickness[f,13]</li>\
+<li><span class="tt wims_code_words">setAxesVisible</span> : Afficher les axes du repères. Attention s minuscule.\
+<br><strong>Exemple :</strong> setAxesVisible(false,false)</li>\
+<li><span class="tt wims_code_words">setGridVisible</span> : Afficher la grille. Attention s minuscule.\
+<br><strong>Exemple :</strong> setGridVisible(true)</li>\
+<li><span class="tt wims_code_words">setCoordSystem</span> : Définir le repère. Attention le repère ne sera plus orthonormal. Attention s minuscule.\
+<br><strong>Exemple :</strong> setCoordSystem(xmin,xmax,ymin,ymax) </li>\
+<li><span class="tt wims_code_words">deleteObject</span> : Supprimer l'objet d.\
+<br><strong>Exemple :</strong> Delete[d]</li>\
+<li><span class="tt wims_code_words">renameObject</span> : Attribuer l'étiquette Cool à l'objet A.\
+<br><strong>Exemple :</strong> Rename[A,Cool]</li>\
+<li><span class="tt wims_code_words">StartAnimation</span> : Démarrer l'animation liée à un objet.\
+<br><strong>Exemple :</strong> StartAnimation[a]</li>\
+<li><span class="tt wims_code_words">StopAnimation</span> : Arrêter l'animation liée à un objet.\
+<br><strong>Exemple :</strong> StopAnimation[b]</li>\
+<li><span class="tt wims_code_words">evalCommand</span> : Évaluer la chaîne comme si elle avait été entrée dans le champ de saisie. Utiliser plusieurs commandes en les séparant par "\n" .\
+<br><strong>Exemples :</strong> evalCommand("mm=mm+0.01")\
+<br>evalCommand("SetTrace[Ny_C,true]")\
+<br>evalCommand("SetLayer[d,2] \n HideLayer[2]")}</li>\
+</ul>\
+<div class="tt wims_code_words">\
+  evalCommand setValue setCoords setColor setVisible \
+  setLabelVisible setLabelStyle setFixed setTrace\
+  setAxesVisible setGridVisible setCoordSystem setUndoPoint\
+  deleteObject renameObject setLayer setLayerVisible\
+  setLineStyle setThickness setPointStyle setPointSize\
+  setFilling setAnimating setAnimationSpeed\
+  startAnimation stopAnimation isAnimationRunning\
+</div>\
+<pre>&#92;integer{x=randint(1..3)}\
+&#92;text{appletcommand= Z=(&#92;x,3.78)\
+W=(6.2,2.8)\
+Ellipse[Z,W,5]\
+u=Line[W,Z]}\
+&#92;text{option=showToolBar=true\
+customToolBar="0|40|||1|2|5@10"\
+width=800\
+height=500\
+number=1}\
+&#92;text{applet=slib(geo2D/geogebra &#92;appletcommand ; &#92;option)}\
+&#92;statement{&#92;applet}\
+</pre>\
+Il est possible de charger des figures sans la fenêtre AlgebraView  en utilisant la commande\
+ <span class="tt wims_code_words">SetPerspective["G"]</span>.\
+<br>\
+D'autres valeurs renvoient d'autres types de fenêtres : voir\
+<a href="https://www.geogebra.org/wiki/en/SetPerspective_Command">SetPerspective_Command</a>\
+<br> Nous remercions Michael Borcherds (geogebra) de son aide.

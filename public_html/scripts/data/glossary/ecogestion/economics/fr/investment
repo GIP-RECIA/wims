@@ -1,0 +1,41 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Investissement
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+L'<strong>investissement</strong> est une opération économique fondamentale
+par laquelle <span class="wims_emph">une entreprise renouvelle, accroît ou
+encore améliore ses capacités de production</span>.
+<div class="wims_rem"><h4>Précisions</h4>
+On distingue différents types d'investissements qui par ailleurs peuvent être de différentes natures.
+<ol class="spacer">
+<li>Les types d'investissements :
+<ul class="spacer">
+<li>l'investissement dit de <span class="wims_emph">renouvellement</span> ou
+de <span class="wims_emph">remplacement</span> dont l'objectif
+est de renouveler des biens de production en fin de vie afin de <span class="wims_emph">maintenir une capacité de production</span> existante ;</li>
+<li>l'investissement dit de <span class="wims_emph">capacité</span>
+ou <span class="wims_emph">d'extension</span> dont l'objectif est
+<span class="wims_emph">d'accroître une capacité de production</span> existante ;</li>
+<li>l'investissement dit de <span class="wims_emph">productivité</span> ou
+de <span class="wims_emph">rationalisation</span> dont l'objectif est
+<span class="wims_emph">d'améliorer le processus de production</span> existant en produisant mieux ou
+plus rapidement voire à moindre coût.</li>
+</ul></li>
+<li>La nature de l'investissement :
+<ul class="spacer">
+<li>l'investissement peut être <span class="wims_emph">matériel</span> :
+machines, bâtiments, matériels informatiques, véhicules...;</li>
+<li>l'investissement peut être <span class="wims_emph">immatériel</span> :
+brevets, logiciels, formation de salariés...</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+

@@ -1,0 +1,3 @@
+reply: save source
+any: logcheck checkuser logtype checksession
+deny: data local_email parent vardata cmd_caller

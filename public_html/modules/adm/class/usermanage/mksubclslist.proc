@@ -1,0 +1,30 @@
+!if $wims_supertype=2
+  ltclassname=!sh cat $wims_home/log/classes/$wims_superclass/.subclasses | awk -F: '{print $$2}' | awk -F, '{print $$1","$$4}'
+!endif
+
+!if $wims_supertype=4
+  ltclassname=!record 0 of wimshome/s2/$wims_session/ltclassname
+  !if $ltclassname!=$empty
+    test=!sh stat -c%Y $wims_home/log/classes/$wims_superclass/classes $wims_home/log/classes/$wims_superclass/levels $wims_home/log/classes/$wims_superclass/courses $wims_home/log/classes/$wims_superclass/programs $wims_home/log/classes/$wims_superclass/icourses | sort
+    dtfile=!sh stat -c%Y $wims_home/s2/$wims_session/ltclassname
+    dtsc=!line -1 of $test
+    !if $dtfile > $dtsc
+      !exit
+    !endif
+  !endif
+  ltclassname=$empty
+  list=classes,class\
+levels,level\
+courses,course\
+programs,program\
+icourses,icourse
+  !for k=1 to 5
+    tmp=!record 0 of wimshome/log/classes/$wims_superclass/$(list[$k;1])
+    tmp=!linecnt $tmp
+    !if $tmp>0
+      tmp=!sh cat $wims_home/log/classes/$wims_superclass/$(list[$k;1]) | awk -F, '{print "$wims_superclass/"$$1","$$3",$(list[$k;2])"}'
+      ltclassname=!append line $tmp to $ltclassname
+    !endif
+  !next k
+  !writefile wimshome/s2/$wims_session/ltclassname $ltclassname
+!endif

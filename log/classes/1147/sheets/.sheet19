@@ -1,0 +1,319 @@
+Automatismes
+Nombres, pourcentage, coordonnées, équation, aire
+??,2021
+1
+H4
+mathematics
+number,percents,proportionality,conversion,number_writing,fraction,decimals,rational_number,line_equation,area,equations,coordinates
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Automatismes" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:H4/math/quizzautomat.fr
+exo=conv2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Conversions d'unités
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H4/math/quizzautomat.fr
+exo=conv1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Conversion litre-cube
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H4/math/quizzautomat.fr
+exo=pcent4&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Fraction; décimal; pourcentage
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H4/math/quizzautomat.fr
+exo=puis3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Millions et milliards
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H4/math/quizzautomat.fr
+exo=puis2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Ordre de grandeur et opérations
+
+
+
+
+
+
+:H4/math/quizzautomat.fr
+exo=frac2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Rationnels : fractionnaire -> décimal
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H4/math/quizzautomat.fr
+exo=frac3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Rationnels : décimal -> fractionnaire
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H4/math/quizzautomat.fr
+exo=intervallesint&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Intervalles : intervalle et inégalité 1
+
+
+
+
+
+
+:H4/math/quizzautomat.fr
+exo=intervallesint2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Intervalles : intervalle et inégalité 2
+
+
+
+
+
+
+:H4/math/quizzautomat.fr
+exo=form1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Appliquer une formule
+
+
+
+
+
+
+:H4/math/quizzautomat.fr
+exo=lit1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Isoler une variable
+
+
+
+
+
+
+:H4/math/quizzautomat.fr
+exo=pcent1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Pourcentages : calcul simple
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H4/math/quizzautomat.fr
+exo=pcent2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Pourcentages : coefficient multiplicateur
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H4/math/quizzautomat.fr
+exo=pcent6&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Pourcentages : proportion de proportion
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H4/math/quizzautomat.fr
+exo=pcent7&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Pourcentages : valeur finale
+Cet exercice peut être résolu sans utiliser la calculatrice.
+
+Conseillé sans calculatrice
+
+calculator_not
+
+:H1/algebra/oefrelatif.fr
+exo=relatrule&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Règle et nombres relatifs
+
+
+
+:H3/geometry/oefcoord.fr
+exo=ptcoord&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lire les coordonnées d'un point
+
+
+
+:H1/algebra/oefrelatif.fr
+exo=coord&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lire les coordonnées de trois points
+
+
+
+:H3/geometry/oefcoord.fr
+exo=coordpt&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Placer un point
+
+
+
+:H4/math/quizzautomat.fr
+exo=fct4&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Tracé d'une droite
+
+
+
+:H4/math/quizzautomat.fr
+exo=fct2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Appartenance à une courbe
+
+
+
+
+
+
+:H4/math/quizzautomat.fr
+exo=fct3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Signe graphiquement
+
+
+
+
+
+
+:E4/number/oefcalcul.fr
+exo=arrondi1&exo=arrondi10&exo=arrondia&exo=arrondi100&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Arrondir un nombre
+
+
+
+:H3/algebra/arithtable.en
+exo=typed2x2&confparm1=11&confparm2=2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Somme et produit de fractions positives
+
+
+
+:H3/algebra/arithtable.en
+exo=partial2x2&confparm1=13&confparm2=3&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Somme et produit de fractions rationnelles
+
+
+
+:H3/algebra/oefeqineq.fr
+exo=Equation3&confparm2=2&confparm1=2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+ax=b
+
+
+
+:H3/algebra/oefeqineq.fr
+exo=Equation4&confparm2=2&confparm1=2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+x+a=b
+
+
+
+:H3/algebra/oefeqineq.fr
+exo=CORequ4&confparm2=2&confparm1=2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Correspondance équations
+
+
+
+
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefaire1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Aire 1
+
+
+
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefaire4&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Aire 2
+
+
+
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefaire5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Aire 3
+
+
+
+:H1/geometry/OEFevalwimsperim.fr
+exo=oefairedisq5&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Aire 4
+
+
+

@@ -1,0 +1,54 @@
+!! check if score is open according to score restriction define for sheet and user define by wims_read_parm
+!! wims_read_parm=user,sheet
+
+!distribute item $wims_read_parm into U_,S_
+
+expir_=!record 0 of wimshome/log/classes/$wims_class/.$S_
+!if $expir_=$empty
+  scoreopen=1
+  !exit
+!endif
+
+cle_=!word 1 of $expir_
+!! process for technical variable definition (replace expir_user by value decide by the technical variable)
+!if \ isin $cle_
+  idtechvar_=!line 1 of $expir_
+  idtechvar_=!char 2 to -1 of $idtechvar_
+  !readproc adm/class/userdef ,$wims_class,$U_
+  val_=!defof user_techvar_$(idtechvar_) in $userdef
+  !default val_=EMPTY
+  !reset expir_
+  expir_=!defof techvar_$val_ in wimshome/log/classes/$wims_class/.$S_
+  !default expir_=none
+!endif
+!! end process technical variable
+
+!if $expir_=none
+  scoreopen=0
+  !exit
+!endif
+
+!reset S_expiration_ S_beginning_
+expir_=!words2items $expir_
+!for l_ in $expir_
+  !if < isin $l_ or > isin $l_
+    !if < isin $l_
+      l_=!replace internal < by ?, in $l_
+      cle_=expiration
+    !else
+      l_=!replace internal > by ?, in $l_
+      cle_=beginning
+    !endif
+    !if ? isitemof $l_
+      S_($cle_)_=!text select 0123456789 of $(l_[2])
+    !endif
+  !endif
+!next l_
+!default S_expiration=999999999999
+!default S_beginning_=0
+now_=!text select 0123456789 of $wims_now
+!if $now_>=$S_beginning_ and $now_<=$S_expiration_
+  scoreopen=1
+!else
+  scoreopen=0
+!endif

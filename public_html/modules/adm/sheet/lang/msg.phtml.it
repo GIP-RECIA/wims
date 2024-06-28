@@ -1,0 +1,26 @@
+
+!set wims_module_error=error: $error
+
+<span class="wims_warning">$wims_name_Error</span>.
+
+!if bad_sheet iswordof $error
+  Il nome del test di autovalutazione non è valido.
+  !exit
+!endif
+
+!if too_many_print iswordof $error
+  Il numero di versioni stampabili richiesto è eccessivo.
+  !href cmd=reply&job=read $wims_name_back2
+  !exit
+!endif
+
+!if sheet_hidden iswordof $error
+  Questo test di autovalutazione non è visualizzabile. Non è possibile modificare manualmente l'indirizzo del modulo!
+  !href cmd=reply&job=read $wims_name_back2
+  !exit
+!endif
+
+!if bad_maxsheet=$error
+  Il numero massimo di test di autovalutazione consentiti è $max_sheets. Non è possibile creare altri test di autovalutazione.
+  !exit
+!endif

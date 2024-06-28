@@ -1,0 +1,16 @@
+:signification
+
+Renomme un fichier (image essentiellement).
+On peut alors utiliser sous la forme
+<div class="wimscenter wims_code_words">&lt;img src=\special{rename file } alt=""></div>
+ou
+<div class="wimscenter wims_code_words">&lt;a href=\special{rename file }>ici&lt;/a></div>
+pour un fichier à charger. Par exemple,
+<div class="wimscenter wims_code_words">
+&lt;img src=\special{rename \imagedir/file} alt="">
+</div>
+renomme et affiche l'image de nom <span class="tt">file</span>
+(ne pas oublier l'extension) qui se trouve dans le répertoire images du module.
+
+On peut aussi utiliser la commande <span class="tt wims_code_words">\img</span>:
+<div class="wimscenter wims_code_words">\img{file}{alt=""}</div>

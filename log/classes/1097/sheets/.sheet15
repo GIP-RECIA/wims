@@ -1,0 +1,50 @@
+Shapes
+games in geometry
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,2_shape
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:E3/geometry/oefgeo2D.fr
+exo=tracerect2&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Rectangle
+Trace a rectangle following the instruction. <br><strong>NOTE</strong> you need to click on the four vertices of the rectangle and then again on the first one so to "close" the line.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracecircle&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Circle
+Trace a circle following the instruction.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracetrirect&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Right triangle
+Trace a right angled triangle (you know what it is, don't you?). <br><strong>NOTE</strong> you need to click on the three vertices of the triangle and then again on the first one so to "close" the line.
+
+:E3/geometry/oefgeo2D.fr
+exo=tracetri&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Non-right triangle
+Now trace a triangle which is <strong>not</strong> right angled. <br><strong>NOTE</strong> you need to click on the three vertices of the triangle and then again on the first one so to "close" the line.
+
+
+:E3/geometry/oefgeo2D.fr
+exo=centre&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Center of the circle
+You know what the centre of a circle is, don't you? Show it!
+
+
+
+

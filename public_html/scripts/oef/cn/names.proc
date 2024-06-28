@@ -1,0 +1,99 @@
+!set lang_exists=yes
+!distribute item ÇëÑ¡Ôñ, ²»ÖªµÀ, ¶¼²»¶Ô,\
+    ÕıÈ·µÄ»Ø´ğÊÇ,ÕıÈ·µÄ»Ø´ğÊÇ\
+    into ch_choose, ch_noidea, ch_none, ch_good1, ch_goodn
+
+!set name_badsize=(ÄãµÄ»Ø´ğÁ¬Î¬Êı¶¼²»ÕıÈ·.)
+!set name_empty=Äã·¢»ØµÄ´ğ°¸²»ÍêÕû, ÇëÍê³ÉËü.
+!set name_exo=Á·Ï°
+!set name_sorry=¶Ô²»Æğ
+!set name_noprint=²»¿É´òÓ¡
+!set name_print=´òÓ¡°æ
+!set name_send=·¢ËÍ
+!set name_sendanswer=·¢ËÍ»Ø´ğ
+!set name_enterreply=ÊäÈëÄãµÄ»Ø´ğ
+!set name_correctreply= <b>¶©Õı</b>ÄãµÄ»Ø´ğ
+!set name_step=²½Öè
+!set name_remark=<b>ËµÃ÷.</b> Èç¹ûÄã¾õµÃ±»ÁĞ¾ÙµÄÑ¡ÔñÃ»ÓĞÒ»¸öÊÇºÏÊÊµÄ, \
+Äã¿ÉÑ¡``$ch_none''
+!set name_answeranalysis=·ÖÎöÄãµÄ»Ø´ğ.
+!set name_Hint=ÌáÊ¾
+!set name_answers=½â´ğ
+!set name_answer_i=Á·Ï°$iµÄ½â´ğ.
+!set name_Solution=½â´ğ
+!set name_sol_print=Print the solution
+!set name_Contribute=¹±Ï×Õß:
+
+!set name_lastname=ĞÕ
+!set name_firstname=Ãû
+
+!!!!
+!set name_emptytitle=±¾Ä£¿éÊÇÒ»×éÁ·Ï°. ÄãÏë×öÁ·Ï°, µ«ÓÖÃ»ÓĞÖ¸³öÄãÏë×öÄÄ¸öÁ·Ï°.\
+¿ÉÄÜÊÇÓÉÓÚÄãµã»÷ÁËÒ»¸ö´íÎóµÄÁ´½Ó, Ò²¿ÉÄÜÊÇÈí¼şµÄ´íÎó.
+
+!distribute line ÖØĞÂ²Ù×÷\
+  ±¾×éÁ·Ï°ÓĞÊ±¼äÏŞÖÆ.\
+  ±¾Á·Ï°ÓĞÊ±¼äÏŞÖÆ.\
+  »»Ò»¸öÁ·Ï°\
+  ·ÅÆú±¾×éÁ·Ï°, ÒªÇóÒ»×éĞÂµÄÁ·Ï°\
+  ¼ÌĞøÏÂÒ»¸öÏ°Ìâ\
+  Èç¹ûÄãĞèÒª³É¼¨µÄ»°, Äã±ØĞë×öÍê±¾×éÁ·Ï°µÄËùÓĞÏ°Ìâ.\
+   (ÄãÒÑÒò³¬Ê±¶ø±»¿Û·Ö.)\
+  ¿ª·¢Ä£Ê½\
+  Ä¬ÈÏÇéĞÎÏÂÕıÈ·´ğ°¸±»²åÈëÑ¡ÔñÇøÓòÄÚ.\
+  Çë°ÑÕıÈ·´ğ°¸²åÈëÑ¡ÔñÇøÓòÄÚ.\
+  Clicking on $$wims_name_giveup brings up a new statement from the same exercise; the work already done on this exercise is then lost.\
+  Do you confirm?\
+  Do you confirm?\
+Exercice not entirely completed. Are you sure you want to submit?\
+into name_restart,name_serie_limit,name_exo_limit,name_exo_renew,name_serie_renew,\
+  name_serie_nextexo,name_serie_new2,name_penalty,\
+  name_devel_mode,name_devel_warning,name_devel_insert,name_exo_giveup,name_giveup_confirm,name_are_you_sure,name_exo_form_check
+
+!set name_serie_giveup=The series of exercises is not finished; you have to finish it \
+  to obtain a score. If you confirm that you wish to to abandon, \
+  the work already made on the series will then be lost and there will be a new statement \
+  for the same series of exercises.
+!set name_serie_exo=!nosubst ÕâÊÇ±¾×é $qnum ¸öÏ°ÌâÖĞµÄµÚ $[$reply_cnt+1] ¸öÏ°Ìâ.
+!set name_serie_exo2=!nosubst ÕâÊÇ±¾×é $qnum ¸öÏ°ÌâÖĞµÄµÚ $[$reply_cnt] ¸öÏ°Ìâ.
+!set name_serie_score=!nosubst ÄãÒÑ×öÍêÁËÒ»×é $qnum ¸öÏ°Ìâ, ³É¼¨ÊÇ \
+   $module_score/10.
+!set name_exo_score=!nosubst ÄãµÄ³É¼¨ÊÇ $module_score/10.
+
+
+!!!!
+!if $cmd=intro
+  !read oef/cn/intronames
+!endif
+
+!distribute line ±§Ç¸, Õâ¸öÁ·Ï°Ã»ÓĞ°ïÖúµÄÄÚÈİ.\
+±§Ç¸, ±¾Á·Ï°Ã»ÓĞÌáÊ¾. \
+into name_warning_help, name_warning_hint
+
+!if $special_parm=about
+  !distribute line ÄãÄ¿Ç°×öµÄÁ·Ï°µÄÀàĞÍÊÇ\
+  ±¾Á·Ï°¼È°üº¬´øÓĞ½âÊÍµÄ½â´ğ, Ò²°üº¬ÌáÊ¾.\
+  ±¾Á·Ï°°üº¬´øÓĞ½âÊÍµÄ½â´ğ, µ«Ã»ÓĞÌáÊ¾.\
+  ±¾Á·Ï°°üº¬ÌáÊ¾, µ«²»º¬´øÓĞ½âÊÍµÄ½â´ğ.\
+  ±¾Á·Ï°¼ÈÎŞ´øÓĞ½âÊÍµÄ½â´ğ, Ò²ÎŞÌáÊ¾.\
+  ¹ØÓÚÕâ×éÁ·Ï°µÄĞÅÏ¢.\
+  Á·Ï°µÄ°æÈ¨ÊôÓÚ¸÷×÷Õß.\
+  Á´½Ó\
+  Observation\
+into name_about1,name_hint1,name_hint2,name_hint3,name_hint4,\
+ name_collection,name_copyr,name_linkfor,name_Observation
+
+!endif
+
+!if $latexuser=yes
+  !set name_latexprint=individualized latex source of some exercises.
+!else
+  !set name_latexprint=Ä³Ğ©Á·Ï°µÄ Latex Ô´Âë.
+!endif
+!set wims_name_printlatex=Latex version
+
+!set name_tryagain=You may resubmit responses to this version of the exercise.
+!set name_tryagain2=!nosubst You may resubmit responses to this version of the \
+  series of $qnum exercises.
+!set name_authordesc=Description de l'auteur
+!set name_authordesc_desc=Ce message d'explication n'est pas affiché aux élèves.

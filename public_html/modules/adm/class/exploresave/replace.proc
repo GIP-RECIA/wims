@@ -1,0 +1,81 @@
+!! income variable :
+!! type : ressource type (sheet, doc, etc...)
+!! num : ressource number
+!! target : ressource number to be replaced
+
+!bound type within sheet,freework default $empty
+num=!listintersection $num and $(list$(type)import)
+num=!item 1 of $num
+
+!if $num=$empty or $type=$empty
+  error=badressource
+  !exit
+!endif
+
+!goto $type
+
+:sheet
+  nb=!recordcnt wimshome/sessions/$wims_session/upload/class/sheets/.sheets
+  nbc=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+  !bound target between 1 and $nbc default $empty
+  !if $target!=$empty
+    data=!record $target of wimshome/log/classes/$wims_class/sheets/.sheets
+    data=!line 1 of $data
+  !endif
+  !if $data!=0
+    error=cannotreplace
+    !exit
+  !endif
+  data=!record $num of wimshome/sessions/$wims_session/upload/class/sheets/.sheets
+  data=!replace line number 1 by 0 in $data
+  data=!replace line number 2 by $class_expiration in $data
+  !! --- delete reference to a doc for sheet presentation (
+    tmp=!line 5 of $data
+    !if $tmp notitemof yes,no,$empty
+      data=!replace line number 5 by $empty in $data
+    !endif
+  !! --- delete reference to a technical variable to hide sheet
+    data=!replace lin number 9 by $empty in $data
+  update_content=!replace line number 2 by $class_expiration in $data
+  update_field=$target
+  update_nbline=11
+  !read adm/uprecord wimshome/log/classes/$wims_class/sheets/.sheets
+  !sh rm -f $wims_home/log/classes/$wims_class/sheets/.sheet$target;\
+      if [ -e $wims_home/log/classes/$wims_class/sheets/sheet$target.src ]; then\
+        rm -f $wims_home/log/classes/$wims_class/sheets/sheet$target.def $wims_home/log/classes/$wims_class/sheets/sheet$target.src;\
+      fi\
+      cp $wims_home/sessions/$wims_session/upload/class/sheets/.sheet$num $wims_home/log/classes/$wims_class/sheets/.sheet$target;\
+      if [ -e $wims_home/sessions/$wims_session/upload/class/sheets/sheet$num.src ]; then\
+        cp $wims_home/sessions/$wims_session/upload/class/sheets/sheet$num.src $wims_home/log/classes/$wims_class/sheets/sheet$target.src;\
+        cp $wims_home/sessions/$wims_session/upload/class/sheets/sheet$num.def $wims_home/log/classes/$wims_class/sheets/sheet$target.def;\
+      fi\
+  success=replacedone
+  linkressource=module=adm/class/sheet/&+sheet=$target
+!exit
+
+
+:freework
+  nb=!recordcnt wimshome/sessions/$wims_session/upload/class/freeworks/.freeworks
+  nbc=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !bound target between 1 and $nbc default $empty
+  !if $target!=$empty
+    data=!record $target of wimshome/log/classes/$wims_class/freeworks/.freeworks
+    data=!line 1 of $data
+  !endif
+  !if $data!=0
+    error=cannotreplace
+    !exit
+  !endif
+  data=!record $num of wimshome/sessions/$wims_session/upload/class/freeworks/.freeworks
+  data=!replace line number 1 by 0 in $data
+  update_content=!replace line number 2 by $class_expiration in $data
+  update_field=$target
+  update_nbline=11
+  !read adm/uprecord wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !sh rm -rf $wims_home/log/classes/$wims_class/freeworks/.freework$target $wims_home/log/classes/$wims_class/freeworks/$target;\
+      cp $wims_home/sessions/$wims_session/upload/class/freeworks/.freework$num $wims_home/log/classes/$wims_class/freeworks/.freework$target;\
+      cp -r $wims_home/sessions/$wims_session/upload/class/freeworks/$num $wims_home/log/classes/$wims_class/freeworks/$target;
+  success=replacedone
+  linkressource=module=adm/class/freework/&+freework=$target
+!exit
+

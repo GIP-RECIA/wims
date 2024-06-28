@@ -1,0 +1,49 @@
+!! select recipient for theme witouht jquery
+!! the file selectrecipient.jquery have to be synchronised
+!! 
+
+    <details>
+        <summary>$name_recipients</summary>
+        <div>
+          !set wims_ref_class=wims_button_help float_right
+          !href cmd=help&special_parm=general $wims_name_help
+          <p>$name_expert0</p>
+          !! ---------- all participant
+          !set wims_ref_class=wims_formradio
+          !set wims_ref_id=job1
+          <div class="field box">
+            !formradio method list all prompt $name_allparticipants
+          </div>
+          !! ---------- select participant
+          !set wims_ref_class=wims_formradio
+          !set wims_ref_id=job2
+          <div class="field box">
+            !formradio method list select prompt $name_select
+            <p class="help-text" id="jobHelpText">$name_expert1</p>
+            <div class="wimscenter">
+              !read js/chooselist.phtml select_user1,select_user2,select_user
+            </div>
+          </div>
+          !! ------------ write participant login
+          !set wims_ref_class=wims_formradio
+          !set wims_ref_id=job3
+          <div class="field box">
+            !formradio method list login prompt $name_loginlist
+            <p class="wimscenter">
+              <label for="loginlist">$name_expert2</label>
+              <textarea name="loginlist" cols="20" rows="5" id="loginlist">$loginlist</textarea>
+            </p>
+          </div>
+          !! ------------ select with technical variable
+          !if $tv_listtechvar!=$empty
+            !set wims_ref_class=wims_formradio
+            !set wims_ref_id=job4
+            <p>
+              !formradio method list filter prompt $wims_name_filter:
+              $name_expert3
+            </p>
+            !read adm/vfilter/varfilter htmldiv
+          !endif
+        </div>
+     </details>
+

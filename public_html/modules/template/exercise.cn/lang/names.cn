@@ -1,0 +1,3 @@
+!set name_score=!nosubst 你在这个回答里得到了 $module_score (满分10分)分.
+
+!set name_bad_data=我看不懂你提交的值. 是输入错误吗?

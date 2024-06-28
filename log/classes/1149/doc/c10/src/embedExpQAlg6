@@ -1,0 +1,20 @@
+<p>
+Le signe de &#91; \(f(b) - f(a)) &#93; indique les variations de \(f) si elle est monotone sur &#91; \(a) ; \(b) &#93;,
+et celui de &#91; \(f(x)-C) &#93; indique la position de \(f(x)) par rapport à la valeur cible \(C) donc
+l'intervalle &#91; \(a) ; \(x) &#93; ou &#91; \(x) ; \(b) &#93; à retenir.<br>
+Si &#91; \(f(x)-C) &#93; &#91; \(f(b) - f(a)) &#93; \(\ge) 0, il faut retenir &#91; \(a) ; \(x) &#93;, on affecte \(x) à \(b).<br>
+Si &#91; \(f(x)-C) &#93; &#91; \(f(b) - f(a)) &#93; \(\le) 0, il faut retenir &#91; \(x) ; \(b) &#93;, on affecte \(x) à \(a).
+</p><p>
+Dans le cas où \(f(x)=C), on a trouvé la solution de l'équation (en fait avec la précision de la calculatrice ou de l'ordinateur),
+ et en affectant à la fois \(x) à \(b) et \(x) à \(a), l'intervalle devient &#91; \(a) ;\( b) &#93; avec \(a=b=x).
+S'il y a un test d'arrêt dès que la différence \((b-a)) est assez petite alors la boucle s'arrête parce que \(b-a=0).
+</p><p>
+Dans l'algorithme précédent on remplacera l'instruction <b>Si \(Y \gt C) alors \(B \leftarrow X) sinon  \(A \leftarrow X)</b>
+ par les deux instructions :<br>
+Si &#91;\(Y-C)&#93; * &#91;\(V-U) &#93\(\ge) 0 alors \(B \leftarrow X) et \(V \leftarrow Y)<br>
+Si &#91;\(Y-C)&#93; * &#91;\(V-U) &#93\(\le) 0 alors \(A \leftarrow X) et \(U \leftarrow Y)<br>
+et avant le début de la boucle il faudra affecter \(f(a)) à \(U) et \(f(b)) à \(V) ; les valeurs de \(U) et \(V) seront actualisées
+ à chaque boucle grâce aux deux instructions précédentes.
+</p><p>
+Avec une calculatrice, on peut mettre en mémoire la formule de \(f(x)) dans le registre Y1 pour l'utiliser dans ce programme
+ sans avoir à écrire la formule de la fonction trois fois à l'intérieur du programme.</p>

@@ -1,0 +1,39 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=arithmetic,primes,divisibility
+!set gl_title=Nombre premier
+!set gl_level=H1 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Un <strong>nombre premier</strong> est un nombre entier positif qui admet
+  exactement deux diviseurs positifs&nbsp;: 1 et lui-même.
+</div>
+
+<div class="wims_rem">
+ <h4>Remarques</h4>
+ <ul>
+   <li>0 n'est pas un nombre premier car il possède une infinité de diviseurs.</li>
+   <li>1 n'est pas un nombre premier car il n'admet qu'un seul diviseur&nbsp;:
+   lui-même.</li>
+  </ul>
+</div>
+
+<div class="wims_thm">
+  <h4>Théorème 1</h4>
+  Tout nombre entier supérieur ou égal à 2 est&nbsp;:
+  <ul>
+   <li>soit un nombre premier&nbsp;;</li>
+   <li>soit un nombre non premier. Il se décompose alors de façon unique en
+   produit de facteurs premiers à l'ordre près. On l'appelle nombre composé.</li>
+  </ul>
+</div>
+
+<div class="wims_thm">
+  <h4>Théorème 2</h4>
+  L'ensemble des nombres premiers est infini.
+</div>
+:mathematics/arithmetic/fr/primes_1

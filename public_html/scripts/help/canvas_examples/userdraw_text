@@ -1,0 +1,6 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 1,1,grey
+fontfamily 42px Courier
+userdraw text,green

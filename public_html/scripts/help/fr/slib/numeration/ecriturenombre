@@ -1,0 +1,14 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Écriture d'un nombre avec regroupement des chiffres par trois.
+slib_parms=2\
+,Le nombre en question\
+, mot d'option (pour l'instant <span class="tt">comma tex html</span> ).
+
+slib_out=Le nombre écrit avec des espaces. Si le nombre est déjà avec une virgule,\
+  il doit être entre crochets [ ]. Si l'option <span class="tt">comma</span> est présente,\
+  le résultat est présenté avec une virgule. Si l'option <span class="tt">tex</span>\
+  est présente, le résultat est présenté pour être inséré dans une formule mathématique.\
+  Si l'option est <span class="tt">html</span>, l'espace est en html,\
+  Les options <span class="tt">html</span> et <span class="tt">tex</span> ne doivent pas\
+  bien sûr être utilisées en même temps.

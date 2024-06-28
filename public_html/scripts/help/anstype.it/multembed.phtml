@@ -1,0 +1,29 @@
+Se si utilizza il comando <span class="tt wims_code_words">\embed</span>, è possibile posizionare con precisione
+ l'elemento k-esimo scrivendo <span class="tt wims_code_words">\embed{r</span>n<span class="tt wims_code_words">,k}</span>
+ dove <span class="tt wims_code_words">n</span> è il numero della domanda
+ (eccetto che per <span class="tt wims_code_words">multipleclick</span>).
+Per esempio,
+<pre>
+\for{j=1 to \N}{ \embed{r1,\j}}
+</pre>
+dove \N è il numero di elementi nella lista.
+Tutti gli elementi proposti sono allora presentati al momento della correzione.
+In caso contrario, solo la riposta dello studente viene mostrata, in verde
+o rosso a seconda che la risposta sia corretta o meno.
+<p>
+Per disporre le scelte della risposta in una lista verticale,
+si può utilizzare un codice del tipo seguente (da inserire nello \statement):
+</p>
+<pre>
+&#60;ul>\for{h=1 to 6}{&#60;li>\embed{reply4,\h}&#60;/li>}&#60;/ul>
+</pre>
+<p>Come tutti i cicli inseriti nello <span class="tt wims_code_words">statement</span>,
+il nome della variabile (qui <span class="tt wims_code_words">j</span>
+o <span class="tt wims_code_words">h</span>) nel ciclo non deve essere stato
+usato in precedenza.
+</p>
+Inoltre, per inserire il comando <span class="tt wims_code_words">\embed</span>
+non si deve utilizzare il tag html &#60;p>, ma piuttosto &#60;div>, in quanto
+l'analisi della risposta potrebbe inserire tag incompatibili con il tag &#60;p>.
+
+

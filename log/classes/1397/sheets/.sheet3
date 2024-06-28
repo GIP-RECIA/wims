@@ -1,0 +1,30 @@
+Schemi
+giochi di geometria
+??, 2019
+1
+E3
+elementary_mathematics
+elementary_geometry,spatial_skill,levelE1,levelK3
+Marina, Cazzola
+wims@unimib.it
+Gioca con la matematica
+
+:E3/geometry/oefspatial.fr
+exo=reproduire1&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Ripeti lo schema (livello 1)
+Individua le caselle contrassegnate da una crocetta.
+:E3/geometry/oefspatial.fr
+exo=mreproduire1&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Ripeti lo schema (livello 2)
+Ancora più difficile: individua le caselle contrassegnate da una crocetta, ma questa volta senza guardare!
+:E3/geometry/oefspatial.fr
+exo=mreproduire2&qnum=1&scoredelay=&qcmlevel=1
+10
+1
+Riproduci uno schema (livello 3)
+Ancora più difficile: più caselle da individuare, senza guardare!
+

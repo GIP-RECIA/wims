@@ -1,0 +1,6 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+userdraw arc,blue
+precision 100000
+mouse_degree red,22

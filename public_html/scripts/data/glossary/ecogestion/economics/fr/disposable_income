@@ -1,0 +1,16 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Jacques, Viléo
+!set gl_keywords=economics
+!set gl_title=Revenu disponible
+!set gl_level=U1,U2
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+On appelle le <strong>revenu disponible</strong> des ménages l'ensemble des revenus primaires
+diminués des prélèvements obligatoires et augmentés des revenus de transfert.
+<div class="wims_rem">Revenu disponible = Revenus primaires - Prélèvements obligatoires
++ Revenus de transfert
+</div>
+</div>

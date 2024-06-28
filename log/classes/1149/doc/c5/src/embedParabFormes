@@ -1,0 +1,21 @@
+<p>La fonction \(f) est un trinôme si son expression développée est \(f(x)=a*x^2+b*x+c)
+avec \(a \ne 0).
+</p><p>
+Deux trinômes \(a*x^2+b*x+c) et \(a'*x^2+b'*x+c') sont égaux sur un intervalle ouvert non vide<br>
+si et seulement si \(a=a'), \(b=b') et \(c=c').
+</p><p>
+Tout trinôme \(a*x^2+b*x+c) a une forme canonique \(a (x - x_S)^2 + y_S) où \(x_S = \frac{-b}{2 a}) et \(y_S = f(x_S)).<br>
+Le coefficient \(a) est le même dans la forme développée et dans la forme canonique.
+</p><p>
+<strong>Si \(a \gt 0)</strong> alors la fonction \(f) admet un <strong>minimum</strong> sur \(\RR)
+ en \(x=x_S) qui est égal à \(f(x_S)=y_S).<br>
+De plus, \(f) est strictement décroissante sur &#93 \(-\infty) ; \(x_S) &#93
+et \(f) est strictement croissante sur &#91 \(x_S) ; \(+\infty) &#91.
+</p><p>
+<strong>Si \(a \lt 0)</strong> alors la fonction \(f) admet un <strong>maximum</strong> sur \(\RR)
+ en \(x=x_S) qui est égal à \(f(x_S)=y_S).<br>
+De plus, \(f) est strictement croissante sur &#93 \(-\infty) ; \(x_S) &#93
+et \(f) est strictement décroissante sur &#91 \(x_S) ; \(+\infty) &#91.
+</p><p>
+On peut remarquer que \(a = f(x_S + 1) - f(x_S)).
+</p>

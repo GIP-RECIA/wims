@@ -1,0 +1,168 @@
+type=gapfill first
+textarea="explain data feedback_general"
+iEdit="explain feedback_general"
+asis="explain feedback_general"
+
+:Triar resposta d'un menú desplegable o escriure-la en un quadre. Només es pot proposar un text.
+
+Aquest exercici presenta un text on s'insereixen els camps de resposta.
+<p>
+Per construir un exercici amb aquest model, només cal que introduïu els textos.
+Una senzilla sintaxi us permet incorporar camps de múltiples opcions i
+respostes lliures als textos.</p>
+<p>Autor del model: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATTENTION      %%%%%%%%%%%%%%%%%%%%
+
+Elimineu la capçalera de dalt si destruiu les etiquetes de la plantilla.
+(Aquestes són les línies que comencen amb un ':'.)
+En cas contrari, l’exercici no podrà tornar a Createxo.
+
+:%%%%%%%% Paramètres d'exemples à redéfinir %%%%%%%%%%%%%%%%%
+
+:\title{Text que cal completar}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Instrucció per als aprenents
+
+\text{explain=Completa.}
+
+:Dades principals.
+Les preguntes que heu de fer s'han de posar entre un parell de
+doble-signe d'interrogació "??".
+<p>
+La pregunta és una opció múltiple del tipus menú si conté diversos objectes separats
+per comes, la primera és la resposta correcta. Si la pregunta (entre ??) només
+conté un objecte, és llavors una resposta lliure (resposta que cal escriure), numèric si es tracta d'un
+número o text en altre cas.</p>
+<p>
+Podeu fer fins a 20 preguntes al text.
+Si hi ha diverses respostes correctes en una resposta lliure, separeu
+totes les respostes correctes (sinònims) amb una línia vertical <span class = "tt wims_code_words"> </ span>.
+L'anàlisi es realitza a partir de simtext per als experts.</p>
+<p>$embraced_randitem</p>
+\text{data=
+Linux va ser creat el ??1991?? per Linus Torvalds,
+estudiant ??finès, suec, nord-americà, anglès, nòrdic??,
+mentre estava fent el seu aprenentatge en el sistema ??Minix??
+en màquines d'arquitectura ??Intel 386,Sun,Macintosh,Bull,Microsoft??.
+
+En un grup de notícies va publicat la primera versió
+del seu sistema, era la versió ??0.02??.
+
+}
+:S'accepta text aleatori posat entre claus
+$embraced_randitem
+\text{accolade=item(1,sí,no)}
+
+:Ordre de visualització de les llistes d'opcions
+Les llistes d'opcions es poden mostrar en ordre aleatori (shuffle) o en ordre alfabètic (alpha).
+\text{list_order=item(1,alpha,shuffle)}
+
+:Feedback General
+Aquest text apareixerà després de la resposta de l'alumne, ja sigui correcta o incorrecta.
+\text{feedback_general=}
+
+:Tipus d'anàlisi de resposta
+Els tipus <span class="tt">case</span> i <span class="tt">nocase</span> estan especialment adaptats
+  per a aplicacions de llengües. En altres casos, es preferible <span class="tt">atext</span>.
+\text{type_rep=item(3,case (cap tolerància d'error),
+  nocase (tolera minúscula/majúscula),
+  atext (ignora singular/plural i articles))}
+
+:%%%%%%%%%%%%%% Rien à modifier avant l'énoncé %%%%%%%%%%%%%%%%
+\precision{10000}
+\text{data=wims(singlespace \data)}
+\text{data=\accolade issametext sí ? wims(embraced randitem \data)}
+\text{data=slib(text/cutchoice2 \data)}
+\integer{qs=min(20,floor(rows(\data)/2))}
+
+\text{types=}
+\text{options=}
+\text{lengths=}
+\text{good=}
+\text{field=}
+
+\for{i=1 to \qs}{
+ \text{f=\data[2*\i;]}
+ \integer{test=items(\f)}
+ \if{\test>1}{
+  \text{g=\f[1]}
+  \if{\list_order issametext alpha}{
+    \text{f=wims(sort items \f)}
+  }
+  {
+    \text{f=shuffle(\f,,)}
+  }
+  \text{g=positionof(\g,\f)}
+  \text{good=\good\g;,}
+  \text{field=\field\f;}
+  \text{types=\types[]menu,}
+  \text{lengths=\lengths,}
+ }{
+  \text{good=\good\f,}
+  \integer{c=wims(charcnt \f)}
+  \text{field=\field;}
+  \real{test=\f}
+  \if{\test issametext NaN}{
+   \text{test=wims(translate internal | to , in \f)}
+   \integer{c=wims(charcnt \test[1])}
+   \integer{c=min(50,max(6,\c+6))}
+   \text{lengths=\lengths\c,}
+   \text{types=\types[]\type_rep,}
+   \text{options=| isin \f?\options[]symtext}
+  }{
+   \integer{c=max(5,\c+2)}
+   \text{lengths=\lengths\c,}
+   \text{f1=wims(nospace \f)}
+   \text{test=wims(text select -0123456789 in \f)}
+   \text{types=\test issametext \f1 and abs(\f)<4000?\types[]numexp,:\types[]number,}
+  }
+ }
+ \text{options=\options,}
+}
+
+\text{qlist=wims(makelist reply x for x=1 to \qs)}
+\steps{\qlist}
+
+:%%%%%%%%%%%%% Maintenant l'énoncé en code html. %%%%%%%%%%%%%%%%%%%%
+
+::Vous n'avez pas besoin de modifier ceci en général.
+
+\statement{<div>\explain</div>
+  \data[1;]
+  \for{k=1 to \qs}{
+    \if{\types[\k] notsametext menu}{
+      \embed{r \k,\lengths[\k]}
+    }{
+      \embed{r \k,\lengths[\k]}}
+    \data[2*\k+1;]
+  }
+}
+
+:%%%%%%%%%%%%% Rien à modifier ci-après. %%%%%%%%%%%%%%%%%5
+
+\answer{Champ 1}{\good[1]\field[1;]}{type=\types[1]}{option=\options[1]}
+\answer{Champ 2}{\good[2]\field[2;]}{type=\types[2]}{option=\options[2]}
+\answer{Champ 3}{\good[3]\field[3;]}{type=\types[3]}{option=\options[3]}
+\answer{Champ 4}{\good[4]\field[4;]}{type=\types[4]}{option=\options[4]}
+\answer{Champ 5}{\good[5]\field[5;]}{type=\types[5]}{option=\options[5]}
+\answer{Champ 6}{\good[6]\field[6;]}{type=\types[6]}{option=\options[6]}
+\answer{Champ 7}{\good[7]\field[7;]}{type=\types[7]}{option=\options[7]}
+\answer{Champ 8}{\good[8]\field[8;]}{type=\types[8]}{option=\options[8]}
+\answer{Champ 9}{\good[9]\field[9;]}{type=\types[9]}{option=\options[9]}
+\answer{Champ 10}{\good[10]\field[10;]}{type=\types[10]}{option=\options[10]}
+\answer{Champ 11}{\good[11]\field[11;]}{type=\types[11]}{option=\options[11]}
+\answer{Champ 12}{\good[12]\field[12;]}{type=\types[12]}{option=\options[12]}
+\answer{Champ 13}{\good[13]\field[13;]}{type=\types[13]}{option=\options[13]}
+\answer{Champ 14}{\good[14]\field[14;]}{type=\types[14]}{option=\options[14]}
+\answer{Champ 15}{\good[15]\field[15;]}{type=\types[15]}{option=\options[15]}
+\answer{Champ 16}{\good[16]\field[16;]}{type=\types[16]}{option=\options[16]}
+\answer{Champ 17}{\good[17]\field[17;]}{type=\types[17]}{option=\options[17]}
+\answer{Champ 18}{\good[18]\field[18;]}{type=\types[18]}{option=\options[18]}
+\answer{Champ 19}{\good[19]\field[19;]}{type=\types[19]}{option=\options[19]}
+\answer{Champ 20}{\good[20]\field[20;]}{type=\types[20]}{option=\options[20]}
+
+\feedback{1=1}{\feedback_general}

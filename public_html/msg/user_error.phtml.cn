@@ -1,0 +1,479 @@
+Status: 450 WIMS User Error
+Server: WIMS $wims_version (WWW Interactive Multipurpose Server)
+Content-type: text/html; charset=gb2312
+Cache-Control: no-cache
+Pragma: no-cache
+
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv=expires content="1 Jan 1990">
+  <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+  <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+  <!-- Theme CSS style -->
+  <link rel="stylesheet" href="html/themes/$wims_theme/css.css" type="text/css">
+  <style>
+   input[type="submit"],input[type="button"],.wims_button{ background-color:$wims_ref_button_bgcolor;color:$wims_ref_button_color;}
+   .wims_button_help{ background-color:$wims_ref_button_help_bgcolor;color:$wims_ref_button_help_color;}
+  </style>
+
+  !if exam_ isin $wims_user_error
+    <style><!--
+    body {text-align: justify;
+    padding-left: 3%; padding-right: 3%;}
+    --></style>
+    </head>
+    <body onload="window.resizeTo(500,200);window.moveTo(250,300);">
+      <h1 class="wimscenter">´íÎó</h1>
+    !goto examerr
+  !endif
+
+</head><body class="user_error">
+
+!if threshold iswordof $wims_user_error
+  <h1>Ä¿Ç°ÕıÃ¦</h1>
+  <hr style="width:50%">
+  <p>
+    ±¾ WIMS ·şÎñÆ÷ <font color="blue">$httpd_HTTP_HOST</font>
+    Ä¿Ç°ÓÉÓÚ´óÁ¿µÄÇëÇó¶ø³¬ÔØ,
+    ²»ÄÜÔÙ½ÓÊÜĞÂµÄÓÃ»§. ÇëÉÔºóÔÙÀ´,
+    »ò·ÃÎÊÆäËû WIMS ¾µÏñÕ¾.
+  </p><p>
+    ÎÒÃÇ¶ÔÓÉ´Ë´øÀ´µÄ²»±ã±íÊ¾Ç¸Òâ,
+    Ï£ÍûºÜ¿ì¾ÍÄÜ¼ÌĞøÎªÄú·şÎñ.
+  </p>
+  !read mirror.phtml.cn
+  !goto end_html
+!endif
+
+!if overload iswordof $wims_user_error
+  <hr width="1">
+  <h1>±§Ç¸</h1>
+  <p>
+  ÄãµÄÇëÇóÒò³¬¹ıÁ¬½ÓÅä¶î¶ø±»·şÎñÆ÷×èÖ¹.
+  </p>
+  !goto end_html
+!endif
+
+!if ++++missing_ isin ++++$wims_user_error
+  <hr width="1">
+  <h1>±§Ç¸</h1>
+  <hr style="width:50%">
+  <p>
+    WIMS ĞèÒªÈí¼ş
+    !set miss=!upper $missing_software
+    <span class="wims_warning">$miss</span>
+    À´´¦ÀíÄãµÄÇëÇó, ¿ÉÊÇÔÚ±¾·şÎñÆ÷ÉÏ´ËÈí¼ş²»¿ÉÓÃ
+    (»ò WIMS ¿´²»µ½).
+  </p><p>
+    Äã¿ÉÒÔ·¢µçÓÊ
+    <a href="mailto:$wims_site_manager?subject=$missing_software unavailable on WIMS">write
+    ¸øÍøÕ¾¹ÜÀíÔ±</a>±¨¸æ´ËÎÊÌâ,
+    »òÁíÑ¡Ò»¸ö¾µÏñÕ¾</p>
+  </p><p><a href="wims.cgi">WIMS Ö÷Ò³</a></p>
+  !read mirror.phtml.cn
+  !goto end_html
+!endif
+
+!if trapped iswordof $wims_user_error
+  <h1>Í£Ö¹!</h1>
+  <hr>
+  <a href="http://$httpd_HTTP_HOST">$httpd_HTTP_HOST</a>
+  µÄÄÚÈİÓë×Ô¶¯Ò³ÃæÊÕ¼¯³ÌĞò¼°
+  `web ¼ÓËÙÆ÷' ²»ÏàÈİ.
+  <p>
+    ÎªÀûÓÃ±¾Õ¾µÄ WIMS ·şÎñ,
+    ÇëÊ¹ÓÃ²»°²×°¼ÓËÙ³ÌĞòµÄ³£¹æä¯ÀÀÆ÷.
+  </p><p>
+    Çë¼Ç×¡, WIMS Ò³ÃæÊÇ¶¯Ì¬Éú³ÉµÄ.
+    ²»ÄÜÀëÏßÊ¹ÓÃ.
+  </p>
+  !goto end_html
+!endif
+
+!if no_access notwordof $wims_user_error and no_access_class notwordof $wims_user_error
+  <h1>WIMS ´íÎó</h1>
+  <p>
+    Äã¶Ô±¾ WIMS ·şÎñÆ÷·¢³öµÄÇëÇóÀïÓĞ´í.
+  </p>
+!endif
+!if module_change iswordof $wims_user_error
+  !if $wims_human_access=yes
+    <p>
+      Çë±ÜÃâÊ¹ÓÃä¯ÀÀÆ÷µÄ `·µ»Ø' ¼ü,
+      ÒòÎªÄãÃæ¶ÔµÄÊÇ»¥¶¯µÄ·şÎñÆ÷.
+    </p>
+    <div class="wimscenter">
+    !set tit=!module title $module
+    !default tit=$module
+    !href module=$module $tit
+    &nbsp;
+    !set wims_ref_class=wims_button
+    !href $ WIMS home
+    !if $httpd_HTTP_REFERER!=$empty
+      &nbsp;<a href="$httpd_HTTP_REFERER">ÍË³ö WIMS</a>
+    !else
+      <p class="small">
+        Èç¹ûÄãÏëÍË³ö±¾Õ¾, ÇëºöÂÔ´ËĞÅÏ¢²¢¼ÌĞø°´ `·µ»Ø'.
+      </p>
+    !endif
+    </div>
+    !goto end_html
+  !endif
+  <p>
+    ÄãÇëÇóµÄÊÇ·Ç·¨µÄÄ£¿é¸Ä±ä.
+    ÄãÊÇ·ñÔÚÊ¹ÓÃ×Ô¶¯³ÌĞò½øÈë±¾Õ¾?
+  </p>
+  :unblock
+  !form new
+    <input type="hidden" name="module" value="home">
+    <input type="hidden" name="deblockparm" value="$[randint(10000000)+1000000]">
+    Èç¹ûÄãÖ»ÊÇµã»÷ÁËä¯ÀÀÆ÷µÄ `·µ»Ø' ¼ü,
+    ÇëÔÚÕâÀïÊäÈë `wims':
+    <input size="8" name="special_parm"> È»ºó
+    <input type="submit" value="·¢ËÍµ½·şÎñÆ÷">.
+  !formend
+  <p>
+  Çë¼Ç×¡, ±¾Õ¾µÄÒ³Ãæ¶¼ÊÇ¶¯Ì¬Éú³ÉµÄ.
+  Òò´ËÖ»ÄÜÍ¨¹ı³£¹æä¯ÀÀÆ÷ÔÚÏßÊ¹ÓÃ.
+  ÏëÀûÓÃ×Ô¶¯»¯³ÌĞòÀ´ÊÕ¼¯ÍøÒ³ÊÇÃ»ÓĞÒâÒåµÄ.
+  !if robot_doubt iswordof $wims_user_error
+    <p class="small">
+      Èç¹ûºÚ¿ÍÏë´³Èë´ËÍøÕ¾,
+      ½«»á±»¾Ü¾ø.
+    </p>
+  !endif
+  !goto end_html
+!endif
+
+!if robot_doubt iswordof $wims_user_error
+  <p>
+   ÎÒÃÇ½«²»ÈÃÄã¼ÌĞø½øÈë´ËÍøÕ¾,
+    ÒòÎª»³ÒÉÄãÊ¹ÓÃÁË×Ô¶¯ÊÕ¼¯ÍøÒ³µÄ³ÌĞò.
+  </p>
+  !goto unblock
+!endif
+
+!if allow_violation iswordof $wims_user_error
+  <p>
+    ÄãÃ»ÓĞÈ¨ÀûÓÃÃüÁî ``$cmd'' À´¶¨Òå±äÁ¿
+  ``$wims_error_data''.
+  </p>
+!endif
+
+!if bad_command iswordof $wims_user_error
+  <p>
+  ÃüÁî ``$cmd'' ÎŞĞ§.
+  </p><p>
+    ÓĞĞ§µÄÃüÁîÊÇ:
+  </p>
+  <pre>new, renew, reply, help, hint, config</pre>
+!endif
+
+!if bad_host iswordof $wims_user_error
+  <p>
+    ÄãÏë´ÓÆäËüÕ¾µã½¨Á¢»á»°.
+    ÕâÔÚÄãµÄĞéÄâ°àÊÇ½ûÖ¹µÄ.
+  </p><p>
+  ¿ÉÄÜÄ³Ğ©ÒòÌØÍø½ÓÈëµÄÌá¹©Õß¸øÄãµÄÊÇ¶¯Ì¬µØÖ·,
+  ¼´Ê¹ÔÚÍ¬Ò»¸öÁ¬½ÓÖĞÒ²»á±ä»¯. Èç¹ûÓöµ½ÕâÖÖÇéĞÎ,
+  ÇëÓë°à¼¶µÄÖ¸µ¼½ÌÊ¦ÁªÏµ,
+  ÇëËû¸Ä±ä½ÓÈëµÄËø¶¨²ßÂÔ.
+  </p>
+!endif
+
+!if need_https iswordof $wims_user_error
+  ÄãÓ¦¸ÃÍ¨¹ı https ÇëÇóÁ¬½Óµ½ÄãµÄ°à¼¶.
+  !set refname=!replace http:// by https:// in $wims_ref_name
+  <a href="$refname?session=$wims_session&module=home&cmd=new">ÊÔÊÔ¿´</a>.
+  !goto end_html
+!endif
+
+!if bad_insnum iswordof $wims_user_error
+  <p>
+  !if $cmd=getfile
+    ÄãÇëÇóµÄÎÄ¼ş²»´æÔÚ.
+  !else
+    ¶¯Ì¬²åÈëµÄÎÄ¼şÃûÎŞĞ§.
+  !endif
+  </p>
+!endif
+
+!if cmd_output_too_long iswordof $wims_user_error
+  <p>
+    ¼ÆËãµÄÖĞ¼ä½á¹û³¬³öÁË³¤¶ÈÏŞÖÆ.
+    ÄãµÄÇëÇó´ó¸Å¹ı·Ö¸´ÔÓÁË.
+    Çë¼ÓÒÔ¼ò»¯.
+  </p>
+!endif
+
+!if double_click iswordof $wims_user_error
+  <p>
+    ´ËÇëÇóÀ´µ½Ê±ÄãµÄÁíÒ»¸öÇëÇóÕıÔÚ´¦ÀíÖĞ.
+  </p><p>
+    Èç¹ûÄãµã»÷ÁËÁ½´Î, ÇëµÈ´ı
+    <span class="wims_warning">$wims_cpu_limit Ãë</span>
+    Ê¹µÃÄãÔ­À´µÄÇëÇó±»´¦ÀíÍê, È»ºó
+    !href cmd=resume µã»÷ÕâÀï
+    ÒÔ»Øµ½ÄãµÄ¹¤×÷.
+    (ÒÔºóµ±ÄãÒªÇó WIMS ×öÈß³¤µÄ¼ÆËãÊ±, Çë¸ü¶àÒ»µãÄÍĞÄ.)
+  </p><p>
+    Èç¹ûÄã°´ÁËä¯ÀÀÆ÷µÄ ``·µ»Ø'' °´Å¥ÒÔÍË³ö wims,
+    ÄÇÃ´¿ÉÒÔºöÂÔÕâ¸öĞÅÏ¢.
+  </p>
+  !goto end_html
+!endif
+
+!if invalid_char_in_query_string iswordof $wims_user_error
+  <p>
+    ÔÚ²ÎÊıĞòÁĞÀïÌæ»» ``$wims_error_data'' ÊÇ·Ç·¨µÄ.
+  </p>
+!endif
+
+!if name_conflict iswordof $wims_user_error
+  <p>
+  ``$wims_error_data'' ÊÇ±» wims ±£ÁôµÄÃû³Æ.
+  </p>
+!endif
+
+!if no_command iswordof $wims_user_error
+  <p>
+    Ã»ÓĞÃüÁî.
+  </p>
+!endif
+
+!if no_insnum iswordof $wims_user_error
+  <p>
+  !if $cmd=getfile
+    ÄãÃ»ÓĞ¸ø³öÇëÇóµÄÎÄ¼şÃû.
+  !else
+    ÄãÇëÇóµÄ¶¯Ì¬²åÈëÃ»ÓĞ¸ø³öºÅÂë.
+  !endif
+  </p>
+!endif
+
+!if no_module_name iswordof $wims_user_error
+  <p>
+    ÄãÇëÇóµÄ»á»°Ã»ÓĞ¸ø³öÄ£¿éÃû.
+  </p>
+!endif
+
+!if no_session iswordof $wims_user_error
+  <p>
+    È±ÉÙ»á»°±àºÅ.
+  </p>
+!endif
+
+!if parm_too_long iswordof $wims_user_error
+  <p>
+    ÄãµÄ²ÎÊı´®³¬¹ı³¤¶È¼«ÏŞ.
+    ³öÓÚ°²È«µÄÔ­Òò±»¾Ü¾ø.
+  </p>
+!endif
+
+!if string_too_long iswordof $wims_user_error
+  <p>
+    ±äÁ¿¶¨ÒåµÄ³¤¶È³¬³ö¼«ÏŞ.
+  </p>
+!endif
+
+!if too_many_variables iswordof $wims_user_error
+  <p>
+    Äã´«ËÍµÄ²ÎÊı¸öÊı³¬ÏŞ.
+  </p>
+!endif
+
+!if unmatched_parentheses iswordof $wims_user_error
+  <p>
+    ÄãµÄÇëÇóÀïÓĞ²»Æ¥ÅäµÄÀ¨ºÅ.
+    Äã¿ÉÒÔÔÚÕâÀï¸ÄÕı:
+  </p>
+  !form $cmd
+  !for i in module,special_parm,worksheet
+    !if $($i)!=$empty
+      !set value=!translate " to $ $ in $($i)
+      <input type="hidden" name="$i" value="$value">
+    !endif
+  !next i
+  !for i=0 to $user_var_no-1
+    !if $i!=$bad_parentheses
+      !set value=!translate " to $ $ in $(value$i)
+      <input type="hidden" name="$(name$i)" value="$value">
+    !endif
+  !next i
+  !set value=!translate " to $ $ in $(value$bad_parentheses)
+  !set len=!charcnt $value
+  !if $len<55
+    !set len=$[$len+3]
+  !else
+    !set len=59
+  !endif
+  !set input_id=$(name$bad_parentheses)
+  <div class="field box">
+    <label for="$input_id">$input_id =</label>
+    !set n=!linecnt $value
+    !if $n<=1
+      <input size="$len" name="$input_id" id="$input_id" value="$value">
+    !else
+      <textarea rows="$n" name="$input_id" id="$input_id">$(value$bad_parentheses)</textarea>
+    !endif
+  </div>
+  <p class="actions">
+    Puis
+    <input type="submit" value="envoyer la requête corrigée.">
+  </p>
+  !formend
+  <hr>
+  <p class="wimscenter">
+    !href cmd=resume Cancel the last request
+    |
+    !href $ wims home
+  </p>
+  !goto end_html
+!endif
+
+!if wrong_module iswordof $wims_user_error
+  !set tmp=!translate "!/<>;': to $         $ in $module
+  <p>
+    ±¾Õ¾²»´æÔÚÄãÇëÇóµÄÄ£¿é <code>$tmp</code>.
+  </p>
+!endif
+
+!if wrong_session iswordof $wims_user_error
+  <p>
+    »á»°ºÅ ``$session'' ÎŞĞ§ (»òÒÑÊ§Ğ§).
+    <a href="wims.cgi">´´½¨ĞÂ»á»°</a>.
+  </p>
+!endif
+
+!if rafale iswordof $wims_user_error
+  <p>Çë²»ÒªÓëÁ·Ï°¿ªÍæĞ¦!</p>
+  <p>
+    ÄãÓ¦¸Ã»¨Ê±¼ä×ĞÏ¸Ë¼¿¼²¢³¢ÊÔÕıÈ·½â´ğÁ·Ï°,
+    ¶ø²»ÊÇ²»¶ÏµÄÒªÇóĞÂµÄÁ·Ï°.
+  </p>
+  !set wims_ref_class=wims_button
+  !href cmd=resume È¡ÏûÉÏÒ»´ÎÇëÇó
+.
+  !if $wims_user!=$empty and $wims_user!=supervisor
+    <p>
+      <span class="wims_warning">×¢Òâ</span>! ²»ÒªÖØ¸´Õâ¸ö´íÎó!
+      ¼´Ê¹¼Ç·ÖÆ÷¹Ø±ÕÊ±,
+      ²»ºÏ¹æÔòµÄ»î¶¯Ò²»áÔì³ÉÊ§·Ö.
+    </p>
+  !endif
+  !goto end2
+!endif
+
+:examerr
+
+!if exam_dep iswordof $wims_user_error
+  <p>±¾Á·Ï°±ØĞëÔÚÄã³É¹¦Íê³ÉÁË
+  !if , isin $dep_list
+    Á·Ï° $dep_list ºó²ÅÄÜ×ö.
+  !else
+    Á·Ï° $dep_list ºó²ÅÄÜ×ö.
+  !endif
+  </p><p>
+  ÇëÏÈ°ÑËüÃÇ×öºÃ.
+  </p>
+  !goto examend
+!endif
+
+!if bad_exam iswordof $wims_user_error
+  <p>ÄãÔÚ¿¼ÊÔÊ±·¢³öÁË·Ç·¨µÄÇëÇó.</p>
+  !goto examend
+!endif
+
+!if exam_exo_finished iswordof $wims_user_error
+  ÄãÒÑ¾­×öÁË´ËÁ·Ï°, µÃ·ÖÊÇ $wims_exo_lastscore.
+  ×÷Îª¿¼ÊÔ, Äã²»ÄÜÖØ×öÁË.
+  !goto examend
+!endif
+
+!if expired_exam iswordof $wims_user_error
+  <p>Õâ´Î¿¼ÊÔµÄÊ±¼äÒÑÓÃÍê.</p>
+  :examend
+  !set pses=!translate _ to , in $wims_session
+  !set pses=!item 1 of $pses
+  !set pser=!randint 1,999
+  !set wims_opener=window.opener.location='$wims_ref_name?session=$pses.$pser&cmd=reply&job=student';
+  <p class="wimscenter">
+    <a href="#" onclick="window.close();$wims_opener">Çë¹Ø±Õ´Ë´°¿Ú</a>.
+  </p>
+  !goto end_html
+!endif
+
+!if exam_closed iswordof $wims_user_error
+  <p>
+  ´ÓÄãµÄÁ¬½ÓÄ¿Ç°²»ÄÜ½øÈë¿¼ÊÔ.
+  ÇëÓë°à¼¶µÄÖ¸µ¼ÀÏÊ¦ÁªÏµ.
+  </p>
+  !goto examend
+!endif
+
+!if bad_ident iswordof $wims_user_error
+  <p>ÄãµÄÇëÇóµÄÓÃ»§ÈÏÖ¤ÓĞ´í.</p>
+  <p>ÄãÊÇ²»ÊÇÏë½øÈëËûÈËµÄ»á»°?
+  </p><p>
+    Çë
+    <a href="$refname?special_parm=ignorecookie&special_parm2=$[randint(10^8)]">½¨Á¢ĞÂ»á»°</a>.
+  </p>
+  !goto end_html
+!endif
+
+!if no_access iswordof $wims_user_error
+  ¸ù¾İ±¾Õ¾µÄ½ÓÈë²ßÂÔ, ÄãµÄÇëÇó±»¾Ü¾ø. ±§Ç¸.
+  !goto end2
+!endif
+
+!if no_access_class iswordof $wims_user_error
+  !distribute items (exercices), (outils), (documents) into name_exo,name_tool,name_doc
+  !set tt=!word 2 of $wims_user_error
+  <h2>Fermeture des activités de la classe</h2>
+  <div class="wims_msg warning">
+    L'accès à certaines activités $(name_$tt) de cette classe virtuelle est provisoirement fermé
+    par l'enseignant. Revenez plus tard.
+  </div>
+  !goto end2
+!endif
+
+!if class_closed iswordof $wims_user_error
+  <h2>Sorry.</h2>
+  <p>
+  Ö¸µ¼½ÌÊ¦ÔİÊ±¹Ø±ÕÁËÕâ¸öĞéÄâ°à.
+  ÇëÒÔºóÔÙÀ´!
+  <div class="wimscenter">
+  !href cmd=close&module=home WIMS
+  </p>
+  !goto end_html
+!endif
+
+!if other_exam_session iswordof $wims_user_error
+  <p>Vous avez déjà commencé une session d'examen. Vous ne pouvez pas en commencer une autre.</p>
+  <p>Si vous avez fermé le navigateur par erreur pendant votre session d'examen revenez à la page d'accueil de la classe et vous pourrez récupérer votre session.</p>
+  <p class="wimscenter">
+    <a href="#" onclick="window.close();$wims_opener">Fermer cette fenêtre</a>.
+  </p>
+  !goto end_html
+!endif
+
+:end
+<p>
+  Èç¹ûÄãµã»÷ÁËÄ³Ò³ÃæµÄÁ´½Ó¶ø³öÏÖÁËÄ¿Ç°µÄĞÅÏ¢,
+  ÄÇÃ´ºÜ¿ÉÄÜÊÇÒòÎª´ËÁ´½ÓÃ»ÓĞ×¼±¸ºÃ.
+  ÇëÄãÁªÏµÄÇ¸öÒ³ÃæµÄ×÷Õß¸æËßËûÕâ¸ö´íÎó.
+</p><p>
+  Ò²¿ÉÒÔ·¢µçÓÊ¸ø
+<a href="mailto:$wims_site_manager?subject=wims.cgi">ÍøÕ¾¹ÜÀíÔ±</a>,
+  ¸æËßËû´íÎó·¢ÉúµÄÏ¸½Ú.
+</p>
+
+:end2
+
+<div class="wimscenter">
+  !set wims_ref_class=wims_button home
+  !href module=home&cmd=new Ö÷Ò³
+</div>
+
+:end_html
+</body></html>

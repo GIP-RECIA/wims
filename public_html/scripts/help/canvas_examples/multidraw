@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+multidash 1,0
+multilinewidth 1,2
+multistrokecolors red,blue
+multisnaptogrid 1,1
+multilabel LINES,CIRCLES,STOP DRAWING
+multidraw lines,circles

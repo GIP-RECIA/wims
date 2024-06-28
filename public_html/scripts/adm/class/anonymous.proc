@@ -1,0 +1,72 @@
+!! ---------- process manage of anonymous connexion to example class
+!! each connexion use a different login
+!! login is generated if necessary
+!! anonymous connexion is limited to 50% of class capacity
+!! other is reserved to registered login
+!! wims_read_parm input parameters are
+!!  first item : login of user (exit if not anonymous)
+!!  second item : class number (exit if not <=9999 )
+!! process exit if no place left
+!! output=$output_user
+!! login anonymous is never used in fact, it is a "model".
+!distribute item $wims_read_parm into c_,u_
+t_=!char 1 to 9 of $u_
+t_=!lower $t_
+n_=!char 10 to -1 of $u_
+!default n_=0
+!if NaN notin $[1*$n_] and $t_=anonymous
+  dispo=!record 2 of wimshome/log/classes/$c_/freelogin
+  dispo=!nospace $dispo
+  time=!record 1 of wimshome/log/classes/$c_/freelogin
+  !if $dispo=$empty and ($time=$empty or $wims_nowseconds>$time+600)
+    ltuser=!sh cd $wims_home/sessions;\
+               s=`grep wims_class=$c_ ./*/var.stat | cut -d: -f1`;\
+               grep "wims_user=" $$s | cut -d= -f2;
+    !if $ltuser!=$empty
+      ltuser=!words2items $ltuser
+      ltuser=!replace anonymous by $empty in $ltuser
+    !endif
+    cllimit=!defof class_limit in wimshome/log/classes/$c_/.def
+    !if $cllimit=$empty
+      cllimit=!defof class_user_limit in wimshome/log/wims.conf
+      !if $cllimit=$empty
+        cllimit=!defof DF_class_limit in wimshome/public_html/bases/sys/defaults.conf
+      !endif
+    !endif
+    dispo=$[rint($cllimit/2)]
+    dispo=!values v for v=1 to $dispo
+    dispo=,$dispo
+    dispo=!listcomplement $ltuser in $dispo
+    dispo=!nospace $dispo
+  !endif
+  !if $dispo=$empty
+    !restart module=adm/class/classes/&+job=example&+fullcls=1
+  !else
+    num=!item 1 of $dispo
+    test=!fileexists wimshome/log/classes/$c_/.users/anonymous$num
+    !if $test!=yes
+      nbuser=!recordcnt wimshome/log/classes/$c_/.userlist
+      !if $cllimit=$empty
+        cllimit=!defof class_limit in wimshome/log/classes/$c_/.def
+        !if $cllimit=$empty
+          cllimit=!defof class_user_limit in wimshome/log/wims.conf
+          !if $cllimit=$empty
+            cllimit=!defof DF_class_limit in wimshome/public_html/bases/sys/defaults.conf
+          !endif
+        !endif
+      !endif
+      !if $nbuser<=$cllimit
+        !sh cp $wims_home/log/classes/$c_/.users/anonymous $wims_home/log/classes/$c_/.users/anonymous$num
+        !readproc adm/class/mkuserlist $c_
+      !else
+        !restart module=adm/class/classes/&+job=example&+fullcls=1
+      !endif
+    !endif
+    output_user=anonymous$num
+    dispo=!item 2 to -1 of $dispo
+    !writefile wimshome/log/classes/$c_/freelogin :$wims_nowseconds\
+:$dispo
+  !endif
+!else
+  output_user=$u_
+!endif

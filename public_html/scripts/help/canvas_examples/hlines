@@ -1,0 +1,5 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+hlines red,0,0,0,5,0,-5

@@ -1,0 +1,145 @@
+!set lang_exists=yes
+
+!set name_duplicateok=Examen dupliqué correctement.
+!set name_title=Préparation de l'examen
+!set wims_name_mainpage=Page principale de l'examen
+
+!if $activetest<=0
+  !set name_title=!nosubst Préparation de l'examen
+!else
+  !set name_title=!nosubst Gestion de l'examen
+!endif
+!if $exam_mode>0
+  !!set name_examenlist=cette session de quizz, sur le quizz,du quizz,Ce quizz,ce quizz,le quizz,de quizz
+  !set name_examenlist=cette session de course, sur la course,de la course,Cette course,cette course,la course,de course,session(s) de course,session de course
+!else
+  !set name_examenlist=cette session d'examen, sur l'examen,de l'examen,Cet examen,cet examen,l'examen,d'examen,session(s) d'examen,session d'examen
+!endif
+!read adm/lang/date.phtml.$lang
+!read adm/lang/sheetexam.phtml.$lang
+!set wims_name_scoreexam=!nosubst $wims_name_myscore
+!set wims_name_title_scoreexam=Notes $(name_examenlist[2])
+!set name_Options=Options
+!set name_All=Toutes
+
+!set name_done=fait
+
+!set name_instructions=Consigne&nbsp;
+
+!distribute lines Disponibles\
+Sélectionnés\
+into name_Availables, name_Selected
+
+!distribute lines Terminer $(name_examenlist[1])\
+Retourner travailler $(name_examenlist[2])\
+Vue d'enseignant $(name_examenlist[3]))\
+Présentation aux participants\
+Détail du score actuel\
+$(name_examenlist[4]) est vide&nbsp;! Il s'agit apparemment d'une erreur de manipulation de votre enseignant.\
+Contenu\
+$(name_examenlist[4]) est actuellement fermé pour votre connexion.\
+Vous pouvez faire $(name_examenlist[5]) une seule fois.\
+Vous ne pouvez plus améliorer vos scores.\
+C'est votre dernière $name_examenlist[8]) disponible. Faites attention&nbsp;!\
+le compte à rebours commencera et le nombre de sessions restantes sera diminué de 1.\
+le compte à rebours commencera.\
+Nécessite le succès sur d'autres exercices\
+Score de $(name_examenlist[1])&nbsp;\
+into wims_name_endexam,wims_name_backexam,wims_name_teacherview,name_presentation,\
+name_scoreexam,name_empty,name_content,name_examclosed,name_exam1,name_exam5,\
+name_lasttry,name_exam7,name_exam8,name_depend,name_scoreexam2
+
+!set name_exam2=!nosubst Vous pouvez faire $(name_examenlist[5]) jusqu'à $stries fois au total.
+!set name_exam3=!nosubst Vous avez déjà terminé $(name_examenlist[1]) avec $tried sessions,
+!set name_exam4=!nosubst Vous avez déjà fait $(name_examenlist[6]) <strong>$tried fois</strong>.
+!set name_exam6=!nosubst Il vous reste actuellement $tryremain $(name_examenlist[8]).
+!set name_exam6bis=Il ne vous reste donc plus de sessions possibles.
+!set name_exam9=!nosubst Chaque $(name_examenlist[9]) ne peut pas durer plus de <strong>$sdure minutes</strong>
+!set name_exam9bis=!nosubst La $(name_examenlist[9]) ne peut pas durer plus de <strong>$sdure minutes</strong>
+!set name_exam10=Quand vous cliquerez sur un des exercices ci-dessus,
+!set name_exam11=!nosubst Les réponses aux questions des exercices envoyées \
+  une fois la durée de la session terminée ou après le \
+  <strong>$time_end</strong> ne seront pas prises en compte.
+
+!set name_simulation=<strong>$(name_examenlist[4]) est en mode simulation.</strong> Il fonctionne exactement comme le vrai examen\
+  mais le score n'est pas enregistré et votre essai ne sera pas compté.<br/> Si vous testez $(name_examenlist[5]), il\
+  faudra vous déconnecter de la classe avant de revenir à la page de gestion des ressources de votre classe.
+
+!set wims_name_examremain=!nosubst Temps restant pour $(name_examenlist[1]) (session $[$stries-$tryremain]): $
+
+!distribute lines en attente\
+Vous n'avez pas encore commencé votre travail $(name_examenlist[2])\
+Commencer à travailler.\
+Le score actuel n'est pas pris en compte, car $(name_examenlist[6]) est en mode simulation.\
+into name_pending,name_begin1,name_begin2,name_simulation2
+
+!set name_timeleft=!nosubst Le délai s'est écoulé&nbsp;! Déconnectez-vous.
+!set name_realscore=!nosubst Votre score réel pour $(name_examenlist[5]) est $lastscore.
+!set name_bestscore=!nosubst Votre score pour $(name_examenlist[5]) est $[$lastscore*$scoremax/10]/$scoremax.
+!set name_bestscore2=C'est le meilleur score qui est pris en compte.
+
+!! ---------------------------
+!! nouvelle partie
+
+!set statutname=$(wims_name_shstatus[1]),$wims_name_shstatus
+
+!set name_desc_duration=Un chronomètre démarre dès l'affichage de la première question.
+!set name_units_duration=minutes
+!let name_mkexam=Créer l'examen
+
+!let name_shinfo_cutt=Heures de coupure
+
+!! différents commentaires de la page de gestion
+!distribute lines Informations générales\
+Contenu $(name_examenlist[3])\
+Veuillez utiliser les liens du menu pour définir le contenu de l'examen (les exercices qui composeront l'examen sont à choisir parmi les feuilles actives).\
+into name_info,name_contentsuper,name_warning
+
+!! titre du tableau de contenu de l'examen (file examcontent.phtml)
+!let name_extab=!nosubst $wims_name_number,$wims_name_title,Contenu,$name_weight,$name_dependency,$wims_name_comment,$name_Options,$wims_name_action,Déplacer
+
+!set name_contenu=Choix du contenu
+!let name_cpsheet1=Vous allez ajouter en une fois tous les exercices de la feuille sélectionnée \
+ à la suite des exercices déjà présents.<br/>\
+ Chaque exercice aura comme poids 1.
+
+!let name_cpsheet3=Titre d'exercice générique (Facultatif)
+!let name_cpsheet4=Les exercices seront numérotés automatiquement. Si vous ne remplissez pas ce champ,\
+ ils conserveront le titre qu'ils avaient dans la feuille d'exercices.
+
+!set name_warning_nonfinished=Vous n'avez pas encore fait tous les exercices de $(name_examenlist[5]). \
+  Terminer maintenant va geler le score et consommer une $(name_examenlist[1]),\
+   et vous serez obligé de tout recommencer la prochaine fois.<br>\
+   Voulez-vous vraiment terminer ?
+!set name_warning_nonfinished1=Vous n'avez pas fait tous les exercices de $(name_examenlist[5]). \
+  Voulez-vous vraiment terminer ? Vous ne pourrez pas revenir ensuite $(name_examenlist[2]).
+!set wims_name_cpexam=Copier un examen actif
+
+!set name_cpexam1=Vous êtes en train de copier le contenu d'un autre examen actif. \
+  Vous pourrez ensuite modifier le contenu $(name_examenlist[3]) créé jusqu'à ce que vous l'activiez.
+
+!! TODO_lang
+!set name_exammode_list=Standard,Course
+!set name_msg_exam_withip=Les notes indiquées avec un symbole &ast; ont été réduites suite à un changement\
+    d'adresse IP pendant la session $(name_examenlist[3]).
+!set name_real_score=!nosubst $realtsco sans tenir compte du changement d'adresse IP
+!set name_warning_notstartip=Attention, votre adresse IP actuelle n'est pas celle \
+  du démarrage de $(name_examenlist[1]). Vous pouvez quand même faire les exercices et \
+  les scores obtenus seront enregistrés. \
+  Cependant, ils ne seront, pour l'instant, pas utilisés dans le calcul de la note $(name_examenlist[3]).
+!set name_warning_notstartip=Attention, votre adresse IP actuelle n'est pas \
+  celle du démarrage de $(name_examenlist[1]). Vous pouvez quand même \
+  faire les exercices et les scores obtenus seront enregistrés. Cependant,  pour l'instant,\
+  ils ne seront pas utilisés dans le calcul de la note $(name_examenlist[3]).
+!set name_modedesc=Cet examen est en mode $(name_exammode_list[2]).\
+  Les règles sont les suivantes :\
+  <ul><li>Les exercices s'activent les uns après les autres ;</li>\
+  <li>L'obtention d'une note non maximale à un exercice arrête la course.\
+  </li></ul>
+!set name_courseend=!nosubst Vous n'avez pas répondu correctement à l'exercice $coursefalse.\
+  Vous deviez avoir au moins $[$minscore*$scoremax/100] au dernier exercice. La course est terminée.
+!set name_courseend2=La course est terminée.
+
+!set name_progress=Progression de la session de la course
+!set name_studentloc=!nosubst $user_firstname $user_lastname
+!set wims_name_coursewatch=Regarder la course

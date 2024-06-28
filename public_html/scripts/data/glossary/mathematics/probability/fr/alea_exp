@@ -1,0 +1,14 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,random
+!set gl_title=Expérience aléatoire
+!set gl_level=H3 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Une expérience est dite <strong>aléatoire</strong> lorsqu'on ne peut pas en
+prévoir avec certitude le résultat.
+</div>

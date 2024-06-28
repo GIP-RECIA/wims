@@ -1,0 +1,52 @@
+Multiplications #1
+games with multiplications
+??, 2019
+1
+E3
+elementary_mathematics
+number,operation
+Marina, Cazzola
+wims@unimib.it
+Play with maths
+
+:H3/algebra/arithtable.en
+exo=partial2x2&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 1
+Drag the numbers into the table so that the products of the rows and of the columns are the given numbers.
+
+:H3/algebra/arithtable.en
+exo=table2x2&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 2
+Drag all the numbers into the table so that the products of the rows and of the columns are the given numbers.
+
+:H3/algebra/arithtable.en
+exo=typed2x2&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 3
+Find the missing numbers in the table so that products of the rows and of the columns are the given numbers.
+
+:H3/algebra/arithtable.en
+exo=partial2x4&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 4
+Again, drag all the numbers into the table so that the products of the rows and of the columns are the given numbers.
+
+:H3/algebra/arithtable.en
+exo=table2x4&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 5
+Again, drag all the numbers into the table so that the products of the rows and of the columns are the given numbers.
+
+:H3/algebra/arithtable.en
+exo=typed2x4&confparm1=1&confparm2=4&qnum=1&scoredelay=&seedrepeat=3&qcmlevel=1
+10
+1
+Magic table 6
+Again, find the missing numbers in the table so that products of the rows and of the columns are the given numbers.

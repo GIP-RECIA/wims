@@ -1,0 +1,9 @@
+size 400,400
+xrange 0,300
+yrange 0,10
+opacity 120,50
+filled
+fillcolor orange
+strokecolor blue
+linewidth 2
+boxplot x,4,8,120,160,170,220,245

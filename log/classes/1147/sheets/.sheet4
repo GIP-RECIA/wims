@@ -1,0 +1,70 @@
+Diagrammes en boîte à moustaches
+
+??,2021
+1
+H4
+statistics
+descriptive_statistics,mean,median,standard_deviation,quartile,boxplot
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Sélection d'exercices correspondant à une partie du paragraphe "Statistique à une variable" du programme de seconde professionnelle (B.O. spécial n° 5 du 11 avril 2019)
+
+:H5/stat/diagboite.fr
+exo=1&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Dessiner un diagramme en boîte
+Ajuster un diagramme en <strong>boîte</strong> (sans moustache).
+
+:H5/stat/diagboite.fr
+exo=2&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Dessiner un diagramme en boîte à moustaches
+Ajuster un diagramme en <strong>boîte à moustaches</strong>.
+
+:H5/stat/diagboite.fr
+exo=3&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Lire un diagramme en boîte
+Lire un diagramme en <strong>boîte</strong> (sans moustache).
+
+:H5/stat/diagboite.fr
+exo=4&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Lire un diagramme en boîte à moustaches 1
+Lire un diagramme en <strong>boîte à moustaches</strong>.
+
+:H2/stat/stat-0.nl
+subject=12&level=2&total_exos=1&rounding=10&usage=2&taal=fr
+10
+1
+Lire un diagramme en boîte à moustaches 2
+Lire un diagramme en <strong>boîte à moustaches</strong>.
+
+:H5/stat/oefstatlycee.fr
+exo=diagb1&exo=diagb2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Diagrammes en boîte et indicateurs
+Choisir le <strong>diagramme</strong> correspondant à une série.
+
+:H4/stat/oefstatistiques.fr
+exo=moustache&confparm1=20&confparm2=1000&confparm3=6&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Temps de réaction et boîte à moustaches
+<strong>Activité ludique</strong>: Tester son temps de réaction, déterminer <strong>médiane et quartiles</strong> puis construire un <strong>diagramme</strong>.
+
+:H4/stat/oefstatistiques.fr
+exo=medicament2&confparm1=40&confparm2=1000&confparm3=6&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Exercice de synthèse
+Calculs et interprétations à partir d'un <strong>problème concret</strong> (médicament) : moyenne - quartile - écart-type - boite à moustaches...
+
+
+
+calculator

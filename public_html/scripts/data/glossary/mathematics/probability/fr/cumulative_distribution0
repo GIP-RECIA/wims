@@ -1,0 +1,17 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability_distribution,cumulative_distribution
+!set gl_title=Fonction de répartition (lycée)
+!set gl_level=H6 Générale&nbsp;Complémentaire
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+La <strong>fonction de répartition</strong> d'une variable aléatoire réelle \(X\)
+est la fonction qui à tout réel \(t\) associe la probabilité que \(X\) prenne une
+valeur inférieure ou égale à \(t\) (c'est-à-dire la probabilité de l'événement
+<span style="white-space:nowrap">\(\{X\leqslant t\}\)).</span>
+</div>
+:mathematics/probability/fr/cdf_1

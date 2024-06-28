@@ -1,0 +1,56 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=complex_number,complex_plane
+!set gl_title=Module d'un nombre complexe
+!set gl_level=H5 STI2D&nbsp;Spécialité , H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définition</h4>
+Le plan complexe est muni d'un repère orthonormé
+ \((\mathrm{O}\,;\overrightarrow{u},\overrightarrow{v})\).
+<br>
+Soit \(z\) un nombre complexe et \(\mathrm{M}\) le point d'affixe \(z\).<br>
+On appelle <strong>module</strong> de \(z\) le nombre réel, noté
+\(\left\|z\right\|\), défini par&nbsp;:
+<span style="white-space:nowrap">\(\left\|z\right\| = OM\).</span>
+</div>
+
+<div class="wims_thm">
+<h4>Conséquences</h4>
+<ul>
+  <li>
+  Pour tout \(z\in \CC\), \(\left\|z\right\|\geqslant 0\).
+  </li>
+  <li>\(\left\|z\right\| = 0 \) si et seulement si \(z = 0\).
+  </li>
+  <li>Pour tout \(z\in \CC\), \(\left\|-z\right\| = \left\|z\right\|\).
+  </li>
+  <li>Pour tout \(z\in \CC\), \(\left\|\bar{z}\right\| = \left\|z\right\|\).
+  </li>
+</ul>
+</div>
+
+<div class="wims_thm">
+  <h4>Théorème</h4>
+<ul>
+<li>Soit \(x\in \RR\), \(y\in \RR\) et \(z\) le nombre complexe défini par
+ <span style="white-space:nowrap">\(z=x+\mathrm{i} y\),</span> alors&nbsp;:
+  <span style="white-space:nowrap">\(\left\|z\right\|=\sqrt{x^2+y^2}\).</span>
+</li>
+<li>
+Pour tout \(z\in \CC\), \(\left\|z\right\|^2 = z \bar{z}\).
+</li>
+<li>
+Pour tous \(z_1\in \CC\) et \(z_2\in \CC\),
+\(\left\|z_1 z_2\right\| = \left\|z_1\right\|\left\|z_2\right\|\).
+</li>
+<li>Pour tout \(z\in \CC^*\), \(\left\|\frac{1}{z}\right\| = \frac{1}{|z|}\).
+</li>
+<li>
+Pour tous \(z_1\in \CC\) et \(z_2\in \CC^*\),
+ \(\left\|\frac{z_1}{z_2}\right\| = \frac{|z_1|}{|z_2|}\).</li>
+</ul>
+</div>

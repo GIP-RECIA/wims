@@ -1,0 +1,6 @@
+!set gl_type=dynamic
+!set gl_author=Bernadette, Perrin-Riou
+!set gl_title=Arbre (exemple)
+!readproc data/glossary/mathematics/discrete_mathematics/macro/tree
+
+<div class="wimscenter">$gloss_out</div>

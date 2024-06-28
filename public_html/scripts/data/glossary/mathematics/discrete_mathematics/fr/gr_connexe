@@ -1,0 +1,16 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=graph
+!set gl_title=Graphe connexe
+!set gl_level=H6 Générale&nbsp;Experte
+:
+:
+:
+:<div class="wims_defn">
+  <h4>Définition</h4>
+    Un graphe \(G\) est dit <strong>connexe</strong> lorsqu'il existe une chaîne
+    entre deux sommets quelconques de <span style="white-space:nowrap">\(G\).
+    </span>
+</div>
+
+:mathematics/discrete_mathematics/fr/gr_connexe_1

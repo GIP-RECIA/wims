@@ -1,0 +1,22 @@
+\def{integer a=random(-1,1)*random(2,3,4,5)}
+\def{integer b=random(-1,1)*random(2,3,4,5)}
+\def{integer c=random(-1,1)*random(2,3,4,5)}
+\def{rational x=-\b/(2*\a)}
+\def{rational y=\c-\a*(\x)^2}
+<div>
+Soit \(f(x) = \a*x^2 + \b*x + \c)<br>
+Le développement de la forme canonique est :<br>
+\(a*(x - x_S)^2 + y_S = a*x^2 - 2*a*x_S + a*x_S^2 + y_S)<br>
+Pour que \(f(x) = a*(x - x_S)^2 + y_S) pour tout réel \(x) c-à-d que<br>
+ \(a*x^2 - 2*a*x_S*x + a*x_S^2 + y_S = \a*x^2 + \b*x + \c) pour tout réel \(x),<br>
+il faut et il suffit que :<br>
+\(a = \a) et \(- 2*a*x_S = \b) et \(a*x_S^2 + y_S = \c)<br>
+\(a = \a) et \(x_S = -\b/(2*a)) et \(y_S = \c - a*x_S^2)<br>
+\(a = \a) et \(x_S = \x) et \(y_S = \c - \a*x_S^2)<br>
+\(a = \a) et \(x_S = \x) et \(y_S = \c - \a*(\x^2))<br>
+\(a = \a) et \(x_S = \x) et \(y_S = \y)<br>
+La forme canonique de \(\a*x^2 + \b*x + \c) est \(\a*(x - \x)^2 + \y)<br>
+On peut vérifier que \(f(\x) = \a*(\x)^2 + \b*(\x) +\c = \y)<br>
+Ainsi \(f(x_S) = y_S).<br>
+De plus, si \(a=\a) et \(b=\b), on a \(x_S = -b/(2*a) = -\b/(2*\a) = \x).
+</div>

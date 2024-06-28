@@ -1,0 +1,51 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=barycenter,vectors,analytic_geometry
+!set gl_title=Barycentre d'un système de points pondérés
+!set gl_level=H6 Générale&nbsp;Spécialité&nbsp;(Approfondissement)
+:
+:
+:
+:
+<div class="wims_thm"><h4>Théorème</h4>
+Soit \(n \in \mathbb{N}^*\), \(A_1, A_2, \cdots,A_n\) des points de l'espace et
+\(a_1, a_2 ,\cdots,a_n\) des réels tels que
+<span class="nowrap">\(\displaystyle{\sum_{i=1}^n a_i\neq 0}\).</span>
+<br>
+Il existe un unique point \(G\) tel que
+<div class="wimscenter">
+ \(\displaystyle{\sum_{i=1}^n a_i\overrightarrow{G A_i} =\overrightarrow{0}}\).
+</div>
+</div>
+<div class="wims_defn">
+<h4>Définition</h4>
+Soit \(n \in  \mathbb{N}^*\), \(A_1, A_2,\cdots, A_n\) des points de l'espace et
+  \(a_1, a_2 ,\cdots,a_n\) des réels tels que
+<span class="nowrap">\(\displaystyle{\sum_{i=1}^n a_i\neq 0}\).</span>
+<br>
+Soit \(G\) le point tel que <div class="wimscenter">
+ \(\displaystyle{\sum_{i=1}^n a_i\overrightarrow{G A_i} =\overrightarrow{0}}\).
+</div>
+Le point \(G\) est appelé <strong>barycentre</strong> du système de points
+pondérés <span style="white-space:nowrap">\(\{(A_i, a_i) \}_{1\leq i\leq n} \).
+</span>
+</div>
+<div class="wims_thm">
+<h4>Théorème</h4>
+  Soit \(n \in  \mathbb{N}^*\), \(A_1, A_2, \cdots, A_n\) des points de l'espace,
+  \(a_1, a_2,\cdots,a_n \) des réels tels que
+  \(\displaystyle{\sum_{i=1}^n a_i}\neq 0\) et \(G\) le barycentre du système de points pondérés
+ <span style="white-space:nowrap">\(\{(A_i, a_i) \}_{1\leq i\leq n} \).</span><br>
+Pour tout point \(M\) de l'espace,
+  <div class="wimscenter">
+  \(\displaystyle{\sum_{i=1}^n a_i\overrightarrow{M A_i}}=
+  \left(\sum_{i=1}^n a_i\right)\overrightarrow{M G}\).
+  </div>
+</div>
+:mathematics/geometry/fr/barycenter_1
+:
+<div class="wims_thm"><h4>Théorème</h4>
+On ne change pas le barycentre de \(n\) points pondérés lorsqu'on remplace \(p\) de ces points par leur barycentre affecté de la somme des coefficients des \(p\) points considérés.
+</div>
+
+:mathematics/geometry/fr/barycenter_2

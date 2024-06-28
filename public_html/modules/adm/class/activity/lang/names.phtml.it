@@ -1,0 +1,52 @@
+!set lang_exists=yes
+!!!set name_title=Schema dell'attività degli iscritti
+!set name_noparticipant=Questo corso non ha alcun iscritto.
+!set name_lastconnexion=Ultimo contatto
+!set name_total=Tempo totale
+!set name_click=Selezionare un nome per i dettagli
+!set name_nbsessions=Numero di sessioni
+!set name_exo=esercizi
+!set name_time=Tempo (h:m:s)
+!set name_cnt_exo=Num. eserc.
+
+!set name_showsheet=Selezionare i test per cui mostrare l'attività degli studenti.
+
+!set name_ylabel=# ex.
+
+!set name_expert0=È possibile selezionare gli iscritti in uno dei seguenti metodi
+
+!distribute items Menu esperti,Elenco esplicito di <em>login</em>,Da un elenco,\
+  Per studente,giorni,Mostrare i grafici,Tutti gli studenti\
+into name_menu,name_loginlist,name_select,name_shiftpart,name_days,\
+ name_graphics, name_allpart
+
+!distribute lines Permette di scorrere gli studenti a uno a uno (default nel caso sia richiesta la visualizzazione dei grafici).\
+Il numero massimo di studenti visualizzabili è $limitpart, solo i primi $limitpart verranno visualizzati\
+Nel caso si richieda la visualizzazione dei grafici, solo i primi $limitpart verranno visualizzati\
+Solo nel caso non si chieda la visualizzazione dei grafici.\
+nel caso si richieda la visualizzazione dei grafici\
+into name_help1,name_help2,name_help3,name_help0,name_help00
+
+!set name_min=min
+!set name_listdays=Lunedì,Martedì,Mercoledì,Giovedì,Venerdì,Sabato,Domenica
+!set name_workingtime=Periodi di attività
+!set name_lgword=fino a,tra,e,più di,Nessuna attività
+!set name_studentname=!nosubst $lastname $firstname
+!set name_choose=Seleziona studente
+!set name_activityof=Periodi di attività di
+!set name_notsingleclass=!nosubst Questo corso fa parte di un coordinamento o di un portale. I periodi \
+       di attività precedenti alla data $slib_out\
+       tengono conto dell'attività complessiva in tutti i corsi della struttura. I periodi successivi a tale data tengono conto solo dell'attività all'interno di questo corso.
+
+!if $job=cfwtime
+  !set name_titlecfwtime=Configurazione della visualizzazione dei periodi di attività
+  !set name_config=Abilita la visualizzazione dei periodi di attività,\
+Numero di intervalli,\
+Durata di un intervallo,\
+Colori
+  !set name_desc_config=,\
+Numero di colori utilizzati nelle tabelle,\
+Durata degli intervalli di attività in minuti,\
+È possibile scegliere il colore di ciascuna suddivisione
+
+!endif

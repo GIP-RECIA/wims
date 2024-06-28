@@ -1,0 +1,77 @@
+!set titb=Utiliser la forme canonique
+!set keyw=
+!set datm=20210827
+!set prev=embedParabFonc
+!set next=embedParabRes
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<div class="wims_columns">
+ <div class="medium_size text_col">
+La forme canonique <span style="background-color&#58;pink">
+!insmath a(x - x_S)^2 + y_S
+</span> est l'écriture algébrique qui rend le mieux compte de la composition des fonctions<br>
+ pour obtenir un trinôme donné comme indiqué dans le paragraphe "Utiliser des fonctions".
+<br>
+Elle peut être obtenue en observant la courbe si le sommet S
+!insmath (x_S;y_S)
+ de la parabole
+est connu de façon précise
+ et au moins un autre point, notamment celui d'abscisse 
+!insmath x_S + 1
+,
+comme indiqué au paragraphe
+
+!read primitives.phtml 1, link, ParabDes, Utiliser le lien entre l'analyse et la géométrie 
+ .
+</div><div class="medium_size img_col">
+<img alt="Garçon nommé Canot Nick" src="$m_filedir/canonick.png" />
+</div></div>
+<p class="decal">
+L'obtenir par factorisation partielle à l'aide des identités remarquables à partir de la forme développée est plus difficile.<br>
+
+!read primitives.phtml 2, fold, \embed{ParabDevCan}, Exemple 
+
+<br>
+C'est aussi possible de l'obtenir par identification des coefficients après avoir développé la forme canonique.<br>
+
+!read primitives.phtml 3, fold, \embed{ParabIdCan}, Exemple 
+
+<br>
+<p class="decal">
+Mais le plus simple consiste à se rappeler que la forme canonique de
+
+!insmath a x^2 + b x + c
+ avec 
+!insmath a \ne 0
+, est &#58;<br>
+<Font style="background-color&#58;pink">
+!insmath a(x - x_S)^2 + y_S
+ avec 
+!insmath x_S = - \frac{b}{2 a}
+ et 
+!insmath y_S = f(x_S)
+,<br></FONT>
+où le coefficient du carré 
+!insmath a
+ est le même dans la forme développée et dans la forme canonique.</p>
+<p class="decal">
+Outre la possibilité de tracer rapidement la courbe, la forme canonique donne
+  l'accès à la factorisation lorsqu'elle est possible,
+ à la résolution d'équations du second degré, à la démonstration
+ de l'extremum (minimum ou maximum)
+ et même à la démonstration des variations en utilisant celles de la fonction carré.</p>
+<p class="decal">
+!read primitives.phtml 4, fold, \embed{ParabMax}, Exemple de démonstration de l'extremum 
+</p>
+<p class="decal">
+!read primitives.phtml 5, fold, \embed{ParabVar}, Exemple d'étude des variations 
+</p>
+

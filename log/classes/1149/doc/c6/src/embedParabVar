@@ -1,0 +1,42 @@
+\def{integer a=random(-1,1)*random(2,3,4,5)}
+\def{integer x=random(2,3,4,5)}
+\def{integer y=random(-1,1)*random(2,3,4,5)}
+\def{text s1=\a>0? > : <}
+\def{text s2=\a>0? < : >}
+\def{text v1=\a>0? décroissante : croissante }
+\def{text v2=\a>0? croissante  : décroissante }
+<p align="center">Variations de \(g(x) = \a*(x - \x)^2 + \y)</p>
+<table align="center" border=1 cellpadding=10>
+<tr><td>Soient \(x_1) et \(x_2) deux nombres réels quelconques<br>
+de &#93 -\infty ; \x &#93 tels que \(x_1 \lt x_2) alors :<br>
+<p align="center">
+\(x_1  \lt x_2 \le \x)<br>
+\(x_1 - \x \lt x_2 - \x \le 0)<br>
+\((x_1 - \x)^2  > (x_2 - \x)^2)
+</p>
+car la fonction carré est strictement décroissante sur &#93 \(-\infty) ; 0 &#93<br>
+<p align="center">
+\(\a*(x_1 - \x)^2) \s1 \(\a*(x_2 - \x)^2)<br>
+\(\a*(x_1 - \x)^2 + \y) \s1 \(\a*(x_2 - \x)^2 + \y)<br>
+\(g(x_1)) \s1 \(g(x_2))</p>
+Pour tous les nombres réels \(x_1) et \(x_2) de &#93 -\infty ; \x &#93 tels<br>
+que \(x_1 \lt x_2) on a \(g(x_1)) \s1 \(g(x_2)) donc la fonction<br>
+\(g) est strictement \v1 sur &#93 -\infty ; \x &#93.<br>
+</td>
+<td>Soient \(x_1) et \(x_2) deux nombres réels quelconques<br>
+de &#91 \x ; + \infty &#91 tels que \(x_1 \lt x_2) alors :<br>
+<p align="center">
+\(\x \le x_1  \lt x_2)<br>
+\(0 \le x_1 - \x  \lt x_2 - \x)<br>
+\((x_1 - \x)^2  \lt (x_2 - \x)^2)
+</p>
+car la fonction carré est strictement croissante sur &#91 0 ; + \(\infty) &#91<br>
+<p align="center">
+\(\a*(x_1 - \x)^2) \s2 \(\a*(x_2 - \x)^2)<br>
+\(\a*(x_1 - \x)^2 + \y) \s2 \(\a*(x_2 - \x)^2 + \y)<br>
+\(g(x_1)) \s2 \(g(x_2))</p>
+Pour tous les nombres réels \(x_1) et \(x_2) de &#91 \x ; + \(\infty) &#91 tels<br>
+que \(x_1 \lt x_2) on a \(g(x_1)) \s2 \(g(x_2)) donc la fonction<br>
+\(g) est strictement \v2 sur &#91 \x ; + \(\infty) &#91.
+</td></tr>
+</table>

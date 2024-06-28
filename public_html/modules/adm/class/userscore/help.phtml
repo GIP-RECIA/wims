@@ -1,0 +1,28 @@
+!if $special_parm iswordof authentification filter
+  !changeto help/$moduclass_lang/$special_parm.phtml
+  !exit
+!endif
+!set special_parm_=!text remove 0123456789 in $special_parm
+
+!if $special_parm_!=$empty
+  !changeto lang/help.$moduclass_lang/$special_parm.phtml
+!endif
+
+!if $special_parm=$empty
+  !read help/squarescore.phtml
+!endif
+!set list=!record 0 of adm/class/sheetformula
+!set list=!items2lines $list
+!set wims_backslash_insmath=yes
+!set help_sw=!line $[$special_parm+1] of $shweights
+!set help_score_max=!line 1 of $shweights
+!set help_level=!word 2 of $help_sw
+!set help_sw=!word 3 of $help_sw
+!if $help_sw=$empty
+  !set help_sw_tmp=!defof DF_SEVERITY in wimshome/public_html/bases/sys/define.conf
+  !set help_sw=!word 3 of $help_sw_tmp
+  !default help_level=!word 2 of $help_sw_tmp
+!endif
+!default help_score_max=10
+
+!read lang/help.phtml.$moduclass_lang

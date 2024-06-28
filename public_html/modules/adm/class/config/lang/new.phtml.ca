@@ -1,0 +1,75 @@
+!if $backdays>7
+  !if $backdays>100
+    <div class="wims_msg info">La vostra classe no s'ha desat des de fa més de 100 dies.</div>
+  !else
+    <p>Darrera còpia de seguretat de la vostra classe: fa $backdays jours.</p>
+  !endif
+  !if backup iswordof $warn
+    <div class="wims_msg warning"><strong class="wims_warning">$wims_name_warning</strong>.
+      <br>
+      És responsabilitat dels professors salvaguardar els seus recursos!
+       No confieu mai en la còpia de seguretat del servidor per
+       recuperar la feina perduda. A més, les classes virtuals de les que no
+       es realitza una còpia de seguretat de forma regular, el programari les considerarà
+       inactives i sense importància, i les pot esborrar en qualsevol
+       moment per deixar espai a altres.
+  !else
+    <div class="wims_msg info">Protegiu-vos de les incidències del servidor&nbsp;!
+  !endif
+  !href cmd=reply&job=arch Desar la classe
+   amb regularitat.
+  </div>
+!endif
+
+!if creation iswordof $warn
+ <div class="wims_msg warning"><strong class="wims_warning">$wims_name_warning</strong>. La classe virtual és massa antiga&nbsp;! Ella té
+  ja $creatdays dies.
+ </div><p>
+ Es recomana recrear una nova estructura de classe virtual
+  al començament de cada nou curs escolar. Continuar utilitzant
+  una mateixa classe virtual durant anys portarà inexorablement a
+  un desbordament de fitxers de registre i quota d'espai al disc, que
+  pot bloquejar l'accés a la vostra classe en un moment crucial.
+ </p>
+ !if $class_type notin 13
+  <p>
+  A continuació us indiquem com tornar a crear la classe virtual sense reconstruir els vostres
+  recursos.</p>
+  <ol>
+  <li>
+  !href cmd=reply&job=arch Desar
+   la teva classe al final del curs escolar.
+  </li><li>
+  <a href="$wims_ref_name?lang=$lang&module=adm/class/regclass">Crear</a>
+  una nova classe virtual (o un grup de classes o un portal
+  de centre) a principis del proper curs escolar.
+  </li><li>Restaurar els recursos didàctics (exercicis, fulls, exàmens,
+   documents) que vau desar a la nova classe.
+   (Sense restaurar comptes d'alumnes ni les activitats obsoletes).
+  </li></ol>
+ !else
+  <p>
+Si us plau, informeu a ls'administrador del grup de classe al qual pertanys
+  la vostra classe.
+  </p><p>
+  Podeu
+  !href cmd=reply&job=arch guardar
+   els recursos educatius de la vostra classe actual i després restaurar-los
+   a la nova.
+  </p>
+ !endif
+!endif
+
+!exit
+
+!!if $warn=$empty
+ !set job=list
+ !changeto list.phtml
+!!else
+  <div class="wimscenter">
+ !href cmd=reply&job=list Continuar amb el manteniment de la classe.
+ </div>
+!endif
+
+
+

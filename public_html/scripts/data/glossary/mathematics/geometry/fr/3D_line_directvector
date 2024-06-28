@@ -1,0 +1,30 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=vectors,analytic_geometry,line_equation,solid_geometry
+!set gl_title=Vecteur directeur d'une droite de l'espace
+!set gl_level=H6 Générale&nbsp;Spécialité
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Soit \(\mathcal{D}\) une droite de l'espace.<br>
+On appelle <strong>vecteur directeur</strong> de \(\mathcal{D}\) tout vecteur
+\(\overrightarrow{v}\) non nul pour lequel il existe deux points \(\mathrm{A}\)
+et \(\mathrm{B}\) de \(\mathcal{D}\) tels que
+<span style="white-space:nowrap">\(\overrightarrow{v}=\overrightarrow{AB}\).
+</span></div>
+<div class="wims_thm"><h4>Théorème 1</h4>
+Soit \(\mathrm{A}\) un point et \(\overrightarrow{v}\) un vecteur non nul de
+l'espace.<br>
+La droite \(\mathcal{D}\) passant par \(\mathrm{A}\) et de vecteur directeur
+\(\overrightarrow{v}\) est l'ensemble des points \(\mathrm{M}\) de l'espace tels
+que les vecteurs \(\overrightarrow{AM}\) et \(\overrightarrow{v}\) soient
+colinéaires.
+</div>
+<div  class="wims_thm"><h4>Théorème 2</h4>
+Deux droites de l'espace de vecteurs directeurs respectifs \(\overrightarrow{u}\)
+et \(\overrightarrow{v}\) sont parallèles si et seulement si les vecteurs
+\(\overrightarrow{u}\) et \(\overrightarrow{v}\) sont colinéaires.
+</div>
+:mathematics/geometry/fr/3D_line_directvector_1

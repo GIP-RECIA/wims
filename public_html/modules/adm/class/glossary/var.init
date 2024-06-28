@@ -1,0 +1,10 @@
+!set data_dir=wimshome/public_html/scripts/data/glossary
+!set gloss_dir=wimshome/log/classes/$wims_class/tool
+
+!if $wims_class=$empty
+  !exit
+!endif
+!if $wims_user=supervisor
+  Gloss_dir=$wims_home/log/classes/$wims_class/tool
+  !sh mkdir -p $Gloss_dir;
+!endif

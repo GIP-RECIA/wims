@@ -1,0 +1,27 @@
+!set titb=Sommaire
+!set keyw=
+!set datm=20210823
+!set prev=
+!set next=
+!set upbl=
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+!exit
+
+:content
+<ol>
+ <li>
+!read primitives.phtml 1, fold, \embed{ParabRap}, <strong>Rappels</strong> 
+</li>
+ <li>
+!read primitives.phtml 2, fold, \embed{ParabFormes}, <strong>Forme développée et forme canonique</strong> 
+</li>
+ <li>
+!read primitives.phtml 3, fold, \embed{ParabCourbes}, <strong>Allure de la courbe et formules du trinôme</strong> 
+</li>
+</ol>
+

@@ -1,0 +1,30 @@
+!set methtit=Fórmula básica de integración
+!set methenv=ZZ QQ RR
+!set methparmtype=parm function integrate, choice
+
+!set basic=a*t^b,a/(t^2+1),a/(1-t^2),a/sqrt(1-t^2),\
+	a/sqrt(t^2+1),a/sqrt(t^2-1),a*e^t,a*sin(t),\
+	a*cos(t),a/sin(t)^2,a/cos(t)^2,a*sh(t),a*ch(t),\
+	a/sh(t)^2,a/ch(t)^2
+!set basiccnt=!itemcnt $basic
+!set basicp=!replace internal , by ), \( in \($basic)
+!set methhelp=Este método reconoce las integrales de las siguientes funciones.\
+ <p>$basicp
+
+!if $wims_read_parm iswordof form check
+ !goto $wims_read_parm
+!endif
+
+!exit
+:form
+La integración
+ !read deduc/methparm.phtml 1
+es bien conocido, porque es de la forma
+  <div class="wimscenter">
+ \(integrate())
+ !formselect methparm2 from 1 to $basiccnt prompt $basic
+ \(dt), </div> donde \(a) y \(b) son constantes.
+!exit
+:check
+!changeto deduc/meth/$modu_lang/integrate/basicheck
+

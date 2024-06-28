@@ -1,0 +1,34 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=discrete_probability_distribution
+!set gl_title=Distribuzione geometrica
+!set gl_level=U1,U2,U3
+:
+:
+:tool/stat/table.fr
+:
+<div class="wims_defn"><h4>Definition</h4>
+Sia \(p) un numero reale tale che \(0 < p < 1). Una variabile aleatoria è detta avere
+ <strong>distribuzione geometrica</strong> su \(\NN) con parametro \(p) (denotata da
+\(\mathcal{G}_{\NN}(p)) se assume ogni intero non negativo \(k\) con probabilità
+
+<div class="wimscenter">\( q(k) = p(1 - p)^k ) pour tout \(k \in \NN)</div>
+</div>
+<div class="wims_example">
+<h4>Esempio</h4> una moneta truccata viene lanciata ripetutamente. Ogni volta
+c'è una probabilità <span class="green">\(p)</span> di vedere
+<span class="green">testa</span> è una probabilità
+<span class="red">\(1 - p)</span> di vedere una <span class="red">croce</span>. Il numero di
+ <span class="red">croci</span> apparse prima della prima <span class="green">
+ testa</span> è una variabile aleatoria; essa ha distribuzione geometrica \(\mathcal{G}_{\NN^*}(p)).
+ <p>
+Osservazione: se \(X) è una variabile aleatoria con distribuzione \(\mathcal{G}_\NN(p))
+allora \(X + 1) ha distribuzione \(\mathcal{G}_{\NN^*}(p)).
+</p>
+</div>
+<table class="wimsborder wimscenter"><tr><th>Valore atteso</th><th>Varianza</th>
+<th>Funzione generatrice di probabilità</th></tr><tr>
+<td>\(\frac{1 - p}{p})</td><td>\(\frac{1 - p}{p^2})</td><td>\(\frac{p}{1 - (1 - p)z})</td></tr></table>
+
+:mathematics/probability/fr/geometric_distribution_1
+

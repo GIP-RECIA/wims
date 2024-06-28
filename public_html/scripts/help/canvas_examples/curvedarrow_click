@@ -1,0 +1,9 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+
+onclick
+cuvedarrow2 -5,0,0,-10,5,0,blue
+onclick
+curvedarrow -8,0,0,5,8,3,green

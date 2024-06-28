@@ -1,0 +1,140 @@
+type=question
+textarea="datatrue datafalse explain"
+iEdit="explain"
+asis="explain"
+
+:Marcar las frases verdaderas de una lista.
+Se propone una lista con un cierto número de frases. Se deben identificar y marcar las que son ciertas. Las frases ciertas y falsas se eligen al azar de las respectivas listas. El número de frases ciertas en cada presentación no es siempre el mismo.
+<p>
+Cuantos más datos (en este caso, frases) ponga, más aleatorio y repetible será el ejercicio. Pero también puede hacer ejercicios sólo con las frases que necesite. Será en este caso un QCM
+con varias opciones correctas.
+</p><p class="wims_credits">
+Autor del modelo: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Remove the above header if you destroy the model tags! (The lines starting
+with a ':'.)
+Otherwise the exercise might not be taken back by Createxo.
+
+:%%%%%%%% Example parameters to be redefined %%%%%%%%%%%%%%%%%
+
+:\title{Verdadero/falso múltiple}
+:\author{XIAO, Gang}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:Número de frases a presentar
+\integer{tot=4}
+
+:Mínimo de frases verdaderas en cada ejercicio presentado. Al menos 1
+\integer{mintrue=1}
+
+:Mínimo de frases falsas en cada ejercicio presentado. Al menos 1
+\integer{minfalse=1}
+
+:Frases verdaderas. Una frase por línea, punto y coma no permitido.
+¡Evite frases demasiado largas!
+$embraced_randitem
+\matrix{datatrue=
+A igual voltaje, la corriente que circula por un resistor es inversamente proporcional a su resistencia.
+A igual corriente, el voltaje en una resistencia es proporcional a su resistencia.
+La corriente que fluye a través de una resistencia es proporcional al voltaje aplicado.
+La potencia disipada por una resistencia es proporcional al cuadrado del voltaje aplicado.
+La potencia disipada por una resistencia es proporcional al cuadrado de la corriente.
+A igual voltaje de CA, la corriente que fluye a través de un capacitor es proporcional a la capacitancia.
+A la misma corriente, el voltaje de CA en un capacitor es inversamente proporcional a la capacitancia.
+A igual voltaje de CA, la corriente a través de un solenoide es inversamente proporcional a la inductancia.
+A la misma corriente, el voltaje de CA en un solenoide es proporcional a la inductancia.
+Un condensador ideal no consume energía.
+Un solenoide ideal no consume energía.
+}
+
+:Frases falsas. Una frase por línea, punto y coma no permitido.
+¡Evite frases demasiado largas!
+$embraced_randitem
+\matrix{datafalse=
+A igual voltaje, la corriente que fluye a través de una resistencia es proporcional a su resistencia.
+A igual corriente, el voltaje en una resistencia es inversamente proporcional a su resistencia.
+A igual corriente, el voltaje en una resistencia es independiente de su resistencia.
+A igual voltaje, la corriente que fluye a través de una resistencia es independiente de su resistencia.
+La corriente que fluye a través de un diodo es proporcional al voltaje aplicado.
+La potencia disipada por una resistencia es proporcional al voltaje aplicado.
+La potencia disipada por una resistencia es proporcional a la corriente.
+A igual voltaje de CA, la corriente que fluye a través de un capacitor es inversamente proporcional a la capacitancia.
+A la misma corriente, el voltaje de CA en un capacitor es proporcional a la capacitancia.
+A igual voltaje de CA, la corriente a través de un capacitor es independiente de la capacitancia.
+A igual voltaje de CC, la corriente que fluye a través de un capacitor es proporcional a la capacitancia.
+A la misma corriente, el voltaje de CC en un capacitor es inversamente proporcional a la capacitancia.
+A igual corriente, el voltaje alterno en un capacitor es independiente de la capacitancia.
+A igual voltaje de CA, la corriente a través de un solenoide es proporcional a la inductancia.
+A la misma corriente, el voltaje de CA en un solenoide es inversamente proporcional a la inductancia.
+La potencia disipada por un capacitor es proporcional {a,al cuadrado de} el voltaje aplicado.
+La potencia disipada por un condensador es proporcional {a,al cuadrado de} la corriente.
+La potencia disipada por un solenoide ideal es proporcional {al,al cuadrado del} voltaje aplicado.
+La potencia disipada por un solenoide ideal es proporcional {a,al cuadrado de} la corriente.
+}
+
+:Opciones
+Agregue la palabra <span class="tt wims_code_words">split</span> a la definición si desea dar una nota
+parcial para respuestas parcialmente correctas.
+\text{option=split}
+
+:Enunciado
+$embraced_randitem
+\text{explain=asis(¿Cuáles de las siguientes afirmaciones son verdaderas? Marcarlas.)}
+
+:Se acepta texto aleatorio puesto entre llaves
+$embraced_randitem
+\text{accolade=item(1,1 sí,
+2 no)}
+
+:%%%%%%%%%%%%%% Nothing to modify before the statement %%%%%%%%%%%%%%%%
+
+\text{accolade=wims(word 1 of \accolade)}
+\text{datatrue=wims(nonempty rows \datatrue)}
+\text{datafalse=wims(nonempty rows \datafalse)}
+\integer{truecnt=rows(\datatrue)}
+\integer{falsecnt=rows(\datafalse)}
+\integer{tot=\tot > min(\truecnt,\falsecnt)?min(\truecnt,\falsecnt)}
+\integer{mintrue=\mintrue<1?1}
+\integer{minfalse=\minfalse<1?1}
+\integer{mintrue=\mintrue>\tot-1?\tot-1}
+\integer{minfalse=\minfalse>\tot-1?\tot-1}
+\integer{tot<\mintrue+\minfalse?\mintrue+\minfalse}
+\text{tsh=shuffle(\truecnt)}
+\text{fsh=shuffle(\falsecnt)}
+\text{true=row(\tsh,\datatrue)}
+\text{false=row(\fsh,\datafalse)}
+\integer{truepick=randint(\mintrue..\tot-\minfalse)}
+\text{pick=row(1..\truepick,\true);row(1..\tot-\truepick,\false)}
+\text{ind=wims(makelist 1 for x=1 to \truepick),wims(makelist 0 for x=1 to \tot-\truepick)}
+
+\text{sh=shuffle(\tot)}
+\text{ind=item(\sh,\ind)}
+\text{pick=row(\sh,\pick)}
+\text{pick=\accolade=1 ? wims(embraced randitem \pick)}
+\text{ans=positionof(1,\ind)}
+\text{list=wims(values x for x=1 to \tot)}
+\text{explain=\accolade=1 ? wims(embraced randitem \explain)}
+
+:%%%%%%%%%%%%% Now the statement in html. %%%%%%%%%%%%%%%%%%%%
+
+::You don't need to modify this in general.
+
+\statement{
+<div class="instruction">
+\explain
+</div>
+<ul style="list-style-type:none">
+\for{i=1 to \tot}{
+ <li>
+  \embed{reply 1,\i}. &nbsp;\pick[\i;]
+  </li>
+}
+</ul>
+}
+
+:%%%%%%%%%%%%% Nothing to modify after. %%%%%%%%%%%%%%%%%
+
+\answer{The reply}{\ans;\list}{type=checkbox}{option=\option}

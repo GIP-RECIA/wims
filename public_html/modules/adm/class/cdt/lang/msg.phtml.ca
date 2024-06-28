@@ -1,0 +1,44 @@
+!set wims_module_log=error: $error
+<b>$wims_name_Error: </b>
+!if $error iswordof not_supervisor bad_jday bad_date day_exists same_devoir\
+  same_devoir2 toomany_todo day_dontexist
+  !goto $error
+!else
+ !msg $error
+ !exit
+!endif
+
+:not_supervisor
+ Ho sento, però l'operació de preparació/modificació de l'agenda està reservada al professor de la classe.
+!exit
+
+:bad_jday
+ La data per als deures no és vàlida.
+!exit
+
+:bad_date
+ La data que voleu canviar no existeix.
+!exit
+
+:day_exists
+ La data que has introduït ja existeix a l'agenda.
+!exit
+
+:same_devoir
+ No es poden introduir dues dates de deures idèntiques.
+!exit
+
+:same_devoir2
+ No es pot, a partir del mateix dia, entrar dues vegades la mateixa data de deures.<br>
+ En el seu lloc, utilitzeu l'enllaç
+ !href cmd=new&job=adddate&filename=$jyear$jmonth$jday modificar una data
+ .
+!exit
+
+:toomany_todo
+ Has arribat al nombre màxim de deures que es pot donar a aquesta data.
+!exit
+
+:day_dontexist
+ La date que vous avez saisie est invalide.
+!exit

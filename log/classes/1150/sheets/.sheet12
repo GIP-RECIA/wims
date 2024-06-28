@@ -1,0 +1,23 @@
+:H1/analysis/OEFevalwimsprop.fr
+exo=oefmentprop1&exo=oefmentprop2&exo=oefmentprop3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Petit problème de proportionnalité 1-3
+Difficulté 1 à 3 aléatoirement
+
+
+
+
+:H1/analysis/OEFevalwimsprop.fr
+exo=oefmentprop3&exo=oefmentprop4&exo=oefmentprop5&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Petit problème de proportionnalité 3-5
+Difficulté 3 à 5 aléatoirement
+
+:H2/number/oefduration.fr
+exo=prop_duree2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Durée-proportionnalité
+Problème liant les durées et la proportionnalité.

@@ -1,0 +1,39 @@
+!set lang_exists=yes
+
+name_title1=Enviament de mails
+name_title2=Missatge
+name_noemail2=Els següents alumnes no tenen correu electrònic
+
+name_participant1=El missatge s'ha enviat a
+name_participant2=El missatge no s'ha pogut enviar als següents alumnes
+name_intro=Aquesta eina permet enviar un correu electrònic a tots o alguns dels participants
+
+name_expert0=Si vols seleccionar només alguns alumnes, disposes de diversos mètodes. \
+Selecciona el mètode desitjat.
+
+name_expert1=Usant les fletxes, passa a la finestra de la dreta \
+els alumnes que vols que rebin el correu electrònic.
+
+name_expert2=Entrar la llista de noms d'usuari separats per comes.
+
+name_expert3=Filtrar els alumnes d'acord amb els valors de les variables tècniques. \
+
+name_warning=Enviar el següent missatge als alumnes que figuren a continuació.
+
+!distribute items Destinataris,Remitents,Professorat destinatari,Llista de logins&nbsp;,Missatge&nbsp;,Tema&nbsp;,Selecció&nbsp;,\
+ Tots els alumnes\
+into name_recipients,name_sender,name_recip_teacher,name_loginlist,name_message,name_subject,name_select,name_allparticipants
+
+name_user=professor, professors, participant, participants
+name_without=no heu establert una adreça de correu electrònic, no heu establert una adreça de correu electrònic
+name_noemail_login=Les credencials següents coincideixen amb els criteris de selecció, però no tenen una adreça de correu electrònic vàlida
+name_noemail_filter=Els participants següents compleixen els criteris de selecció però no tenen una adreça de correu electrònic vàlida
+name_and=i
+name_sendotherteacher=Envieu una còpia del missatge a altres professors de la classe
+name_selfsend=envia'm una còpia del missatge
+name_success=Message envoyé avec succès
+name_nosendermail=No heu definit cap adreça de correu electrònic: el professor de la classe no us podrà respondre.
+name_sendto=Enviat a (participant), Enviat a (professor)
+name_noreply=!nosubst Aquest és un missatge automàtic. Per respondre'l has de <a href="$httpd_REMOTE_ADDR/wims/wims.cgi?module=adm/class/classes&+type=$localtype&+class=$localclass">connectar-te a la classe</a>.
+name_sendby=!nosubst Envoyé par $supervisorname
+name_suptype=Enseignant principal,Enseignant de la classe,Administrateur,Enseignant

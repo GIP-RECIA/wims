@@ -1,0 +1,174 @@
+:H1/number/OEFevalwimsfrac.fr
+exo=oefasurb1&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+a/b quotient de a par b
+Savoir qu'une fraction est un quotient
+
+:E6/number/fractions.fr
+exo=frac2dec&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Fractionnaire->Décimale
+Savoir écrire la forme décimale d'une fraction
+
+:H2/number/OEFevalwimsfrac.fr
+exo=comparer3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Comparer avec une fraction à l'unité
+Savoir encadrer une fraction.
+
+:H2/number/OEFevalwimsfrac.fr
+exo=comparer1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Comparer avec une fraction à l'unité bis
+Vrai Faux
+
+:H2/algebra/oefrationnel.fr
+exo=n2s1e07&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Décomposition a+b/c
+savoir écrire une fraction sous la forme d'une somme d'un entier et d'une fraction inférieure à 1
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oefegalfract1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Égalités de fractions décimales
+Savoir repérer deux fractions égales
+
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oefegalfract2&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Égalités de fractions 2
+Savoir repérer deux fractions égales
+
+:E6/number/fractions.fr
+exo=complete&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Compléter une fraction
+Savoir écrire une fraction égale à une autre
+
+:H2/algebra/oeffraction.fr
+exo=eqconst4&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Égalité constituée
+Savoir écrire deux fractions égales à partir de 4 entiers
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oefsimpfract1&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Simplification fraction 1
+Savoir simplifier une fraction, difficulté 1
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oefsimpfract2&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Simplification fraction 2
+Savoir simplifier une fraction, difficulté 2
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oefsimpfract3&qnum=2&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Simplification fraction 3
+Savoir simplifier une fraction, difficulté 3
+
+:H1/number/OEFevalwimsdiv.fr
+exo=oefcriterediv1&exo=oefcriteredivs1&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Critères de divisibilité 1
+Connaître les règles de divisibilité par 2, 5 , 10 , 3 , 9 , 4. Difficulté 1
+
+:H1/number/OEFevalwimsdiv.fr
+exo=oefcriterediv2&exo=oefcriteredivs2&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Critères de divisibilité 2
+Connaître les règles de divisibilité par 2, 5 , 10 , 3 , 9 , 4. Difficulté 2
+
+:H1/number/OEFevalwimsdiv.fr
+exo=oefcriterediv3&exo=oefcriteredivs3&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Appliquer les critères de divisibilité 1
+Savoir repérer qu'un nombre entier est divisible par 2, 5 , 10 , 3 , 9 , 4. Difficulté 1
+
+:H1/number/OEFevalwimsdiv.fr
+exo=oefcriterediv4&exo=oefcriteredivs4&qnum=3&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Appliquer les critères de divisibilité 2
+Savoir repérer qu'un nombre entier est divisible par 2, 5 , 10 , 3 , 9 , 4. Difficulté 2
+
+:H1/number/OEFevalwimsdiv.fr
+exo=oefcriterediv5&exo=oefcriteredivs5&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Critères de divisibilité 3
+Savoir repérer qu'un nombre entier est divisible par 2, 5 , 10 , 3 , 9 , 4. Difficulté 3
+
+:E6/number/dominos.fr
+exo=diffecrit&confparm1=3&confparm2=1&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Domino : Différentes écritures fractionnaires
+Cas très simples
+
+
+
+
+:E6/number/dominos.fr
+exo=entfrac&confparm1=3&confparm2=1&qnum=3&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Domino :  Écritures fractionnaires d'entiers
+
+
+
+
+
+:E6/number/dominos.fr
+exo=sommefrac1&confparm1=3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Domino : Somme de fractions même dén.
+
+
+:E6/number/fractions.fr
+exo=reconnaitrefractionschema2&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Reconnaître une fraction pavage
+Fraction d'un rectangle
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oeffractlectgrad1&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Lecture graphique d'une fraction sur un axe gradué
+
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oeffractlectplac1&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Placer une fraction sur un axe gradué 1
+Difficulté 1
+
+:H1/number/OEFevalwimsfrac.fr
+exo=oeffractlectplac3&qnum=2&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Placer une fraction sur un axe gradué 2
+Difficulté 2

@@ -1,0 +1,14 @@
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+:series
+<p>
+In general, the exercises of a series are randomly chosen
+and at least one exercise for each type is proposed if the requested
+number allows it.
+</p><p>
+You asked in the exercice setting for a non random order,
+you can change here the order of exercises in the series.
+</p>
+!exit

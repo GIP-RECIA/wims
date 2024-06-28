@@ -1,0 +1,135 @@
+type=classify datalist
+textarea="data explain"
+iEdit="explain"
+
+:ÔÚ¶ÔÏó¼ä½¨Á¢¶ÔÓ¦.
+
+ÔÚ·Ö³ÉÁ½À¸µÄ±íÀï¸ø³öÒ»Ð©¶ÔÏó.
+Äã¿ÉÒÔÀûÓÃÊó±êµÄÍÏ·Å¸Ä±äÓÒÀ¸ÖÐ¶ÔÏóµÄ´ÎÐò,
+Ê¹µÃË®Æ½·½ÏòµÄ¶ÔÏóÓÐÕýÈ·µÄ¶ÔÓ¦¹ØÏµ.
+<p>
+Îª¹¹½¨´ËÀàÁ·Ï°, Ö»ÐèÊäÈë¶ÔÏó¶ÔµÄ±í.
+</p><p>
+Ö»ÒªÉÔ×÷ÐÞ¸Ä¾ÍÄÜÊ¹ÓÃÍ¼ÐÎ¶ÔÏó.</p>
+<p class="wims_credits">Ä£¿é×÷Õß: <a href="mailto:qualite@wimsedu.info">Gang Xiao</a></p>
+
+:%%%%%%%%%%%%%%%%%      ×¢       Òâ      %%%%%%%%%%%%%%%%%%%%
+
+Èç¹ûÄãÉ¾È¥ÁË±¾·¶ÀýÖÐµÄ±êÇ© (¼´¸úËæÔÚÃ°ºÅ ':' ºóÃæµÄÄÇ¼¸ÐÐ),
+ÄÇÃ´Ò²ÇëÉ¾È¥Õâ¸öÍ·²¿, ·ñÔòÓÐ¿ÉÄÜ»Ø²»µ½ Createxo.
+
+:%%%%%%%%%%%%%%%%%   ±»ÖØÐÂ¶¨ÒåµÄ²ÎÊýÊ¾Àý   %%%%%%%%%%%%%%%%%%
+
+:\title{¶ÔÓ¦}
+:\author{Gang, Xiao}
+:\email{qualite@wimsedu.info}
+:\credits{}
+
+:½¨Á¢¶ÔÓ¦µÄ¶ÔÊý.
+\integer{tot=6}
+
+:ºÐ×ÓµÄÊúÖ±´óÐ¡ (ÒÔÏñËØÎªµ¥Î»).
+¿¼ÂÇµ½ÓÃ»§¿ÉÄÜ»áÔö´óä¯ÀÀÆ÷µÄ×ÖÌå, Òò´Ë²»ÄÜÈ¡µÃÌ«Ð¡.
+\integer{sizev=50}
+
+:×ó±ßºÐ×ÓµÄË®Æ½´óÐ¡ (ÒÔÏñËØÎªµ¥Î»).
+¿¼ÂÇµ½ÓÃ»§¿ÉÄÜ»áÔö´óä¯ÀÀÆ÷µÄ×ÖÌå, Òò´Ë²»ÄÜÈ¡µÃÌ«Ð¡.
+\integer{sizel=250}
+
+:ÓÒ±ßºÐ×ÓµÄË®Æ½´óÐ¡ (ÒÔÏñËØÎªµ¥Î»).
+¿¼ÂÇµ½ÓÃ»§¿ÉÄÜ»áÔö´óä¯ÀÀÆ÷µÄ×ÖÌå, Òò´Ë²»ÄÜÈ¡µÃÌ«Ð¡.
+\integer{sizer=250}
+
+:Feedback displayed in all cases after the learner's response.
+\text{feedback_general=}
+
+:½âÊÍÌâÒâµÄ»°.
+$embraced_randitem
+\text{explain=Çë½¨Á¢¹ú¼ÒÓëÊ×¶¼¼äµÄ¶ÔÓ¦.}
+
+:Ö÷ÒªÊý¾Ý.
+Ã¿Ò»ÐÐ¶¨ÒåÒ»¶Ô¶ÔÏó, ÓÃ¶ººÅ·Ö¸ô.
+\matrix{data=
+µÂ¹ú,      °ØÁÖ
+°Ä´óÀûÑÇ,  ¿°ÅàÀ­
+¼ÓÄÃ´ó,    ä×Ì«»ª
+ÖÐ¹ú,      ±±¾©
+Î÷°àÑÀ,    ÂíµÂÀï
+ÃÀ¹ú,      »ªÊ¢¶Ù
+·¨¹ú,      °ÍÀè
+Ó¢¹ú,      Â×¶Ø
+Ó¡¶È,      ÐÂµÂÀï
+Ó¡¶ÈÄáÎ÷ÑÇ,ÑÅ¼Ó´ï
+Òâ´óÀû,    ÂÞÂí
+ÈÕ±¾,      ¶«¾©
+¶íÂÞË¹,    ÄªË¹¿Æ
+}
+
+:Embraced random items
+$embraced_randitem
+
+\text{accolade=item(1,1 yes,
+2 no)}
+
+:%%%%%%%%%%%%%%       ²»Òª¸Ä¶¯ÏÂÃæÕâ¶ÎÃüÁî          %%%%%%%%%%%%%%%%
+\text{accolade=wims(word 1 of \accolade)}
+\integer{datacnt=rows(\data)}
+\integer{tot=\tot>\datacnt?\datacnt}
+
+\text{shuf=item(1..\tot,shuffle(\datacnt))}
+\text{data=row(\shuf,\data)}
+\text{data=\accolade=1? wims(embraced randitem \data)}
+\text{datal=column(1,\data)}
+\text{datar=column(2,\data)}
+\text{size=\sizev[]x\sizel[]x\sizer}
+\text{explain=\accolade=1? wims(embraced randitem \explain)}
+
+# For Latex version
+\text{shuf2=shuffle(\tot)}
+\text{latexdatar=\datar[\shuf2]}
+\real{latexsizel=max(1,min(floor(\sizel/5)/10,6))}
+\real{latexsizer=max(1,min(floor(\sizer/5)/10,6))}
+\text{latexsrc=\begin{tabular}{p{\latexsizel cm}lp{1cm}lp{\latexsizer cm}}}
+\for{lk=1 to \tot}{
+  \text{latexsrc=\latexsrc \datal[\lk] &\(\bullet\) &&\(\bullet\) & \latexdatar[\lk]\\ [1.5ex]  }
+}
+\text{latexsrc=\latexsrc \\ 
+\end{tabular}}
+\text{latexsol=\begin{tabular}{p{\latexsizel cm}lp{\latexsizer cm}}}
+\for{lk=1 to \tot}{
+  \text{latexsol=\latexsol \datal[\lk] &\(\longleftrightarrow \)& \datar[\lk]\\ [1.5ex] }
+}
+\text{latexsol=\latexsol\\ 
+\end{tabular}}
+
+:%%%%%%%%%%%%% ÏÖÔÚ¿ÉÒÔÓÃ html ¸ñÊ½ÌîÈëÎÊÌâµÄ³ÂÊö  %%%%%%%%%%%%%%%%%%%%%%%%%
+
+::Ò»°ãÇé¿öÏÂÃ»ÓÐ±ØÒª¸Ä¶¯Ëü
+
+ÓÃÃüÁî \embed{reply 1,\size} ±íÊ¾Ö¸¶¨µÄ±í.
+
+
+\statement{<div class="instructions">\explain</div>
+<div class="wimscenter">
+\embed{reply 1,\size}
+</div>
+}
+
+:%%%%%%%%%%%%%      ²»Òª¸Ä¶¯ÒÔÏÂµÄÃüÁî        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\answer{ÄãµÄ»Ø´ð}{\datal;\datar}{type=correspond}
+
+# Latex version
+\latex{
+\begin{statement}
+\explain
+\begin{center}
+\latexsrc
+\end{center}
+\end{statement}
+\begin{solution}\
+\begin{center}
+\latexsol
+\end{center}
+\end{solution}
+}

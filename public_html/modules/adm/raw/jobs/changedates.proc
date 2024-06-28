@@ -1,0 +1,36 @@
+!!ChangeDates
+!! Repousse la date d'expiration de la classe et de toutes les feuilles/exams
+!! On peut ainsi reutiliser une meme classe plus facilement
+!!  (en combinaison avec le job "cleanclass")
+
+!read scripts/check.class
+!if $error!=$empty
+  !exit
+!endif
+
+# On choisit automatiquement une date dans un an.
+new_date=!char 1 to 8 of $wims_now
+new_date=!eval $new_date
+new_date=$[$new_date+10000]
+
+!setdef !set class_expiration=$new_date in $classdeffile
+
+# Repousse les dates d'expiration de toutes les activités
+
+#"expiration" est sur la ligne 2 de .sheetN
+update_field=2
+# On met la même date que pour la classe
+update_content=$new_date
+!for type in sheets,exams
+  listfile=wimshome/log/classes/$qclass/$type/.$type
+  cnt=!recordcnt $listfile
+  log_stats=!append item $cnt to $log_stats
+  !for qsheet=1 to $cnt
+    qexam=$qsheet
+    !read scripts/update.proc
+  !next i
+!next type
+
+wims_class_log=Change all expirations dates to $new_date
+!appendfile wimshome/log/classes/$qclass/.log $date $httpd_REMOTE_ADDR      $wims_class_log
+

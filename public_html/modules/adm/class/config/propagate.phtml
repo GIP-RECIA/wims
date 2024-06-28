@@ -1,0 +1,34 @@
+
+!if $confirm!=$empty and $propagate!=$empty
+  <div class="wims_msg success">
+  $name_propagate_succes:<b>
+  !for s in $propagate
+    $(name_$s).
+  !next s
+  </b></div>
+!else
+  !form reply
+   <p>$name_propagate_choose:</p>
+   <ul>
+  !for s in $propall
+    !if $(name_$s)!=$empty
+      !set name_=$(name_$s)
+      <li>
+      <input type="checkbox" name="propagate" id="propagate_$s" value="$s"><label for="propagate_$s">$name_</label>
+      </li>
+    !else
+      <li>
+      <input type="checkbox" name="propagate" id="propagate_$s" value="$s"><label for="propagate_$s">$s</label>
+      </li>
+    !endif
+  !next s
+  </ul>
+  <div class="wimsform wimscenter">
+  <input type="submit" name="confirm" value="$wims_name_send">
+  </div>
+
+  !formend
+!endif
+<p>
+$name_warning
+</p>

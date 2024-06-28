@@ -1,0 +1,27 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=set_theory
+!set gl_title=Intersection de deux ensembles
+!set gl_level=H4
+:
+:
+:H6/set/graphset.fr,atype=3&style=i1&repeat=1, Intersection
+:
+<div class="wims_defn">
+  <h4>Définition</h4>
+  Soit \(E_1\) et \(E_2\) deux ensembles.
+  L'<strong>intersection</strong> de \(E_1\) et \(E_2\), notée
+  <span style="white-space:nowrap">\(E_1 \cap E_2\),</span> est l'ensemble des
+  éléments communs à \(E_1\) et à \(E_2\) c'est-à-dire l'ensemble des éléments
+  de \(E_1\) qui appartiennent aussi à <span style="white-space:nowrap">\(E_2\).
+  </span>
+</div>
+<div class="wims_rem">
+  <h4>Remarque</h4>
+  En probabilité, si \(E_1\) et \(E_2\) sont deux événements d'un même univers
+   &#937;, alors \(E_1 \cap E_2\) est l'événement "\(E_1\) et \(E_2\)", formé de
+    toutes les issues appartenant à la fois à \(E_1\) et à
+    <span style="white-space:nowrap">\(E_2\).</span>
+</div>
+
+:mathematics/general/fr/intersection_1

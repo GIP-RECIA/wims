@@ -1,0 +1,36 @@
+
+<b>Evidenziare con un pennarello</b> (nome: <span class="tt wims_code_words">mark</span>)
+<br>
+
+Il tipo <span class="tt wims_code_words">mark</span> confronta le parole o le espressioni
+cliccate dallo studente con una lista di risposte corrette definite dal docente.
+È principalmente destinato a un utilizzo direttamente nel testo dell'enunciato.
+La parole o le parole cambiano colore quando lo studente ci clicca sopra,
+per indicare così le sue scelte. Di default, l'analisi è effettuata in maniera
+stretta.
+Per scrivere l'enunciato, è necessario separare ogni termine da analizzare con
+una virgola.
+Di conseguenza è necessario sostituire tutte le eventuali virgole presenti
+nel testo con il codice html &amp;#44; o con \(,).
+Procedendo in questo modo la virgola non interferisce
+con l'analisi della riposta.
+
+<pre>
+\text{enunciato=Per, commercializzare,e, quindi, vendere, i suoi, prodotti\(,), egli, ha, bisogno, di un, veicolo, di, servizio.}
+</pre>
+Nell'esempio precedente, si hanno quindi 14 elementi.
+<br>
+La sintassi generale per questo tipo di domanda è:
+<pre>
+\answer{Commento}{7,10;\enunciato}{type=mark}
+\answer{domanda 3}{1,4,7;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3,corretta3}{type=mark}{option=split}
+\answer{domanda 4}{1,4,7;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3,corretta3}{type=mark}{option=split eqweight color=#754595}
+</pre>
+Le opzioni possibili sono quindi:
+<ul>
+<li><span class="tt wims_code_words">color</span>: Questa opzione permette
+di specificare il colore di evidenziazione con il codice html standard
+in html5.
+</li>
+ !read help/anstype.it/spliteqweight.phtml
+</ul>

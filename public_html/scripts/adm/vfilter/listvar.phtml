@@ -1,0 +1,32 @@
+!! display a table with all technical variable can be used
+!! if $wims_read_parm=local only local technical variable are displayed
+
+!if $wims_read_parm=local
+  !let index_=$tv_listlocal
+  !let nblisttechvar_=!itemcnt $tv_listlocal
+!else
+  !let nblisttechvar_=!linecnt $tv_listtechvar
+  !let index_=!values v for v=1 to $nblisttechvar_
+!endif
+
+!if $nblisttechvar_>0
+  $table_header
+  <thead>
+  $table_hdtr
+    <th>$name_name</th>
+    <th>$name_ltvalue</th>
+  </tr>
+  </thead>
+  <tbody>
+  !for k_ in $index_
+    $table_tr
+    !let don_=!line $k_ of $tv_listtechvar
+    !let don2_=!record $(don_[3]) of wimshome/log/classes/$(don_[2])/.techvar
+    !distribute line $don2_ into name_,val_
+    <td>$name_</td>
+    <td>$val_</td>
+    </tr>
+  !next k_
+  </tbody>
+  $table_end
+!endif

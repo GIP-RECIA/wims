@@ -1,0 +1,44 @@
+!set titb=Materiale
+!set keyw=
+!set datm=20230530
+!set prev=
+!set next=
+!set upbl=main
+!set dat1=19000101
+!set dat2=24000101
+
+!if $wims_read_parm!=$empty
+  !goto $wims_read_parm
+!endif
+
+!exit
+
+:content
+<p>Per una più facile consultazione, si raccolgono in questa pagina i
+  materiali distribuiti durante il corso, qui riorganizzati.</p>
+<h3>Integrazione ai libri di testo</h3>
+<p>Si ricorda la bibliografia del corso, come riportata nel programma
+d'esame</p>
+<ul>
+  <li>M. Dedò, <em>Galleria di metamorfosi</em>, Quaderni a Quadretti,
+  Mimesis, 2010.</li>
+  <li>M. Cazzola, <em>Per non perdere la bussola</em>, Quaderni a
+  Quadretti, Decibel/Zanichelli, Bologna, 2001.</li>
+  <li>Euclides, <em>Les éléments, Extraits des livres I, II et
+  VI</em>, Textes choisis, présentées et commentés par André Deledicq,
+  Les éeditions du KANGOUROU, 2011 (o, equivalentemente, una qualsiasi
+  versione commentata degli “Elementi” di Euclide).</li>
+</ul>
+<p>Sono qui di seguito disponibili alcune integrazioni ai libri di testo</p>
+<ul>
+  <li>Proprietà delle isometrie&#58; <a href="$m_filedir/Propr_isom.pdf" target="_blank">allineamenti e angoli</a></li>
+  <li><a href="$m_filedir/classificazione_isometrie.pdf" target="_blank">Classificazione delle isometrie</a></li>
+  <li>Operare con le isometrie&#58; <a href="$m_filedir/Equivalenza.pdf" target="_blank">triangoli
+  “equivalenti”</a> nella geometria delle isometrie.</li>
+  <li>Lezioni su isometrie e simmetria&#58; <a href="$m_filedir/lez-2016-04-04.pdf" target="_blank">simmetria lezione 1</a>, 
+<a href="$m_filedir/lez-2016-04-05.pdf" target="_blank">simmetria lezione 2</a>, 
+<a href="$m_filedir/lez-2016-04-06.pdf" target="_blank">operazioni e gruppi</a>, 
+<a href="$m_filedir/lez-2016-04-11.pdf" target="_blank">gruppi di isometrie</a>, 
+<a href="$m_filedir/lez-2016-04-12.pdf" target="_blank">modelli didattici per le
+  isometrie</a></li>
+</ul>

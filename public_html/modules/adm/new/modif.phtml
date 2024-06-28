@@ -1,0 +1,51 @@
+!if $datacnt<1
+  $name_warning_update
+  !exit
+!endif
+
+!set table_id=TABLE_new_modules
+!set table_class=sortable
+!reset table_center
+$table_header
+<caption>$name_updatemodule
+  <a href="$w_/rss/modif.xml"><img src="gifs/rss.png" alt="rss"></a></caption>
+<thead>
+  $table_hdtr<th>$wims_name_date</th><th>$wims_name_Language</th>
+  <th>$wims_name_title</th><th>$wims_name_Description</th>
+  <th>$name_new</th></tr>
+</thead>
+<tbody>
+!for i=1 to $datacnt
+  !set l=!line $i of $data
+  !distribute words $l into d_,a_,v_
+  !set depr=!module deprecated $a_
+  !if $depr!=yes
+    !set la=!module language $a_
+    !set tit=!module title_$lang $a_
+    !set desc=!module description_$lang $a_
+    !if $tit=
+      !set tit=!module title $a_
+    !endif
+    !set cat=!module category $a_
+    !read category $cat
+    !if $desc=
+      !set desc=!module description $a_
+    !endif
+    $table_tr
+      <td class="wimscenter small">
+        !char 1 to 8 of $d_
+      </td><td class="wimscenter">$la
+        !module translation_language $a_
+      </td><td>
+        !set wims_ref_class=wims_$(cat)_item
+        !href target=wims_test module=$a_ $tit
+      </td><td>
+        $desc
+      </td><td class="wimscenter">$v_</td>
+    </tr>
+    !reset desc tit
+  !endif
+!next i
+</tbody>
+$table_end
+!read tablesort.phtml

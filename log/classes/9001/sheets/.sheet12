@@ -1,0 +1,35 @@
+
+:classes/fr
+exo=htmlinput&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+htmlinput
+Méthode pour insérer dans du code ou de l'html des réponses
+
+:classes/fr
+exo=codeinput&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+codeinput
+Méthode pour insérer dans du code préformaté des réponses
+:classes/fr
+exo=drawinput&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+drawinput
+Zones de textes sur un dessin (utilise canvasdraw)
+
+:classes/fr
+exo=mathmlinput&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+mathmlinput
+Zones de textes dans une formule mathématique
+
+:classes/fr
+exo=imageinput&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+imageinput
+Zones de textes sur un dessin
+

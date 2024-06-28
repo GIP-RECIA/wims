@@ -1,0 +1,28 @@
+!readproc adm/search_engine/names.$lang
+
+!if $overflow=yes
+  <p>
+  !if $keyword = $empty
+    $name_research1
+  !else
+    $name_research2
+  !endif
+  </p>
+!endif
+
+!if $overflow=yes or ($sccnt + $clcnt > 20 and $wims_user = $empty) or $keyword!=$empty
+  <div class="search_box blockcenter halfwidth">
+  !form reply
+    <label for="keyword">$name_searchclass:</label>
+    <div class="input-group">
+      <input size="20" name="keyword" value="$keyword" id="keyword" type="search"
+             class="input-group-field" placeholder="$name_keywords_enter">
+      <div class="input-group-button">
+        <button class="wims_button icon_button" type="submit">
+          <span class="Searching">$wims_name_search</span>
+        </button>
+      </div>
+    </div>
+  !formend
+  </div>
+!endif

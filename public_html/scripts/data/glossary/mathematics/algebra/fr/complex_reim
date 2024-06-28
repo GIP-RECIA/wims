@@ -1,0 +1,47 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=complex_number
+!set gl_title=Partie réelle et imaginaire d'un nombre complexe
+!set gl_level=H5 STI2D&nbsp;Spécialité , H6 Générale&nbsp;Experte
+:
+:
+:
+:
+<div class="wims_defn">
+<h4>Définitions</h4>
+Soit \(x\) et \(y\) deux nombres réels et \(z\) le nombre complexe défini par
+ <span style="white-space:nowrap">\(z=x+\mathrm{i} y\).</span>
+<ul>
+	<li>
+	Le réel \(x\) est appelé <strong>partie réelle</strong> de \(z\) ;
+	</li>
+	<li>
+	le réel \(y\) est appelé <strong>partie imaginaire</strong> de \(z\).
+	</li>
+</ul>
+</div>
+<div class="wims_rem">
+ <h4>Notations</h4>
+La partie réelle de \(z\) est généralement notée \(Re(z)\), sa partie imaginaire
+ <span style="white-space:nowrap">\(Im(z)\).</span>
+</div>
+<div class="wims_rem">
+ <h4>Cas particuliers</h4>
+<ul><li>Le nombre complexe \(z\) est réel équivaut à \(Im(z)=0\).</li>
+    <li>Le nombre complexe \(z\) est imaginaire pur équivaut à \(Re(z)=0\).</li>
+</ul>
+</div>
+
+<div class="wims_thm">
+<h4>Théorème</h4>
+<ul>
+	<li>
+	Un nombre complexe est nul si et seulement si sa partie réelle et sa partie
+	 imaginaire sont nulles.
+	</li>
+	<li>
+	Deux nombres complexes sont égaux si et seulement s'ils ont même partie réelle
+	 et même partie imaginaire.
+	</li>
+</ul>
+</div>

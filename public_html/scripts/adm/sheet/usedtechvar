@@ -1,0 +1,21 @@
+!! this file return used technical variable for individualisation for activ sheet only
+!! output :
+!! sheet_usedindivtechvar : name of indivtechvar used in active sheet
+
+
+!if $sheet_usedindivtechvar!=$empty
+  !exit
+!endif
+
+nbsh_=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+!reset sheet_usedindivtechvar
+!for k_=1 to $nbsh_
+  data_=!record $k_ of wimshome/log/classes/$wims_class/sheets/.sheets
+  data0_=!line 1 of $data_
+  data_=!line 10 of $data_
+  !if $data_!=$empty and $data_!=0 and $data0_!=0
+    sheet_usedindivtechvar=!append item $data_ to $sheet_usedindivtechvar
+  !else
+    sheet_usedindivtechvar=!append item 0 to $sheet_usedindivtechvar
+  !endif
+!next k_

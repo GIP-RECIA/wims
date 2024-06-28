@@ -1,0 +1,114 @@
+!! process control page for student and type=3
+
+!if $activetest!=1 and $activetest!=2
+  error=badallows
+  emptypage=yes
+  !exit
+!endif
+
+!! ---- check techvar access
+!readproc adm/class/checkuserscorecondition F$freework
+!! $beginning_ is undocumented (but defined by checkuserscorecondition)
+!if $beginning_!=$empty
+  begh_=!char 9 to 10 of $beginning_
+  begm_=!char 11 to 12 of $beginning_
+  !readproc adm/date.phtml $beginning_
+!endif
+!if $output=no
+  !exit
+!endif
+!! ---- end check techvar access
+
+!set appletnum=0
+
+!! ----- check of authorisation for student to modify his work (studentmode=0 no studentmode=1 yes)
+!set studentmode=1
+!if $activetest=1
+  !readproc adm/class/quotafree.proc proc
+  !readproc proc/findfile3.proc $freework,$wims_user
+  d1=!text select char 0123456789 in $(deadline)$(timedeadline)
+  d2=!text select char 0123456789 in $wims_now
+  d2=!char 1 to 12 of $d2
+  !reset toolate
+  !if $d2>$d1
+    toolate=yes
+    studentmode=0
+  !endif
+!else
+  studentmode=0
+!endif
+
+!if $studentclose=1
+  !if $job2=confirm and $confirm=$name_close_confirm
+    !setdef freework_closeco_$wims_user=$wims_now in wimshome/log/classes/$wims_class/freeworksdata/$freework/.closeco
+  !endif
+
+  !if $job2=consigne and $consigne=$name_close_doclose
+    studentmode=0
+  !endif
+
+  test_close=!defof freework_closeco_$wims_user in wimshome/log/classes/$wims_class/freeworksdata/$freework/.closeco
+
+  !if $test_close!=$empty
+    studentmode=0
+  !endif
+
+  !reset consigne confirm giveup  
+!endif
+
+!! ---- read structure of the freework
+!distribute item 0,0,$empty into nbrezoneteacher,nbrezonestudent,ltdownloadzone
+nb=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freework$freework
+!for k=1 to $nb
+  dt=!record $k of wimshome/log/classes/$wims_class/freeworks/.freework$freework
+  l=!line 1 of $dt
+  !distribute word $l into t,u
+  !bound u within teacher,student default teacher
+  !bound t within solution,$listfilename_ztype default $(listfilename_ztype[1])
+  !if $t=solution
+    flistsolution=!line 2 to -1 of $dt
+    flistsolution=!nonempty line $flistsolution
+    flistsolution=!lines2items $flistsolution
+  !else
+    !increase nbrezone$u
+    ztype$(u)$(nbrezone$u)=$t
+    script_data=!line 2 to -1 of $dt
+    !readproc applet/$t pararead $u $(nbrezone$u)
+    !! -- read display parameters for each zone
+    !if $u!=student or $job2!=savezone or $t isitemof $studentfile_ztype
+      !read applet/$t displayread $u $(nbrezone$u) $studentmode $wims_user
+    !endif
+  !endif
+!next k
+ltdownloadzone=!listintersection $ltdownloadzone and $zonelistlabelstudent
+
+!! ---- save zone content (only student zone)
+!if $job2=savezone and $toolate!=yes
+  !for zone=1 to $(nbrezonestudent)
+    !readproc applet/$(ztypestudent$zone) displaysave student $zone 1 $wims_user
+  !next zone
+!endif
+!readproc proc/studentusedspace.proc
+!! ---- save file for zonetype=file
+l=!makelist deposit X,erase X for X in $zonelistlabelstudent
+l=!nospace $l
+!if $job2 isitemof $l and $toolate!=yes
+  nb=!char -1 of $job2
+  !if $(ztypestudent$nb)=file
+    job2=!char 1 to -2 of $job2
+    !readproc applet/file displaysave student $nb 1 $wims_user
+  !endif
+  !reset job2
+  !readproc proc/studentusedspace.proc
+!endif
+
+!if $seealltime=1
+  remark=!record 0 of wimshome/log/classes/$wims_class/freeworksdata/$freework/co/.$wims_user
+  remark=!replace internal &#58; by : in $remark
+!endif
+
+!if $codownload=1 or $activetest>=2
+  finalremark=!record 0 of wimshome/log/classes/$wims_class/freeworksdata/$freework/co/$wims_user
+  finalremark=!replace internal &#58; by : in $finalremark
+!endif
+

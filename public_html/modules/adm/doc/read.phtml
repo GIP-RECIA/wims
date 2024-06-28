@@ -1,0 +1,62 @@
+<h1 class="wims_docu_title">$tit</h1>
+<div class="wims_content">
+  !if $editable=yes
+    <span class="float_right">
+    !if $block=main
+      !set wims_ref_class=wims_button icon_button
+      !href cmd=reply&job=prop <span class="properties">$n_properties</span>
+      !set wims_ref_class=wims_button icon_button wims_warning
+      !href cmd=reply&job=erase <span class="trash">$wims_name_erase</span>
+    !else
+      !set wims_ref_class=wims_button
+      !href cmd=reply&job=list $n_otherblocks
+    !endif
+    </span>
+  !endif
+  !if $error!=$empty
+    <div class="wims_msg alert">
+      !read docu/$modu_lang/msg.phtml
+    </div>
+  !endif
+
+  !if $titb=$empty
+    <p>
+    $name_noncreate
+    !if $editable=yes
+      !href cmd=reply&job=edit&block=$block $n_create2
+.
+    !endif
+    </p>
+    !goto end
+  !endif
+
+  !if $datetest!=0
+    <div class="wims_msg warning">
+      !if $datetest<0
+        $name_noread
+      !endif
+      !if $datetest>0
+        $name_expired
+      !endif
+    </div>
+    !goto end
+  !endif
+
+  <h2 class="wims_docu_titleb">$titb
+  !if $editable=yes
+    <span class="small">[
+    !href cmd=reply&job=edit&doc=$doc&block=$block $wims_name_Edit
+    ]</span>
+  !endif
+  </h2>
+
+  !read $docdir/$doc/$block.def content
+:end
+</div>
+
+!if $doctype=class and $editable=yes
+  !set wims_menu_items=!append line properties,1,cmd=reply&job=prop\
+doch_upload,1,cmd=reply&job=file\
+to $wims_menu_items
+!endif
+

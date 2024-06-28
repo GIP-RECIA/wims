@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Sophie, Lemaire
+!set gl_keywords=continuous_probability_distribution
+!set gl_title=Distribuzione chi-quadro
+!set gl_level=U1,U2,U3
+:
+:
+:
+:
+<div class="wims_defn"><h4>Definition</h4>
+Sia \(n) un intero positivo.
+La <strong>distribuzione chi-quadro</strong> con \(n) gradi
+di libertà (denotata da \(\chi^2(n))), è la distribuzione
+della somma di \(n) variabili aleatorie indipendenti e con distribuzione
+\(\mathcal{N}(0,1)).
+La sua funzione di densità è
+
+<div class="wimscenter">
+\( \displaystyle{ x \mapsto \frac{x^{\frac{n}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{n}{2}}\Gamma(\frac{n}{2})}1_{x>0 }})
+</div>
+</div>
+<table class="wimsborder wimscenter">
+<tr><th>Valore atteso</th><th>Varianza</th><th>Funzione caratteristica</th></tr>
+<tr><td>\(n)</td><td>\(2n)</td><td>\((1-2i t)^(-n/2))</td></tr></table>

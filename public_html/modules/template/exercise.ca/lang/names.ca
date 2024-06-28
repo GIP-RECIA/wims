@@ -1,0 +1,3 @@
+!set name_score=!nosubst Has obtingut $module_score (sobre 10) punts en aquest exercici.
+
+!set name_bad_data=He fallat en avaluar els valors que has enviat. Una errada teua?

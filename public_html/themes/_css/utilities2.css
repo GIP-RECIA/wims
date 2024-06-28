@@ -1,0 +1,175 @@
+/* utilities2.css */
+
+.nowrap {
+  white-space:nowrap;
+}
+textarea.nowrap {
+  white-space:pre;
+  overflow: auto;
+  word-wrap: normal;
+}
+
+/* technical info */
+.wimstech {font-family: monospace, "Courier New";font-size:small}
+
+/* use <br class="spacer" /> instead*/
+.emptyline { height:20px;}
+.empty { width:5%;}
+
+/* permalink */
+/*#export_media .about {
+  margin-top: 0;
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  padding-left: 28px;
+  line-height: 28px;
+  text-align: left;
+}
+#export_media{
+  border: 1px solid #999;
+  padding: 5px;
+}*/
+.wims_debug_mode{
+  margin:auto;
+  width:50%;
+  font-size:small;
+  font-family: monospace;
+  border:1px solid #DFDFDF;
+  padding:0 .5em 0;
+  background-color: #FFF;
+}
+
+
+/*back to the top of the page*/
+.wims_topback {
+  padding-right:.5em;
+  position:fixed;
+  bottom:0;
+  right:0;
+  z-index: 10;
+}
+.wims_topback a{
+  position:relative;
+  top:0;
+  transition: top .2s linear;
+}
+.wims_topback a:before{
+    content:"\21E1";
+    font-size: 2em;
+}
+.wims_topback a:hover{top:-5px;}
+
+/* Scrolling with anchor links is smoother (with Firefox and Chrome) */
+/*Disabled to avoid some issue with Firefox & Geogebra
+html{scroll-behavior: smooth;}*/
+
+
+/* "Plugged" icon ("\1f50c"), indicating user is connected now.
+ Previously : marked icon : ("\2713") */
+.wims_connected:after{content:"\270b";font-size:1.5em;color:#8bb681;}
+/* .wims_tooltip added on an icon when text will be displayed via "title" attribute. */
+.wims_tooltip{cursor:help;}
+/* Removes underline inherited from link */
+a .wims_tooltip{display: inline-block;}
+/* a border around icon hovered indicates it will do something (ie : displays the title) */
+.wims_tooltip:after{
+  border:2px solid transparent;
+  padding:1px 6px 1px 3px ;
+  border-radius: 15px;
+}
+.wims_tooltip:hover:after{border-color:#8bb681;}
+
+/** hides a text, so it will only be readable by screen readers, for better accesibility */
+.hidden_text{
+    display:inline-block;
+    width:1px;
+    height:1px;
+    color:transparent;
+    overflow:hidden;
+}
+
+/* alert message from teacher to a choosen student */
+.wims_alertchat {
+  background-color: #a0d3e8;
+  /*border : 1px solid #74bfdd;*/
+  border-radius: 5px;
+  padding: 0 .5em;
+  font-size: .9em;
+  transition: opacity 300ms ease-out;
+}
+div.wims_alertchat {
+  margin:.5em auto;
+  width:50%;
+}
+
+.wims_alertchat .float_right{
+  margin-top:.5em;
+}
+
+/* ## Layout Classes ## */
+
+/* fullwidth : Takes maximum width available */
+.fullwidth{
+    box-sizing: border-box;
+    width:100%;
+    clear: both;
+}
+.fullwidth.wimscenter{
+    margin:0;
+}
+
+/* halfwidth : Takes half size */
+.halfwidth{
+    box-sizing: border-box;
+    width:50%;
+    vertical-align: top;
+}
+
+/*
+Flexbox : a way to uniformize multiple box automatically
+See more at http://css-tricks.com/snippets/css/a-guide-to-flexbox/
+(be aware that safari does not handle a display flex on a fieldset yet. you have to add a div inside.)
+*/
+.flex_box{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    list-style:none;
+    margin:auto;
+    padding: 2px;
+}
+
+.flex_box>li{
+    display:inline-block;
+    margin:1px;
+}
+.flex_box>li.field:nth-child(2n){
+  background-color: #FFF;
+}
+
+/* Reset a jquery UI default */
+.main_body .ui-widget{
+  font-size: inherit;
+}
+
+.ui-tabs{
+  margin-bottom:.5em;
+}
+
+.main_body .ui-tabs .ui-tabs-panel{
+  padding:.5em;
+}
+
+/* "disabled" look */
+span.disabled, span.disabled:hover, span.disabled:active{
+  opacity:.6;
+}
+.is-dropdown-submenu .disabled{
+  background-color: #CCC;
+}
+.wims_notepad:before {content:"\270E";}
+
+svg{
+  /*prevent svg pictures being larger than screen */
+  max-width: 100%;
+}

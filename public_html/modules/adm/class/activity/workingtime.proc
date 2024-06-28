@@ -1,0 +1,140 @@
+
+!if $wims_show_stat!=yes
+  error=nostat
+  notallowed=1
+  !exit
+!endif
+!! ------- get date for using new ccsum script (separate activity in a groupement/portal)
+newccsum=!record 0 of wimshome/log/ccaccount/newccsum
+!default newccsum=0
+classtype=!defof class_type in wimshome/log/classes/$wims_class/.def
+!if $classtype=1 and $class_creation<$newccsum
+  statclass=$wims_superclass
+!else
+  statclass=$wims_class
+!endif
+!if $wims_user!=supervisor
+  user=$wims_user
+!else
+  !if $ulist=$empty
+    !! --- check for list of user
+    nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+    !reset ulist,flist,llist,uulist
+    !for i=1 to $nbuser
+      u_=!record $i of wimshome/log/classes/$wims_class/.userlist
+      !distribute item $u_ into l_,f_,n_
+      ulist=!append item $n_ to $ulist
+      flist=!append item $f_ to $flist
+      llist=!append item $l_ to $llist
+    !next i
+  !endif
+  !bound user within $ulist,$empty default $empty
+!endif
+
+job_title=!nosubst $name_workingtime
+!if $user=$empty
+  !exit
+!endif
+
+!read wimshome/log/classes/$wims_class/.def
+older=!sh date +%Y%m%d -d "1 year ago";
+date=$[max($class_creation,$older)]
+now=!char 1 to 8 of $wims_now
+!readproc adm/calendar.proc prevday $now
+enddate=$[min($class_expiration,$output)]
+mois=!char 5 to 6 of $date
+!readproc adm/calendar.proc whatday $date
+dnum=!word 1 of $output
+!readproc adm/calendar.proc endmonth $date
+wnum=$[ceil(($output-(7-$dnum+1))/7)+1]
+test=!fileexists wimshome/sessions/$wims_session/$user.st
+!if $test!=yes
+  !if $statclass!=$wims_class
+    !sh if [ -e $wims_home/log/ccaccount/$statclass/$user ]; then\
+             awk -F" " 'BEGIN {d=0;v=0} substr($$1,1,8)<$newccsum {if (substr($$1,1,8)==d){v+=$$2} else {if (d!=0) print ":"d","v;d=substr($$1,1,8);v=$$2}} END{if (d!=0) print ":"d","v}' $wims_home/log/ccaccount/$statclass/$user > $wims_home/sessions/$wims_session/$user.st;\
+        fi
+  !endif
+  !sh if [ -e $wims_home/log/ccaccount/$wims_class/$user ]; then\
+             awk -F" " 'BEGIN {d=0;v=0} {if (substr($$1,1,8)==d) {v+=$$2} else {if (d!=0) print ":"d","v;d=substr($$1,1,8);v=$$2}} END{if (d!=0) print ":"d","v}' $wims_home/log/ccaccount/$wims_class/$user >> $wims_home/sessions/$wims_session/$user.st;\
+      fi
+!endif
+nbactivity=!recordcnt wimshome/sessions/$wims_session/$user.st
+!if $nbactivity>0
+  cpta=0
+  activity=0,0
+  !while $cpta<$nbactivity and $(activity[1])<$date
+    !increase cpta
+    activity=!record $cpta of wimshome/sessions/$wims_session/$user.st
+  !endwhile
+!else
+  !exit
+!endif
+!! ----- first item is color for 0 activity (maybe zone number and color can be paramétrizable ?)
+ltcolor=white,red,yellow,orange,green
+!! ------ time for each zone
+utime=$class_utime
+!default utime=15
+
+!! make data for the student
+!reset data,lt_month,ldata
+mcol=1
+yy=!char 3 to 4 of $date
+!while $date<$enddate
+  !increase wcount
+  !reset ligne
+  !for k=1 to 7
+    !ifval $k=$dnum and $date<$enddate
+      !if $(activity[1])=$date
+        col=$[min(ceil($(activity[2])/$utime),4)+1]
+        mcol=$[max($mcol,$col)]
+        ligne=!append item $col $date $(activity[2]) to $ligne
+        !increase cpta
+        !if $cpta<=$nbactivity
+          activity=!record $cpta of wimshome/sessions/$wims_session/$user.st
+        !endif
+      !else
+        ligne=!append item 1 $date to $ligne
+      !endif
+      !readproc adm/calendar.proc nextday $date
+      date=$output
+      month=!char 5 to 6 of $date
+      !if $dnum=7
+        dnum=1
+      !else
+        !increase dnum
+      !endif
+      !ifval $month!=$mois
+        wcount=0
+        !if $mcol>1
+          lt_month=!append line $wnum,$mois,$yy to $lt_month
+          dataflag=1
+          mcol=1
+        !endif
+        mois=$month
+        yy=!char 3 to 4 of $date
+        !readproc adm/calendar.proc endmonth $date
+        wnum=$[ceil(($output-(7-$dnum+1))/7)+1]
+        !if $dnum!=1
+          flag=$dnum
+          !reset dnum
+        !endif
+      !endif
+    !else
+      ligne=!append item . to $ligne
+      !if $flag!=$empty
+        dnum=$flag
+        !reset flag
+      !endif
+    !endif
+  !next k
+  ldata=!append line $ligne to $ldata
+  !if $wcount=0
+    !if $dataflag=1
+      data=!append line $ldata to $data
+      !reset ldata dataflag
+    !else
+      !reset ldata
+    !endif
+  !endif
+!endwhile
+nb_dtl=!linecnt $data

@@ -1,0 +1,21 @@
+name_title=$name_titlecfwtime
+!if $save!=$empty
+  !bound cf_subval between 1 and 30 default $wtime_subval
+  !bound cf_open within 1,0 default $wtime_open
+  !bound cf_nbsub between 3 and 10 default $wtime_nbsub
+  wtime_ltcolor=$cf_color0
+  !for k=1 to $cf_nbsub
+    wtime_ltcolor=!append item $(cf_color$k) to $wtime_ltcolor
+  !next k
+  !setdef !set wtime_open=$cf_open\
+!set wtime_nbsub=$cf_nbsub\
+!set wtime_subval=$cf_subval\
+!set wtime_ltcolor=$wtime_ltcolor in wimshome/log/classes/$wims_class/.def
+  wtime_nbsub=$wtime_nbsub
+  wtime_subval=$wtime_subval
+  wtime_open=$wtime_open
+  job=workingtime
+  !reset save
+  !changeto $job.proc
+!endif
+!reset save

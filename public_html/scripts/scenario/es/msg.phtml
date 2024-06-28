@@ -1,0 +1,89 @@
+<div class="wims_msg warning">
+!if dontknow iswordof $error
+  Efectivamente, el último paso es
+  !if $step_reason=OK
+    correcto. $step_remark
+  !else
+    erróneo. $step_remark
+    <div>
+    !read reasons/$step_reason.det
+    </div>
+    Una versión correcta del último paso sería
+    <div class="wimscenter">
+    !line $step of $good
+    </div>
+  !endif
+  <p>
+  Es una lástima que no lo viera.
+  </p>
+  !goto gnext
+!endif
+
+<b>$wims_name_Error.</b>
+
+!if step_error iswordof $error
+  !if $step_reason=OK
+    ¡Pero si este paso es totalmente correcto!
+    $step_remark
+  !else
+    !if $ask_reason>0 and $step_reason!=$ans
+      No, el último paso está totalmente equivocado, pero no por lo que piensa.
+    !else
+      Pues no, hay un error en el último paso.
+    !endif
+    $step_remark
+    <div>
+    !read reasons/$step_reason.det
+    </div>
+    Una versión correcta del último paso sería
+    <div class="wimscenter">
+    !line $step of $good
+    </div>
+  !endif
+  :gnext
+  </div>
+  <p>
+  !if $step<$stepcnt
+    !set wims_ref_class=wims_button
+    !href cmd=reply&ans=next Pasar al siguiente paso.
+  !else
+    Este es el final del ejercicio. Su puntuación: $module_score/10.
+  !endif
+  </p>
+  !exit
+!endif
+
+!if bad_step iswordof $error
+  !if $badstep=0
+    Cree que todos los pasos son correctos.
+  !else
+    Cree que el primer paso erróneo es el número $badstep.
+  !endif
+  !if $bad_steps=$empty
+    Está equivocado: todos los pasos son correctos.
+    <p>
+    !line $badstep of $remarks
+    </p>
+  !else
+    No, el <em>primer</em> paso erróneo es el número $sss. <p>
+    !if $badstep>0
+      !if $badstep isitemof $bad_steps
+        El paso número $badstep es de hecho erróneo, pero no es el primero equivocado.
+      !else
+        Por el contrario, el paso $badstep es perfectamente correcto.
+      !endif
+    !else
+      $bad_reason
+      <div>
+      !set rrr=!item 1 of $bad_reasons
+      !read reasons/$rrr.det
+      </div>
+    !endif
+  !endif
+  </div>
+  <p>Su puntuación: $module_score/10.</p>
+  !exit
+!endif
+
+!msg $error
+

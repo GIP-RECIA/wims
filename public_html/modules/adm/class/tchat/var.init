@@ -1,0 +1,50 @@
+test=!defof allowed_optional_module in wimshome/log/wims.conf
+!if class/tchat notitemof $test
+  notallowed=1
+  !exit
+!endif
+
+!! ------ configuration variable (maybe some of them should be parametrizable in a conf file ?)
+!! -- number of char in a msg
+msg_limit=400
+!! -- number of char displayed
+msg_numberlimit=10
+!! -- number of msg in each record file (after change file with .old$num extension) this limit have to be superior of msg_numberlimit (display problem if not)
+msg_recordlimit=100
+!! -- max number of living in the class
+msg_maxliving=10
+!! -- max char fotr title living
+title_limit=50
+!! -- minimal time to refresh page
+msg_min_timing=5
+
+!! ---------- test if site manager open configfilsize
+test=!defof optionalmod_parameter in wimshome/log/wims.conf
+!if tchat_nofile isitemof $test
+  conf_nofile=yes
+  tchat_configfilesize=0
+!else
+  !reset conf_nofile
+  !bound tchat_configfilesize between 0 and 4 default 0
+!endif
+
+!if $wims_class!=$empty
+  !sh mkdir -p $wims_home/log/classes/$wims_class/tchat;
+  statuttchat=open
+!else
+  statuttchat=closed
+  !exit
+!endif
+
+!if $ulist=$empty
+  !! --- check for list of user
+  nbuser=!recordcnt wimshome/log/classes/$wims_class/.userlist
+  !reset ulist,nlist
+  !for i=1 to $nbuser
+    u_=!record $i of wimshome/log/classes/$wims_class/.userlist
+    !distribute item $u_ into l_,f_,n_
+    ulist=!append item $n_ to $ulist
+    nlist=!append item $f_ $l_ to $nlist
+  !next i
+!endif
+

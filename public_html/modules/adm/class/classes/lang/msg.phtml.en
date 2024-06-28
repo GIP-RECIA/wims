@@ -1,0 +1,59 @@
+!set wims_module_log=ERROR $error
+
+!if $error=bad_password
+ Password not recognized. Please try again after a few seconds.
+ <span class="wims_warning">$wims_name_warning</span>! Any password sent within the next 5 seconds
+ will be rejected!
+ <span id="badpwd"></span>.
+ !exit
+!endif
+
+!if $error=in_exam
+ You cannot change class when you are taking exams.
+ !exit
+!endif
+
+!if $error=recent_rafale
+ This account is locked for 10 minutes due to irregular activities.
+ !exit
+!endif
+
+!if $error=no_cgu
+  You have not yet accepted the General Conditions of Usage of this server (GCU).
+  Please accept the General Conditions of Usage of this server (GCU) before registering .
+ !form reply
+  !formcheckbox agreecgu list yes prompt $name_acceptcgu
+  [
+  !href cmd=help $name_seecgu
+  ]
+  !let save_logincgu=$auth_user
+  <div class="wimscenter wimsform"><input type="submit" value="$wims_name_tosave"></div>
+
+!formend
+ !exit
+!endif
+
+!if $error=bad_loginmail
+ Your login is incorrect or you have forgotten to provide a valid email address.
+ <br>
+ Ask your teacher for a new password.
+ <span id="badpwd"></span>.
+ <span class="wims_warning">$wims_name_warning</span> !Please wait for 5 seconds before typing the password again.
+ <span id="badpwd"></span>.
+ !exit
+!endif
+
+!if $error=bad_cas_connexion
+  There was a problem during the CAS connection.
+  !! ticket can be expired, or already used, etc...
+  <div class="tt">$response</div>
+  !exit
+!endif
+
+!if $error=fullexamplecls
+!! TODO_lang
+  !changeto lang/msg.phtml.fr
+  !exit
+!endif
+
+!msg $error

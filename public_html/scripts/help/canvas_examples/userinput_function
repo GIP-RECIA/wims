@@ -1,0 +1,25 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+axis
+axisnumbering
+xlabel x-axis
+ylabel y-axis
+precision 0
+grid 2,2,grey,2,2,5,grey
+precision 1000
+linewidth 2
+# first inputfield
+css color:blue;text-align:center;font-family:Italic;
+strokecolor blue
+functionlabel g(x)=:p(x)=:k(x)=
+userinput function
+# second inputfield
+css color:green;text-align:center;font-family:Italic;
+strokecolor green
+userinput function
+# third inputfield
+css color:purple;text-align:center;font-family:Italic;
+strokecolor purple
+userinput function
+# no limit in number of function inputfields

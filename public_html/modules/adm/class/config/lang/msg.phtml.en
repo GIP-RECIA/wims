@@ -1,0 +1,148 @@
+
+!set wims_module_log=error: $error $wims_class
+
+<b>$wims_name_Error</b>.
+
+!if not_secure iswordof $error
+  !if $code!=$empty
+    Incorrect secret code.
+  !else
+    This module is accessible only from secure hosts.
+  !endif
+  Access refused.
+  !exit
+!endif
+
+!if checkhost iswordof $error
+  Your current connection is not among the new definition of secure
+  hosts. This is probably an error that may make you lose control of the
+  class. Therefore, secure hosts definition is not changed.
+  !exit
+!endif
+
+!if bad_file iswordof $error
+  Sorry, but I cannot recognize <em>$wims_deposit</em> as a class backup file.
+  Either you have sent a wrong file, or it is corrupt.
+  !exit
+!endif
+
+!if empty_file iswordof $error
+  No class teaching materials have been found in your backup file <span class="tt wims_fname">$wims_deposit</span>.
+  !exit
+!endif
+
+!if no_upload iswordof $error
+ Uploaded data has expired: bad manoeuvre. Please try again.
+ !exit
+!endif
+
+!if remote_sharing iswordof $error
+  Your neighbor class is actively sharing your teaching materials. Until it stops
+  sharing from its side, you cannot disallow it from continuing to share, nor
+  remove it from your neighbor list.
+  !exit
+!endif
+
+!if share_dep iswordof $error
+  Resource sharing must respect dependencies: You must share
+  !if sheet iswordof $error
+    exercises of the same class if you want to share worksheets of it.
+  !else
+    !if exam iswordof $error
+      exercises and worksheets of the same class if you want to share exams of it.
+    !else
+      !if livret iswordof $error
+        exercises and worksheets of the same class if you want to share skillbullet of it.
+      !else
+        !if userphoto iswordof $error
+          user account of the same class if you want to share user photo of it.
+        !endif
+      !endif
+    !endif
+  !endif
+  !exit
+!endif
+
+!if stopshare_dep iswordof $error
+  Le partage de ressources doit respecter les dépendances&nbsp;: vous devez d'abord arr&ecirc;ter le partage
+  !if sheet iswordof $error
+    des examens et du livret de compétences avant celui des feuilles de travail.
+  !else
+    !if exo iswordof $error
+      des feuilles de travail avant celui des exercices.
+    !else
+      !if user iswordof $error
+        des photos individuelles avant celui des comptes de participants.
+      !endif
+   !endif
+  !endif
+  !exit
+!endif
+
+!if not_neighbor iswordof $error
+  You have tried an operation with a class that is not your effective neighbor.
+  <br>
+  Remember that a class is your effective neighbor only if mutual neighborhood
+  is declared BOTH by you and by the other class.
+  !exit
+!endif
+
+!if localmirror iswordof $error
+  Mirror a class on the same server does not make sense.
+  !exit
+!endif
+
+!if toobigfile iswordof $error
+  La taille de votre fichier est trop importante : la limite est de 12K.
+  !exit
+!endif
+
+!if file_too_large iswordof $error
+  <p>It was not possible to archive this class because of its size. Archives are limited to <strong>$max_arch_size MB</strong>.</p>
+  <p>We invite you to make a selective backup by choosing only certain data.</p>
+  !if $format!=zip
+    <p>NB: even if the browser allows you to download the generated file, it may not be usable.</p>
+  !endif
+  !exit
+!endif
+
+!if emptycloningpwd iswordof $error
+  You must put a password with at least $passwd_min characters and at most
+  $passwd_max characters amongs the characters <span class="tt">$char_passwd</span>
+  !exit
+!endif
+
+
+!if expdate_sharing iswordof $error
+ !let date=!word 2 of $error
+ vous ne pouvez pas définir une date d'expiration après la date d'expiration d'une classe avec laquelle vous partagez des ressources.
+ La date d'expiration de votre classe doit être située avant le
+ !read date.phtml $date,notime
+ !exit
+!endif
+
+!if sharing_expdate iswordof $error
+ !let date=!word 2 of $error
+ vous ne pouvez pas partager des ressources avec une classe dont la date d'expiration est inférieure à la date d'expiration de votre classe.
+ Si vous voulez partager les ressources de cette classe, la date d'expiration de votre classe doit être située avant le
+ !read date.phtml $date,notime
+ !exit
+!endif
+
+!if expdate_sharable iswordof $error
+ !let date=!word 2 of $error
+ vous ne pouvez pas définir une date d'expiration précédent la date d'expiration d'une classe que vous autorisez à partager vos ressources.
+ La date d'expiration de votre classe doit être située après le
+ !read date.phtml $date,notime
+ !exit
+!endif
+
+!if sharable_expdate iswordof $error
+ !let date=!word 2 of $error
+ vous ne pouvez pas proposer un partage de ressources avec une classe dont la date d'expiration est supérieure à la date d'expiration de votre classe.
+ Si vous voulez proposer de partager vos ressources à cette classe, la date d'expiration de votre classe doit être située après le
+ !read date.phtml $date,notime
+ !exit
+!endif
+
+!msg $error

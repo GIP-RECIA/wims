@@ -1,0 +1,26 @@
+
+!if $wims_ismanager!=2
+ !exit
+!endif
+
+!if $help_subject=conf
+  !changeto conf/help-conf.phtml
+!endif
+
+!if $help_subject=soft
+  !changeto lang/help-soft.phtml.$modu_lang
+!endif
+
+!if $help_subject=access
+  !changeto help/$modu_lang/accessconf.phtml
+!endif
+
+!if $help_subject iswordof publication download
+  !changeto help/$modu_lang/publication.phtml
+!endif
+
+!if $help_subject=motd
+  !changeto lang/help-motd.phtml.$modu_lang
+!endif
+
+$name_warning_help

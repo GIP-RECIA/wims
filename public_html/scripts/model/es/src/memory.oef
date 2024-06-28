@@ -1,0 +1,90 @@
+type=game
+textarea="data instruction1 instruction2"
+iEdit="instruction1 instruction2"
+
+:Se muestra un texto o una imagen durante un tiempo limitado, luego se formula una pregunta
+
+<div class="small">
+Este ejercicio se puede transformar fácilmente para incluirlo en un módulo OEF
+si quieres poner los datos en un archivo auxiliar. Para eso,
+simplemente completa el campo \text {file =} poniendo el nombre del archivo
+(una vez que el ejercicio ha sido transferido a un módulo OEF de una cuenta Modtool).
+Existe un ejercicio más completo del mismo tipo en Quicktool.
+</div>
+<p class="wims_credits">
+  Autor del modelo: <a href="mailto:bernadette.m.riou@orange.fr">Bernadette Perrin-Riou</a>
+</p>
+
+:%%%%%%%%%%%%%%%%%      ATENCIÓN      %%%%%%%%%%%%%%%%%%%%
+
+Elimina la cabecera anterior si borra las etiquetas para el modelo!
+(Son las líneas que comienzan con un ':'.)
+En caso contrario el ejercicio puede no funcionar bajo Createxo.
+
+:%%%%%%%% Parámetros del ejemplo a redefinir %%%%%%%%%%%%%%%%%
+
+:\title{Juego de memoria}
+:\author{Bernadette, Perrin-Riou}
+:\email{bpr@math.u-psud.fr}
+:\credits{}
+
+:Enunciado en la primera etapa
+\text{instruction1=Memoriza el siguiente texto. Luego haz clic en el botón Comenzar.}
+
+:Tiempo mínimo, máximo, tolerado en milisegundos
+\text{time=100,100000}
+
+:Enunciado en la segunda etapa
+\text{instruction2=Escribe en letras el número que has leido.}
+
+:Tipo de respuesta en la segunda etapa
+\text{atype=item(1,symtext,
+	numeric,function)}
+
+:Datos
+Escribe una pregunta por línea.
+El primer ítem de esta línea se muestra en el primer paso.
+La respuesta que hay que dar es el segundo ítem. Es posible
+no proponer un segundo ítem. En este caso, la respuesta que hay que dar
+es el primer ítem.
+
+\text{data=2,dos
+4,cuatro
+1,uno}
+
+:Opciones en el caso de symtext
+Las opciones pueden ser "nopunct", "nocase", "case"
+
+\text{option=}
+
+:%%%%%%%%%%%%%% Nada que modificar hasta el enunciado %%%%%%%%%%%%%%%%
+\css{<style>
+.texte {border:solid black 1pt; padding:2em; margin:3em}
+</style>}
+
+\text{data=randrow(\data)}
+
+\text{STEP=r1
+r2}
+\steps{\STEP}
+\text{cnt=items(\data)}
+\if{\cnt>1}{
+  \text{question1=\data[1..-2]}
+  \text{question2=\data[-1]}
+}{
+  \text{question1=\data}
+  \text{question2=\data}
+}
+\statement{
+ \if{\step=1}{
+  <div class="instruction">\instruction1</div>
+  <div class="texte">\question1</div>
+\embed{r1}
+ }
+ \if{\step >= 2}{
+   <div class="instruction">\instruction2</div>
+   <div class="wimscenter">\embed{r2,50}</div>
+ }
+}
+\answer{}{\time}{type=time}{option=nonstop noanalyzeprint}{weight=0}
+\answer{}{\question2}{type=\type}{option=\option}{weight=100}

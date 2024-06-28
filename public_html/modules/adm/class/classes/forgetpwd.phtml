@@ -1,0 +1,31 @@
+
+!if $class_defined!=yes
+  <div class="wims_msg alert"><span class="wims_warning">$wims_name_Error</span>. $name_warning</div>
+  !exit
+!endif
+!!readproc adm/class/initclass $class,auth
+
+!if $step=0
+  !form reply
+    <fieldset class="property_fields halfwidth blockcenter">
+      <legend>$wims_name_n_forgetpwd</legend>
+      <div class="field box">
+        <strong>$wims_name_class:</strong> $classname
+      </div>
+      !set auth_user=$auth_user_connection
+      <div class="field box">
+        <label for="auth_user">$wims_name_Login</label>
+        <input size="20" name="auth_user" value="$auth_user" id="auth_user" placeholder="$wims_name_Login" required="required">
+      </div>
+      <input type="hidden" name="step" value="1">
+      <div class="wimscenter wimsform">
+        <input type="submit">
+      </div>
+    </fieldset>
+  !formend
+!endif
+!if $step=1 and $error=$empty
+  <div class="wims_msg success">
+    $name_sendmailmess
+  </div>
+!endif

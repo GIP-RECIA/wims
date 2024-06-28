@@ -1,0 +1,14 @@
+slib_lang_exists_tmp=yes
+
+slib_title=Italian "articolo determinativo"
+slib_parms=2\
+,nome\
+,genere\
+,[preposizione]
+
+slib_out=definite article+name (with apostrophe if needed)
+slib_comment=This script add the correct definite article ("il", "lo", "la", \
+ "i", "gli", "le") to a given name, according to its gender (compatibile \
+ with datamodules such as data/images/imgschool.fr).\
+ A preposition ("di", "a", "da", "in", "su") can be given as a third \
+ optional parameter.

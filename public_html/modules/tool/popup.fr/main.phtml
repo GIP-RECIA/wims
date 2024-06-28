@@ -1,0 +1,13 @@
+!header
+
+!if $search=$empty
+  !read form.phtml
+  <hr>
+  !read welcome.phtml
+!else
+  !read form.phtml
+  <hr>
+  !read search.phtml
+!endif
+
+!tail

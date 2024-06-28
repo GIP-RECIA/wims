@@ -1,0 +1,18 @@
+size 400,400
+xrange -5,5
+yrange -5,5
+precision 0
+axis
+axisnumbering
+opacity 100,190
+grid 1,1,grey,2,2,5,black
+linewidth 3
+linewidth 1
+precision 1000
+functionlabels F(x)=:H(x)=:Yield(x)=
+strokecolor green
+userinput function
+strokecolor red
+userinput function
+strokecolor blue
+userinput function

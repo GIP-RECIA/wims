@@ -1,0 +1,20 @@
+<p>
+  !read lang/names.phtml.$modu_lang owner
+</p>
+
+!set wims_form_method=post
+!form new
+  <input type="hidden" name="module" value="adm/forum/mboard">
+  <input type="hidden" name="job" value="authuser">
+  <input type="hidden" name="forum" value="$forum">
+  <input type="hidden" name="fuser" value="supervisor">
+  <div class="blockcenter halfwidth">
+    <div class="field box">
+      <label for="fpassword">$name_pass_owner</label>
+      <input type="password" name="fpassword" id="fpassword">
+    </div>
+  </div>
+  <p class="wimscenter wimsform">
+   <input type="submit" value="$wims_name_send">
+  </p>
+!formend

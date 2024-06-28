@@ -1,0 +1,99 @@
+!set lang_exists=yes
+
+!if $job=adddate
+  !set cdt_subtitle=Aggiungi/Modifica una data
+  !goto common
+!endif
+
+!if $job=addtodo
+  !set cdt_subtitle=Aggiungi un compito
+  !goto common
+!endif
+
+!if $job=logfile
+  !set cdt_subtitle=log
+  !set name_text=Elenco delle connnessioni all'agenda del corso
+  !goto common
+!endif
+
+!if $job=config
+  !set cdt_subtitle=File binari
+  !set name_link=Testo che compare come link nella home page del corso
+  !set name_intro=Questi sono i parametri che è possibile modificare
+  !set name_see_logfile=Visualizza il log delle connessioni all'agenda
+  !set name_reversedate=Mostra le informazion in ordine inverso rispetto alle date
+  !set name_showyear=Mostra l'anno nelle tabelle
+  !set name_hide=Nascondi l'agenda
+  !goto common
+!endif
+
+!if $job=addfile
+  !set cdt_subtitle=Uploaded files
+  !set name_erasedfile=!nosubst Il file <b>$erase</b> è stato cancellato.
+  !set name_depos=È possibile caricare un file
+  !set name_available=File disponibili
+  !set name_erase=Elimina un file
+  !set name_nodeposit=Non è possibile inserire un nuovo file perché si è raggiunto il limite di spazio disponibile. Spiacenti.
+  !set name_explanation1=!nosubst Questi file possono essere indicati \
+  utilizzando la variabile <span class="tt wims_code_variable">\filedir</span>. Per esempio, \
+  <p class="wimscenter">\
+ <span class="tt wims_address">&lt;a href="\filedir/$f1"&gt;$f1&lt;/a&gt;</span>\
+  </p>\
+  inserisce un link al file <a href="$m_filedir/$f1">$f1</a>.\
+  È anche possibile scrivere
+
+  !set name_explanation2=per inserire nella pagina un file immagine \
+  <span class="tt">myfile.jpg</span>. <br>\
+  Solo gli utenti registrati possono accedere a questi file.
+
+  !goto common
+!endif
+
+!if $job=helplink
+  !set name_Add=Per aggiungere un oggetto, cliccare sul link corrispondente.
+  !set name_exam=Esame
+  !goto common
+!endif
+
+:common
+!distribute line compiti svolti\
+compiti da svolgere\
+dal\
+al\
+Aggiungi un esame\
+Aggiungi un test di autovalutazione\
+per il\
+Compiti da svogere\
+Compiti\
+Numero di scadenze da visualizzare\
+Da completare entro il\
+Compiti assegnati\
+Lezione\
+caratteri\
+nessuna informazione\
+nessuna informazione per questo giorno\
+nessuna informazione per questo periodo\
+Data\
+Materia\
+In aula\
+Assegnato il\
+Non c'è lavoro da svolgere per il\
+Inserire una risorsa nel corso\
+il \
+into name_done,name_todo,name_between,name_and,name_addexam,name_addsheet,name_for,name_worktodo,\
+name_work,name_nb_date,name_todo2,name_workdone,name_session,\
+name_character,name_noinfo1,name_noinfo2,name_noinfo3,\
+name_Day,name_discipline,name_inclass,name_giventhe,name_nowork,\
+name_help_add,name_the
+
+!set name_workfor=$name_work $name_for
+
+!set name_warning1=(si può omettere la seconda data).
+
+!set name_find2=Ricerca
+!set name_find=Cerca
+
+!set name_hiddencdt1=L'agenda è stata disattivata dal docente.
+!set name_hiddencdt2=I dati dell'agenda per alcune materie non sono disponibli (l'agenda è stata disattivata dal docente).
+!set name_nosupervise=Ce cahier de texte regroupe tous les cahiers de texte des cours de la classe. Il ne peut qu'être consulter. Pour effectuer des modifications ou des ajouts, il faut se rendre dans les cours correspondants.
+!set name_nosuperviseforuser=Ce cahier de texte regroupe les éléments des cahier de texte de tous les cours de la classe.

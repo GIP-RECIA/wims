@@ -1,0 +1,167 @@
+!! income variable :
+!! type : ressource type (sheet, doc, etc...)
+!! num : ressource number
+
+!bound type within sheet,doc,tool,glossary,freework default $empty
+num=!listintersection $num and $(list$(type)import)
+
+!if $num=$empty or $type=$empty
+  error=badressource
+  !exit
+!endif
+
+!goto $type
+
+:sheet
+  nb=!recordcnt wimshome/sessions/$wims_session/upload/class/sheets/.sheets
+  nbc=!recordcnt wimshome/log/classes/$wims_class/sheets/.sheets
+  nbn=!itemcnt $num
+  !if $nbc+$nbn<$max_sheets
+    !for k in $num
+      data=!record $k of wimshome/sessions/$wims_session/upload/class/sheets/.sheets
+      data=!replace line number 1 by 0 in $data
+      data=!replace line number 2 by $class_expiration in $data
+      !! --- delete reference to a doc for sheet presentation (
+      tmp=!line 5 of $data
+      !if $tmp notitemof yes,no,$empty
+        data=!replace line number 5 by $empty in $data
+      !endif
+      !! --- delete reference to a technical variable to hide sheet
+      data=!replace line number 9 by $empty in $data
+      !appendfile wimshome/log/classes/$wims_class/sheets/.sheets :$data
+      !increase nbc
+      !sh cp $wims_home/sessions/$wims_session/upload/class/sheets/.sheet$k $wims_home/log/classes/$wims_class/sheets/.sheet$nbc;\
+          if [ -e $wims_home/sessions/$wims_session/upload/class/sheets/sheet$k.src ]; then\
+            cp $wims_home/sessions/$wims_session/upload/class/sheets/sheet$k.src $wims_home/log/classes/$wims_class/sheets/sheet$nbc.src;\
+            cp $wims_home/sessions/$wims_session/upload/class/sheets/sheet$k.def $wims_home/log/classes/$wims_class/sheets/sheet$nbc.def;\
+          fi
+    !next k
+    success=importdone
+    linkressource=module=adm/class/sheet/&+sheet=$nbc
+  !else
+    error=classfull
+  !endif
+!exit
+
+:doc
+  serial=1
+  !reset errlist
+  !for k in $num
+     !if P notin $k
+       test=0
+       !while $test=0 and $serial<1000
+         nb=!recordcnt wimshome/sessions/$wims_session/upload/class/doc/.index
+         !if $nb<$max_doc
+           t=!fileexists wimshome/log/classes/$wims_class/doc/c$(serial)/.def
+           !if $t=yes
+             !increase serial
+           !else
+             test=1
+           !endif
+         !endwhile
+         docname=!record $k of wimshome/sessions/$wims_session/upload/class/doc/.index
+         docname=!line 1 of $docname
+         !if $test=1
+           !sh cp -R $wims_home/sessions/$wims_session/upload/class/doc/$docname $wims_home/log/classes/$wims_class/doc/c$serial;
+         !else
+           errlist=!append item $docname to $errlist
+         !endif
+       !endif
+     !else
+       nb=!recordcnt wimshome/sessions/$wims_session/upload/class/doc/.docindex
+       !if $nb<$max_linkdoc
+         N=!char 2 to -1 of $k
+         data=!record $N of wimshome/sessions/$wims_session/upload/class/doc/.docindex
+         data=!replace line number 5 by 0 in $data
+         data=!replace line number 6 by 0 in $data
+         data=!replace line number 7 by $empty in $data
+         !appendfile wimshome/log/classes/$wims_class/doc/.docindex :$data
+       !else
+         n=!line 1 of $data
+         errlist=!append item $n to $errlist
+       !endif
+     !endif
+  !next k
+  !if $errlist=$empty
+    success=importdone
+    linkressource=module=home
+  !else
+    error=faileddoc $errlist
+  !endif
+  Docdir=log/classes/$wims_class/doc
+  docdir=wimshome/$Docdir
+  !read adm/docindex.proc
+!exit
+
+:tool
+  serial=1
+  !reset errlist
+  !sh mkdir -p $wims_home/log/classes/$wims_class/tool;
+  !for k in $num
+    nb=!recordcnt wimshome/sessions/$wims_session/upload/class/tool/.toolindex
+    !if $nb<$max_tool
+      data=!record $k of wimshome/sessions/$wims_session/upload/class/tool/.toolindex
+      data=!replace line number 5 by 0 in $data
+      !appendfile wimshome/log/classes/$wims_class/tool/.toolindex :$data
+    !else
+      n=!line 1 of $data
+      errlist=!append item $n to $errlist
+    !endif
+  !next k
+  !if $errlist=$empty
+    success=importdone
+    linkressource=module=home
+  !else
+    error=faileddoc $errlist
+  !endif
+!exit
+
+:glossary
+  nb=!recordcnt wimshome/sessions/$wims_session/upload/class/tool/.glossaryindex
+  nbc=!recordcnt wimshome/log/classes/$wims_class/tool/.glossaryindex
+  nbn=!itemcnt $num
+  !if $nbc+$nbn<$max_glossary
+    !sh mkdir -p $wims_home/log/classes/$wims_class/tool;
+    !for k in $num
+      data=!record $k of wimshome/sessions/$wims_session/upload/class/tool/.glossaryindex
+      data=!replace line number 1 by 0 in $data
+      !appendfile wimshome/log/classes/$wims_class/tool/.glossaryindex :$data
+      !increase nbc
+      !sh cp $wims_home/sessions/$wims_session/upload/class/tool/.glossary$k $wims_home/log/classes/$wims_class/tool/.glossary$nbc;
+    !next k
+    success=importdone
+    linkressource=module=adm/tool/glossary/&+glossary=$nbc
+  !else
+    error=classfull
+  !endif
+!exit
+
+:freework
+  nb=!recordcnt wimshome/sessions/$wims_session/upload/class/freeworks/.freeworks
+  !sh mkdir -p $wims_home/log/classes/$wims_class/freeworks;
+  !sh mkdir -p $wims_home/log/classes/$wims_class/freeworksdata;
+  nbc=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+  nbn=!itemcnt $num
+  !if $nbc+$nbn<$max_freeworks
+    !for k in $num
+      data=!record $k of wimshome/sessions/$wims_session/upload/class/freeworks/.freeworks
+      data=!replace line number 1 by 0 in $data
+      data=!replace line number 2 by $class_expiration in $data
+      data=!replace line number 10 by no in $data
+      !appendfile wimshome/log/classes/$wims_class/freeworks/.freeworks :$data
+      !increase nbc
+      !sh cp $wims_home/sessions/$wims_session/upload/class/freeworks/.freework$k $wims_home/log/classes/$wims_class/freeworks/.freework$nbc;\
+          if [ -e $wims_home/sessions/$wims_session/upload/class/freeworks/.Wfreework$k ]; then \
+            cp $wims_home/sessions/$wims_session/upload/class/freeworks/.Wfreework$k $wims_home/log/classes/$wims_class/freeworks/.Wfreework$nbc;\
+          fi;\
+          cp -r $wims_home/sessions/$wims_session/upload/class/freeworks/$k $wims_home/log/classes/$wims_class/freeworks/$nbc;\
+          mkdir $wims_home/log/classes/$wims_class/freeworksdata/$nbc;\
+          mkdir $wims_home/log/classes/$wims_class/freeworksdata/$nbc/co;\
+          mkdir $wims_home/log/classes/$wims_class/freeworksdata/$nbc/work;
+    !next k
+    success=importdone
+    linkressource=module=adm/class/freework/&+freework=$nbc
+  !else
+    error=classfull
+  !endif
+!exit

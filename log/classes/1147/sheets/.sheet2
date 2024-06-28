@@ -1,0 +1,85 @@
+Représentation d'une série statistique
+Diagramme en bâtons, diagramme circulaire
+??,2021
+1
+H4
+statistics
+descriptive_statistics,percentage,histogram,absolute_frequency,proportionality
+groupe LP-TIC,IREM_Lyon
+ire.tic@gmail.com
+Diagramme en bâtons, diagramme circulaire
+
+:H3/stat/oefstat.fr
+exo=baton&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Diagramme en bâtons 1
+<strong>Diagramme en bâtons</strong>; à construire à partir d'une série de notes.
+
+:H3/probability/oefstatproba.fr
+exo=bergamo4&qnum=1&qcmlevel=3&scoredelay=&intro_qcmpresent=4&intro_presentsol=1&intro_check=1&intro_check=2&intro_check=3&intro_check=4&intro_expert=yes
+10
+1
+Diagramme en bâtons 2
+<strong>Diagramme en bâtons</strong>, à construire à partir d'un relevé de températures.
+
+:H3/stat/oefstat.fr
+exo=pourcentcirc&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Diagramme circulaire 1
+Compléter une fréquence sur un <strong>diagramme circulaire</strong>.
+
+
+
+calculator
+:H3/stat/oefstat.fr
+exo=pourcentstat&qnum=1&qcmlevel=1&scoredelay=&seedrepeat=0
+10
+1
+Diagramme circulaire 2
+Calcul d'un effectif à partir d'un <strong>diagramme circulaire</strong> (%).
+
+
+
+calculator
+:H3/stat/oefstat.fr
+exo=effpourcent&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Diagramme circulaire 3
+Calcul des effectifs à partir d'un <strong>diagramme circulaire</strong> (%).
+
+
+
+calculator
+:H2/stat/stat-0.nl
+subject=6&level=2&total_exos=1&rounding=10&usage=1&taal=fr
+10
+1
+Diagramme circulaire 4
+Calcul des fréquences à partir d'un <strong>diagramme circulaire</strong> (effectifs).
+
+
+
+calculator
+:H2/stat/stat-0.nl
+subject=7&level=2&total_exos=1&rounding=10&usage=1&taal=fr
+10
+1
+Diagramme circulaire 5
+Calcul de % pour construire un <strong>diagramme circulaire</strong>.
+
+
+
+calculator
+:H2/stat/stat-0.nl
+subject=8&level=2&total_exos=1&rounding=10&usage=2&taal=fr
+10
+1
+Diagramme circulaire 6
+Calcul d'angles (en degrés) pour construire un <strong>diagramme circulaire</strong>.
+
+
+
+calculator

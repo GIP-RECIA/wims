@@ -1,0 +1,129 @@
+!! read also by modules/adm/class/config
+
+!distribute line Ho sentim, aquest mòdul no té cap exercici disponible de moment. Torna després!\
+  Aquest mòdul conté actualment només un exercici \
+  Intenta-ho.\
+  Trieu els exercicis (un o més d'un) \
+  Exercicis que continguin \
+  Una sèrie tindrà \
+  Nivell de severitat \
+  Cronòmetre&nbsp;\
+  segons \
+  Nombre d'opcions per pregunta \
+  Donar la solució \
+  Donar el feedback \
+  Menú simplificat \
+  Tornar al menú simplificat \
+  Menú d'experts \
+  Seleccionar els títols que continguin la paraula \
+  exercicis \
+  Configuració \
+  Paràmetres generals \
+  Configuració específica d'aquest mòdul \
+  Configuració general \
+  Configuració per a l'anàlisi de respostes \
+  Configuració de les ajudes \
+  Seleccionar tots els exercicis que continguin \
+  exemple&nbsp;: funció \
+into name_noexercise,name_oneexercise,name_tryit,name_chooseexo,name_exercisescontaining,name_oneserie,\
+    name_levelseverity,name_chrono,name_secondes,name_qcmanswer,name_solutiongiven,name_feedgiven,\
+    name_simplifiedmenu,name_simplifiedmenu_back,name_expertmenu,name_select,name_exercises,name_menu,name_general_parms,name_module_setup,\
+    name_general_setup,name_score_setup,name_help_setup,name_select_auto,name_select_placeholder
+
+!set name_qcmanswer_help=Cada pregunta mostrarà com a màxim aquest nombre d'opcions.
+
+!distribute lines Càlcul de les notes d'un exercici de qüestions múltiples\
+Sense penalització, Poca penalització, Molta penalització\
+Càlcul de la nota en una sèrie d'exercicis\
+Només si trieu una sèrie que conté almenys dos exercicis\
+Sense penalització, Poca penalització, Molta penalització\
+Penalitzar per mala precisió\
+A vegades\
+into name_expower,name_prompt_expower, name_sepower,name_warning_pow,\
+name_prompt_sepower, name_precweight,name_sometimes
+
+!set name_warning_expower=Mitjana aritmètica de les puntuacions obtingudes per a cada pregunta a la \
+potència del número seleccionat.
+
+!set name_warning_sepower=Mitjana aritmètica de les puntuacions obtingudes per a cada pregunta a la \
+potència del número seleccionat.
+
+!set name_datamodule=Aquest mòdul requereix el mòdul de dades <span class="tt">$module_data</span> \
+  que no està instal·lat en aquest servidor. Si vols utilitzar-lo, \
+  demana a l'administrador del lloc que l'instal·li.
+
+!set name_choice=mai, sempre,after activity expiration date
+!set name_qcm=QCM (només per a alguns tipus d'exercici)
+!set name_choice_check=Figuri sempre la resposta correcta,\
+  Penalitzar per una resposta incorrecta.,\
+  Mostrar la resposta correcta.,\
+  Permetre suggeriments (si estan disponibles).,\
+  Show a calculator
+!set name_calc=$wims_name_no,basic,no basic
+
+ !set name_aleaseries= Fixar l'ordre dels exercicis de la sèrie.
+ !set name_remarkintro1=Trieu un o més exercicis i la configuració\
+  (simplificada o completa). A continuació, feu clic a \
+<a class="wims_button disabled inline" href="#oef_intro_launch">$wims_name_work</a>.<br>\
+Els exercices proposats es prendran a l'atzar entre la vostra tria \
+ (o entre tots els exercicis disponibles si no n'heu triat cap).
+!set name_defserie=Una sèrie d'exercicis correspon al treball que cal fer abans \
+   d'obtenir una nota.
+!distribute lines Màxim d'intents amb la mateixa versió de la sèrie d'exercicis \
+  Nombre màxim d'intents comptabilitzats\
+into name_seedrepeat,name_exotrymax
+
+!set name_help_seedrepeat=Seleccionar un número n major o igual que 2, permet evitar\
+  que les dades aleatòries de la sèrie d'exercicis no canvien durant un nou intent:\
+  aquestes dades variaran només en cas de resposta correcta o després de n intents en aquesta sèrie.\
+  Per a una sèrie d'exercicis en la que l'ordre està fixat, seleccionar un número n superior o igual a 1 \
+  també permet mantenir els mateixos valors per a les variables comunes als diferents exercicis \
+  de la sèrie.
+
+!set name_help_givegood=Quan el nombre màxim d'intents permesos a la mateixa versió \
+  de la sèrie d'exercicis és almenys 2, la resposta correcta es mostra a l'últim intent \
+  en aquesta versió (llevat que <span class="tt">$(name_choice[1]), <span class="tt">$(name_choice[3])</span>\
+  estigui seleccionat).\
+  Si vous cochez <span class="tt">$(name_choice[3])</span>, la bonne réponse ne s'affichera\
+  que si l'activité (par exemple la feuille) est périmée.\
+  <br>Alguns exercicis també poden proporcionar suggeriments, feedback o solució.\
+  La configuració per mostrar-ho funciona de la mateixa manera.
+
+!set name_tries=o a partir de l'estudi de la versió, de la sèrie d'exercicis
+!set name_latex=A latex version of some of the exercises is accessible by\
+  the printable version.
+
+!if * isin $titlelist
+  !set name_remarkintro2=Els exercicis marcats amb * són en general més difícils que els altres.
+!endif
+!!leave on one line
+!set name_remarkintro3=Podeu posar dos nombres en el cronòmetre, separats per una \
+coma sense espai, el segon més gran que el primer. El primer número \
+representa el temps (en segons) a partir del qual es redueix la puntuació. \
+El segon, per defecte igual al primer, és el temps (en segons) a partir del qual la puntuació serà 0.
+
+!set name_remarkseverity= Taula de correspondència entre els nivells de severitat i les \
+ diferents configuracions:
+
+!set name_remarkallexo=!nosubst Si utilitzes l'enllaç\
+<span class="wims_button disabled inline">$wims_name_addallexo</span>,\
+la configuració es proposarà més endavant.
+
+!set name_remarkorder1=Per defecte, l'ordre dels exercicis és aleatori.\
+  Marqueu a continuació per configurar l'ordre.
+
+!set name_remarkorder2=Si el nombre d'exercicis seleccionats és igual al nombre d'exercicis de la sèrie, \
+   serà possible triar l'ordre en el moment de la inserció de la sèrie en el full d'exercicis.
+
+!set name_help_precweight=Com més petit sigui el nombre, més dura la penalització.\
+En concret, la nota d'una resposta numèrica imprecisa es multiplica per aquest nombre\
+en comparació amb la d'una resposta correcta.
+
+!set name_examplepenality=Exemple: taula que mostra el càlcul de la puntuació per a un exercici que implica\
+  diverses preguntes d'igual importància en funció del nombre de respostes incorrectes\
+  i el pes de la penalització triada.
+
+!set name_example1=!nosubst Exercici amb $tmp_n preguntes <br>Nota
+!set name_entete1=Coeficient de penalització
+!set name_entete2=error(s)
+!set name_warning_levelseverity=Clicar a <span class="wims_button disabled inline">$name_expertmenu</span> per a més detalls.

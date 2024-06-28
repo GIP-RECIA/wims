@@ -1,0 +1,40 @@
+!set lang_exists=yes
+
+name_title1=Envoi de mails groupés
+name_title2=Message
+name_noemail2=Les participants suivants n'ont pas d'email
+
+name_participant1=Message envoyé avec succès à
+name_participant2=Le message n'a pas pu être envoyé aux participants suivants
+name_intro=L'envoi groupé permet d'envoyer un courriel à tout ou partie des participants
+
+name_expert0=Si vous désirez sélectionner certains participants, plusieurs méthodes sont proposées.\
+Cochez la méthode désirée.
+
+name_expert1=À l'aide des flèches, faites passer dans la fenêtre de droite les participants\
+auxquels vous désirez que le mail soit envoyé.
+
+name_expert2=Entrez la liste des logins séparés par des virgules.
+
+name_expert3=Filtrer les participants selon les valeurs des variables techniques. \
+
+name_warning=Vous allez envoyer le message suivant.
+
+!distribute items Destinataires,Expéditeur,Destinataires enseignant,Liste de logins&nbsp;,Message&nbsp;,Sujet&nbsp;,Sélection&nbsp;,\
+ Tous les participants (avec adresse électronique)\
+into name_recipients,name_sender,name_recip_teacher,name_loginlist,name_message,name_subject,name_select,name_allparticipants
+
+name_user=enseignant,enseignants,participant,participants
+name_without=n'a pas défini d'adresse électronique,n'ont pas défini d'adresse électronique
+name_noemail_login=Les identifiants suivants correspondent aux critères de sélection mais n'ont pas d'adresse électronique valide
+name_noemail_filter=Les participants suivants correspondent aux critères de sélection mais n'ont pas d'adresse électronique valide
+name_and=et
+name_sendotherteacher=Envoyer une copie du message aux autres enseignants de la classe
+name_selfsend=m'envoyer une copie du message
+name_recipient=Destinataire
+name_success=Message envoyé avec succès
+name_nosendermail=Vous n'avez pas défini d'adresse électronique : l'enseignant de la classe ne pourra pas vous répondre.
+name_sendto=Envoyé à (participant),Envoyé à (enseignant)
+name_noreply=!nosubst Ceci est un message automatique. Pour y répondre vous devez <a href="$httpd_REMOTE_ADDR/wims/wims.cgi?module=adm/class/classes&+type=$localtype&+class=$localclass">vous connecter à la classe</a>.
+name_sendby=!nosubst Envoyé par $supervisorname
+name_suptype=Enseignant principal,Enseignant de la classe,Administrateur,Enseignant

@@ -1,0 +1,142 @@
+  
+<h2 class="wimscenter">Parametri casuali in un esercizio interattivo</h2>
+<p>
+L'utilizzo di parametri casuali permette di programmare esercizi
+più interessanti, in quanto ogni volta che si apre l'esercizio di fatto
+si ottiene un esercizio differente.
+</p><p>
+Per esempio, la riga seguente permette di definire una variabile con nome
+<span class="tt wims_code_variable">x1</span>, il cui valore sarà un
+numero intero casuale tra 
+-10 e 10 (inclusi):
+</p><pre>
+\integer{x1=random(-10..10)}
+</pre>
+Una volta definito, questo parametro potrà essere utilizzato chiamando
+la variabile
+<b><span class="tt wims_code_variable">\x1</span></b>, in ogni punto
+dell'esercizio (l'enunciato, le risposte, i suggerimenti e la soluzione).
+In altre parole ogni volta che viene utilizzato il comando <span class="tt wims_code_variable">\x1</span> in uno di tali testi
+questo sarà sostituito con il valore casuale
+del parametro. Questa sostituzione ha luogo anche nella definizione di altri 
+parametri che richiamano il valore di <span class="tt wims_code_words">x1</span>.
+<p>
+Per esempio inseriamo il seguente codice
+</p>
+<pre>
+\integer{x1=random(-10..10)}
+\integer{y1=\x1+3}
+</pre>
+nel campo di definizione dei parametri e il seguente testo
+<pre>
+Calcola il prodotto di \x1 per \y1.
+</pre>
+<p>nell'enunciato dell'esercizio. Quando viene richiamato l'esercizio vengono
+attribuiti valori casuali alle variabili, per esempio 
+supponiamo che il valore casuale <span class="tt wims_code_variable">-7</span> sia assegnato a \x1. Allora 
+il parametro seguente \y1 avrà valore -4, e l'enunciato apparirà
+con tali valori
+</p><p class="wimscenter">Calcola il prodotto di -7 per -4.
+</p>
+È allora possibile definire una risposta numerica con nome <span class="tt">Il prodotto</span>, definendo come risposta corretta <span class="tt">(\x1)*(\y1)</span>. (Sottolineiamo il fatto
+che le parentesi sono necessarie in quanto la sostituzione dei valori
+delle variabili è letterale.)
+<a id="list"></a>
+!if oefparm isitemof $special_parm
+ !changeto help/oefparm.phtml
+!endif
+$table_header
+<caption>Alcuni esempi di definizione di variabili
+!href cmd=help&special_parm=$special_parm,oefparm#list [elenco completo]
+</caption>
+$table_hdtr<th>Definizione</th><th>Risultato</th></tr>
+$table_tr<td class="tt wims_code_words">\real{x=random(-5..5)}
+    </td><td>\x sarà un numero reale casuale<br>tra -5 e 5
+</td></tr>
+$table_tr<td class="tt wims_code_words">\real{a=randitem(-5,-3,0.3,4)}
+    </td><td>\a sarà un numero reale preso casualmente <br>tra -5,-3,0.3 e 4
+</td></tr>
+$table_tr<td class="tt wims_code_words">\complex{z=(1+2*i)^3}
+    </td><td>\z sarà il numero complesso z=(1+2*i)^3
+</td></tr>
+$table_tr<td class="tt wims_code_words">\text{sign=randitem(+,-)}
+    </td><td>\sign sarà un segno casuale: + o -
+</td></tr>
+$table_tr<td class="tt wims_code_words">\integer{n=3*exp(\a)}
+    </td><td>\n sarà l'intero più vicino a 3*e<sup>\a</sup> <br>(dipende dal
+    valore di \a)
+</td></tr>
+$table_tr<td class="tt wims_code_words">\function{f=randitem(x^2+1,sin(x),log(x))}
+    </td><td>\f sarà una funzione casuale: o x^2+1,<br>o sin(x), oppure
+    log(x)
+</td></tr>
+$table_tr<td class="tt wims_code_words">\real{a=evalue(x^2+sin(y),x=3,y=4)}
+    </td><td>Valore assunto dalla funzione x^2+sin(y),<br>
+    per x=3, y=4
+</td></tr>
+$table_tr<td class="tt wims_code_words">\real{r=solve(x^3-3*x+1,x=0..1)}
+    </td><td>\r sarà una radice semplice di x^3-3x+1 tra 0 e 1
+</td></tr>
+$table_tr<td class="tt wims_code_words">\function{h=simplify(x^5*y^3*x^2/y)}
+    </td><td>Espressione semplificata: x<sup>7</sup>y<sup>2</sup>
+</td></tr>
+$table_tr<td class="tt wims_code_words">\function{g=diff(sin(x)+cos(y),x)}
+    </td><td>\g sarà la derivata di sin(x)+cos(y) rispetto a x
+</td></tr>
+$table_tr<td class="tt wims_code_words">\function{F=int(x^2+3*x+1,x)}
+    </td><td>\F sarà una primitiva di x^2+3*x+1,<br>
+     il termine costante potrebbe variare da funzione a funzione
+!!$table_tr<td class="wims_code_words">\function{F=int(t^2+3*t+1,t=1..x)}
+!!    <td>\F sarà la primitive x^2+3*x+1 tale che g(1)=0
+</td></tr>
+$table_tr<td class="tt wims_code_words">\real{a=int(t^2+3*t+1,t=0..1)}
+    </td><td>\a sarà l'integrale numerico di x^2+3*x+1, da 0 a 1
+</td></tr>
+$table_tr<td class="tt wims_code_words">\text{f=htmlmath(2*x^2+3*x)}
+    </td><td>\f sarà convertito in html come: 2x<sup>2</sup>+3x
+</td></tr>
+$table_tr<td class="tt wims_code_words">\text{f=texmath(2*x^2+3*x)}
+    </td><td>\f sarà il sorgente TeX dell'espressione.
+</td></tr>
+$table_tr<td class="tt wims_code_words">\integer{n=items(a,b,c,d,e,f)}
+    </td><td>\n sarà il numero di elementi (in questo caso 6) nella lista
+     {a,b,c,d,e,f}
+</td></tr>
+$table_tr<td class="tt wims_code_words">\text{i=item(3,a,b,c,d,e,f)}
+    </td><td>\i sarà l'elemento numero 3 della lista
+     {a,b,c,d,e,f} (quindi c).
+</td></tr>
+$table_tr<td class="tt wims_code_words">\text{s=shuffle(6)}
+    </td><td>\s sarà la lista dei 6 interi 1,2,...,6, in ordine casuale.
+</td></tr>
+$table_tr<td class="tt wims_code_words">\text{s=shuffle(a,b,c,d,e)}
+    </td><td>\s sarà la lista delle lettere {a,b,c,d,e} in ordine casuale.
+</td></tr>
+$table_tr<td class="wims_code_words">\matrix{m=1,2,3<br>4,5,6<br>7,8,9}
+    </td><td>\m sarà la matrice di 3 righe e 3 colonne.
+</td></tr>
+$table_tr<td class="tt wims_code_words">\text{t=asis(Come va? matrix(1,2,3))}
+    </td><td>\t è la stringa esattamente come è scritta, <br>senza alcuna conversione o verifica di condizioni.
+</td></tr>
+$table_end
+
+Parametri con condizioni: si può scrivere
+<pre>
+\text{ttt=_condizione?_def1}
+\text{ttt=_condizione?_def1:_def2}
+</pre>
+<p>
+In questo modo <span class="tt wims_code_words">ttt</span> avrà il valore <span class="tt wims_code_words">_def1</span> se
+<span class="tt wims_code_words">_condizione</span> è verificata, oppure <span class="tt wims_code_words">_def2</span> altrimenti (nella seconda
+forma).
+!href target=wims_mhelp cmd=help&special_parm=if Elenco completo delle condizioni
+</p><p>
+La posizione di una definzione rispetto all'enunciato è importante:
+se una variabile è definita DOPO l'enunciato, la sua valorizzazione
+avrà luogo unicamente DOPO che è stata data una risposta alla domanda.
+In questo caso tale definizione può utilizzare le risposte date,
+utilizzando le variabili <span class="tt wims_code_variable">\reply1</span>, <span class="tt wims_code_variable">\reply2</span>, ecc. E le
+variabili così definite possono essere utilizzate per parametrizzare
+la visualizzazione di commenti e condizioni.
+</p>
+

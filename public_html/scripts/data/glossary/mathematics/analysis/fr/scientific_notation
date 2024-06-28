@@ -1,0 +1,26 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=decimals,scientific_notation
+!set gl_title=Notation scientifique
+!set gl_level=H2 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème</h4>
+Pour tout nombre décimal \(n\) non nul, il existe&nbsp;:
+<ul>
+<li>un entier relatif \(p\)</li>
+<li>un nombre décimal \(a\) vérifiant \(-10 \lt a\leqslant -1\) ou
+\(1\leqslant a \lt 10\)</li>
+</ul>tels que \(n=a\times 10^p\).
+<div class="spacer"></div>
+A chaque nombre \(n\) sont associés un seul \(a\) et un seul \(p\).
+</div>
+
+<div class="wims_defn">
+<h4>Définition</h4>
+L'écriture \(n=a\times 10^p\) est appelée <strong>écriture de \(n\) en notation
+scientifique</strong>.
+</div>

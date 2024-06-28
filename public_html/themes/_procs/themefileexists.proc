@@ -1,0 +1,11 @@
+!!test if the file exists in the theme
+!distribute items $wims_read_parm into tmp_file, tmp_fileparm
+!set tmp_file0=themes/$wims_theme/$tmp_file
+!set tmp_file=!filexists $tmp_file0
+
+!exit
+!if $tmp_file=yes
+  !set tmp_file0=$tmp_file0 $tmp_fileparm
+  !reset tmp_file
+  !changeto $tmp_file0
+!endif

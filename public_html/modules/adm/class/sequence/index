@@ -1,0 +1,49 @@
+title=Course progression
+description=Préparation / Modification de séquences pédagogiques
+author=Bernadette, Perrin-riou
+address=bpr@math.u-psud.fr
+copyright=&copy; 2008 (<a href="COPYING">GNU GPL</a>) 2009
+version=2.02
+# minimal version of wims server under which the module may run
+wims_version=4.25b
+language=$lang
+maintainer=WIMSDEV
+maintainer_address=wimsdev@groupes.renater.fr
+
+# Possible categories: exercise, tool, dictionary, course, recreation.
+category=adm
+
+# En: elementary. Hn: high school. Un: under. G: graduate. R: research.
+# E1,...,E6; H1...,H6; U1,...,U4; G; R
+level=E1 E2 E3 E4 E5 E6 H1 H2 H3 H4 H5 H6 U1 U2 U3 U4 G R
+
+# e.g. algebra, analysis, geometry, etc.
+domain=
+
+# Anything you like.
+keywords=
+
+title_fr=Séquences pédagogiques
+description_fr=Préparation / Modification de séquences pédagogiques
+
+title_it=Percorsi pedagogici
+description_it=Preparazione e modifica di percorsi pedagogici
+translator_it=Cazzola,Marina
+translator_address_it=marina.cazzola@unimib.it
+
+title_en=Learning Units
+description_en=Preparation / Modification of learning units
+
+title_es=Secuencias pedagógicas
+description_es=Preparación/Modificación de secuencias pedagógicas
+
+title_nl=Pedagogische volgorde
+description_nl=Aanmaken / veranderen van een pedagogisch verantwoorde lesmateriaal volgorde
+
+title_cn=½ÌÑ§ÏµÁÐ
+description_cn=×¼±¸»òÐÞ¸Ä½ÌÑ§ÏµÁÐ
+
+title_ca=Seqüències pedagògiques
+description_ca=Preparació / Modificació de Seqüències pedagògiques
+translator_ca=Querol,Manel
+translator_address_ca=mquerol@xtec,cat

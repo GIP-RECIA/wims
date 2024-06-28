@@ -1,0 +1,78 @@
+!set max_questions=50
+!read oef/$lang/intronames
+!readproc oef/qcm/lang/names_$lang.proc
+
+!default oefintro_custom_placeholder=$name_select_placeholder
+
+!default exo=shuffle
+<div  class="field box">
+  <label>$name_exo_type:</label>
+  !formradio exo list serial,shuffle prompt \
+  $name_exo_type_prompt
+</div>
+
+<div class="field box">
+  !set special_parm=!trim $special_parm
+
+  !if * isin $df_titles
+    <div class="formHelp float_right">$name_difficult_bank</div>
+  !endif
+
+  <label for="confparm6">$name_questions_bank:</label>
+  !set wims_formselect_switch=multiple size=$[min(10,$df_cnt)]
+  !formselect confparm6 list $df_names prompt $df_prompt
+  !reset wims_formselect_switch
+  !if $df_record_cnt!=$empty
+    <div class="formHelp">$name_df_record_cnt_help</div>
+  !endif
+  <div class="oef_filter">
+    !if $df_cnt>10
+      <div>
+        <label for="filterForConfparm6">$name_display_auto_bank:</label>
+        <input type="search" results="5" id="filterForConfparm6" value="$special_parm" name="$special_parm" placeholder="$oefintro_custom_placeholder">
+      </div>
+    !endif
+    !!<div>
+    !!  <label for="selectorForConfparm6">$name_select_auto_bank:</label>
+    !!  <input type="search" results="5" id="selectorForConfparm6" value="$special_parm" placeholder="$oefintro_custom_placeholder">
+    !!</div>
+    <div class="formHelp"><strong>$name_Remark:</strong> $name_remark_shuffle_bank</div>
+  </div>
+</div>
+
+!default qnum=1
+<div class="field box halfwidth">
+  <label for="qnum">$name_nb_pages:</label>
+  !formselect qnum from 1 to 9
+  <div class="formHelp">$name_nb_pages_help</div>
+
+</div>
+
+!default confparm1=1
+<div class="field box halfwidth">
+  <label for="confparm1">$name_questions_per_page:</label>
+  <input type="number" min="1" max="$max_questions" name="confparm1" id="confparm1" value="$confparm1">
+  <div class="formHelp">$name_questions_per_page_help</div>
+</div>
+
+!default intro_qcmpresent=$(default_choice[4])
+<div class="field box clearall">
+  <label for="intro_qcmpresent">$name_qcmanswer: </label>
+  !set wims_ref_class=wims_formradio
+  !formselect intro_qcmpresent list 2,3,4,5,6,7,8
+  <div class="formHelp">$name_qcmanswer_help</div>
+</div>
+
+!read oef/intromenu_chrono.phtml
+
+!if $jquery_defined=yes
+  <script src="scripts/js/interface/jQuery.selectFilters.js"></script>
+  <script>
+    $$(function() {
+      !if $df_cnt>10
+        $$('#confparm6').filterByText(textbox=$$('#filterForConfparm6'),selectMatches='multiple');
+      !endif
+      !! $$('#confparm6').selectByText($$('#selectorForConfparm6'));
+    });
+  </script>
+!endif

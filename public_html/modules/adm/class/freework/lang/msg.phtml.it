@@ -1,0 +1,232 @@
+!goto $err_
+
+:notallowedmodule
+Questo modulo non è stato attivato su questo server. Contattare il responsabile del server.
+!exit
+
+:badsoldate
+La data di pubblicazione delle soluzioni deve essere successiva alla data di consegna per gli studenti.
+!exit
+
+:badmaxfreework
+Il numero di compiti a risposta aperta è limitato a $max_freework. Non è possibile crearne un altro.
+!exit
+
+:badstatutsubject
+Non è più possibile aggiungere file per la consegna.
+!exit
+
+:badstatutsolution
+Non è più possibile aggiungere file per le soluzioni.
+!exit
+
+:goodstatut
+Modifiche del compito effettuate con successo.
+!exit
+
+:goodsave
+Salvato con successo.
+!exit
+
+:gooderasefile
+File eliminato.
+!exit
+
+:goodaddfile
+File aggiunto.
+!exit
+
+:notnow
+Spiacente, questa funzione non è ancora disponibile.
+!exit
+
+:fwnotperime
+Azione non completabile in quanto il compito è attivo.
+!exit
+
+:fwnotactive
+Azione non completabile in quanto il compito non è attivo.
+!exit
+
+:badfilename
+Il nome del file non è compatibile. Modificare il nome del file prima di caricarlo di nuovo.
+!exit
+
+:noterasable
+Questo compito a risposta aperta non è cancellabile. Deve essere presente un altro compito con un numero più alto.
+!exit
+
+:gooderase
+Compito a risposta aperta cancellato come richiesto.
+!exit
+
+:gooddeactivate
+Compito riportato allo stato "in preparazione". Attenzione, alcuni studenti potrebbero aver già scaricato il file della consegna!
+!exit
+
+:goodhide
+Compito a risposta aperta non più visibile per gli studenti.
+!exit
+
+:goodarchive
+Compito a risposta aperta archiviato correttamente.
+!exit
+
+:notenoughfreespace
+Lo spazio disco del corso non è sufficiente per il salvataggio dei file delle risposte di tutti gli studenti. Dovete diminuire la dimensione massima dei file consegnabili oppure chiedere al responsabile del server di aumentare la quota disco disponibile per il corso.
+!exit
+
+:badstudentfilesize
+La dimensione del file che si sta cercando di caricare è superiore alla dimensione massima di $[0.25*$sizelimitfile] Mega.
+!exit
+
+:quota_file
+Lo spazio disco del corso è esaurito, non è possibile caricare questo file. Contattate il vostro docente.
+!exit
+
+:quota_filestudent
+Non potete caricare questo file perché avete superato lo spazio disco che potevate utilizzare.
+!exit
+
+:badallows
+Non siete autorizzati a visualizzare questa pagina. Non modificate manualmente l'indirizzo di connessione!
+!exit
+
+:putworknotallow
+Non è possibile caricare il file con la risoluzione per questo compito (stato del compito non corretto o data di consegna non ancora passata).
+!exit
+
+:studentwithoutfw
+Questo studente non ha consegnato il compito, non è quindi possibile caricare la correzione individuale.
+!exit
+
+:notallcorrected
+Alcune consegne non sono state corrette. Non è possibile terminare questo compito.
+!exit
+
+:expire_nosoldisplay
+Il compito non può essere terminato: la data di visualizzazione delle correzioni non è ancora passata.
+!exit
+
+:putworkusernotexists
+Questo studente non esiste! Non modificare manualmente l'indirizzo di connessione.
+!exit
+
+:toomanychar
+Il testo è troppo lungo. Deve essere massimo di $textezone_limit caratteri.
+!exit
+
+:notallowed_desactivated
+Questo compito a risposta aperta non può essere disattivato in quanto alcuni studenti hanno già effettuato la consegna.
+!exit
+
+:addrplay
+La richiesta non è corretta. Non modificate gli url nella barra degli indirizzi del browser!
+!exit
+
+:notauthsupervisor
+Vi state collegando da un pc che non è tra quelli indicati come sicuro per le attività di gestione oppure non sono stati configurate le postazioni sicure. Non è possibile procedere all'archiviazione del compito. Per continuare dovete procedere alla
+!href module=adm/class/config configurazione
+ del corso.
+!exit
+
+:not_secure
+Questa azione è possibile solo da un IP sicuro. Accesso rifiutato.
+!exit
+
+:alreadyarchivated
+Questo compito a risposta aperta è stato archiviato. Non è più possibile riportarlo allo stato Attivo.
+!exit
+
+:file_too_large
+Non è stato possibile creare un archivio contenente i dati degli studenti relativi a questo compito a risposta aperta: il file è troppo grosso.
+<br>Il limite massimo è <strong>$max_arch_size Mega</strong>.
+!exit
+
+:addexo-nofreework
+Non è disponibile nessun compito a risposta aperta in cui sia possibile inserire un esercizio.
+!exit
+
+:not_exo
+La risorsa che avete selezonato non è un esercizio: non è possibile inserirla in un compito a risposta aperta.
+!exit
+
+:insert_fail
+L'inserimento non è andato a buon fine. In un compito a risposta aperta possono essere inseriti solo esercizi.
+!exit
+
+:no_pick
+L'inserimento non è andato a buon fine: non è stato selezionato alcun compito a risposta aperta oppure il compito selezionato non è del tipo corretto.
+!exit
+
+:bad_freework
+Strano! Il numero del compito a risposta aperta inserito non è corretto.
+!exit
+
+:too_many_exos
+Questo compito a risposta aperta contiene già il numero massimo di esercizi possibile.
+!exit
+
+:already_exist
+Questa risorsa è già stata inserita nel compito a risposta aperta e proprio con gli stessi parametri.
+!exit
+
+:exo-insert
+L'esercizio è stato correttamente inserito nel compito a risposta aperta.
+!exit
+
+:exolog-noexo
+Non sono stati selezionati esercizi.
+!exit
+
+:exolog-exoexists
+Hai già salvato l'esercizio $exolog per questo compito a risposta aperta. Non è più possibile fare modifiche.
+!exit
+
+:exolog-badparameter
+La configurazione dell'esercizio che stai cercando di salvare non corrisponde all'esercizio assegnato. Non modificare gli indirizzi sulla barra di navigazione del browser.
+!exit
+
+:exolog-nofile
+Strano! Nessun file salvato per questo esercizio.
+!exit
+
+:exolog-nouser
+Lo studente non esiste!
+!exit
+
+:ok-delexo
+L'esercizio è stato cancellato come richiesto.
+!exit
+
+:noinlineanswer
+Strano! Questo compito a risposta aperta non prevede consegne on line. Non modificare l'indirizzo sulla barra di navigazione del browser.
+!exit
+
+:badscore
+Il voto inserito non è corretto. Il voto deve essere un numero intero compreso tra 0 e $maxscore.
+!exit
+
+:printversion
+  Non è possibile inserire la versione stampabile di un esercizio in un compito.
+!exit
+
+:exolog-badscore
+  Stai cercando di salvare un esercizio senza aver raggiunto il punteggio minimo richiesto. Non modificare manualmente l'indirizzo nel browser.
+!exit
+
+:toomanywimsexo
+Vous ne pouvez pas définir plus d'une zone de type exercice interactif.
+!exit 
+
+:duplicateok
+Compito copiato correttamente.
+!exit
+
+:truncatedtext
+Il testo inserito è troppo lungo e è stato rielaborato e tagliato.
+!exit
+
+:geogebratoolong
+La costruzione GeoGebra è troppo complessa e non può essere salvata. Semplifica la costruzione e riprova!
+!exit

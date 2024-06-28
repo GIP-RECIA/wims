@@ -1,0 +1,32 @@
+!set gl_n=!randint 1,5
+
+!if $gl_n=1
+  !set gl_m=!randint 2,5
+!else
+  !set gl_m=!randint 1,5
+!endif
+!set gl_p=!randint 2,3
+!readproc slib/matrix/random $gl_n,$gl_m
+!set gl_A1=$slib_out
+
+!readproc slib/matrix/random $gl_m,$gl_n
+!set gl_A2=$slib_out
+
+!readproc slib/matrix/random $gl_n,$gl_m
+!set gl_A3=$slib_out
+
+!set gl_n2=!randint 2,5
+!readproc slib/matrix/random $gl_n2,$gl_n2
+!set gl_A4=$slib_out
+
+!set gl_k=!randint -6,6
+
+!set gl_S=!exec pari [$gl_A1]+[$gl_A3]
+!set gl_P1=!exec pari [$gl_A1]*[$gl_A2]
+!if $gl_n=$gl_m
+  !set gl_P2=!exec pari [$gl_A2]*[$gl_A1]
+!endif
+
+!set gl_kA=!exec pari $gl_k*[$gl_A1]
+
+!set gl_Ap=!exec pari [$gl_A4]^($gl_p)

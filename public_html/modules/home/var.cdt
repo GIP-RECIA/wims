@@ -1,0 +1,47 @@
+!reset exist_cdt
+
+!! test situation for displaying cdt (other level have no access to cdt)
+!readproc linkmodule/cdt.proc
+!if $wims_allowlink_cdt!=yes
+  !exit
+!endif
+
+!! link cdt display in any case for supervisor
+!if $wims_user=supervisor
+  exist_cdt=yes
+  !exit
+!endif
+
+!! -------- check link for user
+
+!! display cdt for class (alone) ; class (in groupement) ; course (in portal) for class in  portal see next test
+!if $wims_supertype=0 or ($wims_supertype=4 and $wims_typename=course) or ($wims_supertype=2 and $wims_typename=class)
+  tmp=!defof cdt_nbdate\
+cdt_link\
+cdt_hide in wimshome/log/classes/$wims_class/cdt/.def
+  !distribute line $tmp into tmp2,tmp,tmp3
+  !if $tmp3=yes or $tmp2<=0
+    !exit
+  !endif
+  exist_cdt=yes
+  !if $tmp!=$empty
+    wims_name_cdt=$tmp
+    ADD_cdt=$wims_name_cdt
+  !endif
+!endif
+
+
+!! in a portal cdt display in a class if there is one open  cdt in one of the course of the class (in the class cdt will be summary of all cdt course)
+!if $wims_supertype=4 and $wims_typename=class
+  lt_cdt=!record 0 of wimshome/log/classes/$wims_class/courses
+  lt_cdt=!column 1 of $lt_cdt
+  !for k in $lt_cdt
+    tmp=!defof cdt_nbdate,cdt_hide in wimshome/log/classes/$wims_superclass/$k/cdt/.def
+    !if $(tmp[1])>0 and $(tmp[2])!=yes
+      exist_cdt=yes
+      !exit
+    !endif
+  !next k
+!endif
+
+! ---------- end check link for user

@@ -1,0 +1,452 @@
+!if $wims_read_parm!=$empty
+ !goto $wims_read_parm
+!endif
+
+:general
+<h2 id="general">Introduzione</h2>
+
+<p>
+Un test di autovalutazone permette di proporre agli studenti una selezione
+di esercizi.
+In questo modo si può monitorare e valutare l'attività degli studenti.
+</p>
+<div>
+Il server registra un certo numero di dati relativo al lavoro effettuato nei
+test da parte di uno studente registrato e questo permette
+al docente di seguirne l'attività:
+<ul><li>data/ora in cui lo studente ha visualizzato l'enunciato di un esercizio nel test,
+</li><li>data/ora in cui lo studente ha inviato la risposta,
+</li><li>il punteggio ottenuto nell'esercizio.
+</li></ul>
+<p>
+Viene quindi assegnato un voto per il test calcolato a partire dai punteggi ottenuti in ciascuno svolgimento
+degli esercizi del test. Questo voto di default è calcolato con un massimo di 10.</p>
+</div>
+<div>
+Le impostazioni standard prevedono che lo studente possa:
+<ul><li>ricominciare tutte le volte che vuole uno stesso esercizio nel test;
+</li><li>
+lavorare sugli esercizi del test nell'ordine che preferisce;
+</li><li>scegliere di lavorare su un test disabilitando la registrazione
+ dei punteggi, in questo caso il lavoro svolto non è tenuto in considerazione
+ nel calcolo del voto.
+</li></ul>
+</div>
+<div>
+Per impostazione predefinita, il tempo che lo studente ha per inviare la sua
+risposta a partire da quando visualizza il testo dell'esercizio è limitata
+esclusivamente dalla durata massima di una sessione (questo server imposta
+come massima durata per una sessione inattiva il tempo di $idle_time minuti).
+</div>
+<div style="margin-top:1em">
+Per costruire un test in un corso è possibile
+<ul><li>
+importare un test di autovalutazione pubblico disponibile sul server
+e visualizzabile attraverso il motore di ricerca (cliccare sul
+titolo del test e quindi sul link
+<span class="tt wims_code_words">$wims_name_import</span>),
+che può eventualmente essere modificato;
+</li><li>
+creare un nuovo test a partire dal link
+<span class="tt wims_code_words">$wims_name_add_sheet</span>
+nella home page del corso,
+quindi inserire a uno a uno gli esecizi a partire dal motore
+di ricerca o a selezionandoli tra gli esercizi del corso
+(il link <span class="tt wims_code_words">$wims_name_add</span>
+è visibile nel menu di sinistra nel momento in cui si visualizza
+il testo dell'esercizio, alcuni moduli di esercizi presentano anche
+il link <span class="tt wims_code_words">$wims_name_addallexo</span>);
+</li><li>
+creare un nuovo test a partire dagli esercizi contenuti in un documento
+pubblico presente sul server (in questo caso la creazione del test viene
+suggerita nel momento in cui si inserire tale documento nelle pagine
+del proprio corso).
+</li></ul>
+Una volta che il test è stato creato, è anche possibile inserire direttamente
+il codice sorgente di alcuni esercizi, per esempio seguendo le istruzioni
+contenute in alcuni documenti wims.
+</div>
+<p>
+A ogni esercizio del test il docente può associare una forma di aiuto
+(<span class="tt wims_code_words">$wims_name_feedbackexo</span>)
+mediante un collegamento a una risorsa WIMS, che viene suggerito agli studenti
+che nell'esercizio ottengono un valore inferiore a un certo livello assegnato
+dal docente.
+È anche possibile definire dei vincoli tra gli esercizi di un test in
+modo da rendere accessibili certi esercizi solo nel momento in cui lo studente
+abbia ottenuto un certo punteggio in altri esercizi.
+</p>
+<p>
+I test sono numerati nell'ordine di creazione/inserimento nel corso.
+È possibile riorganizzare la presentazione dei test per gli studenti utilizzando
+la funzione <span class="tt wims_code_words">$wims_name_reorder</span>.
+</p>
+
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:statut
+<h2 id="statut">Stato di un test</h2>
+Un test può essere in quattro diversi stati:
+<span class="wims_code_variable">
+!replace internal , by ,$ $ in $(wims_name_shstatus).
+</span>
+<p>
+<span class="wims_code_variable">$(wims_name_shstatus[1]):</span>
+lo stato iniziale del test. In questa fase, il test non è visibile
+per gli studenti.
+</p><p>
+<span class="wims_code_variable">$(wims_name_shstatus[2]):</span>
+una volta che si è cliccato su
+<span class="tt wims_code_words">$(wims_name_actionlist[1])</span>,
+il test diventa visibile per gli studenti (che possono lavorare
+sugli esercizi a meno che qualche parametro del campo
+<span class="tt wims_code_words">$(name_shinfo[6])</span>
+non lo impedisca), i contenuti a questo punto
+non sono più modificabili, eccetto i titoli e i testi di presentazione
+del test e dei singoli esercizi, il campo
+<span class="tt wims_code_words">$(name_shinfo[6])</span> e
+i campi
+<span class="tt wims_code_words">$wims_name_feedbackexo</span> degli esercizi.
+</p><p>
+Si passa dallo stato
+<span class="tt wims_code_words">$(wims_name_shstatus[2])</span>,
+allo stato
+<span class="tt wims_code_words">$(wims_name_shstatus[3])</span>
+cliccando su
+ <span class="tt wims_code_words">$(wims_name_actionlist[2])</span>.
+Non è più possibile tornare allo stato
+<span class="tt wims_code_words">$(wims_name_shstatus[1])</span>.
+</p><p>
+<span class="wims_code_variable">$(wims_name_shstatus[3]):</span>
+gli studenti possono ancora lavorare sul test, ma il sistema non tiene
+in alcun conto il lavoro fatto nei calcoli dei punteggi.
+</p><p>
+Una volta che il test è
+<span class="tt wims_code_words">$(wims_name_shstatus[3])</span>,
+si può nascondere il test agli studenti cliccando su
+<span class="tt wims_code_words">$(wims_name_actionlist[4])</span>,
+ma si può anche ritornare allo stato
+<span class="tt wims_code_words">$(wims_name_shstatus[2])</span>.
+ </p>
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:allowtype
+<h2 id="allowtype">Opzioni per la registrazione dei voti</h2>
+
+È possibile inserire un controllo per limitare la registrazione dei
+voti a determinati periodi e/o a determinate postazioni. Le opzioni
+disponibili sono
+<ul>
+ <li><span class="tt wims_code_words">$(name_allowtype[1])</span>: tutti i voti sono registrati.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[2])</span>: nessun voto viene registrato.</li>
+ <li><span class="tt wims_code_words">$(name_allowtype[3])</span>: nel campo <span class="tt wims_code_words">$(name_shinfo[6])</span>, sarà possibile inserire un intervallo di tempo e gli IP delle postazioni abilitate alla registrazione dei voti. Questa restrizione può essere scritta mediante tre stringhe (che possono essere presenti solo in parte): <br>
+ <ul>
+  <li>Una data e un orario di inizio;</li>
+  <li>Una data e un orario di termine;</li>
+  <li>Un elenco di IP (separati da spazi);</li>
+ </ul>
+ (più avanti in questa pagina maggiori dettagli sui formati di queste
+ stringhe);
+
+!! c'è più sotto
+!! Les dates (format <span class="tt wims_code_words">aaaammjj</span>) et heures (format <span class="tt wims_code_words">hh:mm</span>) doivent être en temps local du SERVEUR.
+!!  <p>
+!! Exemple :
+!! $wims_name_form <span class="tt wims_code_words">20131007</span> $wims_name_at <span class="tt wims_code_words">10:30</span> $wims_name_to <span class="tt wims_code_words">20131001</span> $wims_name_at <span class="tt wims_code_words">10:00</span> $wims_name_IP<span class="tt wims_code_words"> 127.0.</span> <br>
+!! permet l'enregistrement des notes entre 2 dates et seulement pour les numéros IP commençant
+!! par <span class="tt wims_code_words">127.0.</span>.
+!! </p>
+</li>
+<li><span class="tt wims_code_words">$(name_allowtype[4])</span>: questa opzione può essere utilizzata per indicare filtri di accesso a seconda dell'appartenenza dello studente a un gruppo individuato mediante una <span class="tt wims_code_words">variabile tecnica</span> (questa variabile tecnica deve essere definita per ciascun iscritto, può essere definita manualmente dal docente attraverso la pagina di gestione delle variabile o la scelta può essere lasciata agli studenti attraverso l'utilizzo di un <span class="tt wims_code_words">$wims_name_Vote</span>). Se si sceglie questa opzione e si seleziona una variabile per ogni gruppo definito da tale variabile sarà possibile inserire (e successivamente modificare) un filtro (secondo le regole definite sopra).
+Se non si precisa alcun valore come filtro per un certo valore della variabile, allora la registrazione dei voti è disattivata per gli studenti che hanno questo valore.
+<p>
+Si segnala che si può impotare un <span class="tt wims_code_words">$wims_name_Vote</span> utilizzando il modello <span class="tt wims_code_words">Accessi individualizzati</span> specifico per la gestione di questi filtri orari tramite variabili tecniche. Se si utilizza una variabile tecnica creata attraverso tale questionario i campi corrispondenti a ogni gruppo vengono automaticamente riempiti con i valori definiti attraverso il questionario. Questi valori possono essere comunque modificati dal docente per esempio in sede d'esame, direttamente in questa pagina, per esempio variando date e orari (le modifiche effettuate in questa pagina non modificano i dati contenuti nel questionario).
+</p>
+<p>Esempio: Se abbiamo una variabile tecnica <span class="tt wims_code_variable">gruppo</span> che può assumere i valori 1, 2 e 3,  possiamo, ad esempio, costruire i filtri per questa variabile come nella tabella che segue:
+!readproc slib/text/matrixhtml [$name_value,$name_filtre\
+$name_EMPTY, 129.50.10. &#62;20160915.12&#58;00\
+1,&#62;20160915.15&#58;00 &#60;20160925.12&#58;00\
+2,\
+3,127.0.],wimscenter wimsborder wimstable,TH=[1;]
+$slib_out
+</p>
+Nei limiti delle date in cui il test è attivo,
+<ul><li>
+per gli studenti per cui la variabile
+<span class="tt wims_code_variable">gruppo</span> non è stata definita,
+la registrazione dei punteggi è attiva dal giorno
+15/09/2016 alle ore 12 e unicamente per gli IP della sottorete
+129.50.10. (attenzione al punto finale!)
+</li><li>
+per gli studenti per cui la variabile <span class="tt wims_code_variable">gruppo=1</span>,
+la registrazione dei voti è attiva a partire dal giorno 15/09/2016 alle ore 15 e fino al giorno 25/09/2016 alle ore 12.
+</li><li>
+per gli studenti per cui la variabile <span class="tt wims_code_variable">gruppo=2</span>, la registrazione dei voti non è mai attiva.
+</li><li>
+per gli studenti per cui la variabile
+<span class="tt wims_code_variable">gruppo=3</span>,
+la registrazione dei voti è attiva unicamente dalle postazioni con IP nella classe 127.0. (attenzione al punto finale!)
+</li></ul>
+</li>
+<li>Ces réglages peuvent être propagés :
+<ul>
+  <li>Dans un groupement, pour des classes en partage à partir de la classe ayant initié le partage et en utilisant une variable technique provenant du groupement.</li>
+  <li>Dans un portail, à partir d'un programme vers les cours en utilisant une variable technique provenant du portail ou du niveau.</li>
+</ul>
+</li>
+</ul>
+!if $tv_listtechvar!=$empty
+ Le variabili tecniche attualmente disponibili nel corso sono:
+ !read adm/vfilter/listvar.phtml
+!else
+ Non ci sono attualmente variabili tecniche definite nel corso. Se volete utilizzare questa opzione, dovete definire una variabile tecnica.
+!endif
+
+<h3>Formati utilizzabili per i filtri</h3>
+<p>
+Per le date:
+</p><p>
+<span class="tt wims_code_words">
+&gt;yyyymmdd.hh:mm</span>
+(data e ora di inizio) e/o
+<span class="tt wims_code_words">
+&lt;yyyymmdd.hh:mm</span>
+(data e ora di fine). Queste date devono essere espresse nel fuso orario
+del SERVER, e devono essere separate tramite spazi l'una dall'altra (o da
+eventuali altre istruzioni simili).
+</p><p>
+Per le postazioni:
+</p>
+!read help/hosts.phtml
+<p>
+Esempio:
+<span class="tt wims_code_words">&lt;20131007.10:30 &gt;20131001.10:00 127.0.</span>
+permette la registrazione dei voti tra le due date indicate e solamente per
+connessioni provenienti IP che cominciano con
+<span class="tt wims_code_words">127.0</span>.
+</p>
+
+
+
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:variable
+!! questo testo è utilizzato?
+<p>
+Per indicare le limitazioni di accesso alla registrazione dei voti è possibile
+utilizzare variabili indicandone il nome (nell'esempio qui sotto, si puà scrivere
+<span class="tt wims_code_words">\timelimit</span>).
+Tale variabile deve
+allora essere definita per ciascuno studente secondo le regole indicate
+sopra. Questo può essere fatto manualmente nelle "opzioni account" dello
+studente oppure attraverso l'upload di un file csv (nel campo variabili
+tecniche).
+</p><p>
+Esempio: definire
+<span class="tt wims_code_words">timelimit=&lt;20131007.10:30 &gt;20131001.10:00</span>
+nel campo <span class="tt wims_code_words">variabili tecniche</span> nelle opzioni account dello studente.
+Per gli studenti per cui questa variabile è vuota la registrazione
+dei voti è sospesa.
+</p><p>
+Se si vuole lasciare la scelta agli studenti (ad esempio proponendo una
+serie di date), è possibile utilizzare un questionario creato
+da un modello (si vedano le pagine di help corrispondenti).
+</p>
+!!if $wims_read_parm!=$empty
+ !exit
+!!endif
+
+:dependancies
+<h2 id="dependancies">$(name_shtab[6])</h2>
+<p>
+Si possono impostare punteggi con dipendenza se si vuole che gli studenti
+debbano acquisire un certo punteggio per poter accedere agli esercizi succesivi del test.
+</p>
+<p>
+Il campo <span class="tt wims_code_words">$(name_shtab[6])</span>
+di un esercizio permette di precisare i punti che lo studente deve
+acquisire in altri esercizi del test prima di poter lavorare su questo.
+</p><p>
+Per esempio, <span class="tt wims_code_words">1:50,2:30,3+4+5:60</span> significa che lo studente deve avere un risultato almeno del 50% nell'esercizio 1,
+ 30% nell'esercizio 2 e una media del 60% negli esercizi 3, 4 e 5.
+</p>
+
+!if $wims_read_parm!=$empty
+ !exit
+!endif
+
+:feedback
+<h2 id="feedback">$(name_shtab[10])</h2>
+
+È possibile impostare in questo campo un link verso un documento
+WIMS o un esercizio WIMS. Tale link apparirà allo studente nel caso in cui
+il punteggio soddisfa certe condizioni date, per esempio se è strettamente inferiore al voto indicato (in decimi).
+Il primo parametro è l'indirizzo della risorsa WIMS nella forma seguente (forma abbreviata):
+<ul><li>
+Esercizio di un modulo o un documento pubblici:
+<span class="tt wims_address">module=xxx</span>
+(come indicato nella pagina <span class="wims_button disabled">$wims_name_about</span> del modulo).
+</li><li>
+Esercizio del corso: <span class="tt wims_address">module=classes/it&exo=_nome_file_</span>
+dove <span class="tt">_nome_file_</span> è il nome del file contenente l'esercizio (omettendo l'estensione
+ <span class="tt">.oef</span>).
+</li><li>
+Documento del corso:
+<span class="tt wims_address">module=adm/doc&doc=c1&+block=_nome_blocco_</span>
+</li><li>
+Voce di glossario generale
+<span class="tt wims_address">module=adm/tool/glossary&special_parm=_nom_glose</span>
+(per esempio, _voce_glossario è mathematics/algebra/fr/affixe).
+</li></ul>
+I parametri successivi sono il voto massimo e il voto minimo (se omesso 0)
+per cui il link deve apparire (i tre parametri devono essere scritti sulla stessa riga).
+Nell'esempio seguente, se il voto è inferiore a 5 allo studente sarà mostrato il link
+verso il documento <span class="tt">c2</span> del corso, e più precisamente alla pagina di tale
+documento corrispondente al blocco <span class="tt">aaa</span>.
+
+<pre>module=adm/doc&doc=c2&+block=aaa,5</pre>
+
+Nell'esempio seguente, sarà mostrato un link verso l'esercizio <span class="tt">traduction1</span>
+del modulo WIMS <span class="tt wims_fname">H6/set/oefset.fr</span> (il voto ottenuto dallo studente svolgendo tale
+esercizio non sarà conteggiato nella media dei voti dello studente).
+
+<pre>module=H6/set/oefset.fr&cmd=new&exo=traduction1,10</pre>
+
+Mettendo due numeri (di cui il secondo strettamente positivo), il pulsante
+appare quando il punteggio è compreso tra i due numeri: per esempio
+se si mette
+<pre>module=H6/set/oefset.fr&cmd=new&exo=traduction1,11,10</pre>
+il pulsante appare nel caso in cui il punteggio è 10 e apparirà la
+parola $wims_name_feedbackplus. Se il secondo numero è zero, il sistema
+si comporta come nel caso venga inserito un solo numero.
+
+È possibile impostare più link corrispondenti a intervalli di voti disgiunti (al momento questo non viene verificato dal sistema).
+
+<pre>module=H6/set/oefset.fr&cmd=new&exo=traduction1,10,5
+module=adm/doc&doc=c2&+block=aaa,5,4
+</pre>
+
+È anche possibile inserire un link di questo tipo nel test selezionando la risorsa WIMS che
+si vuole inserire e successivamente cliccando sul link
+<span  class="wims_button disabled">$wims_name_addh</span> nel menu di sinistra.
+È comunque consigliabile verificare dopo aver inserito tutti i collegamenti la compatibilità degli intervalli impostati per i voti.
+
+!exit
+
+:series
+<p>
+In generale gli esercizi di una serie sono scelti casualmente
+e, se il numero di domande lo permette, viene proposto almeno un esercizio
+per ciascun tipo.
+</p><p>
+Nella le opzioni avanzate è possibile richiedere che l'ordine non sia casuale
+e qui potete specificare l'ordine in cui devono essere presentati gli esercizi
+di una serie.
+</p>
+!exit
+
+:score
+!changeto adm/lang/help.score.$lang
+
+:exotrymax
+!read lang/help.phtml.fr exotrymax
+!exit
+
+:weight
+!changeto adm/lang/weight.it
+!exit
+
+:weightexo
+!set wims_backslash_insmath=yes
+<h2 id="weightexo">Peso di un esercizio in un test</h2>
+Il peso dell'esercizio in un test è preso in considerazione sia per il calcolo dei tre
+ indicatori di valutazione del test - <span class="wims_code_variable">$(wims_name_thsheet[5]),
+$(wims_name_thsheet[10]), $(wims_name_thsheet[13])</span> -
+sia per il calcolo del parametro <span class="wims_code_variable">$(wims_name_thsheet[7])</span> del test.
+<ul><li>
+Il valore dell'indicatore <span class="wims_code_variable">$(wims_name_thsheet[5])</span>
+è una media ponderata dell'indicatore cumulativo di ciascun esercizio del test, avente come coefficiente nel calcolo il prodotto del peso
+dell'esercizio nel test per il numero di punti richiesti. La regola è analoga per il calcolo del
+ valore di <span class="wims_code_variable">$(wims_name_thsheet[10])</span>
+ e <span class="wims_code_variable">$(wims_name_thsheet[13])</span>.
+ </li><li>
+Il valore del parametro <span class="wims_code_variable">$(wims_name_thsheet[7])</span>
+ nel test è una media pesata dei voti di qualità
+ ottenuti per ciascun esercizio avente come coefficienti il prodotto
+ dei pesi dell'esercizio per l'indicatore cumulativo ottenuto nell'esercizio.
+</li></ul>
+<p>
+Mettere peso 0 se non si vuole che il punteggio ottenuto in questo
+esercizio sia tenuto in conto.
+</p>
+Esempio: la tabella descrive i risultati ottenuti da uno studenti in
+un test contenente 3 esercizi:
+$table_header
+  <thead>
+  $table_hdtr
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[1])</th>
+    <th scope="col">$(wims_name_thsheet[2])</th>
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[3])</th>
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[4])</th>
+  !!qualite
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[7])</th>
+    <th scope="col" data-sort-method="number">$(wims_name_thsheet[5])</th>
+  </tr>
+  </thead>
+  <tbody>
+<tr><td> 1 </td><td>Ex 1</td><td>20</td><td>2</td><td>5.5</td><td>60%</td></tr>
+<tr><td> 2 </td><td>Ex 2</td><td>10</td><td>3</td><td>6.5</td><td>25%</td></tr>
+<tr><td> 3 </td><td>Ex 3</td><td>10</td><td>0</td><td>8.5</td><td>100%</td></tr>
+  </tbody>
+$table_end
+<ul><li>L'indicatore $(wims_name_thsheet[5]) per il test è
+\(\frac{2\times 20 \times 60 + 3 \times 10 \times 80 + 0}{2\times 20 + 3 \times 10}\% = 68.57\%\)
+</li><li>
+Il parametro $(wims_name_thsheet[7]) per il test è
+\(\frac{2\times 60 \times 5.5 + 3 \times 80 \times 6.5 + 0}{2\times 60 + 3 \times 80} = 6.17\)
+</li></ul>
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+:exodescshow
+Se si seleziona <span class="tt">$wims_name_yes</span>, la descrizione dell'esercizio apparirà
+sopra l'enunciato dell'esercizio e non solamente nella lista degli esercizi
+nella pagina di presentazione del test.
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+
+:indivtechvar
+Questa opzione permette di indicare una variabile tecnica che permetterà di personalizzare il test per ciascuno studente.
+<br>
+In pratica si vengono a creare tanti test quanti sono i valori che può assumere questa variabile.
+Ogni studente visualizza il test che corrisponde al valore della variabile che gli è attribuito.
+Gli studenti per cui la variabile non è impostata vedono tutti gli esercizi del test.
+<br>
+Questa selezione può essere impostata nella scheda Personalizzazione (che viene visualizzata solo dopo che la variabile è stata impostata).
+È allora possibile selezionare le serie di esercizi che devono comparire in ciascuna personalizzazione del test.
+<br>
+Questa opzione non è compatibile con la configurazione di punteggi con dipendenza.
+<br>
+Sono utilizzabili solo le variabili tecniche locali.
+<p class="wims_msg info">
+!if $tv_listlocal!=$empty
+ Le variabili attualmente disponibili sono:
+ !read adm/vfilter/listvar.phtml local
+!else
+  Non sono al momento definite variabili tecniche nel corso. Se volete
+  utilizzare questa opzione dovete come prima cosa definire una variabile
+  tecnica.
+!endif
+</p>
+!if $wims_read_parm!=$empty
+  !exit
+!endif
+

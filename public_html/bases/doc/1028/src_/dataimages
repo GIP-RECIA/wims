@@ -1,0 +1,7 @@
+dataimages
+:copy x,y,x1_px,y1_px,x2_px,y2_px,[filename]:file in some datamodule given by common_files in var.proc
+copy -10,10,-1,-1,-1,-1,\filedir/ananas.png
+:copy x,y,x1_px,y1_px,x2_px,y2_px,[filename]:file in some datamodule given by common_files in var.proc, only for flydraw
+copy -10,10,-1,-1,-1,-1,ananas.png
+
+:fine:fine

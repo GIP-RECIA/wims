@@ -1,0 +1,16 @@
+!reset fw_list
+!!set test=!defof allowed_optional_module in wimshome/log/wims.conf
+!if class/freework isitemof $wims_allowed_optional_module and $seq_open!=yes
+  !set freeworkcnt=!recordcnt wimshome/log/classes/$wims_class/freeworks/.freeworks
+  !for i=1 to $freeworkcnt
+    !set d_=!record $i of wimshome/log/classes/$wims_class/freeworks/.freeworks
+    !distribute lines $d_ into s_,t_,a_,e_,c_,o_
+    !if $s_>0 and $s_<3
+      !set fw_list=!append item $i to $fw_list
+    !endif
+  !next i
+  !set fwcnt=!itemcnt $fw_list
+!else
+  !let freeworkcnt=0
+  !let fwcnt=0
+!endif

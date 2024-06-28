@@ -1,0 +1,114 @@
+
+:H5/analysis/oefsequence.fr
+exo=pourcentage_et_cm_1
+10
+1
+Pourcentage et coefficient multiplicateur (1)
+<strong>Activité préparatoire</strong>.
+
+
+:H5/analysis/oefsequence.fr
+exo=pourcentage_et_cm_2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Pourcentage et coefficient multiplicateur (2)
+<strong>Activité préparatoire</strong>.
+
+
+:H5/analysis/oefseq.fr
+exo=nature2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Nature de la suite ? (concret)
+Détermination de la <strong>nature</strong> de la suite. Calcul de la <strong>raison</strong>.
+
+
+
+:H5/analysis/oefseq.fr
+exo=geocalc1&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Suite géométrique (calcul 1)
+Calcul de <strong>U<sub>1</sub>, U<sub>2</sub>, U<sub>3</sub></strong> connaissant U<sub>0</sub> et q.
+
+
+:H5/analysis/oefseq.fr
+exo=geocalc2&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Suite géométrique (calcul 2)
+Calcul de <strong>U<sub>n+1</sub> et U<sub>n-1</sub></strong> connaissant U<sub>n</sub> et q.
+
+
+:H5/analysis/suites.fr
+exo=Suitearithmtiq
+10
+1
+Suites arithmétiques et géométriques
+Calculer U<strong><sub>n-1</sub></strong> ou U<strong><sub>n+2</sub></strong> connaissant U<sub>n</sub> et U<sub>n+1</sub>.
+
+
+:H5/analysis/oefsequence.fr
+exo=calcul_terme_suite_geometrique
+10
+1
+Calcul du terme d'une suite géométrique
+Calculer <strong>U<sub>n</sub></strong> connaissant U<sub>0</sub> <em>ou</em> U<sub>1</sub> et q.
+
+
+:H6/algebra/oefsuites.fr
+exo=suite_geo
+10
+1
+Suite géométrique
+Calcul de <strong>q</strong> et de <strong>U<sub>n+1</sub></strong>.
+
+
+:H5/analysis/oefseq.fr
+exo=geom
+10
+1
+Suite géométrique (spectateurs)
+Exercices en plusieurs étapes : <strong>Calculs de termes</strong>.
+
+
+:H6/algebra/oefsuitesExosSyn.fr
+exo=placements&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Valorisation d'un capital
+Exercices en plusieurs étapes: <strong>Calculs de termes</strong>.<em> intérêts</em> <em>simples</em> (<strong>suite arithmétique</strong>) ou <em>intérêts composés</em> (<strong>suite géométrique</strong>).
+
+
+:H5/analysis/oefseq.fr
+exo=conjgr&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Nature de la suite ? (graphique)
+<strong>Lecture graphique</strong> d'une suite arithmétique ou géométrique.
+
+
+:H6/analysis/numericseq.fr
+exo=calctersuite5AS
+10
+1
+Calculer des termes d'une suite avec somme
+Calcul de différents <strong>termes</strong> d'une suite géométrique et de la <strong>somme</strong>.
+
+
+:H6/algebra/oefsuitesExosSyn.fr
+exo=salairesannuels&qnum=1&scoredelay=&seedrepeat=0&qcmlevel=1
+10
+1
+Cumul de salaires annuels
+Problème concrêt en plusieurs étapes. Détermination de la <strong>nature</strong> d'une suite. Calcul de <strong>U<sub>1</sub> ; U<sub>n</sub></strong> ; <strong>somme</strong> des n premiers termes.
+
+
+:H6/algebra/oefsuitesExosSyn.fr
+exo=formulesomme
+10
+1
+Quelle formule de somme?
+Calcul de la <strong>somme</strong>. Détermination de la <strong>formule</strong>. Suite géométrique ou arithmétique.
+
+

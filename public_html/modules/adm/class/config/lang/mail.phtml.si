@@ -1,0 +1,21 @@
+
+!mailto $sup_email\
+\
+Code for class configuration\
+\
+<p>\
+You have requested for configuration of your virtual class\
+$wims_classname on $httpd_HTTP_HOST,\
+but have not defined secure hosts.\
+</p><p>\
+Here is your secret code (valid only once and immediately) for\
+this purposes: <strong>$code</strong>\
+</p><p>\
+You can copy this code to the configuration tool in order to get access to it.\
+</p><p>\
+If you do not know what this is about, then probably the supervisor password\
+of your class has leaked or been stolen. Please change this password as soon\
+as possible.\
+</p><p>\
+<p style="text-align:right">$wims_site_manager</p>\
+

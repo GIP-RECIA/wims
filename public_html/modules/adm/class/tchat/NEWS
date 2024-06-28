@@ -1,0 +1,29 @@
+ ------------ version 1.00 
+20220921 [r17089] close module for example class (FG)
+20220506 [] hide error message "toobigfile" when select a new tmp file
+------------ version 0.23 
+20220307 [r16409] open/close tchat by supervisor directly take into account for user without deconnecting 
+20220223 [r16366] move tmp file from s2 to sessions directory
+20220222 [r16364] improvment of widow title when supervisor look to user page
+20220219 [r16355] use module adm/class/exolog to display exercise in job=viewpage
+20210921 [r16049] manage sh error when no shared file in user directory
+20210921 [r16049] bugfix session problem in supervisor page when multiple user in a class activate sharedscreen
+-------------  version 0.22
+20201115 [] participant (in personnal living) can upload a file (<1Mo). file is not save in the class (lost after disconnect)
+-------------  version 0.21
+20200602 [r15117] new participant can open/close share screen (information in variable wims_sharescreen)
+20200602 [r15082] participant can desactivate autorefresh
+20200601 [r15068] add job=showhide : supervisor can show/hide message
+20200515 [r14976] add preview when edit a new msg
+20200430 [r14924] add option to list only nonempty living in list of living page
+20200428 [r14912] stop auto refresh for job=viewpage (put a link) + improvment of display (solve problem with dynapi exercise)
+20200428 [r14903] add job=config general onfiguration page for tchat. two parameters for the moment tchat_open (default no) tchat_refreshtiming (default 5)
+-------------- version 0.20
+20200415 [r14861] add job=addliving add/modify configuration of a living
+20200414 [r14861] add job=listliving (for supervisor) list of living room defined in the tchat
+20200409 [r14861] add : supervisor can make living for some groupe of participant (and himself) of the class
+20200324 [r14783] job=viewpage : automatic refresh 
+20200324 [r14783] job=viewpage : bugfix image of the user session loose in the supervisor view
+20200324 [r14783] job=viewpage : session number of user now not displayed in supervisor view
+20200324 [r14783] script/getsession save session research in s2/$wims_session/.indexusersession
+20200321 first publication v0.10

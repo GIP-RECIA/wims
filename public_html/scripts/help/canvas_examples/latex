@@ -1,0 +1,20 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+grid 1,1,grey
+linewidth 3
+vline 0,0,green
+hline 0,0,green
+fontfamily 16px Arial
+fillcolor orange
+strokecolor blue
+linewidth 2
+slider 0,4*pi,400,40,angle degree active, 
+centered
+latex 0,0,rac{12345}{23456} 	imes rac{12345}{23456}
+translate 4,4
+centered
+rotate 180
+drag xy
+html 0,0,<table><tr><th>HTML TABLE</th></tr><tr><th><a href="https://wimsedu.info/">WIMS EDU </a> </th></tr><tr><td><img src="gifs/en.gif"></tr><tr><td><img src="gifs/nl.gif"></tr><tr><td><img src="gifs/fr.gif"></tr><tr><td><img src="gifs/cn.gif"></tr><tr><td><img src="gifs/it.gif"></tr></table>
+userdraw arrow2,red

@@ -1,0 +1,13 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+linewidth 2
+
+onclick
+arrow 0,0,4,4,8,blue
+onclick
+arrow 0,0,-4,5,8,green
+onclick
+arrow 0,0,4,-6,8,orange
+onclick
+arrow 0,0,-4,-2,8,cyan

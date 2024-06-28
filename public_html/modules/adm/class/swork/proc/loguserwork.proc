@@ -1,0 +1,16 @@
+!! process to log user work at end of work
+
+!read proc/listwork.proc $wims_read_parm
+nb_=!linecnt $exolist
+!if $nb_=0
+  !exit
+!endif
+out_=!word 2 of $cfdata
+out_=$out_,$wims_now
+!for k_=1 to $nb_
+ l_=!line $k_ of $exolist
+ !readproc proc/exoscore.proc $(l_[1]),$(l_[2]),$wims_read_parm
+ out_=!append item $(l_[1]) $(l_[2]) $[$(l_[3])/100] $score_out to $out_
+!next k_
+!appendfile wimshome/log/classes/$wims_class/swork/log.$wims_read_parm :$out_
+!sh rm -f $wims_home/log/classes/$wims_class/swork/averagescore.$wims_read_parm

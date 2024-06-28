@@ -1,0 +1,24 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=triangles
+!set gl_title=Pythagore (théorème)
+!set gl_level=H2 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_thm">
+<h4>Théorème de Pythagore</h4>
+Dans un triangle rectangle, le carré de la longueur de l'hypoténuse est égal à
+la somme des carrés des longueurs des côtés de l'angle droit.
+<div class="spacer"></div>
+Soit ABC un triangle.<br>
+Si le triangle ABC est rectangle en A, alors <span style="white-space:nowrap">
+\(BC^2=AB^2 + AC^2\).</span>
+</div>
+
+<div class="wims_thm">
+<h4>Réciproque du théorème de Pythagore</h4>
+Soit ABC un triangle.<br>
+Si \(BC^2=AB^2 + AC^2\) alors le triangle ABC est rectangle en A.
+</div>

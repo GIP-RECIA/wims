@@ -1,0 +1,130 @@
+!!set backup_delete=$(wims_read_parm[2])
+!!set sitemanager=$(wims_read_parm[1])
+!!set size=$(wims_read_parm[3])
+!!set day=$(wims_read_parm[4])
+!!set protocol=$(wims_read_parm[5])
+!!set cookies = $(wims_read_parm[6])
+<h2 class="wims_subtitle">Information sur le traitement et la
+protection des données</h2>
+
+!!!<h3>Responsable des données</h3>
+!!!
+!!!Ici afficher l'administrateur du site / de la classe / du portail le cas échéant
+!!!<strong>$(wims_read_parm[1])</strong>
+!!!
+!!!préciser responsable légal (directeur/président dans le cas d'un serveur d'établissement)
+
+
+<h3>Objectifs</h3>
+<p class="wimscenter">
+  <strong>Éducation des apprenants par la pratique d'exercices en ligne.</strong>
+</p>
+<p>
+  WIMS (Web Interactive Multipurpose Server) est une plateforme d'apprentissage en
+  ligne qui met à la disposition de tous des ressources
+  pédagogiques (exercices interactifs, documents interactifs, outils de calcul) et
+  permet aux enseignants de disposer d'un espace protégé où ils peuvent organiser
+  les ressources pédagogiques en séances de travail, en créer et suivre l'activité
+  des apprenants.
+</p>
+
+<h3>Nature des données enregistrées</h3>
+<ul>
+  <li>Dans le cas d'utilisateurs non enregistrés, les seules données enregistrées
+    sont les IP des utilisateurs dans des fichiers log sur le serveur
+    non exploités et conservées temporairement pour le bon fonctionnement
+    du serveur.
+  </li><li>Cas d'une personne créant une classe.<br>
+    Les données enregistrées sont :
+    <ul>
+      <li>les nom, prénom et courriel qu'elle a donnés lors de la création de la classe ;</li>
+      <li> les adresses IP de connexion accessibles uniquement par elle
+        et l'administrateur du serveur.</li>
+    </ul>
+  </li><li>Cas d'utilisateurs inscrits dans une classe virtuelle.<br>
+    L'utilisation des classes virtuelles d'un serveur WIMS implique
+    l'enregistrement des données de connexion ci-dessous
+    afin de pouvoir calculer les scores et notes.
+    Les informations personnelles suivantes sont accessibles à l'enseignant connecté dans
+    sa classe WIMS, aussi bien qu'à l'apprenant sous forme brute ou sous forme analysée&nbsp;:
+    <ul>
+      <li>son nom et prénom</li>
+      <li>son courriel et sa photo (facultatif)</li>
+      <li>les exercices visualisés et/ou résolus</li>
+      <li>l'ensemble des notes obtenues</li>
+      <li>les jours, heures et IP de connexion de l'apprenant lorsqu'il effectue
+        un travail (feuilles d'exercices) dans la classe WIMS (données brutes).</li>
+    </ul>
+  </li>
+</ul>
+
+!if $(wims_read_parm[6])=yes
+  <p>
+    Des cookies sont utilisés pour aider le visiteur non enregistré
+    à conserver ses préférences.
+  </p>
+!endif
+
+<h3>Durée de conservation</h3>
+<p>
+  Les fichiers log du serveur hors classe contenant des données de connexion
+  sont effacés régulièrement selon les deux règles suivantes:
+</p>
+<ul><li>
+    aucune donnée de plus de $(wims_read_parm[3]) jours n'est conservée;
+  </li><li>
+    seuls les derniers $(wims_read_parm[4]) octets sont conservés.
+  </li></ul>
+<p>
+  L'enseignant crée une classe pour une durée de 15 mois maximum.
+  L'enseignant a la possibilité de faire une sauvegarde
+  contenant les données des participants de sa classe sur son
+  ordinateur, de prolonger la durée de sa classe et d'effacer
+  les données des participants de sa classe.
+</p><p>
+  Les données des participants dans une classe sont conservées sur le serveur au
+  plus $(wims_read_parm[2]) jours après la date d'expiration de la classe.
+</p>
+
+!!<h3>Légitimité</h3>
+!!Dans le cas d'un enseignement public, il s'agira  à priori de
+!!« l'exécution d'une mission d'intéret public",
+!!mais une classe WIMS pourrait également servir à titre d'"Exécution d'un contrat »,
+!!ou à titre privé avec le consentement des participants (acceptation des CGU).
+!!La liste des légitimités possibles pourrait etre proposée lors de la création de la classe
+!!par exemple (voir liste plus bas)
+!!
+
+<h3>Destinataires des données</h3>
+!! Inutile de préciser que le gestionnaire/admin a acces au donnée : c'est intrinsèque à la fonction.
+!! Le gestionnaire du site peut avoir accès à toutes les données (sans intérêt pour lui).
+<p>Les enseignants ont accès aux informations
+  disponibles uniquement au sein des classes dont ils sont responsables.</p>
+
+<p>À noter que les inscrits (appelés participants) à une classe et leurs données ne sont pas visibles
+  par les autres participants. Seuls les enseignants d'une classe voient la liste des participants
+  et leurs données.</p>
+
+<h3>Sécurisation</h3>
+!if $(wims_read_parm[5])=https
+  <p>Le site web peut utiliser le protocole $(wims_read_parm[5]).</p>
+!endif
+<p>Un contrôle d'accès des utilisateurs est mis en place via des mots de passes personnels.</p>
+<p>Une journalisation des connexions est effectuée sur le serveur.</p>
+
+
+<h3>Information sur les droits</h3>
+<p>En vertu du <b>R</b>èglement <b>G</b>énéral de <b>P</b>rotection des <b>D</b>onnées (RGPD) EU 2016/679,
+  vous disposez d'un droit d'accès (article 15),
+  de rectification (article 16), d'effacement (article 17),
+  et d'opposition (article 21) pour des motifs légitimes
+  aux données à caractère personnel vous concernant.<br>
+  Vous pouvez exercer ce droit en contactant l'enseignant de votre classe,
+  ainsi que l'administrateur du serveur $(wims_read_parm[1]).
+</p><p>
+  Vous avez également la possibilité, en application
+  de l'article 40-1 de la loi n°78-17 du 6 janvier 1978
+  relative à l'informatique, aux fichiers et aux libertés de définir
+  des directives relatives au sort de vos données à caractère personnel
+  après votre décès.
+</p>

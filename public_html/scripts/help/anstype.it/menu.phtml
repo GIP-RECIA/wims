@@ -1,0 +1,31 @@
+<b>Selezionare in un menu</b> (nome: <span class="tt wims_code_words">menu</span>)
+<br>
+
+La sintassi generale di questo tipo di risposte è:
+<pre>
+\answer{Commento}{1,4;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3}{type=menu}
+\answer{domanda 2}{1,4;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3}{type=menu}{option=shuffle}
+\answer{domanda 3}{1,4,7;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3,corretta3}{type=menu}{option=sort split}
+\answer{domanda 4}{1,4,7;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3,corretta3}{type=menu}{option=sort eqweight}
+\answer{domanda 2}{1,4;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3}{type=menu}{option=shuffle multiple=5}
+</pre>
+<ul><li><span class="tt wims_code_words">menu</span> senza l'opzione <span class="tt wims_code_words">mutiple</span>:
+Lo studente può selezionare una sola opzione nel menu e le uniche opzioni
+possibili sono <span class="tt wims_code_words">shuffle</span> o <span class="tt wims_code_words">sort</span>.
+</li><li><span class="tt wims_code_words">menu</span> con l'opzione <span class="tt wims_code_words">multiple</span> :
+Lo studente può selezionare più risposte tenendo premuto il tasto Ctrl
+(o combinazione simile a seconda del browser utilizzato).
+In questo caso le opzioni possibili sono maggiori:
+<ul><li><span class="tt wims_code_words">shuffle</span>: Le scelte sono mostrate in ordine casuale</li>
+<li><span class="tt wims_code_words">sort</span>: Le scelte sono mostrate in ordine alfabetico</li>
+<li><span class="tt wims_code_words">multiple</span>: Altezza della finestra
+<pre>
+\answer{domanda 2}{1,4;corretta1,sbagliata1,molto sbagliata,corretta2,sbagliata2,sbagliata3}{type=menu}{option=shuffle multiple=3}
+</pre>
+L'opzione qui sopra permette di mostrare 3 scelte su 7, ma un cursore permette
+di selezionare le altre possibilità.
+</li>
+</ul>
+</li>
+ !read help/anstype.it/spliteqweight.phtml
+</ul>

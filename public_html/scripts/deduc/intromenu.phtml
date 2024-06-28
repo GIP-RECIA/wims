@@ -1,0 +1,76 @@
+<hr style="width:35%">
+!readproc deduc/names
+!read Exindex
+!set exocnt=!itemcnt $exolist
+!set Askresult=0
+!set Askcontext=0
+!if $exocnt<1
+  $name_intro1
+  !exit
+!endif
+!if $exocnt=1
+  $(name_introone[1]), <b>
+  !item 1 of $titlelist
+  </b>.
+  !set exoo=!item 1 of $exolist
+  !href cmd=new&module=$module&exo=$exoo $(name_introone[2])
+  !exit
+!endif
+
+!form new
+<input type="hidden" name="module" value="$module">
+<table class="wimscenter wimsborder"><tr>
+!set special_parm=!trim $special_parm
+!if $special_parm2=select and $special_parm!=$empty
+  <th>
+  $(name_intro2[1])
+  <br>
+  <em><span style="color:blue">$special_parm</span></em>:
+  </th>
+!else
+  <th>
+  $(name_intro2[2])
+  </th>
+!endif
+<td>
+!read deduc/select.phtml
+</td>
+</tr><tr><th>
+$(name_intro2[3])
+</th><td>
+!set qcmlevel=3
+!formselect qcmlevel from 1 to 9
+</td></tr><tr><th>
+$(name_intro2[4])
+</th><td>
+!formselect Askcontext list -1,0,1 prompt $name_introprompt
+</td></tr><tr><th>
+$(name_intro2[5])
+</th><td>
+!formselect Askresult list -1,0,1 prompt $name_introprompt
+!read introhook.phtml
+</td></tr></table>
+<div class="wimscenter wimsform">
+<input type="submit" value="$wims_name_work">
+</div>
+
+!formend
+
+!if $exocnt>10
+  !form intro
+  <input type="hidden" name="special_parm2" value="select">
+  <input type="hidden" name="module" value="$module">
+  $name_intro3
+  <input size="12" maxlength="12" name="special_parm" value="$oldparm">
+  <input type="submit" value="OK">
+
+  !formend
+!endif
+
+$name_intro_remark1
+
+!if * isin $titlelist
+  <p>
+  $name_intro_remark2
+  </p>
+!endif

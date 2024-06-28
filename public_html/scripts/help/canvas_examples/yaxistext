@@ -1,0 +1,7 @@
+size 400,400
+yrange 0,13
+xrange -100,500
+axis
+yaxis 1:january:2:february:3:march:5:may:6:june:7:july:8:august:9:september:10:october:11:november:12:december
+#'ymajor' steps should be synchronised with numbers eg. "1" in this example
+grid 100,1,grey,4,1,6,grey

@@ -1,0 +1,52 @@
+<b>Parole crociate.</b>
+(nome: <span class="tt wims_code_words">crossword</span>)
+
+<p>
+Crea uno schema di parole crociate a partire da una matrice di lettere o di cifre
+(è disponibile una slib che permette di creare la matrice a partire dalle parole scelte).
+</p>
+La risposta corretta è costituita da due elementi: il primo elemento è una matrice tra parentesi quadre,
+i coefficienti vuoti corrispondono alle caselle nere, nella forma:
+<pre>[c,i,n,q,,,,
+,,,u,n,,,
+,,,a,,,s,
+,,,t,r,o,i,s
+,,,r,,,x,
+,,d,e,u,x,,]
+</pre>
+Il secondo elemento è costituito dalle definizioni delle parole da inserire (in ciascuna riga il primo elemento
+è la parola, il secondo la sua definizione). Per esempio
+<pre>[un,1 en lettres
+deux,2 en lettres
+trois,3 en lettres
+quatre,4 en lettres
+cinq,5 en lettres
+six,6 en lettres]
+</pre>
+
+Esempio:<pre>\answer{}{[c,i,n,q,,,,
+,,,u,n,,,
+,,,a,,,s,
+,,,t,r,o,i,s
+,,,r,,,x,
+,,d,e,u,x,,],[un,1 en lettres
+deux,2 en lettres
+trois,3 en lettres
+quatre,4 en lettres
+cinq,5 en lettres
+six,6 en lettres]}{type=crossword}
+</pre>
+
+Le matrici possono essere scritte utilizzando segni di punto e virgola (invece dell'andare a capo):
+
+<pre>
+\answer{}{[c,i,n,q,,,,;,,,u,n,,,;,,,a,,,s,;,,,t,r,o,i,s;,,,r,,,x,;,,d,e,u,x,,],[un,1 en lettres;deux,2 en lettres;trois,3 en lettres;quatre,4 en lettres;cinq,5 en lettres;six,6 en lettres]}{type=crossword}
+</pre>
+
+Come opzioni è possibile precisare il colore di fondo <span class="tt wims_code_words">color=[orange,black,white]</span> (default): colore delle caselle da riempire,
+colore delle caselle "nere", colore di fondo del numero della parola, o richiedere che le definizioni sono mostrate con popup (opzione <span class="tt wims_code_words">tooltip</span>),
+piuttosto che tutte le definizioni vengano mostrate allo stesso tempo (opzione <span class="tt wims_code_words">allhelp</span>)
+
+<pre>
+\answer{}{....}{type=crossword}{option=color=[orange,black,white] allhelp}
+</pre>

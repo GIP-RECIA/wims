@@ -1,0 +1,11 @@
+size 400,400
+xrange -10,10
+yrange -10,10
+strokecolor red
+linegraph -10:1:-5:-1:3:3:10:-5
+strokecolor blue
+linegraph -10:-1:-5:1:3:-3:10:5
+dashed
+strokecolor green
+linegraph -10:2:-5:-2:3:4:10:2
+grid 1,1,grey

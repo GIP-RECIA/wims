@@ -1,0 +1,46 @@
+
+!set wims_ref_class=wims_button_help float_right
+!href target=wims_mhelp cmd=help&+special_parm=config $wims_name_help
+<div class="wims_content">
+  !form reply
+     <input type="hidden" name="job" value="config" >
+     <fieldset class="property_fields halfwidth blockcenter">
+     <legend>$wims_name_config</legend>
+     <div class="field box">
+        <label for="cf_open">$name_opentchat</label>
+        !set wims_ref_class=wims_formradio
+        !default cf_open=$tchat_open
+        !formradio cf_open list yes,no prompt $wims_name_yes,$wims_name_no
+    </div>
+     <div class="field box">
+        <label for="cf_refreshtiming">$name_timing</label><br>
+        <input type="number" min="5" max="1000" size="3" name="cf_refreshtiming" value="$tchat_refreshtiming" id="cf_refreshtiming" >
+        <div class="formHelp">$name_desc_refreshtiming</div>
+     </div>
+     <div class="field box">
+        <label for="cf_onlynonempty">$name_onlynonempty</label><br>
+        !set wims_ref_class=wims_formradio
+        !default cf_onlynonempty=$tchat_onlynonempty
+        !formradio cf_onlynonempty list yes,no prompt $wims_name_yes,$wims_name_no
+        <div class="formHelp">$name_desc_onlynonempty</div>
+     </div>
+     <div class="field box">
+        !if $conf_nofile!=yes
+          <label for="cf_configfilesize">$name_configfilesize</label><br>
+          !set wims_ref_class=wims_formradio
+          !default cf_configfilesize=$tchat_configfilesize
+          !formselect cf_configfilesize list 0,1,2,3,4 prompt $wims_name_no,$wims_name_yes 0.25 Mo,$wims_name_yes 0.5 Mo,$wims_name_yes 0.75 Mo,$wims_name_yes 1 Mo
+        !else
+          <strong>$name_configfilesize</strong><br>
+              <span>$wims_name_no</span> <span class="formHelp">$name_disable_configfilesize</span>
+        !endif
+        <div class="formHelp">$name_desc_configfilesize</div>
+     </div>
+  </fieldset>
+  <div class="wimscenter">
+    <input type="submit" name="save" value="$wims_name_tosave" >
+    !set wims_ref_class= wims_button wims_secondary_button
+    !href module=$module&+job=$empty $wims_name_giveup
+  </div>
+  !formend
+</div>

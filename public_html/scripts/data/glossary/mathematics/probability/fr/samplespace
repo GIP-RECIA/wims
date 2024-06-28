@@ -1,0 +1,16 @@
+!!abstract,linked gloses,internal links,content,dynamic examples,...
+!set gl_author=Euler, Académie de Versailles
+!set gl_keywords=probability,events
+!set gl_title=Univers
+!set gl_level=H3 Cycle&nbsp;4
+:
+:
+:
+:
+<div class="wims_defn"><h4>Définition</h4>
+Une expérience aléatoire est une expérience dont on ne peut pas prévoir avec
+certitude le résultat.<br>
+L'<strong>univers</strong> associé à une expérience aléatoire est l'ensemble des
+résultats possibles, ou issues, de cette expérience.<br>
+On le note souvent &#937;. Il peut être fini ou infini.
+</div>

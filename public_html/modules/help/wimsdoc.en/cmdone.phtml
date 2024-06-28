@@ -1,0 +1,64 @@
+!set cc=$wims_read_parm
+
+!set text=!lookup tit in cmd/$cc.phtml
+
+!if $text!=$empty
+  $lst_tit $text $lst_titend
+!endif
+
+!for ff in type,syntax,alias,mean
+  !set text=!lookup $ff in cmd/$cc.phtml
+  !if $text!=$empty
+    <div>
+    $(lst_$ff)
+    !set text=!replace internal `` by $emph in $text
+    !if $ff=syntax
+      !set text=!replace internal $\
+$ by $(lst_$(ff)end) <br>$lstyle2 in $text
+    !endif
+    !replace internal '' by $emphend in $text
+    !if $ff=mean and $cc iswordof word column char item line record
+      !set numlist_type=$cc
+      !if $numlist_type=record
+        !set numlist_str=``fname''
+      !else
+        !set numlist_str=``string''
+      !endif
+      !if $numlist_type=char
+        !set numlist_type=character
+      !endif
+      !set text=!record 0 of cmd/numlist
+      !set text=!replace internal '' by $emphend in $text
+      <div>
+      !replace internal `` by $emph in $text
+      </div>
+    !endif
+    !if $ff=mean and $cc iswordof randfile record recordcnt
+      !read cmd/datafile.phtml
+    !endif
+    $(lst_$(ff)end)
+    </div>
+  !endif
+!next
+
+!if $cc iswordof if
+  !read help/if.phtml
+!endif
+!set text=!lookup numlist in cmd/$cc.phtml
+!if $text!=$empty
+  !set text=!replace internal ` by $emph in $text
+  !replace internal ' by $emphend in $text
+!endif
+
+!set text=!lookup sample in cmd/$cc.phtml
+!if $text!=$empty
+  <div>
+  $lst_sample
+  <table class="wimstable" summary="list some samples for !$cc command">
+  <thead><tr><th>Command</th><th>Result</th></tr></thead>
+  <tbody>
+    !read cmd/$cc.phtml
+  </tbody>
+  </table>
+  </div>
+!endif
