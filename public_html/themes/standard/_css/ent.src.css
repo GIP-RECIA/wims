@@ -1,0 +1,18 @@
+body.main_body {
+    margin-top: 38px;
+  }
+  
+  @media only screen and (min-width: 64.063em) {
+    #wimsmenumodubox {
+  /* - - pour éviter le bug de mkcss.pl qui transforme "a + b" en "a+b" qui est invalide pour chrome */
+      top: calc(3.5em - -80px);
+    }
+  }
+  
+  extended-uportal-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
